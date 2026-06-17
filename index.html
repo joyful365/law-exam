@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CallmeHappyfish 法學測驗總整理</title>
 <style>
-        /* 基礎設定 - 無印良品風格 */
+        /* 基礎設定 - 頂級深色模式 */
         body {
-            /* 使用乾淨、無襯線的字體 */
-            font-family: 'Helvetica Neue', Arial, 'PingFang TC', 'Heiti TC', 'Microsoft JhengHei', sans-serif;
-            background-color: #F7F5F0; /* 溫暖的紙張白/亞麻白底色 */
-            color: #595757; /* 炭灰色字體，閱讀不刺眼 */
-            line-height: 1.6;
+            /* 混搭優雅的襯線字體與現代無襯線體 */
+            font-family: 'Optima', 'Baskerville', 'Times New Roman', 'PingFang TC', 'Heiti TC', serif;
+            background-color: #0d0f12; /* 極深的午夜黑背景 */
+            color: #d1d5db; /* 銀灰色的內文，避免純白過於刺眼 */
+            line-height: 1.8;
             margin: 0;
             padding: 0;
             display: flex;
@@ -20,31 +20,32 @@
             min-height: 100vh;
         }
 
-        /* 主要內容區塊 */
+        /* 主要內容區塊 - 毛玻璃與深邃感 */
         .container {
-            background-color: #FFFFFF; /* 區塊保持純白，凸顯乾淨 */
+            background-color: #16191e; /* 比背景稍微亮一點的深灰色 */
             width: 90%;
             max-width: 600px;
-            padding: 40px 30px;
-            border-radius: 4px; /* 只有極微小的圓角，展現俐落感 */
-            border: 1px solid #EBE8E1; /* 用淡淡的邊框代替原本厚重的陰影 */
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02); /* 極淡的陰影 */
+            padding: 45px 35px;
+            border-radius: 16px; /* 現代感的圓角 */
+            border: 1px solid #2a2e39; /* 極細的暗色金屬邊框 */
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6); /* 深邃的陰影營造懸浮感 */
             text-align: center;
         }
 
-        /* 標題與副標題 */
+        /* 標題與副標題 - 香檳金點綴 */
         h1 {
-            color: #333333;
-            margin-bottom: 10px;
-            font-size: 22px;
-            font-weight: normal; /* 移除過於粗重的標題，維持輕盈感 */
-            letter-spacing: 2px; /* 增加字距，呼吸感更好 */
+            color: #d4af37; /* 經典香檳金 */
+            margin-bottom: 15px;
+            font-size: 26px;
+            font-weight: 300; /* 極細的字重展現優雅 */
+            letter-spacing: 3px;
         }
 
         p {
-            color: #888888;
-            margin-bottom: 30px;
-            font-size: 14px;
+            color: #8b92a5;
+            margin-bottom: 35px;
+            font-size: 15px;
+            letter-spacing: 1px;
         }
 
         /* 測驗清單設定 */
@@ -55,40 +56,42 @@
         }
 
         li {
-            margin-bottom: 12px;
+            margin-bottom: 16px;
         }
 
-        /* 超連結按鈕設計 - 無印風按鈕 */
+        /* 超連結按鈕設計 - 隱形邊框與細緻互動 */
         a {
             display: block;
-            padding: 16px 20px;
-            background-color: #FFFFFF;
-            color: #595757;
+            padding: 18px 20px;
+            background-color: transparent; /* 透明背景 */
+            color: #e5e7eb;
             text-decoration: none;
-            border-radius: 4px;
-            border: 1px solid #DCD9D4; /* 淺灰色的細邊框 */
-            font-size: 15px;
-            letter-spacing: 1px;
-            transition: all 0.3s ease; /* 讓顏色變化有柔和的過渡效果 */
+            border-radius: 8px;
+            border: 1px solid #3f4452; /* 靜態時是低調的灰邊框 */
+            font-size: 16px;
+            letter-spacing: 1.5px;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* 非常平滑的高級動畫效果 */
         }
 
-        /* 滑鼠游標移過去時的效果 */
+        /* 滑鼠游標移過去時的效果 - 金色微光 */
         a:hover {
-            background-color: #F7F5F0; /* 背景變成淺亞麻色 */
-            border-color: #8C1C13; /* 邊框變成無印的經典暗紅色 */
-            color: #8C1C13; /* 字體也呼應變成暗紅色 */
+            border-color: #d4af37; /* 邊框亮起金色 */
+            color: #d4af37; /* 字體變成金色 */
+            background: rgba(212, 175, 55, 0.05); /* 極淡的金色背景光暈 */
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.15); /* 金色發光效果 */
+            transform: translateY(-2px); /* 按鈕微微向上浮起 */
         }
 
         /* 點擊下去瞬間的效果 */
         a:active {
-            transform: scale(0.99);
+            transform: translateY(0);
         }
 
-        /* 回首頁等次要按鈕的樣式 (如果你分類頁有用到) */
+        /* 回首頁等次要按鈕的樣式 */
         a.back-btn {
-            background-color: #F7F5F0;
+            background-color: transparent;
             border: none;
-            color: #888888;
+            color: #8b92a5;
             margin-bottom: 25px;
             font-size: 13px;
             display: inline-block;
@@ -96,16 +99,19 @@
         }
         
         a.back-btn:hover {
-            color: #333333;
-            background-color: #EBE8E1;
+            color: #d1d5db;
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: none;
+            transform: none;
         }
 
         /* 底部裝飾文字 */
         .footer-note {
-            margin-top: 40px;
+            margin-top: 45px;
             font-size: 12px;
-            color: #BDBDBD;
-            letter-spacing: 1px;
+            color: #4b5263;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
     </style>
 </head>
