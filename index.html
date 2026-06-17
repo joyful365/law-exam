@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CallmeHappyfish 法學測驗總整理</title>
 <style>
-        /* 基礎設定 - 無印良品風格 */
+        /* 基礎設定 - 帶有微漸層的溫潤背景 */
         body {
-            /* 使用乾淨、無襯線的字體 */
-            font-family: 'Helvetica Neue', Arial, 'PingFang TC', 'Heiti TC', 'Microsoft JhengHei', sans-serif;
-            background-color: #F7F5F0; /* 溫暖的紙張白/亞麻白底色 */
-            color: #595757; /* 炭灰色字體，閱讀不刺眼 */
+            font-family: 'Helvetica Neue', Arial, 'PingFang TC', 'Heiti TC', sans-serif;
+            /* 將死板的單色換成極淡的自然漸層，營造空間感 */
+            background: linear-gradient(135deg, #FDFCFB 0%, #F2EFE9 100%);
+            color: #595757;
             line-height: 1.6;
             margin: 0;
             padding: 0;
@@ -20,31 +20,48 @@
             min-height: 100vh;
         }
 
-        /* 主要內容區塊 */
+        /* 主要內容區塊 - 增加細緻的立體漂浮感 */
         .container {
-            background-color: #FFFFFF; /* 區塊保持純白，凸顯乾淨 */
+            background-color: #FFFFFF;
             width: 90%;
             max-width: 600px;
-            padding: 40px 30px;
-            border-radius: 4px; /* 只有極微小的圓角，展現俐落感 */
-            border: 1px solid #EBE8E1; /* 用淡淡的邊框代替原本厚重的陰影 */
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02); /* 極淡的陰影 */
+            padding: 45px 35px;
+            border-radius: 8px; /* 稍微增加圓角，讓視覺更柔和 */
+            /* 加入兩層陰影：一層創造邊界，一層創造輕盈的漂浮感 */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02), 0 12px 24px rgba(140, 130, 115, 0.08);
             text-align: center;
+            position: relative;
+        }
+
+        /* 頂部加上一條無印紅的裝飾線，打破上方空白的單調 */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background-color: #8C1C13;
+            border-bottom-left-radius: 4px;
+            border-bottom-right-radius: 4px;
         }
 
         /* 標題與副標題 */
         h1 {
             color: #333333;
-            margin-bottom: 10px;
-            font-size: 22px;
-            font-weight: normal; /* 移除過於粗重的標題，維持輕盈感 */
-            letter-spacing: 2px; /* 增加字距，呼吸感更好 */
+            margin-bottom: 8px;
+            margin-top: 10px;
+            font-size: 24px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
         }
 
         p {
-            color: #888888;
-            margin-bottom: 30px;
+            color: #999999;
+            margin-bottom: 35px;
             font-size: 14px;
+            letter-spacing: 1px;
         }
 
         /* 測驗清單設定 */
@@ -55,56 +72,49 @@
         }
 
         li {
-            margin-bottom: 12px;
+            margin-bottom: 15px;
         }
 
-        /* 超連結按鈕設計 - 無印風按鈕 */
+        /* 超連結按鈕設計 - 改為「書籤/資料卡」造型 */
         a {
-            display: block;
+            display: flex;
+            align-items: center;
             padding: 16px 20px;
-            background-color: #FFFFFF;
+            background-color: #FAFAFA; /* 按鈕底色比背景稍微灰一點，創造層次 */
             color: #595757;
             text-decoration: none;
-            border-radius: 4px;
-            border: 1px solid #DCD9D4; /* 淺灰色的細邊框 */
+            border-radius: 6px;
+            /* 左側加上較粗的邊框，像是一張張分類好的重點卡片 */
+            border-left: 5px solid #DCD9D4; 
+            border-top: 1px solid #F0F0F0;
+            border-right: 1px solid #F0F0F0;
+            border-bottom: 1px solid #F0F0F0;
             font-size: 15px;
+            font-weight: 500;
             letter-spacing: 1px;
-            transition: all 0.3s ease; /* 讓顏色變化有柔和的過渡效果 */
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
-        /* 滑鼠游標移過去時的效果 */
+        /* 滑鼠游標移過去時的效果 - 抽出卡片的微動態 */
         a:hover {
-            background-color: #F7F5F0; /* 背景變成淺亞麻色 */
-            border-color: #8C1C13; /* 邊框變成無印的經典暗紅色 */
-            color: #8C1C13; /* 字體也呼應變成暗紅色 */
+            background-color: #FFFFFF;
+            border-left-color: #8C1C13; /* 左側標籤變成無印紅 */
+            color: #8C1C13;
+            /* 讓按鈕微微向右滑動並浮起，像把書本從書架抽出來的感覺 */
+            transform: translateX(6px) translateY(-2px);
+            box-shadow: -4px 6px 15px rgba(140, 130, 115, 0.1);
         }
 
-        /* 點擊下去瞬間的效果 */
         a:active {
-            transform: scale(0.99);
-        }
-
-        /* 回首頁等次要按鈕的樣式 (如果你分類頁有用到) */
-        a.back-btn {
-            background-color: #F7F5F0;
-            border: none;
-            color: #888888;
-            margin-bottom: 25px;
-            font-size: 13px;
-            display: inline-block;
-            padding: 8px 15px;
-        }
-        
-        a.back-btn:hover {
-            color: #333333;
-            background-color: #EBE8E1;
+            transform: translateX(2px) translateY(0);
+            box-shadow: none;
         }
 
         /* 底部裝飾文字 */
         .footer-note {
             margin-top: 40px;
             font-size: 12px;
-            color: #BDBDBD;
+            color: #C4C4C4;
             letter-spacing: 1px;
         }
     </style>
