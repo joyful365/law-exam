@@ -127,6 +127,26 @@
         }
     </style>
 </head>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 抓取畫面上所有的考卷連結
+            let links = document.querySelectorAll('ul a');
+            
+            links.forEach(link => {
+                // 取得連結裡面的檔名 (例如：115關務特考三等法學知識（憲法）.html)
+                let targetFile = link.getAttribute('href');
+                
+                // 去瀏覽器記憶裡尋找，這個檔名是否被標記為 'done'
+                if(localStorage.getItem(targetFile) === 'done') {
+                    // 如果做過了：把 📝 換成 ✅
+                    link.innerHTML = link.innerHTML.replace('📝', '✅');
+                    // 讓這個按鈕的顏色變淡一點，產生「已完成」的視覺效果
+                    link.style.opacity = '0.5';
+                    link.style.backgroundColor = '#EBE8E1'; 
+                }
+            });
+        });
+    </script>
 <body>
 
     <div class="container">
