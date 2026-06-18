@@ -1,3 +1,4 @@
+無印風（分類題庫專用範本） 
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
@@ -5,26 +6,144 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>憲法題庫區</title>
     <style>
-        /* 這裡放跟首頁一模一樣的 <style> CSS 基礎設定，為了版面簡潔我先省略，你可以直接複製首頁的那段 */
-        body { font-family: sans-serif; background-color: #f4f7f6; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0;}
-        .container { background-color: #ffffff; width: 90%; max-width: 600px; padding: 30px; border-radius: 12px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1);}
-        ul { list-style-type: none; padding: 0; }
-        li { margin-bottom: 15px; }
-        a { display: block; padding: 15px; background-color: #3498db; color: white; text-decoration: none; border-radius: 8px; font-weight: bold; }
-        a.back-btn { background-color: #95a5a6; margin-bottom: 20px; } /* 回首頁按鈕改成灰色 */
+        /* 基礎設定 - 帶有微漸層的溫潤背景 */
+        body {
+            font-family: 'Helvetica Neue', Arial, 'PingFang TC', 'Heiti TC', sans-serif;
+            background: linear-gradient(135deg, #FDFCFB 0%, #F2EFE9 100%);
+            color: #595757;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* 主要內容區塊 */
+        .container {
+            background-color: #FFFFFF;
+            width: 90%;
+            max-width: 600px;
+            padding: 45px 35px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02), 0 12px 24px rgba(140, 130, 115, 0.08);
+            text-align: center;
+            position: relative;
+        }
+
+        /* 頂部無印紅裝飾線 */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background-color: #8C1C13;
+            border-bottom-left-radius: 4px;
+            border-bottom-right-radius: 4px;
+        }
+
+        /* 🔙 返回按鈕的專屬設計 (膠囊狀、向左微動) */
+        a.back-btn {
+            display: inline-block;
+            padding: 8px 18px;
+            background-color: transparent;
+            color: #999999;
+            text-decoration: none;
+            border-radius: 20px; /* 圓潤的膠囊形狀 */
+            border: 1px solid #EBE8E1;
+            font-size: 13px;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+        }
+
+        a.back-btn:hover {
+            background-color: #F7F5F0;
+            color: #595757;
+            transform: translateX(-4px); /* 向左微滑，暗示返回 */
+        }
+
+        /* 標題與副標題 */
+        h1 {
+            color: #333333;
+            margin-bottom: 8px;
+            font-size: 24px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+        }
+
+        p {
+            color: #999999;
+            margin-bottom: 35px;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        /* 測驗清單設定 */
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            margin-bottom: 15px;
+        }
+
+        /* 考卷按鈕專屬設計 - 書籤/資料卡造型 */
+        ul a {
+            display: flex;
+            align-items: center;
+            padding: 16px 20px;
+            background-color: #FAFAFA;
+            color: #595757;
+            text-decoration: none;
+            border-radius: 6px;
+            border-left: 5px solid #DCD9D4; 
+            border-top: 1px solid #F0F0F0;
+            border-right: 1px solid #F0F0F0;
+            border-bottom: 1px solid #F0F0F0;
+            font-size: 15px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* 考卷按鈕的滑動效果 */
+        ul a:hover {
+            background-color: #FFFFFF;
+            border-left-color: #8C1C13;
+            color: #8C1C13;
+            transform: translateX(6px) translateY(-2px); /* 向右滑動抽出 */
+            box-shadow: -4px 6px 15px rgba(140, 130, 115, 0.1);
+        }
+
+        ul a:active {
+            transform: translateX(2px) translateY(0);
+            box-shadow: none;
+        }
     </style>
 </head>
 <body>
+
     <div class="container">
+        <!-- 回首頁的按鈕 -->
         <a href="index.html" class="back-btn">🔙 回到大廳選單</a>
 
-        <h1>⚖️ 憲法</h1>
-        <p style="color: #7f8c8d;">點擊下方按鈕，選擇今天要練習的考卷</p>
+        <!-- 這裡可以改成 憲法、民法 等其他科目 -->
+        <h1>⚖️ 行政法 題庫區</h1>
+        <p style="color: #7f8c8d;">點擊下方按鈕，選擇今天要練習的考卷：</p>
 
+        <!-- 考卷目錄區塊 -->
         <ul>
-            <li><a href="115關務特考三等法學知識（憲法）">📝 115關務特考三等法學知識（憲法）</a></li>
-            <li><a href="114地方特考四等_法學知識與英文(憲法)">📝 114地方特考四等_法學知識與英文(憲法)</a></li>
+         <li><a href="115關務特考三等法學知識（憲法）">📝 115關務特考三等法學知識（憲法）</a></li>
+         <li><a href="114地方特考四等_法學知識與英文(憲法)">📝 114地方特考四等_法學知識與英文(憲法)</a></li>
         </ul>
     </div>
+
 </body>
 </html>
