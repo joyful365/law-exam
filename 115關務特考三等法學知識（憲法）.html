@@ -1073,55 +1073,5 @@ renderAll();
         </button>
     </div>
 
-   <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // 1. 抓出檔名，並強制將 %E4... 這種亂碼翻譯回正常中文
-            let currentFile = decodeURIComponent(window.location.pathname.split('/').pop());
-            let submitBtn = document.getElementById('submitBtn');
-
-            // ==========================================
-            // 動作 A：網頁一打開，先檢查以前是不是做過了？
-            // ==========================================
-            if (localStorage.getItem(currentFile) === 'done') {
-                submitBtn.innerHTML = '這份考卷已完成 ✅';
-                submitBtn.disabled = true;
-                submitBtn.style.backgroundColor = '#DCD9D4'; // 變成灰色
-                document.getElementById('resultDisplay').innerHTML = '💡 你之前已經完成過這份測驗囉！';
-            }
-
-            // ==========================================
-            // 動作 B：當你按下「交卷算分」時要做的事
-            // ==========================================
-            submitBtn.addEventListener('click', function() {
-                let score = 0;
-                let questions = document.querySelectorAll('.question-box');
-                // 避免沒有題目時出錯
-                if (questions.length === 0) return; 
-                let scorePerQuestion = 100 / questions.length; 
-
-                questions.forEach(q => {
-                    let correctAnswer = q.getAttribute('data-answer');
-                    let selected = q.querySelector('input[type="radio"]:checked');
-
-                    if (selected && selected.value === correctAnswer) {
-                        score += scorePerQuestion;
-                        q.style.border = "2px solid #81b29a"; // 答對綠框
-                    } else {
-                        q.style.border = "2px solid #e07a5f"; // 答錯紅框
-                    }
-                });
-
-                document.getElementById('resultDisplay').innerHTML = '💯 你的總分是：' + Math.round(score) + ' 分！';
-
-                // 【打卡功能】用翻譯好的正確中文檔名存進記憶裡
-                localStorage.setItem(currentFile, 'done');
-
-                // 改變按鈕狀態，防止重複交卷
-                this.innerHTML = '這份考卷已完成 ✅';
-                this.style.backgroundColor = '#DCD9D4';
-                this.disabled = true;
-            });
-        });
-    </script>
 </body>
 </html>
