@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>114年司律一試 — 綜合法學（一）憲法‧行政法‧國際公法‧國際私法 練習卷</title>
+<style>
+  :root{
+    --paper:#faf8f3;
+    --paper-dim:#f3efe6;
+    --ink:#2b2b28;
+    --ink-soft:#5c5850;
+    --rule:#d9d2c2;
+    --accent:#8a5a2b;
+    --accent-soft:#caa874;
+    --flag:#b3422f;
+    --flag-bg:#fbe9e5;
+    --correct-bg:#dcecd8;
+    --correct-border:#5a9456;
+    --wrong-bg:#f6d9d4;
+    --wrong-border:#b3422f;
+    --confuse:#c98a2c;
+    --serif: "Noto Serif TC", "Source Han Serif TC", "PingFang TC", "Microsoft JhengHei", serif;
+    --sans: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper-dim);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---------- Sticky Header ---------- */
+  header.site-header{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:var(--paper);
+    border-bottom:2px solid var(--ink);
+    box-shadow:0 2px 8px rgba(0,0,0,0.06);
+  }
+  .header-inner{
+    max-width:1000px;
+    margin:0 auto;
+    padding:14px 20px 12px;
+  }
+  .title-row{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .exam-title{
+    font-family:var(--serif);
+    font-size:1.25rem;
+    font-weight:700;
+    letter-spacing:0.02em;
+    margin:0;
+  }
+  .exam-sub{
+    font-size:0.85rem;
+    color:var(--ink-soft);
+    margin:2px 0 0;
+  }
+  .meta-line{
+    font-size:0.78rem;
+    color:var(--ink-soft);
+    margin-top:4px;
+  }
+
+  .controls-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:12px;
+    padding-top:10px;
+    border-top:1px solid var(--rule);
+  }
+  .filter-tabs{
+    display:flex;
+    gap:6px;
+  }
+  .filter-tabs button{
+    font-family:var(--sans);
+    font-size:0.85rem;
+    padding:6px 14px;
+    border-radius:999px;
+    border:1px solid var(--rule);
+    background:var(--paper);
+    color:var(--ink);
+    cursor:pointer;
+    transition:all .15s ease;
+  }
+  .filter-tabs button.active{
+    background:var(--ink);
+    color:var(--paper);
+    border-color:var(--ink);
+  }
+  .filter-tabs button:hover:not(.active){
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .status-cluster{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    font-size:0.82rem;
+    color:var(--ink-soft);
+  }
+  .flag-count{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    font-weight:600;
+    color:var(--flag);
+  }
+  .flag-count svg{width:13px;height:13px;}
+  .clear-btn{
+    font-family:var(--sans);
+    font-size:0.8rem;
+    padding:6px 12px;
+    border-radius:6px;
+    border:1px solid var(--flag);
+    background:var(--paper);
+    color:var(--flag);
+    cursor:pointer;
+    transition:all .15s ease;
+  }
+  .clear-btn:hover{
+    background:var(--flag);
+    color:#fff;
+  }
+
+  .toolbar-row2{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:10px;
+    padding-top:10px;
+    border-top:1px solid var(--rule);
+  }
+  .export-group{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+  .export-btn{
+    font-family:var(--sans);
+    font-size:0.8rem;
+    padding:6px 12px;
+    border-radius:6px;
+    border:1px solid var(--accent-soft);
+    background:#fff;
+    color:var(--accent);
+    cursor:pointer;
+    transition:all .15s ease;
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+  }
+  .export-btn:hover{
+    background:var(--accent);
+    border-color:var(--accent);
+    color:#fff;
+  }
+  .export-btn svg{width:13px;height:13px;}
+
+  .submit-btn{
+    font-family:var(--sans);
+    font-size:0.85rem;
+    font-weight:700;
+    padding:7px 18px;
+    border-radius:6px;
+    border:1px solid #3f6b3c;
+    background:#4f7d4a;
+    color:#fff;
+    cursor:pointer;
+    transition:all .15s ease;
+  }
+  .submit-btn:hover{
+    background:#3f6b3c;
+  }
+
+  /* ---------- Score Banner ---------- */
+  .score-banner{
+    display:none;
+    background:#fdf6ec;
+    border:1.5px solid var(--accent-soft);
+    border-radius:8px;
+    padding:10px 16px;
+    margin-top:10px;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .score-banner.show{display:flex;}
+  .score-banner .score-text{
+    font-size:0.95rem;
+    font-weight:700;
+    color:var(--accent);
+  }
+  .score-banner .score-detail{
+    font-size:0.78rem;
+    color:var(--ink-soft);
+    font-weight:400;
+  }
+  .score-banner .done-tag{
+    font-size:0.72rem;
+    font-weight:700;
+    color:#3f6b3c;
+    background:#e3efe1;
+    border:1px solid #8fbf89;
+    border-radius:4px;
+    padding:2px 8px;
+  }
+
+  /* ---------- Main content ---------- */
+  main{
+    max-width:1000px;
+    margin:0 auto;
+    padding:24px 20px 80px;
+  }
+
+  .empty-state{
+    text-align:center;
+    padding:60px 20px;
+    color:var(--ink-soft);
+    font-size:0.95rem;
+  }
+
+  .q-card{
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:10px;
+    margin-bottom:16px;
+    padding:16px 18px 16px 14px;
+    transition:border-color .2s ease, box-shadow .2s ease;
+  }
+  .q-card.flagged{
+    border-color:var(--flag);
+    box-shadow:0 0 0 1px var(--flag) inset;
+    background:linear-gradient(180deg, var(--flag-bg) 0%, var(--paper) 55px);
+  }
+
+  .q-row{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+  }
+
+  .q-leftbar{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:8px;
+    flex-shrink:0;
+    width:46px;
+    padding-top:1px;
+  }
+
+  .q-num{
+    font-family:var(--serif);
+    font-weight:700;
+    font-size:1.1rem;
+    color:var(--ink);
+    line-height:1;
+  }
+
+  .flag-btn{
+    background:none;
+    border:none;
+    cursor:pointer;
+    padding:3px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:6px;
+    transition:transform .12s ease, background .15s ease;
+  }
+  .flag-btn:hover{
+    background:var(--flag-bg);
+  }
+  .flag-btn svg{
+    width:18px;
+    height:18px;
+    stroke:var(--ink-soft);
+    fill:none;
+    stroke-width:1.8;
+    transition:fill .15s ease, stroke .15s ease;
+  }
+  .flag-btn.active svg{
+    fill:var(--flag);
+    stroke:var(--flag);
+  }
+  .flag-btn:active{transform:scale(0.9);}
+
+  .flagged-tag{
+    font-size:0.65rem;
+    font-weight:700;
+    color:var(--flag);
+    background:var(--flag-bg);
+    border:1px solid var(--flag);
+    border-radius:4px;
+    padding:1px 5px;
+    white-space:nowrap;
+    letter-spacing:0.04em;
+  }
+
+  .q-body{
+    flex:1;
+    min-width:0;
+  }
+
+  .q-text{
+    font-size:0.98rem;
+    font-weight:700;
+    margin:0 0 12px;
+    color:var(--ink);
+  }
+
+  .options-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 10px;
+  }
+  @media (max-width:620px){
+    .options-grid{grid-template-columns:1fr;}
+  }
+
+  .option{
+    display:flex;
+    align-items:flex-start;
+    gap:8px;
+    border:1.5px solid var(--rule);
+    border-radius:8px;
+    padding:8px 10px;
+    cursor:pointer;
+    font-size:0.9rem;
+    background:#fff;
+    transition:background .15s ease, border-color .15s ease;
+    position:relative;
+  }
+  .option:hover{
+    border-color:var(--accent-soft);
+  }
+  .option .opt-label{
+    font-weight:700;
+    color:var(--accent);
+    flex-shrink:0;
+  }
+  .option .opt-text{
+    flex:1;
+  }
+  .option .confuse-btn{
+    flex-shrink:0;
+    background:none;
+    border:none;
+    cursor:pointer;
+    padding:1px 2px;
+    margin-left:2px;
+    line-height:0;
+  }
+  .option .confuse-btn svg{
+    width:13px;
+    height:13px;
+    transition:fill .15s ease;
+  }
+  .option .confuse-btn svg .tri{
+    fill:none;
+    stroke:#b9b2a0;
+    stroke-width:1.4;
+  }
+  .option .confuse-btn.active svg .tri{
+    fill:var(--confuse);
+    stroke:var(--confuse);
+  }
+
+  .option.selected-wrong{
+    background:var(--wrong-bg);
+    border-color:var(--wrong-border);
+  }
+  .option.selected-wrong .opt-text{
+    text-decoration:line-through;
+    color:#7a3a30;
+  }
+  .option.selected-correct{
+    background:var(--correct-bg);
+    border-color:var(--correct-border);
+  }
+  .option.confused{
+    outline:2px dashed var(--confuse);
+    outline-offset:1px;
+  }
+
+  .answer-inline{
+    display:inline-block;
+    margin-left:10px;
+    font-size:0.8rem;
+    font-weight:400;
+    padding:2px 9px;
+    border-radius:5px;
+    background:#fff;
+    color:#fff; /* hidden by default: white on white */
+    border:1px solid var(--rule);
+    transition:color .15s ease, background .15s ease, border-color .15s ease;
+    user-select:none;
+    vertical-align:middle;
+    white-space:nowrap;
+  }
+  .answer-inline.revealed{
+    color:var(--accent);
+    background:#fdf6ec;
+    border-color:var(--accent-soft);
+    font-weight:600;
+    user-select:text;
+  }
+  .answer-inline .ans-key{
+    font-weight:700;
+  }
+
+  /* ---------- Explanation block ---------- */
+  .explain-block{
+    margin-top:10px;
+  }
+  .explain-toggle{
+    font-family:var(--sans);
+    font-size:0.8rem;
+    padding:5px 12px;
+    border-radius:6px;
+    border:1px solid var(--rule);
+    background:#fff;
+    color:var(--ink-soft);
+    cursor:pointer;
+    transition:all .15s ease;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+  }
+  .explain-toggle:hover{
+    border-color:var(--accent-soft);
+    color:var(--accent);
+  }
+  .explain-toggle .has-note-tag{
+    font-size:0.72rem;
+    font-weight:700;
+    color:var(--accent);
+  }
+  .explain-toggle .chevron{
+    font-size:0.7rem;
+    transition:transform .15s ease;
+  }
+  .explain-toggle.open .chevron{
+    transform:rotate(90deg);
+  }
+
+  .explain-body{
+    display:none;
+    margin-top:8px;
+  }
+  .explain-body.open{
+    display:block;
+  }
+  .explain-textarea{
+    width:100%;
+    min-height:90px;
+    font-family:var(--sans);
+    font-size:0.88rem;
+    line-height:1.6;
+    color:var(--ink);
+    background:#fffdf8;
+    border:1.5px solid var(--rule);
+    border-radius:8px;
+    padding:10px 12px;
+    resize:vertical;
+    transition:border-color .15s ease;
+  }
+  .explain-textarea:focus{
+    outline:none;
+    border-color:var(--accent-soft);
+  }
+  .explain-status{
+    font-size:0.74rem;
+    color:#5a9456;
+    margin-top:5px;
+    height:1em;
+    opacity:0;
+    transition:opacity .25s ease;
+  }
+  .explain-status.show{
+    opacity:1;
+  }
+
+  /* ---------- Official explanation block (built-in, read-only) ---------- */
+  .official-block{
+    margin-top:8px;
+  }
+  .official-toggle{
+    font-family:var(--sans);
+    font-size:0.8rem;
+    padding:5px 12px;
+    border-radius:6px;
+    border:1px solid #cfe0d4;
+    background:#f3f9f4;
+    color:#3f6b3c;
+    cursor:pointer;
+    transition:all .15s ease;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+  }
+  .official-toggle:hover{
+    border-color:#8fbf89;
+    background:#e9f4ea;
+  }
+  .official-toggle .chevron{
+    font-size:0.7rem;
+    transition:transform .15s ease;
+  }
+  .official-toggle.open .chevron{
+    transform:rotate(90deg);
+  }
+  .official-badge-icon{
+    font-size:0.78rem;
+  }
+  .official-body{
+    display:none;
+    margin-top:8px;
+  }
+  .official-body.open{
+    display:block;
+  }
+  .official-content{
+    background:#f8fbf8;
+    border:1px solid #d9e9da;
+    border-left:3px solid #5a9456;
+    border-radius:8px;
+    padding:14px 16px;
+    font-size:0.88rem;
+    line-height:1.75;
+    color:#2f4a2d;
+  }
+  .official-content p{
+    margin:0 0 8px;
+  }
+  .official-content p:last-child{
+    margin-bottom:0;
+  }
+  .official-content ul{
+    margin:0 0 8px;
+    padding-left:1.3em;
+  }
+  .official-content ul:last-child{
+    margin-bottom:0;
+  }
+  .official-content li{
+    margin-bottom:6px;
+  }
+  .official-content li:last-child{
+    margin-bottom:0;
+  }
+  .official-content strong{
+    color:#1f3a1e;
+  }
+  .official-content em{
+    color:#5c6b5a;
+  }
+
+  /* modal */
+  .modal-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(30,28,24,0.45);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:100;
+  }
+  .modal-overlay.show{display:flex;}
+  .modal-box{
+    background:var(--paper);
+    border-radius:10px;
+    padding:22px 24px;
+    max-width:360px;
+    box-shadow:0 10px 40px rgba(0,0,0,0.25);
+    text-align:center;
+  }
+  .modal-box p{
+    font-size:0.92rem;
+    margin:0 0 18px;
+    color:var(--ink);
+  }
+  .modal-actions{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+  }
+  .modal-actions button{
+    font-family:var(--sans);
+    font-size:0.85rem;
+    padding:8px 16px;
+    border-radius:6px;
+    cursor:pointer;
+    border:1px solid var(--rule);
+    background:#fff;
+  }
+  .modal-actions button.confirm{
+    background:var(--flag);
+    border-color:var(--flag);
+    color:#fff;
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="title-row">
+      <div>
+        <h1 class="exam-title">114年公務人員特種考試司法官考試 ‧ 114年專門職業及技術人員高等考試律師考試</h1>
+        <p class="exam-sub">綜合法學（一）憲法‧行政法‧國際公法‧國際私法 — 第一試試題（單一選擇題，全75題）</p>
+      </div>
+    </div>
+    <div class="meta-line">考試日期：114年（西元2025年）｜類科：各類科｜每題2分，共75題｜本練習卷供考後自我複習使用</div>
+
+    <div class="controls-row">
+      <div class="filter-tabs">
+        <button id="tab-all" class="active">全部題目</button>
+        <button id="tab-flagged">已標記</button>
+      </div>
+      <div class="status-cluster">
+        <span class="flag-count">
+          <svg viewBox="0 0 24 24"><path d="M5 3v18M5 4h11l-3 4 3 4H5" fill="currentColor" stroke="none"/></svg>
+          <span id="flag-counter">0</span> 題已標記
+        </span>
+        <button class="clear-btn" id="clear-all-btn">清除全部標記</button>
+      </div>
+    </div>
+
+    <div class="toolbar-row2">
+      <div class="export-group">
+        <button class="export-btn" id="export-flagged-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 19h16"/></svg>
+          匯出已標記
+        </button>
+        <button class="export-btn" id="export-all-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 19h16"/></svg>
+          匯出全部
+        </button>
+      </div>
+      <button class="submit-btn" id="submit-btn">交卷算分</button>
+    </div>
+
+    <div class="score-banner" id="score-banner">
+      <span class="score-text" id="score-text"></span>
+      <span class="done-tag">本卷已完成</span>
+    </div>
+  </div>
+</header>
+
+<main id="main-content"></main>
+
+<div class="modal-overlay" id="confirm-modal">
+  <div class="modal-box">
+    <p>確定要清除「全部」旗標標記、作答紀錄、疑惑標記與交卷成績嗎？<br>（已輸入的詳解內容將會保留；題庫大廳的「已完成」徽章也會一併移除）<br>此操作無法復原。</p>
+    <div class="modal-actions">
+      <button id="modal-cancel">取消</button>
+      <button id="modal-confirm" class="confirm">確定清除</button>
+    </div>
+  </div>
+</div>
+
+<script src="exam-complete.js"></script>
+<script>
+const QUESTIONS = [
+{"n":1,"ans":3,"q":"憲法本文及增修條文之下列何種規定，得導出我國有民主國之性質？","o":["總統及立法院均由人民直接選舉產生","總統公布法律、發布命令，須經行政院院長之副署","國家重要事項須經行政院院會議決","國家權力劃分為五權，分設五院行使之"]},
+{"n":2,"ans":3,"q":"依司法院解釋意旨及憲法法庭裁判，關於憲法第155條：「人民之老弱殘廢，無力生活，……國家應予以適當之扶助與救濟」，下列敘述何者錯誤？","o":["租稅優惠為國家得採取保障人民生存與生活之扶助措施之一","國家保障視障者之工作權屬特別重要公共利益","憲法特別著重弱勢者之保障，第155條即為例證之一","對身心障礙者優惠性差別待遇之合憲性，應採寬鬆之合理性審查"]},
+{"n":3,"ans":1,"q":"依司法院解釋意旨及憲法法庭裁判，關於政黨之敘述，下列何者錯誤？","o":["政黨應服膺自由民主憲政秩序","政黨與其他團體受憲法保障與限制之程度無平等原則之適用","國家應致力於建立並確保複數政黨得以自由形成發展與公平參與選舉之法治環境","國家得對政黨之財產權加以更多限制或給予政黨補助金"]},
+{"n":4,"ans":3,"q":"有關家庭暴力防治法中之保護令，依司法院解釋意旨及憲法法庭裁判，下列敘述何者錯誤？","o":["涉及人身自由之限制，應以法律定之","法律已就人身之處置為明文規定者，得透過具體明確之授權，委由主管機關執行之","有關人身自由限制之決定，得由法院依法定程序以裁定為之","民事保護令並不涉及人身自由之限制"]},
+{"n":5,"ans":0,"q":"下列何者非屬釋憲實務對於宗教自由保障之意旨？","o":["宗教結社屬宗教自由之絕對保障","國家考試不得基於人民之特定信仰給與加分優待","國家不得基於人民之特定信仰為理由予以不利益","不許人民以宗教理由免除服兵役義務"]},
+{"n":6,"ans":3,"q":"依司法院解釋意旨及憲法法庭裁判，關於大學自治之敘述，下列何者錯誤？","o":["為避免學術自由受國家不當干預，立法機關僅得在合理之範圍內對大學事務加以規範","大學為確保學位之授予具備一定之水準，得於合理及必要之範圍內，訂定有關取得學位之資格條件","審理大學學生提起行政爭訟事件，應本於維護大學自治之原則，對大學之專業判斷予以適度之尊重","大學法明定大學應設教務處、學生事務處、總務處之內部組織，限制大學之自主組織權而與保障大學自治之意旨相牴觸"]},
+{"n":7,"ans":0,"q":"關於生命權保障，下列敘述何者錯誤？","o":["我國憲法對生命權之保障依據，依司法院解釋意旨及憲法法庭裁判，應係憲法第22條其他自由權利的保障範圍","公民及政治權利國際公約規定，任何被判處死刑的人應有權請求赦免或減刑，但赦免法未有類似規定，使被判處死刑的人有權請求獲得赦免","法律規定不得對未滿18歲之人處以死刑，符合兒童權利公約之精神","公民及政治權利國際公約規定，未廢除死刑之國家，非犯情節最重大之罪，不得科處死刑"]},
+{"n":8,"ans":3,"q":"有關平等原則，下列敘述何者錯誤？","o":["人民無權主張不法之平等","行政機關依裁量基準而形成之慣例，發生間接對外效力，屬於平等原則之內涵","平等原則可以導出行政機關須受行政慣例之自我拘束","夜市攤販甲因逃漏營業稅而應予補稅，甲有權請求稅務機關要求其他夜市攤販補稅"]},
+{"n":9,"ans":0,"q":"關於訴訟權保障，下列敘述何者錯誤？","o":["訴訟救濟由何種法院審理，為訴訟權保障之核心內容，非屬立法形成自由","受刑事有罪判決之被告，應有上訴救濟之機會，屬於訴訟權保障之核心內容","直接審理、言詞辯論、對審及辯護制度係本於正當法律程序之原則","有權利即有救濟，權利受公權力侵害者，皆享有訴訟救濟之基本權"]},
+{"n":10,"ans":1,"q":"計程車駕駛人觸犯法定之罪，經法院判決有期徒刑以上之刑，吊扣或廢止其執業登記，依司法院解釋意旨及憲法法庭裁判，係對於何種自由之限制？","o":["遷徙自由","職業選擇自由之主觀條件","職業選擇自由之客觀條件","職業自由之執行方式"]},
+{"n":11,"ans":0,"q":"關於服兵役之義務，下列敘述何者錯誤？","o":["甲男因宗教信仰而不願使用武器，向主管機關申請獲准服替代役，故甲男因此免除服兵役之義務","中華民國男子依法有服兵役之義務，係立法者鑒於男女之生理上差異，所為之合理差別待遇","為防衛國家之安全，在實施徵兵制之國家，即規定人民有服兵役之義務","因有痼疾不堪服役者，得依法律規定免除服兵役之義務"]},
+{"n":12,"ans":3,"q":"依司法院解釋意旨及憲法法庭裁判，憲法第22條規定之基本權利，下列何者受絕對保障？","o":["原住民之身分認同權","原住民依循文化傳承從事狩獵活動","個人自主控制其個人資料之資訊隱私權","人民內在精神活動之思想自由"]},
+{"n":13,"ans":1,"q":"依司法院解釋意旨及憲法法庭裁判，關於人民健康權之敘述，下列何者錯誤？","o":["國家對於健康權負有最低限度之保護義務","公務員之值勤與健康權無涉","旨在保障人民生理及心理機能之完整性，不受任意侵害","健康權為憲法第22條所保障之基本權利"]},
+{"n":14,"ans":3,"q":"依司法院解釋意旨及憲法法庭裁判，何者非屬憲法上之制度性保障？","o":["學術自由","人身自由","地方自治","一般行動自由"]},
+{"n":15,"ans":0,"q":"下列何者之任命無須經立法院同意？","o":["行政院政務委員","審計長","考試委員","監察委員"]},
+{"n":16,"ans":3,"q":"依司法院解釋意旨及憲法法庭裁判，立法院若長期、消極不行使監察委員人事同意權，下列敘述何者正確？","o":["此乃政治問題，非司法院大法官審查範圍","立法院於何時行使人事同意權，純屬國會自治事項，並不違憲","應許總統行使緊急處分權，先行任命監察委員，以免影響憲政體制之正常運行","如致監察院無從行使職權、發揮功能，憲政制度之完整遭受破壞，即為憲法所不許"]},
+{"n":17,"ans":3,"q":"依憲法訴訟法規定，有關人民得聲請憲法法庭為宣告裁判違憲之程序，下列敘述何者錯誤？","o":["聲請書應記載確定終局裁判所適用之法規範或該裁判違憲之情形，及所涉憲法條文或憲法上權利","對於適用大法庭裁定見解之不利確定終局裁判，不得聲請裁判憲法審查","凡案件具憲法重要性，或為貫徹聲請人基本權利所必要者，憲法法庭得受理之","聲請應於不利確定終局裁判送達後6個月之不變期間內為之"]},
+{"n":18,"ans":0,"q":"關於審計長之敘述，下列何者正確？","o":["審計長由監察院院長提名，經立法院同意任命之","審計長由總統提名，經監察院同意後任命之","審計長完成決算審核後，至遲應於3個月內向立法院提出審核報告","依職務性質，審計長不隨執政黨更迭而進退"]},
+{"n":19,"ans":3,"q":"依司法院解釋意旨及憲法法庭裁判，下列何者並非憲法上法官？","o":["司法院大法官","懲戒法院法官","智慧財產及商業法院法官","臺灣高雄地方檢察署檢察官"]},
+{"n":20,"ans":2,"q":"依司法院解釋意旨及憲法法庭裁判，關於地方自治受憲法制度性保障之敘述，下列何者錯誤？","o":["省、縣、直轄市作為地方自治團體之資格，源自憲法本文之規定","在不侵犯核心領域之範圍內，法律對地方自治權予以限制，尚不違反制度性保障之意旨","本於制度性保障，縣及直轄市就其轄內之所有事物，享有自行規劃及決定之立法與執行權","為落實制度性保障意旨，縣及直轄市之自治權遭受監督機關侵害時，得循法律途徑救濟"]},
+{"n":21,"ans":0,"q":"關於行政法之法源，下列敘述何者正確？","o":["自治條例雖無須特定法律之授權，仍可限制人民權利","總統發布之緊急命令，乃是位階等同於法規命令之成文法源","大法庭制度施行後，法官審判時即不得再參考判例及決議","行政程序法施行後，基於依法行政原則，習慣法已失其法源地位"]},
+{"n":22,"ans":3,"q":"環保機關查獲地下油槽滲漏污染地下水，通知負責人限期改善，否則依法處罰，惟在限期改善期限屆至前，即對油槽之負責人裁處罰鍰。關於環保機關之裁罰行為，下列敘述何者正確？","o":["違反比例原則","裁罰處分無效","基於維護公益並未違法","違反誠實信用原則"]},
+{"n":23,"ans":1,"q":"依據學說與司法實務見解，對於不確定法律概念是否具有判斷餘地，下列敘述何者錯誤？","o":["考試成績之評定，閱卷委員應有判斷餘地，但若試題屬簡答題且評分標準已客觀明確，即無判斷餘地","學校依據性別平等教育法就校園性別事件組成之調查小組，其調查報告對於性騷擾之事實認定屬於判斷餘地，法院應受拘束","行政機關就其事項雖具有判斷餘地，但若有出於與事物無關之考量之情事，法院仍得介入審查","獨立委員會所作成的評價決定具有判斷餘地，行政法院之審查應受到限制，但涉及人民基本權利屬性的判斷，仍應提高審查密度"]},
+{"n":24,"ans":3,"q":"行政機關依職權訂定裁量基準，其所屬機關在處理具體個案時認為個案情形特殊，未依此裁量基準作成個案裁量決定，有關此個案裁量決定，下列敘述何者正確？","o":["即使具體個案情況特殊，所屬機關仍須遵守裁量基準","裁量基準為行政指導準則，對所屬機關具事實拘束力","裁量本屬個案決定，故具通案性質之裁量基準係供下屬參考用","為達成具體個案之公平正義，此裁量可依個案特殊情形而定"]},
+{"n":25,"ans":2,"q":"下列何者不發生行政法之法律關係？","o":["人民因亂丟垃圾而受主管機關裁處罰鍰","行政機關與人民締結契約，授予人民行使公權力之權限","政府採購案之得標廠商與採購機關所訂定之採購契約","地方政府之垃圾車於執行職務時撞傷人民"]},
+{"n":26,"ans":2,"q":"下列行政機關之委員，何者不受依法獨立行使職權之保障？","o":["中央選舉委員會","公務人員保障暨培訓委員會","金融監督管理委員會","國家運輸安全調查委員會"]},
+{"n":27,"ans":3,"q":"組織法規修正後，甲機關之某項職掌移由乙機關管轄時，下列敘述何者錯誤？","o":["若相關行政法規仍規定甲機關為管轄機關，且甲機關仍存續時，甲機關與乙機關得聯名公告變更管轄之事項","若甲機關被裁撤，其中部分職掌由乙機關承受，但相關行政法規仍載明甲機關為管轄機關，得由乙機關單獨公告變更管轄之事項","關於機關管轄變更之公告，原則上自公告之日起算至第3日起發生移轉管轄權之效力","若甲機關尚有1件已受理之申請案，甲機關雖然存續但已不再具有本案管轄權，則甲機關原則上仍得繼續處理本案"]},
+{"n":28,"ans":1,"q":"建築法規定，非縣政府所在地之鄉、鎮，適用本法之地區，非供公眾使用之建築物或雜項工作物，得委由鄉、鎮公所依規定核發執照。若鄉、鎮公所欲就核發此執照之事項形成相關規定，應以下列何種規範為之？","o":["自治規則","委辦規則","委託規則","自律規則"]},
+{"n":29,"ans":3,"q":"教育部委託大學入學考試中心辦理大學入學考試事務，該中心所為之行政處分，當事人如有不服，應向何機關提起訴願？","o":["行政院","教育部高等教育司","大學入學考試中心","教育部"]},
+{"n":30,"ans":1,"q":"下列何者適用或準用公務人員保障法之規定？","o":["政務官","公營事業依法任用之人員","公立學校聘任之教師","民選公職人員"]},
+{"n":31,"ans":2,"q":"關於給付行政之概念，下列敘述何者錯誤？","o":["給付行政是指提供人民給付、服務或給與其他利益的行政作用","行政機關對於給付行政的實施有較大之選擇自由，得以公法型態或私法型態為之","凡是給付行政涉及金錢或財務給予者，縱無預算作為依據，亦得為給付行政","行政機關事後廢棄給付行政的具體處分時，應考量相對人的信賴利益"]},
+{"n":32,"ans":3,"q":"內政部就平均地權條例有關銷售預售屋書面契據不得轉讓之規定所為之統一解釋，其性質為何？","o":["行政處分","行政計畫","行政指導","行政規則"]},
+{"n":33,"ans":2,"q":"甲工廠向乙行政機關請領裝設先進環保設備之補助，乙機關慮及，若甲未將環保設備實際用於生產過程，得立即追回該補助，並避免因此產生補償責任，乙機關應如何處置最為妥適？","o":["直接作成發放補助之處分，並在確認甲未實際運用設備時，撤銷該行政處分","直接作成發放補助之處分，並在確認甲未實際運用設備時，廢止該行政處分","作成發放補助之處分，並於該處分中，附加「甲應將設備運用於生產過程」之附款；在確認甲未實際運用設備時，溯及廢止該行政處分","作成發放補助之處分，並於該處分中，附加「甲應將設備運用於生產過程」之附款，否則嗣後將向行政法院訴請返還該補助"]},
+{"n":34,"ans":3,"q":"關於行政處分性質之敘述，下列何者正確？","o":["判定役男甲體位為免役體位，係形成處分","核准外國人乙歸化為中華民國國民，係確認處分","任命丙為公務人員，係下命處分","撤銷丁建築執照發放，係形成處分"]},
+{"n":35,"ans":0,"q":"下列何者非屬行政處分之附款？","o":["交通主管機關核發小型車普通駕駛執照，註記不得駕駛聯結車、大客車與大貨車","建築主管機關核發建築執照，註記須向機關提供合法廢土棄置場所之證明後，始得開工","農業主管機關核定同意農地設置太陽能發電設備，但核定書內敘明，若未依核定計畫內容設置，得廢止之","主管機關核准餐廳經營之營業許可，但註明須設置噪音污染防制設備"]},
+{"n":36,"ans":3,"q":"人民如與A直轄市之原住民族事務主管機關締結行政契約後，下列何機關於該行政契約關係外行使公權力，有補償規定之適用？","o":["內政部","A直轄市地政主管機關","原住民族委員會","A直轄市山地原住民區之區公所"]},
+{"n":37,"ans":3,"q":"關於行政契約之法律效果，下列敘述何者錯誤？","o":["行政機關與人民以行政契約約定國家考試之錄取決定，該行政契約無效","行政契約若締約機關欠缺事務管轄權而構成重大明顯之瑕疵者，該行政契約無效","行政機關與人民締結之行政契約，未依行政程序法規定以書面方式為之，該行政契約無效","行政機關與人民締結侵害第三人權利之行政契約，若締約前未經該第三人書面同意，該行政契約無效"]},
+{"n":38,"ans":3,"q":"甲使用特定建築物經營商業，違反建築法中建築物不得變更使用之法定義務，同時甲所經營之商業項目，未向主管機關申領營利事業登記證，也違反商業登記法中商業登記之作為義務。就甲於本案所應受之行政罰，下列敘述何者正確？","o":["本案共存在兩項違法行為，應依建築法與商業登記法分別裁處行政罰","本案僅存在單一違法行為，屬於想像競合從一重處斷，故應以建築法裁處行政罰","本案僅存在單一違法行為，不作為義務應優先於作為義務，故應以建築法裁處行政罰","本案僅存在單一違法行為，主要違法目的在於違規經營商業，故應以商業登記法裁處行政罰"]},
+{"n":39,"ans":0,"q":"關於行政罰與刑罰之敘述，下列何者錯誤？","o":["與刑法有別，行政罰法對於共同違法行為，並不區分共同正犯、教唆或幫助者","行為非出於故意或過失者，不予處罰，過失行為之處罰，以有特別規定者為限","不得因不知法律或法規而免除刑事或行政處罰責任。但按其情節，得減輕或免除其刑或處罰","行政罰法以處罰違反行政法上義務為限"]},
+{"n":40,"ans":2,"q":"關於公物，下列敘述何者錯誤？","o":["公物之所有權人得為私人","公物得依事實行為而提供公用","公務所必需之公物，得為行政執行之標的物","公物得為自然山域或水域"]},
+{"n":41,"ans":1,"q":"關於行政程序法之代理人規定，下列敘述何者錯誤？","o":["代理權之授與，及於該行政程序有關之全部程序行為。但申請之撤回，非受特別授權，不得為之","代理人有二人以上者，為避免個別代理行為之矛盾產生，故必須以共同代理方式為之","代理人與當事人間有基於信任之契約關係，故代理人經本人同意後，始得委任他人為複代理人","代理權不因本人死亡或其行政程序行為能力喪失而消滅，法定代理有變更或行政機關經裁併或變更者亦同"]},
+{"n":42,"ans":2,"q":"下列何者非屬行政處分？","o":["交通警察在十字路口以手勢指揮交通","海巡人員以向海面開槍之方式，命越界捕魚之船隻退離","道路管理機關在既成道路上鋪設柏油","衛生主管機關以通知單要求特定人於指定日期，讓公務員進入其住居所噴灑藥劑，撲滅病媒蚊"]},
+{"n":43,"ans":3,"q":"依行政程序法、訴願法及行政訴訟法規定，關於寄存送達之敘述，下列何者正確？","o":["行政程序及訴願之寄存送達，自送達完畢時即發生效力","訴願及行政訴訟之寄存送達，自送達完畢時即發生效力","行政程序及訴願之寄存送達，自寄存之日起，經10日發生效力","訴願及行政訴訟之寄存送達，自寄存之日起，經10日發生效力"]},
+{"n":44,"ans":0,"q":"關於政府資訊公開法規定之敘述，下列何者正確？","o":["與人民權益攸關之施政、措施及其他有關之政府資訊，不待國民申請，原則上即應主動公開","國民申請提供政府資訊，以主張或維護其法律上利益有必要者為要件","國民申請提供之政府資訊包含有侵害個人隱私之部分時，全部均不得提供","申請提供政府資訊遭到拒絕而不服者，不得單獨就該拒絕決定提起行政救濟"]},
+{"n":45,"ans":2,"q":"有關行政執行法對於將公法上金錢給付義務人予以管收之要件，下列何者錯誤？","o":["執行機關不得在命義務人提供擔保、限期履行前，即向法院聲請裁定管收","管收要件包含義務人有逃匿之虞，或其可能履行義務，卻故不履行，或為虛偽財產報告或拒絕報告","義務人經通知不到場而受拘提後，才能予以管收，如義務人自行到場接受調查者，不得予以管收","義務人如因管收難以維持家計或罹患疾病無法治療，應逕予停止管收，無須聲請法院裁定"]},
+{"n":46,"ans":3,"q":"A公司在其工廠旁違法搭建了一處臨時倉庫，經主管機關查獲後，依建築法相關規定，命令A公司於30日內自行拆除該違建，並於處分書中明確告知逾期不履行將予以強制執行。A公司逾期未拆除，且未提出任何異議。關於此類行為義務之強制執行，下列敘述何者正確？","o":["主管機關可直接派員拆除該違建，並將拆除費用加計行政成本全額向A公司追償","主管機關應先對A公司處以怠金，若A公司仍不履行，方可進行強制拆除","主管機關應向法院聲請強制執行，由法院執行處負責拆除該違建","主管機關可委託第三人代為拆除該違建，並將拆除費用估計後，命A公司預先繳納"]},
+{"n":47,"ans":0,"q":"下列何者非屬確認訴訟之標的？","o":["確認道路交通安全規則無效","確認當事人是否屬於某公法人之會員","確認某筆土地是否具有公用地役關係","確認當事人是否具有中華民國國籍"]},
+{"n":48,"ans":3,"q":"依司法實務見解，公立大學依法解聘其教師甲，並議決1年不得聘任為教師。甲對上開解聘及1年不得聘任為教師不服而提起救濟時，下列敘述何者正確？","o":["甲就解聘，得向教育部提起訴願","甲就解聘，得以教育部為被告，提起確認聘任法律關係存在之訴","甲就1年不得聘任為教師，得提起確認聘任法律關係存在之訴","甲就1年管制期間，得以教育部為原處分機關，提起訴願"]},
+{"n":49,"ans":2,"q":"人民甲與行政機關締結行政契約後，甲因情事變更，向行政機關申請調整契約內容，但行政機關函覆「本案不符情事重大變更之法定要件」，拒絕調整。依最高行政法院實務見解，甲應如何提起行政訴訟？","o":["提起課予義務訴訟，請求法院判命行政機關作成同意調整之行政處分","提起一般確認訴訟，請求法院為確認情事變更法律關係存在之判決","提起一般給付訴訟，請求法院判命行政機關為同意調整之意思表示","提起撤銷訴訟，並請求法院為增、減給付或變更其他原有效果之判決"]},
+{"n":50,"ans":2,"q":"下列何者非屬應適用律師強制代理之事件或案件？","o":["高等行政法院管轄之環境保護、土地爭議之第一審通常訴訟程序事件","都市計畫審查程序事件","人民聲請憲法法庭就法規範及裁判憲法審查之案件","人民向最高行政法院提起之事件"]},
+{"n":51,"ans":3,"q":"關於審判權之爭議，下列敘述何者正確？","o":["行政法院對人民提起之行政訴訟事件，認無審判權而屬於刑事法院之審判權時，得逕予裁定駁回其訴","民事法院認無審判權移送行政法院，行政法院亦認其無審判權，應聲請大法官就審判權爭議作成統一解釋","依現行制度，難以區分法律關係屬於公法或私法時，當事人可以合意定審判權之歸屬，受理之法院受其拘束，不得再依職權審查審判權之有無","行政法院受理訴訟認無審判權，以裁定移送民事法院審理，該裁定確定後，民事法院認其亦無審判權，應裁定停止訴訟程序，並向最高法院請求指定有審判權之管轄法院"]},
+{"n":52,"ans":0,"q":"因作業疏失，甲行政機關誤撥付款項予乙人民，下列敘述何者正確？","o":["甲對乙雖因撥款錯誤之行政事實行為而取得對乙之不當得利返還請求權，但尚不得作成下命處分命乙返還","甲得作成書面行政處分，限期命乙返還","甲機關得逕行移送行政執行","甲須向普通法院訴請乙返還所受領之不當得利"]},
+{"n":53,"ans":3,"q":"人民於下列何種情形之下得請求損失補償？","o":["被違規行駛之垃圾車撞傷","因為跌入未設警告標誌之馬路坑洞而受傷","因為搭乘臺灣鐵路公司之火車出軌而受傷","主管機關依法徵收前已埋設地下設施物，妨礙土地所有權人之權利行使"]},
+{"n":54,"ans":2,"q":"行政機關對甲作成行政處分，但處分書中未記明理由，如無依法得不記明理由之情事，關於行政機關之補正，下列敘述何者錯誤？","o":["甲無向原處分機關請求補正之權利，僅得提起行政爭訟請求撤銷原處分","僅有原處分機關可以補正處分理由，其上級機關不得為之","只要在行政訴訟事實審言詞辯論終結前補正處分理由，均屬適法","補正理由雖不足以支持原處分之合法性，亦不影響補正之效力"]},
+{"n":55,"ans":3,"q":"依行政程序法規定，有關聽證之敘述，下列何者正確？","o":["非經法規明文規定，行政機關不得舉行聽證","聽證，必要時得舉行預備聽證；但聽證終結後，行政機關不得再為聽證","聽證主持人，不論行政機關首長或其指定人員擔任，均應具備法制專長","不服依聽證作成之行政處分，其行政救濟程序，免除訴願及其先行程序"]},
+{"n":56,"ans":0,"q":"關於國際法上禁反言原則，下列敘述何者正確？","o":["通常是指若因自身之行為致他方信賴並依循，即不得再為相反之主張致他方受損害","在領土判決中常成為判斷領域主權歸屬的最重要因素","國家元首於聯合國大會發表關於主權範圍之一次性聲明，他國得據以主張禁反言原則","禁反言原則已成為習慣國際法原則"]},
+{"n":57,"ans":3,"q":"關於國際法上之非自治領土，下列敘述何者錯誤？","o":["非自治領土人民有權主張人民自決權","聯合國託管理事會已停止運作","聯合國憲章並未要求會員須承認非自治領土獨立","目前世界上已無非自治領土"]},
+{"n":58,"ans":3,"q":"關於國際法上徵收外國人或公司財產之國際責任，下列敘述何者錯誤？","o":["地主國徵收外國公司財產給予之補償是否「適當」，得由徵收國片面規定或裁量","地主國對於徵收之補償，在形式上必須符合「適時、合宜與有效」原則","地主國得與被徵收公司所屬國明文約定排除「窮盡當地救濟」原則之適用","「窮盡當地救濟」原則並非習慣國際法原則，除非兩國明文規定為行使外交保護要件，否則不應適用"]},
+{"n":59,"ans":2,"q":"甲國為經濟社會文化權利國際公約（ICESCR）之締約國。於甲國就業之移工A，認其健康權遭甲國恣意侵害而欠缺有效救濟，遂以個人名義向經濟社會文化權利委員會提出申訴而未獲受理。下列何者為不受理之可能理由？","o":["經濟社會文化權利委員會無權受理個人申訴案","經濟社會文化權利委員會僅受理工會或團體申訴","甲國未加入經濟社會文化權利國際公約議定書","移工A並非甲國公民，不符合申訴人適格"]},
+{"n":60,"ans":3,"q":"關於國際太空法原則，下列敘述何者錯誤？","o":["依據月球條約，月球屬於人類共同遺產","月球條約關於月球之條款，亦適用於太陽系內地球以外之其他星體","依據外太空條約，一國不論是為本國或他國從事發射活動，發射國均須對所造成其他國家之損害負責","拯救條約之締約國對墜落其領土境內具危險性之太空客體，應與發射國共同行使搜救之指揮監督權"]},
+{"n":61,"ans":2,"q":"關於聯合國海洋法公約之解釋與適用爭端，下列敘述何者正確？","o":["涉及訴訟時，爭端締約國僅得選擇由國際海洋法法庭解決相關爭端","涉及調解時，爭端締約國僅得從調解員名單中指定人選進行調解","締約國得以書面聲明就海域劃界事項不接受強制爭端解決程序","沿海國有義務將專屬經濟區內生物資源主權權利事項交付強制爭端解決程序"]},
+{"n":62,"ans":0,"q":"關於國際地役，下列敘述何者正確？","o":["兩國依條約約定在其中一國領土境內設置核子廢棄物儲存設施，屬於一種國際地役","若甲國領土被乙國繼承時，原本丙國依條約取得通行甲國領土之地役權，當然終止","在國際地役權存續期間，供役範圍之領土主權發生暫時移轉之效果","駐在國外館之不可侵犯權屬於一種國際地役"]},
+{"n":63,"ans":2,"q":"關於條約在我國國內法上的地位，下列敘述何者正確？","o":["憲法明文規定條約具有國內法的效力","符合憲法規定所締結之條約，其位階高於法律","名稱為條約或公約而附有批准條款者，應送立法院審議","我國與國際組織間締結之書面協定，雖直接涉及人民權利義務，仍無須送立法院審議"]},
+{"n":64,"ans":3,"q":"關於領土割讓後，被割讓領土上人民之國籍歸屬，下列敘述何者正確？","o":["被割讓領土之人民於喪失讓與國國籍後，當然取得受讓國國籍","被割讓領土之人民繼續保有讓與國國籍，不當然取得受讓國國籍","被割讓領土之人民繼續保有讓與國國籍，並當然取得受讓國國籍而擁有雙重國籍","被割讓領土之人民，通常被賦予取得受讓國國籍或保有讓與國國籍之擇一權利"]},
+{"n":65,"ans":2,"q":"關於國際組織，下列敘述何者正確？","o":["國際組織成立後須向聯合國秘書處為登記，始取得國際法主體之地位","國際組織之多數決議，對所有會員國均生直接之拘束力","國際組織所享有之權能，不以該組織章程明文規定者為限","基於主權平等原則，所有國際組織之決議投票均為票票等值，無權重差異"]},
+{"n":66,"ans":0,"q":"下列何者非屬涉外民事事件？","o":["我國人甲於新竹向我國人乙購買一輛德國製之汽車，後因該買賣契約是否成立生效於我國法院進行訴訟","我國人甲於日本向我國人乙購買一棟位於新竹之房屋，後因該買賣契約是否成立生效於我國法院進行訴訟","我國人甲在臺南開車不慎，撞傷日本人乙，乙於我國法院對甲提起訴訟，請求侵權行為之損害賠償","我國人甲在日本收養日本人乙，收養後甲、乙長期居住於我國，關於該收養是否成立生效於我國法院進行訴訟"]},
+{"n":67,"ans":2,"q":"關於當事人本國法之認定，下列敘述何者正確？","o":["當事人有多數國籍時，應適用其住所地法","當事人有多數國籍，而其中之一為我國國籍時，應以我國法為其本國法","當事人無國籍，且住所不明時，應適用其居所地法","當事人無國籍時，應適用其關係最切之法律"]},
+{"n":68,"ans":2,"q":"下列何者不屬於外國公司之內部事項？","o":["公司董事之選任方式及程序","董事對外代表公司之職權範圍","董事與其他公司簽訂買賣契約","公司修訂章程限定董事之權限"]},
+{"n":69,"ans":0,"q":"A國人甲在B國擁有一處莊園，與乙在C國簽訂受讓該莊園之書面契約，並約定該契約以D國法為準據法，然而該契約未經公證。A國、B國以及C國均未規定不動產買賣契約應經公證，而D國法律則規定不動產買賣契約經公證方能生效。下列敘述何者正確？","o":["該契約有效，係因買賣不動產之法律行為方式可依行為地C國法","該契約有效，係因買賣不動產之法律行為方式可依物之所在地B國法","該契約無效，係因買賣不動產之法律行為方式應依該契約之準據法D國法","該契約無效，係因買賣不動產之法律行為方式應符合行為地C國法與該契約之準據法D國法"]},
+{"n":70,"ans":2,"q":"住在加州之美國人甲以新臺幣100萬元向住在臺北之我國人乙購買20公噸之鳳梨。關於鳳梨品質有瑕疵之爭議，甲與乙買賣鳳梨契約之法律適用，下列敘述何者正確？","o":["若甲與乙以電話約定以美國法為準據法，因僅有口頭約定而未有書面，故應認為甲與乙未明示合意應適用之法律","若甲與乙之買賣契約有「以美國加州法院為管轄法院」之合意管轄條款，故而可以認為甲與乙有以美國法為準據法之合意","若甲與乙未明示合意應適用之法律，應推定締約時乙之住所地法，即我國法為關係最切之法律，而以之為準據法","若甲與乙合意以日本法為準據法，則該合意為無效"]},
+{"n":71,"ans":1,"q":"A國人甲男與B國人乙女在我國相識結婚，並育有一子丙（具A國籍），三人一起定居於臺中市。不料，多年後甲、乙感情生變，甲向臺灣臺中地方法院訴請裁判離婚。訴訟中，針對離婚後應由何人擔任未成年子女丙之親權人一事，我國法院應如何適用法律？","o":["本案應定性為離婚之效力問題，依夫妻共同住所地法之我國法","本案應定性為親子間法律關係之問題，依子女本國法之A國法","本案應定性為監護之問題，依受監護人本國法之A國法","本案應定性為扶養之問題，依關係最切地法之我國法"]},
+{"n":72,"ans":2,"q":"我國人甲女在德國留學時與德國人乙男結婚，婚後甲、乙定居我國，爾後甲向我國法院起訴請求判決與乙離婚，乙在起訴後搭機返回德國。關於準據法之決定及其理由，下列敘述何者正確？","o":["德國法。甲、乙在德國結婚，關係最切之法為德國法","德國法。德國法院有管轄權，故準據法為德國法","我國法。起訴時之共同住所地國為我國","我國法。起訴時關係最切之法為我國法"]},
+{"n":73,"ans":3,"q":"A國人甲與B國人乙結婚多年，居住於臺北，生活困頓，時常爭吵，之後協議離婚。離婚後1個月，乙女發現已懷胎4個月，5個月後產下一子丙，下列敘述何者正確？","o":["關於丙之身分，僅得依出生時其母之本國法，即B國法為婚生子女時，丙為婚生子女","丙出生時，甲、乙兩人已經離婚，關於丙之身分僅得依婚姻關係消滅時其母之本國法，方能符合兩性平等保障女性之思潮","關於子女之身分，近代國際私法之思維多有藉累積適用多數國家之法律，儘量承認子女婚生之趨勢","關於丙之身分，若依甲、乙婚姻關係消滅時甲之本國法，即A國法之規定為婚生子女時，則丙為婚生子女"]},
+{"n":74,"ans":2,"q":"我國人甲與A國人乙為夫妻，甲起訴請求離婚，並合併請求乙給付贍養費。乙抗辯依A國法，夫妻離婚不得請求贍養費，僅得請求婚姻破裂之補償。下列敘述何者正確？","o":["贍養費為離婚後財產上之請求，應依夫妻財產制之選法規則","離婚後贍養費之請求，應依扶養事件之選法規則","離婚後贍養費之請求，應依離婚效力之選法規則","A國法規定不得請求贍養費，僅得依侵權行為之選法規則"]},
+{"n":75,"ans":2,"q":"中華民國國民甲與A國人乙，因為給付買賣價金糾紛，經過A國法院判命甲應給付乙買賣價金100萬元及懲罰性賠償金1,000萬元。乙持該確定判決向中華民國法院聲請強制執行，下列敘述何者錯誤？","o":["A國與中華民國雖無外交承認，但若A國法院沒有不承認中華民國法院判決之情形，符合民事訴訟法第402條第1項第4款之要件","A國懲罰性賠償金之判決，性質上屬於民事判決，仍然具有外國判決承認之適格","乙可直接持A國判決為執行名義，在我國聲請強制執行","為判決之A國法院是否有國際管轄權，按民事訴訟法第402條第1項第1款之規定，依中華民國法律定之"]},
+];
+
+const OFFICIAL_EXPLANATIONS = {
+  // 參考擬答將於此處依題號補充，例如： "1": "<p>...內容...</p>"
+};
+
+</script>
+<script>
+(function(){
+  "use strict";
+
+  const LS_FLAG = "exam114_gov_flags";
+  const LS_SELECTED = "exam114_gov_selected";
+  const LS_CONFUSE = "exam114_gov_confuse";
+  const LS_EXPLAIN = "exam114_gov_explain";   // { qn: "text" }
+  const LS_SUBMIT  = "exam114_gov_submit";    // { done:true, score:Number, total:Number, ts:Number }
+
+  const EXAM_TITLE = "114司律一試_憲法、行政法、國際公法、國際私法";
+  const EXAM_SUBJECT = "綜合法學（一）憲法‧行政法‧國際公法‧國際私法";
+
+  function loadJSON(key, fallback){
+    try{
+      const raw = localStorage.getItem(key);
+      return raw ? JSON.parse(raw) : fallback;
+    }catch(e){ return fallback; }
+  }
+  function saveJSON(key, val){
+    localStorage.setItem(key, JSON.stringify(val));
+  }
+
+  let flags = loadJSON(LS_FLAG, {});       // { qn: true }
+  let selected = loadJSON(LS_SELECTED, {}); // { qn: optIndex }
+  let confused = loadJSON(LS_CONFUSE, {});  // { "qn_optIndex": true }
+  let explainText = loadJSON(LS_EXPLAIN, {}); // { qn: "text" }
+  let submitState = loadJSON(LS_SUBMIT, null); // null | {done,score,total,ts}
+
+  let currentFilter = "all"; // 'all' | 'flagged'
+  let openExplain = new Set(); // qn (string) currently expanded — not persisted
+  let openOfficial = new Set(); // qn (string) for built-in official explanation — not persisted
+
+  const main = document.getElementById("main-content");
+  const flagCounterEl = document.getElementById("flag-counter");
+  const tabAll = document.getElementById("tab-all");
+  const tabFlagged = document.getElementById("tab-flagged");
+  const scoreBanner = document.getElementById("score-banner");
+  const scoreTextEl = document.getElementById("score-text");
+
+  const OPT_LABELS = ["A","B","C","D"];
+  const POINTS_PER_Q = 2;
+
+  function updateFlagCounter(){
+    const count = Object.keys(flags).filter(k => flags[k]).length;
+    flagCounterEl.textContent = count;
+  }
+
+  function escapeHTML(str){
+    return String(str)
+      .replace(/&/g,"&amp;")
+      .replace(/</g,"&lt;")
+      .replace(/>/g,"&gt;")
+      .replace(/"/g,"&quot;");
+  }
+
+  function buildOptionHTML(qn, idx, text, isCorrect){
+    const selKey = String(qn);
+    const isSelected = selected[selKey] === idx;
+    const confKey = qn + "_" + idx;
+    const isConfused = !!confused[confKey];
+
+    let cls = "option";
+    if(isSelected){
+      cls += isCorrect ? " selected-correct" : " selected-wrong";
+    }
+    if(isConfused){
+      cls += " confused";
+    }
+
+    return `
+      <div class="${cls}" data-qn="${qn}" data-idx="${idx}" data-correct="${isCorrect ? '1':'0'}">
+        <span class="opt-label">${OPT_LABELS[idx]}</span>
+        <span class="opt-text">${text}</span>
+        <button class="confuse-btn ${isConfused ? 'active':''}" data-qn="${qn}" data-idx="${idx}" title="標記為疑惑選項" aria-label="標記疑惑">
+          <svg viewBox="0 0 16 16"><path class="tri" d="M8 3 L13.5 12.5 L2.5 12.5 Z"/></svg>
+        </button>
+      </div>
+    `;
+  }
+
+  function buildExplainHTML(qn){
+    const key = String(qn);
+    const text = explainText[key] || "";
+    const hasNote = text.trim().length > 0;
+    const isOpen = openExplain.has(key);
+
+    return `
+      <div class="explain-block" data-qn="${qn}">
+        <button class="explain-toggle ${isOpen ? 'open':''}" data-qn="${qn}">
+          <span class="chevron">▶</span>
+          <span class="toggle-label">${isOpen ? '收合詳解' : '顯示詳解'}</span>
+          ${hasNote ? '<span class="has-note-tag">（已有詳解）</span>' : ''}
+        </button>
+        <div class="explain-body ${isOpen ? 'open':''}">
+          <textarea class="explain-textarea" data-qn="${qn}" placeholder="在此輸入詳解…">${escapeHTML(text)}</textarea>
+          <div class="explain-status" data-qn="${qn}">✓ 已自動儲存</div>
+        </div>
+      </div>
+    `;
+  }
+
+  function buildOfficialExplainHTML(qn){
+    const key = String(qn);
+    const content = (typeof OFFICIAL_EXPLANATIONS !== "undefined") ? OFFICIAL_EXPLANATIONS[key] : null;
+    if(!content) return "";
+
+    const isOpen = openOfficial.has(key);
+
+    return `
+      <div class="official-block" data-qn="${qn}">
+        <button class="official-toggle ${isOpen ? 'open':''}" data-qn="${qn}">
+          <span class="chevron">▶</span>
+          <span class="toggle-label">${isOpen ? '收合參考擬答' : '顯示參考擬答'}</span>
+        </button>
+        <div class="official-body ${isOpen ? 'open':''}">
+          <div class="official-content">${content}</div>
+        </div>
+      </div>
+    `;
+  }
+
+  function buildQuestionHTML(item){
+    const qn = item.n;
+    const isFlagged = !!flags[qn];
+    const isRevealed = selected[String(qn)] !== undefined && selected[String(qn)] !== null;
+    const correctLabel = OPT_LABELS[item.ans];
+
+    const optionsHTML = item.o.map((text, idx) => buildOptionHTML(qn, idx, text, idx === item.ans)).join("");
+
+    return `
+      <article class="q-card ${isFlagged ? 'flagged':''}" id="q-${qn}" data-qn="${qn}">
+        <div class="q-row">
+          <div class="q-leftbar">
+            <span class="q-num">${qn}</span>
+            <button class="flag-btn ${isFlagged ? 'active':''}" data-qn="${qn}" title="標記為容易出錯" aria-label="標記旗標">
+              <svg viewBox="0 0 24 24"><path d="M5 3v18M5 4h11l-3 4 3 4H5"/></svg>
+            </button>
+            ${isFlagged ? '<span class="flagged-tag">易錯</span>' : ''}
+          </div>
+          <div class="q-body">
+            <p class="q-text">${item.q}<span class="answer-inline ${isRevealed ? 'revealed':''}" data-qn="${qn}">正確答案：<span class="ans-key">(${correctLabel})</span></span></p>
+            <div class="options-grid">
+              ${optionsHTML}
+            </div>
+            ${buildOfficialExplainHTML(qn)}
+            ${buildExplainHTML(qn)}
+          </div>
+        </div>
+      </article>
+    `;
+  }
+
+  function render(){
+    const list = QUESTIONS.filter(item => {
+      if(currentFilter === "flagged") return !!flags[item.n];
+      return true;
+    });
+
+    if(list.length === 0){
+      main.innerHTML = `<div class="empty-state">目前沒有已標記的題目。複習時點擊每題左側的旗幟圖示即可加入標記。</div>`;
+      return;
+    }
+
+    main.innerHTML = list.map(buildQuestionHTML).join("");
+    // Focus restoration is intentionally skipped: textarea edits are saved via
+    // input listener without triggering a full render (see delegation below).
+  }
+
+  function setFilter(f){
+    currentFilter = f;
+    tabAll.classList.toggle("active", f === "all");
+    tabFlagged.classList.toggle("active", f === "flagged");
+    render();
+  }
+
+  function renderScoreBanner(){
+    if(submitState && submitState.done){
+      scoreBanner.classList.add("show");
+      const pct = submitState.total > 0 ? Math.round((submitState.score / (submitState.total * POINTS_PER_Q)) * 1000) / 10 : 0;
+      scoreTextEl.innerHTML = `本次成績：${submitState.score} 分（共${submitState.correctCount}／${submitState.total}題答對，每題${POINTS_PER_Q}分） <span class="score-detail">交卷時間：${submitState.tsLabel}</span>`;
+    }else{
+      scoreBanner.classList.remove("show");
+    }
+  }
+
+  // ---- Event delegation (click) ----
+  main.addEventListener("click", function(e){
+    // Flag button
+    const flagBtn = e.target.closest(".flag-btn");
+    if(flagBtn){
+      const qn = flagBtn.dataset.qn;
+      flags[qn] = !flags[qn];
+      if(!flags[qn]) delete flags[qn];
+      saveJSON(LS_FLAG, flags);
+      updateFlagCounter();
+      render();
+      return;
+    }
+
+    // Confuse triangle button (must check before generic option click)
+    const confBtn = e.target.closest(".confuse-btn");
+    if(confBtn){
+      e.stopPropagation();
+      const qn = confBtn.dataset.qn;
+      const idx = confBtn.dataset.idx;
+      const key = qn + "_" + idx;
+      confused[key] = !confused[key];
+      if(!confused[key]) delete confused[key];
+      saveJSON(LS_CONFUSE, confused);
+      render();
+      return;
+    }
+
+    // Official explanation toggle button (built-in, read-only)
+    const officialToggle = e.target.closest(".official-toggle");
+    if(officialToggle){
+      const qn = officialToggle.dataset.qn;
+      if(openOfficial.has(qn)){
+        openOfficial.delete(qn);
+      }else{
+        openOfficial.add(qn);
+      }
+      render();
+      return;
+    }
+
+    // Explain toggle button
+    const explainToggle = e.target.closest(".explain-toggle");
+    if(explainToggle){
+      const qn = explainToggle.dataset.qn;
+      if(openExplain.has(qn)){
+        openExplain.delete(qn);
+      }else{
+        openExplain.add(qn);
+      }
+      render();
+      // focus the textarea after opening
+      if(openExplain.has(qn)){
+        const ta = main.querySelector(`.explain-textarea[data-qn="${qn}"]`);
+        if(ta) ta.focus();
+      }
+      return;
+    }
+
+    // Option click (toggle selection / reveal answer)
+    const optEl = e.target.closest(".option");
+    if(optEl){
+      const qn = optEl.dataset.qn;
+      const idx = parseInt(optEl.dataset.idx, 10);
+      const key = String(qn);
+
+      if(selected[key] === idx){
+        // toggle off
+        delete selected[key];
+      }else{
+        selected[key] = idx;
+      }
+      saveJSON(LS_SELECTED, selected);
+      render();
+      return;
+    }
+  });
+
+  // ---- Event delegation (textarea input, debounced auto-save) ----
+  const debounceTimers = {}; // qn -> timeout id
+  main.addEventListener("input", function(e){
+    const ta = e.target.closest(".explain-textarea");
+    if(!ta) return;
+    const qn = ta.dataset.qn;
+
+    if(debounceTimers[qn]) clearTimeout(debounceTimers[qn]);
+    debounceTimers[qn] = setTimeout(() => {
+      explainText[qn] = ta.value;
+      if(!ta.value.trim()) delete explainText[qn];
+      saveJSON(LS_EXPLAIN, explainText);
+
+      // show "已自動儲存" status without re-rendering (avoid losing focus)
+      const statusEl = main.querySelector(`.explain-status[data-qn="${qn}"]`);
+      if(statusEl){
+        statusEl.classList.add("show");
+        clearTimeout(statusEl._hideTimer);
+        statusEl._hideTimer = setTimeout(() => statusEl.classList.remove("show"), 1800);
+      }
+
+      // update the "(已有詳解)" tag in place without full re-render
+      const toggleBtn = main.querySelector(`.explain-toggle[data-qn="${qn}"]`);
+      if(toggleBtn){
+        const hasNote = (explainText[qn] || "").trim().length > 0;
+        let tagEl = toggleBtn.querySelector(".has-note-tag");
+        if(hasNote && !tagEl){
+          tagEl = document.createElement("span");
+          tagEl.className = "has-note-tag";
+          tagEl.textContent = "（已有詳解）";
+          toggleBtn.appendChild(tagEl);
+        }else if(!hasNote && tagEl){
+          tagEl.remove();
+        }
+      }
+    }, 800);
+  });
+
+  tabAll.addEventListener("click", () => setFilter("all"));
+  tabFlagged.addEventListener("click", () => setFilter("flagged"));
+
+  // ---- Clear all modal ----
+  const modal = document.getElementById("confirm-modal");
+  document.getElementById("clear-all-btn").addEventListener("click", () => {
+    modal.classList.add("show");
+  });
+  document.getElementById("modal-cancel").addEventListener("click", () => {
+    modal.classList.remove("show");
+  });
+  document.getElementById("modal-confirm").addEventListener("click", () => {
+    flags = {};
+    selected = {};
+    confused = {};
+    submitState = null;
+    saveJSON(LS_FLAG, flags);
+    saveJSON(LS_SELECTED, selected);
+    saveJSON(LS_CONFUSE, confused);
+    localStorage.removeItem(LS_SUBMIT);
+
+    // 同步移除題庫大廳／分類頁的「已完成」徽章紀錄
+    if(typeof clearExamComplete === "function"){
+      clearExamComplete();
+    }
+
+    updateFlagCounter();
+    renderScoreBanner();
+    render();
+    modal.classList.remove("show");
+  });
+  modal.addEventListener("click", (e) => {
+    if(e.target === modal) modal.classList.remove("show");
+  });
+
+  // ---- Submit / scoring ----
+  function gradeExam(){
+    let correctCount = 0;
+    QUESTIONS.forEach(item => {
+      const sel = selected[String(item.n)];
+      if(sel !== undefined && sel === item.ans) correctCount++;
+    });
+    const total = QUESTIONS.length;
+    const score = correctCount * POINTS_PER_Q;
+    const now = new Date();
+    const tsLabel = now.getFullYear() + "/" + String(now.getMonth()+1).padStart(2,"0") + "/" + String(now.getDate()).padStart(2,"0") +
+      " " + String(now.getHours()).padStart(2,"0") + ":" + String(now.getMinutes()).padStart(2,"0");
+
+    submitState = { done:true, score, correctCount, total, ts: now.getTime(), tsLabel };
+    saveJSON(LS_SUBMIT, submitState);
+    renderScoreBanner();
+    window.scrollTo({top:0, behavior:"smooth"});
+
+    // 回報完成狀態給題庫大廳／分類頁顯示「已完成」徽章
+    if(typeof reportExamComplete === "function"){
+      reportExamComplete({ score, total, correctCount });
+    }
+  }
+
+  document.getElementById("submit-btn").addEventListener("click", gradeExam);
+
+  // ---- Export ----
+  const SYMBOL_LEGEND = "符號圖例：✓ = 我選對的選項｜✗ = 我選錯的選項｜▲ = 標記為疑惑的選項｜▶ 正確答案：括號內為正解代號";
+
+  function pad2(n){ return String(n).padStart(2,"0"); }
+  function todayStamp(){
+    const d = new Date();
+    return d.getFullYear() + pad2(d.getMonth()+1) + pad2(d.getDate());
+  }
+
+  function officialHtmlToPlainText(html){
+    if(!html) return "";
+    let text = html;
+    // <li> -> "・" 條列符號 + 換行
+    text = text.replace(/<li[^>]*>/gi, "・");
+    text = text.replace(/<\/li>/gi, "\n");
+    // <p> -> 換行區隔
+    text = text.replace(/<p[^>]*>/gi, "");
+    text = text.replace(/<\/p>/gi, "\n");
+    // <ul>/<em>/<strong> 等標籤直接移除，但保留內容
+    text = text.replace(/<\/?(ul|strong|em)[^>]*>/gi, "");
+    // 移除其餘未預期的標籤
+    text = text.replace(/<[^>]+>/g, "");
+    // 還原常見 HTML 實體
+    text = text.replace(/&nbsp;/g, " ").replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"');
+    // 清理多餘空行
+    text = text.split("\n").map(l => l.trim()).filter(l => l.length > 0).join("\n");
+    return text;
+  }
+
+  function buildExportText(list, scopeLabel){
+    const now = new Date();
+    const dateLabel = now.getFullYear() + "/" + pad2(now.getMonth()+1) + "/" + pad2(now.getDate());
+
+    let wrongCount = 0, confusedCount = 0, explainedCount = 0, officialCount = 0;
+
+    const lines = [];
+    lines.push(`試卷標題：${EXAM_TITLE}`);
+    lines.push(`科目：${EXAM_SUBJECT}`);
+    lines.push(`匯出範圍：${scopeLabel}`);
+    lines.push(`匯出日期：${dateLabel}`);
+    lines.push(SYMBOL_LEGEND);
+    lines.push("=".repeat(48));
+    lines.push("");
+
+    list.forEach(item => {
+      const qn = item.n;
+      const key = String(qn);
+      const selIdx = selected[key];
+      const hasSelection = selIdx !== undefined && selIdx !== null;
+      const isWrong = hasSelection && selIdx !== item.ans;
+      if(isWrong) wrongCount++;
+
+      let qConfused = false;
+
+      lines.push(`第 ${qn} 題`);
+      lines.push(item.q);
+      item.o.forEach((text, idx) => {
+        const isConf = !!confused[qn + "_" + idx];
+        if(isConf) qConfused = true;
+        let mark = "　"; // default: no symbol, keep alignment
+        if(hasSelection && idx === selIdx){
+          mark = (idx === item.ans) ? "✓" : "✗";
+        }else if(isConf){
+          mark = "▲";
+        }
+        lines.push(`${mark} (${OPT_LABELS[idx]}) ${text}`);
+      });
+      if(qConfused) confusedCount++;
+
+      lines.push(`▶ 正確答案：(${OPT_LABELS[item.ans]})`);
+
+      const officialHtml = (typeof OFFICIAL_EXPLANATIONS !== "undefined") ? OFFICIAL_EXPLANATIONS[key] : null;
+      if(officialHtml){
+        officialCount++;
+        lines.push(officialHtmlToPlainText(officialHtml));
+      }
+
+      const note = (explainText[key] || "").trim();
+      if(note){
+        explainedCount++;
+        lines.push("詳解：");
+        lines.push(note);
+      }
+
+      lines.push("-".repeat(48));
+      lines.push("");
+    });
+
+    lines.push("=".repeat(48));
+    lines.push(`統計：共 ${list.length} 題｜已標記 ${list.filter(it => !!flags[it.n]).length} 題｜答錯 ${wrongCount} 題｜含疑惑選項 ${confusedCount} 題｜有參考擬答 ${officialCount} 題｜有詳解 ${explainedCount} 題`);
+
+    return lines.join("\n");
+  }
+
+  function downloadText(filename, content){
+    const blob = new Blob([content], {type:"text/plain;charset=utf-8"});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  document.getElementById("export-flagged-btn").addEventListener("click", () => {
+    const list = QUESTIONS.filter(item => !!flags[item.n]);
+    if(list.length === 0){
+      alert("目前沒有已標記的題目可匯出。");
+      return;
+    }
+    const text = buildExportText(list, "已標記弱點題");
+    downloadText(`${EXAM_TITLE}_已標記弱點題_${todayStamp()}.txt`, text);
+  });
+
+  document.getElementById("export-all-btn").addEventListener("click", () => {
+    const text = buildExportText(QUESTIONS, "全部題目");
+    downloadText(`${EXAM_TITLE}_全部題目_${todayStamp()}.txt`, text);
+  });
+
+  // ---- init ----
+  updateFlagCounter();
+  renderScoreBanner();
+  render();
+})();
+</script>
+</body>
+</html>
