@@ -1,0 +1,135 @@
+/*
+  category-badge.js
+  ------------------------------------------------------------------
+  共用小工具：分類頁（第二層，如「司律題庫區」）載入時自動執行，
+  掃描頁面上所有指向考卷的 <a> 連結，
+  比對 exam-complete.js 寫入的共用 registry，
+  把「已完成」的連結加上徽章＋淡化按鈕樣式。
+
+  使用方式：在分類頁 <body> 結尾、</html> 之前加一行：
+      <script src="exam-complete.js"></script>
+      <script src="category-badge.js"></script>
+
+  不需要呼叫任何函式，頁面載入時會自動執行。
+  預設只處理 <ul> 裡面、且 href 是「考卷檔名.html」的連結
+  （會自動跳過 index.html / category_*.html 等分類／首頁連結，
+   也會跳過外部連結 http(s)://）
+------------------------------------------------------------------
+*/
+(function () {
+  "use strict";
+
+  function loadRegistry() {
+    try {
+      var raw = localStorage.getItem(window.EXAM_COMPLETION_REGISTRY_KEY || "exam_completion_registry");
+      return raw ? JSON.parse(raw) : {};
+    } catch (e) {
+      return {};
+    }
+  }
+
+  function isCategoryOrIndexLink(filename) {
+    return /^index\.html?$/i.test(filename) || /^category_.*\.html?$/i.test(filename);
+  }
+
+  function isExternalLink(href) {
+    return /^https?:\/\//i.test(href) || /^mailto:/i.test(href) || href.indexOf("#") === 0;
+  }
+
+  function fileKeyFromHref(href) {
+    var clean = href.split("?")[0].split("#")[0];
+    var parts = clean.split("/");
+    return decodeURIComponent(parts[parts.length - 1] || "");
+  }
+
+  function formatScoreLabel(record) {
+    if (record.score === null || record.total === null) {
+      return "已完成";
+    }
+    return "已完成 · " + record.score + "分";
+  }
+
+  function buildBadgeEl(record) {
+    var badge = document.createElement("span");
+    badge.className = "exam-done-badge";
+    badge.setAttribute("title",
+      record.tsLabel ? ("完成時間：" + record.tsLabel) : "已完成"
+    );
+
+    var seal = document.createElement("span");
+    seal.className = "exam-done-badge-seal";
+    seal.setAttribute("aria-hidden", "true");
+    seal.textContent = "\u2713"; // ✓ 簡單核取，不依賴外部圖示字型
+
+    var label = document.createElement("span");
+    label.textContent = formatScoreLabel(record);
+
+    badge.appendChild(seal);
+    badge.appendChild(label);
+    return badge;
+  }
+
+  function injectStylesOnce() {
+    if (document.getElementById("exam-done-badge-style")) return;
+    var style = document.createElement("style");
+    style.id = "exam-done-badge-style";
+    style.textContent =
+      ".exam-link-done{opacity:.6;background-color:#F1EFE8 !important;}" +
+      ".exam-link-done:hover{opacity:.85;}" +
+      ".exam-link-done .exam-link-title{color:inherit;}" +
+      ".exam-done-badge{display:inline-flex;align-items:center;gap:6px;" +
+      "margin-left:auto;padding:4px 12px;border:1px solid #DCD9D4;" +
+      "border-radius:999px;font-size:11px;letter-spacing:.5px;" +
+      "color:#8C7B5A;background-color:#FFFFFF;white-space:nowrap;" +
+      "flex-shrink:0;}" +
+      ".exam-done-badge-seal{display:inline-flex;align-items:center;" +
+      "justify-content:center;width:14px;height:14px;border-radius:50%;" +
+      "border:1px solid #8C7B5A;font-size:9px;line-height:1;color:#8C7B5A;}" +
+      ".exam-link-title{flex:1;}";
+    document.head.appendChild(style);
+  }
+
+  function applyBadges() {
+    var registry = loadRegistry();
+    var links = document.querySelectorAll("ul a[href]");
+
+    links.forEach(function (a) {
+      var href = a.getAttribute("href");
+      if (!href || isExternalLink(href)) return;
+
+      var key = fileKeyFromHref(href);
+      if (!key || isCategoryOrIndexLink(key)) return;
+
+      var record = registry[key];
+      if (!record || !record.done) return;
+
+      // 包住原本的文字，方便排版（讓徽章靠右對齊）
+      if (!a.querySelector(".exam-link-title")) {
+        var wrapper = document.createElement("span");
+        wrapper.className = "exam-link-title";
+        while (a.firstChild) {
+          wrapper.appendChild(a.firstChild);
+        }
+        a.appendChild(wrapper);
+      }
+
+      a.classList.add("exam-link-done");
+
+      if (!a.querySelector(".exam-done-badge")) {
+        a.appendChild(buildBadgeEl(record));
+      }
+    });
+  }
+
+  function init() {
+    injectStylesOnce();
+    applyBadges();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+
+})();
