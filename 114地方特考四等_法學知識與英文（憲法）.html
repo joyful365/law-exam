@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>114年地方特考四等｜法學知識與英文 複習卷</title>
+<style>
+  :root{
+    --paper:#faf7f0;
+    --paper-line:#e4dcc8;
+    --ink:#262220;
+    --ink-soft:#5c5650;
+    --stamp-red:#a32f2f;
+    --stamp-red-soft:#c4504f;
+    --seal-gold:#9c7a2e;
+    --flag-bg:#fff3dc;
+    --flag-border:#c98a2b;
+    --correct-tint:#eef3ea;
+  }
+
+  *{box-sizing:border-box;}
+
+  body{
+    margin:0;
+    background:var(--paper);
+    background-image:
+      repeating-linear-gradient(0deg, transparent 0px, transparent 27px, var(--paper-line) 27px, var(--paper-line) 28px);
+    color:var(--ink);
+    font-family:"PingFang TC","Noto Sans TC","Microsoft JhengHei","Helvetica Neue",Arial,sans-serif;
+    line-height:1.6;
+    padding-bottom:80px;
+  }
+
+  /* ============ STICKY TOP WRAP ============ */
+  .sticky-top-wrap{
+    position:sticky;
+    top:0;
+    z-index:60;
+    background:var(--paper);
+    box-shadow:0 2px 8px rgba(0,0,0,.05);
+  }
+
+  /* ============ HEADER ============ */
+  header{
+    position:relative;
+    max-width:880px;
+    margin:0 auto;
+    padding:18px 28px 14px;
+    border-bottom:3px double var(--ink);
+  }
+  .exam-meta-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+  .exam-title{
+    font-size:1.15rem;
+    font-weight:800;
+    letter-spacing:.04em;
+    margin:0 0 4px;
+  }
+  .exam-sub{
+    font-size:.84rem;
+    color:var(--ink-soft);
+    margin:1px 0;
+  }
+  .exam-sub b{ color:var(--ink); font-weight:600; }
+
+  .seal{
+    flex-shrink:0;
+    width:54px;
+    height:54px;
+    border:2.5px solid var(--stamp-red);
+    border-radius:7px;
+    color:var(--stamp-red);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:800;
+    font-size:.8rem;
+    letter-spacing:.12em;
+    writing-mode:vertical-rl;
+    transform:rotate(2deg);
+    opacity:.85;
+    user-select:none;
+  }
+
+  /* ============ CONTROL BAR ============ */
+  .controlbar{
+    max-width:880px;
+    margin:0 auto;
+    background:var(--paper);
+    border-bottom:1px solid var(--paper-line);
+    padding:12px 28px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .tabs{
+    display:flex;
+    gap:6px;
+    background:#f0ead9;
+    border:1px solid var(--paper-line);
+    border-radius:10px;
+    padding:4px;
+  }
+  .tab-btn{
+    border:none;
+    background:transparent;
+    padding:8px 18px;
+    font-size:.92rem;
+    font-weight:600;
+    color:var(--ink-soft);
+    border-radius:7px;
+    cursor:pointer;
+    transition:background .15s, color .15s;
+    font-family:inherit;
+  }
+  .tab-btn.active{
+    background:var(--ink);
+    color:var(--paper);
+  }
+  .flag-counter{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:.9rem;
+    color:var(--ink-soft);
+  }
+  .flag-counter .num{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:26px;
+    height:26px;
+    padding:0 6px;
+    background:var(--flag-bg);
+    border:1px solid var(--flag-border);
+    color:#8a5a14;
+    border-radius:7px;
+    font-weight:700;
+  }
+  .reset-btn{
+    border:1px solid var(--paper-line);
+    background:transparent;
+    color:var(--ink-soft);
+    font-size:.82rem;
+    padding:7px 12px;
+    border-radius:7px;
+    cursor:pointer;
+    font-family:inherit;
+  }
+  .reset-btn:hover{ background:#f0ead9; }
+
+  .export-group{
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .export-btn{
+    border:1px solid var(--seal-gold);
+    background:#fffefb;
+    color:#7a5f24;
+    font-size:.82rem;
+    font-weight:600;
+    padding:7px 14px;
+    border-radius:7px;
+    cursor:pointer;
+    font-family:inherit;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    transition:background .15s, color .15s;
+  }
+  .export-btn:hover{
+    background:var(--seal-gold);
+    color:#fff;
+  }
+  .export-btn svg{
+    width:13px;
+    height:13px;
+    flex-shrink:0;
+  }
+
+  /* ============ QUESTION LIST ============ */
+  main{
+    max-width:880px;
+    margin:0 auto;
+    padding:22px 28px 0;
+  }
+
+  .passage-block{
+    background:#fffefb;
+    border:1px solid var(--paper-line);
+    border-left:4px solid var(--seal-gold);
+    border-radius:6px;
+    padding:16px 20px;
+    margin:26px 0 16px;
+    font-size:.92rem;
+    color:var(--ink-soft);
+    white-space:pre-line;
+  }
+  .passage-label{
+    font-size:.78rem;
+    font-weight:700;
+    color:var(--seal-gold);
+    letter-spacing:.08em;
+    margin-bottom:8px;
+    text-transform:uppercase;
+  }
+
+  .qcard{
+    position:relative;
+    display:flex;
+    align-items:flex-start;
+    gap:14px;
+    background:#fffefb;
+    border:1px solid var(--paper-line);
+    border-radius:8px;
+    padding:16px 18px;
+    margin-bottom:14px;
+    transition:border-color .15s, box-shadow .15s, background .15s;
+  }
+  .qcard.revealed{
+    background:#fffdf7;
+  }
+  .qcard.flagged{
+    border-color:var(--flag-border);
+    background:linear-gradient(0deg, var(--flag-bg) 0%, #fffefb 14%);
+    box-shadow:inset 3px 0 0 var(--flag-border);
+  }
+  .qcard.hidden-by-filter{ display:none; }
+
+  .qnum{
+    flex-shrink:0;
+    width:34px;
+    height:34px;
+    border-radius:50%;
+    background:#f0ead9;
+    color:var(--ink);
+    font-weight:700;
+    font-size:.88rem;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-top:1px;
+    user-select:none;
+  }
+  .qcard.flagged .qnum{
+    background:var(--flag-border);
+    color:#fff;
+  }
+
+  .flag-btn{
+    flex-shrink:0;
+    width:34px;
+    height:34px;
+    border-radius:8px;
+    border:1px solid var(--paper-line);
+    background:#fff;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-top:1px;
+    transition:background .15s, border-color .15s, transform .1s;
+    padding:0;
+  }
+  .flag-btn:hover{ transform:scale(1.06); }
+  .flag-btn svg{
+    width:16px; height:16px;
+    stroke:#b8ad94;
+    fill:none;
+    stroke-width:2;
+    transition:stroke .15s, fill .15s;
+  }
+  .flag-btn.active{
+    background:var(--flag-border);
+    border-color:var(--flag-border);
+  }
+  .flag-btn.active svg{
+    stroke:#fff;
+    fill:#fff;
+  }
+
+  .qbody{ flex:1; min-width:0; }
+
+  .qtext{
+    font-size:.98rem;
+    font-weight:600;
+    margin:0 0 10px;
+    color:var(--ink);
+  }
+
+  .opts-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:6px 14px;
+  }
+  .opt-row{
+    display:flex;
+    align-items:flex-start;
+    gap:7px;
+    font-size:.88rem;
+    color:#3a3530;
+    padding:5px 8px 5px 4px;
+    border-radius:5px;
+    border:1px dashed transparent;
+    cursor:pointer;
+    transition:background .12s, border-color .12s;
+  }
+  .opt-row:hover{
+    background:#f5f0e2;
+  }
+  .opt-letter{
+    flex-shrink:0;
+    font-weight:700;
+    color:var(--ink-soft);
+    width:18px;
+  }
+  .opt-text{ flex:1; }
+
+  .opt-doubt-btn{
+    flex-shrink:0;
+    border:none;
+    background:transparent;
+    cursor:pointer;
+    padding:2px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:18px;
+    height:18px;
+    margin-top:1px;
+  }
+  .opt-doubt-btn svg{
+    width:11px;
+    height:11px;
+    fill:#cbc1a8;
+    transition:fill .12s;
+  }
+  .opt-doubt-btn:hover svg{ fill:#9c7a2e; }
+  .opt-doubt-btn.active svg{ fill:#c98a2b; }
+
+  .opt-row.doubt{
+    border-color:#c98a2b;
+    border-style:dashed;
+  }
+
+  .opt-row.my-wrong{
+    background:#fbe6e6;
+    border-color:transparent;
+  }
+  .opt-row.my-wrong .opt-text{
+    text-decoration:line-through;
+    color:#8a3a3a;
+  }
+  .opt-row.my-correct{
+    background:#e3f1e3;
+    border-color:transparent;
+  }
+  .opt-row.my-correct .opt-text{
+    color:#2e6b34;
+    font-weight:600;
+  }
+  .opt-row.my-wrong.doubt, .opt-row.my-correct.doubt{
+    border-style:dashed;
+  }
+
+  .answer-row{
+    margin-top:12px;
+    padding-top:10px;
+    border-top:1px dashed var(--paper-line);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:.88rem;
+  }
+  .answer-label{
+    color:var(--ink-soft);
+    flex-shrink:0;
+  }
+  .answer-value{
+    font-weight:800;
+    font-size:1rem;
+    padding:2px 10px;
+    border-radius:5px;
+    user-select:all;
+    /* hidden by default: white text on white/paper-matching bg */
+    color:#ffffff;
+    background:#ffffff;
+    transition:color .12s, background .12s;
+  }
+  .qcard.revealed .answer-value{
+    color:#fff;
+    background:var(--stamp-red);
+  }
+  .reveal-hint{
+    margin-left:auto;
+    font-size:.76rem;
+    color:#c2b896;
+    font-style:italic;
+    user-select:none;
+  }
+  .qcard.revealed .reveal-hint{ display:none; }
+
+  /* ============ EXPLANATION BLOCK ============ */
+  .explain-toggle{
+    margin-top:10px;
+    border:none;
+    background:transparent;
+    color:var(--seal-gold);
+    font-size:.84rem;
+    font-weight:600;
+    padding:4px 0;
+    cursor:pointer;
+    font-family:inherit;
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+  }
+  .explain-toggle:hover{ text-decoration:underline; }
+  .explain-toggle .chev{
+    display:inline-block;
+    transition:transform .15s;
+    font-size:.78rem;
+  }
+  .explain-toggle.open .chev{ transform:rotate(90deg); }
+  .explain-has-badge{
+    color:#8a8478;
+    font-weight:400;
+    font-size:.8rem;
+    margin-left:2px;
+  }
+
+  .explain-wrap{
+    display:none;
+    margin-top:8px;
+  }
+  .explain-wrap.open{ display:block; }
+
+  .explain-status{
+    display:block;
+    min-height:18px;
+    margin-top:5px;
+    font-size:.78rem;
+    color:#5c8a5f;
+    opacity:0;
+    transition:opacity .25s;
+  }
+  .explain-status.show{ opacity:1; }
+
+  .explain-textarea{
+    width:100%;
+    min-height:84px;
+    resize:vertical;
+    background:#fbf8ef;
+    border:1px solid var(--paper-line);
+    border-radius:6px;
+    padding:10px 12px;
+    font-family:inherit;
+    font-size:.86rem;
+    color:var(--ink);
+    line-height:1.6;
+    box-sizing:border-box;
+  }
+  .explain-textarea:focus{
+    outline:none;
+    border-color:var(--seal-gold);
+    background:#fffefb;
+  }
+  .explain-textarea::placeholder{
+    color:#b8ad94;
+  }
+
+  /* ============ SUBMIT BUTTON ============ */
+  .submit-btn{
+    border:1px solid var(--stamp-red);
+    background:var(--stamp-red);
+    color:#fff;
+    font-size:.86rem;
+    font-weight:700;
+    padding:8px 18px;
+    border-radius:7px;
+    cursor:pointer;
+    font-family:inherit;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    transition:background .15s, box-shadow .15s, transform .1s;
+    letter-spacing:.03em;
+  }
+  .submit-btn:hover{
+    background:var(--stamp-red-soft);
+  }
+  .submit-btn:active{ transform:scale(.97); }
+  .submit-btn svg{ width:14px; height:14px; flex-shrink:0; }
+
+  /* ============ RESULT MODAL ============ */
+  .result-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(38,34,32,.55);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:200;
+    padding:20px;
+  }
+  .result-overlay.open{ display:flex; }
+  .result-modal{
+    background:var(--paper);
+    border-radius:14px;
+    max-width:480px;
+    width:100%;
+    max-height:86vh;
+    overflow-y:auto;
+    box-shadow:0 18px 50px rgba(0,0,0,.3);
+    border:1px solid var(--paper-line);
+    padding:28px 26px 24px;
+    position:relative;
+  }
+  .result-close{
+    position:absolute;
+    top:14px; right:14px;
+    width:30px; height:30px;
+    border-radius:8px;
+    border:1px solid var(--paper-line);
+    background:#fff;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--ink-soft);
+    font-size:1rem;
+    line-height:1;
+  }
+  .result-close:hover{ background:#f0ead9; }
+  .result-title{
+    font-size:1.05rem;
+    font-weight:800;
+    margin:0 0 4px;
+    text-align:center;
+  }
+  .result-sub{
+    font-size:.82rem;
+    color:var(--ink-soft);
+    text-align:center;
+    margin:0 0 18px;
+  }
+  .result-score-circle{
+    width:128px;
+    height:128px;
+    border-radius:50%;
+    margin:0 auto 18px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    border:6px solid var(--seal-gold);
+    background:#fffefb;
+  }
+  .result-score-circle .score-num{
+    font-size:2rem;
+    font-weight:800;
+    color:var(--ink);
+    line-height:1;
+  }
+  .result-score-circle .score-label{
+    font-size:.72rem;
+    color:var(--ink-soft);
+    margin-top:2px;
+  }
+  .result-stats{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:8px;
+    margin-bottom:18px;
+  }
+  .result-stat{
+    text-align:center;
+    background:#fffefb;
+    border:1px solid var(--paper-line);
+    border-radius:8px;
+    padding:10px 4px;
+  }
+  .result-stat .stat-num{
+    font-size:1.15rem;
+    font-weight:800;
+  }
+  .result-stat.correct .stat-num{ color:#2e6b34; }
+  .result-stat.wrong .stat-num{ color:#8a3a3a; }
+  .result-stat.blank .stat-num{ color:var(--ink-soft); }
+  .result-stat .stat-label{
+    font-size:.74rem;
+    color:var(--ink-soft);
+    margin-top:2px;
+  }
+  .result-wrong-list{
+    font-size:.82rem;
+    color:var(--ink-soft);
+    background:#fffefb;
+    border:1px solid var(--paper-line);
+    border-radius:8px;
+    padding:10px 14px;
+    margin-bottom:18px;
+    max-height:120px;
+    overflow-y:auto;
+  }
+  .result-wrong-list b{ color:var(--ink); }
+  .result-actions{
+    display:flex;
+    gap:10px;
+  }
+  .result-actions button{
+    flex:1;
+    padding:10px 12px;
+    border-radius:8px;
+    font-size:.86rem;
+    font-weight:700;
+    cursor:pointer;
+    font-family:inherit;
+    border:1px solid var(--paper-line);
+    background:#fff;
+    color:var(--ink);
+  }
+  .result-actions .btn-primary{
+    border-color:var(--stamp-red);
+    background:var(--stamp-red);
+    color:#fff;
+  }
+  .result-actions .btn-primary:hover{ background:var(--stamp-red-soft); }
+  .result-actions button:not(.btn-primary):hover{ background:#f0ead9; }
+  .result-report-status{
+    text-align:center;
+    font-size:.76rem;
+    color:#a89f8c;
+    margin-top:12px;
+  }
+
+  @media (max-width: 620px){
+    .opts-grid{ grid-template-columns:1fr; }
+    header{ padding:14px 18px 12px; }
+    .controlbar{ padding:10px 18px; }
+    main{ padding:18px 18px 0; }
+    .seal{ display:none; }
+    .export-group{ width:100%; justify-content:flex-start; flex-wrap:wrap; }
+    .flag-counter{ width:100%; flex-wrap:wrap; }
+    .result-stats{ grid-template-columns:1fr 1fr 1fr; }
+    .result-actions{ flex-direction:column; }
+  }
+
+  footer{
+    max-width:880px;
+    margin:36px auto 0;
+    padding:18px 28px 0;
+    text-align:center;
+    font-size:.8rem;
+    color:#a89f8c;
+    border-top:1px solid var(--paper-line);
+  }
+</style>
+</head>
+<body>
+
+<div class="sticky-top-wrap">
+<header>
+  <div class="exam-meta-row">
+    <div>
+      <p class="exam-title">114年特種考試地方政府公務人員及離島地區公務人員考試</p>
+      <p class="exam-sub"><b>等別</b>：四等考試　｜　<b>類科</b>：各類科</p>
+      <p class="exam-sub"><b>科目</b>：法學知識與英文（包括中華民國憲法、法學緒論、英文）</p>
+      <p class="exam-sub"><b>題數</b>：50 題　｜　點選任一選項即顯示答案，或反白答案欄查看</p>
+    </div>
+    <div class="seal">複習用卷</div>
+  </div>
+</header>
+
+<div class="controlbar">
+  <div class="tabs">
+    <button class="tab-btn active" data-filter="all">全部題目</button>
+    <button class="tab-btn" data-filter="flagged">已標記</button>
+  </div>
+  <div class="export-group">
+    <button class="export-btn" id="exportFlaggedBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16"/></svg>
+      匯出已標記
+    </button>
+    <button class="export-btn" id="exportAllBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16"/></svg>
+      匯出全部
+    </button>
+  </div>
+  <div class="flag-counter">
+    已標記 <span class="num" id="flagCount">0</span> 題
+    <button class="reset-btn" id="resetBtn">清除全部標記</button>
+  </div>
+  <button class="submit-btn" id="submitExamBtn">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+    交卷並計算成績
+  </button>
+</div>
+</div>
+
+<main id="quizRoot"></main>
+
+<footer>本頁僅供個人複習使用</footer>
+
+<!-- ============ RESULT MODAL ============ -->
+<div class="result-overlay" id="resultOverlay">
+  <div class="result-modal">
+    <button class="result-close" id="resultCloseBtn" aria-label="關閉">✕</button>
+    <p class="result-title">交卷完成</p>
+    <p class="result-sub" id="resultSubLine">114年地方特考四等｜法學知識與英文</p>
+
+    <div class="result-score-circle">
+      <span class="score-num" id="resultScoreNum">0</span>
+      <span class="score-label">分（滿分100）</span>
+    </div>
+
+    <div class="result-stats">
+      <div class="result-stat correct">
+        <div class="stat-num" id="statCorrect">0</div>
+        <div class="stat-label">答對</div>
+      </div>
+      <div class="result-stat wrong">
+        <div class="stat-num" id="statWrong">0</div>
+        <div class="stat-label">答錯</div>
+      </div>
+      <div class="result-stat blank">
+        <div class="stat-num" id="statBlank">0</div>
+        <div class="stat-label">未作答</div>
+      </div>
+    </div>
+
+    <div class="result-wrong-list" id="resultWrongList"></div>
+
+    <div class="result-actions">
+      <button id="resultReviewBtn">回頭檢視答案</button>
+      <button class="btn-primary" id="resultCloseBtn2">關閉</button>
+    </div>
+
+    <p class="result-report-status" id="resultReportStatus"></p>
+  </div>
+</div>
+
+<script>
+const QUESTIONS = [
+{n:1,ans:"D",q:"所謂合憲性解釋係指下列何種解釋方法？",opts:["法律牴觸憲法者無效","某一國家機關之權力核心領域不容其他國家機關侵害","國家權力之行使應分配予功能最適當之憲政機關","法律條文若有多種解釋之可能性，應選擇最符合憲法意旨者"]},
+{n:2,ans:"B",q:"關於基本國策之效力，下列敘述何者錯誤？",opts:["基本國策章亦有保障人民權益之相關規範","基本國策條款皆可透過權利救濟予以實現","憲法基本國策規定國家負有作為義務，國家若未執行，人民未必可向法院提起訴訟，請求法院命國家為履行","基本國策章與基本權利章雖皆有保障人民之權利，但法律效果可能容有不同"]},
+{n:3,ans:"A",q:"憲法第9條所定軍事審判，在性質上是屬於何種權力？",opts:["軍事審判權仍是審判權，在性質上屬於司法權","軍事審判權是軍中對於軍人之刑罰權，所以是行政權","軍事審判權是軍事審判機關對於軍人犯罪之專屬審判權","軍事審判權不是一般統治關係之行政訴訟，而是特別權力關係人之內部救濟，應屬於司法權中特別種類之行政訴訟"]},
+{n:4,ans:"D",q:"有關國家對人民進行通訊監察，下列敘述何者錯誤？",opts:["須基於確保國家安全、維護社會秩序等重要公益目的","通訊監察之執行，應隨時受監督","須限於不能或難以其他侵害最小方法蒐集或調查證據時始得為之","得對所有犯罪行為進行通訊監察"]},
+{n:5,ans:"B",q:"依司法院大法官解釋意旨，關於職業自由之敘述，下列何者錯誤？",opts:["禁止非視障者從事按摩業，係對於非視障者選擇職業自由之客觀條件限制","禁止曾犯刑法妨害性自主罪之駕駛人終身不得申請計程車執業登記，係屬對駕駛人選擇職業自由之客觀條件限制","要求街頭藝人之技藝均需先經主管機關審查及考試，係屬對人民選擇從事街頭藝人職業自由之主觀條件限制","限制醫師從事調劑藥品之行為，係屬對醫師從事診治病人所為執行職業自由之限制"]},
+{n:6,ans:"D",q:"依憲法增修條文規定，下列何者需經自由地區選舉人投票複決，方為有效或通過？",opts:["總統解散立法院","緊急命令之發布","立法院對總統之彈劾","領土變更案"]},
+{n:7,ans:"D",q:"依司法院大法官解釋及憲法法庭判決，下列何種法律規定，司法釋憲機關審查其合憲性時，係採嚴格審查基準，僅於其立法目的係為保護特別重要公益，且手段為適合且必要，別無侵害較小之其他替代手段，方能承認其合憲？",opts:["雇主不得使女工於午後10時至翌晨6時之時間內工作","貨物稅條例有關「電器類之課稅項目及稅率如左：……二、彩色電視機：從價徵收百分之十三」之規定","民法規定僅不同性別二人得結婚之規定","原住民與非原住民結婚所生子女，從具原住民身分之父或母之姓或原住民傳統名字者，取得原住民身分"]},
+{n:8,ans:"B",q:"依憲法增修條文有關行政院之規定，下列敘述何者正確？",opts:["行政院院長有解散立法院之權","行政院有向立法院提出施政方針及施政報告之責","當總統缺位時，基於迅速起見，行政院院長可直接代行其職權","行政院院長有副署總統任命司法院院長命令之權"]},
+{n:9,ans:"B",q:"下列何者非屬立法院之權限？",opts:["議決法律案","行使締結條約之權","緊急命令追認之權","大法官之人事同意權"]},
+{n:10,ans:"D",q:"有關直轄市立法權限，下列敘述何者錯誤？",opts:["依憲法第118條，直轄市之自治事項由立法院以法律定之","直轄市得就其自治事項或依法律及上級法規之授權，立法規範居民之基本權利","就食品安全標準之訂定，直轄市與縣（市）應享有相同之權限或應受相同之限制","直轄市得以自治規則要求街頭藝人使用公共空間從事藝文活動時，須事先取得主管機關核發之活動許可證"]},
+{n:11,ans:"A",q:"有關人民服兵役、應召集事項及違背義務的制裁手段，應於那一個層級的法規範明定？",opts:["法律","憲法","法規命令","行政規則"]},
+{n:12,ans:"D",q:"依據司法院大法官釋憲實務，有關基本權利主體，下列敘述何者錯誤？",opts:["外國人得主張憲法第8條人身自由保障","大陸地區人民得主張憲法第8條人身自由保障","自來水公司得主張憲法第15條財產權保障","行政法人得主張憲法第14條結社自由"]},
+{n:13,ans:"D",q:"依憲法增修條文及相關大法官解釋，有關緊急命令，下列敘述何者正確？",opts:["緊急命令發布後，行政院得依職權發布補充規定","立法院休會期間，不得發布緊急命令","總統得經國家安全會議之決議，發布緊急命令","總統發布緊急命令後，應於10日內提交立法院追認，立法院僅得就其當否為決議，不得逕予變更其內容，但得部分追認"]},
+{n:14,ans:"C",q:"有關司法規則制定權，以及司法行政之監督權，下列敘述何者錯誤？",opts:["司法規則制定權，係指最高司法機關得由所屬審判成員就訴訟（或非訟）案件之審理程序有關技術性、細節性事項制訂規則","在不牴觸法律、司法院訂定之法規命令及行政規則的情況下，法院就受理案件分配之事務，得於合理及必要之範圍內訂定補充規範","司法院得提供相關法令、有權解釋之資料或司法實務之見解，作為各級法院審判之依據","於不違背審判獨立原則下，最高司法機關基於司法行政之監督權，在司法行政監督範圍內得發布命令"]},
+{n:15,ans:"D",q:"依憲法訴訟法之規定，下列何者得直接聲請憲法法庭為宣告其行使職權所適用之法規範為違憲之判決？",opts:["國家運輸安全調查委員會","核能安全委員會","公務人員保障暨培訓委員會","中央選舉委員會"]},
+{n:16,ans:"C",q:"戊在路上看到己舉著棍子朝他衝來，以為己要打他，於是反擊將己打傷，結果己其實是急著要遞棍子給站在戊後方的友人，戊之行為應如何評價？",opts:["等價客體錯誤，構成傷害既遂罪","偶然正當防衛，不構成犯罪","誤想正當防衛，構成過失傷害罪","緊急避難過當，構成過失傷害罪，但減輕其刑"]},
+{n:17,ans:"C",q:"下列何者在其業務範圍內，屬於刑法上的公務員？",opts:["服務於公立醫院，開設門診的中醫師","服務於公立醫院，協助病患復健的物理治療師","服務於公立醫院，兼辦政府採購業務的醫師","服務於公立醫院，施打疫苗的護理師"]},
+{n:18,ans:"B",q:"以下何者，在執行職務範圍內，不屬於股份有限公司的負責人？",opts:["經理人","重整債權人","檢查人","臨時管理人"]},
+{n:19,ans:"A",q:"性別平等工作法所謂的哺乳時間，性質為何？",opts:["為工作時間","為休息時間","為延長工時","為中斷時間"]},
+{n:20,ans:"D",q:"關於立法委員聲請法規範憲法審查之要件，下列敘述何者錯誤？",opts:["須有立法委員現有總額4分之1以上之連署","就其行使職權事項","認法律位階法規範牴觸憲法","得聲請憲法審查之「法律位階法規範」，限於經立法院三讀通過之法律及預算"]},
+{n:21,ans:"D",q:"當事人約定，一方於他方之受僱人將來因職務上之行為而應對他方為損害賠償時，由其代負賠償責任之契約。此契約稱為：",opts:["僱傭契約","委任契約","承攬契約","人事保證契約"]},
+{n:22,ans:"C",q:"依憲法與民法規定，下列何者正確？",opts:["民事，舊慣所規定者，依舊慣。無舊慣者，依鄉鎮市調解條例","行政院之組織，以習慣定之","民事所適用之習慣，以不背於公共秩序或善良風俗者為限","立法院與行政院之組織，由兩院合議、並由總統公告之"]},
+{n:23,ans:"B",q:"立法院審查某法律草案，共計25個條文，在第二讀會審查到第10條時，若立法院被解散重新改選，新國會應如何處理該法案？",opts:["自第二讀會之第10條接續審查","若無重新提案，即不予以審理","視為已通過","仍自第二讀會開始，但從第1條開始重新逐條審查"]},
+{n:24,ans:"C",q:"A公司從事營建事業，每年的年終均會發給紅利獎勵公司員工，自公司設立至今均未中斷。某日，A公司與勞工簽訂離職後競業禁止條款，該條款內約定：「雙方合意以工作期間內受領之年終分紅作為合理補償」。試問，此一條款事項之效力為何？",opts:["有效，年終分紅已足以合理補償勞工之損失","無效，因此補償約定事項未送主管機關核定","無效，因此等補償實為勞工於工作期間所受領之給付","有效，因本件之年終分紅為雇主給予之額外恩惠性給付"]},
+{n:25,ans:"B",q:"下列何者非普通法系之主要特色？",opts:["法源以判例法為主","單獨設立憲法法院","區分普通法與衡平法","發展財產信託制度"]},
+{n:26,ans:"C",q:"下列何種自治法規，對違反者得處以新臺幣10萬元以下之罰鍰，並得規定連續處罰之？",opts:["臺中市公有路燈管理及認養辦法","新北市立圖書館組織規程","臺中市登山活動管理自治條例","新北市建築管理規則"]},
+{n:27,ans:"C",q:"有關禁止再授權原則之敘述，下列何者錯誤？",opts:["屬法律保留原則之具體實踐","法律若無轉委任授權，該機關即不得委由所屬機關逕行發布相關規章","僅適用於干涉行政，不包括給付行政","體現上位階法規轉化為下位階法規必須有法律依據之原則"]},
+{n:28,ans:"A",q:"關於「準用」之立法技術，下列敘述何者正確？",opts:["個別法律規定本身並未明定其構成要件或法效果，而援引其他法律之構成要件或法效果","指涉法院自行創設之類推形式","係指明示其一排除其他之反面推論","係填補法律漏洞之方法"]},
+{n:29,ans:"B",q:"甲、乙、丙三人共有之A地被丁無權占用，如果要起訴請求丁將A地返還，下列敘述何者正確？",opts:["必須甲、乙、丙三人共同起訴並請求返還予共有人全體","任一共有人得單獨起訴，但必須請求返還予共有人全體","任一共有人得單獨起訴並請求返還予原告","必須有共有人過半數始得起訴並請求返還予原告"]},
+{n:30,ans:"D",q:"甲女今年剛年滿16歲，下列關於其所為法律行為之敘述，何者錯誤？",opts:["甲女得為遺囑，無須得法定代理人之同意","甲女得自其祖父受贈A地，無須得法定代理人之同意","甲女得至書店購買參考書籍，無須得法定代理人之同意","甲女得與乙男有效訂立婚約，無須得法定代理人之同意"]},
+{n:31,ans:"C",q:"They rented a cozy apartment ________ the lake for their family vacation.",opts:["upgrading","disregarding","overlooking","overlapping"]},
+{n:32,ans:"A",q:"In democratic countries, nobody has the right to ________ others' privacy.",opts:["invade","lighten","portray","reflect"]},
+{n:33,ans:"B",q:"The refugees sought safety in a new country after ________ violence and instability in their homeland.",opts:["embracing","fleeing","upholding","supporting"]},
+{n:34,ans:"A",q:"The manager asked for a rough ________ of how much time I could finish the project.",opts:["estimate","climate","closure","esteem"]},
+{n:35,ans:"B",q:"A good manager should know how to ________ the staff to accomplish goals.",opts:["migrate","motivate","irritate","irrigate"]},
+{n:36,ans:"D",q:"His speech wasn't just inspiring—it was also ________, packed with enormous amount of data and real-life experience.",opts:["vague","boring","talkative","informative"]},
+{n:37,ans:"A",q:"In the autobiography, the doctor gave a detailed ________ of her life volunteering in a refugee camp.",opts:["account","habitat","contract","rapport"]},
+{n:38,ans:"B",q:"The university provides affordable ________ for students from other cities.",opts:["confrontation","accommodation","creation","exception"]},
+{n:39,ans:"C",q:"Although we can't afford to buy the house in cash, we can get a ________ from the bank and use it to cover the cost of the house.",opts:["credit","loss","loan","value"]},
+{n:40,ans:"A",q:"It seems that I have to remain standing throughout the journey on the train because I cannot find any ________ seat.",opts:["vacant","typical","untouchable","visible"]},
+{n:41,ans:"C",q:"克漏字第41題：...the melting of polar ice sheets is ________ this process significantly.",opts:["sensing","slowing","speeding","stopping"],passage:"A"},
+{n:42,ans:"B",q:"克漏字第42題：________ Arctic and Antarctic ice melts, the restructuring of mass from poles to equator is further flattening Earth's shape.",opts:["Although","As","Whether","Where"],passage:"A"},
+{n:43,ans:"A",q:"克漏字第43題：Since 2000, the day length has increased ________ about 1.33 milliseconds per century.",opts:["by","in","at","of"],passage:"A"},
+{n:44,ans:"C",q:"克漏字第44題：If greenhouse gas emissions continue unchecked, this rate could ________ 2.62 milliseconds per century by 2100.",opts:["destroy","reduce","reach","define"],passage:"A"},
+{n:45,ans:"B",q:"克漏字第45題：Although people are generally ________, these changes have important meanings for global timekeeping systems.",opts:["satisfied","unaware","surprised","impressive"],passage:"A"},
+{n:46,ans:"D",q:"What is the passage mainly about?",opts:["Strategies for teenagers to wake up on time for school.","Whether teenagers should go to bed as early as possible.","The negative impact of social media on teen sleep patterns.","The reasons why teens struggle with early school schedules."],passage:"B"},
+{n:47,ans:"C",q:"Which of the following can be inferred from the passage?",opts:["Teens intentionally stay up late to avoid homework.","Starting school later would eliminate all teen mental health issues.","Schools resist changing start times partly because of some scheduling concerns.","The early school start time may be entirely a result of outdated scientific thinking."],passage:"B"},
+{n:48,ans:"B",q:"Which of the following statements is true based on the passage?",opts:["Sleep-deprived teens tend to perform better on early exams.","Later start times for school have shown potential to benefit students.","The delayed sleep phase causes teens to naturally fall asleep earlier.","All schools have already adjusted their schedules to accommodate teen sleep needs."],passage:"B"},
+{n:49,ans:"D",q:'What does the phrase "aligning school policies with scientific findings" most likely mean in the passage?',opts:["Hiring more scientists to work in schools.","Creating science classes earlier in the day.","Changing school uniforms to reflect brain development.","Executing school administration based on what research shows is best."],passage:"B"},
+{n:50,ans:"A",q:"Which of the following best describes the tone of the passage?",opts:["Informative and supportive.","Dismissive and skeptical.","Indifferent and impersonal.","Argumentative and accusatory."],passage:"B"}
+];
+
+const PASSAGES = {
+A: `第41-45題短文：A new study published in July 2024 reveals that climate change is causing Earth's days to lengthen at an unprecedented rate. While Earth's days have naturally been increasing by a few milliseconds per century due to lunar gravity, the melting of polar ice sheets is (41) this process significantly. (42) Arctic and Antarctic ice melts, the restructuring of mass from poles to equator is further flattening Earth's shape. Since 2000, the day length has increased (43) about 1.33 milliseconds per century, up from 0.3-1.0 milliseconds in the 20th century. If greenhouse gas emissions continue unchecked, this rate could (44) 2.62 milliseconds per century by 2100. Although people are generally (45), these changes have important meanings for global timekeeping systems. The changes may require adjustments to Coordinated Universal Time (UTC), potentially affecting satellite navigation, telecommunications, trade, and space travel operations.`,
+B: `第46-50題短文：Teenagers are often criticized for staying up late and sleeping in, but science shows there's a biological reason behind this pattern. During adolescence, the brain's internal clock shifts. Teens naturally begin to feel sleepy later at night—sometimes not until 11 p.m. or even midnight. At the same time, they still need around eight to ten hours of sleep for healthy development. This shift in sleep cycle, known as "delayed sleep phase," often clashes with early school schedules. Many schools start before 8 a.m., which means students are frequently forced to function while still sleep deprived. Studies have linked sleep deprivation in teens to poorer academic performance, increased irritability, and even higher rates of depression and anxiety.
+
+Some schools have experimented with later start times and seen promising results. Students reported feeling more alert, and teachers noticed improvements in both behavior and focus. Despite this, changes are slow to implement, largely due to concerns about transportation, extracurricular schedules, and resistance from some parents and school officials. Understanding teen sleep patterns isn't about making excuses. It's about recognizing a real biological need. Ignoring it not only affects learning but can also harm emotional well-being. By aligning school policies with scientific findings, we may improve both education and mental health outcomes for young people.`
+};
+
+const STORAGE_KEY = "examFlags_114chitefang4";
+const EXPLAIN_KEY = "examExplain_114chitefang4";
+const MYANS_KEY = "examMyAnswers_114chitefang4";
+const DOUBT_KEY = "examDoubts_114chitefang4";
+const LETTERS = ["A","B","C","D"];
+
+function loadFlags(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : {};
+  }catch(e){ return {}; }
+}
+function saveFlags(flags){
+  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(flags)); }catch(e){}
+}
+
+function loadExplanations(){
+  try{
+    const raw = localStorage.getItem(EXPLAIN_KEY);
+    return raw ? JSON.parse(raw) : {};
+  }catch(e){ return {}; }
+}
+function saveExplanations(explanations){
+  try{ localStorage.setItem(EXPLAIN_KEY, JSON.stringify(explanations)); }catch(e){}
+}
+
+function loadMyAnswers(){
+  try{
+    const raw = localStorage.getItem(MYANS_KEY);
+    return raw ? JSON.parse(raw) : {};
+  }catch(e){ return {}; }
+}
+function saveMyAnswers(myAnswers){
+  try{ localStorage.setItem(MYANS_KEY, JSON.stringify(myAnswers)); }catch(e){}
+}
+
+function loadDoubts(){
+  try{
+    const raw = localStorage.getItem(DOUBT_KEY);
+    return raw ? JSON.parse(raw) : {};
+  }catch(e){ return {}; }
+}
+function saveDoubts(doubts){
+  try{ localStorage.setItem(DOUBT_KEY, JSON.stringify(doubts)); }catch(e){}
+}
+
+let flags = loadFlags();
+let explanations = loadExplanations();
+let myAnswers = loadMyAnswers();   // { questionNum: optionIndex }
+let doubts = loadDoubts();         // { "questionNum-optionIndex": true }
+let currentFilter = "all";
+
+function updateFlagCount(){
+  const count = Object.values(flags).filter(Boolean).length;
+  document.getElementById("flagCount").textContent = count;
+}
+
+function render(){
+  const root = document.getElementById("quizRoot");
+  root.innerHTML = "";
+  let lastPassage = null;
+
+  QUESTIONS.forEach(item => {
+    if(item.passage && item.passage !== lastPassage){
+      lastPassage = item.passage;
+      const pblock = document.createElement("div");
+      pblock.className = "passage-block";
+      pblock.innerHTML = `<div class="passage-label">閱讀短文 ${item.passage}</div>${escapeHtml(PASSAGES[item.passage])}`;
+      root.appendChild(pblock);
+    }
+
+    const card = document.createElement("div");
+    card.className = "qcard";
+    card.dataset.n = item.n;
+    if(flags[item.n]) card.classList.add("flagged");
+
+    const optsHtml = item.opts.map((opt,i) =>
+      `<div class="opt-row" data-idx="${i}">
+        <span class="opt-letter">${LETTERS[i]}.</span>
+        <span class="opt-text">${escapeHtml(opt)}</span>
+        <button class="opt-doubt-btn" type="button" title="標記為疑惑選項" aria-label="標記疑惑">
+          <svg viewBox="0 0 12 12"><polygon points="6,1 11,10 1,10"/></svg>
+        </button>
+      </div>`
+    ).join("");
+
+    card.innerHTML = `
+      <div class="qnum">${item.n}</div>
+      <button class="flag-btn ${flags[item.n] ? "active" : ""}" title="標記為容易出錯" aria-label="標記題目">
+        <svg viewBox="0 0 24 24"><path d="M5 3v18M5 4h12l-3 4 3 4H5"/></svg>
+      </button>
+      <div class="qbody">
+        <p class="qtext">${item.n}. ${escapeHtml(item.q)}</p>
+        <div class="opts-grid">${optsHtml}</div>
+        <div class="answer-row">
+          <span class="answer-label">正確答案：</span>
+          <span class="answer-value">${item.ans}</span>
+          <span class="reveal-hint">點選任一選項即顯示答案</span>
+        </div>
+        <button class="explain-toggle" type="button"><span class="chev">▶</span><span class="toggle-label">顯示詳解</span><span class="explain-has-badge" style="display:none;">（已有詳解）</span></button>
+        <div class="explain-wrap">
+          <textarea class="explain-textarea" placeholder="在此輸入詳解…"></textarea>
+          <span class="explain-status"></span>
+        </div>
+      </div>
+    `;
+
+    // populate saved explanation text
+    const textarea = card.querySelector(".explain-textarea");
+    const explainBadge = card.querySelector(".explain-has-badge");
+    const explainStatus = card.querySelector(".explain-status");
+    textarea.value = explanations[item.n] || "";
+    if(textarea.value.trim() !== ""){
+      explainBadge.style.display = "inline";
+    }
+
+    // (answer reveal is now triggered only by selecting an option — see opt-row handler below)
+
+    const flagBtn = card.querySelector(".flag-btn");
+    flagBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const n = item.n;
+      flags[n] = !flags[n];
+      saveFlags(flags);
+      card.classList.toggle("flagged", !!flags[n]);
+      flagBtn.classList.toggle("active", !!flags[n]);
+      updateFlagCount();
+      applyFilter();
+    });
+
+    const explainToggle = card.querySelector(".explain-toggle");
+    const explainWrap = card.querySelector(".explain-wrap");
+    const toggleLabel = card.querySelector(".toggle-label");
+    explainToggle.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = explainWrap.classList.toggle("open");
+      explainToggle.classList.toggle("open", isOpen);
+      toggleLabel.textContent = isOpen ? "收合詳解" : "顯示詳解";
+    });
+
+    let saveTimer = null;
+    let statusHideTimer = null;
+    textarea.addEventListener("input", () => {
+      clearTimeout(saveTimer);
+      explainStatus.classList.remove("show");
+      saveTimer = setTimeout(() => {
+        explanations[item.n] = textarea.value;
+        saveExplanations(explanations);
+        explainBadge.style.display = textarea.value.trim() !== "" ? "inline" : "none";
+        explainStatus.textContent = "✓ 已自動儲存";
+        explainStatus.classList.add("show");
+        clearTimeout(statusHideTimer);
+        statusHideTimer = setTimeout(() => {
+          explainStatus.classList.remove("show");
+        }, 2000);
+      }, 800);
+    });
+
+    // ---- option rows: my-answer marking + doubt marking ----
+    const correctIdx = LETTERS.indexOf(item.ans);
+    const optRows = card.querySelectorAll(".opt-row");
+    optRows.forEach(row => {
+      const idx = parseInt(row.dataset.idx, 10);
+
+      // apply saved doubt state
+      const doubtKey = item.n + "-" + idx;
+      const doubtBtn = row.querySelector(".opt-doubt-btn");
+      if(doubts[doubtKey]){
+        row.classList.add("doubt");
+        doubtBtn.classList.add("active");
+      }
+
+      // apply saved my-answer state
+      if(myAnswers[item.n] === idx){
+        row.classList.add(idx === correctIdx ? "my-correct" : "my-wrong");
+        card.classList.add("revealed");
+      }
+
+      row.addEventListener("mousedown", (e) => {
+        if(e.target.closest(".opt-doubt-btn")) return;
+        e.stopPropagation();
+        const n = item.n;
+        const wasSelected = myAnswers[n] === idx;
+
+        // clear previous selection visuals on this question
+        optRows.forEach(r => r.classList.remove("my-correct","my-wrong"));
+
+        if(wasSelected){
+          delete myAnswers[n];
+          card.classList.remove("revealed");
+        }else{
+          myAnswers[n] = idx;
+          row.classList.add(idx === correctIdx ? "my-correct" : "my-wrong");
+          card.classList.add("revealed");
+        }
+        saveMyAnswers(myAnswers);
+      });
+
+      doubtBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        if(doubts[doubtKey]){
+          delete doubts[doubtKey];
+          row.classList.remove("doubt");
+          doubtBtn.classList.remove("active");
+        }else{
+          doubts[doubtKey] = true;
+          row.classList.add("doubt");
+          doubtBtn.classList.add("active");
+        }
+        saveDoubts(doubts);
+      });
+    });
+
+    root.appendChild(card);
+  });
+
+  updateFlagCount();
+  applyFilter();
+}
+
+function applyFilter(){
+  const cards = document.querySelectorAll(".qcard");
+  cards.forEach(card => {
+    const n = card.dataset.n;
+    const show = currentFilter === "all" || !!flags[n];
+    card.classList.toggle("hidden-by-filter", !show);
+  });
+  // hide passage blocks with no visible questions when filtering flagged
+  document.querySelectorAll(".passage-block").forEach(block => {
+    let sib = block.nextElementSibling;
+    let anyVisible = false;
+    while(sib && sib.classList.contains("qcard")){
+      if(!sib.classList.contains("hidden-by-filter")) anyVisible = true;
+      sib = sib.nextElementSibling;
+    }
+    block.style.display = (currentFilter === "flagged" && !anyVisible) ? "none" : "";
+  });
+}
+
+function escapeHtml(str){
+  const div = document.createElement("div");
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+document.querySelectorAll(".tab-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    currentFilter = btn.dataset.filter;
+    applyFilter();
+  });
+});
+
+document.getElementById("resetBtn").addEventListener("click", () => {
+  if(confirm("確定要清除所有標記嗎？此動作無法復原。")){
+    flags = {};
+    saveFlags(flags);
+    render();
+  }
+});
+
+// ============ EXPORT ============
+const EXAM_TITLE = "114年特種考試地方政府公務人員及離島地區公務人員考試";
+const EXAM_SUBJECT = "法學知識與英文（包括中華民國憲法、法學緒論、英文）";
+const EXAM_NAME_FOR_FILE = "114地方特考四等法學知識與英文";
+
+function pad2(n){ return n < 10 ? "0" + n : String(n); }
+
+function todayStr(){
+  const d = new Date();
+  return d.getFullYear() + pad2(d.getMonth()+1) + pad2(d.getDate());
+}
+
+function buildExportText(scope){
+  // scope: "all" | "flagged"
+  const list = QUESTIONS.filter(item => scope === "all" || !!flags[item.n]);
+  const scopeLabel = scope === "all" ? "全部題目" : "已標記弱點題";
+
+  const lines = [];
+  lines.push("═".repeat(40));
+  lines.push(EXAM_TITLE);
+  lines.push("科目：" + EXAM_SUBJECT);
+  lines.push("匯出範圍：" + scopeLabel);
+  lines.push("匯出日期：" + new Date().toLocaleDateString("zh-TW", {year:"numeric",month:"2-digit",day:"2-digit"}));
+  lines.push("");
+  lines.push("符號圖例：✗ 我選錯的選項　✓ 我選對的選項　▲ 標記為疑惑的選項");
+  lines.push("═".repeat(40));
+  lines.push("");
+
+  let wrongCount = 0;
+  let doubtQuestionCount = 0;
+  let explainCount = 0;
+
+  list.forEach(item => {
+    const correctIdx = LETTERS.indexOf(item.ans);
+    const myIdx = myAnswers.hasOwnProperty(item.n) ? myAnswers[item.n] : null;
+    const isWrong = myIdx !== null && myIdx !== correctIdx;
+    if(isWrong) wrongCount++;
+
+    let hasDoubtInQuestion = false;
+
+    lines.push("第 " + item.n + " 題");
+    lines.push(item.q);
+    lines.push("");
+
+    item.opts.forEach((opt, idx) => {
+      const isDoubt = !!doubts[item.n + "-" + idx];
+      if(isDoubt) hasDoubtInQuestion = true;
+      let mark = "　"; // default blank (full-width space for alignment)
+      if(myIdx === idx){
+        mark = (idx === correctIdx) ? "✓" : "✗";
+      }
+      let line = mark + " (" + LETTERS[idx] + ") " + opt;
+      if(isDoubt) line += "　▲";
+      lines.push(line);
+    });
+
+    if(hasDoubtInQuestion) doubtQuestionCount++;
+
+    lines.push("");
+    lines.push("▶ 正確答案：(" + item.ans + ")");
+
+    const explainText = (explanations[item.n] || "").trim();
+    if(explainText){
+      explainCount++;
+      lines.push("詳解：" + explainText);
+    }else{
+      lines.push("詳解：尚無詳解");
+    }
+
+    lines.push("");
+    lines.push("─".repeat(40));
+    lines.push("");
+  });
+
+  const flaggedInList = list.filter(item => !!flags[item.n]).length;
+
+  lines.push("【統計】");
+  lines.push("共 " + list.length + " 題");
+  lines.push("已標記 " + flaggedInList + " 題");
+  lines.push("答錯 " + wrongCount + " 題");
+  lines.push("含疑惑選項 " + doubtQuestionCount + " 題");
+  lines.push("有詳解 " + explainCount + " 題");
+
+  return lines.join("\n");
+}
+
+function downloadTextFile(filename, text){
+  const blob = new Blob([text], {type:"text/plain;charset=utf-8"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+document.getElementById("exportFlaggedBtn").addEventListener("click", () => {
+  const flaggedCount = Object.values(flags).filter(Boolean).length;
+  if(flaggedCount === 0){
+    alert("目前尚未標記任何題目，請先標記弱點題後再匯出。");
+    return;
+  }
+  const text = buildExportText("flagged");
+  const filename = EXAM_NAME_FOR_FILE + "_已標記弱點題_" + todayStr() + ".txt";
+  downloadTextFile(filename, text);
+});
+
+document.getElementById("exportAllBtn").addEventListener("click", () => {
+  const text = buildExportText("all");
+  const filename = EXAM_NAME_FOR_FILE + "_全部題目_" + todayStr() + ".txt";
+  downloadTextFile(filename, text);
+});
+
+// ============ 交卷算分 ============
+const TOTAL_QUESTIONS = QUESTIONS.length;
+const POINTS_PER_QUESTION = 100 / TOTAL_QUESTIONS;
+
+function gradeExam(){
+  let correct = 0, wrong = 0, blank = 0;
+  const wrongList = [];
+
+  QUESTIONS.forEach(item => {
+    const correctIdx = LETTERS.indexOf(item.ans);
+    const hasAnswer = myAnswers.hasOwnProperty(item.n);
+    if(!hasAnswer){
+      blank++;
+      return;
+    }
+    if(myAnswers[item.n] === correctIdx){
+      correct++;
+    }else{
+      wrong++;
+      wrongList.push({
+        n: item.n,
+        myAnswer: LETTERS[myAnswers[item.n]],
+        correctAnswer: item.ans
+      });
+    }
+  });
+
+  const score = Math.round(correct * POINTS_PER_QUESTION * 100) / 100;
+
+  return {
+    examId: EXAM_NAME_FOR_FILE,
+    examTitle: EXAM_TITLE,
+    examSubject: EXAM_SUBJECT,
+    totalQuestions: TOTAL_QUESTIONS,
+    correctCount: correct,
+    wrongCount: wrong,
+    blankCount: blank,
+    score: score,
+    scoreMax: 100,
+    flaggedCount: Object.values(flags).filter(Boolean).length,
+    wrongList: wrongList,
+    answeredAt: new Date().toISOString()
+  };
+}
+
+function renderResultModal(result){
+  document.getElementById("resultScoreNum").textContent = result.score;
+  document.getElementById("statCorrect").textContent = result.correctCount;
+  document.getElementById("statWrong").textContent = result.wrongCount;
+  document.getElementById("statBlank").textContent = result.blankCount;
+  document.getElementById("resultSubLine").textContent =
+    EXAM_TITLE + "｜" + EXAM_SUBJECT;
+
+  const wrongListEl = document.getElementById("resultWrongList");
+  if(result.wrongList.length === 0 && result.blankCount === 0){
+    wrongListEl.innerHTML = "🎉 全部答對，恭喜！";
+  }else{
+    const parts = [];
+    if(result.wrongList.length > 0){
+      const wrongNums = result.wrongList.map(w => "<b>" + w.n + "</b>").join("、");
+      parts.push("答錯題號：" + wrongNums);
+    }
+    if(result.blankCount > 0){
+      const blankNums = QUESTIONS
+        .filter(item => !myAnswers.hasOwnProperty(item.n))
+        .map(item => "<b>" + item.n + "</b>")
+        .join("、");
+      parts.push("未作答題號：" + blankNums);
+    }
+    wrongListEl.innerHTML = parts.join("<br>");
+  }
+
+  document.getElementById("resultReportStatus").textContent = "";
+  document.getElementById("resultOverlay").classList.add("open");
+}
+
+function closeResultModal(){
+  document.getElementById("resultOverlay").classList.remove("open");
+}
+
+/**
+ * 將交卷結果回報給題庫大廳（外層頁面）。
+ * 相容三種情境：
+ * 1. 本頁面是被題庫大廳以 iframe 嵌入 -> 透過 postMessage 通知 parent
+ * 2. 本頁面與題庫大廳同一個 window（例如由大廳用 window.open 開啟，且大廳把
+ *    reportExamComplete 掛在 window.opener 上）-> 直接呼叫 opener 的函式
+ * 3. 全域（window）已經存在 reportExamComplete 函式 -> 直接呼叫
+ * 任一管道都找不到時，僅在 console 留下記錄，不影響頁面其餘功能。
+ */
+function reportExamComplete(result){
+  let reported = false;
+  const statusEl = document.getElementById("resultReportStatus");
+
+  // 情境 3：全域已掛載 reportExamComplete
+  try{
+    if(typeof window.reportExamComplete === "function" && window.reportExamComplete !== reportExamComplete){
+      window.reportExamComplete(result);
+      reported = true;
+    }
+  }catch(e){ console.warn("reportExamComplete (global) failed:", e); }
+
+  // 情境 2：開啟者視窗（window.opener）掛有 reportExamComplete
+  try{
+    if(window.opener && typeof window.opener.reportExamComplete === "function"){
+      window.opener.reportExamComplete(result);
+      reported = true;
+    }
+  }catch(e){ console.warn("reportExamComplete (opener) failed:", e); }
+
+  // 情境 1：以 iframe 嵌入題庫大廳 -> postMessage 給 parent
+  try{
+    if(window.parent && window.parent !== window){
+      window.parent.postMessage({
+        type: "examComplete",
+        source: "exam-page",
+        payload: result
+      }, "*");
+      reported = true;
+    }
+  }catch(e){ console.warn("reportExamComplete (postMessage) failed:", e); }
+
+  if(statusEl){
+    statusEl.textContent = reported
+      ? "✓ 已將成績回報給題庫大廳"
+      : "（未偵測到題庫大廳，成績僅顯示於本頁）";
+  }
+  console.log("[examComplete]", result);
+  return reported;
+}
+
+function submitExam(){
+  const answeredCount = Object.keys(myAnswers).length;
+  const unanswered = TOTAL_QUESTIONS - answeredCount;
+
+  if(unanswered > 0){
+    const ok = confirm(
+      "尚有 " + unanswered + " 題未作答，確定要交卷嗎？\n（未作答題目將計為錯誤）"
+    );
+    if(!ok) return;
+  }else{
+    const ok = confirm("確定要交卷並計算成績嗎？");
+    if(!ok) return;
+  }
+
+  const result = gradeExam();
+  renderResultModal(result);
+  reportExamComplete(result);
+}
+
+document.getElementById("submitExamBtn").addEventListener("click", submitExam);
+document.getElementById("resultCloseBtn").addEventListener("click", closeResultModal);
+document.getElementById("resultCloseBtn2").addEventListener("click", closeResultModal);
+document.getElementById("resultOverlay").addEventListener("click", (e) => {
+  if(e.target.id === "resultOverlay") closeResultModal();
+});
+document.getElementById("resultReviewBtn").addEventListener("click", () => {
+  closeResultModal();
+  // 切換到「全部題目」分頁，方便使用者逐題檢視已揭示的答案
+  document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+  document.querySelector('.tab-btn[data-filter="all"]').classList.add("active");
+  currentFilter = "all";
+  applyFilter();
+  window.scrollTo({top: 0, behavior: "smooth"});
+});
+
+render();
+</script>
+</body>
+</html>
