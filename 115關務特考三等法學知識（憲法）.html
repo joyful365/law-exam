@@ -1067,5 +1067,25 @@ function exportNotes(mode) {
 
 renderAll();
 </script>
+  <div style="text-align: center; margin-top: 40px; margin-bottom: 40px;">
+        <button id="finishBtn" style="padding: 15px 30px; background-color: #8C1C13; color: white; border: none; border-radius: 6px; font-size: 16px; cursor: pointer;">
+            打卡：標記這份考卷為「已完成」 ✅
+        </button>
+    </div>
+
+    <script>
+        document.getElementById('finishBtn').addEventListener('click', function() {
+            // 自動抓取現在這個網頁的檔名
+            let currentFile = window.location.pathname.split('/').pop();
+            // 寫入瀏覽器記憶，標示為 'done'
+            localStorage.setItem(currentFile, 'done');
+            
+            // 跳出提示並改變按鈕外觀
+            alert('太棒了！已成功記錄到你的裝置中！');
+            this.innerHTML = '已標記完成 🎉';
+            this.style.backgroundColor = '#95a5a6';
+            this.disabled = true;
+        });
+    </script>
 </body>
 </html>
