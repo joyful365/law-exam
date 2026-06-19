@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>114年度(4-6月)刑事具參考價值裁判要旨</title>
+    <style>
+        body {
+            font-family: "Helvetica Neue", Helvetica, "PingFang TC", "LiHei Pro", "Hiragino Sans GB", "Microsoft JhengHei", sans-serif;
+            background-color: #f0f2f5;
+            color: #333333;
+            line-height: 1.7;
+            font-size: 18px;
+            margin: 0;
+            padding: 0;
+            padding-bottom: 120px;
+        }
+        header {
+            background-color: #1a365d;
+            color: white;
+            padding: 20px 15px 12px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        header h1 { margin: 0 0 12px; font-size: 1.2em; }
+        .header-controls { display: flex; gap: 8px; align-items: center; }
+        .search-wrap { position: relative; flex: 1; }
+        #searchInput {
+            width: 100%; padding: 9px 14px 9px 36px;
+            border: none; border-radius: 8px; font-size: 15px;
+            background: rgba(255,255,255,0.15); color: white;
+            outline: none; box-sizing: border-box;
+        }
+        #searchInput::placeholder { color: rgba(255,255,255,0.6); }
+        #searchInput:focus { background: rgba(255,255,255,0.25); }
+        .search-icon {
+            position: absolute; left: 11px; top: 50%;
+            transform: translateY(-50%); font-size: 15px; opacity: 0.7; pointer-events: none;
+        }
+        #filterBtn {
+            background: rgba(255,255,255,0.15); border: none; border-radius: 8px;
+            color: white; font-size: 15px; padding: 9px 13px; cursor: pointer;
+            white-space: nowrap; transition: background 0.2s; flex-shrink: 0;
+        }
+        #filterBtn.active { background: #f6c90e; color: #1a365d; font-weight: bold; }
+        .container { padding: 15px; max-width: 600px; margin: 0 auto; }
+        .card {
+            background-color: white; border-radius: 12px; padding: 20px;
+            margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); position: relative;
+        }
+        .card.hidden { display: none; }
+        .star-btn {
+            position: absolute; top: 16px; right: 16px; background: none; border: none;
+            font-size: 22px; cursor: pointer; line-height: 1; opacity: 0.25;
+            transition: opacity 0.15s, transform 0.15s; padding: 0;
+        }
+        .star-btn:active { transform: scale(1.3); }
+        .star-btn.starred { opacity: 1; }
+        .card-title {
+            color: #2b6cb0; font-size: 1.3em; font-weight: bold; margin-top: 0;
+            border-bottom: 2px solid #ebf8ff; padding-bottom: 10px;
+            margin-bottom: 15px; padding-right: 32px;
+        }
+        .content p { margin-bottom: 15px; text-align: justify; }
+        .reference {
+            background-color: #edf2f7; padding: 12px; border-radius: 8px;
+            font-size: 0.9em; color: #4a5568; margin-top: 15px; border-left: 4px solid #4299e1;
+        }
+        .note-toggle {
+            display: inline-block; margin-top: 14px; font-size: 0.82em;
+            color: #718096; cursor: pointer; user-select: none;
+        }
+        .note-toggle:hover { color: #2b6cb0; }
+        .note-area { display: none; margin-top: 8px; }
+        .note-area.open { display: block; }
+        .note-textarea {
+            width: 100%; min-height: 72px; border: 1px solid #cbd5e0; border-radius: 8px;
+            padding: 10px 12px; font-size: 0.88em; font-family: inherit; color: #333;
+            background: #f7fafc; resize: vertical; outline: none; line-height: 1.65; box-sizing: border-box;
+        }
+        .note-textarea:focus { border-color: #4299e1; }
+        .note-textarea::placeholder { color: #bbb; }
+        .note-saved { font-size: 0.72em; color: #68d391; text-align: right; height: 14px; margin-top: 2px; }
+        #noResults, #noStarred {
+            display: none; text-align: center; color: #a0aec0; padding: 40px 0; font-size: 0.9em;
+        }
+        .fab-container {
+            position: fixed; bottom: 20px; right: 20px;
+            display: flex; flex-direction: column; gap: 10px; z-index: 1000;
+        }
+        .fab-btn {
+            background-color: #4a5568; color: white; border: none; padding: 12px 16px;
+            border-radius: 50px; font-size: 15px; font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2); cursor: pointer; transition: transform 0.1s;
+        }
+        .fab-btn:active { transform: scale(0.95); }
+        .fab-btn.erase  { background-color: #718096; }
+        .fab-btn.clear  { background-color: #a0aec0; }
+        .fab-btn.export { background-color: #cbd5e0; color: #2d3748; }
+        ::-webkit-scrollbar { display: none; }
+        ::selection { background: #b3d4fc; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>最高法院 114年4-6月<br>刑事參考價值裁判要旨</h1>
+    <div class="header-controls">
+        <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="搜尋案號、法條、關鍵字…" oninput="doSearch(this.value)">
+        </div>
+        <button id="filterBtn" onclick="toggleFilter()">⭐ 收藏</button>
+    </div>
+</header>
+
+<div class="container">
+
+    <div class="card" id="case1" data-kw="證券交易法 募集 非特定人 私募 特定人 公開勸誘 保障投資 證交法7 4763">
+        <button class="star-btn" onclick="toggleStar('case1', this)">⭐</button>
+        <h2 class="card-title">一、112年度台上字第4763號</h2>
+        <div class="content">
+            <p><strong>【證券交易法「募集」之非特定人範圍】</strong></p>
+            <p>證券交易法第7條第1項所謂「非特定人」，乃相對於同條第2項之「特定人」，與學理上界定「公然」所用之「不特定人」，概念並不相同；又同條第1項所謂「募集」，則相對於同條第2項「私募」之概念。</p>
+            <p>是以，凡對於「非特定人」以公告、廣告、廣播、電傳視訊、網際網路、信函、電話、拜訪、詢問、發表會、說明會或其他方式，為一般性廣告或公開勸誘之行為，亦即不論是以公開宣傳、廣告、召開說明會之方式公告周知，或是利用個人之人際關係，直接或輾轉經由他人介紹而反覆接觸投資者，而處於「非特定人」隨時可被要約或勸誘投資之狀態者，均屬該法第7條第1項「募集」，以避免無法取得相關且足夠揭露資訊機會之一般投資人，受到不確實、不充分之資訊而影響其投資判斷，甚至因勸誘壓力而被迫投資之情，藉以實現「保障投資」之證券交易法立法宗旨。</p>
+        </div>
+        <div class="reference">
+            <strong>參考法條：</strong>證券交易法第7條。
+        </div>
+        <div class="note-toggle" onclick="toggleNote('n1')">✏️ 我的小結</div>
+        <div class="note-area" id="n1">
+            <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n1', this.value)"></textarea>
+            <div class="note-saved" id="n1-saved"></div>
+        </div>
+    </div>
+
+    <div class="card" id="case2" data-kw="廢棄物清理法 受僱人 法人犯罪 兩罰 民法188 罪刑法定 釋字687 廢清法47 45 46 1513">
+        <button class="star-btn" onclick="toggleStar('case2', this)">⭐</button>
+        <h2 class="card-title">二、113年度台上字第1513號</h2>
+        <div class="content">
+            <p><strong>【廢棄物清理法「受僱人」之認定——與民法第188條之區別】</strong></p>
+            <p>廢棄物清理法第47條設有法人犯罪之兩罰規定，以法人之負責人、法人或自然人之代理人、受僱人或其他從業人員，因執行業務犯同法第45條、第46條之罪者為其構成要件，必以法人內部各成員因執行法人業務或為法人利益而為上揭犯罪行為，法人應負監督不周之責任而成立犯罪，俾符合釋字第687號解釋揭示之自己行為責任原則。</p>
+            <p>因此本法所謂「受僱人」，解釋上應參酌立法之目的，探求法規範之真意，雖不以訂有僱傭契約為限，仍應以對法人提供一定勞務之給付，領有經常性給與之報酬，受該法人負責人指揮監督，服從其指示之人，方屬之。此與民法第188條僱用人責任之規定，係為保護被害人求償之目的而設，故該條所謂受僱人，應從寬解釋，不限於事實上有僱傭契約者，且報酬有無、勞務種類、期間長短，均非所問，舉凡客觀上被他人使用為之服勞務而受其監督者均屬之。二者規範目的、保護法益有別，法律效果截然不同，就「受僱人」之內涵為相異之解釋，乃屬當然，不可不辨。自不宜任意擴張解釋，遽予繩之入罪，而違反罪刑法定原則。</p>
+        </div>
+        <div class="reference">
+            <strong>參考法條：</strong>廢棄物清理法第1條、第47條、第45條、第46條。
+        </div>
+        <div class="note-toggle" onclick="toggleNote('n2')">✏️ 我的小結</div>
+        <div class="note-area" id="n2">
+            <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n2', this.value)"></textarea>
+            <div class="note-saved" id="n2-saved"></div>
+        </div>
+    </div>
+
+    <div class="card" id="case3" data-kw="對質詰問權 不利證人 有利證人 公政公約 武器平等 調查證據 刑訴163之2 2條 95 96 3877">
+        <button class="star-btn" onclick="toggleStar('case3', this)">⭐</button>
+        <h2 class="card-title">三、113年度台上字第3877號</h2>
+        <div class="content">
+            <p><strong>【對質詰問權之範圍——不利證人與有利證人之區別】</strong></p>
+            <p>刑事訴訟法第163條之2規定法院得裁定駁回不必要之調查聲請，對照公政公約第14條第3項第5款雖規定被告有權詰問他造證人，惟參酌公政公約人權事務委員會第32號一般性意見：公政公約第14條第3項第5款之規定，並不提供無限制地讓被告或其辯護人得請求任何證人出庭之權利，此應由國內立法機構委諸法院評估以決定。</p>
+            <p>又參考歐洲人權公約第6條第3款d項，視證人屬性不利或有利於被告，區分成「不利證人」與「有利證人」加以規範。由是可知，在「不利證人」脈絡下，始有被告對質詰問權之概念；若被告主張就「有利證人」出庭受訊，則係指在對抗式訴訟中，依當事人武器平等原則，有權保障被告有機會提出對其有利證據之意涵，此與對質詰問權之行使無涉。不論係「不利證人」抑「有利證人」，事實審法院雖均須盡其促使彼等出庭之義務，然若受於事實上可行性之限制，以致無法使被告對之對質詰問或接受訊問者，原則上仍難認有礙於被告之訴訟防禦而謂妨害其公正審判權。</p>
+        </div>
+        <div class="reference">
+            <strong>參考法條：</strong>刑事訴訟法第163條之2、第2條、第95條、第96條。
+        </div>
+        <div class="note-toggle" onclick="toggleNote('n3')">✏️ 我的小結</div>
+        <div class="note-area" id="n3">
+            <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n3', this.value)"></textarea>
+            <div class="note-saved" id="n3-saved"></div>
+        </div>
+    </div>
+
+    <div class="card" id="case4" data-kw="詐欺 自白 犯罪所得 繳交 個人責任 未遂 共犯 詐欺犯罪危害防制條例47 4096">
+        <button class="star-btn" onclick="toggleStar('case4', this)">⭐</button>
+        <h2 class="card-title">四、113年度台上字第4096號</h2>
+        <div class="content">
+            <p><strong>【詐欺條例第47條「自動繳交其犯罪所得」之個人性與未遂適用】</strong></p>
+            <p>詐欺犯罪危害防制條例第47條前段之規定，係以在偵查及歷次審判中始終自白之詐欺犯罪行為人「個人」為規範對象，性質上屬個人刑罰減輕事由，依個人責任原則，僅適用於符合要件之行為人，且依其立法理由，並無始終自白之行為人必須同時繳交其他共犯或所屬犯罪組織犯罪所得之明文。</p>
+            <p>再依本條前、後段法文觀察，係區分始終自白之行為人自動繳交「其」犯罪所得（前段），及並因而使司法警察機關或檢察官得以扣押「全部」犯罪所得（後段）等不同貢獻情形，而為不同程度之層級化刑罰減免規定。足認本條前段之「其犯罪所得」，僅限於行為人因犯罪而實際取得之個人所得（包含因詐欺犯罪而取得之被害人財物，及為了犯罪而取得之報酬在內），行為人「如」未實際取得個人犯罪所得，亦無自動繳交其犯罪所得可言。且依本條例第2條之規定，本條前段所謂之「詐欺犯罪」，既未明文排除未遂犯，則當然包含既遂與未遂犯在內。</p>
+        </div>
+        <div class="reference">
+            <strong>參考法條：</strong>詐欺犯罪危害防制條例第47條。〔本件經提案程序統一法律見解〕
+        </div>
+        <div class="note-toggle" onclick="toggleNote('n4')">✏️ 我的小結</div>
+        <div class="note-area" id="n4">
+            <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n4', this.value)"></textarea>
+            <div class="note-saved" id="n4-saved"></div>
+        </div>
+    </div>
+
+    <div class="card" id="case5" data-kw="不利益變更禁止 適用法條不當 誤為被告有利 檢察官上訴 罪刑相當 刑訴370 1934">
+        <button class="star-btn" onclick="toggleStar('case5', this)">⭐</button>
+        <h2 class="card-title">五、114年度台上字第1934號</h2>
+        <div class="content">
+            <p><strong>【不利益變更禁止原則與「適用法條不當」例外之限縮解釋】</strong></p>
+            <p>刑事訴訟法第370條第1項但書規定「因原審判決適用法條不當而撤銷之者，不在此限」，於僅有被告上訴或僅有為被告之利益而上訴時，所謂「原審判決適用法條不當而撤銷之」應為限縮解釋，限於第二審法院以原審判決「誤為被告有利之事實認定或法律適用」（例如：錯誤適用較輕罪名之法條、漏未適用加重其刑之規定、錯誤適用減輕或免除其刑之規定，或犯罪事實經第二審依法擴張或更正致罪責評價較重於原審）而撤銷者為限。若第二審係以原審「誤為被告不利之事實認定或法律適用」而撤銷者，既應更為有利於被告之判決，自不屬但書之情形，第二審不能諭知較重於原審之刑。</p>
+            <p>又檢察官與被告均上訴，倘檢察官係為被告之利益而上訴者，除原審有「誤為被告有利之事實認定或法律適用」而應撤銷之情形外，當有不利益變更禁止原則之適用；縱檢察官係為被告之不利益而上訴，然倘檢察官之上訴為不合法或無理由，且原審亦無「誤為被告有利之事實認定或法律適用」而應撤銷之情形，第二審不能諭知較重於原審之刑，並不因檢察官形式上有為被告之不利益上訴，即生實質上剝奪「不利益變更禁止原則」之效果。再者，於數罪之情形，縱檢察官上訴有理由，然檢察官上訴指摘者僅及於部分之罪，其餘之罪未經指摘，且原審就其餘之罪亦無應撤銷之情形，第二審判決若就其餘之罪諭知較重於原審之刑，自有違「不利益變更禁止原則」，而屬違法。</p>
+        </div>
+        <div class="reference">
+            <strong>參考法條：</strong>刑事訴訟法第370條第1項但書。
+        </div>
+        <div class="note-toggle" onclick="toggleNote('n5')">✏️ 我的小結</div>
+        <div class="note-area" id="n5">
+            <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n5', this.value)"></textarea>
+            <div class="note-saved" id="n5-saved"></div>
+        </div>
+    </div>
+
+    <div class="card" id="case6" data-kw="不能安全駕駛 數款 一罪 判決主文 酒駕 毒駕 公共危險 刑法185之3 台非字71">
+        <button class="star-btn" onclick="toggleStar('case6', this)">⭐</button>
+        <h2 class="card-title">六、114年度台非字第71號</h2>
+        <div class="content">
+            <p><strong>【不能安全駕駛同時符合數款原因——仍成立一罪，主文應均揭明】</strong></p>
+            <p>現行刑法第185條之3第1項之公共危險罪，雖將造成不能安全駕駛之原因於該條項分款列為處罰，惟88年4月21日增訂此規定時，係將服用毒品及酒精同列於刑法第185條之3，並未分項，而為一罪，嗣於102年6月11日為認定「不能安全駕駛」之判斷標準，才予以分款，然均仍以不能安全駕駛動力交通工具而駕駛為要件。</p>
+            <p>因此，除行為人須有該條項各款所定造成不能安全駕駛之原因外，尚以須有動力交通工具之駕駛行為為其犯罪構成要件。倘行為人以一個駕駛行為兼具該條項數款所定造成不能安全駕駛之原因時，因該條文所保障者係大眾交通安全之社會法益，其駕駛行為又祇有一個，仍僅成立一罪，判決主文應將所符合該條項各款之法定事由均予揭明，俾相適應。</p>
+        </div>
+        <div class="reference">
+            <strong>參考法條：</strong>刑法第185條之3第1項。
+        </div>
+        <div class="note-toggle" onclick="toggleNote('n6')">✏️ 我的小結</div>
+        <div class="note-area" id="n6">
+            <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n6', this.value)"></textarea>
+            <div class="note-saved" id="n6-saved"></div>
+        </div>
+    </div>
+
+    <div id="noResults">查無符合的裁判，請試試其他關鍵字。</div>
+    <div id="noStarred">還沒有收藏的判決，點卡片右上角的 ⭐ 加入收藏。</div>
+
+</div>
+
+<div class="fab-container">
+    <button class="fab-btn" onclick="highlightText()">🖊️ 標記重點</button>
+    <button class="fab-btn erase" onclick="removeHighlight()">🧽 局部擦除</button>
+    <button class="fab-btn clear" onclick="clearHighlights()">🗑️ 全部清除</button>
+    <button class="fab-btn export" onclick="openExport()">📤 匯出筆記</button>
+</div>
+
+<script>
+const STORE_KEY = '114_46_criminal_notes';
+const STAR_KEY  = '114_46_criminal_stars';
+
+function loadNotes() { try { return JSON.parse(localStorage.getItem(STORE_KEY)) || {}; } catch { return {}; } }
+function loadStars() { try { return JSON.parse(localStorage.getItem(STAR_KEY))  || {}; } catch { return {}; } }
+function saveAllNotes(d) { localStorage.setItem(STORE_KEY, JSON.stringify(d)); }
+function saveAllStars(d) { localStorage.setItem(STAR_KEY,  JSON.stringify(d)); }
+
+(function () {
+    const notes = loadNotes();
+    const stars = loadStars();
+    Object.entries(notes).forEach(([id, val]) => {
+        const area = document.getElementById(id);
+        if (!area) return;
+        const ta = area.querySelector('textarea');
+        if (ta) ta.value = val;
+        if (val) area.classList.add('open');
+    });
+    Object.entries(stars).forEach(([caseId, starred]) => {
+        if (!starred) return;
+        const btn = document.querySelector(`#${caseId} .star-btn`);
+        if (btn) btn.classList.add('starred');
+    });
+})();
+
+function toggleStar(caseId, btn) {
+    const stars = loadStars();
+    const nowStarred = !btn.classList.contains('starred');
+    btn.classList.toggle('starred', nowStarred);
+    stars[caseId] = nowStarred;
+    saveAllStars(stars);
+    if (filterActive) applyFilter();
+}
+
+let filterActive = false;
+function toggleFilter() {
+    filterActive = !filterActive;
+    document.getElementById('filterBtn').classList.toggle('active', filterActive);
+    document.getElementById('searchInput').value = '';
+    applyFilter();
+}
+function applyFilter() {
+    const stars = loadStars();
+    const query = document.getElementById('searchInput').value.trim().toLowerCase();
+    let anyVisible = false;
+    document.querySelectorAll('.card').forEach(card => {
+        const id = card.id;
+        const kw  = (card.dataset.kw || '').toLowerCase();
+        const txt = card.textContent.toLowerCase();
+        const matchSearch = !query || kw.includes(query) || txt.includes(query);
+        const matchStar   = !filterActive || !!stars[id];
+        const show = matchSearch && matchStar;
+        card.classList.toggle('hidden', !show);
+        if (show) anyVisible = true;
+    });
+    document.getElementById('noResults').style.display  = (!anyVisible && !filterActive) ? 'block' : 'none';
+    document.getElementById('noStarred').style.display  = (!anyVisible && filterActive)  ? 'block' : 'none';
+}
+function doSearch(q) { applyFilter(); }
+
+function toggleNote(id) { document.getElementById(id).classList.toggle('open'); }
+let timers = {};
+function saveNote(id, value) {
+    clearTimeout(timers[id]);
+    timers[id] = setTimeout(() => {
+        const notes = loadNotes();
+        notes[id] = value;
+        saveAllNotes(notes);
+        const ind = document.getElementById(id + '-saved');
+        if (ind) { ind.textContent = '已儲存'; setTimeout(() => ind.textContent = '', 1500); }
+    }, 500);
+}
+
+let savedRange = null;
+document.addEventListener('selectionchange', () => {
+    const sel = window.getSelection();
+    if (sel && !sel.isCollapsed && sel.rangeCount) {
+        savedRange = sel.getRangeAt(0).cloneRange();
+    }
+});
+function highlightText() {
+    const sel = window.getSelection();
+    const range = (sel && !sel.isCollapsed && sel.rangeCount) ? sel.getRangeAt(0) : savedRange;
+    if (!range || range.collapsed) { alert('💡 請先反白想要標記的文字'); return; }
+    const span = document.createElement('span');
+    span.className = 'hl';
+    span.style.backgroundColor = '#ffe066';
+    try { range.surroundContents(span); savedRange = null; } catch { alert('💡 請選取同一段落內的文字'); }
+    sel && sel.removeAllRanges();
+}
+function removeHighlight() {
+    const sel = window.getSelection();
+    const range = (sel && !sel.isCollapsed && sel.rangeCount) ? sel.getRangeAt(0) : savedRange;
+    if (!range || range.collapsed) { alert('💡 請先反白想擦除標記的文字'); return; }
+    const ancestor = range.commonAncestorContainer.nodeType === 1
+        ? range.commonAncestorContainer
+        : range.commonAncestorContainer.parentElement;
+    ancestor.querySelectorAll('span.hl').forEach(span => {
+        if (range.intersectsNode(span)) {
+            const parent = span.parentNode;
+            while (span.firstChild) parent.insertBefore(span.firstChild, span);
+            parent.removeChild(span);
+        }
+    });
+    const node = range.commonAncestorContainer;
+    const hlSpan = node.nodeType === 1 ? node.closest?.('span.hl') : node.parentElement?.closest('span.hl');
+    if (hlSpan) {
+        const parent = hlSpan.parentNode;
+        while (hlSpan.firstChild) parent.insertBefore(hlSpan.firstChild, hlSpan);
+        parent.removeChild(hlSpan);
+    }
+    savedRange = null;
+    sel && sel.removeAllRanges();
+}
+function clearHighlights() {
+    const spans = document.querySelectorAll('span.hl');
+    if (!spans.length) return;
+    if (confirm('確定要清除所有重點標記嗎？')) {
+        spans.forEach(span => {
+            const parent = span.parentNode;
+            while (span.firstChild) parent.insertBefore(span.firstChild, span);
+            parent.removeChild(span);
+        });
+    }
+}
+
+function openExport() {
+    const stars = loadStars();
+    let out = '114年4-6月 刑事參考裁判要旨\n';
+    out += '═'.repeat(32) + '\n\n';
+    document.querySelectorAll('.card').forEach(card => {
+        const id    = card.id;
+        const star  = stars[id] ? '⭐ ' : '';
+        const title = card.querySelector('.card-title')?.textContent.trim() || '';
+        out += `【${star}${title}】\n\n`;
+        card.querySelectorAll('.content p').forEach(p => {
+            const strong = p.querySelector('strong');
+            if (strong) {
+                out += strong.textContent.trim() + '\n';
+                let rest = ''; let pastStrong = false;
+                p.childNodes.forEach(node => {
+                    if (node === strong) { pastStrong = true; return; }
+                    if (!pastStrong) return;
+                    if (node.nodeType === Node.TEXT_NODE) rest += node.textContent;
+                    else if (node.nodeName === 'BR') rest += '\n';
+                    else if (node.nodeName === 'SPAN' && node.classList.contains('hl')) rest += `**${node.textContent}**`;
+                    else rest += node.textContent;
+                });
+                if (rest.trim()) out += rest.trim() + '\n';
+            } else {
+                let text = '';
+                p.childNodes.forEach(node => {
+                    if (node.nodeType === Node.TEXT_NODE) text += node.textContent;
+                    else if (node.nodeName === 'BR') text += '\n';
+                    else if (node.nodeName === 'SPAN' && node.classList.contains('hl')) text += `**${node.textContent}**`;
+                    else text += node.textContent;
+                });
+                out += text.trim() + '\n';
+            }
+            out += '\n';
+        });
+        const ref = card.querySelector('.reference');
+        if (ref) out += '參考法條：' + ref.textContent.replace('參考法條：', '').trim() + '\n\n';
+        const ta = card.querySelector('.note-textarea');
+        if (ta && ta.value.trim()) out += '✏️ 小結：\n' + ta.value.trim() + '\n\n';
+        out += '═'.repeat(32) + '\n\n';
+    });
+    const blob = new Blob([out.trim()], { type: 'text/plain;charset=utf-8' });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href = url;
+    a.download = '114年4-6月_刑事裁判要旨.txt';
+    a.click();
+    URL.revokeObjectURL(url);
+}
+</script>
+</body>
+</html>
