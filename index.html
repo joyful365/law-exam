@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CallmeHappyfish 法學測驗總整理</title>
-<style>
+    <style>
         /* 基礎設定 - 帶有微漸層的溫潤背景 */
         body {
             font-family: 'Helvetica Neue', Arial, 'PingFang TC', 'Heiti TC', sans-serif;
-            /* 將死板的單色換成極淡的自然漸層，營造空間感 */
             background: linear-gradient(135deg, #FDFCFB 0%, #F2EFE9 100%);
             color: #595757;
             line-height: 1.6;
@@ -26,14 +25,13 @@
             width: 90%;
             max-width: 600px;
             padding: 45px 35px;
-            border-radius: 8px; /* 稍微增加圓角，讓視覺更柔和 */
-            /* 加入兩層陰影：一層創造邊界，一層創造輕盈的漂浮感 */
+            border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.02), 0 12px 24px rgba(140, 130, 115, 0.08);
             text-align: center;
             position: relative;
         }
 
-        /* 頂部加上一條無印紅的裝飾線，打破上方空白的單調 */
+        /* 頂部無印紅裝飾線 */
         .container::before {
             content: '';
             position: absolute;
@@ -64,7 +62,7 @@
             letter-spacing: 1px;
         }
 
-        /* 測驗清單設定 */
+        /* 清單設定 */
         ul {
             list-style-type: none;
             padding: 0;
@@ -75,16 +73,15 @@
             margin-bottom: 15px;
         }
 
-        /* 超連結按鈕設計 - 改為「書籤/資料卡」造型 */
+        /* 一般題庫按鈕設計 - 預設灰色系 */
         a {
             display: flex;
             align-items: center;
             padding: 16px 20px;
-            background-color: #FAFAFA; /* 按鈕底色比背景稍微灰一點，創造層次 */
+            background-color: #FAFAFA;
             color: #595757;
             text-decoration: none;
             border-radius: 6px;
-            /* 左側加上較粗的邊框，像是一張張分類好的重點卡片 */
             border-left: 5px solid #DCD9D4; 
             border-top: 1px solid #F0F0F0;
             border-right: 1px solid #F0F0F0;
@@ -95,12 +92,11 @@
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
-        /* 滑鼠游標移過去時的效果 - 抽出卡片的微動態 */
+        /* 一般題庫滑鼠移上去的效果 - 變成無印紅 */
         a:hover {
             background-color: #FFFFFF;
-            border-left-color: #8C1C13; /* 左側標籤變成無印紅 */
+            border-left-color: #8C1C13; 
             color: #8C1C13;
-            /* 讓按鈕微微向右滑動並浮起，像把書本從書架抽出來的感覺 */
             transform: translateX(6px) translateY(-2px);
             box-shadow: -4px 6px 15px rgba(140, 130, 115, 0.1);
         }
@@ -117,6 +113,21 @@
             color: #C4C4C4;
             letter-spacing: 1px;
         }
+
+        /* 👇 ======================================== 👇 */
+        /* 👇 這裡就是新增的護眼綠設定 (放在 </style> 上方) 👇 */
+        /* 👇 ======================================== 👇 */
+        
+        .case-list a {
+            background-color: #FDFCFB; 
+            border-left: 5px solid #81b29a; /* 預設就是護眼綠邊框，區別題庫 */
+        }
+        
+        .case-list a:hover {
+            border-left-color: #81b29a;
+            color: #81b29a; /* 移上去字體也變護眼綠 */
+        }
+
     </style>
 </head>
 <body>
@@ -125,14 +136,25 @@
         <h1>📚 國考題庫大廳 </h1>
         <p>點擊下方按鈕，選擇今天要練習的題庫</p>
 
+        <!-- 第一區：實戰題庫區 (無印紅) -->
         <ul>
-            <ul>
-            <li><a href="category_const.html">⚖️ 憲法 </a></li>
-            <li><a href="category_admin.html">⚖️ 行政法 </a></li>
+            <li><a href="category_const.html">⚖️ 憲法題庫 </a></li>
+            <li><a href="category_admin.html">⚖️ 行政法題庫 </a></li>
             <li><a href="category_Bar.html">🏛️ 司律題庫 </a></li>
         </ul>
-            
-            </ul>
+
+        <!-- 分隔線與小標題 -->
+        <div style="margin-top: 35px; margin-bottom: 15px; border-top: 1px dashed #EBE8E1; padding-top: 20px; font-size: 13px; color: #999; letter-spacing: 1px;">
+            ✦ 實務見解研習 ✦
+        </div>
+
+        <!-- 第二區：實務判決區 (護眼綠) -->
+        <ul class="case-list">
+            <li><a href="cases_admin.html">📜 公法 </a></li>
+            <li><a href="cases_const.html">📜 民事法 </a></li>
+            <li><a href="cases_const.html">📜 民事法 </a></li>
+
+        </ul>
 
         <div class="footer-note">
             祝 考試順利！加油！💪
