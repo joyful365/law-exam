@@ -114,15 +114,17 @@
             letter-spacing: 1px;
         }
 
+
         
         .case-list a {
             background-color: #FDFCFB; 
-            border-left: 5px solid #81b29a; /* 預設就是護眼綠邊框，區別題庫 */
+            /* 把原本預設綠色的邊框拿掉，讓它自動繼承上面的灰色 (#DCD9D4) */
         }
         
         .case-list a:hover {
-            border-left-color: #81b29a;
-            color: #81b29a; /* 移上去字體也變護眼綠 */
+            border-left-color: #81b29a; /* 滑鼠移過去時，邊框亮起護眼綠 */
+            color: #81b29a;             /* 滑鼠移過去時，字體亮起護眼綠 */
+  
         }
 
     </style>
