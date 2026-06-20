@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>113年度(10-12月)刑事具參考價值裁判要旨</title>
+    <style>
+        body { font-family: "Helvetica Neue", Helvetica, "PingFang TC", "LiHei Pro", "Hiragino Sans GB", "Microsoft JhengHei", sans-serif; background-color: #f0f2f5; color: #333333; line-height: 1.7; font-size: 18px; margin: 0; padding: 0; padding-bottom: 40px; }
+        header { background-color: #1a365d; color: white; padding: 20px 15px 12px; text-align: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        header h1 { margin: 0 0 12px; font-size: 1.2em; }
+        .header-controls { display: flex; gap: 8px; align-items: center; }
+        .search-wrap { position: relative; flex: 1; }
+        #searchInput { width: 100%; padding: 9px 14px 9px 36px; border: none; border-radius: 8px; font-size: 15px; background: rgba(255,255,255,0.15); color: white; outline: none; box-sizing: border-box; }
+        #searchInput::placeholder { color: rgba(255,255,255,0.6); }
+        #searchInput:focus { background: rgba(255,255,255,0.25); }
+        .search-icon { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); font-size: 15px; opacity: 0.7; pointer-events: none; }
+        #filterBtn { background: rgba(255,255,255,0.15); border: none; border-radius: 8px; color: white; font-size: 15px; padding: 9px 13px; cursor: pointer; white-space: nowrap; transition: background 0.2s; flex-shrink: 0; }
+        #filterBtn.active { background: #f6c90e; color: #1a365d; font-weight: bold; }
+        .top-bar { position: sticky; top: 0; z-index: 99; background: #e8eaed; padding: 7px 14px; max-width: 100%; margin: 0; display: flex; gap: 7px; justify-content: flex-end; flex-wrap: nowrap; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+        .top-btn { background: #4a5568; color: white; border: none; padding: 7px 11px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap; box-shadow: 0 2px 6px rgba(0,0,0,0.15); transition: transform 0.1s, opacity 0.1s; flex-shrink: 0; }
+        .top-btn:active { transform: scale(0.94); }
+        .top-btn.erase  { background: #718096; }
+        .top-btn.clear  { background: #a0aec0; }
+        .top-btn.export { background: #cbd5e0; color: #2d3748; }
+        .top-btn.done { background: #a0aec0; color: #1a365d; border: none; }
+        .top-btn.done.active { background: linear-gradient(135deg, #7a5c00, #a07820); color: #fff3c4; border: 1px solid #a07820; box-shadow: 0 0 0 2px #c9a84c; transform: scale(0.97); }
+        .done-date { font-size: 11px; color: #a0aec0; margin-left: 2px; white-space: nowrap; align-self: center; }
+        .container { padding: 15px; max-width: 600px; margin: 0 auto; }
+        .card { background-color: white; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); position: relative; }
+        .card.hidden { display: none; }
+        .star-btn { position: absolute; top: 16px; right: 16px; background: none; border: none; font-size: 22px; cursor: pointer; line-height: 1; opacity: 0.25; transition: opacity 0.15s, transform 0.15s; padding: 0; }
+        .star-btn:active { transform: scale(1.3); }
+        .star-btn.starred { opacity: 1; }
+        .card-title { color: #2b6cb0; font-size: 1.3em; font-weight: bold; margin-top: 0; border-bottom: 2px solid #ebf8ff; padding-bottom: 10px; margin-bottom: 15px; padding-right: 32px; }
+        .content p { margin-bottom: 15px; text-align: justify; }
+        .reference { background-color: #edf2f7; padding: 12px; border-radius: 8px; font-size: 0.9em; color: #4a5568; margin-top: 15px; border-left: 4px solid #4299e1; }
+        .note-toggle { display: inline-block; margin-top: 14px; font-size: 0.82em; color: #718096; cursor: pointer; user-select: none; }
+        .note-toggle:hover { color: #2b6cb0; }
+        .note-area { display: none; margin-top: 8px; }
+        .note-area.open { display: block; }
+        .note-textarea { width: 100%; min-height: 72px; border: 1px solid #cbd5e0; border-radius: 8px; padding: 10px 12px; font-size: 0.88em; font-family: inherit; color: #333; background: #f7fafc; resize: vertical; outline: none; line-height: 1.65; box-sizing: border-box; }
+        .note-textarea:focus { border-color: #4299e1; }
+        .note-textarea::placeholder { color: #bbb; }
+        .note-saved { font-size: 0.72em; color: #68d391; text-align: right; height: 14px; margin-top: 2px; }
+        #noResults, #noStarred { display: none; text-align: center; color: #a0aec0; padding: 40px 0; font-size: 0.9em; }
+        ::-webkit-scrollbar { display: none; }
+        ::selection { background: #b3d4fc; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>最高法院 113年10-12月<br>刑事參考價值裁判要旨</h1>
+    <div class="header-controls">
+        <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="搜尋案號、法條、關鍵字…" oninput="doSearch(this.value)">
+        </div>
+        <button id="filterBtn" onclick="toggleFilter()">⭐ 收藏</button>
+    </div>
+    <div class="top-bar">
+        <button class="top-btn" onclick="highlightText()">🖊️</button>
+        <button class="top-btn erase" onclick="removeHighlight()">🧽</button>
+        <button class="top-btn clear" onclick="clearHighlights()">🗑️</button>
+        <button class="top-btn export" onclick="openExport()">📤</button>
+        <button class="top-btn done" id="doneBtn" onclick="toggleDone()">朕已閱</button>
+        <span class="done-date" id="doneDateLabel"></span>
+    </div>
+</header>
+
+<div class="container">
+
+    <div class="card" id="case1" data-kw="非常上訴 科刑一部上訴 沒收 保安處分 論罪 刑訴348 台非字191">
+        <button class="star-btn" onclick="toggleStar('case1', this)">⭐</button>
+        <h2 class="card-title">一、113年度台非字第191號</h2>
+        <div class="content">
+            <p><strong>【科刑一部上訴確定後非常上訴之客體——論罪、科刑、沒收之分層判斷】</strong></p>
+            <p>科刑一部上訴之全案確定判決有審判違背法令情形者，非常上訴之客體依個案違法情事判斷如下：</p>
+            <p>（一）若僅論罪部分之判決違背法令者，因事實認定與罪名論斷之違誤勢必影響科刑及其他法律效果，自應將第一、二審之判決併為審查，合為非常上訴之對象，二者缺一不可。</p>
+            <p>（二）若第一審判決之論罪與科刑均無誤，僅第二審撤銷改判之科刑判決違背法令者，非常上訴只須以第二審科刑判決為客體，即可達其特別救濟之糾正目的；反之，若第二審維持第一審之科刑判決，且第一、二審判決之科刑皆屬違法，自應以第一、二審科刑判決併為非常上訴之客體。</p>
+            <p>（三）倘第一審論罪部分之判決及第二審科刑判決均未違法，僅第一審判決之沒收或保安處分違背法令者，因並未致論罪、科刑產生連動，非常上訴單就第一審判決關於保安處分或沒收之違法部分予以糾正，尚不致發生第一、二審判決相互矛盾抵觸之情形，非常上訴自可以此為特別救濟之標的。</p>
+        </div>
+        <div class="reference"><strong>參考法條：</strong>刑事訴訟法第348條第3項。</div>
+        <div class="note-toggle" onclick="toggleNote('n1')">✏️ 我的小結</div>
+        <div class="note-area" id="n1">
+            <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n1', this.value)"></textarea>
+            <div class="note-saved" id="n1-saved"></div>
+        </div>
+    </div>
+
+    <div class="card" id="case2" data-kw="保證人 不純正不作為犯 危險共同體 保護者 監督者 毒品 刑法15 台上字472">
+        <button class="star-btn" onclick="toggleStar('case2', this)">⭐</button>
+        <h2 class="card-title">二、113年度台上字第472號</h2>
+        <div class="content">
+            <p><strong>【保證人地位之類型——保護者保證人與監督者保證人，及偶發施毒團體不成立危險共同體】</strong></p>
+            <p>刑法第15條第1項所指「法律上有防止結果發生之義務」者（即居於保證人地位），不以法律有明文規定者為限，依契約或法律之精神觀察有此義務時，亦應包括在內，但僅出於倫理、道德、宗教或社會等理由，則不與之。</p>
+            <p>學理將保證人義務區分為：（一）「保護者保證人」：對於特定法益具有事實上或法律上的保護地位，有義務採取防範措施，包括依法令規定、契約約定負有保護義務之人、自願承擔保護協助義務、危險共同體之組成員等。（二）「監督者保證人」：避免危險從其源頭外溢，以致法益受侵害，包含危險前行為之人、對於危險源負有監督或看管義務之人等。</p>
+            <p>所指「危險共同體」，係指數人彼此允諾約定會在發生緊急狀況時提供實質保護，以降低活動危險，則該數人間互居於保證人地位。偶發臨時性的施用毒品團體，數人彼此間並無因約定而建立相互照顧之信賴關係，亦無持久之緊密關係，並非「危險共同體」，彼此間並不負保證人義務。</p>
+        </div>
+        <div class="reference"><strong>參考法條：</strong>刑法第15條第1項。</div>
+        <div class="note-toggle" onclick="toggleNote('n2')">✏️ 我的小結</div>
+        <div class="note-area" id="n2">
+            <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n2', this.value)"></textarea>
+            <div class="note-saved" id="n2-saved"></div>
+        </div>
+    </div>
+
+    <div class="card" id="case3" data-kw="沒收 過苛調節 比例原則 犯罪所得 低微 訴訟經濟 刑法38之2 台上字1074">
+        <button class="star-btn" onclick="toggleStar('case3', this)">⭐</button>
+        <h2 class="card-title">三、113年度台上字第1074號</h2>
+        <div class="content">
+            <p><strong>【沒收過苛調節條款之適用事由與說明義務】</strong></p>
+            <p>刑法第38條之2第2項過苛調節條款，明定宣告沒收或追徵有過苛之虞、欠缺刑法上之重要性、犯罪所得價值低微，或為維持受宣告人生活條件必要之情形，得不宣告或酌減，以調節沒收之嚴苛性，並兼顧訴訟經濟。其中：（一）過苛之虞、為維持受宣告人生活條件必要及犯罪所得價值低微，屬實體過苛事由，乃禁止過度原則之具體展現；（二）欠缺刑法上重要性，為訴訟經濟事由，係指從法秩序保護觀點，其他法律效果即為已足，或者案件調查所耗費之司法資源，與沒收之宣告顯不相當。</p>
+            <p>然過苛調節條款為義務沒收之法定例外，為避免不當適用而悖離澈底剝奪不法利得之立法本旨，法院適用該條款不宣告沒收或酌減時，自應說明其何以符合該條款所定情形之具體理由，否則即有理由不備之違法。</p>
+        </div>
+        <div class="reference"><strong>參考法條：</strong>刑法第38條之2第2項。</div>
+        <div class="note-toggle" onclick="toggleNote('n3')">✏️ 我的小結</div>
+        <div class="note-area" id="n3">
+            <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n3', this.value)"></textarea>
+            <div class="note-saved" id="n3-saved"></div>
+        </div>
+    </div>
+
+    <div class="card" id="case4" data-kw="法律整體適用 新舊法比較 割裂 洗錢 量刑框架 刑法2 統一見解 台上字2303">
+        <button class="star-btn" onclick="toggleStar('case4', this)">⭐</button>
+        <h2 class="card-title">四、113年度台上字第2303號</h2>
+        <div class="content">
+            <p><strong>【法律應整體適用不得割裂之原則，及洗錢罪科刑上限納入新舊法比較】</strong></p>
+            <p>（一）「法律應綜合比較而整體適用不得割裂」為法律適用之一般原則，分為垂直性（新舊法交替）與平行性（相同時空下不同法律併存）兩種場合。本院109年度台上字第4243號判決前例係洞見法規競合之特殊個案，允以例外割裂適用他法之減刑規定，與新舊法律變更事例本質不同，尚難謂已變更新舊法應整體適用之固定見解。關於新舊法律變更之選擇適用，除法律另有規定，或關於易科罰金、數罪併罰定應執行刑及緩刑等執行事項本院已另有統一見解外，新舊法律應綜合其關聯條文比較後整體適用而不得任意割裂之見解，仍屬普遍有效之法律論斷前提。</p>
+            <p>（二）關於舊洗錢防制法第14條第3項所規定「不得科以超過其特定犯罪所定最重本刑之刑」之科刑限制，已實質影響舊一般洗錢罪之量刑框架，自應納為新舊法比較事項之列。〔本件為本院統一之法律見解〕</p>
+        </div>
+        <div class="reference"><strong>參考法條：</strong>刑法第2條第1項。</div>
+        <div class="note-toggle" onclick="toggleNote('n4')">✏️ 我的小結</div>
+        <div class="note-area" id="n4">
+            <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n4', this.value)"></textarea>
+            <div class="note-saved" id="n4-saved"></div>
+        </div>
+    </div>
+
+    <div class="card" id="case5" data-kw="貪污 圖利罪 行政規則 法規命令 自我拘束力 對外效力 行政慣例 貪污治罪條例6 台上字2583">
+        <button class="star-btn" onclick="toggleStar('case5', this)">⭐</button>
+        <h2 class="card-title">五、113年度台上字第2583號</h2>
+        <div class="content">
+            <p><strong>【圖利罪「違背法令」之範圍——行政規則間接對外效力與行政慣例自我拘束】</strong></p>
+            <p>（一）法規命令具有對外效力，行政規則原則上僅生對內之效力。然具有解釋性及裁量基準規範性質之行政規則，因公務員在具體個案反覆適用而形成行政慣例（行政實務），而生行政自我拘束力，行政機關非有正當理由，對於相同之事件，不得為不同之處理。人民對於違反行政慣例之行政行為，自得以其違反平等原則而主張權利救濟，行政規則乃因此間接對外發生法律效力。公務員違反上開解釋性規定或裁量基準，亦屬違法行為。</p>
+            <p>（二）貪污治罪條例第6條第1項第4款之對主管或監督事務圖利罪，此所謂「法令」，自須以違反與公務員主管或監督事務直接相關或具有密切關聯性之法律（含刑罰法律），及具有對外效力之行政命令（含法規命令、職權命令、自治條例、自治規則、委辦規則及其他間接對外發生實質效力之行政規則）為限。</p>
+        </div>
+        <div class="reference"><strong>參考法條：</strong>貪污治罪條例第4條、第5條、第6條。</div>
+        <div class="note-toggle" onclick="toggleNote('n5')">✏️ 我的小結</div>
+        <div class="note-area" id="n5">
+            <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n5', this.value)"></textarea>
+            <div class="note-saved" id="n5-saved"></div>
+        </div>
+    </div>
+
+    <div class="card" id="case6" data-kw="彈劾證據 自我矛盾 誘導詰問 傳聞法則 供述證據 刑訴166之1 166之2 台上字4484">
+        <button class="star-btn" onclick="toggleStar('case6', this)">⭐</button>
+        <h2 class="card-title">六、113年度台上字第4484號</h2>
+        <div class="content">
+            <p><strong>【彈劾證據之性質與界限——限於同一證人自我前後矛盾陳述】</strong></p>
+            <p>彈劾證據係以證人先前矛盾或歧異陳述之存在，以彈劾（減低、打擊）或否定其證言之信用性，亦即以「自我前後矛盾陳述本身存在」為待證事實，而非以「先前陳述內容是否為真實」為待證事實，自無傳聞法則之適用，亦不得以之強化證人證言之憑信性，更不得轉用之為犯罪事實認定之證據。</p>
+            <p>數個供述證據，有屬於同一方向者，有屬於反對方向者，各有其證明力。即使提出反對方向之供述證據欲為與其他證人陳述內容相異事實之證明者，雖有爭執其他證人陳述信用性或證明力之意義，然既非其他證人先前自我矛盾之陳述，自無彈劾證據之適用，至於該等供述證據何者為可信，事實審法院可本於經驗或論理法則，斟酌其他情形，作合理比較，定其取捨。</p>
+        </div>
+        <div class="reference"><strong>參考法條：</strong>刑事訴訟法第166條之1、第166條之2。</div>
+        <div class="note-toggle" onclick="toggleNote('n6')">✏️ 我的小結</div>
+        <div class="note-area" id="n6">
+            <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n6', this.value)"></textarea>
+            <div class="note-saved" id="n6-saved"></div>
+        </div>
+    </div>
+
+    <div class="card" id="case7" data-kw="國民法官 量刑 適法量刑幅度 第二審審查 撤銷 國民法官法 台上字4487">
+        <button class="star-btn" onclick="toggleStar('case7', this)">⭐</button>
+        <h2 class="card-title">七、113年度台上字第4487號</h2>
+        <div class="content">
+            <p><strong>【國民法官案件量刑上訴——第二審之審查標準與「適法量刑幅度」】</strong></p>
+            <p>國民法官案件以量刑不當為由上訴者，第二審法院應對全部量刑之重要事實為整體並正確之評價，復考量量刑之外部性、內部性界限後，審酌第一審判決之量刑有無逸脫一定之「適法量刑幅度」？若有逸脫，第一審判決是否有以具體且具說服力之理由說明必須如此之理由？以此資為是否應撤銷第一審量刑之判斷標準，並非逕以第二審法院認為適當之具體量刑與第一審判決之量刑結果直接進行比較。</p>
+            <p>所謂「適法量刑幅度」：（一）於實然面，可參考過往類似案件之量刑所累積形成之量刑區間；（二）於應然面，則得以「犯罪情狀」所反映之行為人責任輕重，於法律所定處斷刑之範圍內，劃出一定之上下限幅度作為參考依據，以維量刑之妥當性與公平性。</p>
+        </div>
+        <div class="reference"><strong>參考法條：</strong>國民法官法施行細則第307條。</div>
+        <div class="note-toggle" onclick="toggleNote('n7')">✏️ 我的小結</div>
+        <div class="note-area" id="n7">
+            <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n7', this.value)"></textarea>
+            <div class="note-saved" id="n7-saved"></div>
+        </div>
+    </div>
+
+    <div id="noResults">查無符合的裁判，請試試其他關鍵字。</div>
+    <div id="noStarred">還沒有收藏的判決，點卡片右上角的 ⭐ 加入收藏。</div>
+</div>
+
+<script>
+const STORE_KEY = '113_1012_criminal_notes';
+const STAR_KEY  = '113_1012_criminal_stars';
+function loadNotes() { try { return JSON.parse(localStorage.getItem(STORE_KEY)) || {}; } catch { return {}; } }
+function loadStars() { try { return JSON.parse(localStorage.getItem(STAR_KEY))  || {}; } catch { return {}; } }
+function saveAllNotes(d) { localStorage.setItem(STORE_KEY, JSON.stringify(d)); }
+function saveAllStars(d) { localStorage.setItem(STAR_KEY,  JSON.stringify(d)); }
+(function () {
+    const notes = loadNotes(); const stars = loadStars();
+    Object.entries(notes).forEach(([id, val]) => { const area = document.getElementById(id); if (!area) return; const ta = area.querySelector('textarea'); if (ta) ta.value = val; if (val) area.classList.add('open'); });
+    Object.entries(stars).forEach(([caseId, starred]) => { if (!starred) return; const btn = document.querySelector(`#${caseId} .star-btn`); if (btn) btn.classList.add('starred'); });
+})();
+function toggleStar(caseId, btn) { const stars = loadStars(); const nowStarred = !btn.classList.contains('starred'); btn.classList.toggle('starred', nowStarred); stars[caseId] = nowStarred; saveAllStars(stars); if (filterActive) applyFilter(); }
+let filterActive = false;
+function toggleFilter() { filterActive = !filterActive; document.getElementById('filterBtn').classList.toggle('active', filterActive); document.getElementById('searchInput').value = ''; applyFilter(); }
+function applyFilter() { const stars = loadStars(); const query = document.getElementById('searchInput').value.trim().toLowerCase(); let anyVisible = false; document.querySelectorAll('.card').forEach(card => { const id = card.id; const kw = (card.dataset.kw || '').toLowerCase(); const txt = card.textContent.toLowerCase(); const matchSearch = !query || kw.includes(query) || txt.includes(query); const matchStar = !filterActive || !!stars[id]; const show = matchSearch && matchStar; card.classList.toggle('hidden', !show); if (show) anyVisible = true; }); document.getElementById('noResults').style.display = (!anyVisible && !filterActive) ? 'block' : 'none'; document.getElementById('noStarred').style.display = (!anyVisible && filterActive) ? 'block' : 'none'; }
+function doSearch(q) { applyFilter(); }
+function toggleNote(id) { document.getElementById(id).classList.toggle('open'); }
+let timers = {};
+function saveNote(id, value) { clearTimeout(timers[id]); timers[id] = setTimeout(() => { const notes = loadNotes(); notes[id] = value; saveAllNotes(notes); const ind = document.getElementById(id + '-saved'); if (ind) { ind.textContent = '已儲存'; setTimeout(() => ind.textContent = '', 1500); } }, 500); }
+let savedRange = null;
+document.addEventListener('selectionchange', () => { const sel = window.getSelection(); if (sel && !sel.isCollapsed && sel.rangeCount) { savedRange = sel.getRangeAt(0).cloneRange(); } });
+function highlightText() { const sel = window.getSelection(); const range = (sel && !sel.isCollapsed && sel.rangeCount) ? sel.getRangeAt(0) : savedRange; if (!range || range.collapsed) { alert('💡 請先反白想要標記的文字'); return; } const span = document.createElement('span'); span.className = 'hl'; span.style.backgroundColor = '#ffe066'; try { range.surroundContents(span); savedRange = null; } catch { alert('💡 請選取同一段落內的文字'); } sel && sel.removeAllRanges(); }
+function removeHighlight() { const sel = window.getSelection(); const range = (sel && !sel.isCollapsed && sel.rangeCount) ? sel.getRangeAt(0) : savedRange; if (!range || range.collapsed) { alert('💡 請先反白想擦除標記的文字'); return; } const ancestor = range.commonAncestorContainer.nodeType === 1 ? range.commonAncestorContainer : range.commonAncestorContainer.parentElement; ancestor.querySelectorAll('span.hl').forEach(span => { if (range.intersectsNode(span)) { const parent = span.parentNode; while (span.firstChild) parent.insertBefore(span.firstChild, span); parent.removeChild(span); } }); const node = range.commonAncestorContainer; const hlSpan = node.nodeType === 1 ? node.closest?.('span.hl') : node.parentElement?.closest('span.hl'); if (hlSpan) { const parent = hlSpan.parentNode; while (hlSpan.firstChild) parent.insertBefore(hlSpan.firstChild, hlSpan); parent.removeChild(hlSpan); } savedRange = null; sel && sel.removeAllRanges(); }
+function clearHighlights() { const spans = document.querySelectorAll('span.hl'); if (!spans.length) return; if (confirm('確定要清除所有重點標記嗎？')) { spans.forEach(span => { const parent = span.parentNode; while (span.firstChild) parent.insertBefore(span.firstChild, span); parent.removeChild(span); }); } }
+function openExport() {
+    const stars = loadStars(); let out = '113年10-12月 刑事參考裁判要旨\n' + '═'.repeat(32) + '\n\n';
+    document.querySelectorAll('.card').forEach(card => {
+        const id = card.id; const star = stars[id] ? '⭐ ' : '';
+        const title = card.querySelector('.card-title')?.textContent.trim() || '';
+        out += `【${star}${title}】\n\n`;
+        card.querySelectorAll('.content p').forEach(p => { const strong = p.querySelector('strong'); if (strong) { out += strong.textContent.trim() + '\n'; let rest = ''; let pastStrong = false; p.childNodes.forEach(node => { if (node === strong) { pastStrong = true; return; } if (!pastStrong) return; if (node.nodeType === Node.TEXT_NODE) rest += node.textContent; else if (node.nodeName === 'BR') rest += '\n'; else if (node.nodeName === 'SPAN' && node.classList.contains('hl')) rest += `**${node.textContent}**`; else rest += node.textContent; }); if (rest.trim()) out += rest.trim() + '\n'; } else { let text = ''; p.childNodes.forEach(node => { if (node.nodeType === Node.TEXT_NODE) text += node.textContent; else if (node.nodeName === 'BR') text += '\n'; else if (node.nodeName === 'SPAN' && node.classList.contains('hl')) text += `**${node.textContent}**`; else text += node.textContent; }); out += text.trim() + '\n'; } out += '\n'; });
+        const ref = card.querySelector('.reference'); if (ref) out += '參考法條：' + ref.textContent.replace('參考法條：', '').trim() + '\n\n';
+        const ta = card.querySelector('.note-textarea'); if (ta && ta.value.trim()) out += '✏️ 小結：\n' + ta.value.trim() + '\n\n';
+        out += '═'.repeat(32) + '\n\n';
+    });
+    const blob = new Blob([out.trim()], { type: 'text/plain;charset=utf-8' }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = '113年10-12月_刑事裁判要旨.txt'; a.click(); URL.revokeObjectURL(url);
+}
+const REGISTRY_KEY = 'exam_completion_registry';
+function _loadReg() { try { return JSON.parse(localStorage.getItem(REGISTRY_KEY)) || {}; } catch { return {}; } }
+function _saveReg(r) { try { localStorage.setItem(REGISTRY_KEY, JSON.stringify(r)); } catch {} }
+function _currentFile() { const parts = location.pathname.split('/'); return decodeURIComponent(parts[parts.length - 1] || ''); }
+function _formatDate(ts) { const d = new Date(ts); return (d.getMonth()+1) + '/' + d.getDate() + '/' + d.getFullYear(); }
+function _updateDateLabel() { const reg = _loadReg(); const key = _currentFile(); const label = document.getElementById('doneDateLabel'); if (!label) return; if (reg[key] && reg[key].done && reg[key].ts) { label.textContent = _formatDate(reg[key].ts); } else { label.textContent = ''; } }
+function toggleDone() { const btn = document.getElementById('doneBtn'); const reg = _loadReg(); const key = _currentFile(); const isDone = reg[key] && reg[key].done; if (isDone) { delete reg[key]; _saveReg(reg); btn.classList.remove('active'); } else { const now = new Date(); reg[key] = { done: true, score: null, total: null, ts: now.getTime(), tsLabel: now.toLocaleDateString('zh-TW') + ' ' + now.toLocaleTimeString('zh-TW', {hour:'2-digit', minute:'2-digit'}) }; _saveReg(reg); btn.classList.add('active'); } _updateDateLabel(); }
+(function() { const reg = _loadReg(); const key = _currentFile(); if (reg[key] && reg[key].done) { const btn = document.getElementById('doneBtn'); if (btn) btn.classList.add('active'); } _updateDateLabel(); })();
+</script>
+</body>
+</html>
