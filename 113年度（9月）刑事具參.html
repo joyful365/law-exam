@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>113年度(9月)刑事具參考價值裁判要旨</title>
+    <style>
+        body { font-family: "Helvetica Neue", Helvetica, "PingFang TC", "LiHei Pro", "Hiragino Sans GB", "Microsoft JhengHei", sans-serif; background-color: #f0f2f5; color: #333333; line-height: 1.7; font-size: 18px; margin: 0; padding: 0; padding-bottom: 40px; }
+        header { background-color: #1a365d; color: white; padding: 20px 15px 12px; text-align: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        header h1 { margin: 0 0 12px; font-size: 1.2em; }
+        .header-controls { display: flex; gap: 8px; align-items: center; }
+        .search-wrap { position: relative; flex: 1; }
+        #searchInput { width: 100%; padding: 9px 14px 9px 36px; border: none; border-radius: 8px; font-size: 15px; background: rgba(255,255,255,0.15); color: white; outline: none; box-sizing: border-box; }
+        #searchInput::placeholder { color: rgba(255,255,255,0.6); }
+        #searchInput:focus { background: rgba(255,255,255,0.25); }
+        .search-icon { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); font-size: 15px; opacity: 0.7; pointer-events: none; }
+        #filterBtn { background: rgba(255,255,255,0.15); border: none; border-radius: 8px; color: white; font-size: 15px; padding: 9px 13px; cursor: pointer; white-space: nowrap; transition: background 0.2s; flex-shrink: 0; }
+        #filterBtn.active { background: #f6c90e; color: #1a365d; font-weight: bold; }
+        .top-bar { position: sticky; top: 0; z-index: 99; background: #e8eaed; padding: 7px 14px; max-width: 100%; margin: 0; display: flex; gap: 7px; justify-content: flex-end; flex-wrap: nowrap; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+        .top-btn { background: #4a5568; color: white; border: none; padding: 7px 11px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap; box-shadow: 0 2px 6px rgba(0,0,0,0.15); transition: transform 0.1s, opacity 0.1s; flex-shrink: 0; }
+        .top-btn:active { transform: scale(0.94); }
+        .top-btn.erase { background: #718096; }
+        .top-btn.clear { background: #a0aec0; }
+        .top-btn.export { background: #cbd5e0; color: #2d3748; }
+        .top-btn.done { background: #a0aec0; color: #1a365d; border: none; }
+        .top-btn.done.active { background: linear-gradient(135deg, #7a5c00, #a07820); color: #fff3c4; border: 1px solid #a07820; box-shadow: 0 0 0 2px #c9a84c; transform: scale(0.97); }
+        .done-date { font-size: 11px; color: #a0aec0; margin-left: 2px; white-space: nowrap; align-self: center; }
+        .container { padding: 15px; max-width: 600px; margin: 0 auto; }
+        .card { background-color: white; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); position: relative; }
+        .card.hidden { display: none; }
+        .star-btn { position: absolute; top: 16px; right: 16px; background: none; border: none; font-size: 22px; cursor: pointer; line-height: 1; opacity: 0.25; transition: opacity 0.15s, transform 0.15s; padding: 0; }
+        .star-btn:active { transform: scale(1.3); }
+        .star-btn.starred { opacity: 1; }
+        .card-title { color: #2b6cb0; font-size: 1.3em; font-weight: bold; margin-top: 0; border-bottom: 2px solid #ebf8ff; padding-bottom: 10px; margin-bottom: 15px; padding-right: 32px; }
+        .content p { margin-bottom: 15px; text-align: justify; }
+        .reference { background-color: #edf2f7; padding: 12px; border-radius: 8px; font-size: 0.9em; color: #4a5568; margin-top: 15px; border-left: 4px solid #4299e1; }
+        .note-toggle { display: inline-block; margin-top: 14px; font-size: 0.82em; color: #718096; cursor: pointer; user-select: none; }
+        .note-toggle:hover { color: #2b6cb0; }
+        .note-area { display: none; margin-top: 8px; }
+        .note-area.open { display: block; }
+        .note-textarea { width: 100%; min-height: 72px; border: 1px solid #cbd5e0; border-radius: 8px; padding: 10px 12px; font-size: 0.88em; font-family: inherit; color: #333; background: #f7fafc; resize: vertical; outline: none; line-height: 1.65; box-sizing: border-box; }
+        .note-textarea:focus { border-color: #4299e1; }
+        .note-textarea::placeholder { color: #bbb; }
+        .note-saved { font-size: 0.72em; color: #68d391; text-align: right; height: 14px; margin-top: 2px; }
+        #noResults, #noStarred { display: none; text-align: center; color: #a0aec0; padding: 40px 0; font-size: 0.9em; }
+        ::-webkit-scrollbar { display: none; }
+        ::selection { background: #b3d4fc; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>最高法院 113年9月<br>刑事參考價值裁判要旨</h1>
+    <div class="header-controls">
+        <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="搜尋案號、法條、關鍵字…" oninput="doSearch(this.value)">
+        </div>
+        <button id="filterBtn" onclick="toggleFilter()">⭐ 收藏</button>
+    </div>
+    <div class="top-bar">
+        <button class="top-btn" onclick="highlightText()">🖊️</button>
+        <button class="top-btn erase" onclick="removeHighlight()">🧽</button>
+        <button class="top-btn clear" onclick="clearHighlights()">🗑️</button>
+        <button class="top-btn export" onclick="openExport()">📤</button>
+        <button class="top-btn done" id="doneBtn" onclick="toggleDone()">朕已閱</button>
+        <span class="done-date" id="doneDateLabel"></span>
+    </div>
+</header>
+
+<div class="container">
+
+    <div class="card" id="case1" data-kw="共同正犯 意思聯絡 逾越 開放性犯罪計畫 偏離 刑法28 台上字236">
+        <button class="star-btn" onclick="toggleStar('case1', this)">⭐</button>
+        <h2 class="card-title">一、113年度台上字第236號</h2>
+        <div class="content">
+            <p><strong>【共同正犯意思聯絡範圍——可預期之偏離行為不構成逾越】</strong></p>
+            <p>共同正犯意思聯絡範圍之認定，在其等事前有精確規劃犯罪計畫時，固甚明確；倘事前並無就每個行為實行細節為鉅細靡遺之規劃，則因各參與者實際實行犯罪之際，難免因應當時情況之變化，而見機行事以為應變。</p>
+            <p>故於參與者所為雖與原先之犯意聯絡有所出入，然如屬依一般生活習慣或社會通念可以預期之共同正犯偏離行為，且該行為亦符合其他共同正犯之利益或符合開放性犯罪計畫時，即未逾越共同犯罪計畫之範圍，而非屬共同正犯逾越，其他參與人就此行為及其結果仍應共同負責。</p>
+        </div>
+        <div class="reference"><strong>參考法條：</strong>刑法第28條。</div>
+        <div class="note-toggle" onclick="toggleNote('n1')">✏️ 我的小結</div>
+        <div class="note-area" id="n1">
+            <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n1', this.value)"></textarea>
+            <div class="note-saved" id="n1-saved"></div>
+        </div>
+    </div>
+
+    <div class="card" id="case2" data-kw="追加起訴 程序瑕疵 治癒 相牽連 訴訟經濟 刑訴6 15 250 264 法院組織法62 台非字142">
+        <button class="star-btn" onclick="toggleStar('case2', this)">⭐</button>
+        <h2 class="card-title">二、113年度台非字第142號</h2>
+        <div class="content">
+            <p><strong>【追加起訴程序違背規定之瑕疵治癒——當事人未異議且已為實體判決者】</strong></p>
+            <p>追加起訴制度，乃因相牽連案件具有事證之關聯性，為避免訴訟活動及證據調查之重複，而予合併審判，用以維護被告受迅速審判及訴訟經濟等利益。故檢察官倘未報請移轉由本訴受訴法院之對應檢察署檢察官追加起訴，而逕向非其對應之法院追加起訴者，雖屬起訴之程序違背規定。</p>
+            <p>然倘當事人未曾表示異議，且受訴法院亦已依法進行相關之訴訟活動及證據調查，對被告訴訟上之權益不生影響，並進而為實體判決者，此時追加起訴制度所維護之利益已大於起訴程序適正性所欲保護之利益，則應認為上開瑕疵已經治癒，不得再爭執法院未諭知不受理判決係屬違法，以兼顧訴訟條件之遵守與追加起訴制度在於藉程序之合併而達簡捷目的之立法意旨。</p>
+        </div>
+        <div class="reference"><strong>參考法條：</strong>刑事訴訟法第6條、第15條、第250條、第264條第1項。法院組織法第62條。</div>
+        <div class="note-toggle" onclick="toggleNote('n2')">✏️ 我的小結</div>
+        <div class="note-area" id="n2">
+            <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n2', this.value)"></textarea>
+            <div class="note-saved" id="n2-saved"></div>
+        </div>
+    </div>
+
+    <div class="card" id="case3" data-kw="卷證資訊獲取權 閱卷 他案 再審 防禦權 刑訴33 429之3 台抗字1626">
+        <button class="star-btn" onclick="toggleStar('case3', this)">⭐</button>
+        <h2 class="card-title">三、113年度台抗字第1626號</h2>
+        <div class="content">
+            <p><strong>【卷證資訊獲取權之範圍——限於本案卷內，不及於他人案件卷宗】</strong></p>
+            <p>刑事訴訟法第33條第2項明定，被告於審判中得預納費用請求付與卷宗及證物之影本，乃係為落實憲法第16條保障人民訴訟權之正當法律程序，俾刑事被告能獲知卷證資訊，有效行使防禦權所設。而法院得據以認定被告犯罪事實之證據資料，限於被告被訴案件之卷宗及證物之內容。</p>
+            <p>因此，被告行使卷證資訊獲取權，自以存在於其被訴案件卷內或經扣案者為限，尚無聲請付與他人案件之卷宗及證物影本之權。同理，被告於判決確定後，為聲請再審目的所需，當僅得請求付與其被訴案內之卷證資料，若認他案卷內存有得證明其所主張再審事由之證據資料，則屬其踐行聲請再審程序中能否依規定聲請調查證據之範疇，應予辨明。</p>
+        </div>
+        <div class="reference"><strong>參考法條：</strong>刑事訴訟法第33條第2項、第429條之3第1項。</div>
+        <div class="note-toggle" onclick="toggleNote('n3')">✏️ 我的小結</div>
+        <div class="note-area" id="n3">
+            <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n3', this.value)"></textarea>
+            <div class="note-saved" id="n3-saved"></div>
+        </div>
+    </div>
+
+    <div id="noResults">查無符合的裁判，請試試其他關鍵字。</div>
+    <div id="noStarred">還沒有收藏的判決，點卡片右上角的 ⭐ 加入收藏。</div>
+</div>
+
+<script>
+const STORE_KEY = '113_9_criminal_notes';
+const STAR_KEY  = '113_9_criminal_stars';
+function loadNotes() { try { return JSON.parse(localStorage.getItem(STORE_KEY)) || {}; } catch { return {}; } }
+function loadStars() { try { return JSON.parse(localStorage.getItem(STAR_KEY))  || {}; } catch { return {}; } }
+function saveAllNotes(d) { localStorage.setItem(STORE_KEY, JSON.stringify(d)); }
+function saveAllStars(d) { localStorage.setItem(STAR_KEY,  JSON.stringify(d)); }
+(function () {
+    const notes = loadNotes(); const stars = loadStars();
+    Object.entries(notes).forEach(([id, val]) => { const area = document.getElementById(id); if (!area) return; const ta = area.querySelector('textarea'); if (ta) ta.value = val; if (val) area.classList.add('open'); });
+    Object.entries(stars).forEach(([caseId, starred]) => { if (!starred) return; const btn = document.querySelector(`#${caseId} .star-btn`); if (btn) btn.classList.add('starred'); });
+})();
+function toggleStar(caseId, btn) { const stars = loadStars(); const nowStarred = !btn.classList.contains('starred'); btn.classList.toggle('starred', nowStarred); stars[caseId] = nowStarred; saveAllStars(stars); if (filterActive) applyFilter(); }
+let filterActive = false;
+function toggleFilter() { filterActive = !filterActive; document.getElementById('filterBtn').classList.toggle('active', filterActive); document.getElementById('searchInput').value = ''; applyFilter(); }
+function applyFilter() { const stars = loadStars(); const query = document.getElementById('searchInput').value.trim().toLowerCase(); let anyVisible = false; document.querySelectorAll('.card').forEach(card => { const id = card.id; const kw = (card.dataset.kw || '').toLowerCase(); const txt = card.textContent.toLowerCase(); const matchSearch = !query || kw.includes(query) || txt.includes(query); const matchStar = !filterActive || !!stars[id]; const show = matchSearch && matchStar; card.classList.toggle('hidden', !show); if (show) anyVisible = true; }); document.getElementById('noResults').style.display = (!anyVisible && !filterActive) ? 'block' : 'none'; document.getElementById('noStarred').style.display = (!anyVisible && filterActive) ? 'block' : 'none'; }
+function doSearch(q) { applyFilter(); }
+function toggleNote(id) { document.getElementById(id).classList.toggle('open'); }
+let timers = {};
+function saveNote(id, value) { clearTimeout(timers[id]); timers[id] = setTimeout(() => { const notes = loadNotes(); notes[id] = value; saveAllNotes(notes); const ind = document.getElementById(id + '-saved'); if (ind) { ind.textContent = '已儲存'; setTimeout(() => ind.textContent = '', 1500); } }, 500); }
+let savedRange = null;
+document.addEventListener('selectionchange', () => { const sel = window.getSelection(); if (sel && !sel.isCollapsed && sel.rangeCount) { savedRange = sel.getRangeAt(0).cloneRange(); } });
+function highlightText() { const sel = window.getSelection(); const range = (sel && !sel.isCollapsed && sel.rangeCount) ? sel.getRangeAt(0) : savedRange; if (!range || range.collapsed) { alert('💡 請先反白想要標記的文字'); return; } const span = document.createElement('span'); span.className = 'hl'; span.style.backgroundColor = '#ffe066'; try { range.surroundContents(span); savedRange = null; } catch { alert('💡 請選取同一段落內的文字'); } sel && sel.removeAllRanges(); }
+function removeHighlight() { const sel = window.getSelection(); const range = (sel && !sel.isCollapsed && sel.rangeCount) ? sel.getRangeAt(0) : savedRange; if (!range || range.collapsed) { alert('💡 請先反白想擦除標記的文字'); return; } const ancestor = range.commonAncestorContainer.nodeType === 1 ? range.commonAncestorContainer : range.commonAncestorContainer.parentElement; ancestor.querySelectorAll('span.hl').forEach(span => { if (range.intersectsNode(span)) { const parent = span.parentNode; while (span.firstChild) parent.insertBefore(span.firstChild, span); parent.removeChild(span); } }); const node = range.commonAncestorContainer; const hlSpan = node.nodeType === 1 ? node.closest?.('span.hl') : node.parentElement?.closest('span.hl'); if (hlSpan) { const parent = hlSpan.parentNode; while (hlSpan.firstChild) parent.insertBefore(hlSpan.firstChild, hlSpan); parent.removeChild(hlSpan); } savedRange = null; sel && sel.removeAllRanges(); }
+function clearHighlights() { const spans = document.querySelectorAll('span.hl'); if (!spans.length) return; if (confirm('確定要清除所有重點標記嗎？')) { spans.forEach(span => { const parent = span.parentNode; while (span.firstChild) parent.insertBefore(span.firstChild, span); parent.removeChild(span); }); } }
+function openExport() {
+    const stars = loadStars(); let out = '113年9月 刑事參考裁判要旨\n' + '═'.repeat(32) + '\n\n';
+    document.querySelectorAll('.card').forEach(card => {
+        const id = card.id; const star = stars[id] ? '⭐ ' : '';
+        const title = card.querySelector('.card-title')?.textContent.trim() || '';
+        out += `【${star}${title}】\n\n`;
+        card.querySelectorAll('.content p').forEach(p => { const strong = p.querySelector('strong'); if (strong) { out += strong.textContent.trim() + '\n'; let rest = ''; let pastStrong = false; p.childNodes.forEach(node => { if (node === strong) { pastStrong = true; return; } if (!pastStrong) return; if (node.nodeType === Node.TEXT_NODE) rest += node.textContent; else if (node.nodeName === 'BR') rest += '\n'; else if (node.nodeName === 'SPAN' && node.classList.contains('hl')) rest += `**${node.textContent}**`; else rest += node.textContent; }); if (rest.trim()) out += rest.trim() + '\n'; } else { let text = ''; p.childNodes.forEach(node => { if (node.nodeType === Node.TEXT_NODE) text += node.textContent; else if (node.nodeName === 'BR') text += '\n'; else if (node.nodeName === 'SPAN' && node.classList.contains('hl')) text += `**${node.textContent}**`; else text += node.textContent; }); out += text.trim() + '\n'; } out += '\n'; });
+        const ref = card.querySelector('.reference'); if (ref) out += '參考法條：' + ref.textContent.replace('參考法條：', '').trim() + '\n\n';
+        const ta = card.querySelector('.note-textarea'); if (ta && ta.value.trim()) out += '✏️ 小結：\n' + ta.value.trim() + '\n\n';
+        out += '═'.repeat(32) + '\n\n';
+    });
+    const blob = new Blob([out.trim()], { type: 'text/plain;charset=utf-8' }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = '113年9月_刑事裁判要旨.txt'; a.click(); URL.revokeObjectURL(url);
+}
+const REGISTRY_KEY = 'exam_completion_registry';
+function _loadReg() { try { return JSON.parse(localStorage.getItem(REGISTRY_KEY)) || {}; } catch { return {}; } }
+function _saveReg(r) { try { localStorage.setItem(REGISTRY_KEY, JSON.stringify(r)); } catch {} }
+function _currentFile() { const parts = location.pathname.split('/'); return decodeURIComponent(parts[parts.length - 1] || ''); }
+function _formatDate(ts) { const d = new Date(ts); return (d.getMonth()+1) + '/' + d.getDate() + '/' + d.getFullYear(); }
+function _updateDateLabel() { const reg = _loadReg(); const key = _currentFile(); const label = document.getElementById('doneDateLabel'); if (!label) return; if (reg[key] && reg[key].done && reg[key].ts) { label.textContent = _formatDate(reg[key].ts); } else { label.textContent = ''; } }
+function toggleDone() { const btn = document.getElementById('doneBtn'); const reg = _loadReg(); const key = _currentFile(); const isDone = reg[key] && reg[key].done; if (isDone) { delete reg[key]; _saveReg(reg); btn.classList.remove('active'); } else { const now = new Date(); reg[key] = { done: true, score: null, total: null, ts: now.getTime(), tsLabel: now.toLocaleDateString('zh-TW') + ' ' + now.toLocaleTimeString('zh-TW', {hour:'2-digit', minute:'2-digit'}) }; _saveReg(reg); btn.classList.add('active'); } _updateDateLabel(); }
+(function() { const reg = _loadReg(); const key = _currentFile(); if (reg[key] && reg[key].done) { const btn = document.getElementById('doneBtn'); if (btn) btn.classList.add('active'); } _updateDateLabel(); })();
+</script>
+</body>
+</html>
