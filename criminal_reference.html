@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>刑事法 - 具參考價值裁判</title>
+    <style>
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; background: linear-gradient(135deg, #FDFCFB 0%, #F2EFE9 100%); color: #595757; display: flex; justify-content: center; align-items: flex-start; min-height: 100vh; margin: 0; padding: 20px; box-sizing: border-box; }
+        .container { background-color: #FFFFFF; width: 100%; max-width: 600px; padding: 40px 30px; border-radius: 8px; box-shadow: 0 12px 24px rgba(140,130,115,0.08); text-align: center; position: relative; }
+        .container::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 4px; background-color: #81b29a; border-bottom-left-radius: 4px; border-bottom-right-radius: 4px; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .back-btn { text-decoration: none; color: #999; font-size: 14px; background: #F9F9F9; padding: 6px 12px; border-radius: 6px; border: 1px solid #EEE; }
+        h1 { margin: 0; font-size: 20px; color: #333; }
+        ul { list-style: none; padding: 0; margin: 0; }
+        li { margin-bottom: 10px; }
+        a.menu-btn { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; background-color: #FAFAFA; color: #595757; text-decoration: none; border-radius: 6px; border-left: 4px solid #81b29a; font-size: 15px; transition: 0.2s; }
+        a.menu-btn:hover { background-color: #F0F7F4; transform: translateX(2px); }
+        .year-divider { margin-top: 25px; margin-bottom: 12px; font-size: 14px; color: #81b29a; font-weight: bold; text-align: left; border-bottom: 1px dashed #EBE8E1; padding-bottom: 5px; letter-spacing: 1.5px; }
+        .placeholder { color: #ccc; font-size: 14px; padding: 10px 0; text-align: left; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <a href="case_criminal_law.html" class="back-btn">🔙 上一頁</a>
+        <h1>刑事法具參目錄</h1>
+        <div style="width:60px"></div>
+    </div>
+
+    <div id="listRoot"></div>
+</div>
+
+<script>
+// ════════════════════════════════════════════════
+//  📌 每次新增具參，只需在對應年份的 entries 加一行：
+//  { label: '顯示名稱', file: '檔案名稱.html' }
+//  file 為 null 表示製作中（灰色佔位）
+//  ⚠️ file 的檔名必須與實際 HTML 檔名完全一致
+//     category-badge.js 會自動比對並顯示已讀徽章
+// ════════════════════════════════════════════════
+const CATALOG = [
+    {
+        year: '114 年度',
+        entries: [
+            { label: '114年度 (10-12月) 刑事具參', file: '114年度_10-12月_刑事具參.html' },
+            { label: '114年度 (7-9月) 刑事具參',   file: '114年度_7-9月_刑事具參.html'   },
+            { label: '114年度 (4-6月) 刑事具參',   file: '114年度_4-6月_刑事具參.html'   },
+            { label: '114年度 (1-3月) 刑事具參',   file: '114年度_1-3月_刑事具參.html'   },
+        ]
+    },
+    {
+        year: '113 年度',
+        entries: [
+            { label: '113年度 (3月) 刑事具參',  file: '113年度_3月_刑事具參_v7.html' },
+            { label: '113年度 (1月) 刑事具參',  file: null },
+        ]
+    },
+    {
+        year: '112 年度',
+        entries: [
+            { label: '112年度 (11月) 刑事具參', file: null },
+        ]
+    },
+];
+// ════════════════════════════════════════════════
+
+(function render() {
+    const root = document.getElementById('listRoot');
+
+    CATALOG.forEach(group => {
+        const divider = document.createElement('div');
+        divider.className = 'year-divider';
+        divider.textContent = group.year;
+        root.appendChild(divider);
+
+        const ul = document.createElement('ul');
+        group.entries.forEach(entry => {
+            const li = document.createElement('li');
+            if (!entry.file) {
+                li.innerHTML = `<div class="placeholder">📄 ${entry.label}（製作中）</div>`;
+            } else {
+                const a = document.createElement('a');
+                a.href = entry.file;
+                a.className = 'menu-btn';
+                a.innerHTML = `<span>${entry.label}</span><span>📄</span>`;
+                li.appendChild(a);
+            }
+            ul.appendChild(li);
+        });
+        root.appendChild(ul);
+    });
+})();
+</script>
+
+<!-- category-badge.js 自動比對 registry，已讀連結自動淡化＋徽章，無需額外設定 -->
+<script src="category-badge.js"></script>
+</body>
+</html>
