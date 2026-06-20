@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>司律題庫區 - 年度選單</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, 'PingFang TC', 'Heiti TC', sans-serif;
+            background: linear-gradient(135deg, #FDFCFB 0%, #F2EFE9 100%);
+            color: #595757;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: #FFFFFF;
+            width: 90%;
+            max-width: 600px;
+            padding: 45px 35px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02), 0 12px 24px rgba(140, 130, 115, 0.08);
+            text-align: center;
+            position: relative;
+        }
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 60px; height: 4px;
+            background-color: #8C1C13;
+            border-bottom-left-radius: 4px;
+            border-bottom-right-radius: 4px;
+        }
+        a.back-btn {
+            display: inline-block;
+            padding: 8px 18px;
+            background-color: transparent;
+            color: #999999;
+            text-decoration: none;
+            border-radius: 20px;
+            border: 1px solid #EBE8E1;
+            font-size: 13px;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+        }
+        a.back-btn:hover { background-color: #F7F5F0; color: #595757; transform: translateX(-4px); }
+        h1 { color: #333333; margin-bottom: 35px; font-size: 24px; font-weight: 500; }
+        .year-title {
+            text-align: left;
+            color: #8C1C13;
+            font-size: 16px;
+            margin: 30px 0 12px 5px;
+            border-bottom: 1px solid #EBE8E1;
+            padding-bottom: 6px;
+            letter-spacing: 1.2px;
+        }
+        ul { list-style-type: none; padding: 0; margin: 0; }
+        li { margin-bottom: 12px; }
+        ul a {
+            display: flex;
+            align-items: center;
+            padding: 14px 20px;
+            background-color: #FAFAFA;
+            color: #595757;
+            text-decoration: none;
+            border-radius: 6px;
+            border: 1px solid #F0F0F0;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        ul a:hover {
+            background-color: #FFFFFF;
+            border-left: 5px solid #8C1C13;
+            color: #8C1C13;
+            transform: translateX(4px);
+            box-shadow: 2px 4px 10px rgba(140, 130, 115, 0.05);
+        }
+        /* 製作中佔位樣式 */
+        .placeholder-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 20px;
+            background-color: #FAFAFA;
+            border-radius: 6px;
+            border: 1px solid #F0F0F0;
+            font-size: 14px;
+            color: #C8C4BC;
+        }
+        .placeholder-badge {
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 10px;
+            background: #F0EDE8;
+            color: #C8C4BC;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <a href="index.html" class="back-btn">🔙 回到大廳選單</a>
+    <h1>⚖️ 司律一試題庫</h1>
+    <div id="listRoot"></div>
+</div>
+
+<script>
+// ════════════════════════════════════════════════
+//  📌 新增考卷只需在對應年份的 entries 加一行：
+//  { label: '顯示名稱', file: '檔案名稱.html' }
+//  file: null 表示製作中，顯示灰色佔位
+// ════════════════════════════════════════════════
+const CATALOG = [
+    {
+        year: '114 年度',
+        entries: [
+            { label: '📝 114司律一試_憲法、行政法、國際公法、國際私法',          file: '114司律一試_憲法、行政法、國際公法、國際私法.html' },
+            { label: '📝 114司律一試_民法、民訴',                               file: '114司律一試_民法、民訴.html' },
+            { label: '📝 114司律一試_刑法、刑事訴訟法、法律倫理',               file: '114司律一試_刑法、刑事訴訟法、法律倫理.html' },
+            { label: '📝 114司律一試_公司法、保險法、票據法、證券交易法、強制執行法、法學英文', file: '114司律一試_公司法、保險法、票據法、證券交易法、強制執行法、法學英文.html' },
+        ]
+    },
+    {
+        year: '113 年度',
+        entries: [
+            { label: '📝 綜合法學(一)：憲法、行政法、國際公法、國際私法', file: '113_law1.html' },
+            { label: '📝 綜合法學(二)：民法、民事訴訟法',               file: '113_law2.html' },
+            { label: '📝 綜合法學(三)：刑法、刑事訴訟法、法律倫理',     file: '113_law3.html' },
+            { label: '📝 綜合法學(四)：公司法、保險法…及法學英文',      file: null },
+        ]
+    },
+    {
+        year: '112 年度',
+        entries: [
+            { label: '📝 112司律一試_憲法、行政法、國際公法、國際私法', file: '112司律一試_憲法、行政法、國際公法、國際私法.html' },
+            { label: '📝 112司律一試_民法、民訴',                      file: '112司律一試_民法、民訴.html' },
+            { label: '📝 112司律一試_刑法、刑事訴訟法、法律倫理',      file: '112司律一試_刑法、刑事訴訟法、法律倫理.html' },
+            { label: '📝 綜合法學(四)：公司法、保險法…及法學英文',     file: '112_law4.html' },
+        ]
+    },
+];
+// ════════════════════════════════════════════════
+
+(function render() {
+    const root = document.getElementById('listRoot');
+
+    CATALOG.forEach(group => {
+        const title = document.createElement('h3');
+        title.className = 'year-title';
+        title.textContent = group.year;
+        root.appendChild(title);
+
+        const ul = document.createElement('ul');
+        group.entries.forEach(entry => {
+            const li = document.createElement('li');
+            if (!entry.file) {
+                li.innerHTML = `
+                    <div class="placeholder-item">
+                        <span>${entry.label}</span>
+                        <span class="placeholder-badge">製作中</span>
+                    </div>`;
+            } else {
+                const a = document.createElement('a');
+                a.href = entry.file;
+                a.textContent = entry.label;
+                li.appendChild(a);
+            }
+            ul.appendChild(li);
+        });
+        root.appendChild(ul);
+    });
+})();
+</script>
+
+<script src="exam-complete.js"></script>
+<script src="category-badge.js"></script>
+</body>
+</html>
