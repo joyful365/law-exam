@@ -115,8 +115,7 @@ function toggleStar(id, btn, link) {
                 const a = document.createElement('a');
                 a.href = entry.file;
                 a.className = 'menu-btn' + (isStarred ? ' starred-link' : '');
-                a.innerHTML = `<span>${entry.label}</span><span>📄</span>`;
-
+                a.innerHTML = `<span>${entry.label}</span>`;
                 // 點星星事件
                 starBtn.addEventListener('click', (e) => {
                     e.preventDefault();
