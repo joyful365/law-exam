@@ -86,8 +86,7 @@ const CATALOG = [
                 const a = document.createElement('a');
                 a.href = entry.file;
                 a.className = 'menu-btn';
-                a.innerHTML = `<span>${entry.label}</span><span>📄</span>`;
-                li.appendChild(a);
+                a.innerHTML = `<span>${entry.label}</span>`;                li.appendChild(a);
             }
             ul.appendChild(li);
         });
