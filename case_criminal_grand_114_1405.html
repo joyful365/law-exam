@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>114年度台上大字第1405號 大法庭裁定</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: "Helvetica Neue", Helvetica, "PingFang TC", "LiHei Pro", "Microsoft JhengHei", sans-serif; background: #eef0f3; color: #1a1a1a; line-height: 1.8; font-size: 16px; margin: 0; padding: 0 0 56px; }
+        header { background: #1a365d; color: white; padding: 18px 16px 10px; text-align: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.18); }
+        header h1 { margin: 0 0 10px; font-size: 1.05em; line-height: 1.5; font-weight: 600; letter-spacing: 0.02em; }
+        .header-controls { display: flex; gap: 8px; align-items: center; }
+        .search-wrap { position: relative; flex: 1; }
+        #searchInput { width: 100%; padding: 8px 14px 8px 34px; border: none; border-radius: 8px; font-size: 14px; background: rgba(255,255,255,0.13); color: white; outline: none; }
+        #searchInput::placeholder { color: rgba(255,255,255,0.5); }
+        #searchInput:focus { background: rgba(255,255,255,0.22); }
+        .search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 13px; opacity: 0.6; pointer-events: none; }
+        #filterBtn { background: rgba(255,255,255,0.13); border: none; border-radius: 8px; color: white; font-size: 13px; padding: 8px 12px; cursor: pointer; white-space: nowrap; }
+        #filterBtn.active { background: #c9a84c; color: #1a365d; font-weight: bold; }
+        .top-bar { background: #dde0e5; padding: 6px 14px; display: flex; gap: 6px; justify-content: flex-end; flex-wrap: nowrap; }
+        .top-btn { background: #5a6375; color: white; border: none; padding: 5px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap; transition: transform 0.1s; }
+        .top-btn:active { transform: scale(0.92); }
+        .top-btn.erase { background: #7a8494; }
+        .top-btn.clear { background: #a0a8b4; }
+        .top-btn.export { background: #c5cad3; color: #2d3748; }
+        .top-btn.done { background: #a0a8b4; color: #1a2a3a; }
+        .top-btn.done.active { background: linear-gradient(135deg,#7a5c00,#a07820); color: #fff3c4; }
+        .done-date { font-size: 11px; color: #8a9ab0; white-space: nowrap; align-self: center; }
+        .container { padding: 16px; max-width: 600px; margin: 0 auto; }
+        @media (min-width: 768px) { body { font-size: 17.5px; } .container { max-width: 860px; padding: 20px; } header h1 { font-size: 1.15em; } }
+        .card { background: #fff; border-radius: 16px; padding: 22px 20px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); position: relative; }
+        .card.hidden { display: none; }
+        .star-btn { position: absolute; top: 18px; right: 18px; background: none; border: none; font-size: 20px; cursor: pointer; opacity: 0.18; transition: opacity 0.15s, transform 0.15s; padding: 0; }
+        .star-btn:active { transform: scale(1.3); }
+        .star-btn.starred { opacity: 1; }
+        .card-title { color: #1a365d; font-size: 1.25em; font-weight: 700; margin: 0 0 4px; padding-right: 28px; line-height: 1.55; }
+        .meta-line { font-size: 0.76em; color: #999; margin-bottom: 18px; letter-spacing: 0.03em; }
+        /* 大法庭專用badge */
+        .grand-badge { display: inline-block; background: #c9a84c; color: #1a1a1a; font-size: 0.7em; font-weight: 800; border-radius: 6px; padding: 2px 8px; margin-right: 7px; letter-spacing: 0.05em; vertical-align: middle; }
+        /* 結論橫幅 */
+        .verdict { background: #1a365d; color: white; border-radius: 11px; padding: 15px 18px; margin-bottom: 20px; }
+        .verdict-label { font-size: 0.68em; letter-spacing: 0.12em; opacity: 0.55; text-transform: uppercase; margin-bottom: 4px; }
+        .verdict-main { font-size: 1.08em; font-weight: 700; line-height: 1.45; margin-bottom: 5px; }
+        .verdict-sub { font-size: 0.83em; opacity: 0.75; line-height: 1.6; margin-bottom: 10px; }
+        .vote-row { display: flex; gap: 7px; flex-wrap: wrap; }
+        .v-chip { font-size: 0.73em; background: rgba(255,255,255,0.12); border-radius: 20px; padding: 3px 10px; white-space: nowrap; color: rgba(255,255,255,0.8); }
+        .v-chip.win { background: rgba(255,255,255,0.28); color: #fff; font-weight: 700; }
+        /* Section 標題 */
+        .section-heading { font-size: 0.72em; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #8a9ab0; margin: 20px 0 10px; padding-bottom: 5px; border-bottom: 1px solid #e8eaee; }
+        /* 問題說明 */
+        .issue-box { background: #f5f6f8; border-radius: 10px; padding: 14px 16px; margin-bottom: 16px; font-size: 0.91em; color: #333; }
+        .issue-box p { margin: 0 0 8px; }
+        .issue-box p:last-child { margin: 0; }
+        /* 事實摘要 */
+        .fact-box { background: #f9f7f0; border-left: 4px solid #c9a84c; border-radius: 0 10px 10px 0; padding: 14px 16px; margin-bottom: 16px; font-size: 0.91em; color: #333; }
+        .fact-box p { margin: 0 0 8px; }
+        .fact-box p:last-child { margin: 0; }
+        /* 意見區塊 */
+        .opinions { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+        .op { border-radius: 10px; overflow: hidden; border: 1px solid #e4e7ec; }
+        .op-head { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #f5f6f8; }
+        .op-num { width: 26px; height: 26px; border-radius: 50%; background: #1a365d; color: white; font-size: 0.75em; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .op-label { font-weight: 700; font-size: 0.93em; color: #1a365d; flex: 1; }
+        .op-conclusion-chip { font-size: 0.74em; color: #666; background: #eaecf0; border-radius: 20px; padding: 2px 9px; white-space: nowrap; }
+        .op-body { padding: 13px 15px; font-size: 0.9em; background: #fff; }
+        .op-body p { margin: 0 0 9px; }
+        .op-body p:last-child { margin: 0; }
+        .op-body ul { margin: 5px 0 8px; padding-left: 18px; }
+        .op-body li { margin-bottom: 4px; }
+        .op-result { background: #f0f3f8; border-radius: 7px; padding: 10px 13px; margin-top: 10px; font-size: 0.9em; border-left: 3px solid #1a365d; }
+        /* 折疊 */
+        details { margin-top: 16px; }
+        details summary { cursor: pointer; color: #5a6880; font-size: 0.85em; font-weight: 600; padding: 5px 0; user-select: none; list-style: none; display: flex; align-items: center; gap: 5px; }
+        details summary::before { content: '▶'; font-size: 0.65em; transition: transform 0.2s; color: #8a9ab0; }
+        details[open] summary::before { transform: rotate(90deg); }
+        .ref-case { background: #f5f6f8; border-radius: 8px; padding: 11px 14px; margin-bottom: 8px; font-size: 0.85em; border-left: 3px solid #1a365d; }
+        .ref-case.yi { border-left-color: #8a9ab0; }
+        .ref-case-title { font-weight: 700; color: #1a365d; margin-bottom: 4px; font-size: 0.9em; }
+        .ref-case.yi .ref-case-title { color: #4a5568; }
+        .law-ref { background: #f0f2f5; border-radius: 8px; padding: 10px 14px; font-size: 0.85em; color: #4a5568; margin-top: 14px; border-left: 3px solid #1a365d; }
+        /* 筆記 */
+        .note-toggle { display: inline-block; margin-top: 14px; font-size: 0.8em; color: #b0b8c4; cursor: pointer; user-select: none; }
+        .note-toggle:hover { color: #1a365d; }
+        .note-area { display: none; margin-top: 8px; }
+        .note-area.open { display: block; }
+        .note-textarea { width: 100%; min-height: 68px; border: 1px solid #e0e4ea; border-radius: 8px; padding: 10px 12px; font-size: 0.87em; font-family: inherit; color: #333; background: #fafbfc; resize: vertical; outline: none; line-height: 1.7; }
+        .note-textarea:focus { border-color: #1a365d; }
+        .note-textarea::placeholder { color: #ccc; }
+        .note-saved { font-size: 0.72em; color: #68d391; text-align: right; height: 14px; margin-top: 2px; }
+        /* 合議庭成員 */
+        .judges-grid { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+        .judge-chip { font-size: 0.78em; background: #eef1f6; border-radius: 20px; padding: 3px 11px; color: #3a4a6a; border: 1px solid #d8dde8; }
+        .judge-chip.chief { background: #1a365d; color: white; font-weight: 700; border-color: #1a365d; }
+        #noResults, #noStarred { display: none; text-align: center; color: #a0aec0; padding: 40px 0; font-size: 0.9em; }
+        ::-webkit-scrollbar { display: none; }
+        ::selection { background: #c8d8ef; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>最高法院刑事大法庭<br>114年度台上大字第1405號</h1>
+    <div class="header-controls">
+        <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="搜尋關鍵字、法條…" oninput="doSearch(this.value)">
+        </div>
+        <button id="filterBtn" onclick="toggleFilter()">⭐ 收藏</button>
+    </div>
+    <div class="top-bar">
+        <button class="top-btn" onclick="highlightText()">🖊️</button>
+        <button class="top-btn erase" onclick="removeHighlight()">🧽</button>
+        <button class="top-btn clear" onclick="clearHighlights()">🗑️</button>
+        <button class="top-btn export" onclick="openExport()">📤</button>
+        <button class="top-btn done" id="doneBtn" onclick="toggleDone()">朕已閱</button>
+        <span class="done-date" id="doneDateLabel"></span>
+    </div>
+</header>
+
+<div class="container">
+<div class="card" id="case1" data-kw="兒少 性影像 偷拍 兒童及少年性剝削防制條例 第36條 第1項 第3項 強暴脅迫 詐術 違反意願 大法庭 性隱私 裙底 褲底 拍攝">
+    <button class="star-btn" onclick="toggleStar('case1',this)">⭐</button>
+
+    <h2 class="card-title">以偷拍方式對不知情兒少拍攝性影像，是否該當兒少性剝削防制條例第36條第3項？</h2>
+    <div class="meta-line">裁定日期：民國115年2月4日　｜　案號：114年度台上大字第1405號　｜　提案庭：最高法院刑事第七庭</div>
+
+    <!-- 結論橫幅 -->
+    <div class="verdict">
+        <div class="verdict-label">大法庭主文</div>
+        <div class="verdict-main">不該當第36條第3項——應依同條第1項論處</div>
+        <div class="verdict-sub">行為人未施強暴、脅迫、藥劑、詐術或催眠術，而以偷拍方式，對不知情之兒童或少年拍攝性影像，不該當兒童及少年性剝削防制條例第36條第3項之構成要件；若未另有同條第2項或第4項之其他非法行為或營利意圖，應依同條第1項之規定論處。</div>
+        <div class="vote-row">
+            <span class="v-chip win">大法庭一致裁定 ✔</span>
+            <span class="v-chip">裁定日：115.02.04</span>
+            <span class="v-chip">法官共11人</span>
+        </div>
+    </div>
+
+    <!-- 基礎事實 -->
+    <div class="section-heading">基礎事實</div>
+    <div class="fact-box">
+        <p>上訴人黃文辰明知在新北市各書局、便利商店等處所見之被害人為未滿12歲兒童或12歲以上未滿18歲少年，竟基於拍攝兒少性影像之犯意，於民國112年6月間，先後<strong>6次以手機偷拍方式</strong>，著手對不知情之兒少拍攝<strong>裙（或褲）底之性影像</strong>。</p>
+        <p>其中1次既遂（攝得A1之性影像），其餘5次未遂。</p>
+        <p><strong>爭點：</strong>第一審依第36條<strong>第1項</strong>論罪；原審（第二審）撤銷改判，變更為第36條<strong>第3項</strong>之既、未遂各罪刑，上訴人不服上訴，最高法院第七庭提案大法庭。</p>
+    </div>
+
+    <!-- 法律爭議 -->
+    <div class="section-heading">法律爭議</div>
+    <div class="issue-box">
+        <p><strong>爭議問題：</strong>行為人以偷拍方式（未施強暴、脅迫、藥劑、詐術、催眠術），對不知情之兒少拍攝其性影像，是否該當本條例第36條第3項之構成要件？</p>
+        <p><strong>第36條第1項</strong>（一般規定）：拍攝兒少性影像罪，法定刑為<strong>1年以上7年以下有期徒刑</strong>，得併科新臺幣10萬元以上100萬元以下罰金。</p>
+        <p><strong>第36條第3項</strong>（加重規定）：以強暴、脅迫、藥劑、詐術、催眠術或其他<strong>違反本人意願之方法</strong>犯第1項或第2項之罪，法定刑加重。</p>
+    </div>
+
+    <!-- 大法庭理由 -->
+    <div class="section-heading">大法庭裁定理由</div>
+    <div class="opinions">
+
+        <!-- 理由一：法益保護體系 -->
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">壹</div>
+                <span class="op-label">法益保護原則——罪刑法定、不得恣意擴張</span>
+            </div>
+            <div class="op-body">
+                <p>國家為保護法益之目的制定刑罰法律，解釋適用時，應以保護之法益為核心。<strong>不得恣意擴張構成要件或增加法律規定所無之內容</strong>，擴增非原有文義所能預測之可罰行為範圍。</p>
+                <p>法益保護乃刑罰具正當性之基礎，法院對刑事法律之解釋，不得逸出法律文義範圍，將「未經同意」擬制為「強制（或違反意願）」，予以從重處罰，致悖乎正義。</p>
+            </div>
+        </div>
+
+        <!-- 理由二：性隱私與性自主之區別 -->
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">貳</div>
+                <span class="op-label">性隱私自主權 v. 身體性自主權——規範模式不同</span>
+            </div>
+            <div class="op-body">
+                <p><strong>刑法妨害性自主罪</strong>保護「身體性自主」之意思形成或決定自由，以<strong>強暴、脅迫、恐嚇、催眠術或其他違反意願之手段</strong>為構成要件。</p>
+                <p><strong>刑法妨害性隱私罪</strong>保護「個人性隱私」，以<strong>「未經同意」</strong>為基本要件（刑法第319條之1第1項），強暴、脅迫等為<em>加重</em>要件（刑法第319條之2第1項）。</p>
+                <p>二者規範對象本質上不同：「未經同意」係泛指未有合意之所有情狀，<strong>並非以意思自由之侵害為處罰對象</strong>；「強制（或違反意願）」則指壓抑或妨害個人意思自由而言。</p>
+                <div class="op-result">
+                    <strong>小結：</strong>倘立法者依保護法益之不同，分別採取「未經同意」或「強制」模式設定構成要件，法院即不得將「未經同意」擬制為「違反意願」而從重處罰。
+                </div>
+            </div>
+        </div>
+
+        <!-- 理由三：本條例第36條之層級化處罰結構 -->
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">參</div>
+                <span class="op-label">第36條層級化處罰結構——偷拍屬第1項一般規定</span>
+            </div>
+            <div class="op-body">
+                <p><strong>㈠ 立法目的：</strong>本條例保護兒少之性隱私與身心健全發展，不區別兒少有無意願，一律加以保護。只要拍攝兒少性影像，就已侵害兒少性隱私與身心健全發展之法益，其行為本身即具剝削性。</p>
+                <p><strong>㈡ 第1項為一般規定：</strong>第36條第1項並未針對被害人知情與否之主觀狀態另設要件或限制，<strong>只要拍攝兒少之性影像，即符合第1項一般處罰規定</strong>，適用上未排除偷拍兒少性影像之情形。</p>
+                <p><strong>㈢ 第3項為加重規定（雙行為犯）：</strong>以「強暴、脅迫、藥劑、詐術、催眠術或其他違反本人意願之方法」作為加重要件，保護法益除性隱私外，<em>另及於兒少性隱私意思自由</em>。成立第3項犯罪，除拍攝基礎行為外，尚須<strong>行為人壓抑或妨害兒少對於拍攝性影像之意思自由</strong>。</p>
+                <ul>
+                    <li>以強暴、脅迫壓抑其意思自由</li>
+                    <li>以藥劑或催眠術造成認識或意願形成之缺損</li>
+                    <li>以具法益關聯性之詐術不當影響其關鍵決定</li>
+                    <li>營造無助或弱勢處境，使之難以逃脫或抗拒</li>
+                </ul>
+                <div class="op-result">
+                    <strong>小結：</strong>未達上述程度者，僅能論以第1項之拍攝兒少性影像罪。
+                </div>
+            </div>
+        </div>
+
+        <!-- 理由四：偷拍不構成第3項各手段 -->
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">肆</div>
+                <span class="op-label">偷拍行為不該當第3項各加重手段之分析</span>
+            </div>
+            <div class="op-body">
+                <p><strong>㈠ 非「詐術」：</strong>第3項之「詐術」要求行為人以具法益關聯性之詐術積極介入，使兒少陷於錯誤，而不當影響其對被拍攝與否之關鍵決定。然而，<strong>兒少根本不知被偷拍，未開啟意思形成或決定之程序</strong>，自無陷於錯誤而決定被拍攝可言，當非第3項之「詐術」。</p>
+                <p><strong>㈡ 非「其他違反意願之方法」：</strong>行為人以偷拍方式，既未施強暴、脅迫、藥劑、詐術、催眠術，亦未以其他手段壓抑或妨害兒少之性隱私意思自由。因兒少對偷拍過程始終不知情，<strong>客觀上亦無壓抑或妨害兒少意思形成或決定之作用可言</strong>。</p>
+                <p><strong>㈢ 不因下列因素而改變判斷：</strong>行為地點（是否公共空間）、行為人與兒少之關係（是否熟識）、拍攝時間長短。</p>
+                <p><strong>㈣ 不得限縮第1項、擴張第3項：</strong>不能一方面限縮解釋第1項適用僅限「兒少知情同意」，同時擴張第3項將「偷拍」解釋為等同強制之「其他違反意願之方法」，衍生違反罪刑法定原則之疑慮。</p>
+                <div class="op-result">
+                    <strong>小結：</strong>「未經同意而偷拍」縱侵害兒少潛在之決定權，仍應恪遵第1項與第3項之文義與規範目的，依第1項論處。第1項法定刑（1年以上7年以下有期徒刑）已具備從重量刑之空間，評價無不足之虞。
+                </div>
+            </div>
+        </div>
+
+        <!-- 理由五：性影像認定 -->
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">伍</div>
+                <span class="op-label">「性影像」之認定——適用刑法第10條第8項</span>
+            </div>
+            <div class="op-body">
+                <p>本條例就「性影像」未有明文定義，應適用<strong>刑法第10條第8項</strong>之規定認定。</p>
+                <p>刑法第10條第8項所稱之性影像，包含同條項<strong>第2款「性器或客觀上足以引起性慾或羞恥之身體隱私部位」</strong>之影像或電磁紀錄，<em>並不侷限於特定對象的「行為（含性活動）」過程</em>。</p>
+                <div class="op-result">
+                    <strong>實務操作：</strong>偷拍經內褲或內衣包覆之兒少性器或身體隱私部位，客觀上足以造成羞恥，或引起性慾，依刑法第10條第8項第2款，即應認係本條例第36條之兒少性影像——包含裙底、褲底之拍攝。
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 法條 -->
+    <div class="law-ref"><strong>相關法條：</strong>兒童及少年性剝削防制條例第36條第1項、第2項、第3項、第4項；刑法第10條第8項；刑法第319條之1、第319條之2；兒童及少年福利與權益保障法第112條第1項；兒童權利公約第34條。</div>
+
+    <!-- 合議庭成員 -->
+    <details>
+        <summary>大法庭組成（11名法官）</summary>
+        <div style="padding-top:10px;">
+            <div class="judges-grid">
+                <span class="judge-chip chief">審判長　徐昌錦</span>
+                <span class="judge-chip">林立華</span>
+                <span class="judge-chip">段景榕</span>
+                <span class="judge-chip">李英勇</span>
+                <span class="judge-chip">李錦樑</span>
+                <span class="judge-chip">林恆吉</span>
+                <span class="judge-chip">林瑞斌</span>
+                <span class="judge-chip">梁宏哲</span>
+                <span class="judge-chip">林海祥</span>
+                <span class="judge-chip">蔡廣昇</span>
+                <span class="judge-chip">朱瑞娟</span>
+            </div>
+            <p style="font-size:0.82em;color:#888;margin:10px 0 0;">書記官：林明智　｜　裁定日期：中華民國115年2月4日</p>
+        </div>
+    </details>
+
+    <!-- 參考資料 -->
+    <details>
+        <summary>參考資料與相關見解</summary>
+        <div style="padding-top:10px;">
+            <div class="ref-case">
+                <div class="ref-case-title">【規範體系】刑法妨害性隱私罪（§319-1、§319-2）</div>
+                <p style="margin:0;">第319條之1第1項：「未經同意」拍攝性影像為基本要件（與本條例第36條第1項性質相近）；第319條之2第1項：加列「強制或違反意願之方法」（與本條例第36條第3項性質相近）。大法庭藉此規範體系對照，強化「偷拍屬第1項而非第3項」之論理。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">【立法沿革】兒少性交易防制條例第27條（84年）</div>
+                <p style="margin:0;">本條例第36條之前身，立法時即將兒少性影像犯罪區分為一般、意圖營利、引誘或媒介、強制、常業犯等五種，顯示立法者有意識地以不同行為手段設定層級化處罰，強制手段始為加重事由。</p>
+            </div>
+            <div class="ref-case yi">
+                <div class="ref-case-title">【原審見解（遭大法庭推翻）】第二審改判第36條第3項</div>
+                <p style="margin:0;">原審認為偷拍屬「違反意願之方法」，將第3項加重規定適用於偷拍行為。大法庭認此解釋逸出文義、增加法律所無之處罰內容，有違罪刑法定原則，予以糾正。</p>
+            </div>
+            <div class="ref-case yi">
+                <div class="ref-case-title">【法規競合】兒少福利法§112Ⅰ與本條例§36Ⅰ</div>
+                <p style="margin:0;">偷拍行為若同時該當兒童及少年福利與權益保障法第112條第1項前段（成年人故意對兒少犯刑法第319條之1第1項罪），屬同一行為同時有二種法律可資處罰之法規競合，依「重法優於輕法、特別法優於普通法」，擇較重之本條例第36條第1項論處。</p>
+            </div>
+        </div>
+    </details>
+
+    <div class="note-toggle" onclick="toggleNote('n1')">✏️ 我的小結</div>
+    <div class="note-area" id="n1">
+        <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n1',this.value)"></textarea>
+        <div class="note-saved" id="n1-saved"></div>
+    </div>
+</div>
+
+<div id="noResults">查無符合的內容，請試試其他關鍵字。</div>
+<div id="noStarred">還沒有收藏的項目，點卡片右上角的 ⭐ 加入收藏。</div>
+</div>
+
+<script>
+const STORE_KEY='114_1405_grand_notes',STAR_KEY='114_1405_grand_stars';
+function loadNotes(){try{return JSON.parse(localStorage.getItem(STORE_KEY))||{};}catch{return{};}}
+function loadStars(){try{return JSON.parse(localStorage.getItem(STAR_KEY))||{};}catch{return{};}}
+function saveAllNotes(d){localStorage.setItem(STORE_KEY,JSON.stringify(d));}
+function saveAllStars(d){localStorage.setItem(STAR_KEY,JSON.stringify(d));}
+(function(){const n=loadNotes(),s=loadStars();Object.entries(n).forEach(([id,v])=>{const a=document.getElementById(id);if(!a)return;const t=a.querySelector('textarea');if(t)t.value=v;if(v)a.classList.add('open');});Object.entries(s).forEach(([id,v])=>{if(!v)return;const b=document.querySelector(`#${id} .star-btn`);if(b)b.classList.add('starred');});})();
+function toggleStar(id,btn){const s=loadStars();const now=!btn.classList.contains('starred');btn.classList.toggle('starred',now);s[id]=now;saveAllStars(s);if(filterActive)applyFilter();}
+let filterActive=false;
+function toggleFilter(){filterActive=!filterActive;document.getElementById('filterBtn').classList.toggle('active',filterActive);document.getElementById('searchInput').value='';applyFilter();}
+function applyFilter(){const s=loadStars();const q=document.getElementById('searchInput').value.trim().toLowerCase();let any=false;document.querySelectorAll('.card').forEach(c=>{const kw=(c.dataset.kw||'').toLowerCase();const txt=c.textContent.toLowerCase();const ms=!q||kw.includes(q)||txt.includes(q);const mf=!filterActive||!!s[c.id];const show=ms&&mf;c.classList.toggle('hidden',!show);if(show)any=true;});document.getElementById('noResults').style.display=(!any&&!filterActive)?'block':'none';document.getElementById('noStarred').style.display=(!any&&filterActive)?'block':'none';}
+function doSearch(){applyFilter();}
+function toggleNote(id){document.getElementById(id).classList.toggle('open');}
+const timers={};
+function saveNote(id,v){clearTimeout(timers[id]);timers[id]=setTimeout(()=>{const n=loadNotes();n[id]=v;saveAllNotes(n);const el=document.getElementById(id+'-saved');if(el){el.textContent='已儲存';setTimeout(()=>el.textContent='',1500);}},500);}
+let savedRange=null;
+document.addEventListener('selectionchange',()=>{const s=window.getSelection();if(s&&!s.isCollapsed&&s.rangeCount)savedRange=s.getRangeAt(0).cloneRange();});
+function highlightText(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;if(!r||r.collapsed){alert('💡 請先反白想要標記的文字');return;}const sp=document.createElement('span');sp.className='hl';sp.style.backgroundColor='#ffe066';try{r.surroundContents(sp);savedRange=null;}catch{alert('💡 請選取同一段落內的文字');}s&&s.removeAllRanges();}
+function removeHighlight(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;if(!r||r.collapsed){alert('💡 請先反白想擦除標記的文字');return;}const anc=r.commonAncestorContainer.nodeType===1?r.commonAncestorContainer:r.commonAncestorContainer.parentElement;anc.querySelectorAll('span.hl').forEach(sp=>{if(r.intersectsNode(sp)){const p=sp.parentNode;while(sp.firstChild)p.insertBefore(sp.firstChild,sp);p.removeChild(sp);}});savedRange=null;s&&s.removeAllRanges();}
+function clearHighlights(){const sp=document.querySelectorAll('span.hl');if(!sp.length)return;if(confirm('確定要清除所有重點標記嗎？')){sp.forEach(s=>{const p=s.parentNode;while(s.firstChild)p.insertBefore(s.firstChild,s);p.removeChild(s);});}}
+function openExport(){
+    const stars=loadStars();
+    let out='最高法院刑事大法庭 114年度台上大字第1405號\n'+'═'.repeat(44)+'\n\n';
+    document.querySelectorAll('.card').forEach(c=>{
+        const star=stars[c.id]?'⭐ ':'';
+        const title=c.querySelector('.card-title')?.textContent.trim()||'';
+        out+=`【${star}${title}】\n\n`;
+        const vMain=c.querySelector('.verdict-main');
+        const vSub=c.querySelector('.verdict-sub');
+        if(vMain) out+='▌大法庭主文\n'+vMain.textContent.trim()+'\n';
+        if(vSub)  out+=vSub.textContent.trim()+'\n';
+        const chips=[...c.querySelectorAll('.v-chip')].map(el=>el.textContent.trim()).join('　');
+        if(chips) out+=chips+'\n';
+        out+='\n';
+        c.querySelectorAll('.op').forEach(op=>{
+            const head=op.querySelector('.op-label')?.textContent.trim()||'';
+            out+=`▌${head}\n`;
+            op.querySelectorAll('.op-body p, .op-body li, .op-result').forEach(el=>{
+                const t=el.textContent.trim();
+                if(t) out+=(el.tagName==='LI'?'  • ':'')+t+'\n';
+            });
+            out+='\n';
+        });
+        const law=c.querySelector('.law-ref');
+        if(law) out+=law.textContent.trim()+'\n\n';
+        const ta=c.querySelector('.note-textarea');
+        if(ta&&ta.value.trim()) out+='✏️ 小結：\n'+ta.value.trim()+'\n\n';
+        out+='═'.repeat(44)+'\n\n';
+    });
+    const b=new Blob([out.trim()],{type:'text/plain;charset=utf-8'});
+    const u=URL.createObjectURL(b);
+    const a=document.createElement('a');
+    a.href=u;a.download='114台上大字第1405號_偷拍兒少性影像.txt';a.click();
+    URL.revokeObjectURL(u);
+}
+const REG_KEY='exam_completion_registry';
+function _loadReg(){try{return JSON.parse(localStorage.getItem(REG_KEY))||{};}catch{return{};}}
+function _saveReg(r){try{localStorage.setItem(REG_KEY,JSON.stringify(r));}catch{}}
+function _file(){const p=location.pathname.split('/');return decodeURIComponent(p[p.length-1]||'');}
+function _fmt(ts){const d=new Date(ts);return(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();}
+function _updateDate(){const r=_loadReg();const k=_file();const l=document.getElementById('doneDateLabel');if(!l)return;l.textContent=(r[k]&&r[k].done&&r[k].ts)?_fmt(r[k].ts):'';}
+const _INDEX_CARD_ID='c37';
+function _syncIndex(done){try{const r=JSON.parse(localStorage.getItem('gc_reads')||'{}');r[_INDEX_CARD_ID]=done;localStorage.setItem('gc_reads',JSON.stringify(r));}catch(e){console.log('sync err',e);}}
+function toggleDone(){const btn=document.getElementById('doneBtn');const r=_loadReg();const k='case_criminal_grand_114_1405.html';const done=r[k]&&r[k].done;if(done){delete r[k];_saveReg(r);btn.classList.remove('active');_syncIndex(false);}else{const now=new Date();r[k]={done:true,score:null,total:null,ts:now.getTime(),tsLabel:now.toLocaleDateString('zh-TW')+' '+now.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false})};_saveReg(r);btn.classList.add('active');_syncIndex(true);}_updateDate();}
+// 也在頁面載入時同步當前狀態
+(function initSync(){const r=_loadReg();const k='case_criminal_grand_114_1405.html';_syncIndex(!!(r[k]&&r[k].done));})();
+(function(){const r=_loadReg();const k=_file();if(r[k]&&r[k].done){const b=document.getElementById('doneBtn');if(b)b.classList.add('active');}_updateDate();})();
+</script>
+</body>
+</html>
