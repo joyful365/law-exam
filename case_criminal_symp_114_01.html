@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>114年度刑事法律座談會第1號</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: "Helvetica Neue", Helvetica, "PingFang TC", "LiHei Pro", "Microsoft JhengHei", sans-serif; background: #eef0f3; color: #1a1a1a; line-height: 1.8; font-size: 16px; margin: 0; padding: 0 0 56px; }
+        header { background: #1a365d; color: white; padding: 18px 16px 10px; text-align: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.18); }
+        header h1 { margin: 0 0 10px; font-size: 1.05em; line-height: 1.5; font-weight: 600; letter-spacing: 0.02em; }
+        .header-controls { display: flex; gap: 8px; align-items: center; }
+        .search-wrap { position: relative; flex: 1; }
+        #searchInput { width: 100%; padding: 8px 14px 8px 34px; border: none; border-radius: 8px; font-size: 14px; background: rgba(255,255,255,0.13); color: white; outline: none; }
+        #searchInput::placeholder { color: rgba(255,255,255,0.5); }
+        #searchInput:focus { background: rgba(255,255,255,0.22); }
+        .search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 13px; opacity: 0.6; pointer-events: none; }
+        #filterBtn { background: rgba(255,255,255,0.13); border: none; border-radius: 8px; color: white; font-size: 13px; padding: 8px 12px; cursor: pointer; white-space: nowrap; }
+        #filterBtn.active { background: #c9a84c; color: #1a365d; font-weight: bold; }
+        .top-bar { background: #dde0e5; padding: 6px 14px; display: flex; gap: 6px; justify-content: flex-end; flex-wrap: nowrap; }
+        .top-btn { background: #5a6375; color: white; border: none; padding: 5px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap; transition: transform 0.1s; }
+        .top-btn:active { transform: scale(0.92); }
+        .top-btn.erase { background: #7a8494; }
+        .top-btn.clear { background: #a0a8b4; }
+        .top-btn.export { background: #c5cad3; color: #2d3748; }
+        .top-btn.done { background: #a0a8b4; color: #1a2a3a; }
+        .top-btn.done.active { background: linear-gradient(135deg,#7a5c00,#a07820); color: #fff3c4; }
+        .done-date { font-size: 11px; color: #8a9ab0; white-space: nowrap; align-self: center; }
+        .container { padding: 16px; max-width: 600px; margin: 0 auto; }
+        @media (min-width: 768px) { body { font-size: 17.5px; } .container { max-width: 860px; padding: 20px; } header h1 { font-size: 1.15em; } }
+        .card { background: #fff; border-radius: 16px; padding: 22px 20px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); position: relative; }
+        .card.hidden { display: none; }
+        .star-btn { position: absolute; top: 18px; right: 18px; background: none; border: none; font-size: 20px; cursor: pointer; opacity: 0.18; transition: opacity 0.15s, transform 0.15s; padding: 0; }
+        .star-btn:active { transform: scale(1.3); }
+        .star-btn.starred { opacity: 1; }
+        .card-title { color: #1a365d; font-size: 1.25em; font-weight: 700; margin: 0 0 4px; padding-right: 28px; line-height: 1.55; }
+        .meta-line { font-size: 0.76em; color: #999; margin-bottom: 18px; letter-spacing: 0.03em; }
+        /* 結論橫幅 */
+        .verdict { background: #1a365d; color: white; border-radius: 11px; padding: 15px 18px; margin-bottom: 20px; }
+        .verdict-label { font-size: 0.68em; letter-spacing: 0.12em; opacity: 0.55; text-transform: uppercase; margin-bottom: 4px; }
+        .verdict-main { font-size: 1.08em; font-weight: 700; line-height: 1.45; margin-bottom: 5px; }
+        .verdict-sub { font-size: 0.83em; opacity: 0.75; line-height: 1.6; margin-bottom: 10px; }
+        .vote-row { display: flex; gap: 7px; flex-wrap: wrap; }
+        .v-chip { font-size: 0.73em; background: rgba(255,255,255,0.12); border-radius: 20px; padding: 3px 10px; white-space: nowrap; color: rgba(255,255,255,0.8); }
+        .v-chip.win { background: rgba(255,255,255,0.28); color: #fff; font-weight: 700; }
+        /* Section 標題 */
+        .section-heading { font-size: 0.72em; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #8a9ab0; margin: 20px 0 10px; padding-bottom: 5px; border-bottom: 1px solid #e8eaee; }
+        /* 問題說明 */
+        .issue-box { background: #f5f6f8; border-radius: 10px; padding: 14px 16px; margin-bottom: 16px; font-size: 0.91em; color: #333; }
+        .issue-box p { margin: 0 0 8px; }
+        .issue-box p:last-child { margin: 0; }
+        /* 意見區塊 */
+        .opinions { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+        .op { border-radius: 10px; overflow: hidden; border: 1px solid #e4e7ec; }
+        .op-head { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #f5f6f8; }
+        .op-num { width: 26px; height: 26px; border-radius: 50%; background: #1a365d; color: white; font-size: 0.75em; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .op-label { font-weight: 700; font-size: 0.93em; color: #1a365d; flex: 1; }
+        .op-conclusion-chip { font-size: 0.74em; color: #666; background: #eaecf0; border-radius: 20px; padding: 2px 9px; white-space: nowrap; }
+        .op-body { padding: 13px 15px; font-size: 0.9em; background: #fff; }
+        .op-body p { margin: 0 0 9px; }
+        .op-body p:last-child { margin: 0; }
+        .op-body ul { margin: 5px 0 8px; padding-left: 18px; }
+        .op-body li { margin-bottom: 4px; }
+        .op-result { background: #f0f3f8; border-radius: 7px; padding: 10px 13px; margin-top: 10px; font-size: 0.9em; border-left: 3px solid #1a365d; }
+        /* 折疊 */
+        details { margin-top: 16px; }
+        details summary { cursor: pointer; color: #5a6880; font-size: 0.85em; font-weight: 600; padding: 5px 0; user-select: none; list-style: none; display: flex; align-items: center; gap: 5px; }
+        details summary::before { content: '▶'; font-size: 0.65em; transition: transform 0.2s; color: #8a9ab0; }
+        details[open] summary::before { transform: rotate(90deg); }
+        .ref-case { background: #f5f6f8; border-radius: 8px; padding: 11px 14px; margin-bottom: 8px; font-size: 0.85em; border-left: 3px solid #1a365d; }
+        .ref-case.yi { border-left-color: #8a9ab0; }
+        .ref-case-title { font-weight: 700; color: #1a365d; margin-bottom: 4px; font-size: 0.9em; }
+        .ref-case.yi .ref-case-title { color: #4a5568; }
+        .law-ref { background: #f0f2f5; border-radius: 8px; padding: 10px 14px; font-size: 0.85em; color: #4a5568; margin-top: 14px; border-left: 3px solid #1a365d; }
+        /* 筆記 */
+        .note-toggle { display: inline-block; margin-top: 14px; font-size: 0.8em; color: #b0b8c4; cursor: pointer; user-select: none; }
+        .note-toggle:hover { color: #1a365d; }
+        .note-area { display: none; margin-top: 8px; }
+        .note-area.open { display: block; }
+        .note-textarea { width: 100%; min-height: 68px; border: 1px solid #e0e4ea; border-radius: 8px; padding: 10px 12px; font-size: 0.87em; font-family: inherit; color: #333; background: #fafbfc; resize: vertical; outline: none; line-height: 1.7; }
+        .note-textarea:focus { border-color: #1a365d; }
+        .note-textarea::placeholder { color: #ccc; }
+        .note-saved { font-size: 0.72em; color: #68d391; text-align: right; height: 14px; margin-top: 2px; }
+        #noResults, #noStarred { display: none; text-align: center; color: #a0aec0; padding: 40px 0; font-size: 0.9em; }
+        ::-webkit-scrollbar { display: none; }
+        ::selection { background: #c8d8ef; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>臺灣高等法院<br>114年度刑事法律座談會第1號</h1>
+    <div class="header-controls">
+        <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="搜尋關鍵字、法條…" oninput="doSearch(this.value)">
+        </div>
+        <button id="filterBtn" onclick="toggleFilter()">⭐ 收藏</button>
+    </div>
+    <div class="top-bar">
+        <button class="top-btn" onclick="highlightText()">🖊️</button>
+        <button class="top-btn erase" onclick="removeHighlight()">🧽</button>
+        <button class="top-btn clear" onclick="clearHighlights()">🗑️</button>
+        <button class="top-btn export" onclick="openExport()">📤</button>
+        <button class="top-btn done" id="doneBtn" onclick="toggleDone()">朕已閱</button>
+        <span class="done-date" id="doneDateLabel"></span>
+    </div>
+</header>
+
+<div class="container">
+<div class="card" id="case1" data-kw="違法建築 沒收 違建 犯罪關聯客體 犯罪所生之物 建築法93 建築法95 建築法25 建築法58 刑法38 復工 重建 行政強制拆除">
+    <button class="star-btn" onclick="toggleStar('case1',this)">⭐</button>
+
+    <h2 class="card-title">違法建築完成之違建部分，經行政強制拆除前，在沒收法制上是否為得沒收之標的？</h2>
+    <div class="meta-line">提案機關：臺灣新竹地方法院</div>
+
+    <!-- 結論橫幅 -->
+    <div class="verdict">
+        <div class="verdict-label">研討結論</div>
+        <div class="verdict-main">採乙說（犯罪所生之物說）——惟裁量不予宣告沒收</div>
+        <div class="verdict-sub">違建部分屬犯罪所生之物，具沒收標的性質；然衡酌行政機關已有法律依據得排除違規狀態，實務上多裁量不予宣告沒收，歸由專責行政機關酌處。</div>
+        <div class="vote-row">
+            <span class="v-chip">初步：乙說</span>
+            <span class="v-chip">審查 23人：甲說 12票</span>
+            <span class="v-chip win">大會 78人：乙說 74票 ✔</span>
+        </div>
+    </div>
+
+    <!-- 法律問題 -->
+    <div class="section-heading">法律問題</div>
+    <div class="issue-box" id="issue1">
+        <p>甲因建物違反建築法第58條第6款規定（主要構造或位置或高度或面積與核定工程圖樣不符）而經主管機關勒令停工後，竟未經許可擅自復工經制止不從，犯<strong>建築法第93條違法復工罪</strong>。</p>
+        <p>乙因違反建築法第25條規定擅自建造建物，經主管機關依同法第86條第1款強制拆除後違反規定重建，犯<strong>建築法第95條違法重建罪</strong>。</p>
+        <p>甲、乙之建物均已違法建築完成。</p>
+        <p><strong>問：</strong>甲、乙所「違法建築完成之違建部分」，於未經後續行政強制拆除前，在沒收法制上是否為得沒收之標的？</p>
+    </div>
+
+    <!-- 討論意見 -->
+    <div class="section-heading">討論意見</div>
+    <div class="opinions">
+        <!-- 甲說 -->
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">甲</div>
+                <span class="op-label">不得沒收說（原：犯罪關聯客體說）</span>
+                <span class="op-conclusion-chip">審查採此說</span>
+            </div>
+            <div class="op-body">
+                <p><strong>㈠ 關聯客體的定義：</strong>某標的如為實現犯罪構成要件的事實前提，即欠缺該標的則無由成立犯罪，此類標的稱為「關聯客體」。關聯客體本身不具促成、推進構成要件實現的輔助功能，故非供犯罪所用之物，其沒收<strong>必須有特別規定方得為之</strong>（最高法院106年度台上字第1374號）。</p>
+                <p><strong>㈡ 違建屬關聯客體：</strong>無論違法復工罪或違法重建罪，「違法建築完成之違建部分」均屬欠缺該標的則無由成立犯罪的性質，而為犯罪關聯客體。建築法亦無如水土保持法第32條第5項之沒收特別規定，故法院不得宣告沒收。</p>
+                <p><strong>㈢ 應由行政機關處理：</strong>建築法第93條已賦予行政機關得強制拆除建築物之權限，對於建築物之拆除，行政機關亦有相關法律依據得排除違規使用狀態，應歸由專責行政機關酌處。</p>
+                <div class="op-result">
+                    <strong>㈣ 結論：</strong>「違法建築完成之違建部分」為犯罪關聯客體，建築法又無沒收之特別規定，<strong>不具應沒收或得沒收的標的性質，應不予宣告沒收</strong>。
+                </div>
+            </div>
+        </div>
+
+        <!-- 乙說 -->
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">乙</div>
+                <span class="op-label">犯罪所生之物說</span>
+                <span class="op-conclusion-chip">最終採此說</span>
+            </div>
+            <div class="op-body">
+                <p><strong>㈠ 關聯客體不予沒收的真正理由：</strong>關聯客體之所以原則上不予沒收，並非因為「欠缺該物無由成立犯罪」，而是因為其「<strong>非供犯罪所用、犯罪所生之物，亦非犯罪所得</strong>」的性質使然。換言之，即使是構成要件不可欠缺之物，若具有犯罪所生之物等性質，仍得依刑法第38條第2項宣告沒收。</p>
+                <p><strong>㈡ 違建屬犯罪所生之物：</strong>建築法第93條或第95條構成要件中不可欠缺之標的，是「尚未完工而經勒令停工之建物」或「已完工而經強制拆除之建物」，與因甲、乙後續違法行為而「違法建造完成的違建」在法律性質上不同，後者顯然為<strong>犯罪所生之物</strong>，具有刑法第38條第2項得沒收之標的性質。</p>
+                <p><strong>㈢ 裁量不予沒收：</strong>惟沒收規定賦予法院裁量權，衡酌建築法已就違章建築之拆除、回復原狀另行規定，並定有停止供水供電、封閉等執行手段，行政機關已有法律依據得排除違規狀態，基於行政權與司法權分際，法院謹守司法權界線，實務上多<strong>裁量不予宣告沒收</strong>，歸由專責行政機關酌處。</p>
+                <div class="op-result">
+                    <strong>㈣ 結論：</strong>違建部分<strong>具有犯罪所生之物之性質，為得沒收之標的</strong>；然法院得裁量不予宣告沒收，實務上多以行政機關強制拆除為優先考量。
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="law-ref"><strong>相關法條：</strong>建築法第25條、第58條、第86條、第93條、第95條；刑法第38條、第38條之2。</div>
+
+    <details>
+        <summary>參考資料</summary>
+        <div style="padding-top:10px;">
+            <div class="ref-case">
+                <div class="ref-case-title">【甲說】臺灣高等法院107年度上易字第2217號</div>
+                <p style="margin:0;">現行刑法僅規定違禁物、供犯罪所用、犯罪預備之物、犯罪所生之物及犯罪所得之沒收，並不及於「構成犯罪之物」，故除法律特別規定外，構成犯罪之物無由沒收。本案建築物為被告違反建築法行為之構成犯罪之物，且建築法亦無有關沒收之特別規定，應不予宣告沒收，回歸由專責行政機關酌處。</p>
+                <p style="margin:8px 0 0;font-size:0.82em;color:#888;">另有：基隆地院113年度基簡字第294號、桃園地院112年度審簡字第1699號、苗栗地院109年度易字第408號、南投地院110年度埔簡字第58號、雲林地院110年度簡字第203號、嘉義地院114年度嘉簡字第196號、花蓮地院111年度花簡字第364號、屏東地院112年度簡字第243號、連江地院110年度簡字第10號等判決。</p>
+            </div>
+            <div class="ref-case yi">
+                <div class="ref-case-title">【乙說】臺灣高等法院109年度上易字第1792號</div>
+                <p style="margin:0;">被告重建之違章建築物，雖屬犯違法重建罪所生之物；惟衡酌建築法基於行政專業已就相關違章建築拆除另行規定，並定有停止供水供電、封閉等執行手段，行政機關已有法律依據得排除違規狀態，基於行政機關之積極主動特性及自我監督審查原則，法院謹守司法權界線，爰不予宣告沒收，回歸由專責行政機關酌處。</p>
+                <p style="margin:8px 0 0;font-size:0.82em;color:#888;">另有：新北地院114年度簡字第1085號、桃園地院112年度桃簡字第988號、新竹地院108年度易字第6號、屏東地院112年度簡字第665號、金門地院108年度簡上字第17號等判決。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">【關鍵先例】最高法院106年度台上字第1374號</div>
+                <p style="margin:0;">供犯罪所用之物，乃指對於犯罪具有促成、推進或減少阻礙效果，而於犯罪實行有直接關係之物。欠缺該物品則無由成立犯罪者稱為「關聯客體」，關聯客體本身不具促成、推進構成要件實現的輔助功能，故非供犯罪所用之物，其沒收必須有特別規定方得為之。</p>
+            </div>
+            <div class="ref-case yi">
+                <div class="ref-case-title">【學者見解】關聯客體沒收爭議</div>
+                <p style="margin:0;"><strong>林鈺雄（沒收新論，2020）：</strong>我國法未如德國法專門將「犯罪客體」列為獨立沒收類型，就解釋論提出修正肯定說（排除被害客體）。<br><strong>許恒達（當代法律第24期，2023）：</strong>德國現行法將「犯罪客體」規定於刑法第74條第2項，僅於法有明文時始得沒收。<br><strong>陳建廷（軍法專刊第69卷5期，2023）：</strong>「供犯罪所用之物」語意上未狹義侷限於犯罪工具，文義上允許根據刑法第38條第2項沒收關聯客體。<br><strong>劉邦繡（當代法律第29期，2024）：</strong>刑法沒收客體之犯罪所用與犯罪所生之物探究——以重建之違建物是否屬應宣告沒收為例。</p>
+            </div>
+        </div>
+    </details>
+
+    <div class="note-toggle" onclick="toggleNote('n1')">✏️ 我的小結</div>
+    <div class="note-area" id="n1">
+        <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n1',this.value)"></textarea>
+        <div class="note-saved" id="n1-saved"></div>
+    </div>
+</div>
+
+<div id="noResults">查無符合的內容，請試試其他關鍵字。</div>
+<div id="noStarred">還沒有收藏的項目，點卡片右上角的 ⭐ 加入收藏。</div>
+</div>
+
+<script>
+const STORE_KEY='114_1_seminar_notes',STAR_KEY='114_1_seminar_stars';
+function loadNotes(){try{return JSON.parse(localStorage.getItem(STORE_KEY))||{};}catch{return{};}}
+function loadStars(){try{return JSON.parse(localStorage.getItem(STAR_KEY))||{};}catch{return{};}}
+function saveAllNotes(d){localStorage.setItem(STORE_KEY,JSON.stringify(d));}
+function saveAllStars(d){localStorage.setItem(STAR_KEY,JSON.stringify(d));}
+(function(){const n=loadNotes(),s=loadStars();Object.entries(n).forEach(([id,v])=>{const a=document.getElementById(id);if(!a)return;const t=a.querySelector('textarea');if(t)t.value=v;if(v)a.classList.add('open');});Object.entries(s).forEach(([id,v])=>{if(!v)return;const b=document.querySelector(`#${id} .star-btn`);if(b)b.classList.add('starred');});})();
+function toggleStar(id,btn){const s=loadStars();const now=!btn.classList.contains('starred');btn.classList.toggle('starred',now);s[id]=now;saveAllStars(s);if(filterActive)applyFilter();}
+let filterActive=false;
+function toggleFilter(){filterActive=!filterActive;document.getElementById('filterBtn').classList.toggle('active',filterActive);document.getElementById('searchInput').value='';applyFilter();}
+function applyFilter(){const s=loadStars();const q=document.getElementById('searchInput').value.trim().toLowerCase();let any=false;document.querySelectorAll('.card').forEach(c=>{const kw=(c.dataset.kw||'').toLowerCase();const txt=c.textContent.toLowerCase();const ms=!q||kw.includes(q)||txt.includes(q);const mf=!filterActive||!!s[c.id];const show=ms&&mf;c.classList.toggle('hidden',!show);if(show)any=true;});document.getElementById('noResults').style.display=(!any&&!filterActive)?'block':'none';document.getElementById('noStarred').style.display=(!any&&filterActive)?'block':'none';}
+function doSearch(){applyFilter();}
+function toggleNote(id){document.getElementById(id).classList.toggle('open');}
+const timers={};
+function saveNote(id,v){clearTimeout(timers[id]);timers[id]=setTimeout(()=>{const n=loadNotes();n[id]=v;saveAllNotes(n);const el=document.getElementById(id+'-saved');if(el){el.textContent='已儲存';setTimeout(()=>el.textContent='',1500);}},500);}
+let savedRange=null;
+document.addEventListener('selectionchange',()=>{const s=window.getSelection();if(s&&!s.isCollapsed&&s.rangeCount)savedRange=s.getRangeAt(0).cloneRange();});
+function highlightText(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;if(!r||r.collapsed){alert('💡 請先反白想要標記的文字');return;}const sp=document.createElement('span');sp.className='hl';sp.style.backgroundColor='#ffe066';try{r.surroundContents(sp);savedRange=null;}catch{alert('💡 請選取同一段落內的文字');}s&&s.removeAllRanges();}
+function removeHighlight(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;if(!r||r.collapsed){alert('💡 請先反白想擦除標記的文字');return;}const anc=r.commonAncestorContainer.nodeType===1?r.commonAncestorContainer:r.commonAncestorContainer.parentElement;anc.querySelectorAll('span.hl').forEach(sp=>{if(r.intersectsNode(sp)){const p=sp.parentNode;while(sp.firstChild)p.insertBefore(sp.firstChild,sp);p.removeChild(sp);}});savedRange=null;s&&s.removeAllRanges();}
+function clearHighlights(){const sp=document.querySelectorAll('span.hl');if(!sp.length)return;if(confirm('確定要清除所有重點標記嗎？')){sp.forEach(s=>{const p=s.parentNode;while(s.firstChild)p.insertBefore(s.firstChild,s);p.removeChild(s);});}}
+function openExport(){
+    const stars=loadStars();
+    let out='臺灣高等法院 114年度刑事法律座談會第1號\n'+'═'.repeat(44)+'\n\n';
+    document.querySelectorAll('.card').forEach(c=>{
+        const star=stars[c.id]?'⭐ ':'';
+        const title=c.querySelector('.card-title')?.textContent.trim()||'';
+        out+=`【${star}${title}】\n\n`;
+        const vMain=c.querySelector('.verdict-main');
+        const vSub=c.querySelector('.verdict-sub');
+        if(vMain) out+='▌研討結論\n'+vMain.textContent.trim()+'\n';
+        if(vSub)  out+=vSub.textContent.trim()+'\n';
+        const chips=[...c.querySelectorAll('.v-chip')].map(el=>el.textContent.trim()).join('　');
+        if(chips) out+=chips+'\n';
+        out+='\n';
+        const issue=c.querySelector('.issue-box');
+        if(issue){
+            out+='▌法律問題\n';
+            issue.querySelectorAll('p').forEach(p=>{const t=p.textContent.trim();if(t)out+=t+'\n';});
+            out+='\n';
+        }
+        c.querySelectorAll('.op').forEach(op=>{
+            const head=op.querySelector('.op-label')?.textContent.trim()||'';
+            const chip=op.querySelector('.op-conclusion-chip')?.textContent.trim()||'';
+            out+=`▌${head}　${chip}\n`;
+            op.querySelectorAll('.op-body p, .op-body li, .op-result').forEach(el=>{
+                const t=el.textContent.trim();
+                if(t) out+=(el.tagName==='LI'?'  • ':'')+t+'\n';
+            });
+            out+='\n';
+        });
+        const law=c.querySelector('.law-ref');
+        if(law) out+=law.textContent.trim()+'\n\n';
+        const ta=c.querySelector('.note-textarea');
+        if(ta&&ta.value.trim()) out+='✏️ 小結：\n'+ta.value.trim()+'\n\n';
+        out+='═'.repeat(44)+'\n\n';
+    });
+    const b=new Blob([out.trim()],{type:'text/plain;charset=utf-8'});
+    const u=URL.createObjectURL(b);
+    const a=document.createElement('a');
+    a.href=u;a.download='114刑事座談01_違建沒收.txt';a.click();
+    URL.revokeObjectURL(u);
+}
+const REG_KEY='exam_completion_registry';
+function _loadReg(){try{return JSON.parse(localStorage.getItem(REG_KEY))||{};}catch{return{};}}
+function _saveReg(r){try{localStorage.setItem(REG_KEY,JSON.stringify(r));}catch{}}
+function _file(){const p=location.pathname.split('/');return decodeURIComponent(p[p.length-1]||'');}
+function _fmt(ts){const d=new Date(ts);return(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();}
+function _updateDate(){const r=_loadReg();const k=_file();const l=document.getElementById('doneDateLabel');if(!l)return;l.textContent=(r[k]&&r[k].done&&r[k].ts)?_fmt(r[k].ts):'';}
+function toggleDone(){const btn=document.getElementById('doneBtn');const r=_loadReg();const k=_file();const done=r[k]&&r[k].done;if(done){delete r[k];_saveReg(r);btn.classList.remove('active');}else{const now=new Date();r[k]={done:true,score:null,total:null,ts:now.getTime(),tsLabel:now.toLocaleDateString('zh-TW')+' '+now.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false})};_saveReg(r);btn.classList.add('active');}_updateDate();}
+(function(){const r=_loadReg();const k=_file();if(r[k]&&r[k].done){const b=document.getElementById('doneBtn');if(b)b.classList.add('active');}_updateDate();})();
+</script>
+</body>
+</html>

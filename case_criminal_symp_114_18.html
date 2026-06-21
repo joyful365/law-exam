@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>114年度刑事法律座談會第18號</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: "Helvetica Neue", Helvetica, "PingFang TC", "LiHei Pro", "Microsoft JhengHei", sans-serif; background: #eef0f3; color: #1a1a1a; line-height: 1.8; font-size: 16px; margin: 0; padding: 0 0 56px; }
+        header { background: #1a365d; color: white; padding: 18px 16px 10px; text-align: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.18); }
+        header h1 { margin: 0 0 10px; font-size: 1.05em; line-height: 1.5; font-weight: 600; letter-spacing: 0.02em; }
+        .header-controls { display: flex; gap: 8px; align-items: center; }
+        .search-wrap { position: relative; flex: 1; }
+        #searchInput { width: 100%; padding: 8px 14px 8px 34px; border: none; border-radius: 8px; font-size: 14px; background: rgba(255,255,255,0.13); color: white; outline: none; }
+        #searchInput::placeholder { color: rgba(255,255,255,0.5); }
+        #searchInput:focus { background: rgba(255,255,255,0.22); }
+        .search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 13px; opacity: 0.6; pointer-events: none; }
+        #filterBtn { background: rgba(255,255,255,0.13); border: none; border-radius: 8px; color: white; font-size: 13px; padding: 8px 12px; cursor: pointer; white-space: nowrap; }
+        #filterBtn.active { background: #c9a84c; color: #1a365d; font-weight: bold; }
+        .top-bar { background: #dde0e5; padding: 6px 14px; display: flex; gap: 6px; justify-content: flex-end; flex-wrap: nowrap; }
+        .top-btn { background: #5a6375; color: white; border: none; padding: 5px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap; transition: transform 0.1s; }
+        .top-btn:active { transform: scale(0.92); }
+        .top-btn.erase { background: #7a8494; }
+        .top-btn.clear { background: #a0a8b4; }
+        .top-btn.export { background: #c5cad3; color: #2d3748; }
+        .top-btn.done { background: #a0a8b4; color: #1a2a3a; }
+        .top-btn.done.active { background: linear-gradient(135deg,#7a5c00,#a07820); color: #fff3c4; }
+        .done-date { font-size: 11px; color: #8a9ab0; white-space: nowrap; align-self: center; }
+        .container { padding: 16px; max-width: 600px; margin: 0 auto; }
+        @media (min-width: 768px) { body { font-size: 17.5px; } .container { max-width: 860px; padding: 20px; } header h1 { font-size: 1.15em; } }
+        .card { background: #fff; border-radius: 16px; padding: 22px 20px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); position: relative; }
+        .card.hidden { display: none; }
+        .star-btn { position: absolute; top: 18px; right: 18px; background: none; border: none; font-size: 20px; cursor: pointer; opacity: 0.18; transition: opacity 0.15s, transform 0.15s; padding: 0; }
+        .star-btn:active { transform: scale(1.3); }
+        .star-btn.starred { opacity: 1; }
+        .card-title { color: #1a365d; font-size: 1.25em; font-weight: 700; margin: 0 0 4px; padding-right: 28px; line-height: 1.55; }
+        .meta-line { font-size: 0.76em; color: #999; margin-bottom: 18px; letter-spacing: 0.03em; }
+        .verdict { background: #1a365d; color: white; border-radius: 11px; padding: 15px 18px; margin-bottom: 20px; }
+        .verdict-label { font-size: 0.68em; letter-spacing: 0.12em; opacity: 0.55; text-transform: uppercase; margin-bottom: 4px; }
+        .verdict-main { font-size: 1.08em; font-weight: 700; line-height: 1.45; margin-bottom: 5px; }
+        .verdict-sub { font-size: 0.83em; opacity: 0.75; line-height: 1.6; margin-bottom: 10px; }
+        .vote-row { display: flex; gap: 7px; flex-wrap: wrap; }
+        .v-chip { font-size: 0.73em; background: rgba(255,255,255,0.12); border-radius: 20px; padding: 3px 10px; white-space: nowrap; color: rgba(255,255,255,0.8); }
+        .v-chip.win { background: rgba(255,255,255,0.28); color: #fff; font-weight: 700; }
+        .section-heading { font-size: 0.72em; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #8a9ab0; margin: 20px 0 10px; padding-bottom: 5px; border-bottom: 1px solid #e8eaee; }
+        .issue-box { background: #f5f6f8; border-radius: 10px; padding: 14px 16px; margin-bottom: 16px; font-size: 0.91em; color: #333; }
+        .issue-box p { margin: 0 0 8px; }
+        .issue-box p:last-child { margin: 0; }
+        .opinions { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+        .op { border-radius: 10px; overflow: hidden; border: 1px solid #e4e7ec; }
+        .op-head { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #f5f6f8; }
+        .op-num { width: 26px; height: 26px; border-radius: 50%; background: #1a365d; color: white; font-size: 0.75em; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .op-label { font-weight: 700; font-size: 0.93em; color: #1a365d; flex: 1; }
+        .op-conclusion-chip { font-size: 0.74em; color: #666; background: #eaecf0; border-radius: 20px; padding: 2px 9px; white-space: nowrap; }
+        .op-body { padding: 13px 15px; font-size: 0.9em; background: #fff; }
+        .op-body p { margin: 0 0 9px; }
+        .op-body p:last-child { margin: 0; }
+        .op-body ul { margin: 5px 0 8px; padding-left: 18px; }
+        .op-body li { margin-bottom: 4px; }
+        .op-result { background: #f0f3f8; border-radius: 7px; padding: 10px 13px; margin-top: 10px; font-size: 0.9em; border-left: 3px solid #1a365d; }
+        details { margin-top: 16px; }
+        details summary { cursor: pointer; color: #5a6880; font-size: 0.85em; font-weight: 600; padding: 5px 0; user-select: none; list-style: none; display: flex; align-items: center; gap: 5px; }
+        details summary::before { content: '▶'; font-size: 0.65em; transition: transform 0.2s; color: #8a9ab0; }
+        details[open] summary::before { transform: rotate(90deg); }
+        .ref-case { background: #f5f6f8; border-radius: 8px; padding: 11px 14px; margin-bottom: 8px; font-size: 0.85em; border-left: 3px solid #1a365d; }
+        .ref-case.yi { border-left-color: #8a9ab0; }
+        .ref-case-title { font-weight: 700; color: #1a365d; margin-bottom: 4px; font-size: 0.9em; }
+        .ref-case.yi .ref-case-title { color: #4a5568; }
+        .law-ref { background: #f0f2f5; border-radius: 8px; padding: 10px 14px; font-size: 0.85em; color: #4a5568; margin-top: 14px; border-left: 3px solid #1a365d; }
+        .note-toggle { display: inline-block; margin-top: 14px; font-size: 0.8em; color: #b0b8c4; cursor: pointer; user-select: none; }
+        .note-toggle:hover { color: #1a365d; }
+        .note-area { display: none; margin-top: 8px; }
+        .note-area.open { display: block; }
+        .note-textarea { width: 100%; min-height: 68px; border: 1px solid #e0e4ea; border-radius: 8px; padding: 10px 12px; font-size: 0.87em; font-family: inherit; color: #333; background: #fafbfc; resize: vertical; outline: none; line-height: 1.7; }
+        .note-textarea:focus { border-color: #1a365d; }
+        .note-textarea::placeholder { color: #ccc; }
+        .note-saved { font-size: 0.72em; color: #68d391; text-align: right; height: 14px; margin-top: 2px; }
+        #noResults, #noStarred { display: none; text-align: center; color: #a0aec0; padding: 40px 0; font-size: 0.9em; }
+        ::-webkit-scrollbar { display: none; }
+        ::selection { background: #c8d8ef; }
+        .amendment-note { background: #f0f5ff; border: 1px solid #c3d4f0; border-radius: 8px; padding: 11px 14px; margin-top: 12px; font-size: 0.85em; color: #2d4a7a; line-height: 1.75; }
+        .amendment-note .amend-title { font-weight: 700; margin-bottom: 6px; }
+        .amendment-note ol { margin: 0; padding-left: 20px; }
+        .amendment-note li { margin-bottom: 4px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>臺灣高等法院<br>114年度刑事法律座談會第18號</h1>
+    <div class="header-controls">
+        <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="搜尋關鍵字、法條…" oninput="doSearch(this.value)">
+        </div>
+        <button id="filterBtn" onclick="toggleFilter()">⭐ 收藏</button>
+    </div>
+    <div class="top-bar">
+        <button class="top-btn" onclick="highlightText()">🖊️</button>
+        <button class="top-btn erase" onclick="removeHighlight()">🧽</button>
+        <button class="top-btn clear" onclick="clearHighlights()">🗑️</button>
+        <button class="top-btn export" onclick="openExport()">📤</button>
+        <button class="top-btn done" id="doneBtn" onclick="toggleDone()">朕已閱</button>
+        <span class="done-date" id="doneDateLabel"></span>
+    </div>
+</header>
+
+<div class="container">
+<div class="card" id="case18" data-kw="檢察官 羈押 聲請書 限制 禁止 卷證 辯護人 閱卷 未到場 敘明理由 刑事訴訟法101 刑事訴訟法93 釋字737 武器平等 偵查目的 防禦權 類推 證據禁止">
+    <button class="star-btn" onclick="toggleStar('case18',this)">⭐</button>
+
+    <h2 class="card-title">檢察官於羈押聲請書請求限制或禁止獲知卷證，但未到場敘述理由，辯護人得否閱覽全部卷證？</h2>
+    <div class="meta-line">提案機關：臺灣嘉義地方法院</div>
+
+    <!-- 結論橫幅 -->
+    <div class="verdict">
+        <div class="verdict-label">研討結論</div>
+        <div class="verdict-main">採審查意見說（乙說）——辯護人不當然得閱覽全部卷證，應適用第101條第3項但書排除該部分卷證</div>
+        <div class="verdict-sub">檢察官已另行分卷請求禁止獲知，被告及辯護人就此部分並非當然具完整閱卷權；惟因檢察官未踐行到場敘明義務，法院應適用第101條第3項但書規定，將該部分卷證排除，不得作為羈押審查之依據。</div>
+        <div class="vote-row">
+            <span class="v-chip">初步：甲說（肯定說）</span>
+            <span class="v-chip">實到：75人</span>
+            <span class="v-chip">甲說：7票</span>
+            <span class="v-chip win">審查意見說：65票 ✔</span>
+        </div>
+    </div>
+
+    <!-- 法律問題 -->
+    <div class="section-heading">法律問題</div>
+    <div class="issue-box">
+        <p>刑事訴訟法第101條第2項但書規定，如有同法第93條第2項但書情形時，<strong>檢察官應到場敘明理由，並指明禁止之範圍</strong>。</p>
+        <p>倘如<strong>檢察官僅於羈押聲請書中簡要敘明禁止之範圍及簡單理由，經法院通知仍未到庭</strong>，辯護人此時主張得閱覽全部卷證，是否可採？</p>
+    </div>
+
+    <!-- 討論意見 -->
+    <div class="section-heading">討論意見</div>
+    <div class="opinions">
+
+        <!-- 甲說 -->
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">甲</div>
+                <span class="op-label">肯定說——辯護人得閱覽全部卷證</span>
+                <span class="op-conclusion-chip">初步採此說</span>
+            </div>
+            <div class="op-body">
+                <p><strong>㈠ 閱卷為憲法保障之權利，限制為例外：</strong>辯護人偵查中閱卷權為憲法所保障，原則上應讓辯護人閱覽全部卷宗。限制或禁止閱覽全部卷證乃例外規定，因此課予檢察官除以書面記載請求之旨外，<strong>並應到場敘明理由</strong>，此為行使限制請求之法定程序。</p>
+                <p><strong>㈡ 未到場即程序欠缺，不生限制效果：</strong>若檢察官不願到場，此項請求之法定程序即有欠缺，無法生限制或禁止之法律效果。</p>
+                <div class="op-result">
+                    <strong>㈢ 結論：</strong>程序欠缺致限制或禁止請求不生效力，<strong>辯護人仍應得閱覽全部卷宗</strong>。
+                </div>
+            </div>
+        </div>
+
+        <!-- 乙說 -->
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">乙</div>
+                <span class="op-label">否定說——辯護人不當然得閱全部卷證</span>
+                <span class="op-conclusion-chip">少數意見</span>
+            </div>
+            <div class="op-body">
+                <p><strong>㈠ 偵查中閱卷範圍本非全面開示：</strong>依釋字第737號解釋，偵查中聲請羈押時辯護人所得閱卷之範圍，僅係檢察官聲請羈押所憑藉之證據，並非審判中全部卷證。檢察官如僅提出聲請羈押之相關證據，而不將其餘卷證一併提出，被告及辯護人並無要求開示該部分證據之權利。</p>
+                <p><strong>㈡ 未到場不等同「危險已不存在」：</strong>刑事訴訟法第101條第2項但書雖課予檢察官到場說明義務，然如未遵期到場，是否即得逕認「危害偵查目的」或「危害他人生命、身體之虞」的危險已不存在，實非無疑。</p>
+                <p><strong>㈢ 應類推適用第101條第3項但書排除卷證：</strong>檢察官既已另行分卷請求禁止，應尊重其對偵查動態之決定。法院應類推適用第101條第3項但書證據禁止規定之法理，將該部分卷證排除不予審酌。</p>
+                <div class="op-result">
+                    <strong>㈣ 結論：</strong>辯護人<strong>不當然得閱覽全部卷證</strong>，法院應類推適用第101條第3項但書將該部分卷證排除。
+                </div>
+            </div>
+        </div>
+
+        <!-- 審查意見 -->
+        <div class="op" style="border-color:#1a365d;">
+            <div class="op-head" style="background:#e8eef8;">
+                <div class="op-num" style="background:#c9a84c;color:#1a2a3a;">審</div>
+                <span class="op-label">審查意見（大會通過）</span>
+                <span class="op-conclusion-chip" style="background:#1a365d;color:#fff;">65票通過</span>
+            </div>
+            <div class="op-body">
+                <p><strong>㈠ 辯護人原則上享有完整閱卷權，但以「未另行分卷請求限制」為前提：</strong>辯護人就檢察官送交法院之卷宗及證物，原則上享有完整的閱卷權，但僅於檢察官並未另行分卷請求法院禁止獲知之情形為限。如檢察官聲請時另行分卷請求禁止，應由法院依具體個案情節決定應否禁止，被告及辯護人就此部分並非當然具有完整閱卷權。</p>
+                <p><strong>㈡ 到場敘明義務之立法目的——武器平等：</strong>限制或禁止獲知卷證將影響被告及辯護人之防禦權，故第101條第2項但書明定檢察官應到場敘明理由並指明禁止範圍，以使被告及辯護人得知悉證據方法及主張範圍，並予以適當反駁，以符合<strong>武器平等原則</strong>。</p>
+                <p><strong>㈢ 未到場之法律效果——適用第101條第3項但書排除卷證：</strong>檢察官未踐行到場敘明義務，使被告及辯護人無從回應反駁，法院亦無法妥適辨明檢察官主張之範圍或方式，進而判斷是否合理可採。為兼顧偵查目的維護以及被告、辯護人防禦權之行使，應<strong>適用同法第101條第3項但書證據禁止規定</strong>，將該部分卷證予以排除，由法院逕行裁定，以符合本條規定之立法目的。</p>
+                <div class="op-result">
+                    <strong>㈣ 結論：</strong>辯護人<strong>不得閱覽該被分卷禁止之部分</strong>；惟因檢察官未盡到場敘明義務，法院應<strong>適用第101條第3項但書</strong>將該部分卷證排除，不得作為羈押審查之依據，並由法院逕行裁定。
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="law-ref"><strong>相關法條：</strong>刑事訴訟法第101條第2項、第3項；第93條第2項但書；法院辦理刑事訴訟案件應行注意事項第35點第1項、第34點之3。</div>
+
+    <details>
+        <summary>參考資料</summary>
+        <div style="padding-top:10px;">
+            <div class="ref-case">
+                <div class="ref-case-title">【背景】司法院釋字第737號解釋（偵查中閱卷權核心依據）</div>
+                <p style="margin:0;">偵查中羈押審查程序，應以適當方式及時使犯罪嫌疑人及其辯護人獲知檢察官據以聲請羈押之理由及有關證據，俾利有效行使防禦權，始符憲法正當法律程序原則。惟於有事實足認有湮滅、偽造、變造證據或勾串共犯或證人等危害偵查目的或危害他人生命、身體之虞時，得限制或禁止其獲知聲請羈押之有關證據。</p>
+            </div>
+            <div class="ref-case yi">
+                <div class="ref-case-title">【乙說參考文獻】陳文貴，偵查中羈押審查程序被告及其辯護人卷證獲知權新制</div>
+                <p style="margin:0;">司法週刊【司法文選別冊】，第1850期，中華民國106年5月19日。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">【爭點比較】甲說 vs 審查意見說之核心差異</div>
+                <p style="margin:0;"><strong>甲說：</strong>檢察官未到場＝法定程序欠缺＝限制請求不生效力＝辯護人得閱全部卷證。<br><strong>審查意見：</strong>檢察官另行分卷請求禁止，辯護人就該部分本無閱卷權；未到場之效果非使閱卷權回復，而是使法院無從辨明主張，應直接適用第101條第3項但書，<strong>排除該部分卷證不得作為羈押依據</strong>，由法院裁定。</p>
+            </div>
+            <div class="amendment-note">
+                <div class="amend-title">📋 研討結果修正事項</div>
+                <ol>
+                    <li>法律問題「要敘明限制或禁止之範圍」→ 改為「要敘明<strong>禁止</strong>之範圍」。</li>
+                    <li>審查意見理由㈡「法院限制或禁止獲知」→ 改為「法院<strong>禁止</strong>獲知」。</li>
+                    <li>「應可類推適用……第101條第3項但書證據禁止規定之法理」→ 改為「應<strong>適用</strong>同法第101條第3項但書證據禁止規定之<strong>規定</strong>」。</li>
+                </ol>
+            </div>
+        </div>
+    </details>
+
+    <div class="note-toggle" onclick="toggleNote('n18')">✏️ 我的小結</div>
+    <div class="note-area" id="n18">
+        <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n18',this.value)"></textarea>
+        <div class="note-saved" id="n18-saved"></div>
+    </div>
+</div>
+
+<div id="noResults">查無符合的內容，請試試其他關鍵字。</div>
+<div id="noStarred">還沒有收藏的項目，點卡片右上角的 ⭐ 加入收藏。</div>
+</div>
+
+<script>
+const STORE_KEY='114_18_seminar_notes',STAR_KEY='114_18_seminar_stars';
+function loadNotes(){try{return JSON.parse(localStorage.getItem(STORE_KEY))||{};}catch{return{};}}
+function loadStars(){try{return JSON.parse(localStorage.getItem(STAR_KEY))||{};}catch{return{};}}
+function saveAllNotes(d){localStorage.setItem(STORE_KEY,JSON.stringify(d));}
+function saveAllStars(d){localStorage.setItem(STAR_KEY,JSON.stringify(d));}
+(function(){const n=loadNotes(),s=loadStars();Object.entries(n).forEach(([id,v])=>{const a=document.getElementById(id);if(!a)return;const t=a.querySelector('textarea');if(t)t.value=v;if(v)a.classList.add('open');});Object.entries(s).forEach(([id,v])=>{if(!v)return;const b=document.querySelector(`#${id} .star-btn`);if(b)b.classList.add('starred');});})();
+function toggleStar(id,btn){const s=loadStars();const now=!btn.classList.contains('starred');btn.classList.toggle('starred',now);s[id]=now;saveAllStars(s);if(filterActive)applyFilter();}
+let filterActive=false;
+function toggleFilter(){filterActive=!filterActive;document.getElementById('filterBtn').classList.toggle('active',filterActive);document.getElementById('searchInput').value='';applyFilter();}
+function applyFilter(){const s=loadStars();const q=document.getElementById('searchInput').value.trim().toLowerCase();let any=false;document.querySelectorAll('.card').forEach(c=>{const kw=(c.dataset.kw||'').toLowerCase();const txt=c.textContent.toLowerCase();const ms=!q||kw.includes(q)||txt.includes(q);const mf=!filterActive||!!s[c.id];const show=ms&&mf;c.classList.toggle('hidden',!show);if(show)any=true;});document.getElementById('noResults').style.display=(!any&&!filterActive)?'block':'none';document.getElementById('noStarred').style.display=(!any&&filterActive)?'block':'none';}
+function doSearch(){applyFilter();}
+function toggleNote(id){document.getElementById(id).classList.toggle('open');}
+const timers={};
+function saveNote(id,v){clearTimeout(timers[id]);timers[id]=setTimeout(()=>{const n=loadNotes();n[id]=v;saveAllNotes(n);const el=document.getElementById(id+'-saved');if(el){el.textContent='已儲存';setTimeout(()=>el.textContent='',1500);}},500);}
+let savedRange=null;
+document.addEventListener('selectionchange',()=>{const s=window.getSelection();if(s&&!s.isCollapsed&&s.rangeCount)savedRange=s.getRangeAt(0).cloneRange();});
+function highlightText(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;if(!r||r.collapsed){alert('💡 請先反白想要標記的文字');return;}const sp=document.createElement('span');sp.className='hl';sp.style.backgroundColor='#ffe066';try{r.surroundContents(sp);savedRange=null;}catch{alert('💡 請選取同一段落內的文字');}s&&s.removeAllRanges();}
+function removeHighlight(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;if(!r||r.collapsed){alert('💡 請先反白想擦除標記的文字');return;}const anc=r.commonAncestorContainer.nodeType===1?r.commonAncestorContainer:r.commonAncestorContainer.parentElement;anc.querySelectorAll('span.hl').forEach(sp=>{if(r.intersectsNode(sp)){const p=sp.parentNode;while(sp.firstChild)p.insertBefore(sp.firstChild,sp);p.removeChild(sp);}});savedRange=null;s&&s.removeAllRanges();}
+function clearHighlights(){const sp=document.querySelectorAll('span.hl');if(!sp.length)return;if(confirm('確定要清除所有重點標記嗎？')){sp.forEach(s=>{const p=s.parentNode;while(s.firstChild)p.insertBefore(s.firstChild,s);p.removeChild(s);});}}
+function openExport(){
+    const stars=loadStars();
+    let out='臺灣高等法院 114年度刑事法律座談會第18號\n'+'═'.repeat(44)+'\n\n';
+    document.querySelectorAll('.card').forEach(c=>{
+        const star=stars[c.id]?'⭐ ':'';
+        const title=c.querySelector('.card-title')?.textContent.trim()||'';
+        out+=`【${star}${title}】\n\n`;
+        const vMain=c.querySelector('.verdict-main');
+        const vSub=c.querySelector('.verdict-sub');
+        if(vMain) out+='▌研討結論\n'+vMain.textContent.trim()+'\n';
+        if(vSub)  out+=vSub.textContent.trim()+'\n';
+        const chips=[...c.querySelectorAll('.v-chip')].map(el=>el.textContent.trim()).join('　');
+        if(chips) out+=chips+'\n';
+        out+='\n';
+        const issue=c.querySelector('.issue-box');
+        if(issue){
+            out+='▌法律問題\n';
+            issue.querySelectorAll('p').forEach(p=>{const t=p.textContent.trim();if(t)out+=t+'\n';});
+            out+='\n';
+        }
+        c.querySelectorAll('.op').forEach(op=>{
+            const head=op.querySelector('.op-label')?.textContent.trim()||'';
+            const chip=op.querySelector('.op-conclusion-chip')?.textContent.trim()||'';
+            out+=`▌${head}　${chip}\n`;
+            op.querySelectorAll('.op-body p, .op-body li, .op-result').forEach(el=>{
+                const t=el.textContent.trim();
+                if(t) out+=(el.tagName==='LI'?'  • ':'')+t+'\n';
+            });
+            out+='\n';
+        });
+        const law=c.querySelector('.law-ref');
+        if(law) out+=law.textContent.trim()+'\n\n';
+        const ta=c.querySelector('.note-textarea');
+        if(ta&&ta.value.trim()) out+='✏️ 小結：\n'+ta.value.trim()+'\n\n';
+        out+='═'.repeat(44)+'\n\n';
+    });
+    const b=new Blob([out.trim()],{type:'text/plain;charset=utf-8'});
+    const u=URL.createObjectURL(b);
+    const a=document.createElement('a');
+    a.href=u;a.download='114刑事座談18_檢察官未到場辯護人閱卷.txt';a.click();
+    URL.revokeObjectURL(u);
+}
+const REG_KEY='symp_completion_registry';
+function _loadReg(){try{return JSON.parse(localStorage.getItem(REG_KEY))||{};}catch{return{};}}
+function _saveReg(r){try{localStorage.setItem(REG_KEY,JSON.stringify(r));}catch{}}
+function _file(){const p=location.pathname.split('/');return decodeURIComponent(p[p.length-1]||'');}
+function _fmt(ts){const d=new Date(ts);return(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();}
+function _updateDate(){const r=_loadReg();const k=_file();const l=document.getElementById('doneDateLabel');if(!l)return;l.textContent=(r[k]&&r[k].done&&r[k].ts)?_fmt(r[k].ts):'';}
+function toggleDone(){const btn=document.getElementById('doneBtn');const r=_loadReg();const k=_file();const done=r[k]&&r[k].done;if(done){delete r[k];_saveReg(r);btn.classList.remove('active');}else{const now=new Date();r[k]={done:true,score:null,total:null,ts:now.getTime(),tsLabel:now.toLocaleDateString('zh-TW')+' '+now.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit'})};_saveReg(r);btn.classList.add('active');}_updateDate();}
+(function(){const r=_loadReg();const k=_file();if(r[k]&&r[k].done){const b=document.getElementById('doneBtn');if(b)b.classList.add('active');}_updateDate();})();
+</script>
+</body>
+</html>

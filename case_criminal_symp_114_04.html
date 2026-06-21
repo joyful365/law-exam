@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>114年度刑事法律座談會第4號</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: "Helvetica Neue", Helvetica, "PingFang TC", "LiHei Pro", "Microsoft JhengHei", sans-serif; background: #eef0f3; color: #1a1a1a; line-height: 1.8; font-size: 16px; margin: 0; padding: 0 0 56px; }
+        header { background: #1a365d; color: white; padding: 18px 16px 10px; text-align: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.18); }
+        header h1 { margin: 0 0 10px; font-size: 1.05em; line-height: 1.5; font-weight: 600; letter-spacing: 0.02em; }
+        .header-controls { display: flex; gap: 8px; align-items: center; }
+        .search-wrap { position: relative; flex: 1; }
+        #searchInput { width: 100%; padding: 8px 14px 8px 34px; border: none; border-radius: 8px; font-size: 14px; background: rgba(255,255,255,0.13); color: white; outline: none; }
+        #searchInput::placeholder { color: rgba(255,255,255,0.5); }
+        #searchInput:focus { background: rgba(255,255,255,0.22); }
+        .search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 13px; opacity: 0.6; pointer-events: none; }
+        #filterBtn { background: rgba(255,255,255,0.13); border: none; border-radius: 8px; color: white; font-size: 13px; padding: 8px 12px; cursor: pointer; white-space: nowrap; }
+        #filterBtn.active { background: #c9a84c; color: #1a365d; font-weight: bold; }
+        .top-bar { background: #dde0e5; padding: 6px 14px; display: flex; gap: 6px; justify-content: flex-end; flex-wrap: nowrap; }
+        .top-btn { background: #5a6375; color: white; border: none; padding: 5px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap; transition: transform 0.1s; }
+        .top-btn:active { transform: scale(0.92); }
+        .top-btn.erase { background: #7a8494; }
+        .top-btn.clear { background: #a0a8b4; }
+        .top-btn.export { background: #c5cad3; color: #2d3748; }
+        .top-btn.done { background: #a0a8b4; color: #1a2a3a; }
+        .top-btn.done.active { background: linear-gradient(135deg,#7a5c00,#a07820); color: #fff3c4; }
+        .done-date { font-size: 11px; color: #8a9ab0; white-space: nowrap; align-self: center; }
+        .container { padding: 16px; max-width: 600px; margin: 0 auto; }
+        @media (min-width: 768px) { body { font-size: 17.5px; } .container { max-width: 860px; padding: 20px; } header h1 { font-size: 1.15em; } }
+        .card { background: #fff; border-radius: 16px; padding: 22px 20px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); position: relative; }
+        .card.hidden { display: none; }
+        .star-btn { position: absolute; top: 18px; right: 18px; background: none; border: none; font-size: 20px; cursor: pointer; opacity: 0.18; transition: opacity 0.15s, transform 0.15s; padding: 0; }
+        .star-btn:active { transform: scale(1.3); }
+        .star-btn.starred { opacity: 1; }
+        .card-title { color: #1a365d; font-size: 1.25em; font-weight: 700; margin: 0 0 4px; padding-right: 28px; line-height: 1.55; }
+        .meta-line { font-size: 0.76em; color: #999; margin-bottom: 18px; letter-spacing: 0.03em; }
+        .verdict { background: #1a365d; color: white; border-radius: 11px; padding: 15px 18px; margin-bottom: 20px; }
+        .verdict-label { font-size: 0.68em; letter-spacing: 0.12em; opacity: 0.55; text-transform: uppercase; margin-bottom: 4px; }
+        .verdict-main { font-size: 1.08em; font-weight: 700; line-height: 1.45; margin-bottom: 5px; }
+        .verdict-sub { font-size: 0.83em; opacity: 0.75; line-height: 1.6; margin-bottom: 10px; }
+        .vote-row { display: flex; gap: 7px; flex-wrap: wrap; }
+        .v-chip { font-size: 0.73em; background: rgba(255,255,255,0.12); border-radius: 20px; padding: 3px 10px; white-space: nowrap; color: rgba(255,255,255,0.8); }
+        .v-chip.win { background: rgba(255,255,255,0.28); color: #fff; font-weight: 700; }
+        .section-heading { font-size: 0.72em; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #8a9ab0; margin: 20px 0 10px; padding-bottom: 5px; border-bottom: 1px solid #e8eaee; }
+        .issue-box { background: #f5f6f8; border-radius: 10px; padding: 14px 16px; margin-bottom: 16px; font-size: 0.91em; color: #333; }
+        .issue-box p { margin: 0 0 8px; }
+        .issue-box p:last-child { margin: 0; }
+        .opinions { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+        .op { border-radius: 10px; overflow: hidden; border: 1px solid #e4e7ec; }
+        .op-head { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #f5f6f8; }
+        .op-num { width: 26px; height: 26px; border-radius: 50%; background: #1a365d; color: white; font-size: 0.75em; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .op-label { font-weight: 700; font-size: 0.93em; color: #1a365d; flex: 1; }
+        .op-conclusion-chip { font-size: 0.74em; color: #666; background: #eaecf0; border-radius: 20px; padding: 2px 9px; white-space: nowrap; }
+        .op-body { padding: 13px 15px; font-size: 0.9em; background: #fff; }
+        .op-body p { margin: 0 0 9px; }
+        .op-body p:last-child { margin: 0; }
+        .op-body ul { margin: 5px 0 8px; padding-left: 18px; }
+        .op-body li { margin-bottom: 4px; }
+        .op-result { background: #f0f3f8; border-radius: 7px; padding: 10px 13px; margin-top: 10px; font-size: 0.9em; border-left: 3px solid #1a365d; }
+        details { margin-top: 16px; }
+        details summary { cursor: pointer; color: #5a6880; font-size: 0.85em; font-weight: 600; padding: 5px 0; user-select: none; list-style: none; display: flex; align-items: center; gap: 5px; }
+        details summary::before { content: '▶'; font-size: 0.65em; transition: transform 0.2s; color: #8a9ab0; }
+        details[open] summary::before { transform: rotate(90deg); }
+        .ref-case { background: #f5f6f8; border-radius: 8px; padding: 11px 14px; margin-bottom: 8px; font-size: 0.85em; border-left: 3px solid #1a365d; }
+        .ref-case.yi { border-left-color: #8a9ab0; }
+        .ref-case-title { font-weight: 700; color: #1a365d; margin-bottom: 4px; font-size: 0.9em; }
+        .ref-case.yi .ref-case-title { color: #4a5568; }
+        .law-ref { background: #f0f2f5; border-radius: 8px; padding: 10px 14px; font-size: 0.85em; color: #4a5568; margin-top: 14px; border-left: 3px solid #1a365d; }
+        .note-toggle { display: inline-block; margin-top: 14px; font-size: 0.8em; color: #b0b8c4; cursor: pointer; user-select: none; }
+        .note-toggle:hover { color: #1a365d; }
+        .note-area { display: none; margin-top: 8px; }
+        .note-area.open { display: block; }
+        .note-textarea { width: 100%; min-height: 68px; border: 1px solid #e0e4ea; border-radius: 8px; padding: 10px 12px; font-size: 0.87em; font-family: inherit; color: #333; background: #fafbfc; resize: vertical; outline: none; line-height: 1.7; }
+        .note-textarea:focus { border-color: #1a365d; }
+        .note-textarea::placeholder { color: #ccc; }
+        .note-saved { font-size: 0.72em; color: #68d391; text-align: right; height: 14px; margin-top: 2px; }
+        #noResults, #noStarred { display: none; text-align: center; color: #a0aec0; padding: 40px 0; font-size: 0.9em; }
+        ::-webkit-scrollbar { display: none; }
+        ::selection { background: #c8d8ef; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>臺灣高等法院<br>114年度刑事法律座談會第4號</h1>
+    <div class="header-controls">
+        <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="搜尋關鍵字、法條…" oninput="doSearch(this.value)">
+        </div>
+        <button id="filterBtn" onclick="toggleFilter()">⭐ 收藏</button>
+    </div>
+    <div class="top-bar">
+        <button class="top-btn" onclick="highlightText()">🖊️</button>
+        <button class="top-btn erase" onclick="removeHighlight()">🧽</button>
+        <button class="top-btn clear" onclick="clearHighlights()">🗑️</button>
+        <button class="top-btn export" onclick="openExport()">📤</button>
+        <button class="top-btn done" id="doneBtn" onclick="toggleDone()">朕已閱</button>
+        <span class="done-date" id="doneDateLabel"></span>
+    </div>
+</header>
+
+<div class="container">
+<div class="card" id="case1" data-kw="強制罪 刑法304 法人 行為客體 自然人 意思決定自由 妨害自由 被害人 間接被害人 財產交易自由">
+    <button class="star-btn" onclick="toggleStar('case1',this)">⭐</button>
+
+    <h2 class="card-title">刑法第304條第1項強制罪之行為客體是否包含法人？</h2>
+    <div class="meta-line">提案機關：臺灣高等法院臺中分院</div>
+
+    <!-- 結論橫幅 -->
+    <div class="verdict">
+        <div class="verdict-label">研討結論</div>
+        <div class="verdict-main">採審查意見說（甲說方向）——法人非強制罪之行為客體</div>
+        <div class="verdict-sub">強制罪保護之法益為個人意思決定自由與身體活動自由，行為客體應為自然人，法人無法感受強暴脅迫，非本罪客體。惟本案被告對現場工作人員所為，仍可評價對自然人構成強制罪。</div>
+        <div class="vote-row">
+            <span class="v-chip">初步：甲說 8票、乙說 3票</span>
+            <span class="v-chip">審查 24人：甲說 21票</span>
+            <span class="v-chip win">大會 80人：審查意見說 67票 ✔</span>
+        </div>
+    </div>
+
+    <!-- 法律問題 -->
+    <div class="section-heading">法律問題</div>
+    <div class="issue-box">
+        <p>甲公司舉辦限量酒款販售活動，規定消費者需從1樓排隊進入，至2樓按貼紙位置排隊並領取號碼牌始可購買。被告預先藏匿於2樓廁所，開門後衝出插隊站上第10號位置。員工乙告知不符資格請其離開，被告不從，趁乙不注意強行搶走乙手上之10號號碼牌。乙告知「縱使有號碼牌也不會賣給你」，被告仍不離去。嗣公司開始結帳時，被告走至櫃位將金錢放於櫃台，乙表示不賣。被告竟趁乙與他人結帳之際，突然伸手進入櫃台內拿取已包裝好之酒款，轉身逃離。</p>
+        <p><strong>問：</strong>被告上開所為，是否以強暴之方式妨害<strong>甲公司</strong>決定限量酒款交易對象之權利行使，損及財產交易自由，使甲公司行無義務之事，成立刑法第304條第1項強制罪？</p>
+        <p style="font-size:0.84em;color:#888;margin-top:4px;">（爭點：強制罪之行為客體是否及於法人？）</p>
+    </div>
+
+    <!-- 討論意見 -->
+    <div class="section-heading">討論意見</div>
+    <div class="opinions">
+        <!-- 甲說 -->
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">甲</div>
+                <span class="op-label">否定說——法人非強制罪之行為客體</span>
+                <span class="op-conclusion-chip">初步、審查採此說</span>
+            </div>
+            <div class="op-body">
+                <p><strong>㈠ 保護法益決定客體範圍：</strong>刑法第304條第1項強制罪，係保護「個人」有不行使無義務之事及其行使權利不受妨害之自由，即個人意思決定自由與身體活動自由（最高法院84年度台上字第1217號）。保護法益既為個人自由，行為客體自須對自然人直接或間接為之。</p>
+                <p><strong>㈡ 法人無法感受強暴脅迫：</strong>法人雖依我國法律採法人實在說，為享有權利能力之獨立主體，然法人實際上並無法感受行為人對其強暴脅迫之能力，自無意思活動自由遭不法侵害之問題，而非強制罪之行為客體。</p>
+                <p><strong>㈢ 不同罪章保護法益不同，不得比附援引：</strong>乙說援引刑法第339條（詐欺）、第346條（恐嚇）實務上承認法人為被害人，惟該二罪列於財產罪章，保護法益為財產法益；第304條列於妨害自由罪章，保護法益為個人自由，性質不同，不得比附援引。</p>
+                <div class="op-result">
+                    <strong>㈣ 結論：</strong>甲公司無從成為強制罪之客體，被告所為<strong>無從對甲公司構成強制罪</strong>。惟依題旨，被告對現場工作人員乙施以強暴（強搶號碼牌、伸手搶取商品），仍可評價對<strong>自然人乙構成強制罪</strong>。
+                </div>
+            </div>
+        </div>
+
+        <!-- 乙說 -->
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">乙</div>
+                <span class="op-label">肯定說——法人亦得為強制罪之行為客體</span>
+                <span class="op-conclusion-chip">少數說</span>
+            </div>
+            <div class="op-body">
+                <p><strong>㈠ 最高法院84年度台上字第1217號判決之侷限：</strong>該判決係在闡釋「直接被害人才可提起自訴，間接被害人不得提起自訴」，其意旨仍認為法人有可能係強制罪之間接被害人，並非全面否定法人為本罪客體。</p>
+                <p><strong>㈡ 刑法保護法益之時代演進：</strong>近代刑法典立於19世紀，當時社會財富集中於自然人，保護自然人即保護社會。20世紀後商業活動蓬勃，社會財富高度向法人集中，若刑法不保護法人財產，刑法典將失去功能。</p>
+                <p><strong>㈢ 條文結構與實務一貫性：</strong>刑法第304條、第339條、第346條均有「使人」之用語，實務長久承認法人可為詐欺罪（第339條）及恐嚇取財罪（第346條）之被害人（最高法院99年度台上字第1538號、84年度台上字第5648號），從條文結構一致性而言，第304條之行為客體亦應包含法人。</p>
+                <div class="op-result">
+                    <strong>㈣ 結論：</strong>從刑法演進史、法益保護功能、條文立法結構及實務見解統一等多重角度，應認刑法第304條強制罪<strong>保護法人之意思決定自由、財產交易自由</strong>，被告所為已妨害甲公司之權利行使而使其行無義務之事，成立強制罪。
+                </div>
+            </div>
+        </div>
+
+        <!-- 審查意見 -->
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num" style="font-size:0.6em;">審查</div>
+                <span class="op-label">審查意見補充——實務判決脈絡釐清</span>
+                <span class="op-conclusion-chip">最終採此說</span>
+            </div>
+            <div class="op-body">
+                <p><strong>㈠ 最高法院112年度台上字第4502號判決之解讀：</strong>本案事實上曾歷經一審無罪（法人非強制罪客體）→二審改判有罪→最高法院駁回上訴確定。最高法院判決理由雖記載「以強暴方式使○○公司於百貨現場負責銷售酒類之工作人員行無義務之事並妨害其財產交易自由之強制行為」，是否可解讀為肯認法人亦為強制罪客體，<strong>仍有解釋空間</strong>。</p>
+                <p><strong>㈡ 維持甲說為原則：</strong>依先前實務及多數學說見解，從保護法益觀點，且自然人與法人之人格有本質上差異，強制罪保護之客體為自然人，應值肯認。就題旨所詢「是否對甲公司構成強制罪」，依前開脈絡，應採<strong>否定說</strong>。</p>
+                <p><strong>㈢ 本案被告仍成立強制罪（對自然人）：</strong>依題旨，被告行為包括以不法實力從工作人員手中強取號碼牌，接續施以強取限購商品，對現場工作人員相關自由權利造成侵害，仍可評價被告所為對公司之<strong>工作人員（自然人）構成強制罪</strong>。</p>
+                <div class="op-result">
+                    <strong>結論：</strong>強制罪之行為客體以自然人為限，<strong>法人非本罪客體</strong>；然被告對現場員工乙所為之強暴行為，仍成立對自然人之強制罪。
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="law-ref"><strong>相關法條：</strong>刑法第304條。</div>
+
+    <details>
+        <summary>參考資料</summary>
+        <div style="padding-top:10px;">
+            <div class="ref-case">
+                <div class="ref-case-title">最高法院84年度台上字第1217號判決（甲說）</div>
+                <p style="margin:0;">刑法第304條第1項之強制罪，係在於保護個人有不行使無義務之事及其行使權利不受妨害之自由。故其直接被害人應係自然人，並非法人。縱令上訴人公司之職員遭被告等強暴或脅迫，然上訴人究非犯罪直接之被害人，依上開法條規定，仍不得提起自訴。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">臺灣臺中地方法院111年度易字第1004號判決（甲說）</div>
+                <p style="margin:0;">（一審判決無罪，認法人非強制罪之行為客體。）</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">學者見解（甲說）</div>
+                <p style="margin:0;"><strong>甘添貴（刑法各論上，2013）：</strong>本罪行為客體固係指行為人以外之自然人，惟因本罪之保護法益為人之意思決定自由與身體活動自由，故須具有意思及活動可能性之人，始足當之。<br><strong>陳子平（刑法各論上，2019）：</strong>本罪之行為客體為行為人以外之自然人，本罪的保護法益為個人意思決定自由及行動自由，因此以具有意思能力為必要。<br><strong>許澤天（刑法分則下冊，2022）：</strong>刑法第26章妨害自由罪就是在保護個人的自由，其中強制罪係保護個人意思決定與意思實現自由。</p>
+            </div>
+            <div class="ref-case yi">
+                <div class="ref-case-title">最高法院99年度台上字第1538號判決（乙說）</div>
+                <p style="margin:0;">（實體判決中認定法人公司「心生畏怖」，乙說援引此判決作為法人得為恐嚇取財罪被害人之依據。）</p>
+            </div>
+            <div class="ref-case yi">
+                <div class="ref-case-title">最高法院84年度台上字第5648號判決（乙說）</div>
+                <p style="margin:0;">以他人之提款卡持向金融機構之自動付款機冒領款項之行為，因該自動付款機係該金融機構辦理付款業務人員之替代，對其所施用之詐術，應視同對自然人所為，使之陷於錯誤而交付款項，自應成立詐欺取財罪。（乙說以此論證銀行法人得為詐欺罪被害人，進而主張第304條客體亦應包含法人。）</p>
+            </div>
+            <div class="ref-case yi">
+                <div class="ref-case-title">臺灣高等法院臺中分院112年度上易字第309號判決（乙說）</div>
+                <p style="margin:0;">（二審改判有罪，採肯定說認強制罪保護法人之意思決定自由、財產交易自由。被告不服上訴，經最高法院112年度台上字第4502號判決駁回確定。）</p>
+            </div>
+        </div>
+    </details>
+
+    <div class="note-toggle" onclick="toggleNote('n1')">✏️ 我的小結</div>
+    <div class="note-area" id="n1">
+        <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n1',this.value)"></textarea>
+        <div class="note-saved" id="n1-saved"></div>
+    </div>
+</div>
+
+<div id="noResults">查無符合的內容，請試試其他關鍵字。</div>
+<div id="noStarred">還沒有收藏的項目，點卡片右上角的 ⭐ 加入收藏。</div>
+</div>
+
+<script>
+const STORE_KEY='114_4_seminar_notes',STAR_KEY='114_4_seminar_stars';
+function loadNotes(){try{return JSON.parse(localStorage.getItem(STORE_KEY))||{};}catch{return{};}}
+function loadStars(){try{return JSON.parse(localStorage.getItem(STAR_KEY))||{};}catch{return{};}}
+function saveAllNotes(d){localStorage.setItem(STORE_KEY,JSON.stringify(d));}
+function saveAllStars(d){localStorage.setItem(STAR_KEY,JSON.stringify(d));}
+(function(){const n=loadNotes(),s=loadStars();Object.entries(n).forEach(([id,v])=>{const a=document.getElementById(id);if(!a)return;const t=a.querySelector('textarea');if(t)t.value=v;if(v)a.classList.add('open');});Object.entries(s).forEach(([id,v])=>{if(!v)return;const b=document.querySelector(`#${id} .star-btn`);if(b)b.classList.add('starred');});})();
+function toggleStar(id,btn){const s=loadStars();const now=!btn.classList.contains('starred');btn.classList.toggle('starred',now);s[id]=now;saveAllStars(s);if(filterActive)applyFilter();}
+let filterActive=false;
+function toggleFilter(){filterActive=!filterActive;document.getElementById('filterBtn').classList.toggle('active',filterActive);document.getElementById('searchInput').value='';applyFilter();}
+function applyFilter(){const s=loadStars();const q=document.getElementById('searchInput').value.trim().toLowerCase();let any=false;document.querySelectorAll('.card').forEach(c=>{const kw=(c.dataset.kw||'').toLowerCase();const txt=c.textContent.toLowerCase();const ms=!q||kw.includes(q)||txt.includes(q);const mf=!filterActive||!!s[c.id];const show=ms&&mf;c.classList.toggle('hidden',!show);if(show)any=true;});document.getElementById('noResults').style.display=(!any&&!filterActive)?'block':'none';document.getElementById('noStarred').style.display=(!any&&filterActive)?'block':'none';}
+function doSearch(){applyFilter();}
+function toggleNote(id){document.getElementById(id).classList.toggle('open');}
+const timers={};
+function saveNote(id,v){clearTimeout(timers[id]);timers[id]=setTimeout(()=>{const n=loadNotes();n[id]=v;saveAllNotes(n);const el=document.getElementById(id+'-saved');if(el){el.textContent='已儲存';setTimeout(()=>el.textContent='',1500);}},500);}
+let savedRange=null;
+document.addEventListener('selectionchange',()=>{const s=window.getSelection();if(s&&!s.isCollapsed&&s.rangeCount)savedRange=s.getRangeAt(0).cloneRange();});
+function highlightText(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;if(!r||r.collapsed){alert('💡 請先反白想要標記的文字');return;}const sp=document.createElement('span');sp.className='hl';sp.style.backgroundColor='#ffe066';try{r.surroundContents(sp);savedRange=null;}catch{alert('💡 請選取同一段落內的文字');}s&&s.removeAllRanges();}
+function removeHighlight(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;if(!r||r.collapsed){alert('💡 請先反白想擦除標記的文字');return;}const anc=r.commonAncestorContainer.nodeType===1?r.commonAncestorContainer:r.commonAncestorContainer.parentElement;anc.querySelectorAll('span.hl').forEach(sp=>{if(r.intersectsNode(sp)){const p=sp.parentNode;while(sp.firstChild)p.insertBefore(sp.firstChild,sp);p.removeChild(sp);}});savedRange=null;s&&s.removeAllRanges();}
+function clearHighlights(){const sp=document.querySelectorAll('span.hl');if(!sp.length)return;if(confirm('確定要清除所有重點標記嗎？')){sp.forEach(s=>{const p=s.parentNode;while(s.firstChild)p.insertBefore(s.firstChild,s);p.removeChild(s);});}}
+function openExport(){
+    const stars=loadStars();
+    let out='臺灣高等法院 114年度刑事法律座談會第4號\n'+'═'.repeat(44)+'\n\n';
+    document.querySelectorAll('.card').forEach(c=>{
+        const star=stars[c.id]?'⭐ ':'';
+        const title=c.querySelector('.card-title')?.textContent.trim()||'';
+        out+=`【${star}${title}】\n\n`;
+        const vMain=c.querySelector('.verdict-main');
+        const vSub=c.querySelector('.verdict-sub');
+        if(vMain) out+='▌研討結論\n'+vMain.textContent.trim()+'\n';
+        if(vSub)  out+=vSub.textContent.trim()+'\n';
+        const chips=[...c.querySelectorAll('.v-chip')].map(el=>el.textContent.trim()).join('　');
+        if(chips) out+=chips+'\n';
+        out+='\n';
+        const issue=c.querySelector('.issue-box');
+        if(issue){out+='▌法律問題\n';issue.querySelectorAll('p').forEach(p=>{const t=p.textContent.trim();if(t)out+=t+'\n';});out+='\n';}
+        c.querySelectorAll('.op').forEach(op=>{
+            const head=op.querySelector('.op-label')?.textContent.trim()||'';
+            const chip=op.querySelector('.op-conclusion-chip')?.textContent.trim()||'';
+            out+=`▌${head}　${chip}\n`;
+            op.querySelectorAll('.op-body p, .op-body li, .op-result').forEach(el=>{
+                const t=el.textContent.trim();
+                if(t) out+=(el.tagName==='LI'?'  • ':'')+t+'\n';
+            });
+            out+='\n';
+        });
+        const law=c.querySelector('.law-ref');
+        if(law) out+=law.textContent.trim()+'\n\n';
+        const ta=c.querySelector('.note-textarea');
+        if(ta&&ta.value.trim()) out+='✏️ 小結：\n'+ta.value.trim()+'\n\n';
+        out+='═'.repeat(44)+'\n\n';
+    });
+    const b=new Blob([out.trim()],{type:'text/plain;charset=utf-8'});
+    const u=URL.createObjectURL(b);
+    const a=document.createElement('a');
+    a.href=u;a.download='114刑事座談04_強制罪法人客體.txt';a.click();
+    URL.revokeObjectURL(u);
+}
+const REG_KEY='exam_completion_registry';
+function _loadReg(){try{return JSON.parse(localStorage.getItem(REG_KEY))||{};}catch{return{};}}
+function _saveReg(r){try{localStorage.setItem(REG_KEY,JSON.stringify(r));}catch{}}
+function _file(){const p=location.pathname.split('/');return decodeURIComponent(p[p.length-1]||'');}
+function _fmt(ts){const d=new Date(ts);return(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();}
+function _updateDate(){const r=_loadReg();const k=_file();const l=document.getElementById('doneDateLabel');if(!l)return;l.textContent=(r[k]&&r[k].done&&r[k].ts)?_fmt(r[k].ts):'';}
+function toggleDone(){const btn=document.getElementById('doneBtn');const r=_loadReg();const k=_file();const done=r[k]&&r[k].done;if(done){delete r[k];_saveReg(r);btn.classList.remove('active');}else{const now=new Date();r[k]={done:true,score:null,total:null,ts:now.getTime(),tsLabel:now.toLocaleDateString('zh-TW')+' '+now.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false})};_saveReg(r);btn.classList.add('active');}_updateDate();}
+(function(){const r=_loadReg();const k=_file();if(r[k]&&r[k].done){const b=document.getElementById('doneBtn');if(b)b.classList.add('active');}_updateDate();})();
+</script>
+</body>
+</html>
