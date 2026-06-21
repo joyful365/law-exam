@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>114年度刑事法律座談會第8號</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: "Helvetica Neue", Helvetica, "PingFang TC", "LiHei Pro", "Microsoft JhengHei", sans-serif; background: #eef0f3; color: #1a1a1a; line-height: 1.8; font-size: 16px; margin: 0; padding: 0 0 56px; }
+        header { background: #1a365d; color: white; padding: 18px 16px 10px; text-align: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.18); }
+        header h1 { margin: 0 0 10px; font-size: 1.05em; line-height: 1.5; font-weight: 600; letter-spacing: 0.02em; }
+        .header-controls { display: flex; gap: 8px; align-items: center; }
+        .search-wrap { position: relative; flex: 1; }
+        #searchInput { width: 100%; padding: 8px 14px 8px 34px; border: none; border-radius: 8px; font-size: 14px; background: rgba(255,255,255,0.13); color: white; outline: none; }
+        #searchInput::placeholder { color: rgba(255,255,255,0.5); }
+        #searchInput:focus { background: rgba(255,255,255,0.22); }
+        .search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 13px; opacity: 0.6; pointer-events: none; }
+        #filterBtn { background: rgba(255,255,255,0.13); border: none; border-radius: 8px; color: white; font-size: 13px; padding: 8px 12px; cursor: pointer; white-space: nowrap; }
+        #filterBtn.active { background: #c9a84c; color: #1a365d; font-weight: bold; }
+        .top-bar { background: #dde0e5; padding: 6px 14px; display: flex; gap: 6px; justify-content: flex-end; flex-wrap: nowrap; }
+        .top-btn { background: #5a6375; color: white; border: none; padding: 5px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap; transition: transform 0.1s; }
+        .top-btn:active { transform: scale(0.92); }
+        .top-btn.erase { background: #7a8494; }
+        .top-btn.clear { background: #a0a8b4; }
+        .top-btn.export { background: #c5cad3; color: #2d3748; }
+        .top-btn.done { background: #a0a8b4; color: #1a2a3a; }
+        .top-btn.done.active { background: linear-gradient(135deg,#7a5c00,#a07820); color: #fff3c4; }
+        .done-date { font-size: 11px; color: #8a9ab0; white-space: nowrap; align-self: center; }
+        .container { padding: 16px; max-width: 600px; margin: 0 auto; }
+        .card { background: #fff; border-radius: 16px; padding: 22px 20px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); position: relative; }
+        .card.hidden { display: none; }
+        .star-btn { position: absolute; top: 18px; right: 18px; background: none; border: none; font-size: 20px; cursor: pointer; opacity: 0.18; transition: opacity 0.15s, transform 0.15s; padding: 0; }
+        .star-btn:active { transform: scale(1.3); }
+        .star-btn.starred { opacity: 1; }
+        .card-title { color: #1a365d; font-size: 1.25em; font-weight: 700; margin: 0 0 4px; padding-right: 28px; line-height: 1.55; }
+        .meta-line { font-size: 0.76em; color: #999; margin-bottom: 18px; letter-spacing: 0.03em; }
+        .verdict { background: #1a365d; color: white; border-radius: 11px; padding: 15px 18px; margin-bottom: 20px; }
+        .verdict-label { font-size: 0.68em; letter-spacing: 0.12em; opacity: 0.55; text-transform: uppercase; margin-bottom: 4px; }
+        .verdict-main { font-size: 1.08em; font-weight: 700; line-height: 1.45; margin-bottom: 5px; }
+        .verdict-sub { font-size: 0.83em; opacity: 0.75; line-height: 1.6; margin-bottom: 10px; }
+        .vote-row { display: flex; gap: 7px; flex-wrap: wrap; }
+        .v-chip { font-size: 0.73em; background: rgba(255,255,255,0.12); border-radius: 20px; padding: 3px 10px; white-space: nowrap; color: rgba(255,255,255,0.8); }
+        .v-chip.win { background: rgba(255,255,255,0.28); color: #fff; font-weight: 700; }
+        .section-heading { font-size: 0.72em; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #8a9ab0; margin: 20px 0 10px; padding-bottom: 5px; border-bottom: 1px solid #e8eaee; }
+        .issue-box { background: #f5f6f8; border-radius: 10px; padding: 14px 16px; margin-bottom: 16px; font-size: 0.91em; color: #333; }
+        .issue-box p { margin: 0 0 8px; }
+        .issue-box p:last-child { margin: 0; }
+        /* 構成要件框 */
+        .element-box { background: #f0f3f8; border-radius: 8px; padding: 12px 14px; margin: 10px 0; font-size: 0.86em; border-left: 3px solid #1a365d; }
+        .element-box .el-title { font-weight: 700; color: #1a365d; margin-bottom: 6px; font-size: 0.9em; }
+        .element-row { display: flex; gap: 6px; align-items: flex-start; margin-bottom: 4px; }
+        .el-tag { background: #1a365d; color: white; border-radius: 4px; padding: 1px 7px; font-size: 0.78em; font-weight: 700; flex-shrink: 0; margin-top: 3px; }
+        /* 學說對照 */
+        .theory-row { display: flex; gap: 10px; margin: 10px 0; }
+        .theory-cell { flex: 1; border-radius: 8px; padding: 10px 12px; font-size: 0.84em; }
+        .theory-cell.a { background: #f0f4ff; border: 1px solid #c7d7f5; }
+        .theory-cell.b { background: #f5f0ff; border: 1px solid #d7c7f5; }
+        .theory-cell .tc-title { font-weight: 700; font-size: 0.88em; margin-bottom: 5px; color: #1a365d; }
+        .theory-cell.b .tc-title { color: #5a3d8a; }
+        .opinions { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+        .op { border-radius: 10px; overflow: hidden; border: 1px solid #e4e7ec; }
+        .op-head { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #f5f6f8; }
+        .op-num { width: 26px; height: 26px; border-radius: 50%; background: #1a365d; color: white; font-size: 0.75em; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .op-label { font-weight: 700; font-size: 0.93em; color: #1a365d; flex: 1; }
+        .op-conclusion-chip { font-size: 0.74em; color: #666; background: #eaecf0; border-radius: 20px; padding: 2px 9px; white-space: nowrap; }
+        .op-body { padding: 13px 15px; font-size: 0.9em; background: #fff; }
+        .op-body p { margin: 0 0 9px; }
+        .op-body p:last-child { margin: 0; }
+        .op-body ul { margin: 5px 0 8px; padding-left: 18px; }
+        .op-body li { margin-bottom: 4px; }
+        .op-result { background: #f0f3f8; border-radius: 7px; padding: 10px 13px; margin-top: 10px; font-size: 0.9em; border-left: 3px solid #1a365d; }
+        details { margin-top: 16px; }
+        details summary { cursor: pointer; color: #5a6880; font-size: 0.85em; font-weight: 600; padding: 5px 0; user-select: none; list-style: none; display: flex; align-items: center; gap: 5px; }
+        details summary::before { content: '▶'; font-size: 0.65em; transition: transform 0.2s; color: #8a9ab0; }
+        details[open] summary::before { transform: rotate(90deg); }
+        .ref-case { background: #f5f6f8; border-radius: 8px; padding: 11px 14px; margin-bottom: 8px; font-size: 0.85em; border-left: 3px solid #1a365d; }
+        .ref-case.yi { border-left-color: #8a9ab0; }
+        .ref-case-title { font-weight: 700; color: #1a365d; margin-bottom: 4px; font-size: 0.9em; }
+        .ref-case.yi .ref-case-title { color: #4a5568; }
+        .law-ref { background: #f0f2f5; border-radius: 8px; padding: 10px 14px; font-size: 0.85em; color: #4a5568; margin-top: 14px; border-left: 3px solid #1a365d; }
+        .note-toggle { display: inline-block; margin-top: 14px; font-size: 0.8em; color: #b0b8c4; cursor: pointer; user-select: none; }
+        .note-toggle:hover { color: #1a365d; }
+        .note-area { display: none; margin-top: 8px; }
+        .note-area.open { display: block; }
+        .note-textarea { width: 100%; min-height: 68px; border: 1px solid #e0e4ea; border-radius: 8px; padding: 10px 12px; font-size: 0.87em; font-family: inherit; color: #333; background: #fafbfc; resize: vertical; outline: none; line-height: 1.7; }
+        .note-textarea:focus { border-color: #1a365d; }
+        .note-textarea::placeholder { color: #ccc; }
+        .note-saved { font-size: 0.72em; color: #68d391; text-align: right; height: 14px; margin-top: 2px; }
+        #noResults, #noStarred { display: none; text-align: center; color: #a0aec0; padding: 40px 0; font-size: 0.9em; }
+        ::-webkit-scrollbar { display: none; }
+        ::selection { background: #c8d8ef; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>臺灣高等法院<br>114年度刑事法律座談會第8號</h1>
+    <div class="header-controls">
+        <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="搜尋關鍵字、法條…" oninput="doSearch(this.value)">
+        </div>
+        <button id="filterBtn" onclick="toggleFilter()">⭐ 收藏</button>
+    </div>
+    <div class="top-bar">
+        <button class="top-btn" onclick="highlightText()">🖊️</button>
+        <button class="top-btn erase" onclick="removeHighlight()">🧽</button>
+        <button class="top-btn clear" onclick="clearHighlights()">🗑️</button>
+        <button class="top-btn export" onclick="openExport()">📤</button>
+        <button class="top-btn done" id="doneBtn" onclick="toggleDone()">朕已閱</button>
+        <span class="done-date" id="doneDateLabel"></span>
+    </div>
+</header>
+
+<div class="container">
+<div class="card" id="case1" data-kw="銀行法125條之2 特別背信罪 理財專員 理專 違背職務 業務侵占 存摺 印章 保管 職務範圍 違背信任說 濫用權限說 整體觀察">
+    <button class="star-btn" onclick="toggleStar('case1',this)">⭐</button>
+
+    <h2 class="card-title">銀行理專違反銀行規定，為客戶保管銀行存摺、印章，嗣將帳戶內存款侵占入己，是否構成銀行法第125條之2之銀行職員特別背信罪？</h2>
+    <div class="meta-line">提案機關：臺灣臺北地方法院</div>
+
+    <!-- 結論橫幅 -->
+    <div class="verdict">
+        <div class="verdict-label">研討結論</div>
+        <div class="verdict-main">採甲說（肯定說）——構成銀行法第125條之2特別背信罪</div>
+        <div class="verdict-sub">保管存摺、印章與理專職務（購買贖回商品）外觀上具有密切關聯，客戶係因信賴理專職務外觀而交付，應整體觀察而非切割判斷；且銀行明令禁止保管行為，甲違背不應為之義務而為之，屬違背職務。</div>
+        <div class="vote-row">
+            <span class="v-chip">初步：甲說 37票、乙說 6票</span>
+            <span class="v-chip">審查：採甲說</span>
+            <span class="v-chip win">大會 80人：審查意見說 45票 ✔</span>
+        </div>
+    </div>
+
+    <!-- 法律問題 -->
+    <div class="section-heading">法律問題</div>
+    <div class="issue-box">
+        <p>甲為銀行之<strong>理財專員</strong>，依銀行規定，甲之業務範圍為：為客戶提供<strong>理財諮詢、規劃</strong>，並依客戶指示辦理<strong>投資理財商品之購買與贖回</strong>。</p>
+        <p><strong>非其業務範圍</strong>：為客戶保管資金（銀行明文規定及金管會函令均嚴禁）。</p>
+        <p>有客戶乙信賴甲，<strong>將存摺、印章交給甲保管</strong>，甲卻將乙銀行帳戶內之存款<strong>侵占入己</strong>。</p>
+        <p><strong>問：</strong>甲之行為是否構成<strong>銀行法第125條之2之銀行職員特別背信罪</strong>？</p>
+    </div>
+
+    <!-- 構成要件 -->
+    <div class="section-heading">銀行法第125條之2第1項構成要件</div>
+    <div class="element-box">
+        <div class="el-title">特別背信罪成立要件（均須具備）</div>
+        <div class="element-row"><span class="el-tag">主體</span>銀行負責人或職員</div>
+        <div class="element-row"><span class="el-tag">主觀</span>意圖為自己或第三人不法之利益，或損害銀行之利益</div>
+        <div class="element-row"><span class="el-tag">客觀</span>為<strong>違背其職務</strong>之行為</div>
+        <div class="element-row"><span class="el-tag">結果</span>致生損害於銀行之財產或其他利益</div>
+        <p style="margin:8px 0 0;font-size:0.88em;color:#666;">⚠️ 本題爭點：保管存摺印章是否屬「違背其職務」之行為？</p>
+    </div>
+
+    <!-- 學說背景 -->
+    <div class="section-heading">背信罪本質學說——理解本題兩說之理論基礎</div>
+    <div class="theory-row">
+        <div class="theory-cell a">
+            <div class="tc-title">違背信任說</div>
+            當事人間存在特別信任關係時，若一方破壞信任關係，導致他方受有財產損害，即有以刑法介入之必要。職務行為限於契約約定之權利義務範圍。
+        </div>
+        <div class="theory-cell b">
+            <div class="tc-title">濫用權限說（審查意見採）</div>
+            代理人若濫用授權而侵害授權人財產利益，即應處罰。職務行為涵蓋與職務外觀具密切關聯、因而獲取客戶信賴而為處理之行為，縱逾越職務契約權限亦然。
+        </div>
+    </div>
+
+    <!-- 討論意見 -->
+    <div class="section-heading">討論意見</div>
+    <div class="opinions">
+        <!-- 甲說 -->
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">甲</div>
+                <span class="op-label">肯定說——構成銀行法第125條之2特別背信罪</span>
+                <span class="op-conclusion-chip">最終採此說</span>
+            </div>
+            <div class="op-body">
+                <p><strong>㈠ 整體觀察而非切割：</strong>理財專員之職務包含提供投資理財諮詢、規劃，及受理客戶指示辦理投資理財商品之購買、贖回。不宜將各步驟切割後單獨觀察，應依業務過程中所擔任之職務、經手之事務為<strong>整體觀察</strong>。倘於過程中有處理非其專責之業務，但與其職務相關的行為，仍屬職務行為（最高法院113年度台上字第3847號、216號判決）。</p>
+                <p><strong>㈡ 保管存摺與理專職務外觀具密切關聯：</strong>甲保管乙之存摺、印章，係為便於購買或贖回商品時查核存摺餘額及轉帳扣款之迅速之職務關係而來；購買贖回與保管（代管）存摺印章間，外觀上具有密切關聯，乙亦係因信賴甲之<strong>理專職務外觀</strong>而交付存摺印章，屬濫用銀行授與職務權限之背信行為。</p>
+                <p><strong>㈢ 違背不作為義務：</strong>金管會100年2月21日函令及各大銀行均明令<strong>嚴禁行員私自代客保管印鑑、存摺</strong>，甲知悉此禁止規定而仍保管、侵占，違背其職務上不應為而為之義務，亦屬違背職務之行為。</p>
+                <p><strong>㈣ 保護法益含超個人法益：</strong>特別背信罪保護法益不僅係個人財產法益，尚含括廣大社會群眾對銀行體系運作之信賴、金融秩序之穩定等超個人法益（重疊性法益），此正當化本罪遠重於一般背信罪之刑度。</p>
+                <div class="op-result">
+                    <strong>㈤ 結論：</strong>甲之行為除對客戶乙合致業務侵占罪構成要件外，亦屬<strong>違背職務之特別背信行為</strong>，致生損害於銀行之財產或其他利益，構成銀行法第125條之2之特別背信罪。
+                </div>
+            </div>
+        </div>
+
+        <!-- 乙說 -->
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">乙</div>
+                <span class="op-label">否定說——不構成特別背信罪，另論業務侵占</span>
+                <span class="op-conclusion-chip">少數說</span>
+            </div>
+            <div class="op-body">
+                <p><strong>㈠ 須銀行損害係直接由職務行為所致：</strong>銀行法特別背信罪，須銀行損害之發生，係<strong>直接</strong>由其負責人或職員之職務行為所致。若銀行之損害並非直接由職務行為所致，僅係銀行職員<strong>利用其職務上之便或機會</strong>而為不法行為，縱使致生損害，因無違背職務之行為，即與本條犯罪構成要件不合（最高法院103年度台上字第2996號判決）。</p>
+                <p><strong>㈡ 職務行為須具有處分權：</strong>本罪成立以銀行負責人或職員對於銀行<strong>負有管理財產利益之義務</strong>或<strong>對銀行財產具有處分權</strong>為要件。倘銀行職員之行為與其職務無關，且不具有處分權限，則非為銀行處理事務，縱違反銀行內部工作規則，仍不能繩以本罪（最高法院111年度台上字第4093號判決）。</p>
+                <p><strong>㈢ 本案甲之職務範圍不包括保管資金：</strong>甲之業務範圍既不包括為客戶保管資金，其保管存摺印章係職務範圍外之行為，甲亦不具有對乙帳戶款項之處分權，不符合特別背信罪之「違背其職務」要件。</p>
+                <div class="op-result">
+                    <strong>㈣ 結論：</strong>甲之行為<strong>不構成銀行法第125條之2之特別背信罪</strong>，應另依其行為分別適用其他合致之罪名（即業務侵占罪）。
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="law-ref"><strong>相關法條：</strong>銀行法第125條之2；刑法第336條第2項（業務侵占）。</div>
+
+    <details>
+        <summary>參考資料</summary>
+        <div style="padding-top:10px;">
+            <div class="ref-case">
+                <div class="ref-case-title">最高法院113年度台上字第3847號判決（甲說）</div>
+                <p style="margin:0;">以理財專員提供客戶投資理財諮詢、規劃，及受理客戶指示辦理投資理財型商品之購買、贖回而言，不宜將其行為切割後予以單獨觀察，而應依其在業務過程中所擔任之職務、經手之事務為整體觀察，倘於過程中有處理非其專責之業務，但與其職務相關的行為，仍屬其職務行為。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">最高法院113年度台上字第216號判決（甲說）</div>
+                <p style="margin:0;">應依該職員在整體業務流程中所擔任之職務、經手之事項為整體觀察，非將其各步驟或階段行為切割判斷，因此，倘於此流程中有處理非其專責之業務但有密切關連而使其專責業務易於完成或更為完備有所違背者，亦得成立此罪。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">最高法院101年度台上字第1067號判決（甲說）</div>
+                <p style="margin:0;">利用銀行之場所與資源，在銀行營業時間內辦理，所交付之文件亦屬銀行名義之文件，與一般銀行理專執行職務、服務客戶之模式並無不同，非一般非銀行理專所能實施之詐騙手段，能否謂被告非利用其銀行理專之身分而為，認與其職務無涉？</p>
+            </div>
+            <div class="ref-case yi">
+                <div class="ref-case-title">最高法院103年度台上字第2996號判決（乙說）</div>
+                <p style="margin:0;">須銀行損害之發生，係直接由於其負責人或職員之職務行為所致，若銀行之損害並非直接由職務行為所致，僅係銀行職員利用其職務上之便或機會而為不法之行為，縱使致生損害，因其並無違背職務之行為，即與本條之犯罪構成要件不合。</p>
+            </div>
+            <div class="ref-case yi">
+                <div class="ref-case-title">最高法院111年度台上字第4093號判決（乙說）</div>
+                <p style="margin:0;">本罪之成立，以銀行負責人或職員對於銀行負有管理財產利益之義務或對銀行之財產具有處分權為要件。倘銀行職員之行為與其職務無關，且不具有處分權限，則非為銀行處理事務，縱違反銀行內部之工作規則、員工行為準則等規定，並因而致生損害於銀行之財產或其他利益，除非與有此職務之人共犯外，仍不能繩以本罪，僅能依其行為而分別適用其他合致之罪名。</p>
+            </div>
+            <div class="ref-case yi">
+                <div class="ref-case-title">最高法院104年度台上字第2243號判決（乙說）</div>
+                <p style="margin:0;">雖屬銀行理財專員業務上所延伸範圍之事項，但被告此部分犯行，僅係利用其職務上之機會或便利而為，尚難遽認被告所為係屬「違背其職務之行為」，核與銀行法第125條之2第1項之銀行職員違背職務罪之構成要件不合。</p>
+            </div>
+            <div class="ref-case yi">
+                <div class="ref-case-title">學者見解（背信罪本質）</div>
+                <p style="margin:0;"><strong>違背信任說 vs 濫用權限說</strong>——張天一，「論背信罪之本質及定位」，中原財經法學第26期（2011）。曾淑瑜，銀行法特別背信罪適用爭議，臺灣法學雜誌第261期（2014）。陳志輝，從刑法背信罪分析銀行法第125條之2，臺灣法學雜誌第286期（2015）。王正嘉，從經濟刑法觀點看特別背信罪，臺灣法學雜誌第273期（2015）。</p>
+            </div>
+        </div>
+    </details>
+
+    <div class="note-toggle" onclick="toggleNote('n1')">✏️ 我的小結</div>
+    <div class="note-area" id="n1">
+        <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n1',this.value)"></textarea>
+        <div class="note-saved" id="n1-saved"></div>
+    </div>
+</div>
+
+<div id="noResults">查無符合的內容，請試試其他關鍵字。</div>
+<div id="noStarred">還沒有收藏的項目，點卡片右上角的 ⭐ 加入收藏。</div>
+</div>
+
+<script>
+const STORE_KEY='114_8_seminar_notes',STAR_KEY='114_8_seminar_stars';
+function loadNotes(){try{return JSON.parse(localStorage.getItem(STORE_KEY))||{};}catch{return{};}}
+function loadStars(){try{return JSON.parse(localStorage.getItem(STAR_KEY))||{};}catch{return{};}}
+function saveAllNotes(d){localStorage.setItem(STORE_KEY,JSON.stringify(d));}
+function saveAllStars(d){localStorage.setItem(STAR_KEY,JSON.stringify(d));}
+(function(){const n=loadNotes(),s=loadStars();Object.entries(n).forEach(([id,v])=>{const a=document.getElementById(id);if(!a)return;const t=a.querySelector('textarea');if(t)t.value=v;if(v)a.classList.add('open');});Object.entries(s).forEach(([id,v])=>{if(!v)return;const b=document.querySelector(`#${id} .star-btn`);if(b)b.classList.add('starred');});})();
+function toggleStar(id,btn){const s=loadStars();const now=!btn.classList.contains('starred');btn.classList.toggle('starred',now);s[id]=now;saveAllStars(s);if(filterActive)applyFilter();}
+let filterActive=false;
+function toggleFilter(){filterActive=!filterActive;document.getElementById('filterBtn').classList.toggle('active',filterActive);document.getElementById('searchInput').value='';applyFilter();}
+function applyFilter(){const s=loadStars();const q=document.getElementById('searchInput').value.trim().toLowerCase();let any=false;document.querySelectorAll('.card').forEach(c=>{const kw=(c.dataset.kw||'').toLowerCase();const txt=c.textContent.toLowerCase();const ms=!q||kw.includes(q)||txt.includes(q);const mf=!filterActive||!!s[c.id];const show=ms&&mf;c.classList.toggle('hidden',!show);if(show)any=true;});document.getElementById('noResults').style.display=(!any&&!filterActive)?'block':'none';document.getElementById('noStarred').style.display=(!any&&filterActive)?'block':'none';}
+function doSearch(){applyFilter();}
+function toggleNote(id){document.getElementById(id).classList.toggle('open');}
+const timers={};
+function saveNote(id,v){clearTimeout(timers[id]);timers[id]=setTimeout(()=>{const n=loadNotes();n[id]=v;saveAllNotes(n);const el=document.getElementById(id+'-saved');if(el){el.textContent='已儲存';setTimeout(()=>el.textContent='',1500);}},500);}
+let savedRange=null;
+document.addEventListener('selectionchange',()=>{const s=window.getSelection();if(s&&!s.isCollapsed&&s.rangeCount)savedRange=s.getRangeAt(0).cloneRange();});
+function highlightText(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;if(!r||r.collapsed){alert('💡 請先反白想要標記的文字');return;}const sp=document.createElement('span');sp.className='hl';sp.style.backgroundColor='#ffe066';try{r.surroundContents(sp);savedRange=null;}catch{alert('💡 請選取同一段落內的文字');}s&&s.removeAllRanges();}
+function removeHighlight(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;if(!r||r.collapsed){alert('💡 請先反白想擦除標記的文字');return;}const anc=r.commonAncestorContainer.nodeType===1?r.commonAncestorContainer:r.commonAncestorContainer.parentElement;anc.querySelectorAll('span.hl').forEach(sp=>{if(r.intersectsNode(sp)){const p=sp.parentNode;while(sp.firstChild)p.insertBefore(sp.firstChild,sp);p.removeChild(sp);}});savedRange=null;s&&s.removeAllRanges();}
+function clearHighlights(){const sp=document.querySelectorAll('span.hl');if(!sp.length)return;if(confirm('確定要清除所有重點標記嗎？')){sp.forEach(s=>{const p=s.parentNode;while(s.firstChild)p.insertBefore(s.firstChild,s);p.removeChild(s);});}}
+function openExport(){
+    const stars=loadStars();
+    let out='臺灣高等法院 114年度刑事法律座談會第8號\n'+'═'.repeat(44)+'\n\n';
+    document.querySelectorAll('.card').forEach(c=>{
+        const star=stars[c.id]?'⭐ ':'';
+        const title=c.querySelector('.card-title')?.textContent.trim()||'';
+        out+=`【${star}${title}】\n\n`;
+        const vMain=c.querySelector('.verdict-main');
+        const vSub=c.querySelector('.verdict-sub');
+        if(vMain) out+='▌研討結論\n'+vMain.textContent.trim()+'\n';
+        if(vSub)  out+=vSub.textContent.trim()+'\n';
+        const chips=[...c.querySelectorAll('.v-chip')].map(el=>el.textContent.trim()).join('　');
+        if(chips) out+=chips+'\n';
+        out+='\n';
+        const issue=c.querySelector('.issue-box');
+        if(issue){out+='▌法律問題\n';issue.querySelectorAll('p').forEach(p=>{const t=p.textContent.trim();if(t)out+=t+'\n';});out+='\n';}
+        c.querySelectorAll('.op').forEach(op=>{
+            const head=op.querySelector('.op-label')?.textContent.trim()||'';
+            const chip=op.querySelector('.op-conclusion-chip')?.textContent.trim()||'';
+            out+=`▌${head}　${chip}\n`;
+            op.querySelectorAll('.op-body p, .op-body li, .op-result').forEach(el=>{
+                const t=el.textContent.trim();
+                if(t) out+=(el.tagName==='LI'?'  • ':'')+t+'\n';
+            });
+            out+='\n';
+        });
+        const law=c.querySelector('.law-ref');
+        if(law) out+=law.textContent.trim()+'\n\n';
+        const ta=c.querySelector('.note-textarea');
+        if(ta&&ta.value.trim()) out+='✏️ 小結：\n'+ta.value.trim()+'\n\n';
+        out+='═'.repeat(44)+'\n\n';
+    });
+    const b=new Blob([out.trim()],{type:'text/plain;charset=utf-8'});
+    const u=URL.createObjectURL(b);
+    const a=document.createElement('a');
+    a.href=u;a.download='114刑事座談08_理專特別背信罪.txt';a.click();
+    URL.revokeObjectURL(u);
+}
+const REG_KEY='exam_completion_registry';
+function _loadReg(){try{return JSON.parse(localStorage.getItem(REG_KEY))||{};}catch{return{};}}
+function _saveReg(r){try{localStorage.setItem(REG_KEY,JSON.stringify(r));}catch{}}
+function _file(){const p=location.pathname.split('/');return decodeURIComponent(p[p.length-1]||'');}
+function _fmt(ts){const d=new Date(ts);return(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();}
+function _updateDate(){const r=_loadReg();const k=_file();const l=document.getElementById('doneDateLabel');if(!l)return;l.textContent=(r[k]&&r[k].done&&r[k].ts)?_fmt(r[k].ts):'';}
+function toggleDone(){const btn=document.getElementById('doneBtn');const r=_loadReg();const k=_file();const done=r[k]&&r[k].done;if(done){delete r[k];_saveReg(r);btn.classList.remove('active');}else{const now=new Date();r[k]={done:true,ts:now.getTime()};_saveReg(r);btn.classList.add('active');}_updateDate();}
+(function(){const r=_loadReg();const k=_file();if(r[k]&&r[k].done){const b=document.getElementById('doneBtn');if(b)b.classList.add('active');}_updateDate();})();
+</script>
+</body>
+</html>
