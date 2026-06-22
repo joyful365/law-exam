@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🩶 民事法</title>
+    <style>
+        /* 共用基礎設定 */
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; background: linear-gradient(135deg, #FDFCFB 0%, #F2EFE9 100%); color: #595757; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px; }
+        .container { background-color: #FFFFFF; width: 100%; max-width: 600px; padding: 40px 30px; border-radius: 8px; box-shadow: 0 12px 24px rgba(140, 130, 115, 0.08); text-align: center; position: relative; }
+        
+        /* 頂部裝飾線：改為赤陶色 (#e07a5f) 以區分民法 */
+        .container::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 4px; background-color: #e07a5f; border-bottom-left-radius: 4px; border-bottom-right-radius: 4px; }
+        
+        /* 標題與返回鈕 */
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .back-btn { text-decoration: none; color: #999; font-size: 14px; background: #F9F9F9; padding: 6px 12px; border-radius: 6px; border: 1px solid #EEE; }
+        h1 { margin: 0; font-size: 22px; color: #333; }
+        
+        /* 目錄按鈕 */
+        ul { list-style: none; padding: 0; margin: 0; }
+        li { margin-bottom: 15px; }
+        a.menu-btn { display: block; padding: 16px 20px; background-color: #FDFCFB; color: #595757; text-decoration: none; border-radius: 6px; border: 1px solid #F0F0F0; border-left: 5px solid #DCD9D4; font-size: 16px; font-weight: 500; transition: 0.2s; text-align: left; }
+        
+        /* Hover 效果：對應更改為赤陶色 */
+        a.menu-btn:hover { border-left-color: #e07a5f; color: #e07a5f; transform: translateX(4px); box-shadow: -2px 4px 10px rgba(224, 122, 95, 0.1); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back-btn">🔙 回大廳</a>
+            <h1>🩶 民事法</h1>
+            <div style="width: 60px;"></div> <!-- 平衡排版用 -->
+        </div>
+
+        <ul>
+            <!-- 連結均已替換為 civil 開頭 -->
+            <li><a href="civil_grand_court.html" class="menu-btn"> 大法庭裁定</a></li>
+            <li><a href="civil_reference.html" class="menu-btn"> 具參考價值裁判</a></li>
+            <li><a href="civil_symposium.html" class="menu-btn"> 高院座談會</a></li>
+        </ul>
+    </div>
+</body>
+</html>
