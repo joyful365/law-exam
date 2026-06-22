@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>114年度刑事法律座談會第12號</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: "Helvetica Neue", Helvetica, "PingFang TC", "LiHei Pro", "Microsoft JhengHei", sans-serif; background: #eef0f3; color: #1a1a1a; line-height: 1.8; font-size: 16px; margin: 0; padding: 0 0 56px; }
+        .container { padding: 16px; max-width: 600px; margin: 0 auto; }
+        @media (min-width: 768px) { body { font-size: 17.5px; } .container { max-width: 860px; padding: 20px; } header h1 { font-size: 1.15em; } }
+        header { background: #1a365d; color: white; padding: 18px 16px 10px; text-align: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.18); }
+        header h1 { margin: 0 0 10px; font-size: 1.05em; line-height: 1.5; font-weight: 600; letter-spacing: 0.02em; }
+        .header-controls { display: flex; gap: 8px; align-items: center; }
+        .search-wrap { position: relative; flex: 1; display: flex; align-items: center; gap: 4px; }
+        #searchInput { flex: 1; padding: 8px 14px 8px 34px; border: none; border-radius: 8px; font-size: 14px; background: rgba(255,255,255,0.13); color: white; outline: none; }
+        #searchInput::placeholder { color: rgba(255,255,255,0.5); }
+        #searchInput:focus { background: rgba(255,255,255,0.22); }
+        .search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 13px; opacity: 0.6; pointer-events: none; }
+        .search-count { font-size: 12px; color: rgba(255,255,255,0.7); white-space: nowrap; min-width: 44px; text-align: center; }
+        .search-nav { background: rgba(255,255,255,0.13); border: none; border-radius: 6px; color: white; font-size: 13px; padding: 6px 8px; cursor: pointer; line-height: 1; }
+        .search-nav:hover { background: rgba(255,255,255,0.25); }
+        .search-nav:disabled { opacity: 0.3; cursor: default; }
+        mark.search-hl { background: #ffe066; color: #1a1a1a; border-radius: 2px; padding: 0 1px; }
+        mark.search-hl.current { background: #ff8c00; color: #fff; border-radius: 3px; outline: 2px solid #ff8c00; }
+        #filterBtn { background: rgba(255,255,255,0.13); border: none; border-radius: 8px; color: white; font-size: 13px; padding: 8px 12px; cursor: pointer; white-space: nowrap; }
+        #filterBtn.active { background: #c9a84c; color: #1a365d; font-weight: bold; }
+        .top-bar { background: #dde0e5; padding: 6px 14px; display: flex; gap: 6px; justify-content: flex-end; flex-wrap: nowrap; }
+        .top-btn { background: #5a6375; color: white; border: none; padding: 5px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap; transition: transform 0.1s; }
+        .top-btn:active { transform: scale(0.92); }
+        .top-btn.erase { background: #7a8494; }
+        .top-btn.clear { background: #a0a8b4; }
+        .top-btn.export { background: #c5cad3; color: #2d3748; }
+        .top-btn.done { background: #a0a8b4; color: #1a2a3a; }
+        .top-btn.done.active { background: linear-gradient(135deg,#7a5c00,#a07820); color: #fff3c4; }
+        .done-date { font-size: 11px; color: #8a9ab0; white-space: nowrap; align-self: center; }
+        .card { background: #fff; border-radius: 16px; padding: 22px 20px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); position: relative; }
+        .card.hidden { display: none; }
+        .star-btn { position: absolute; top: 18px; right: 18px; background: none; border: none; font-size: 20px; cursor: pointer; opacity: 0.18; transition: opacity 0.15s, transform 0.15s; padding: 0; }
+        .star-btn:active { transform: scale(1.3); }
+        .star-btn.starred { opacity: 1; }
+        .card-title { color: #1a365d; font-size: 1.25em; font-weight: 700; margin: 0 0 4px; padding-right: 28px; line-height: 1.55; }
+        .meta-line { font-size: 0.76em; color: #999; margin-bottom: 18px; letter-spacing: 0.03em; }
+        .verdict { background: #1a365d; color: white; border-radius: 11px; padding: 15px 18px; margin-bottom: 20px; }
+        .verdict-label { font-size: 0.68em; letter-spacing: 0.12em; opacity: 0.55; text-transform: uppercase; margin-bottom: 4px; }
+        .verdict-main { font-size: 1.08em; font-weight: 700; line-height: 1.45; margin-bottom: 5px; }
+        .verdict-sub { font-size: 0.83em; opacity: 0.75; line-height: 1.6; margin-bottom: 10px; }
+        .vote-row { display: flex; gap: 7px; flex-wrap: wrap; }
+        .v-chip { font-size: 0.73em; background: rgba(255,255,255,0.12); border-radius: 20px; padding: 3px 10px; white-space: nowrap; color: rgba(255,255,255,0.8); }
+        .v-chip.win { background: rgba(255,255,255,0.28); color: #fff; font-weight: 700; }
+        .section-heading { font-size: 0.72em; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #8a9ab0; margin: 20px 0 10px; padding-bottom: 5px; border-bottom: 1px solid #e8eaee; }
+        .issue-box { background: #f5f6f8; border-radius: 10px; padding: 14px 16px; margin-bottom: 16px; font-size: 0.91em; color: #333; }
+        .issue-box p { margin: 0 0 8px; }
+        .issue-box p:last-child { margin: 0; }
+        /* 逆轉警示 */
+        .flip-box { background: #fffbeb; border: 1px solid #f0c040; border-radius: 9px; padding: 12px 15px; margin-bottom: 16px; font-size: 0.85em; }
+        .flip-box .fb-title { font-weight: 700; color: #92400e; margin-bottom: 8px; font-size: 0.9em; }
+        .flip-stages { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+        .flip-stage { background: white; border-radius: 7px; padding: 6px 10px; font-size: 0.82em; text-align: center; border: 1px solid #e8e0c0; flex: 1; min-width: 80px; }
+        .flip-stage .fs-label { color: #888; font-size: 0.85em; margin-bottom: 2px; }
+        .flip-stage .fs-val { font-weight: 700; }
+        .flip-stage.win .fs-val { color: #276749; }
+        .flip-stage.lose .fs-val { color: #9b2335; }
+        .flip-arrow { color: #c9a84c; font-size: 1.1em; flex-shrink: 0; }
+        /* 犯罪流程 */
+        .flow-chain { display: flex; flex-direction: column; gap: 0; margin: 10px 0; font-size: 0.84em; }
+        .flow-step { display: flex; align-items: flex-start; gap: 10px; padding: 8px 12px; background: #f5f6f8; border-radius: 7px; margin-bottom: 4px; }
+        .flow-step.highlight { background: #e8edf5; border-left: 3px solid #1a365d; }
+        .flow-step.dispute { background: #fff5f5; border-left: 3px solid #fca5a5; }
+        .fs-num { width: 22px; height: 22px; border-radius: 50%; background: #1a365d; color: white; font-size: 0.75em; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+        .fs-num.red { background: #9b2335; }
+        .fs-text { flex: 1; color: #333; line-height: 1.6; }
+        /* 意見區塊 */
+        .opinions { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+        .op { border-radius: 10px; overflow: hidden; border: 1px solid #e4e7ec; }
+        .op-head { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #f5f6f8; }
+        .op-num { width: 26px; height: 26px; border-radius: 50%; background: #1a365d; color: white; font-size: 0.75em; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .op-label { font-weight: 700; font-size: 0.93em; color: #1a365d; flex: 1; }
+        .op-conclusion-chip { font-size: 0.74em; color: #666; background: #eaecf0; border-radius: 20px; padding: 2px 9px; white-space: nowrap; }
+        .op-body { padding: 13px 15px; font-size: 0.9em; background: #fff; }
+        .op-body p { margin: 0 0 9px; }
+        .op-body p:last-child { margin: 0; }
+        .op-body ul { margin: 5px 0 8px; padding-left: 18px; }
+        .op-body li { margin-bottom: 4px; }
+        .op-result { background: #f0f3f8; border-radius: 7px; padding: 10px 13px; margin-top: 10px; font-size: 0.9em; border-left: 3px solid #1a365d; }
+        details { margin-top: 16px; }
+        details summary { cursor: pointer; color: #5a6880; font-size: 0.85em; font-weight: 600; padding: 5px 0; user-select: none; list-style: none; display: flex; align-items: center; gap: 5px; }
+        details summary::before { content: '▶'; font-size: 0.65em; transition: transform 0.2s; color: #8a9ab0; }
+        details[open] summary::before { transform: rotate(90deg); }
+        .ref-case { background: #f5f6f8; border-radius: 8px; padding: 11px 14px; margin-bottom: 8px; font-size: 0.85em; border-left: 3px solid #1a365d; }
+        .ref-case.yi { border-left-color: #8a9ab0; }
+        .ref-case-title { font-weight: 700; color: #1a365d; margin-bottom: 4px; font-size: 0.9em; }
+        .ref-case.yi .ref-case-title { color: #4a5568; }
+        .law-ref { background: #f0f2f5; border-radius: 8px; padding: 10px 14px; font-size: 0.85em; color: #4a5568; margin-top: 14px; border-left: 3px solid #1a365d; }
+        .note-toggle { display: inline-block; margin-top: 14px; font-size: 0.8em; color: #b0b8c4; cursor: pointer; user-select: none; }
+        .note-toggle:hover { color: #1a365d; }
+        .note-area { display: none; margin-top: 8px; }
+        .note-area.open { display: block; }
+        .note-textarea { width: 100%; min-height: 68px; border: 1px solid #e0e4ea; border-radius: 8px; padding: 10px 12px; font-size: 0.87em; font-family: inherit; color: #333; background: #fafbfc; resize: vertical; outline: none; line-height: 1.7; }
+        .note-textarea:focus { border-color: #1a365d; }
+        .note-textarea::placeholder { color: #ccc; }
+        .note-saved { font-size: 0.72em; color: #68d391; text-align: right; height: 14px; margin-top: 2px; }
+        #noResults, #noStarred { display: none; text-align: center; color: #a0aec0; padding: 40px 0; font-size: 0.9em; }
+        ::-webkit-scrollbar { display: none; }
+        ::selection { background: #c8d8ef; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>臺灣高等法院<br>114年度刑事法律座談會第12號</h1>
+    <div class="header-controls">
+        <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="搜尋關鍵字、法條…" oninput="doSearch(this.value)" onkeydown="handleSearchKey(event)">
+            <span class="search-count" id="searchCount"></span>
+            <button class="search-nav" id="prevBtn" onclick="navMatch(-1)" disabled title="上一個">▲</button>
+            <button class="search-nav" id="nextBtn" onclick="navMatch(1)" disabled title="下一個">▼</button>
+        </div>
+        <button id="filterBtn" onclick="toggleFilter()">⭐ 收藏</button>
+    </div>
+    <div class="top-bar">
+        <button class="top-btn" onclick="highlightText()">🖊️</button>
+        <button class="top-btn erase" onclick="removeHighlight()">🧽</button>
+        <button class="top-btn clear" onclick="clearHighlights()">🗑️</button>
+        <button class="top-btn export" onclick="openExport()">📤</button>
+        <button class="top-btn done" id="doneBtn" onclick="toggleDone()">朕已閱</button>
+        <span class="done-date" id="doneDateLabel"></span>
+    </div>
+</header>
+
+<div class="container">
+<div class="card" id="case1" data-kw="取簿手 洗錢 洗錢防制法19 提款卡 人頭帳戶 詐欺 金流斷點 掩飾隱匿 特定犯罪所得 著手 預備 客觀處罰條件">
+    <button class="star-btn" onclick="toggleStar('case1',this)">⭐</button>
+
+    <h2 class="card-title">取簿手領取詐團所詐得之帳戶、提款卡包裹，並轉交他人作為詐欺匯款之用，復由車手提領一空，則取簿手對於被騙提款卡者，是否另構成洗錢罪？</h2>
+    <div class="meta-line">提案機關：臺灣臺北地方法院</div>
+
+    <!-- 結論橫幅 -->
+    <div class="verdict">
+        <div class="verdict-label">研討結論</div>
+        <div class="verdict-main">採乙說（否定說）——取簿手就被害人甲部分不另構成洗錢罪</div>
+        <div class="verdict-sub">取簿手僅領取包裹並轉交，未經手金錢，無從形成金流斷點，亦非以虛假交易外觀掩飾不法金流，且取得提款卡時丙尚未受騙匯款，尚屬洗錢之準備階段而非著手。</div>
+        <div class="vote-row">
+            <span class="v-chip">初步：乙說 39票</span>
+            <span class="v-chip">審查 24人：甲說 20票</span>
+            <span class="v-chip win">大會 75人：乙說 41票 ✔</span>
+        </div>
+    </div>
+
+    <!-- 三階段逆轉提示 -->
+    <div class="flip-box">
+        <div class="fb-title">⚠️ 本題三度逆轉，立場高度分歧</div>
+        <div class="flip-stages">
+            <div class="flip-stage win">
+                <div class="fs-label">初步研討</div>
+                <div class="fs-val">乙說 39:1</div>
+            </div>
+            <div class="flip-arrow">→</div>
+            <div class="flip-stage lose">
+                <div class="fs-label">審查意見</div>
+                <div class="fs-val">甲說 20:3</div>
+            </div>
+            <div class="flip-arrow">→</div>
+            <div class="flip-stage win">
+                <div class="fs-label">大會結論</div>
+                <div class="fs-val">乙說 41:30</div>
+            </div>
+        </div>
+        <p style="margin:8px 0 0;font-size:0.85em;color:#666;">大會最終仍回到初步立場，但票數縮至 41:30，顯示甲說論理仍有相當說服力。</p>
+    </div>
+
+    <!-- 法律問題 -->
+    <div class="section-heading">法律問題</div>
+    <div class="issue-box">
+        <p>詐欺集團分兩階段犯罪，涉及兩名被害人：</p>
+        <div class="flow-chain">
+            <div class="flow-step highlight">
+                <div class="fs-num">1</div>
+                <div class="fs-text"><strong>詐騙被害人甲（取簿）</strong>：詐欺集團以詐術使甲將帳戶存摺、提款卡寄至超商</div>
+            </div>
+            <div class="flow-step highlight">
+                <div class="fs-num">2</div>
+                <div class="fs-text"><strong>乙（取簿手）領取包裹</strong>：依詐欺集團指示至超商領取，旋即交予集團成員</div>
+            </div>
+            <div class="flow-step">
+                <div class="fs-num">3</div>
+                <div class="fs-text"><strong>詐騙被害人丙（匯款）</strong>：詐欺集團再以詐術使丙匯款至系爭帳戶</div>
+            </div>
+            <div class="flow-step">
+                <div class="fs-num">4</div>
+                <div class="fs-text"><strong>車手提領</strong>：詐欺集團其他成員將丙匯入款項提領殆盡</div>
+            </div>
+        </div>
+        <p><strong>問：</strong>乙領取包裹並交付詐欺集團之行為，就<strong>被害人甲</strong>部分，除構成三人以上共同詐欺取財罪外，是否亦構成<strong>洗錢防制法第19條第1項之洗錢罪</strong>？</p>
+        <p style="font-size:0.84em;color:#888;">（注意：被害人甲是被騙交出提款卡的人；被害人丙是被騙匯款的人。本題問的是對甲的洗錢，不是對丙。）</p>
+    </div>
+
+    <!-- 討論意見 -->
+    <div class="section-heading">討論意見</div>
+    <div class="opinions">
+        <!-- 甲說 -->
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">甲</div>
+                <span class="op-label">肯定說——另構成洗錢罪</span>
+                <span class="op-conclusion-chip">審查採此說</span>
+            </div>
+            <div class="op-body">
+                <p><strong>㈠ 洗錢行為與特定犯罪無時間先後必然性：</strong>特定犯罪僅係洗錢行為之「客觀處罰條件」，性質上屬限制刑罰事由，行為人主觀上無須認識特定犯罪已發生，甚至行為時特定犯罪尚未發生，只須最終存在而取得聯結即足（最高法院114年度台上字第2171號、111年度台上字第2410號判決）。故乙取得提款卡時丙尚未匯款，無礙洗錢行為之成立。</p>
+                <p><strong>㈡ 取簿手為詐欺丙既遂不可或缺之一環：</strong>詐欺集團先詐騙甲之提款卡，再由乙領取交予集團，集團隨即對丙施詐使其匯款至系爭帳戶並提領一空。此輾轉迂迴之方式，係為製造犯罪所得金流斷點，使偵查者難以查獲金流實質流向，達到隱匿犯罪所得之效果。就犯罪全部過程觀察，乙之行為實為遂行詐欺及洗錢不可或缺之一部。</p>
+                <p><strong>㈢ 取得提款卡本身即可評價為洗錢行為：</strong>依洗錢防制法第2條，洗錢行為包括妨礙對特定犯罪之調查、發現、沒收或追徵，使他人逃避特定犯罪刑事追訴，將特定犯罪所得移轉去向所在。乙領取並轉交提款卡，已妨礙幕後施詐之集團成員被追緝，隱匿提款卡去向，亦足評價為洗錢行為。</p>
+                <div class="op-result">
+                    <strong>㈣ 結論：</strong>乙之取簿行為兼具詐欺甲之洗錢功能，<strong>構成洗錢防制法第19條第1項之洗錢罪</strong>，與詐欺罪數罪並罰。
+                </div>
+            </div>
+        </div>
+
+        <!-- 乙說 -->
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">乙</div>
+                <span class="op-label">否定說——不另構成洗錢罪，論詐欺罪一罪即足</span>
+                <span class="op-conclusion-chip">最終採此說</span>
+            </div>
+            <div class="op-body">
+                <p><strong>㈠ 提款卡本身非「金錢」，無金流斷點可言：</strong>金融卡本身雖屬特定犯罪所得，但詐欺集團取得金融卡之目的，是將之作為另向他人詐取金錢之<strong>犯罪工具</strong>，而非洗錢標的。乙領取、轉交包裹（提款卡），僅是詐欺所得於詐欺集團成員間之<strong>單純內部移動</strong>，未經手任何金錢，顯無從形成金流斷點，亦非以虛假交易外觀掩飾不法金流，不足生漂白款項之效果。</p>
+                <p><strong>㈡ 乙取得提款卡時，丙尚未受騙匯款：</strong>乙取得甲帳戶提款卡之際，無證據證明詐欺集團已對丙施以詐術騙取財物，亦未有丙或其他被害人將款項匯入帳戶並經提領、轉匯；乙或所屬集團顯未另行製造金流斷點而掩飾、隱匿其他犯罪所得，整體犯罪流程均無製造金流斷點以掩飾、隱匿可疑犯罪資產之情事，自非洗錢防制法所規範之洗錢行為。</p>
+                <p><strong>㈢ 僅屬洗錢之準備階段，尚未著手：</strong>詐欺集團成員單純取得人頭帳戶，固得認係實行一般洗錢行為之準備階段，惟尚難遽認已著手於一般洗錢犯行（最高法院111年度台上字第4220號判決）。著手之判斷，應觀察其行為是否已對洗錢罪構成要件保護客體（維護特定犯罪之司法訴追及金流秩序透明性）形成直接危險。</p>
+                <div class="op-result">
+                    <strong>㈣ 結論：</strong>就被害人甲部分，論以刑法三人以上共同詐欺取財罪<strong>一罪即為已足</strong>，當無再適用洗錢防制法第19條第1項規定予以論罪之餘地。
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="law-ref"><strong>相關法條：</strong>洗錢防制法第2條、第19條；刑法第339條之4。</div>
+
+    <details>
+        <summary>參考資料</summary>
+        <div style="padding-top:10px;">
+            <div class="ref-case">
+                <div class="ref-case-title">臺灣高等法院113年度上訴字第3915號判決（甲說）</div>
+                <p style="margin:0;">被告對於自己經手之金融帳戶提款卡最終由何人取走、做何利用均不知悉，客觀上顯係透過贓物之多次轉交製造多層次之斷點，使偵查機關難以再向上溯源，並使其餘集團共犯得以直接處分取得之詐欺犯罪所得款項，以掩飾不法所得移動之虛假外觀，而達到隱匿該特定犯罪所得之去向、所在之結果，被告所為自非僅係為詐欺集團取得犯罪所得，而兼為洗錢防制法第2條第2款之掩飾、隱匿特定犯罪所得來源及去向之行為。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">臺灣高等法院112年度上訴字第5463號判決（甲說）</div>
+                <p style="margin:0;">（採甲說，認取簿手之行為已兼具洗錢功能，構成洗錢防制法第19條第1項之洗錢罪。）</p>
+            </div>
+            <div class="ref-case yi">
+                <div class="ref-case-title">臺灣高等法院112年度上訴字第892號判決（乙說）</div>
+                <p style="margin:0;">被告僅領取包裹，並未經手任何金錢，顯無從形成所謂金流斷點，亦非係以虛假交易外觀掩飾不法金流移動，不足生漂白款項之效果，且檢察官並未提出證據證明被告或「誠誠」已著手以告訴人金融卡著手為前述洗錢行為，難認被告上開所為已該當洗錢防制法第2條第2款洗錢行為。</p>
+            </div>
+            <div class="ref-case yi">
+                <div class="ref-case-title">臺灣高等法院113年度上訴字第3329號判決（乙說）</div>
+                <p style="margin:0;">詐欺集團成員僅係單純取得所謂人頭帳戶，固得認係實行一般洗錢行為之準備階段，惟尚難遽認已著手於一般洗錢犯行（最高法院111年度台上字第4220號判決意旨參照）。行為人是否已著手實行洗錢行為，應從行為人的整體洗錢犯罪計畫觀察，再以已發生的客觀事實判斷其行為是否已對洗錢罪構成要件保護客體形成直接危險。</p>
+            </div>
+            <div class="ref-case yi">
+                <div class="ref-case-title">臺灣高等法院112年度上訴字第967號、第2761號；113年度上訴字第3545號判決（乙說）</div>
+                <p style="margin:0;">（均採否定說，認取簿手之行為就被害人提款卡部分不另構成洗錢罪。）</p>
+            </div>
+        </div>
+    </details>
+
+    <div class="note-toggle" onclick="toggleNote('n1')">✏️ 我的小結</div>
+    <div class="note-area" id="n1">
+        <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n1',this.value)"></textarea>
+        <div class="note-saved" id="n1-saved"></div>
+    </div>
+</div>
+
+<div id="noResults">查無符合的內容，請試試其他關鍵字。</div>
+<div id="noStarred">還沒有收藏的項目，點卡片右上角的 ⭐ 加入收藏。</div>
+</div>
+
+<script>
+const STORE_KEY='114_12_seminar_notes',STAR_KEY='114_12_seminar_stars';
+function loadNotes(){try{return JSON.parse(localStorage.getItem(STORE_KEY))||{};}catch{return{};}}
+function loadStars(){try{return JSON.parse(localStorage.getItem(STAR_KEY))||{};}catch{return{};}}
+function saveAllNotes(d){localStorage.setItem(STORE_KEY,JSON.stringify(d));}
+function saveAllStars(d){localStorage.setItem(STAR_KEY,JSON.stringify(d));}
+(function(){const n=loadNotes(),s=loadStars();Object.entries(n).forEach(([id,v])=>{const a=document.getElementById(id);if(!a)return;const t=a.querySelector('textarea');if(t)t.value=v;if(v)a.classList.add('open');});Object.entries(s).forEach(([id,v])=>{if(!v)return;const b=document.querySelector(`#${id} .star-btn`);if(b)b.classList.add('starred');});})();
+function toggleStar(id,btn){const s=loadStars();const now=!btn.classList.contains('starred');btn.classList.toggle('starred',now);s[id]=now;saveAllStars(s);if(filterActive)applyFilter();}
+let filterActive=false;
+function toggleFilter(){filterActive=!filterActive;document.getElementById('filterBtn').classList.toggle('active',filterActive);document.getElementById('searchInput').value='';clearSearchHighlights();updateSearchUI([],0);applyFilter();}
+function applyFilter(){const s=loadStars();const q=document.getElementById('searchInput').value.trim().toLowerCase();let any=false;document.querySelectorAll('.card').forEach(c=>{const kw=(c.dataset.kw||'').toLowerCase();const txt=c.textContent.toLowerCase();const ms=!q||kw.includes(q)||txt.includes(q);const mf=!filterActive||!!s[c.id];const show=ms&&mf;c.classList.toggle('hidden',!show);if(show)any=true;});document.getElementById('noResults').style.display=(!any&&!filterActive)?'block':'none';document.getElementById('noStarred').style.display=(!any&&filterActive)?'block':'none';}
+
+/* ── 搜尋高亮 + 跳轉 ── */
+let _matches=[],_cur=-1;
+
+function clearSearchHighlights(){
+  document.querySelectorAll('mark.search-hl').forEach(m=>{
+    const p=m.parentNode;
+    p.replaceChild(document.createTextNode(m.textContent),m);
+    p.normalize();
+  });
+}
+
+function highlightInNode(node,re){
+  if(node.nodeType===3){
+    const text=node.nodeValue;
+    const frag=document.createDocumentFragment();
+    let last=0,m;
+    re.lastIndex=0;
+    while((m=re.exec(text))!==null){
+      if(m.index>last)frag.appendChild(document.createTextNode(text.slice(last,m.index)));
+      const mk=document.createElement('mark');
+      mk.className='search-hl';
+      mk.textContent=m[0];
+      frag.appendChild(mk);
+      last=re.lastIndex;
+    }
+    if(last===0)return;
+    frag.appendChild(document.createTextNode(text.slice(last)));
+    node.parentNode.replaceChild(frag,node);
+    return;
+  }
+  if(node.nodeType===1){
+    const tag=node.tagName;
+    if(tag==='SCRIPT'||tag==='STYLE'||tag==='TEXTAREA'||tag==='INPUT')return;
+    if(node.classList&&node.classList.contains('search-hl'))return;
+    [...node.childNodes].forEach(c=>highlightInNode(c,re));
+  }
+}
+
+function doSearch(q){
+  clearSearchHighlights();
+  _matches=[];_cur=-1;
+  const qt=q.trim();
+  if(!qt){updateSearchUI([],0);applyFilter();return;}
+  applyFilter();
+  const esc=qt.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+  const re=new RegExp(esc,'gi');
+  document.querySelectorAll('.container .card:not(.hidden)').forEach(card=>{
+    highlightInNode(card,re);
+  });
+  _matches=[...document.querySelectorAll('mark.search-hl')];
+  if(_matches.length){
+    _cur=0;
+    setCurrent(0);
+  }
+  updateSearchUI(_matches,_cur);
+}
+
+function setCurrent(idx){
+  _matches.forEach((m,i)=>m.classList.toggle('current',i===idx));
+  if(_matches[idx]){
+    _matches[idx].scrollIntoView({behavior:'smooth',block:'center'});
+  }
+}
+
+function navMatch(dir){
+  if(!_matches.length)return;
+  _cur=(_cur+dir+_matches.length)%_matches.length;
+  setCurrent(_cur);
+  updateSearchUI(_matches,_cur);
+}
+
+function updateSearchUI(matches,cur){
+  const cnt=document.getElementById('searchCount');
+  const prev=document.getElementById('prevBtn');
+  const next=document.getElementById('nextBtn');
+  if(!matches.length){cnt.textContent='';prev.disabled=true;next.disabled=true;return;}
+  cnt.textContent=(cur+1)+'/'+matches.length;
+  prev.disabled=false;next.disabled=false;
+}
+
+function handleSearchKey(e){
+  if(e.key==='Enter'){e.shiftKey?navMatch(-1):navMatch(1);}
+  if(e.key==='Escape'){document.getElementById('searchInput').value='';doSearch('');}
+}
+function toggleNote(id){document.getElementById(id).classList.toggle('open');}
+const timers={};
+function saveNote(id,v){clearTimeout(timers[id]);timers[id]=setTimeout(()=>{const n=loadNotes();n[id]=v;saveAllNotes(n);const el=document.getElementById(id+'-saved');if(el){el.textContent='已儲存';setTimeout(()=>el.textContent='',1500);}},500);}
+let savedRange=null;
+document.addEventListener('selectionchange',()=>{const s=window.getSelection();if(s&&!s.isCollapsed&&s.rangeCount)savedRange=s.getRangeAt(0).cloneRange();});
+function highlightText(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;if(!r||r.collapsed){alert('💡 請先反白想要標記的文字');return;}const sp=document.createElement('span');sp.className='hl';sp.style.backgroundColor='#ffe066';try{r.surroundContents(sp);savedRange=null;}catch{alert('💡 請選取同一段落內的文字');}s&&s.removeAllRanges();}
+function removeHighlight(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;if(!r||r.collapsed){alert('💡 請先反白想擦除標記的文字');return;}const anc=r.commonAncestorContainer.nodeType===1?r.commonAncestorContainer:r.commonAncestorContainer.parentElement;anc.querySelectorAll('span.hl').forEach(sp=>{if(r.intersectsNode(sp)){const p=sp.parentNode;while(sp.firstChild)p.insertBefore(sp.firstChild,sp);p.removeChild(sp);}});savedRange=null;s&&s.removeAllRanges();}
+function clearHighlights(){const sp=document.querySelectorAll('span.hl');if(!sp.length)return;if(confirm('確定要清除所有重點標記嗎？')){sp.forEach(s=>{const p=s.parentNode;while(s.firstChild)p.insertBefore(s.firstChild,s);p.removeChild(s);});}}
+function openExport(){
+    const stars=loadStars();
+    let out='臺灣高等法院 114年度刑事法律座談會第12號\n'+'═'.repeat(44)+'\n\n';
+    document.querySelectorAll('.card').forEach(c=>{
+        const star=stars[c.id]?'⭐ ':'';
+        const title=c.querySelector('.card-title')?.textContent.trim()||'';
+        out+=`【${star}${title}】\n\n`;
+        const vMain=c.querySelector('.verdict-main');
+        const vSub=c.querySelector('.verdict-sub');
+        if(vMain) out+='▌研討結論\n'+vMain.textContent.trim()+'\n';
+        if(vSub)  out+=vSub.textContent.trim()+'\n';
+        const chips=[...c.querySelectorAll('.v-chip')].map(el=>el.textContent.trim()).join('　');
+        if(chips) out+=chips+'\n';
+        out+='\n';
+        const issue=c.querySelector('.issue-box');
+        if(issue){out+='▌法律問題\n';issue.querySelectorAll('p').forEach(p=>{const t=p.textContent.trim();if(t)out+=t+'\n';});out+='\n';}
+        c.querySelectorAll('.op').forEach(op=>{
+            const head=op.querySelector('.op-label')?.textContent.trim()||'';
+            const chip=op.querySelector('.op-conclusion-chip')?.textContent.trim()||'';
+            out+=`▌${head}　${chip}\n`;
+            op.querySelectorAll('.op-body p, .op-body li, .op-result').forEach(el=>{
+                const t=el.textContent.trim();
+                if(t) out+=(el.tagName==='LI'?'  • ':'')+t+'\n';
+            });
+            out+='\n';
+        });
+        const law=c.querySelector('.law-ref');
+        if(law) out+=law.textContent.trim()+'\n\n';
+        const ta=c.querySelector('.note-textarea');
+        if(ta&&ta.value.trim()) out+='✏️ 小結：\n'+ta.value.trim()+'\n\n';
+        out+='═'.repeat(44)+'\n\n';
+    });
+    const b=new Blob([out.trim()],{type:'text/plain;charset=utf-8'});
+    const u=URL.createObjectURL(b);
+    const a=document.createElement('a');
+    a.href=u;a.download='114刑事座談12_取簿手洗錢罪.txt';a.click();
+    URL.revokeObjectURL(u);
+}
+const REG_KEY='exam_completion_registry';
+function _loadReg(){try{return JSON.parse(localStorage.getItem(REG_KEY))||{};}catch{return{};}}
+function _saveReg(r){try{localStorage.setItem(REG_KEY,JSON.stringify(r));}catch{}}
+function _file(){const p=location.pathname.split('/');return decodeURIComponent(p[p.length-1]||'');}
+function _fmt(ts){const d=new Date(ts);return(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();}
+function _updateDate(){const r=_loadReg();const k=_file();const l=document.getElementById('doneDateLabel');if(!l)return;l.textContent=(r[k]&&r[k].done&&r[k].ts)?_fmt(r[k].ts):'';}
+function toggleDone(){const btn=document.getElementById('doneBtn');const r=_loadReg();const k=_file();const done=r[k]&&r[k].done;if(done){delete r[k];_saveReg(r);btn.classList.remove('active');}else{const now=new Date();r[k]={done:true,score:null,total:null,ts:now.getTime(),tsLabel:now.toLocaleDateString('zh-TW')+' '+now.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false})};_saveReg(r);btn.classList.add('active');}_updateDate();}
+(function(){const r=_loadReg();const k=_file();if(r[k]&&r[k].done){const b=document.getElementById('doneBtn');if(b)b.classList.add('active');}_updateDate();})();
+</script>
+</body>
+</html>

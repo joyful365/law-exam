@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>114年度刑事法律座談會第19號</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: "Helvetica Neue", Helvetica, "PingFang TC", "LiHei Pro", "Microsoft JhengHei", sans-serif; background: #eef0f3; color: #1a1a1a; line-height: 1.8; font-size: 16px; margin: 0; padding: 0 0 56px; }
+        header { background: #1a365d; color: white; padding: 18px 16px 10px; text-align: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.18); }
+        header h1 { margin: 0 0 10px; font-size: 1.05em; line-height: 1.5; font-weight: 600; letter-spacing: 0.02em; }
+        .header-controls { display: flex; gap: 8px; align-items: center; }
+        .search-wrap { position: relative; flex: 1; display: flex; align-items: center; gap: 4px; }
+        #searchInput { flex: 1; padding: 8px 14px 8px 34px; border: none; border-radius: 8px; font-size: 14px; background: rgba(255,255,255,0.13); color: white; outline: none; }
+        #searchInput::placeholder { color: rgba(255,255,255,0.5); }
+        #searchInput:focus { background: rgba(255,255,255,0.22); }
+        .search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 13px; opacity: 0.6; pointer-events: none; }
+        .search-count { font-size: 12px; color: rgba(255,255,255,0.7); white-space: nowrap; min-width: 44px; text-align: center; }
+        .search-nav { background: rgba(255,255,255,0.13); border: none; border-radius: 6px; color: white; font-size: 13px; padding: 6px 8px; cursor: pointer; line-height: 1; }
+        .search-nav:hover { background: rgba(255,255,255,0.25); }
+        .search-nav:disabled { opacity: 0.3; cursor: default; }
+        mark.search-hl { background: #ffe066; color: #1a1a1a; border-radius: 2px; padding: 0 1px; }
+        mark.search-hl.current { background: #ff8c00; color: #fff; border-radius: 3px; outline: 2px solid #ff8c00; }
+        #filterBtn { background: rgba(255,255,255,0.13); border: none; border-radius: 8px; color: white; font-size: 13px; padding: 8px 12px; cursor: pointer; white-space: nowrap; }
+        #filterBtn.active { background: #c9a84c; color: #1a365d; font-weight: bold; }
+        .top-bar { background: #dde0e5; padding: 6px 14px; display: flex; gap: 6px; justify-content: flex-end; flex-wrap: nowrap; }
+        .top-btn { background: #5a6375; color: white; border: none; padding: 5px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap; transition: transform 0.1s; }
+        .top-btn:active { transform: scale(0.92); }
+        .top-btn.erase { background: #7a8494; }
+        .top-btn.clear { background: #a0a8b4; }
+        .top-btn.export { background: #c5cad3; color: #2d3748; }
+        .top-btn.done { background: #a0a8b4; color: #1a2a3a; }
+        .top-btn.done.active { background: linear-gradient(135deg,#7a5c00,#a07820); color: #fff3c4; }
+        .done-date { font-size: 11px; color: #8a9ab0; white-space: nowrap; align-self: center; }
+        .container { padding: 16px; max-width: 600px; margin: 0 auto; }
+        @media (min-width: 768px) { body { font-size: 17.5px; } .container { max-width: 860px; padding: 20px; } header h1 { font-size: 1.15em; } }
+        .card { background: #fff; border-radius: 16px; padding: 22px 20px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); position: relative; }
+        .card.hidden { display: none; }
+        .star-btn { position: absolute; top: 18px; right: 18px; background: none; border: none; font-size: 20px; cursor: pointer; opacity: 0.18; transition: opacity 0.15s, transform 0.15s; padding: 0; }
+        .star-btn:active { transform: scale(1.3); }
+        .star-btn.starred { opacity: 1; }
+        .card-title { color: #1a365d; font-size: 1.25em; font-weight: 700; margin: 0 0 4px; padding-right: 28px; line-height: 1.55; }
+        .meta-line { font-size: 0.76em; color: #999; margin-bottom: 18px; letter-spacing: 0.03em; }
+        .verdict { background: #1a365d; color: white; border-radius: 11px; padding: 15px 18px; margin-bottom: 20px; }
+        .verdict-label { font-size: 0.68em; letter-spacing: 0.12em; opacity: 0.55; text-transform: uppercase; margin-bottom: 4px; }
+        .verdict-main { font-size: 1.08em; font-weight: 700; line-height: 1.45; margin-bottom: 5px; }
+        .verdict-sub { font-size: 0.83em; opacity: 0.75; line-height: 1.6; margin-bottom: 10px; }
+        .vote-row { display: flex; gap: 7px; flex-wrap: wrap; }
+        .v-chip { font-size: 0.73em; background: rgba(255,255,255,0.12); border-radius: 20px; padding: 3px 10px; white-space: nowrap; color: rgba(255,255,255,0.8); }
+        .v-chip.win { background: rgba(255,255,255,0.28); color: #fff; font-weight: 700; }
+        .section-heading { font-size: 0.72em; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #8a9ab0; margin: 20px 0 10px; padding-bottom: 5px; border-bottom: 1px solid #e8eaee; }
+        .issue-box { background: #f5f6f8; border-radius: 10px; padding: 14px 16px; margin-bottom: 16px; font-size: 0.91em; color: #333; }
+        .issue-box p { margin: 0 0 8px; }
+        .issue-box p:last-child { margin: 0; }
+        /* 案例事實時間軸 */
+        .timeline { display: flex; flex-direction: column; gap: 0; margin: 10px 0 4px; }
+        .tl-item { display: flex; gap: 12px; align-items: flex-start; padding: 6px 0; }
+        .tl-dot { width: 10px; height: 10px; border-radius: 50%; background: #1a365d; flex-shrink: 0; margin-top: 7px; position: relative; }
+        .tl-item:not(:last-child) .tl-dot::after { content: ''; position: absolute; left: 4px; top: 10px; width: 2px; height: calc(100% + 8px); background: #c8d4e8; }
+        .tl-label { font-size: 0.78em; font-weight: 700; color: #1a365d; white-space: nowrap; padding-top: 1px; min-width: 52px; }
+        .tl-text { font-size: 0.85em; color: #333; line-height: 1.65; }
+        .tl-text .tag { display: inline-block; background: #fee2e2; color: #991b1b; border-radius: 4px; font-size: 0.8em; font-weight: 700; padding: 1px 6px; margin-right: 4px; vertical-align: middle; }
+        .tl-text .tag.ok { background: #d1fae5; color: #065f46; }
+        /* 意見區塊 */
+        .opinions { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+        .op { border-radius: 10px; overflow: hidden; border: 1px solid #e4e7ec; }
+        .op-head { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #f5f6f8; }
+        .op-num { width: 26px; height: 26px; border-radius: 50%; background: #1a365d; color: white; font-size: 0.75em; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .op-num.bing { background: #c9a84c; color: #1a2a3a; }
+        .op-label { font-weight: 700; font-size: 0.93em; color: #1a365d; flex: 1; }
+        .op-conclusion-chip { font-size: 0.74em; color: #666; background: #eaecf0; border-radius: 20px; padding: 2px 9px; white-space: nowrap; }
+        .op-conclusion-chip.win { background: #1a365d; color: #fff; }
+        .op-body { padding: 13px 15px; font-size: 0.9em; background: #fff; }
+        .op-body p { margin: 0 0 9px; }
+        .op-body p:last-child { margin: 0; }
+        .op-result { background: #f0f3f8; border-radius: 7px; padding: 10px 13px; margin-top: 10px; font-size: 0.9em; border-left: 3px solid #1a365d; }
+        /* 比較表 */
+        .compare-table { width: 100%; border-collapse: collapse; font-size: 0.83em; margin-top: 8px; }
+        .compare-table th { background: #1a365d; color: white; padding: 7px 10px; text-align: center; font-weight: 700; }
+        .compare-table td { padding: 7px 10px; border: 1px solid #e4e7ec; vertical-align: top; line-height: 1.6; }
+        .compare-table tr:nth-child(even) td { background: #f8f9fb; }
+        .compare-table .row-head { font-weight: 700; color: #1a365d; background: #eef1f7; white-space: nowrap; }
+        details { margin-top: 16px; }
+        details summary { cursor: pointer; color: #5a6880; font-size: 0.85em; font-weight: 600; padding: 5px 0; user-select: none; list-style: none; display: flex; align-items: center; gap: 5px; }
+        details summary::before { content: '▶'; font-size: 0.65em; transition: transform 0.2s; color: #8a9ab0; }
+        details[open] summary::before { transform: rotate(90deg); }
+        .ref-case { background: #f5f6f8; border-radius: 8px; padding: 11px 14px; margin-bottom: 8px; font-size: 0.85em; border-left: 3px solid #1a365d; }
+        .ref-case.yi { border-left-color: #8a9ab0; }
+        .ref-case-title { font-weight: 700; color: #1a365d; margin-bottom: 4px; font-size: 0.9em; }
+        .ref-case.yi .ref-case-title { color: #4a5568; }
+        .law-ref { background: #f0f2f5; border-radius: 8px; padding: 10px 14px; font-size: 0.85em; color: #4a5568; margin-top: 14px; border-left: 3px solid #1a365d; }
+        .note-toggle { display: inline-block; margin-top: 14px; font-size: 0.8em; color: #b0b8c4; cursor: pointer; user-select: none; }
+        .note-toggle:hover { color: #1a365d; }
+        .note-area { display: none; margin-top: 8px; }
+        .note-area.open { display: block; }
+        .note-textarea { width: 100%; min-height: 68px; border: 1px solid #e0e4ea; border-radius: 8px; padding: 10px 12px; font-size: 0.87em; font-family: inherit; color: #333; background: #fafbfc; resize: vertical; outline: none; line-height: 1.7; }
+        .note-textarea:focus { border-color: #1a365d; }
+        .note-textarea::placeholder { color: #ccc; }
+        .note-saved { font-size: 0.72em; color: #68d391; text-align: right; height: 14px; margin-top: 2px; }
+        #noResults, #noStarred { display: none; text-align: center; color: #a0aec0; padding: 40px 0; font-size: 0.9em; }
+        ::-webkit-scrollbar { display: none; }
+        ::selection { background: #c8d8ef; }
+        /* 審議流程橫幅 */
+        .flow-banner { display: flex; align-items: center; gap: 0; margin-bottom: 18px; font-size: 0.78em; flex-wrap: wrap; gap: 4px; }
+        .flow-step { background: #eef1f7; color: #4a5568; border-radius: 20px; padding: 4px 12px; white-space: nowrap; }
+        .flow-step.highlight { background: #c9a84c; color: #1a2a3a; font-weight: 700; }
+        .flow-arrow { color: #aab4c4; font-size: 1em; padding: 0 2px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>臺灣高等法院<br>114年度刑事法律座談會第19號</h1>
+    <div class="header-controls">
+        <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="搜尋關鍵字、法條…" oninput="doSearch(this.value)" onkeydown="handleSearchKey(event)">
+            <span class="search-count" id="searchCount"></span>
+            <button class="search-nav" id="prevBtn" onclick="navMatch(-1)" disabled title="上一個">▲</button>
+            <button class="search-nav" id="nextBtn" onclick="navMatch(1)" disabled title="下一個">▼</button>
+        </div>
+        <button id="filterBtn" onclick="toggleFilter()">⭐ 收藏</button>
+    </div>
+    <div class="top-bar">
+        <button class="top-btn" onclick="highlightText()">🖊️</button>
+        <button class="top-btn erase" onclick="removeHighlight()">🧽</button>
+        <button class="top-btn clear" onclick="clearHighlights()">🗑️</button>
+        <button class="top-btn export" onclick="openExport()">📤</button>
+        <button class="top-btn done" id="doneBtn" onclick="toggleDone()">朕已閱</button>
+        <span class="done-date" id="doneDateLabel"></span>
+    </div>
+</header>
+
+<div class="container">
+<div class="card" id="case19" data-kw="羈押 違法證據 排除 自由證明 嚴格證明 GPS定位 M化車 通訊監察 無令狀搜索 毒品 證據能力 權衡 158之4 131 416 通保法18之1 正當法律程序 偵查 製毒">
+    <button class="star-btn" onclick="toggleStar('case19',this)">⭐</button>
+
+    <h2 class="card-title">偵查中之羈押審查，應否排除違法取得之證據？</h2>
+    <div class="meta-line">提案機關：臺灣嘉義地方法院</div>
+
+    <!-- 審議流程 -->
+    <div class="flow-banner">
+        <span class="flow-step">初步：乙說（肯定）</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-step">審查：甲說（否定）16票</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-step">改列丙說</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-step highlight">大會：丙說 53票 ✔</span>
+    </div>
+
+    <!-- 結論橫幅 -->
+    <div class="verdict">
+        <div class="verdict-label">研討結論</div>
+        <div class="verdict-main">採丙說（否定說）——羈押審查原則上不排除違法取得之證據，但法律明文強制排除者除外</div>
+        <div class="verdict-sub">羈押審查目的非在認定犯罪事實，適用自由證明法則；除法律明文規定「不得作為證據」應強制排除外（如通保法第18條之1），其他違法取得證據之證據能力權衡，應留待審判中由法官依第158條之4個案判斷，非屬偵查中羈押審查程序所得主張。</div>
+        <div class="vote-row">
+            <span class="v-chip">實到：76人</span>
+            <span class="v-chip">甲說：8票</span>
+            <span class="v-chip">乙說：11票</span>
+            <span class="v-chip win">丙說：53票 ✔</span>
+        </div>
+    </div>
+
+    <!-- 案例事實 -->
+    <div class="section-heading">案例事實</div>
+    <div class="issue-box">
+        <p>警方懷疑甲（有製毒前科）將重操舊業，進行一連串蒐證，最終檢察官向法院聲請羈押。辯護人主張各階段蒐證均屬違法，所得證據無證據能力。</p>
+        <div class="timeline">
+            <div class="tl-item">
+                <div class="tl-dot"></div>
+                <div>
+                    <div class="tl-label">① GPS</div>
+                    <div class="tl-text"><span class="tag">違法</span>未經法院許可，連續追蹤超過48小時，發現甲前往偏僻農舍</div>
+                </div>
+            </div>
+            <div class="tl-item">
+                <div class="tl-dot"></div>
+                <div>
+                    <div class="tl-label">② 蒐證</div>
+                    <div class="tl-text"><span class="tag ok">現場</span>見甲搬運燒杯、烘乾機、日照機等設備</div>
+                </div>
+            </div>
+            <div class="tl-item">
+                <div class="tl-dot"></div>
+                <div>
+                    <div class="tl-label">③ M化車</div>
+                    <div class="tl-text"><span class="tag">違法</span>緊急使用M化車取得甲之行動電話門號及識別碼，事後未補發許可書</div>
+                </div>
+            </div>
+            <div class="tl-item">
+                <div class="tl-dot"></div>
+                <div>
+                    <div class="tl-label">④ 通監</div>
+                    <div class="tl-text"><span class="tag ok">合法</span>檢察官持上開門號向法院聲請通訊監察書，獲准後執行通訊監察</div>
+                </div>
+            </div>
+            <div class="tl-item">
+                <div class="tl-dot"></div>
+                <div>
+                    <div class="tl-label">⑤ 搜索</div>
+                    <div class="tl-text"><span class="tag">違法</span>監察中發現現場將有大量毒品，無令狀（無拘票、搜索票）逕行搜索農舍</div>
+                </div>
+            </div>
+            <div class="tl-item">
+                <div class="tl-dot"></div>
+                <div>
+                    <div class="tl-label">⑥ 逮捕</div>
+                    <div class="tl-text"><span class="tag ok">現行犯</span>當場扣得20公斤大麻及製毒器具，依現行犯逮捕甲，檢察官聲請羈押</div>
+                </div>
+            </div>
+        </div>
+        <p style="margin-top:10px;"><strong>問：</strong>辯護人主張上開各階段違法蒐集之證據均無證據能力，羈押審查中是否可採？</p>
+    </div>
+
+    <!-- 討論意見 -->
+    <div class="section-heading">討論意見</div>
+    <div class="opinions">
+
+        <!-- 甲說 -->
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">甲</div>
+                <span class="op-label">否定說——不應排除違法取得之證據</span>
+                <span class="op-conclusion-chip">審查初列此說</span>
+            </div>
+            <div class="op-body">
+                <p><strong>㈠ 羈押審查目的非認定犯罪：</strong>羈押審查之目的在確保被告到庭，而非確定被告罪責。關於羈押要件，無須經嚴格證明，以自由證明為已足。縱違法程序取得之物證，仍不妨容許作為羈押審理之依據。</p>
+                <p><strong>㈡ 自由證明≠無限制：</strong>自由證明係指不受法定證據方法及法定調查程序之限制，但聲請羈押之證據毋庸嚴格證明，僅需具有一定可信度，非須有「證據能力」。</p>
+                <p><strong>㈢ 物證無虛偽問題：</strong>非任意性自白有虛偽可能，故應排除；但違法取得之物證，倘無偽造或變造，即無虛偽問題，情形不同。</p>
+                <p><strong>㈣ 不當介入追訴權：</strong>偵查中檢察官仍能補行蒐集證據。法院逕行排除違法蒐集之證據，恐不當介入檢察官追訴權之行使。</p>
+                <div class="op-result">
+                    <strong>結論：</strong>辯護人主張<strong>不可採</strong>，違法取得之物證仍得作為羈押審查之依據。
+                </div>
+            </div>
+        </div>
+
+        <!-- 乙說 -->
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">乙</div>
+                <span class="op-label">肯定說——應排除違法取得之證據</span>
+                <span class="op-conclusion-chip">初步採此說</span>
+            </div>
+            <div class="op-body">
+                <p><strong>㈠ 自由證明不等於可用違法證據：</strong>自由證明不受嚴格形式性要求，但不代表可以使用國家機關違法取得之證據。如允許使用，被告將處於「警察國家」之危險，羈押審查將成為助長檢警違法辦案之工具。</p>
+                <p><strong>㈡ 羈押之正當法律程序應包含排除違法證據：</strong>羈押乃判決確定前侵犯人身自由最嚴重的強制處分，正當法律程序內涵應包括排除違法取得之證據作為羈押審查依據。</p>
+                <p><strong>㈢ 特殊強制處分違法取得之證據難於審判中檢驗：</strong>GPS定位、M化車等特殊型態強制處分取得之資料（位置、門號等），大多屬輔助偵查之工具性證據，不會呈現於法庭作為有罪認定之直接證據。若偵查中羈押審查不予檢驗排除，法律規定應經許可或陳報之規定形同具文。</p>
+                <p><strong>㈣ 通保法明文禁止條文之解釋：</strong>通訊保障及監察法第18條之1明定「不得作為證據」或「不得作為司法偵查、審判、其他程序之證據」，倘羈押審查中仍得審酌此類違法通訊監察資料，悖於條文所明定。</p>
+                <p><strong>㈤ 早期糾正之必要性：</strong>若使用違法證據羈押被告，檢警得於羈押期間持續蒐證；起訴後即使最終排除，不如於羈押審查程序及早糾正，令檢警另起正途。</p>
+                <div class="op-result">
+                    <strong>結論：</strong>辯護人主張<strong>可採</strong>，羈押審查應排除違法取得之證據。
+                </div>
+            </div>
+        </div>
+
+        <!-- 丙說（審查意見／大會通過） -->
+        <div class="op" style="border-color:#1a365d;">
+            <div class="op-head" style="background:#e8eef8;">
+                <div class="op-num bing">丙</div>
+                <span class="op-label">否定說（區分強制排除與權衡排除）</span>
+                <span class="op-conclusion-chip win">大會通過 53票</span>
+            </div>
+            <div class="op-body">
+                <p><strong>㈠ 羈押審查適用自由證明，無第158條之4之適用：</strong>羈押審查目的非在認定犯罪事實，應無嚴格證明之要求。刑事訴訟法第158條之4之立法目的，在於兼顧「人權保障」與「認定事實」之平衡，而羈押審查程序之目的並非認定犯罪事實，故應無上開規定之適用，權衡排除應留待審判中由法官個案判斷。</p>
+                <p><strong>㈡ 關鍵區分：強制排除 vs 權衡排除：</strong></p>
+                <table class="compare-table">
+                    <tr>
+                        <th>類型</th><th>例示條文</th><th>羈押審查中</th>
+                    </tr>
+                    <tr>
+                        <td class="row-head">強制排除<br>（絕對禁用）</td>
+                        <td>§158之2、§158之3、§100之1Ⅱ、組織犯罪防制條例§12、<strong>通保法§18之1</strong></td>
+                        <td>✅ 應絕對排除，羈押審查亦同</td>
+                    </tr>
+                    <tr>
+                        <td class="row-head">權衡排除<br>（個案裁量）</td>
+                        <td>§158之4（違背法定程序取得之其他證據）</td>
+                        <td>❌ 非羈押審查所得主張，應留待審判中由法官個案權衡</td>
+                    </tr>
+                </table>
+                <p style="margin-top:10px;"><strong>㈢ 本題之適用：</strong>題示之GPS定位（未許可逾48小時）、M化車（未補發許可書）屬違背法定程序，但法律未明文規定「不得作為證據」，屬第158條之4之權衡排除範疇，應留待審判中判斷；惟若通訊監察因M化車違法取得門號致聲請基礎有瑕疵，涉及通保法第18條之1之問題，則應強制排除。</p>
+                <div class="op-result">
+                    <strong>結論：</strong>辯護人主張就「強制排除」部分（如通保法§18條之1）<strong>可採</strong>；就「權衡排除」部分（GPS、M化車等），<strong>非羈押審查中所得主張</strong>，應留待審判中個案權衡。
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="law-ref"><strong>相關法條：</strong>刑事訴訟法第131條第4項、第416條第2項、第158條之4、第158條之2、第158條之3、第100條之1第2項；通訊保障及監察法第18條之1；組織犯罪防制條例第12條。</div>
+
+    <details>
+        <summary>參考資料與學說</summary>
+        <div style="padding-top:10px;">
+            <div class="ref-case">
+                <div class="ref-case-title">【甲說】陳運財，偵查中之羈押審查，月旦法學雜誌，2003年1月</div>
+                <p style="margin:0;">羈押審查程序適用自由證明法則，其調查程序是否適用證據禁止（排除）法則，學者有不同見解。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">【甲說】林鈺雄，刑事訴訟法下冊，2023年9月12版，第15頁</div>
+                <p style="margin:0;">「證據使用之禁止，規範對象乃法院之審判行為，即禁止法院在審判程序中，使用已取得之特定證據；換言之，法院不得將特定證據採為裁判之基礎，而應排除之。」</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">【甲說】臺灣高等法院113年度偵抗字第1566號裁定</div>
+                <p style="margin:0;">關於羈押之要件，無須經嚴格證明，以自由證明為已足；搜索、扣押程序之合法性，乃不服搜索扣押處分之準抗告及本案將來審判中證據是否排除之問題，要非法院於審查羈押聲請案件時所得斟酌。</p>
+            </div>
+            <div class="ref-case yi">
+                <div class="ref-case-title">【乙說】林鈺雄，自由證明法則之新開展，台灣本土法學雜誌，96期，2007年7月</div>
+                <p style="margin:0;">「自由證明僅是嚴格證明的相對概念，也僅排除嚴格證明法則的法定證據能力及法定調查程序的形式限制而已，並非不受任何（證據法則的）拘束，也和證據禁止（排除）法則的適用與否無邏輯上的關係。」</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">【丙說核心】刑事訴訟法第158條之4立法理由（節要）</div>
+                <p style="margin:0;">違背法定程序取得之證據，法官個案權衡時，應斟酌：㈠違背法定程序之情節；㈡主觀意圖；㈢侵害被告權益之種類及輕重；㈣犯罪所生之危險或實害；㈤禁止使用證據對預防將來違法取得證據之效果；㈥如依法定程序有無發現該證據之必然性；㈦取得違法對被告訴訟上防禦不利益之程度。</p>
+            </div>
+        </div>
+    </details>
+
+    <div class="note-toggle" onclick="toggleNote('n19')">✏️ 我的小結</div>
+    <div class="note-area" id="n19">
+        <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n19',this.value)"></textarea>
+        <div class="note-saved" id="n19-saved"></div>
+    </div>
+</div>
+
+<div id="noResults">查無符合的內容，請試試其他關鍵字。</div>
+<div id="noStarred">還沒有收藏的項目，點卡片右上角的 ⭐ 加入收藏。</div>
+</div>
+
+<script>
+const STORE_KEY='114_19_seminar_notes',STAR_KEY='114_19_seminar_stars';
+function loadNotes(){try{return JSON.parse(localStorage.getItem(STORE_KEY))||{};}catch{return{};}}
+function loadStars(){try{return JSON.parse(localStorage.getItem(STAR_KEY))||{};}catch{return{};}}
+function saveAllNotes(d){localStorage.setItem(STORE_KEY,JSON.stringify(d));}
+function saveAllStars(d){localStorage.setItem(STAR_KEY,JSON.stringify(d));}
+(function(){const n=loadNotes(),s=loadStars();Object.entries(n).forEach(([id,v])=>{const a=document.getElementById(id);if(!a)return;const t=a.querySelector('textarea');if(t)t.value=v;if(v)a.classList.add('open');});Object.entries(s).forEach(([id,v])=>{if(!v)return;const b=document.querySelector(`#${id} .star-btn`);if(b)b.classList.add('starred');});})();
+function toggleStar(id,btn){const s=loadStars();const now=!btn.classList.contains('starred');btn.classList.toggle('starred',now);s[id]=now;saveAllStars(s);if(filterActive)applyFilter();}
+let filterActive=false;
+function toggleFilter(){filterActive=!filterActive;document.getElementById('filterBtn').classList.toggle('active',filterActive);document.getElementById('searchInput').value='';clearSearchHighlights();updateSearchUI([],0);applyFilter();}
+function applyFilter(){const s=loadStars();const q=document.getElementById('searchInput').value.trim().toLowerCase();let any=false;document.querySelectorAll('.card').forEach(c=>{const kw=(c.dataset.kw||'').toLowerCase();const txt=c.textContent.toLowerCase();const ms=!q||kw.includes(q)||txt.includes(q);const mf=!filterActive||!!s[c.id];const show=ms&&mf;c.classList.toggle('hidden',!show);if(show)any=true;});document.getElementById('noResults').style.display=(!any&&!filterActive)?'block':'none';document.getElementById('noStarred').style.display=(!any&&filterActive)?'block':'none';}
+
+/* ── 搜尋高亮 + 跳轉 ── */
+let _matches=[],_cur=-1;
+
+function clearSearchHighlights(){
+  document.querySelectorAll('mark.search-hl').forEach(m=>{
+    const p=m.parentNode;
+    p.replaceChild(document.createTextNode(m.textContent),m);
+    p.normalize();
+  });
+}
+
+function highlightInNode(node,re){
+  if(node.nodeType===3){
+    const text=node.nodeValue;
+    const frag=document.createDocumentFragment();
+    let last=0,m;
+    re.lastIndex=0;
+    while((m=re.exec(text))!==null){
+      if(m.index>last)frag.appendChild(document.createTextNode(text.slice(last,m.index)));
+      const mk=document.createElement('mark');
+      mk.className='search-hl';
+      mk.textContent=m[0];
+      frag.appendChild(mk);
+      last=re.lastIndex;
+    }
+    if(last===0)return;
+    frag.appendChild(document.createTextNode(text.slice(last)));
+    node.parentNode.replaceChild(frag,node);
+    return;
+  }
+  if(node.nodeType===1){
+    const tag=node.tagName;
+    if(tag==='SCRIPT'||tag==='STYLE'||tag==='TEXTAREA'||tag==='INPUT')return;
+    if(node.classList&&node.classList.contains('search-hl'))return;
+    [...node.childNodes].forEach(c=>highlightInNode(c,re));
+  }
+}
+
+function doSearch(q){
+  clearSearchHighlights();
+  _matches=[];_cur=-1;
+  const qt=q.trim();
+  if(!qt){updateSearchUI([],0);applyFilter();return;}
+  applyFilter();
+  const esc=qt.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+  const re=new RegExp(esc,'gi');
+  document.querySelectorAll('.container .card:not(.hidden)').forEach(card=>{
+    highlightInNode(card,re);
+  });
+  _matches=[...document.querySelectorAll('mark.search-hl')];
+  if(_matches.length){
+    _cur=0;
+    setCurrent(0);
+  }
+  updateSearchUI(_matches,_cur);
+}
+
+function setCurrent(idx){
+  _matches.forEach((m,i)=>m.classList.toggle('current',i===idx));
+  if(_matches[idx]){
+    _matches[idx].scrollIntoView({behavior:'smooth',block:'center'});
+  }
+}
+
+function navMatch(dir){
+  if(!_matches.length)return;
+  _cur=(_cur+dir+_matches.length)%_matches.length;
+  setCurrent(_cur);
+  updateSearchUI(_matches,_cur);
+}
+
+function updateSearchUI(matches,cur){
+  const cnt=document.getElementById('searchCount');
+  const prev=document.getElementById('prevBtn');
+  const next=document.getElementById('nextBtn');
+  if(!matches.length){cnt.textContent='';prev.disabled=true;next.disabled=true;return;}
+  cnt.textContent=(cur+1)+'/'+matches.length;
+  prev.disabled=false;next.disabled=false;
+}
+
+function handleSearchKey(e){
+  if(e.key==='Enter'){e.shiftKey?navMatch(-1):navMatch(1);}
+  if(e.key==='Escape'){document.getElementById('searchInput').value='';doSearch('');}
+}
+function toggleNote(id){document.getElementById(id).classList.toggle('open');}
+const timers={};
+function saveNote(id,v){clearTimeout(timers[id]);timers[id]=setTimeout(()=>{const n=loadNotes();n[id]=v;saveAllNotes(n);const el=document.getElementById(id+'-saved');if(el){el.textContent='已儲存';setTimeout(()=>el.textContent='',1500);}},500);}
+let savedRange=null;
+document.addEventListener('selectionchange',()=>{const s=window.getSelection();if(s&&!s.isCollapsed&&s.rangeCount)savedRange=s.getRangeAt(0).cloneRange();});
+function highlightText(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;if(!r||r.collapsed){alert('💡 請先反白想要標記的文字');return;}const sp=document.createElement('span');sp.className='hl';sp.style.backgroundColor='#ffe066';try{r.surroundContents(sp);savedRange=null;}catch{alert('💡 請選取同一段落內的文字');}s&&s.removeAllRanges();}
+function removeHighlight(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;if(!r||r.collapsed){alert('💡 請先反白想擦除標記的文字');return;}const anc=r.commonAncestorContainer.nodeType===1?r.commonAncestorContainer:r.commonAncestorContainer.parentElement;anc.querySelectorAll('span.hl').forEach(sp=>{if(r.intersectsNode(sp)){const p=sp.parentNode;while(sp.firstChild)p.insertBefore(sp.firstChild,sp);p.removeChild(sp);}});savedRange=null;s&&s.removeAllRanges();}
+function clearHighlights(){const sp=document.querySelectorAll('span.hl');if(!sp.length)return;if(confirm('確定要清除所有重點標記嗎？')){sp.forEach(s=>{const p=s.parentNode;while(s.firstChild)p.insertBefore(s.firstChild,s);p.removeChild(s);});}}
+function openExport(){
+    const stars=loadStars();
+    let out='臺灣高等法院 114年度刑事法律座談會第19號\n'+'═'.repeat(44)+'\n\n';
+    document.querySelectorAll('.card').forEach(c=>{
+        const star=stars[c.id]?'⭐ ':'';
+        const title=c.querySelector('.card-title')?.textContent.trim()||'';
+        out+=`【${star}${title}】\n\n`;
+        const vMain=c.querySelector('.verdict-main');
+        const vSub=c.querySelector('.verdict-sub');
+        if(vMain) out+='▌研討結論\n'+vMain.textContent.trim()+'\n';
+        if(vSub)  out+=vSub.textContent.trim()+'\n';
+        const chips=[...c.querySelectorAll('.v-chip')].map(el=>el.textContent.trim()).join('　');
+        if(chips) out+=chips+'\n';
+        out+='\n';
+        const issue=c.querySelector('.issue-box');
+        if(issue){out+='▌案例事實\n'+issue.textContent.replace(/\s+/g,' ').trim()+'\n\n';}
+        c.querySelectorAll('.op').forEach(op=>{
+            const head=op.querySelector('.op-label')?.textContent.trim()||'';
+            const chip=op.querySelector('.op-conclusion-chip')?.textContent.trim()||'';
+            out+=`▌${head}　${chip}\n`;
+            op.querySelectorAll('.op-body p, .op-result').forEach(el=>{
+                const t=el.textContent.trim();
+                if(t) out+=t+'\n';
+            });
+            out+='\n';
+        });
+        const law=c.querySelector('.law-ref');
+        if(law) out+=law.textContent.trim()+'\n\n';
+        const ta=c.querySelector('.note-textarea');
+        if(ta&&ta.value.trim()) out+='✏️ 小結：\n'+ta.value.trim()+'\n\n';
+        out+='═'.repeat(44)+'\n\n';
+    });
+    const b=new Blob([out.trim()],{type:'text/plain;charset=utf-8'});
+    const u=URL.createObjectURL(b);
+    const a=document.createElement('a');
+    a.href=u;a.download='114刑事座談19_羈押審查違法證據排除.txt';a.click();
+    URL.revokeObjectURL(u);
+}
+const REG_KEY='exam_completion_registry';
+function _loadReg(){try{return JSON.parse(localStorage.getItem(REG_KEY))||{};}catch{return{};}}
+function _saveReg(r){try{localStorage.setItem(REG_KEY,JSON.stringify(r));}catch{}}
+function _file(){const p=location.pathname.split('/');return decodeURIComponent(p[p.length-1]||'');}
+function _fmt(ts){const d=new Date(ts);return(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();}
+function _updateDate(){const r=_loadReg();const k=_file();const l=document.getElementById('doneDateLabel');if(!l)return;l.textContent=(r[k]&&r[k].done&&r[k].ts)?_fmt(r[k].ts):'';}
+function toggleDone(){const btn=document.getElementById('doneBtn');const r=_loadReg();const k=_file();const done=r[k]&&r[k].done;if(done){delete r[k];_saveReg(r);btn.classList.remove('active');}else{const now=new Date();r[k]={done:true,score:null,total:null,ts:now.getTime(),tsLabel:now.toLocaleDateString('zh-TW')+' '+now.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit'})};_saveReg(r);btn.classList.add('active');}_updateDate();}
+(function(){const r=_loadReg();const k=_file();if(r[k]&&r[k].done){const b=document.getElementById('doneBtn');if(b)b.classList.add('active');}_updateDate();})();
+</script>
+</body>
+</html>

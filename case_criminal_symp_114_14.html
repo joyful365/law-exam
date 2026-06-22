@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>114年度刑事法律座談會第14號</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: "Helvetica Neue", Helvetica, "PingFang TC", "LiHei Pro", "Microsoft JhengHei", sans-serif; background: #eef0f3; color: #1a1a1a; line-height: 1.8; font-size: 16px; margin: 0; padding: 0 0 56px; }
+        .container { padding: 16px; max-width: 600px; margin: 0 auto; }
+        @media (min-width: 768px) { body { font-size: 17.5px; } .container { max-width: 860px; padding: 20px; } header h1 { font-size: 1.15em; } }
+        header { background: #1a365d; color: white; padding: 18px 16px 10px; text-align: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.18); }
+        header h1 { margin: 0 0 10px; font-size: 1.05em; line-height: 1.5; font-weight: 600; letter-spacing: 0.02em; }
+        .header-controls { display: flex; gap: 8px; align-items: center; }
+        .search-wrap { position: relative; flex: 1; display: flex; align-items: center; gap: 4px; }
+        #searchInput { flex: 1; padding: 8px 14px 8px 34px; border: none; border-radius: 8px; font-size: 14px; background: rgba(255,255,255,0.13); color: white; outline: none; }
+        #searchInput::placeholder { color: rgba(255,255,255,0.5); }
+        #searchInput:focus { background: rgba(255,255,255,0.22); }
+        .search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 13px; opacity: 0.6; pointer-events: none; }
+        .search-count { font-size: 12px; color: rgba(255,255,255,0.7); white-space: nowrap; min-width: 44px; text-align: center; }
+        .search-nav { background: rgba(255,255,255,0.13); border: none; border-radius: 6px; color: white; font-size: 13px; padding: 6px 8px; cursor: pointer; line-height: 1; }
+        .search-nav:hover { background: rgba(255,255,255,0.25); }
+        .search-nav:disabled { opacity: 0.3; cursor: default; }
+        mark.search-hl { background: #ffe066; color: #1a1a1a; border-radius: 2px; padding: 0 1px; }
+        mark.search-hl.current { background: #ff8c00; color: #fff; border-radius: 3px; outline: 2px solid #ff8c00; }
+        #filterBtn { background: rgba(255,255,255,0.13); border: none; border-radius: 8px; color: white; font-size: 13px; padding: 8px 12px; cursor: pointer; white-space: nowrap; }
+        #filterBtn.active { background: #c9a84c; color: #1a365d; font-weight: bold; }
+        .top-bar { background: #dde0e5; padding: 6px 14px; display: flex; gap: 6px; justify-content: flex-end; flex-wrap: nowrap; }
+        .top-btn { background: #5a6375; color: white; border: none; padding: 5px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap; transition: transform 0.1s; }
+        .top-btn:active { transform: scale(0.92); }
+        .top-btn.erase { background: #7a8494; }
+        .top-btn.clear { background: #a0a8b4; }
+        .top-btn.export { background: #c5cad3; color: #2d3748; }
+        .top-btn.done { background: #a0a8b4; color: #1a2a3a; }
+        .top-btn.done.active { background: linear-gradient(135deg,#7a5c00,#a07820); color: #fff3c4; }
+        .done-date { font-size: 11px; color: #8a9ab0; white-space: nowrap; align-self: center; }
+        .card { background: #fff; border-radius: 16px; padding: 22px 20px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); position: relative; }
+        .card.hidden { display: none; }
+        .star-btn { position: absolute; top: 18px; right: 18px; background: none; border: none; font-size: 20px; cursor: pointer; opacity: 0.18; transition: opacity 0.15s, transform 0.15s; padding: 0; }
+        .star-btn:active { transform: scale(1.3); }
+        .star-btn.starred { opacity: 1; }
+        .card-title { color: #1a365d; font-size: 1.25em; font-weight: 700; margin: 0 0 4px; padding-right: 28px; line-height: 1.55; }
+        .meta-line { font-size: 0.76em; color: #999; margin-bottom: 18px; letter-spacing: 0.03em; }
+        .verdict { background: #1a365d; color: white; border-radius: 11px; padding: 15px 18px; margin-bottom: 20px; }
+        .verdict-label { font-size: 0.68em; letter-spacing: 0.12em; opacity: 0.55; text-transform: uppercase; margin-bottom: 4px; }
+        .verdict-main { font-size: 1.08em; font-weight: 700; line-height: 1.45; margin-bottom: 5px; }
+        .verdict-sub { font-size: 0.83em; opacity: 0.75; line-height: 1.6; margin-bottom: 10px; }
+        .vote-row { display: flex; gap: 7px; flex-wrap: wrap; }
+        .v-chip { font-size: 0.73em; background: rgba(255,255,255,0.12); border-radius: 20px; padding: 3px 10px; white-space: nowrap; color: rgba(255,255,255,0.8); }
+        .v-chip.win { background: rgba(255,255,255,0.28); color: #fff; font-weight: 700; }
+        .section-heading { font-size: 0.72em; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #8a9ab0; margin: 20px 0 10px; padding-bottom: 5px; border-bottom: 1px solid #e8eaee; }
+        .issue-box { background: #f5f6f8; border-radius: 10px; padding: 14px 16px; margin-bottom: 16px; font-size: 0.91em; color: #333; }
+        .issue-box p { margin: 0 0 8px; }
+        .issue-box p:last-child { margin: 0; }
+        /* 法條結構圖 */
+        .law-structure { background: #f0f3f8; border-radius: 10px; padding: 14px 16px; margin: 10px 0 16px; font-size: 0.85em; }
+        .ls-title { font-weight: 700; color: #1a365d; margin-bottom: 10px; font-size: 0.92em; }
+        .ls-row { display: flex; gap: 8px; margin-bottom: 6px; align-items: flex-start; }
+        .ls-tag { background: #1a365d; color: white; border-radius: 4px; padding: 1px 8px; font-size: 0.78em; font-weight: 700; flex-shrink: 0; margin-top: 3px; white-space: nowrap; }
+        .ls-tag.new { background: #c9a84c; }
+        .ls-tag.q { background: #9b2335; }
+        .ls-text { flex: 1; line-height: 1.65; }
+        /* 爭點框 */
+        .dispute-box { background: #fff5f5; border: 1px solid #fca5a5; border-radius: 9px; padding: 12px 15px; margin: 10px 0 16px; font-size: 0.86em; }
+        .dispute-box .db-title { font-weight: 700; color: #9b2335; margin-bottom: 6px; font-size: 0.9em; }
+        /* 意見區塊 */
+        .opinions { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+        .op { border-radius: 10px; overflow: hidden; border: 1px solid #e4e7ec; }
+        .op-head { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #f5f6f8; }
+        .op-num { width: 26px; height: 26px; border-radius: 50%; background: #1a365d; color: white; font-size: 0.75em; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .op-label { font-weight: 700; font-size: 0.93em; color: #1a365d; flex: 1; }
+        .op-conclusion-chip { font-size: 0.74em; color: #666; background: #eaecf0; border-radius: 20px; padding: 2px 9px; white-space: nowrap; }
+        .op-body { padding: 13px 15px; font-size: 0.9em; background: #fff; }
+        .op-body p { margin: 0 0 9px; }
+        .op-body p:last-child { margin: 0; }
+        .op-body ul { margin: 5px 0 8px; padding-left: 18px; }
+        .op-body li { margin-bottom: 4px; }
+        .op-result { background: #f0f3f8; border-radius: 7px; padding: 10px 13px; margin-top: 10px; font-size: 0.9em; border-left: 3px solid #1a365d; }
+        /* 量刑對照 */
+        .sentencing-box { background: #f5f6f8; border-radius: 8px; padding: 12px 14px; margin: 10px 0; font-size: 0.85em; }
+        .sb-row { display: flex; gap: 10px; align-items: center; margin-bottom: 6px; flex-wrap: wrap; }
+        .sb-row:last-child { margin-bottom: 0; }
+        .sb-label { color: #666; font-size: 0.9em; white-space: nowrap; }
+        .sb-val { font-weight: 700; color: #1a365d; }
+        details { margin-top: 16px; }
+        details summary { cursor: pointer; color: #5a6880; font-size: 0.85em; font-weight: 600; padding: 5px 0; user-select: none; list-style: none; display: flex; align-items: center; gap: 5px; }
+        details summary::before { content: '▶'; font-size: 0.65em; transition: transform 0.2s; color: #8a9ab0; }
+        details[open] summary::before { transform: rotate(90deg); }
+        .ref-case { background: #f5f6f8; border-radius: 8px; padding: 11px 14px; margin-bottom: 8px; font-size: 0.85em; border-left: 3px solid #1a365d; }
+        .ref-case.yi { border-left-color: #8a9ab0; }
+        .ref-case-title { font-weight: 700; color: #1a365d; margin-bottom: 4px; font-size: 0.9em; }
+        .ref-case.yi .ref-case-title { color: #4a5568; }
+        .law-ref { background: #f0f2f5; border-radius: 8px; padding: 10px 14px; font-size: 0.85em; color: #4a5568; margin-top: 14px; border-left: 3px solid #1a365d; }
+        .note-toggle { display: inline-block; margin-top: 14px; font-size: 0.8em; color: #b0b8c4; cursor: pointer; user-select: none; }
+        .note-toggle:hover { color: #1a365d; }
+        .note-area { display: none; margin-top: 8px; }
+        .note-area.open { display: block; }
+        .note-textarea { width: 100%; min-height: 68px; border: 1px solid #e0e4ea; border-radius: 8px; padding: 10px 12px; font-size: 0.87em; font-family: inherit; color: #333; background: #fafbfc; resize: vertical; outline: none; line-height: 1.7; }
+        .note-textarea:focus { border-color: #1a365d; }
+        .note-textarea::placeholder { color: #ccc; }
+        .note-saved { font-size: 0.72em; color: #68d391; text-align: right; height: 14px; margin-top: 2px; }
+        #noResults, #noStarred { display: none; text-align: center; color: #a0aec0; padding: 40px 0; font-size: 0.9em; }
+        ::-webkit-scrollbar { display: none; }
+        ::selection { background: #c8d8ef; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>臺灣高等法院<br>114年度刑事法律座談會第14號</h1>
+    <div class="header-controls">
+        <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="搜尋關鍵字、法條…" oninput="doSearch(this.value)" onkeydown="handleSearchKey(event)">
+            <span class="search-count" id="searchCount"></span>
+            <button class="search-nav" id="prevBtn" onclick="navMatch(-1)" disabled title="上一個">▲</button>
+            <button class="search-nav" id="nextBtn" onclick="navMatch(1)" disabled title="下一個">▼</button>
+        </div>
+        <button id="filterBtn" onclick="toggleFilter()">⭐ 收藏</button>
+    </div>
+    <div class="top-bar">
+        <button class="top-btn" onclick="highlightText()">🖊️</button>
+        <button class="top-btn erase" onclick="removeHighlight()">🧽</button>
+        <button class="top-btn clear" onclick="clearHighlights()">🗑️</button>
+        <button class="top-btn export" onclick="openExport()">📤</button>
+        <button class="top-btn done" id="doneBtn" onclick="toggleDone()">朕已閱</button>
+        <span class="done-date" id="doneDateLabel"></span>
+    </div>
+</header>
+
+<div class="container">
+<div class="card" id="case1" data-kw="詐欺犯罪危害防制條例 第44條 339條之4 三人以上 共同詐欺 未遂 罪刑法定 結合犯 分則加重 未遂犯處罰">
+    <button class="star-btn" onclick="toggleStar('case1',this)">⭐</button>
+
+    <h2 class="card-title">詐欺犯罪危害防制條例第44條所謂犯刑法第339條之4第1項第2款之罪，是否包括犯三人以上共同詐欺取財罪之未遂犯？</h2>
+    <div class="meta-line">提案機關：臺灣桃園地方法院</div>
+
+    <!-- 結論橫幅 -->
+    <div class="verdict">
+        <div class="verdict-label">研討結論</div>
+        <div class="verdict-main">採乙說（否定說）——不包括未遂犯，應回歸刑法第339條之4</div>
+        <div class="verdict-sub">詐欺危害防制條例第44條文義僅針對既遂犯，且未設未遂處罰明文。依罪刑法定原則及未遂犯處罰須有特別規定（刑法第25條第2項），未遂犯不適用第44條加重，應依刑法第339條之4第2項、第1項第2款之加重詐欺未遂罪論處。</div>
+        <div class="vote-row">
+            <span class="v-chip">初步：採乙說</span>
+            <span class="v-chip">審查：採乙說</span>
+            <span class="v-chip win">大會 71人：乙說 66票 ✔</span>
+        </div>
+    </div>
+
+    <!-- 法條結構 -->
+    <div class="section-heading">法條結構——先釐清再看兩說</div>
+    <div class="law-structure">
+        <div class="ls-title">刑法第339條之4（加重詐欺取財罪）</div>
+        <div class="ls-row"><span class="ls-tag">第1項</span><span class="ls-text">犯第339條詐欺罪而有下列情形之一者，處1年以上7年以下有期徒刑：<br>第1款：冒用政府機關或公務員名義<br><strong>第2款：三人以上共同犯之（本題核心）</strong><br>第3款：以廣播電視、電子通訊、網際網路等傳播工具，對公眾散布<br>第4款：以電腦合成或其他科技方法製作關於他人不實影像、聲音或電磁紀錄</span></div>
+        <div class="ls-row"><span class="ls-tag">第2項</span><span class="ls-text">前項之未遂犯罰之。</span></div>
+    </div>
+    <div class="law-structure" style="margin-top:-8px;">
+        <div class="ls-title">詐欺犯罪危害防制條例第44條（新法加重）</div>
+        <div class="ls-row"><span class="ls-tag new">第1項</span><span class="ls-text"><strong>犯刑法第339條之4第1項第2款之罪</strong>，有下列情形之一者，依該條項規定<strong>加重其刑二分之一</strong>：<br>第1款：並犯同條項第1款、第3款或第4款之一<br>第2款：在中華民國領域外以供詐欺犯罪所用之設備，對於中華民國領域內之人犯之</span></div>
+        <div class="ls-row"><span class="ls-tag new">第2項</span><span class="ls-text">犯前項之罪……（量刑區間：1年6月以上10年6月以下）</span></div>
+    </div>
+
+    <!-- 爭點 -->
+    <div class="dispute-box">
+        <div class="db-title">核心爭點</div>
+        <p style="margin:0;">詐欺犯罪危害防制條例第44條第1項文字為「犯刑法第339條之4<strong>第1項第2款之罪</strong>」——此處「之罪」是否包含刑法第339條之4<strong>第2項</strong>（未遂犯）？</p>
+        <p style="margin:8px 0 0;font-size:0.88em;color:#666;">若包含未遂→甲說（肯定）；若僅指既遂→乙說（否定）。</p>
+    </div>
+
+    <!-- 法律問題 -->
+    <div class="section-heading">法律問題</div>
+    <div class="issue-box">
+        <p>詐欺犯罪危害防制條例公布施行後，被告犯<strong>三人以上共同詐欺取財未遂罪</strong>（刑法第339條之4第2項、第1項第2款），而同時有刑法第339條之4第1項<strong>第1款、第3款或第4款之一</strong>時，是否應依詐欺犯罪危害防制條例第44條第1項加重其刑？</p>
+        <p style="font-size:0.84em;color:#888;">（例：三人以上共同冒用公務員名義詐欺未遂→同時觸第2款＋第1款，是否適用第44條加重？）</p>
+    </div>
+
+    <!-- 量刑對照 -->
+    <div class="section-heading">量刑差異</div>
+    <div class="sentencing-box">
+        <div class="sb-row"><span class="ls-tag" style="font-size:0.78em;">甲說（採用）</span><span class="sb-label">詐欺危害條例第44條（既遂）加重二分之一</span><span class="sb-val">1年6月～10年6月</span></div>
+        <div class="sb-row"><span class="ls-tag" style="background:#9b2335;font-size:0.78em;">甲說（未遂）</span><span class="sb-label">同上，再依刑法第25條第2項得減輕</span><span class="sb-val">減輕後更低</span></div>
+        <div class="sb-row" style="border-top:1px solid #e0e4ea;padding-top:8px;margin-top:4px;"><span class="ls-tag" style="background:#276749;font-size:0.78em;">乙說（未遂）</span><span class="sb-label">刑法第339條之4第2項、第1項第2款</span><span class="sb-val">1年以上7年以下（再得減輕）</span></div>
+    </div>
+
+    <!-- 討論意見 -->
+    <div class="section-heading">討論意見</div>
+    <div class="opinions">
+        <!-- 甲說 -->
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">甲</div>
+                <span class="op-label">肯定說——包括未遂犯，應適用第44條加重</span>
+                <span class="op-conclusion-chip">0票</span>
+            </div>
+            <div class="op-body">
+                <p><strong>㈠ 詐欺危害防制條例第44條屬分則加重獨立罪名：</strong>第44條係就犯刑法第339條之4第1項第2款之罪者，合於特別構成要件時，明定提高法定刑或加重其刑，係成立另一新增之獨立罪名，屬刑法分則加重之性質。</p>
+                <p><strong>㈡ 加重事由不因既遂未遂而異：</strong>被告加入三人以上之詐欺集團，並已著手符合第1款、第3款、第4款之一的詐欺行為，因該詐欺行為之危害性、擴散性已然提升，此一刑罰加重事由並不因行為人犯行最終既遂、未遂而有所影響，故詐欺犯行縱屬未遂，仍不影響此一加重事由之適用。</p>
+                <p><strong>㈢ 德國法比較：</strong>德國刑法第242條（竊盜罪）既明文處罰未遂犯，第243條（加重竊盜罪）規定「犯竊盜罪者」，德國通說認為概念上即包含竊盜未遂罪之加重；同理，刑法第339條之4既明文處罰未遂犯，詐欺危害防制條例第44條文義上自包含犯三人以上詐欺取財未遂罪。</p>
+                <p><strong>㈣ 法條競合處理：</strong>被告除構成加重詐欺未遂罪外，亦構成詐欺危害防制條例第44條第1項第1款之罪，係屬法條競合，應依重法優於輕法、特別法優於普通法，優先適用第44條。</p>
+                <div class="op-result">
+                    <strong>㈤ 結論：</strong>犯三人以上共同詐欺取財未遂罪而同時構成第1款、第3款或第4款之一時，<strong>仍應依詐欺犯罪危害防制條例第44條第1項加重其刑</strong>。
+                </div>
+            </div>
+        </div>
+
+        <!-- 乙說 -->
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">乙</div>
+                <span class="op-label">否定說——不包括未遂犯，回歸刑法第339條之4</span>
+                <span class="op-conclusion-chip">最終採此說</span>
+            </div>
+            <div class="op-body">
+                <p><strong>㈠ 文義解釋——第44條未涵蓋未遂犯：</strong>詐欺犯罪危害防制條例第44條第1項文字僅針對犯刑法第339條之4<strong>第1項第2款</strong>之三人以上共同詐欺取財罪（即既遂），並未針對同法<strong>第2項、第1項第2款</strong>之未遂罪加以規定，依文義解釋，自難認於行為人犯未遂罪時亦應適用第44條加重。</p>
+                <p><strong>㈡ 罪刑法定原則——未遂犯處罰須有明文：</strong>「未遂犯之處罰，以有特別規定者為限」（刑法第25條第2項前段）。詐欺犯罪危害防制條例第44條並無處罰未遂犯之明文規定（相較之下，刑法第222條第2項、第321條第2項等均明文設有加重未遂之規定），自不能以該罪相繩，否則違反罪刑法定主義。</p>
+                <p><strong>㈢ 立法理由之量刑區間僅對應既遂：</strong>詐欺危害防制條例第44條第2項立法理由說明量刑區間為「1年6月以上10年6月以下」，係以刑法第339條之4既遂犯之法定刑（1年以上7年以下）加重二分之一核算，若認第44條第1項包含未遂犯，恐與此立法理由說明不符。</p>
+                <p><strong>㈣ 結合犯理論——基礎罪亦須既遂：</strong>詐欺犯罪危害防制條例第44條第1項第1款之立法形式類似「形式結合犯」，學說上認欲成立結合犯，所結合之二罪必須均達於既遂程度始足當之（甘添貴，刑法各論，第279頁）；況第44條第2項立法理由揭露之量刑區間亦僅以既遂犯之刑度核算。</p>
+                <div class="op-result">
+                    <strong>㈤ 結論：</strong>詐欺危害防制條例第44條<strong>不包括未遂犯</strong>，行為人犯三人以上共同詐欺取財未遂罪而同時具備第1款、第3款或第4款之一時，應回歸適用<strong>刑法第339條之4第2項、第1項第2款</strong>之加重詐欺取財未遂罪規定。
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="law-ref"><strong>相關法條：</strong>詐欺犯罪危害防制條例第44條；刑法第339條之4、第25條第2項。</div>
+
+    <details>
+        <summary>參考資料</summary>
+        <div style="padding-top:10px;">
+            <div class="ref-case">
+                <div class="ref-case-title">臺灣高等法院臺中分院114年度金上訴字第532號判決（甲說）</div>
+                <p style="margin:0;">被告為3人以上共同冒用公務員名義之詐欺手段，除構成刑法第339條之4第2項、第1項第2款、第1款之加重詐欺取財未遂罪外，亦構成詐欺犯罪危害防制條例第44條第1項第1款之罪，係屬法條競合，應依重法優於輕法、特別法優於普通法等法理，優先適用詐欺犯罪危害防制條例第44條第1項第1款之罪。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">臺灣桃園地方法院113年度金訴字第1807號判決（甲說）</div>
+                <p style="margin:0;">詐欺犯罪危害防制條例第44條第1項係成立另一新增之獨立罪名，屬刑法分則加重之性質。本案被告詐欺手段係三人以上共同為之，並以網際網路對公眾散布，除構成刑法第339條之4第2項、第1項第2款、第3款之加重詐欺取財未遂罪外，自構成詐欺犯罪危害防制條例第44條第1項第1款之罪，係屬法條競合，應依重法優於輕法、特別法優於普通法等法理，優先適用詐欺犯罪危害防制條例第44條第1項第1款規定。</p>
+            </div>
+            <div class="ref-case yi">
+                <div class="ref-case-title">臺灣臺中地方法院114年度金訴字第533號判決（乙說）</div>
+                <p style="margin:0;">詐欺犯罪危害防制條例第44條第1項第1款依其文義，限於行為人犯刑法第339條之4第1項第2款之三人以上共同詐欺取財既遂罪，並犯同條項第1款、第3款或第4款之一者，始有該條項規定之適用，並不包含未遂犯之情形。且「未遂犯之處罰，以有特別規定者為限」，詐欺犯罪危害防制條例第44條既無處罰未遂犯之明文規定，自不能以該罪相繩。</p>
+            </div>
+            <div class="ref-case yi">
+                <div class="ref-case-title">臺灣彰化地方法院114年度訴字第310號判決（乙說）</div>
+                <p style="margin:0;">詐欺犯罪危害防制條例第44條第1項、第2項為刑法分則之加重而為另一獨立之罪，其文字又僅係針對犯刑法第339條之4第1項第2款之三人以上共同詐欺取財罪規定加重要件，然未針對同法第2項、第1項第2款之三人以上共同詐欺取財未遂罪加以規定，依文義解釋，自難認行為人犯三人以上共同詐欺取財未遂罪而同時有同條項第1款、第3款或第4款之一時，亦應依詐欺犯罪危害防制條例第44條第1項加重之。</p>
+            </div>
+        </div>
+    </details>
+
+    <div class="note-toggle" onclick="toggleNote('n1')">✏️ 我的小結</div>
+    <div class="note-area" id="n1">
+        <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n1',this.value)"></textarea>
+        <div class="note-saved" id="n1-saved"></div>
+    </div>
+</div>
+
+<div id="noResults">查無符合的內容，請試試其他關鍵字。</div>
+<div id="noStarred">還沒有收藏的項目，點卡片右上角的 ⭐ 加入收藏。</div>
+</div>
+
+<script>
+const STORE_KEY='114_14_seminar_notes',STAR_KEY='114_14_seminar_stars';
+function loadNotes(){try{return JSON.parse(localStorage.getItem(STORE_KEY))||{};}catch{return{};}}
+function loadStars(){try{return JSON.parse(localStorage.getItem(STAR_KEY))||{};}catch{return{};}}
+function saveAllNotes(d){localStorage.setItem(STORE_KEY,JSON.stringify(d));}
+function saveAllStars(d){localStorage.setItem(STAR_KEY,JSON.stringify(d));}
+(function(){const n=loadNotes(),s=loadStars();Object.entries(n).forEach(([id,v])=>{const a=document.getElementById(id);if(!a)return;const t=a.querySelector('textarea');if(t)t.value=v;if(v)a.classList.add('open');});Object.entries(s).forEach(([id,v])=>{if(!v)return;const b=document.querySelector(`#${id} .star-btn`);if(b)b.classList.add('starred');});})();
+function toggleStar(id,btn){const s=loadStars();const now=!btn.classList.contains('starred');btn.classList.toggle('starred',now);s[id]=now;saveAllStars(s);if(filterActive)applyFilter();}
+let filterActive=false;
+function toggleFilter(){filterActive=!filterActive;document.getElementById('filterBtn').classList.toggle('active',filterActive);document.getElementById('searchInput').value='';clearSearchHighlights();updateSearchUI([],0);applyFilter();}
+function applyFilter(){const s=loadStars();const q=document.getElementById('searchInput').value.trim().toLowerCase();let any=false;document.querySelectorAll('.card').forEach(c=>{const kw=(c.dataset.kw||'').toLowerCase();const txt=c.textContent.toLowerCase();const ms=!q||kw.includes(q)||txt.includes(q);const mf=!filterActive||!!s[c.id];const show=ms&&mf;c.classList.toggle('hidden',!show);if(show)any=true;});document.getElementById('noResults').style.display=(!any&&!filterActive)?'block':'none';document.getElementById('noStarred').style.display=(!any&&filterActive)?'block':'none';}
+
+/* ── 搜尋高亮 + 跳轉 ── */
+let _matches=[],_cur=-1;
+
+function clearSearchHighlights(){
+  document.querySelectorAll('mark.search-hl').forEach(m=>{
+    const p=m.parentNode;
+    p.replaceChild(document.createTextNode(m.textContent),m);
+    p.normalize();
+  });
+}
+
+function highlightInNode(node,re){
+  if(node.nodeType===3){
+    const text=node.nodeValue;
+    const frag=document.createDocumentFragment();
+    let last=0,m;
+    re.lastIndex=0;
+    while((m=re.exec(text))!==null){
+      if(m.index>last)frag.appendChild(document.createTextNode(text.slice(last,m.index)));
+      const mk=document.createElement('mark');
+      mk.className='search-hl';
+      mk.textContent=m[0];
+      frag.appendChild(mk);
+      last=re.lastIndex;
+    }
+    if(last===0)return;
+    frag.appendChild(document.createTextNode(text.slice(last)));
+    node.parentNode.replaceChild(frag,node);
+    return;
+  }
+  if(node.nodeType===1){
+    const tag=node.tagName;
+    if(tag==='SCRIPT'||tag==='STYLE'||tag==='TEXTAREA'||tag==='INPUT')return;
+    if(node.classList&&node.classList.contains('search-hl'))return;
+    [...node.childNodes].forEach(c=>highlightInNode(c,re));
+  }
+}
+
+function doSearch(q){
+  clearSearchHighlights();
+  _matches=[];_cur=-1;
+  const qt=q.trim();
+  if(!qt){updateSearchUI([],0);applyFilter();return;}
+  applyFilter();
+  const esc=qt.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+  const re=new RegExp(esc,'gi');
+  document.querySelectorAll('.container .card:not(.hidden)').forEach(card=>{
+    highlightInNode(card,re);
+  });
+  _matches=[...document.querySelectorAll('mark.search-hl')];
+  if(_matches.length){
+    _cur=0;
+    setCurrent(0);
+  }
+  updateSearchUI(_matches,_cur);
+}
+
+function setCurrent(idx){
+  _matches.forEach((m,i)=>m.classList.toggle('current',i===idx));
+  if(_matches[idx]){
+    _matches[idx].scrollIntoView({behavior:'smooth',block:'center'});
+  }
+}
+
+function navMatch(dir){
+  if(!_matches.length)return;
+  _cur=(_cur+dir+_matches.length)%_matches.length;
+  setCurrent(_cur);
+  updateSearchUI(_matches,_cur);
+}
+
+function updateSearchUI(matches,cur){
+  const cnt=document.getElementById('searchCount');
+  const prev=document.getElementById('prevBtn');
+  const next=document.getElementById('nextBtn');
+  if(!matches.length){cnt.textContent='';prev.disabled=true;next.disabled=true;return;}
+  cnt.textContent=(cur+1)+'/'+matches.length;
+  prev.disabled=false;next.disabled=false;
+}
+
+function handleSearchKey(e){
+  if(e.key==='Enter'){e.shiftKey?navMatch(-1):navMatch(1);}
+  if(e.key==='Escape'){document.getElementById('searchInput').value='';doSearch('');}
+}
+function toggleNote(id){document.getElementById(id).classList.toggle('open');}
+const timers={};
+function saveNote(id,v){clearTimeout(timers[id]);timers[id]=setTimeout(()=>{const n=loadNotes();n[id]=v;saveAllNotes(n);const el=document.getElementById(id+'-saved');if(el){el.textContent='已儲存';setTimeout(()=>el.textContent='',1500);}},500);}
+let savedRange=null;
+document.addEventListener('selectionchange',()=>{const s=window.getSelection();if(s&&!s.isCollapsed&&s.rangeCount)savedRange=s.getRangeAt(0).cloneRange();});
+function highlightText(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;if(!r||r.collapsed){alert('💡 請先反白想要標記的文字');return;}const sp=document.createElement('span');sp.className='hl';sp.style.backgroundColor='#ffe066';try{r.surroundContents(sp);savedRange=null;}catch{alert('💡 請選取同一段落內的文字');}s&&s.removeAllRanges();}
+function removeHighlight(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;if(!r||r.collapsed){alert('💡 請先反白想擦除標記的文字');return;}const anc=r.commonAncestorContainer.nodeType===1?r.commonAncestorContainer:r.commonAncestorContainer.parentElement;anc.querySelectorAll('span.hl').forEach(sp=>{if(r.intersectsNode(sp)){const p=sp.parentNode;while(sp.firstChild)p.insertBefore(sp.firstChild,sp);p.removeChild(sp);}});savedRange=null;s&&s.removeAllRanges();}
+function clearHighlights(){const sp=document.querySelectorAll('span.hl');if(!sp.length)return;if(confirm('確定要清除所有重點標記嗎？')){sp.forEach(s=>{const p=s.parentNode;while(s.firstChild)p.insertBefore(s.firstChild,s);p.removeChild(s);});}}
+function openExport(){
+    const stars=loadStars();
+    let out='臺灣高等法院 114年度刑事法律座談會第14號\n'+'═'.repeat(44)+'\n\n';
+    document.querySelectorAll('.card').forEach(c=>{
+        const star=stars[c.id]?'⭐ ':'';
+        const title=c.querySelector('.card-title')?.textContent.trim()||'';
+        out+=`【${star}${title}】\n\n`;
+        const vMain=c.querySelector('.verdict-main');
+        const vSub=c.querySelector('.verdict-sub');
+        if(vMain) out+='▌研討結論\n'+vMain.textContent.trim()+'\n';
+        if(vSub)  out+=vSub.textContent.trim()+'\n';
+        const chips=[...c.querySelectorAll('.v-chip')].map(el=>el.textContent.trim()).join('　');
+        if(chips) out+=chips+'\n';
+        out+='\n';
+        const issue=c.querySelector('.issue-box');
+        if(issue){out+='▌法律問題\n';issue.querySelectorAll('p').forEach(p=>{const t=p.textContent.trim();if(t)out+=t+'\n';});out+='\n';}
+        c.querySelectorAll('.op').forEach(op=>{
+            const head=op.querySelector('.op-label')?.textContent.trim()||'';
+            const chip=op.querySelector('.op-conclusion-chip')?.textContent.trim()||'';
+            out+=`▌${head}　${chip}\n`;
+            op.querySelectorAll('.op-body p, .op-body li, .op-result').forEach(el=>{
+                const t=el.textContent.trim();
+                if(t) out+=(el.tagName==='LI'?'  • ':'')+t+'\n';
+            });
+            out+='\n';
+        });
+        const law=c.querySelector('.law-ref');
+        if(law) out+=law.textContent.trim()+'\n\n';
+        const ta=c.querySelector('.note-textarea');
+        if(ta&&ta.value.trim()) out+='✏️ 小結：\n'+ta.value.trim()+'\n\n';
+        out+='═'.repeat(44)+'\n\n';
+    });
+    const b=new Blob([out.trim()],{type:'text/plain;charset=utf-8'});
+    const u=URL.createObjectURL(b);
+    const a=document.createElement('a');
+    a.href=u;a.download='114刑事座談14_詐欺危害條例44條未遂.txt';a.click();
+    URL.revokeObjectURL(u);
+}
+const REG_KEY='exam_completion_registry';
+function _loadReg(){try{return JSON.parse(localStorage.getItem(REG_KEY))||{};}catch{return{};}}
+function _saveReg(r){try{localStorage.setItem(REG_KEY,JSON.stringify(r));}catch{}}
+function _file(){const p=location.pathname.split('/');return decodeURIComponent(p[p.length-1]||'');}
+function _fmt(ts){const d=new Date(ts);return(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();}
+function _updateDate(){const r=_loadReg();const k=_file();const l=document.getElementById('doneDateLabel');if(!l)return;l.textContent=(r[k]&&r[k].done&&r[k].ts)?_fmt(r[k].ts):'';}
+function toggleDone(){const btn=document.getElementById('doneBtn');const r=_loadReg();const k=_file();const done=r[k]&&r[k].done;if(done){delete r[k];_saveReg(r);btn.classList.remove('active');}else{const now=new Date();r[k]={done:true,score:null,total:null,ts:now.getTime(),tsLabel:now.toLocaleDateString('zh-TW')+' '+now.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false})};_saveReg(r);btn.classList.add('active');}_updateDate();}
+(function(){const r=_loadReg();const k=_file();if(r[k]&&r[k].done){const b=document.getElementById('doneBtn');if(b)b.classList.add('active');}_updateDate();})();
+</script>
+</body>
+</html>
