@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>111年度台上大字第932號 民事大法庭裁定</title>
+    <style>
+        /* ── 無印良品色系 ──────────────────────────────
+           背景：溫米白  #f5f0eb
+           卡片：純白    #ffffff
+           主色：深墨灰  #3d3530  （文字、標題）
+           次色：中棕    #8c7b6b  （meta、label）
+           線條：淺麻    #ddd8d0
+           強調1：陶土紅 #9e5c45  （多數意見）
+           強調2：橄欖綠 #5a6e4e  （法條、結論框）
+           強調3：焦糖棕 #b07d4a  （不同意見）
+           警示：淡黃米  #f5f0d8  （考試陷阱底）
+        ─────────────────────────────────────────── */
+        :root {
+            --bg:       #f5f0eb;
+            --card:     #ffffff;
+            --text:     #3d3530;
+            --sub:      #8c7b6b;
+            --line:     #ddd8d0;
+            --majority: #9e5c45;
+            --law:      #5a6e4e;
+            --dissent:  #b07d4a;
+            --trap:     #f5f0d8;
+            --header-bg:#5c4f47;
+        }
+        /* ── 夜覽模式 ── */
+        body.night-mode {
+            --bg:       #1a1714;
+            --card:     #252220;
+            --text:     #d4cec8;
+            --sub:      #8a7d72;
+            --line:     #383330;
+            --majority: #b87060;
+            --law:      #6a8a5e;
+            --dissent:  #c4935a;
+            --trap:     #2a2518;
+            --header-bg:#111010;
+        }
+        body.night-mode header { box-shadow: 0 2px 8px rgba(0,0,0,0.5); }
+        body.night-mode .top-bar { background: #1e1b18; }
+        body.night-mode .top-btn { background: #3a3530; }
+        body.night-mode .fact-box,
+        body.night-mode .issue-box { background: #1e1b18; }
+        body.night-mode .op-head { background: #2a2520; }
+        body.night-mode .op-body { background: var(--card); }
+        body.night-mode .op-result { background: #2a2018; }
+        body.night-mode .d-op-head { background: #261f14; }
+        body.night-mode .d-op-body { background: #201c14; }
+        body.night-mode .d-op-result { background: #261f14; }
+        body.night-mode .dissent-judges { background: #261f14; }
+        body.night-mode .compare-table th.th-issue { background: #2a2520; }
+        body.night-mode .compare-table td.td-issue { background: #222018; }
+        body.night-mode .compare-table td.td-majority { background: #241e1c; }
+        body.night-mode .compare-table td.td-dissent { background: #241e16; }
+        body.night-mode .ref-case { background: #242018; }
+        body.night-mode .law-ref { background: #1c2018; }
+        body.night-mode .note-textarea { background: #1e1b18; color: var(--text); border-color: var(--line); }
+        body.night-mode .judge-chip { background: #2a2520; border-color: var(--line); }
+        body.night-mode .judge-chip.chief { background: #3a3530; }
+        body.night-mode mark.search-hl { background: #7a6010; color: #f0e8c8; }
+        body.night-mode mark.search-hl.current { background: #c47000; color: #fff; }
+        body.night-mode .verdict { background: #2e2a26; }
+        body.night-mode .trap-box { border-color: #5a5020; }
+        body.night-mode .trap-title { color: #c8a840; }
+        body.night-mode .trap-item { border-left-color: #7a6830; }
+        body.night-mode #nightBtn { background: #4a4030; color: #e8d898; font-weight: 700; }
+        body { transition: background 0.3s, color 0.3s; }
+        .card { transition: background 0.3s, border-color 0.3s; }
+
+        * { box-sizing: border-box; }
+        body { font-family: "Helvetica Neue", Helvetica, "PingFang TC", "LiHei Pro", "Microsoft JhengHei", sans-serif;
+               background: var(--bg); color: var(--text); line-height: 1.85; font-size: 16px; margin: 0; padding: 0 0 60px; }
+
+        /* ── Header ── */
+        header { background: var(--header-bg); color: #f5f0eb; padding: 16px 16px 8px; text-align: center;
+                 position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+        header h1 { margin: 0 0 10px; font-size: 1.05em; line-height: 1.5; font-weight: 600; letter-spacing: 0.02em; color: #ffffff; }
+        .header-controls { display: flex; gap: 8px; align-items: center; }
+        .search-wrap { position: relative; flex: 1; display: flex; align-items: center; gap: 4px; }
+        #searchInput { flex: 1; padding: 8px 14px 8px 32px; border: none; border-radius: 6px;
+                       font-size: 14px; background: rgba(245,240,235,0.15); color: #f5f0eb; outline: none; }
+        #searchInput::placeholder { color: rgba(245,240,235,0.45); }
+        #searchInput:focus { background: rgba(245,240,235,0.25); }
+        .search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 13px;
+                       opacity: 0.5; pointer-events: none; }
+        .search-count { font-size: 12px; color: rgba(255,255,255,0.7); white-space: nowrap; min-width: 44px; text-align: center; }
+        .search-nav { background: rgba(255,255,255,0.13); border: none; border-radius: 6px; color: white; font-size: 13px; padding: 6px 8px; cursor: pointer; line-height: 1; }
+        .search-nav:hover { background: rgba(255,255,255,0.25); }
+        .search-nav:disabled { opacity: 0.3; cursor: default; }
+        mark.search-hl { background: #ffe066; color: #1a1a1a; border-radius: 2px; padding: 0 1px; }
+        mark.search-hl.current { background: #ff8c00; color: #fff; border-radius: 3px; outline: 2px solid #ff8c00; }
+        #filterBtn { background: rgba(245,240,235,0.15); border: none; border-radius: 6px;
+                     color: #f5f0eb; font-size: 13px; padding: 8px 12px; cursor: pointer; white-space: nowrap; }
+        #filterBtn.active { background: var(--dissent); color: #fff; font-weight: bold; }
+        .top-bar { background: #e8e2da; padding: 5px 14px; display: flex; gap: 6px; justify-content: flex-end; flex-wrap: nowrap; }
+        .top-btn { background: #b0a898; color: #fff; border: none; padding: 4px 10px; border-radius: 20px;
+                   font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap; transition: opacity 0.15s; }
+        .top-btn:hover { opacity: 0.8; }
+        .top-btn.done { background: #8c7b6b; }
+        .top-btn.done.active { background: linear-gradient(135deg, #b8860b, #daa520); color: #fff8e1; font-weight: 700; box-shadow: 0 0 8px rgba(218,165,32,0.5); }
+        .done-date { font-size: 11px; color: #a0a0a0; white-space: nowrap; align-self: center; font-weight: 500; }
+
+        /* ── Layout ── */
+        .container { padding: 18px 16px; max-width: 640px; margin: 0 auto; }
+        @media (min-width: 768px) { .container { max-width: 880px; padding: 24px 20px; } body { font-size: 17px; } header h1 { font-size: 1.15em; } }
+        .card { background: var(--card); border-radius: 14px; padding: 24px 22px; margin-bottom: 24px;
+                box-shadow: 0 1px 6px rgba(61,53,48,0.08); position: relative; border: 1px solid var(--line); }
+        .card.hidden { display: none; }
+        .star-btn { position: absolute; top: 18px; right: 18px; background: none; border: none; font-size: 20px;
+                    cursor: pointer; opacity: 0.15; transition: opacity 0.15s; padding: 0; }
+        .star-btn.starred { opacity: 1; }
+        .card-title { color: var(--text); font-size: 1.15em; font-weight: 700; margin: 0 0 4px; padding-right: 30px; line-height: 1.6; }
+        .meta-line { font-size: 0.75em; color: var(--sub); margin-bottom: 20px; letter-spacing: 0.04em; }
+
+        /* ── 案號badge ── */
+        .badge { display: inline-block; font-size: 0.68em; font-weight: 800; border-radius: 4px;
+                 padding: 2px 8px; margin-right: 6px; letter-spacing: 0.06em; vertical-align: middle; }
+        .badge-civil { background: var(--majority); color: #fff; }
+        .badge-dissent { background: var(--dissent); color: #fff; }
+        .badge-law { background: var(--law); color: #fff; }
+
+        /* ── 大法庭主文橫幅 ── */
+        .verdict { background: #4a3f38; color: #f5f0eb; border-radius: 10px; padding: 16px 18px; margin-bottom: 22px; }
+        .verdict-label { font-size: 0.66em; letter-spacing: 0.14em; opacity: 0.5; margin-bottom: 6px; }
+        .verdict-main { font-size: 1.05em; font-weight: 700; line-height: 1.5; margin-bottom: 10px; color: #ffffff; }
+        .verdict-items { display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px; }
+        .verdict-item { border-left: 3px solid rgba(245,240,235,0.35); padding-left: 12px; }
+        .verdict-item-num { font-size: 0.7em; opacity: 0.55; margin-bottom: 2px; }
+        .verdict-item-text { font-size: 0.97em; font-weight: 400; line-height: 1.55; opacity: 0.85; }
+        .vote-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 12px; padding-top: 10px;
+                    border-top: 1px solid rgba(245,240,235,0.15); }
+        .v-chip { font-size: 0.72em; background: rgba(245,240,235,0.1); border-radius: 20px;
+                  padding: 3px 10px; white-space: nowrap; color: rgba(245,240,235,0.75); }
+        .v-chip.majority { background: rgba(158,92,69,0.5); color: #f5f0eb; font-weight: 700; }
+        .v-chip.dissent-c { background: rgba(176,125,74,0.45); color: #f5f0eb; }
+
+        /* ── Section heading ── */
+        .section-heading { font-size: 0.85em; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+                           color: var(--sub); margin: 22px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--line); }
+
+        /* ── 事實 ── */
+        .fact-box { background: #faf8f5; border-left: 3px solid var(--sub); border-radius: 0 8px 8px 0;
+                    padding: 14px 16px; margin-bottom: 16px; font-size: 0.9em; }
+        .fact-box p { margin: 0 0 8px; }
+        .fact-box p:last-child { margin: 0; }
+
+        /* ── 爭點 ── */
+        .issue-box { background: #faf8f5; border-radius: 8px; padding: 14px 16px; margin-bottom: 16px;
+                     font-size: 0.9em; border: 1px solid var(--line); }
+        .issue-box p { margin: 0 0 8px; }
+        .issue-box p:last-child { margin: 0; }
+
+        /* ── 多數 v 不同意見 對照表 ── */
+        .compare-table { width: 100%; border-collapse: collapse; margin-bottom: 18px; font-size: 0.88em; }
+        .compare-table th { padding: 10px 13px; font-weight: 700; font-size: 0.85em; letter-spacing: 0.05em; }
+        .compare-table th.th-issue { background: #f0ece7; color: var(--sub); width: 22%; border-radius: 6px 0 0 0; }
+        .compare-table th.th-majority { background: var(--majority); color: #fff; width: 39%; }
+        .compare-table th.th-dissent { background: var(--dissent); color: #fff; width: 39%; border-radius: 0 6px 0 0; }
+        .compare-table td { padding: 11px 13px; vertical-align: top; border-bottom: 1px solid var(--line); }
+        .compare-table td.td-issue { background: #f7f4f0; font-weight: 600; font-size: 0.87em; color: var(--sub); }
+        .compare-table td.td-majority { background: #fdf9f7; border-left: 2px solid #e8d0c8; }
+        .compare-table td.td-dissent { background: #fdf9f3; border-left: 2px solid #e8d8bc; }
+        .compare-table tr:last-child td { border-bottom: none; }
+        .compare-table tr:last-child td.td-issue { border-radius: 0 0 0 6px; }
+        .compare-table tr:last-child td.td-dissent { border-radius: 0 0 6px 0; }
+        @media (max-width: 600px) {
+            .compare-table, .compare-table tbody, .compare-table tr, .compare-table td, .compare-table th { display: block; width: 100%; }
+            .compare-table th.th-issue { border-radius: 6px 6px 0 0; }
+            .compare-table th.th-majority, .compare-table th.th-dissent { border-radius: 0; }
+            .compare-table td { border-left: none !important; }
+            .compare-table td.td-majority { border-top: 2px solid var(--majority); }
+            .compare-table td.td-dissent { border-top: 2px solid var(--dissent); }
+        }
+
+        /* ── 理由區塊（多數） ── */
+        .opinions { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+        .op { border-radius: 8px; overflow: hidden; border: 1px solid var(--line); }
+        .op-head { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #f7f4f0; }
+        .op-num { width: 26px; height: 26px; border-radius: 50%; background: var(--majority); color: white;
+                  font-size: 0.75em; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .op-label { font-weight: 700; font-size: 0.92em; color: var(--majority); flex: 1; }
+        .op-body { padding: 13px 15px; font-size: 0.9em; background: var(--card); }
+        .op-body p { margin: 0 0 9px; }
+        .op-body p:last-child { margin: 0; }
+        .op-body ul { margin: 5px 0 8px; padding-left: 18px; }
+        .op-body li { margin-bottom: 5px; }
+        .op-result { background: #fdf9f7; border-radius: 6px; padding: 10px 13px; margin-top: 10px;
+                     font-size: 0.9em; border-left: 3px solid var(--majority); }
+
+        /* ── 不同意見理由區塊 ── */
+        .d-opinions { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+        .d-op { border-radius: 8px; overflow: hidden; border: 1px solid #e6d8bc; }
+        .d-op-head { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #fdf7ec; }
+        .d-op-num { width: 26px; height: 26px; border-radius: 50%; background: var(--dissent); color: white;
+                    font-size: 0.75em; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .d-op-label { font-weight: 700; font-size: 0.92em; color: var(--dissent); flex: 1; }
+        .d-op-body { padding: 13px 15px; font-size: 0.9em; background: #fffdf8; }
+        .d-op-body p { margin: 0 0 9px; }
+        .d-op-body p:last-child { margin: 0; }
+        .d-op-body ul { margin: 5px 0 8px; padding-left: 18px; }
+        .d-op-body li { margin-bottom: 5px; }
+        .d-op-result { background: #fdf7ec; border-radius: 6px; padding: 10px 13px; margin-top: 10px;
+                       font-size: 0.9em; border-left: 3px solid var(--dissent); }
+        .dissent-judges { font-size: 0.82em; color: var(--dissent); margin-bottom: 12px;
+                          padding: 8px 12px; background: #fdf7ec; border-radius: 6px; border-left: 3px solid var(--dissent); }
+
+        /* ── 考試陷阱區塊 ── */
+        .trap-box { background: var(--trap); border-radius: 8px; padding: 14px 16px; margin-bottom: 16px;
+                    border: 1px solid #e0d8b0; font-size: 0.9em; }
+        .trap-title { font-weight: 700; color: #7a6820; margin-bottom: 10px; font-size: 0.92em;
+                      display: flex; align-items: center; gap: 6px; }
+        .trap-item { margin-bottom: 10px; padding-left: 14px; border-left: 2px solid #c8b860; }
+        .trap-item:last-child { margin-bottom: 0; }
+        .trap-q { font-weight: 700; color: var(--text); margin-bottom: 3px; }
+        .trap-a { color: var(--text); opacity: 0.85; }
+
+        /* ── 法條 ── */
+        .law-ref { background: #f2f5f0; border-radius: 8px; padding: 10px 14px; font-size: 0.84em;
+                   color: #3d4e38; margin-top: 14px; border-left: 3px solid var(--law); }
+
+        /* ── 折疊 ── */
+        details { margin-top: 16px; }
+        details summary { cursor: pointer; color: var(--sub); font-size: 0.84em; font-weight: 600;
+                          padding: 5px 0; user-select: none; list-style: none; display: flex; align-items: center; gap: 6px; }
+        details summary::before { content: '▶'; font-size: 0.62em; transition: transform 0.2s; color: var(--sub); }
+        details[open] summary::before { transform: rotate(90deg); }
+        .ref-case { background: #f7f4f0; border-radius: 7px; padding: 10px 13px; margin-bottom: 8px;
+                    font-size: 0.84em; border-left: 3px solid var(--majority); }
+        .ref-case.d { border-left-color: var(--dissent); }
+        .ref-case-title { font-weight: 700; color: var(--majority); margin-bottom: 3px; font-size: 0.9em; }
+        .ref-case.d .ref-case-title { color: var(--dissent); }
+
+        /* ── 筆記 ── */
+        .note-toggle { display: inline-block; margin-top: 14px; font-size: 0.8em; color: #b0a898; cursor: pointer; user-select: none; }
+        .note-toggle:hover { color: var(--majority); }
+        .note-area { display: none; margin-top: 8px; }
+        .note-area.open { display: block; }
+        .note-textarea { width: 100%; min-height: 68px; border: 1px solid var(--line); border-radius: 7px;
+                         padding: 10px 12px; font-size: 0.87em; font-family: inherit; color: var(--text);
+                         background: #faf8f5; resize: vertical; outline: none; line-height: 1.75; }
+        .note-textarea:focus { border-color: var(--majority); }
+        .note-textarea::placeholder { color: #c8beb0; }
+        .note-saved { font-size: 0.72em; color: var(--law); text-align: right; height: 14px; margin-top: 2px; }
+
+        /* ── 法官 ── */
+        .judges-grid { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+        .judge-chip { font-size: 0.77em; background: #f0ece7; border-radius: 20px; padding: 3px 11px;
+                      color: var(--text); border: 1px solid var(--line); }
+        .judge-chip.chief { background: var(--text); color: #f5f0eb; font-weight: 700; border-color: var(--text); }
+        .judge-chip.dissenter { background: var(--dissent); color: #fff; font-weight: 600; border-color: var(--dissent); }
+
+        #noResults, #noStarred { display: none; text-align: center; color: var(--sub); padding: 40px 0; font-size: 0.9em; }
+        ::-webkit-scrollbar { display: none; }
+        ::selection { background: #e8ddd0; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>最高法院民事大法庭<br>111年度台上大字第932號</h1>
+    <div class="header-controls">
+        <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="搜尋關鍵字、法條…" oninput="doSearch(this.value)" onkeydown="handleSearchKey(event)">
+            <span class="search-count" id="searchCount"></span>
+            <button class="search-nav" id="prevBtn" onclick="navMatch(-1)" disabled title="上一個">▲</button>
+            <button class="search-nav" id="nextBtn" onclick="navMatch(1)" disabled title="下一個">▼</button>
+        </div>
+        <button id="filterBtn" onclick="toggleFilter()">⭐ 收藏</button>
+    </div>
+    <div class="top-bar">
+        <button class="top-btn" onclick="highlightText()">🖊️</button>
+        <button class="top-btn" onclick="removeHighlight()">🧽</button>
+        <button class="top-btn" onclick="clearHighlights()">🗑️</button>
+        <button class="top-btn" onclick="openExport()">📤</button>
+        <button class="top-btn" id="nightBtn" onclick="toggleNight()">🌙</button>
+        <button class="top-btn done" id="doneBtn" onclick="toggleDone()">朕已閱</button>
+        <span class="done-date" id="doneDateLabel"></span>
+    </div>
+</header>
+
+<div class="container">
+<div class="card" id="case1" data-kw="無權占有 建物占有人 土地占有人 不當得利 善意占有 民法第940條 民法第179條 民法第943條 民法第952條 拆屋還地 使用利益 相當租金 大法庭 占有 事實上管領力 間接占有 民法941條">
+    <button class="star-btn" onclick="toggleStar('case1',this)">⭐</button>
+    <h2 class="card-title">
+        單一建物無權占有他人土地——非建物所有權或事實上處分權人之建物占有人，是否為土地之占有人？對土地所有人應否負不當得利返還責任？
+    </h2>
+    <div class="meta-line">裁定日期：民國115年6月12日　｜　案號：111年度台上大字第932號　｜　提案庭：最高法院民事第三庭（原第四庭）</div>
+
+    <!-- 大法庭主文 -->
+    <div class="verdict">
+        <div class="verdict-label">大法庭主文</div>
+        <div class="verdict-main">建物占有人亦為土地之占有人，且除善意占有外，應返還使用土地之利益</div>
+        <div class="verdict-items">
+            <div class="verdict-item">
+                <div class="verdict-item-num">主文一</div>
+                <div class="verdict-item-text">單一建物無權占有他人之土地，非建物所有權或事實上處分權人之建物占有人，為土地之占有人。</div>
+            </div>
+            <div class="verdict-item">
+                <div class="verdict-item-num">主文二</div>
+                <div class="verdict-item-text">上開建物占有人除為土地善意占有人外，應依不當得利之規定，返還使用土地之利益予土地所有人。</div>
+            </div>
+        </div>
+        <div class="vote-row">
+            <span class="v-chip majority">多數意見 6票 ✔</span>
+            <span class="v-chip dissent-c">不同意見 5票</span>
+            <span class="v-chip">裁定日：115.06.12</span>
+            <span class="v-chip">法官共11人</span>
+        </div>
+    </div>
+
+    <!-- 基礎事實 -->
+    <div class="section-heading">基礎事實</div>
+    <div class="fact-box">
+        <p>上訴人A（游萬隆）以訴外人B所有之<strong>單一建物（非區分所有）無權占有</strong> A與其他共有人共有之系爭土地，訴請B拆屋還地及按月給付2萬元相當租金之不當得利，並獲<strong>勝訴確定</strong>。</p>
+        <p>因B將系爭建物<strong>全部出租予被上訴人C（詠寶國際有限公司）</strong>，A主張系爭土地105年4月14日起至106年2月9日止之租金利益經鑑定為199萬3,481元，扣除B已給付同期不當得利20萬1,340元後，C仍受有使用土地相當租金之不當得利<strong>179萬2,141元</strong>，依民法第179條規定請求C給付。</p>
+        <p><strong>核心問題：</strong> C僅為建物承租人（非建物所有人），是否為土地之占有人？是否對A負不當得利返還責任？</p>
+    </div>
+
+    <!-- 法律爭議 -->
+    <div class="section-heading">法律爭議</div>
+    <div class="issue-box">
+        <p><strong>問題一：</strong> 單一建物無權占有他人之土地，非建物所有權或事實上處分權人之<strong>建物占有人是否為土地占有人</strong>？（民法§940）</p>
+        <p><strong>問題二：</strong> 承上，該建物占有人對土地所有人<strong>應否負不當得利返還責任</strong>？（民法§179、§943、§952）</p>
+        <p><strong>核心張力：</strong> 民法採土地與建物各為獨立不動產（§66），但建物不能脫離土地存在——此物理現實在占有認定及不當得利責任上如何體現？</p>
+    </div>
+
+    <div class="section-heading">大法庭裁定理由（多數意見）</div>
+    <div class="opinions">
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">壹</div>
+                <span class="op-label">占有之成立——客觀事實上管領力＋主觀占有意思</span>
+            </div>
+            <div class="op-body">
+                <p>民法第940條：「對於物有事實上之管領力者，為占有人。」占有為法律賦予一定效力之事實，須具備：</p>
+                <ul>
+                    <li><strong>客觀要件：</strong>依一般社會觀念，物在一定空間、時間上已具屬於其人實力支配下之客觀結合關係，具法律上重要性（具一定法律關係或法律秩序），並得排除他人干涉之狀態。</li>
+                    <li><strong>主觀要件：</strong>占有人具備占有之意思——此非法律行為之意思，僅為對物管領之自然意思，<strong>不以具備行為能力為必要</strong>。</li>
+                </ul>
+                <p>「有無占有之事實，須斟酌外部可認識之空間、時間關係及法律重要性，依社會交易觀念加以認定。」</p>
+                <div class="op-result">
+                    <strong>建物所有人移轉建物占有時（§941間接占有）：</strong><br>
+                    建物所有人基於租賃等法律關係交付建物予他人占有時，<strong>亦併同移轉該建物坐落土地之占有</strong>。該他人（承租人）對建物坐落土地在空間上有一定之結合關係，時間上有相當之繼續性，並排除他人對土地之干涉，對該部分土地產生屬其實力支配下之客觀結合關係，而取得對土地事實上管領之力；且依一般社會觀念，其主觀上通常亦得認識對建物坐落土地之空間有支配管領之力，而有占有之意思，亦應為土地之占有人。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">貳</div>
+                <span class="op-label">物上請求權體系一貫性——承認占有始能保障所有權</span>
+            </div>
+            <div class="op-body">
+                <p>各說均肯認土地所有人得依§767第1項，對建物所有人請求拆屋還地時，<strong>得併依§767第1項規定，請求建物占有人遷出</strong>，可見建物占有人確實妨害土地所有人所有權之圓滿。</p>
+                <p>若謂建物占有人非土地占有人：</p>
+                <ul>
+                    <li>一方面肯認土地所有人得對建物占有人行使物上請求權</li>
+                    <li>另一方面又謂建物占有人未占有土地——<strong>理論上已非一貫</strong></li>
+                    <li>在無法對建物所有人請求拆屋還地時（如建物所有人不明），土地所有人只能任令建物占有人持續占有，<strong>顯然違反物權法對所有權（絕對權）之保障</strong></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">參</div>
+                <span class="op-label">不當得利之成立——侵害歸屬型，以善惡意為軸</span>
+            </div>
+            <div class="op-body">
+                <p>民法第179條：「無法律上之原因而受利益，致他人受損害者，應返還其利益。」</p>
+                <p>建物占有人既為土地占有人，自<strong>受有使用土地之利益</strong>，侵害應歸屬土地所有人之權益內容，致其受損害——成立<strong>侵害歸屬型不當得利</strong>。</p>
+                <p>然不當得利旨在調整欠缺法律上原因之財貨變動，故建物占有人應否返還，仍視<strong>取得使用利益有無法律上原因（有無保有利益之正當性）</strong>而定：</p>
+                <ul>
+                    <li><strong>善意占有人</strong>：§943第1項推定適法有本權 → 有法律上原因 → <strong>免返還義務</strong></li>
+                    <li><strong>惡意占有人</strong>：§952反面解釋，不得為占有物之使用收益 → 欠缺法律上原因 → <strong>應依§179返還使用利益</strong></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">肆</div>
+                <span class="op-label">善意占有人之保護——推定有本權，免負返還義務</span>
+            </div>
+            <div class="op-body">
+                <p><strong>民法第943條第1項：</strong>「占有人於占有物上行使之權利，推定其適法有此權利。」（第2項規定不適用之例外情形）</p>
+                <p><strong>民法第952條：</strong>「善意占有人於推定其為適法所有之權利範圍內，得為占有物之使用、收益。」</p>
+                <p>承租建物之承租人所行使者為租賃權，其內容<strong>包含建物坐落基地之占有</strong>，即推定其適法有此租賃權，得為占有物即土地之使用，<strong>因使用占有物所獲利益有法律上原因，對土地所有人不負返還義務</strong>，以保障建物占有人對占有外觀之信賴，並兼顧建物租賃市場之交易安全。</p>
+                <p>善意占有人就其占有是否具本權，<strong>並無查證義務</strong>（§959立法理由）：</p>
+                <ul>
+                    <li>主張占有人為善意者：<strong>無須舉證</strong></li>
+                    <li>主張占有人為惡意（或由善意轉惡意）者：<strong>負舉證責任</strong></li>
+                    <li>各占有人之主觀善惡意：<strong>應分別觀察</strong></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">伍</div>
+                <span class="op-label">惡意占有人之責任——應依§179、§181、§182返還使用利益</span>
+            </div>
+            <div class="op-body">
+                <p>民法第952條反面解釋：<strong>惡意占有人不得為占有物之使用、收益</strong>，乃竟占有使用土地，受有使用土地之利益，致土地所有人受損害。</p>
+                <p>就此欠缺法律上原因之財貨變動，應依<strong>民法第179條、第181條、第182條等規定，返還該利益予土地所有人</strong>。</p>
+                <div class="op-result">
+                    <strong>結語：</strong>如認建物占有人非土地之占有人，將導致非善意占有土地之建物占有人亦毋庸返還而得終局保有其占有使用土地之利益，<strong>顯非公平</strong>。認定建物占有人亦為土地占有人，且惡意占有人負返還義務，符合我國物權法占有之概念及對於土地所有權用益權能之保障，亦能兼顧眾多因承租建物而善意占有土地之建物占有人之交易安全。
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ── 不同意見書 ── -->
+    <div class="section-heading">不同意見書詳細理由</div>
+    <div class="dissent-judges">
+        ✍️ 提出不同意見之法官（5名）：<strong>鄭純惠、彭昭芬、吳青蓉、張競文、陳麗玲</strong>
+    </div>
+    <div class="d-opinions">
+
+        <div class="d-op">
+            <div class="d-op-head">
+                <div class="d-op-num">一</div>
+                <span class="d-op-label">占有為不確定法律概念——不宜逕為劃一認定，應留事實審判斷空間</span>
+            </div>
+            <div class="d-op-body">
+                <p>民法第940條之「事實上管領力」本質上屬不確定法律概念，其認定涉及一般社會觀念，隨時代變遷、科技發展，內涵可能更易，<strong>必須符合一般社會大眾對物之支配狀態的普遍認知與預期</strong>，非得一概而論。</p>
+                <p>現今社會建物型態具多樣性，建物占有之樣態、層次亦不同——同一棟樓可能同時有人定居、有人長期置放機器、有人外牆懸掛廣告、有人地下室停車。如何認定建物占有人是否、在何情形下構成基地之占有，更形複雜。</p>
+                <p>最高法院為法律審，對不確定法律概念之解釋採<strong>有限度審查</strong>，承認事實審法院在結果上有判斷餘地（本院79年第1次民事庭會議決議）。</p>
+                <div class="d-op-result">
+                    <strong>不同意見認為：</strong>大法庭宜具體化「事實上管領力」之客觀審酌因素及其權衡方式，以建立判斷原則，<strong>不宜逕為「建物占有人即為土地占有人」之劃一認定</strong>，俾事實審法院得保有個案認定之判斷空間。
+                </div>
+            </div>
+        </div>
+
+        <div class="d-op">
+            <div class="d-op-head">
+                <div class="d-op-num">二</div>
+                <span class="d-op-label">占有成立須以社會通念為評價——六維度客觀因素，非單憑物理結合</span>
+            </div>
+            <div class="d-op-body">
+                <p>判斷特定主體就特定標的物是否成立占有，通常須綜合審酌：</p>
+                <ul>
+                    <li><strong>物理支配力：</strong>主體與標的物在物理上之接觸強度、管領之直接性</li>
+                    <li><strong>空間排他性：</strong>主體是否客觀上已立於得排除他人干涉、利用之狀態</li>
+                    <li><strong>時間持續性：</strong>事實上之支配關係是否具備相當時間之繼續性與穩定性</li>
+                    <li><strong>外部公示性：</strong>管領狀態客觀上是否具備明確可識之外觀</li>
+                    <li><strong>法律權源表現：</strong>支配在外觀上所依憑或展現之法律關係</li>
+                    <li><strong>社會認知度：</strong>依現時社會之交易習慣及一般大眾之生活經驗，是否認同該管領型態構成法律上應受保護或課責之占有</li>
+                </ul>
+                <p>在民法建物與土地<strong>獨立分權之規範秩序</strong>下，建物所有人基於一定法律關係將建物交付他人使用，在建物直接占用土地之外觀並未改變前，<strong>建物所有人仍為建物基地之直接占有人，非間接占有土地之人</strong>。自建物所有人取得建物占有之人，通常僅被認為係建物之內部空間使用者，依既成狀態所形成之外觀而使用基地。</p>
+                <div class="d-op-result">
+                    <strong>對多數說之批評：</strong>多數說以物理層面之客觀結合關係為據，認建物占有人為土地之占有人，<strong>未充分說明現行民法土地與建物獨立分權之體系價值，何以對社會交易觀念不生影響</strong>，所為論證之理由構成似未盡充分。
+                </div>
+            </div>
+        </div>
+
+        <div class="d-op">
+            <div class="d-op-head">
+                <div class="d-op-num">三</div>
+                <span class="d-op-label">不當得利——建物基地使用利益之客觀支配者為建物所有人，非建物占有人</span>
+            </div>
+            <div class="d-op-body">
+                <p>土地所有人依不當得利之法律關係，請求無權占有人給付相當於租金之利益時，雖不以實際使用收益為必要，<strong>惟須具有可能使用收益之客觀利用價值始足當之</strong>（61年台上字第1695號判例）。</p>
+                <p>在民法建物與土地獨立分權之規範秩序下：</p>
+                <ul>
+                    <li><strong>建物所有人</strong>以建物占用方式取得土地之排他性經濟利用權，<strong>建物基地使用利益之支配者為建物所有人</strong></li>
+                    <li>建物所有人基於一定法律關係將建物交付他人，<strong>建物直接占用土地之外觀並未改變，建物所有人仍為基地之直接占有人</strong></li>
+                    <li>自建物所有人取得建物占有之人，通常<strong>僅被認為係建物內部空間使用者</strong>，依既成狀態之外觀而使用基地</li>
+                    <li>尤其打設地基、上鋪地板之房屋，對於僅供房屋地板覆蓋之基地，<strong>依一般社會觀念，難認能使房屋占有人獲取客觀之利用價值</strong></li>
+                </ul>
+                <div class="d-op-result">
+                    <strong>社會衝擊疑慮：</strong>多數說劃一認定恐使租屋族在給付房租外，另遭地主求償地租，陷於法律不安。善意占有之抗辯在辯論主義下亦有實踐上困難——若建物占有人主張「我僅使用建物，未使用土地」，法院如何逕認其為「善意占有土地」並令地主負舉證責任？此恐難以接受。
+                </div>
+            </div>
+        </div>
+
+    </div><!-- /.d-opinions -->
+
+    <!-- ── 多數 v 不同意見 快速對照 ── -->
+    <div class="section-heading">多數意見 v. 不同意見　快速對照</div>
+    <table class="compare-table">
+        <thead>
+            <tr>
+                <th class="th-issue">爭點</th>
+                <th class="th-majority">多數意見（6票）</th>
+                <th class="th-dissent">不同意見（5票）</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="td-issue">建物占有人是否占有土地？</td>
+                <td class="td-majority">✔ 是。建物與土地有空間結合關係、時間繼續性，並排除他人干涉，故為土地之直接占有人。</td>
+                <td class="td-dissent">✘ 不宜劃一認定。應綜合六項因素（物理支配力、空間排他性等）依社會通念個案判斷，應留事實審法院裁量空間。</td>
+            </tr>
+            <tr>
+                <td class="td-issue">判斷依據</td>
+                <td class="td-majority">物理層面：建物不能脫離土地，占有建物即占有其坐落土地，且占有體系應保持一貫。</td>
+                <td class="td-dissent">社會通念層面：民法土地與建物獨立分權，建物所有人仍為基地之直接占有人；承租人通常僅為建物內部空間使用者。</td>
+            </tr>
+            <tr>
+                <td class="td-issue">不當得利責任</td>
+                <td class="td-majority">建物占有人受有使用土地之利益，侵害土地所有人之權益歸屬，成立侵害型不當得利。惡意占有人應返還使用利益。</td>
+                <td class="td-dissent">建物基地使用利益之客觀支配者為建物所有人。建物占有人難認能取得客觀利用價值，依社會通念不當得利成立有疑。</td>
+            </tr>
+            <tr>
+                <td class="td-issue">善意占有人</td>
+                <td class="td-majority">適用§943第1項推定＋§952：推定有本權→有法律上原因→免返還義務。主張惡意者負舉證責任。</td>
+                <td class="td-dissent">辯論主義下，若建物占有人主張「僅使用建物非使用土地」，法院如何逕認其為「善意占有土地」，有實踐上困難。</td>
+            </tr>
+            <tr>
+                <td class="td-issue">對租屋市場之影響</td>
+                <td class="td-majority">善意承租人受推定保護，已兼顧建物租賃市場交易安全。</td>
+                <td class="td-dissent">恐使大多數租屋族陷於可能遭地主求償之不安。善意抗辯之舉證分配亦有疑義。</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- ── 考試陷阱 ── -->
+    <div class="section-heading">⚠️ 考試陷阱提示</div>
+    <div class="trap-box">
+        <div class="trap-title">📌 常見混淆點</div>
+        <div class="trap-item">
+            <div class="trap-q">Q：建物所有人已被判拆屋還地確定，承租人C是否自動也要還地？</div>
+            <div class="trap-a">A：不是自動的。土地所有人須另對C請求遷出（§767第1項中段），大法庭裁定肯認此一救濟途徑的理論基礎——正因C亦為土地占有人。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：善意占有的舉證責任由誰負擔？</div>
+            <div class="trap-a">A：<strong>主張占有人為惡意者（通常是土地所有人）負舉證責任。</strong> 建物承租人無須自證善意（§959立法理由：善意占有人就其占有是否具本權，並無查證義務）。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：各占有人的善惡意可以不同嗎？</div>
+            <div class="trap-a">A：<strong>可以，應分別觀察。</strong> 例如建物所有人B為惡意，承租人C可能仍為善意占有人，分別適用不同規定。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：不當得利返還的金額怎麼算？</div>
+            <div class="trap-a">A：依61年台上字第1695號判例，返還利益以<strong>相當於租金之數額</strong>計算（以可能使用收益之客觀利用價值為準，非以實際使用收益為必要）。本件建物所有人B已給付部分，C應再給付差額。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：本件是「單一建物」，與「區分所有建物」的分析有無不同？</div>
+            <div class="trap-a">A：大法庭裁定明示本件為「單一建物」（非區分所有），區分所有建物涉及更複雜的基地共有關係，本裁定未及處理，考試勿混用。</div>
+        </div>
+    </div>
+
+    <!-- 法條 -->
+    <div class="law-ref">
+        <strong>相關法條：</strong>民法§66（不動產定義）；§179（不當得利）；§181、§182（返還範圍）；§765（所有權內容）；§767（物上請求權）；§940（占有定義）；§941（間接占有）；§943（占有之推定）；§952（善意占有人使用收益權）；§959（惡意占有人責任）；§184第1項前段後段（侵權行為）
+    </div>
+
+    <!-- 合議庭成員 -->
+    <details>
+        <summary>大法庭組成（11名法官）</summary>
+        <div style="padding-top:10px;">
+            <div class="judges-grid">
+                <span class="judge-chip chief">審判長　高孟焄</span>
+                <span class="judge-chip">魏大喨</span>
+                <span class="judge-chip">盧彥如</span>
+                <span class="judge-chip">林金吾</span>
+                <span class="judge-chip">鍾任賜</span>
+                <span class="judge-chip">周舒雁</span>
+                <span class="judge-chip dissenter">鄭純惠（不同意見）</span>
+                <span class="judge-chip dissenter">彭昭芬（不同意見）</span>
+                <span class="judge-chip dissenter">吳青蓉（不同意見）</span>
+                <span class="judge-chip dissenter">張競文（不同意見）</span>
+                <span class="judge-chip dissenter">陳麗玲（不同意見）</span>
+            </div>
+            <p style="font-size:0.82em;color:var(--sub);margin:10px 0 0;">書記官：吳依磷　｜　裁定日期：中華民國115年6月12日</p>
+        </div>
+    </details>
+
+    <!-- 參考判例 -->
+    <details>
+        <summary>參考判例與相關見解</summary>
+        <div style="padding-top:10px;">
+            <div class="ref-case">
+                <div class="ref-case-title">【先例】最高法院61年台上字第1695號判例</div>
+                <p style="margin:0;">「依不當得利之法則請求返還不當得利，以無法律上之原因而受利益，致他人受有損害為其要件，故其得請求返還之範圍，應以對方所受之利益為度，非以請求人所受損害若干為準，無權占有他人土地，可能獲得相當於租金之利益為社會通常之觀念。」→ 返還利益以相當租金計算之根據。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">【間接占有】民法第941條</div>
+                <p style="margin:0;">地上權人、農育權人、典權人、質權人、承租人、受寄人，或基於其他類似之法律關係，對於他人之物為占有者，該他人為間接占有人。→ 本件建物所有人B移轉占有給C後，B對建物成為間接占有人，C對建物為直接占有人；多數說認C同時對土地取得直接占有。</p>
+            </div>
+            <div class="ref-case d">
+                <div class="ref-case-title">【不同意見引用】本院82年度台上字第1388號判決</div>
+                <p style="margin:0;">土地所有人非不得對地上房屋所有人訴請拆屋還地以前，即本於土地所有權之作用，對於占用房屋之人提起排除侵害之訴，原則上會被評價為欠缺請求判決之實益。→ 不同意見藉此說明：建物占有人對土地所有人之妨害性質，係「占有以外方式之妨害」，非土地占有。</p>
+            </div>
+            <div class="ref-case d">
+                <div class="ref-case-title">【不同意見觀點】不當得利制度之目的</div>
+                <p style="margin:0;">「不當得利之制度，旨在公平調整利益之歸屬，非在制裁惡意之侵害行為。」（本院102年度台上字第600號判決）→ 不同意見認多數說側重物理結合關係，反而在不當得利層面造成不公平結果，與不當得利制度目的有悖。</p>
+            </div>
+        </div>
+    </details>
+
+    <div class="note-toggle" onclick="toggleNote('n1')">✏️ 我的小結</div>
+    <div class="note-area" id="n1">
+        <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n1',this.value)"></textarea>
+        <div class="note-saved" id="n1-saved"></div>
+    </div>
+</div>
+
+<div id="noResults">查無符合的內容，請試試其他關鍵字。</div>
+<div id="noStarred">還沒有收藏的項目，點卡片右上角的 ⭐ 加入收藏。</div>
+</div>
+
+<script>
+const NIGHT_KEY='night_mode_pref';
+function toggleNight(){const on=document.body.classList.toggle('night-mode');localStorage.setItem(NIGHT_KEY,on?'1':'0');document.getElementById('nightBtn').textContent=on?'☀️':'🌙';}
+(function(){if(localStorage.getItem(NIGHT_KEY)==='1'){document.body.classList.add('night-mode');const b=document.getElementById('nightBtn');if(b)b.textContent='☀️';}})();
+const STORE_KEY='111_932_grand_notes',STAR_KEY='111_932_grand_stars';
+function loadNotes(){try{return JSON.parse(localStorage.getItem(STORE_KEY))||{};}catch{return{};}}
+function loadStars(){try{return JSON.parse(localStorage.getItem(STAR_KEY))||{};}catch{return{};}}
+function saveAllNotes(d){localStorage.setItem(STORE_KEY,JSON.stringify(d));}
+function saveAllStars(d){localStorage.setItem(STAR_KEY,JSON.stringify(d));}
+(function(){const n=loadNotes(),s=loadStars();
+  Object.entries(n).forEach(([id,v])=>{const a=document.getElementById(id);if(!a)return;const t=a.querySelector('textarea');if(t)t.value=v;if(v)a.classList.add('open');});
+  Object.entries(s).forEach(([id,v])=>{if(!v)return;const b=document.querySelector(`#${id} .star-btn`);if(b)b.classList.add('starred');});
+})();
+function toggleStar(id,btn){const s=loadStars();const now=!btn.classList.contains('starred');btn.classList.toggle('starred',now);s[id]=now;saveAllStars(s);if(filterActive)applyFilter();}
+let filterActive=false;
+function toggleFilter(){filterActive=!filterActive;document.getElementById('filterBtn').classList.toggle('active',filterActive);document.getElementById('searchInput').value='';clearSearchHighlights();updateSearchUI([],0);applyFilter();}
+function applyFilter(){const s=loadStars();const q=document.getElementById('searchInput').value.trim().toLowerCase();let any=false;
+  document.querySelectorAll('.card').forEach(c=>{const kw=(c.dataset.kw||'').toLowerCase();const txt=c.textContent.toLowerCase();
+  const ms=!q||kw.includes(q)||txt.includes(q);const mf=!filterActive||!!s[c.id];const show=ms&&mf;
+  c.classList.toggle('hidden',!show);if(show)any=true;});
+  document.getElementById('noResults').style.display=(!any&&!filterActive)?'block':'none';
+  document.getElementById('noStarred').style.display=(!any&&filterActive)?'block':'none';}
+
+/* ── 搜尋高亮 + 跳轉 ── */
+let _matches=[],_cur=-1;
+function clearSearchHighlights(){document.querySelectorAll('mark.search-hl').forEach(m=>{const p=m.parentNode;p.replaceChild(document.createTextNode(m.textContent),m);p.normalize();});}
+function highlightInNode(node,re){if(node.nodeType===3){const text=node.nodeValue;const frag=document.createDocumentFragment();let last=0,m;re.lastIndex=0;while((m=re.exec(text))!==null){if(m.index>last)frag.appendChild(document.createTextNode(text.slice(last,m.index)));const mk=document.createElement('mark');mk.className='search-hl';mk.textContent=m[0];frag.appendChild(mk);last=re.lastIndex;}if(last===0)return;frag.appendChild(document.createTextNode(text.slice(last)));node.parentNode.replaceChild(frag,node);return;}if(node.nodeType===1){const tag=node.tagName;if(tag==='SCRIPT'||tag==='STYLE'||tag==='TEXTAREA'||tag==='INPUT')return;if(node.classList&&node.classList.contains('search-hl'))return;[...node.childNodes].forEach(c=>highlightInNode(c,re));}}
+function doSearch(q){clearSearchHighlights();_matches=[];_cur=-1;const qt=(q||'').trim();if(!qt){updateSearchUI([],0);applyFilter();return;}applyFilter();const esc=qt.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');const re=new RegExp(esc,'gi');document.querySelectorAll('.container .card:not(.hidden)').forEach(card=>{highlightInNode(card,re);});_matches=[...document.querySelectorAll('mark.search-hl')];if(_matches.length){_cur=0;setCurrent(0);}updateSearchUI(_matches,_cur);}
+function setCurrent(idx){_matches.forEach((m,i)=>m.classList.toggle('current',i===idx));if(_matches[idx])_matches[idx].scrollIntoView({behavior:'smooth',block:'center'});}
+function navMatch(dir){if(!_matches.length)return;_cur=(_cur+dir+_matches.length)%_matches.length;setCurrent(_cur);updateSearchUI(_matches,_cur);}
+function updateSearchUI(matches,cur){const cnt=document.getElementById('searchCount');const prev=document.getElementById('prevBtn');const next=document.getElementById('nextBtn');if(!matches.length){cnt.textContent='';prev.disabled=true;next.disabled=true;return;}cnt.textContent=(cur+1)+'/'+matches.length;prev.disabled=false;next.disabled=false;}
+function handleSearchKey(e){if(e.key==='Enter'){e.shiftKey?navMatch(-1):navMatch(1);}if(e.key==='Escape'){document.getElementById('searchInput').value='';doSearch('');}}
+function toggleNote(id){document.getElementById(id).classList.toggle('open');}
+const timers={};
+function saveNote(id,v){clearTimeout(timers[id]);timers[id]=setTimeout(()=>{const n=loadNotes();n[id]=v;saveAllNotes(n);const el=document.getElementById(id+'-saved');if(el){el.textContent='已儲存';setTimeout(()=>el.textContent='',1500);}},500);}
+let savedRange=null;
+document.addEventListener('selectionchange',()=>{const s=window.getSelection();if(s&&!s.isCollapsed&&s.rangeCount)savedRange=s.getRangeAt(0).cloneRange();});
+function highlightText(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;
+  if(!r||r.collapsed){alert('💡 請先反白想要標記的文字');return;}
+  const sp=document.createElement('span');sp.className='hl';sp.style.cssText='background:#f0d98a;border-radius:2px;';
+  try{r.surroundContents(sp);savedRange=null;}catch{alert('💡 請選取同一段落內的文字');}s&&s.removeAllRanges();}
+function removeHighlight(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;
+  if(!r||r.collapsed){alert('💡 請先反白想擦除標記的文字');return;}
+  const anc=r.commonAncestorContainer.nodeType===1?r.commonAncestorContainer:r.commonAncestorContainer.parentElement;
+  anc.querySelectorAll('span.hl').forEach(sp=>{if(r.intersectsNode(sp)){const p=sp.parentNode;while(sp.firstChild)p.insertBefore(sp.firstChild,sp);p.removeChild(sp);}});
+  savedRange=null;s&&s.removeAllRanges();}
+function clearHighlights(){const sp=document.querySelectorAll('span.hl');if(!sp.length)return;
+  if(confirm('確定要清除所有重點標記嗎？')){sp.forEach(s=>{const p=s.parentNode;while(s.firstChild)p.insertBefore(s.firstChild,s);p.removeChild(s);});}}
+function openExport(){
+  const stars=loadStars();
+  let out='最高法院民事大法庭 111年度台上大字第932號\n'+'═'.repeat(44)+'\n\n';
+  document.querySelectorAll('.card').forEach(c=>{
+    const star=stars[c.id]?'⭐ ':'';
+    const title=c.querySelector('.card-title')?.textContent.trim()||'';
+    out+=`【${star}${title}】\n\n`;
+    const v1=c.querySelector('.verdict-items');
+    if(v1){[...v1.querySelectorAll('.verdict-item')].forEach((it,i)=>{
+      out+=`▌主文${i+1}：`+it.querySelector('.verdict-item-text')?.textContent.trim()+'\n';});}
+    out+='\n';
+    c.querySelectorAll('.op,.d-op').forEach(op=>{
+      const head=op.querySelector('.op-label,.d-op-label')?.textContent.trim()||'';
+      out+=`▌${head}\n`;
+      op.querySelectorAll('.op-body p,.op-body li,.op-result,.d-op-body p,.d-op-body li,.d-op-result').forEach(el=>{
+        const t=el.textContent.trim();if(t)out+=(el.tagName==='LI'?'  • ':'')+t+'\n';});
+      out+='\n';});
+    const law=c.querySelector('.law-ref');if(law)out+=law.textContent.trim()+'\n\n';
+    const ta=c.querySelector('.note-textarea');if(ta&&ta.value.trim())out+='✏️ 小結：\n'+ta.value.trim()+'\n\n';
+    out+='═'.repeat(44)+'\n\n';});
+  const b=new Blob([out.trim()],{type:'text/plain;charset=utf-8'});
+  const u=URL.createObjectURL(b);const a=document.createElement('a');
+  a.href=u;a.download='111台上大字第932號_建物占有人土地占有不當得利.txt';a.click();URL.revokeObjectURL(u);}
+const REG_KEY='exam_completion_registry';
+function _loadReg(){try{return JSON.parse(localStorage.getItem(REG_KEY))||{};}catch{return{};}}
+function _saveReg(r){try{localStorage.setItem(REG_KEY,JSON.stringify(r));}catch{}}
+function _file(){const p=location.pathname.split('/');return decodeURIComponent(p[p.length-1]||'');}
+function _fmt(ts){const d=new Date(ts);const date=(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();const time=d.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false});return date+' '+time;}
+function _updateDate(){const r=_loadReg();const k=_file()||'case_civil_grand_111_932.html';const l=document.getElementById('doneDateLabel');if(!l)return;l.textContent=(r[k]&&r[k].done&&r[k].ts)?_fmt(r[k].ts):'';}
+const _INDEX_CARD_ID='c_932';
+function _syncIndex(done){try{const r=JSON.parse(localStorage.getItem('gc_reads')||'{}');r[_INDEX_CARD_ID]=done;localStorage.setItem('gc_reads',JSON.stringify(r));}catch(e){}}
+function toggleDone(){const btn=document.getElementById('doneBtn');const r=_loadReg();const k=_file()||'case_civil_grand_111_932.html';const done=r[k]&&r[k].done;
+  if(done){delete r[k];_saveReg(r);btn.classList.remove('active');_syncIndex(false);}
+  else{const now=new Date();r[k]={done:true,score:null,total:null,ts:now.getTime(),tsLabel:now.toLocaleDateString('zh-TW')+' '+now.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false})};_saveReg(r);btn.classList.add('active');_syncIndex(true);}
+  _updateDate();}
+(function(){const r=_loadReg();const k=_file()||'case_civil_grand_111_932.html';if(r[k]&&r[k].done){const b=document.getElementById('doneBtn');if(b)b.classList.add('active');}_updateDate();})();
+</script>
+</body>
+</html>
