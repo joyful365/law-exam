@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>110年度台上大字第5765號 大法庭裁定</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: "Helvetica Neue", Helvetica, "PingFang TC", "LiHei Pro", "Microsoft JhengHei", sans-serif; background: #eef0f3; color: #1a1a1a; line-height: 1.8; font-size: 16px; margin: 0; padding: 0 0 56px; }
+        header { background: #1a365d; color: white; padding: 18px 16px 10px; text-align: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.18); }
+        header h1 { margin: 0 0 10px; font-size: 1.05em; line-height: 1.5; font-weight: 600; letter-spacing: 0.02em; }
+        .header-controls { display: flex; gap: 8px; align-items: center; }
+        .search-wrap { position: relative; flex: 1; display: flex; align-items: center; gap: 4px; }
+        #searchInput { flex: 1; padding: 8px 14px 8px 34px; border: none; border-radius: 8px; font-size: 14px; background: rgba(255,255,255,0.13); color: white; outline: none; min-width: 0; }
+        #searchInput::placeholder { color: rgba(255,255,255,0.5); }
+        #searchInput:focus { background: rgba(255,255,255,0.22); }
+        .search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 13px; opacity: 0.6; pointer-events: none; }
+        .search-count { font-size: 11px; color: rgba(255,255,255,0.6); white-space: nowrap; min-width: 32px; text-align: center; }
+        .search-nav { background: rgba(255,255,255,0.15); border: none; border-radius: 6px; color: white; font-size: 11px; padding: 4px 7px; cursor: pointer; line-height: 1; }
+        .search-nav:hover { background: rgba(255,255,255,0.28); }
+        mark.search-hl { background: #ffe066; color: #1a1a1a; border-radius: 2px; padding: 0 1px; }
+        mark.search-hl.current { background: #ff9500; color: #fff; }
+        #filterBtn { background: rgba(255,255,255,0.13); border: none; border-radius: 8px; color: white; font-size: 13px; padding: 8px 12px; cursor: pointer; white-space: nowrap; }
+        #filterBtn.active { background: #c9a84c; color: #1a365d; font-weight: bold; }
+        .top-bar { background: #dde0e5; padding: 6px 14px; display: flex; gap: 6px; justify-content: flex-end; flex-wrap: nowrap; }
+        .top-btn { background: #5a6375; color: white; border: none; padding: 5px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap; transition: transform 0.1s; }
+        .top-btn:active { transform: scale(0.92); }
+        .top-btn.erase { background: #7a8494; }
+        .top-btn.clear { background: #a0a8b4; }
+        .top-btn.export { background: #c5cad3; color: #2d3748; }
+        .top-btn.done { background: #a0a8b4; color: #1a2a3a; }
+        .top-btn.done.active { background: linear-gradient(135deg,#7a5c00,#a07820); color: #fff3c4; }
+        .done-date { font-size: 11px; color: #8a9ab0; white-space: nowrap; align-self: center; }
+        .container { padding: 16px; max-width: 600px; margin: 0 auto; }
+        @media (min-width: 768px) { body { font-size: 17.5px; } .container { max-width: 860px; padding: 20px; } header h1 { font-size: 1.15em; } }
+        .card { background: #fff; border-radius: 16px; padding: 22px 20px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); position: relative; }
+        .card.hidden { display: none; }
+        .star-btn { position: absolute; top: 18px; right: 18px; background: none; border: none; font-size: 20px; cursor: pointer; opacity: 0.18; transition: opacity 0.15s, transform 0.15s; padding: 0; }
+        .star-btn:active { transform: scale(1.3); }
+        .star-btn.starred { opacity: 1; }
+        .card-title { color: #1a365d; font-size: 1.25em; font-weight: 700; margin: 0 0 4px; padding-right: 28px; line-height: 1.55; }
+        .meta-line { font-size: 0.76em; color: #999; margin-bottom: 18px; letter-spacing: 0.03em; }
+        .verdict { background: #1a365d; color: white; border-radius: 11px; padding: 15px 18px; margin-bottom: 20px; }
+        .verdict-label { font-size: 0.68em; letter-spacing: 0.12em; opacity: 0.55; text-transform: uppercase; margin-bottom: 4px; }
+        .verdict-main { font-size: 1.08em; font-weight: 700; line-height: 1.45; margin-bottom: 5px; }
+        .verdict-sub { font-size: 0.83em; opacity: 0.75; line-height: 1.6; margin-bottom: 10px; }
+        .vote-row { display: flex; gap: 7px; flex-wrap: wrap; }
+        .v-chip { font-size: 0.73em; background: rgba(255,255,255,0.12); border-radius: 20px; padding: 3px 10px; white-space: nowrap; color: rgba(255,255,255,0.8); }
+        .v-chip.win { background: rgba(255,255,255,0.28); color: #fff; font-weight: 700; }
+        .section-heading { font-size: 0.72em; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #8a9ab0; margin: 20px 0 10px; padding-bottom: 5px; border-bottom: 1px solid #e8eaee; }
+        .issue-box { background: #f5f6f8; border-radius: 10px; padding: 14px 16px; margin-bottom: 16px; font-size: 0.91em; color: #333; }
+        .issue-box p { margin: 0 0 8px; }
+        .issue-box p:last-child { margin: 0; }
+        .fact-box { background: #f9f7f0; border-left: 4px solid #c9a84c; border-radius: 0 10px 10px 0; padding: 14px 16px; margin-bottom: 16px; font-size: 0.91em; color: #333; }
+        .fact-box p { margin: 0 0 8px; }
+        .fact-box p:last-child { margin: 0; }
+        .opinions { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+        .op { border-radius: 10px; overflow: hidden; border: 1px solid #e4e7ec; }
+        .op-head { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #f5f6f8; }
+        .op-num { width: 26px; height: 26px; border-radius: 50%; background: #1a365d; color: white; font-size: 0.75em; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .op-label { font-weight: 700; font-size: 0.93em; color: #1a365d; flex: 1; }
+        .op-conclusion-chip { font-size: 0.74em; color: #666; background: #eaecf0; border-radius: 20px; padding: 2px 9px; white-space: nowrap; }
+        .op-body { padding: 13px 15px; font-size: 0.9em; background: #fff; }
+        .op-body p { margin: 0 0 9px; }
+        .op-body p:last-child { margin: 0; }
+        .op-body ul { margin: 5px 0 8px; padding-left: 18px; }
+        .op-body li { margin-bottom: 4px; }
+        .op-result { background: #f0f3f8; border-radius: 7px; padding: 10px 13px; margin-top: 10px; font-size: 0.9em; border-left: 3px solid #1a365d; }
+        details { margin-top: 16px; }
+        details summary { cursor: pointer; color: #5a6880; font-size: 0.85em; font-weight: 600; padding: 5px 0; user-select: none; list-style: none; display: flex; align-items: center; gap: 5px; }
+        details summary::before { content: '▶'; font-size: 0.65em; transition: transform 0.2s; color: #8a9ab0; }
+        details[open] summary::before { transform: rotate(90deg); }
+        .ref-case { background: #f5f6f8; border-radius: 8px; padding: 11px 14px; margin-bottom: 8px; font-size: 0.85em; border-left: 3px solid #1a365d; }
+        .ref-case.yi { border-left-color: #8a9ab0; }
+        .ref-case-title { font-weight: 700; color: #1a365d; margin-bottom: 4px; font-size: 0.9em; }
+        .ref-case.yi .ref-case-title { color: #4a5568; }
+        .law-ref { background: #f0f2f5; border-radius: 8px; padding: 10px 14px; font-size: 0.85em; color: #4a5568; margin-top: 14px; border-left: 3px solid #1a365d; }
+        .judges-grid { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+        .judge-chip { font-size: 0.78em; background: #eef1f6; border-radius: 20px; padding: 3px 11px; color: #3a4a6a; border: 1px solid #d8dde8; }
+        .judge-chip.chief { background: #1a365d; color: white; font-weight: 700; border-color: #1a365d; }
+        .note-toggle { display: inline-block; margin-top: 14px; font-size: 0.8em; color: #b0b8c4; cursor: pointer; user-select: none; }
+        .note-toggle:hover { color: #1a365d; }
+        .note-area { display: none; margin-top: 8px; }
+        .note-area.open { display: block; }
+        .note-textarea { width: 100%; min-height: 68px; border: 1px solid #e0e4ea; border-radius: 8px; padding: 10px 12px; font-size: 0.87em; font-family: inherit; color: #333; background: #fafbfc; resize: vertical; outline: none; line-height: 1.7; }
+        .note-textarea:focus { border-color: #1a365d; }
+        .note-textarea::placeholder { color: #ccc; }
+        .note-saved { font-size: 0.72em; color: #68d391; text-align: right; height: 14px; margin-top: 2px; }
+        #noResults, #noStarred { display: none; text-align: center; color: #a0aec0; padding: 40px 0; font-size: 0.9em; }
+        ::-webkit-scrollbar { display: none; }
+        ::selection { background: #c8d8ef; }
+        /* ── 夜覽模式 ── */
+        body.dark { background: #13151a; color: #d4d8e0; }
+        body.dark header { background: #0d1117; box-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        body.dark .top-bar { background: #1c1f27; }
+        body.dark .top-btn { background: #2e3340; color: #b0b8c8; }
+        body.dark .top-btn.erase { background: #383d4a; }
+        body.dark .top-btn.clear { background: #404655; }
+        body.dark .top-btn.export { background: #2a2e3a; color: #8a96a8; }
+        body.dark .top-btn.done { background: #2a2e3a; color: #7a8898; }
+        body.dark .top-btn.done.active { background: linear-gradient(135deg,#5a3e00,#7a5a10); color: #ffe090; }
+        body.dark .card { background: #1c1f27; box-shadow: 0 2px 14px rgba(0,0,0,0.35); }
+        body.dark .card-title { color: #7ea8d8; }
+        body.dark .meta-line { color: #5a6578; }
+        body.dark .verdict { background: #0d1a2e; }
+        body.dark .section-heading { color: #5a6880; border-bottom-color: #2a2e3a; }
+        body.dark .issue-box { background: #20232d; color: #c0c8d4; }
+        body.dark .fact-box { background: #1e1c14; border-left-color: #8a6820; color: #c0c8d4; }
+        body.dark .op { border-color: #2a2e3a; }
+        body.dark .op-head { background: #20232d; }
+        body.dark .op-label { color: #7ea8d8; }
+        body.dark .op-body { background: #1c1f27; color: #c0c8d4; }
+        body.dark .op-result { background: #161a24; border-left-color: #3a5a8a; }
+        body.dark .ref-case { background: #20232d; border-left-color: #3a5a8a; }
+        body.dark .ref-case-title { color: #7ea8d8; }
+        body.dark .ref-case.yi .ref-case-title { color: #7a8898; }
+        body.dark .law-ref { background: #1c1f27; border-left-color: #3a5a8a; color: #8a96a8; }
+        body.dark .judge-chip { background: #20232d; color: #8a9ab8; border-color: #2e3340; }
+        body.dark .judge-chip.chief { background: #0d1a2e; color: #9abcd8; border-color: #1a3a60; }
+        body.dark .note-textarea { background: #161a24; border-color: #2e3340; color: #c0c8d4; }
+        body.dark .note-textarea:focus { border-color: #3a5a8a; }
+        body.dark .note-textarea::placeholder { color: #3a404e; }
+        body.dark .note-toggle { color: #3a4a5e; }
+        body.dark .note-toggle:hover { color: #7ea8d8; }
+        body.dark details summary { color: #4a5a70; }
+        body.dark #noResults, body.dark #noStarred { color: #3a4a5e; }
+        body.dark mark.search-hl { background: #7a5a00; color: #ffe090; }
+        body.dark mark.search-hl.current { background: #c07800; color: #fff; }
+        body.dark ::selection { background: #1a3a60; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>最高法院刑事大法庭<br>110年度台上大字第5765號</h1>
+    <div class="header-controls">
+        <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="搜尋關鍵字、法條…" oninput="doSearch(this.value)" onkeydown="handleSearchKey(event)">
+            <span class="search-count" id="searchCount"></span>
+            <button class="search-nav" id="searchPrev" onclick="navMatch(-1)" title="上一個">▲</button>
+            <button class="search-nav" id="searchNext" onclick="navMatch(1)" title="下一個">▼</button>
+        </div>
+        <button id="filterBtn" onclick="toggleFilter()">⭐ 收藏</button>
+    </div>
+    <div class="top-bar">
+        <button class="top-btn" onclick="highlightText()">🖊️</button>
+        <button class="top-btn erase" onclick="removeHighlight()">🧽</button>
+        <button class="top-btn clear" onclick="clearHighlights()">🗑️</button>
+        <button class="top-btn export" onclick="openExport()">📤</button>
+        <button class="top-btn" id="darkBtn" onclick="toggleDark()" title="夜覽模式">🌙</button>
+        <button class="top-btn done" id="doneBtn" onclick="toggleDone()">朕已閱</button>
+        <span class="done-date" id="doneDateLabel"></span>
+    </div>
+</header>
+
+<div class="container">
+<div class="card" id="case1" data-kw="110台上大5765 通保法 通訊保障及監察法 另案監聽 其他案件 18條之1 一人一票 監察對象 上游 下游 共犯 證據能力 毒品 販賣 陳麗莎">
+    <button class="star-btn" onclick="toggleStar('case1',this)">⭐</button>
+
+    <h2 class="card-title">於合法通訊監察期間，所取得監察對象「上、下游或共犯」之對話內容，對該等第三人而言，是否屬通保法第18條之1第1項「其他案件」之另案監聽？</h2>
+    <div class="meta-line">裁定日期：民國111年8月24日　｜　案號：110年度台上大字第5765號　｜　提案庭：最高法院刑事第六庭（原第七庭）</div>
+
+    <!-- 結論橫幅 -->
+    <div class="verdict">
+        <div class="verdict-label">大法庭主文</div>
+        <div class="verdict-main">上、下游或共犯之對話，仍屬「其他案件」之另案監聽內容，但不當然排除證據能力</div>
+        <div class="verdict-sub">對監察對象所涉販賣或意圖販賣而持有毒品等罪嫌，於合法實施通訊監察期間，取得販賣、運輸毒品予監察對象之上、下游，或與監察對象共犯上開罪嫌之人之通訊監察內容，對該上、下游或共犯而言，仍屬通訊保障及監察法第18條之1第1項所定之其他案件之內容。前項情形，於通訊監察聲請書內已敘明通訊監察範圍包括監察對象之上、下游或共犯等與販賣、運輸毒品有關之對話時，亦同。</div>
+        <div class="vote-row">
+            <span class="v-chip win">大法庭裁定 ✔</span>
+            <span class="v-chip">提案庭：刑事第六庭</span>
+            <span class="v-chip">裁定日：111.8.24</span>
+        </div>
+    </div>
+
+    <!-- 基礎事實 -->
+    <div class="section-heading">基礎事實</div>
+    <div class="fact-box">
+        <p>檢察官依司法警察聲請，以監察對象<strong>陳○全</strong>涉犯毒品危害防制條例第4條、第5條之販賣或意圖販賣而持有毒品等罪嫌為由，向法院聲請對陳○全所持用之某行動電話門號實施通訊監察（監聽）獲准。</p>
+        <p>於合法監聽期間，錄得「毒品上游」即<strong>上訴人陳麗莎</strong>以其某行動電話門號與陳○全之上開行動電話門號聯絡，約定販賣一定數量、價金之海洛因予陳○全之對話（監聽內容）。</p>
+        <p>原判決乃依憑包括上開監聽內容在內之證據，對上訴人論罪科刑，並敘明：監聽內容係司法警察依法對<strong>陳○全</strong>之行動電話門號所為，並非對上訴人實施監聽所得，就上訴人而言，係通保法第18條之1第1項前段所稱之「其他案件」（即「另案監聽」）之內容等旨。</p>
+        <p><strong>爭點：</strong>此等另案監聽所得之通話內容，對上訴人（上游販毒者）而言，其<strong>證據能力</strong>如何認定？</p>
+    </div>
+
+    <!-- 法律爭議 -->
+    <div class="section-heading">法律爭議</div>
+    <div class="issue-box">
+        <p><strong>法律爭議一：</strong>對監察對象所涉販運毒品罪嫌，合法監聽期間，取得販運毒品予監察對象之<strong>上、下游或共犯</strong>之監聽內容，對該等人而言，是否屬通保法第18條之1第1項「其他案件」之內容？</p>
+        <p><strong>法律爭議二：</strong>倘通訊監察聲請書內已敘明監聽範圍<strong>包括監察對象之上、下游或共犯等與販運毒品有關之對話</strong>，而法院也據以核發通訊監察書之情形，法律爭議一之結論有無不同？</p>
+        <p><strong>通保法第18條之1第1項核心規定：</strong>依第五條、第六條或第七條規定執行通訊監察，取得「其他案件」之內容者，<strong>不得作為證據</strong>。但於發現後七日內補行陳報法院，並經法院審查認可該案件與實施通訊監察之案件具有<strong>關連性</strong>或為第五條第一項所列各款之罪者，不在此限。</p>
+    </div>
+
+    <!-- 大法庭理由 -->
+    <div class="section-heading">大法庭裁定理由</div>
+    <div class="opinions">
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">壹</div>
+                <span class="op-label">通訊監察書之「一人一票」原則——監聽範圍僅及於被載明之監察對象</span>
+            </div>
+            <div class="op-body">
+                <p>核發通訊監察書之功能主要在於<strong>界定監聽活動實施之對象（人）、標的（通訊設備）與客觀事實的範圍</strong>，以為令狀保障附著之依據。通保法第5條第2項明定通訊監察書之聲請應記載同法第11條之事項，其監察對象非電信服務用戶，應予載明，務使法院核發通訊監察書准許實施監聽之對象範圍趨於特定。</p>
+                <p>同條第5項明定通訊監察書之聲請，<strong>應以單一監察對象為限</strong>，同一案件或相牽連案件，得同時聲請數張通訊監察書。多數監察對象不得共用一張通訊監察書（「<strong>一人一票原則</strong>」）。</p>
+                <div class="op-result">
+                    <strong>結論：</strong>通訊監察書聲請、核發，應嚴守「一人一票」原則。監聽範圍<strong>自不及於</strong>原核准進行監聽之「監察對象」以外之人，縱令聲請書已記載上下游或共犯亦同。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">貳</div>
+                <span class="op-label">「其他案件」之界定——凡非監察對象者之通話，均屬另案監聽</span>
+            </div>
+            <div class="op-body">
+                <p>通保法施行細則第16條之1第1項規定：「本法第十八條之一第一項所稱其他案件，指與原核准進行通訊監察之<strong>監察對象</strong>或<strong>涉嫌觸犯法條不同者</strong>。」此規定已界定祇要與原核准進行監聽之「監察對象」或「涉嫌觸犯法條」，有一相異者，即屬通保法第18條之1第1項所稱之「其他案件」。</p>
+                <p>與監察對象通話之他人，<strong>既非監察對象</strong>，則其涉嫌任何罪名犯行之通話內容，<strong>均屬另案監聽</strong>所取得之內容。因此，對上、下游或共犯而言，雖販運毒品之犯罪內容相似，仍屬「其他案件」。</p>
+                <div class="op-result">
+                    <strong>小結：</strong>本案上訴人陳麗莎並非監察對象陳○全之通訊監察書所載之監察對象，故監聽所得陳麗莎與陳○全之對話，對陳麗莎而言，<strong>仍屬「其他案件」之另案監聽內容</strong>。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">參</div>
+                <span class="op-label">另案監聽之性質——與惡意非法監聽截然有別，不當然排除證據能力</span>
+            </div>
+            <div class="op-body">
+                <p>另案監聽與惡意之非法監聽<strong>性質上截然不同</strong>。監聽具有隱密性、未來性、持續性、流刺網性等不確定特性，犯罪偵查常處於浮動狀態，監聽執行階段保持一定之彈性，為偵查事理本質之必然。由於通保法所規範之通訊本質乃「2人以上之特定人間的意思交換」，當國家機關鎖定特定監察對象之電話線路進行監聽時，所有與之通話或使用其電話之人，均不可避免地亦處於被監聽之狀態。</p>
+                <p>依學說「<strong>假設再次干預亦受允許</strong>」或「<strong>類似犯罪例外</strong>（一聽即知法則／明顯可見法則）」之觀點，另案監聽所得，既未擴大原監聽偵查之目的、範圍，不會使本案監聽成為另案監聽之詭辯，尚不致造成本案監聽程序之濫用，並<strong>不當然</strong>應依通保法第18條之1第1項前段之規定，絕對排除其證據能力，俾在未擴大侵害合理隱私期待之前提下，兼顧有效保全證據及避免無謂訴訟資源之耗費。</p>
+                <div class="op-result">
+                    <strong>⚠️ 注意：</strong>大法庭的核心命題是——此類另案監聽<strong>根本不當然落入第18條之1第1項前段的絕對排除機制</strong>，而非「走陳報程序才能補救」的邏輯。裁定並未說「符合關聯性即免陳報」，也未說「未陳報才排除」；而是從監聽本質出發，認為上下游共犯對話之另案監聽，與惡意非法監聽性質截然不同，<strong>不當然絕對排除其證據能力</strong>。具體個案之證據能力，留待後續審理判斷。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">肆</div>
+                <span class="op-label">法律爭議二——聲請書已記載上下游對話，結論不變</span>
+            </div>
+            <div class="op-body">
+                <p>縱然通訊監察聲請書內已敘明監聽範圍包括「監察對象之上、下游或共犯等與販賣、運輸毒品有關之對話」，而法院也據以核發通訊監察書，依「一人一票」原則，<strong>法院核發通訊監察書之範圍，自不及於原核准進行監聽之「監察對象」以外之人</strong>。</p>
+                <p>是於此場合所取得販運毒品予監察對象之上、下游，或與監察對象共犯上開罪嫌之人之監聽內容，對該上、下游或共犯而言，<strong>仍屬另案監聽所取得之內容</strong>，結論不因聲請書之記載而有所不同。</p>
+                <div class="op-result">
+                    <strong>小結：</strong>聲請書縱已記載「上下游對話」，法院無權以一張監察書同時授權監聽多人，故上下游之監聽結果對其等而言永遠是「另案監聽」，差別僅在於後續<strong>陳報、審查程序</strong>能否補正其證據能力。
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 法條 -->
+    <div class="law-ref"><strong>相關法條：</strong>通訊保障及監察法第5條（聲請要件）、第11條（監察書應記載事項）、第18條之1第1項（另案監聽之處理）；通保法施行細則第16條之1第1項（「其他案件」之定義）</div>
+
+    <!-- 合議庭成員 -->
+    <details>
+        <summary>大法庭組成</summary>
+        <div style="padding-top:10px;">
+            <div class="judges-grid">
+                <span class="judge-chip chief">審判長　吳燦</span>
+                <span class="judge-chip">郭毓洲</span>
+                <span class="judge-chip">林立華</span>
+                <span class="judge-chip">徐昌錦</span>
+                <span class="judge-chip">段景榕</span>
+                <span class="judge-chip">李英勇</span>
+                <span class="judge-chip">李錦樑</span>
+                <span class="judge-chip">林勤純</span>
+                <span class="judge-chip">梁宏哲</span>
+                <span class="judge-chip">何信慶</span>
+                <span class="judge-chip">邱忠義</span>
+            </div>
+            <p style="font-size:0.82em;color:#888;margin:10px 0 0;">提案庭：最高法院刑事第六庭（原第七庭）　｜　案號：110年度台上大字第5765號　｜　裁定日：中華民國111年8月24日</p>
+        </div>
+    </details>
+
+    <!-- 參考資料 -->
+    <details>
+        <summary>相關規定與實務參考</summary>
+        <div style="padding-top:10px;">
+            <div class="ref-case">
+                <div class="ref-case-title">【條文】通保法第18條之1第1項</div>
+                <p style="margin:0;">「依第五條、第六條或第七條規定執行通訊監察，取得『其他案件』之內容者，不得作為證據。但於發現後七日內補行陳報法院，並經法院審查認可該案件與實施通訊監察之案件具有關連性或為第五條第一項所列各款之罪者，不在此限。」本則裁定確立上、下游或共犯之通話，對其等而言均屬「其他案件」，應依本條程序處理。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">【條文】通保法施行細則第16條之1第1項</div>
+                <p style="margin:0;">「本法第十八條之一第一項所稱其他案件，指與原核准進行通訊監察之監察對象或涉嫌觸犯法條不同者。」大法庭援引此定義，確認「監察對象不同」即足以構成「其他案件」，不以犯罪性質不同為必要。</p>
+            </div>
+            <div class="ref-case yi">
+                <div class="ref-case-title">【學說】假設再次干預亦受允許（Hypothetische Einwilligung）</div>
+                <p style="margin:0;">源自德國法學說，指若偵查機關對另案監聽所得之對象，重新聲請監聽，應可獲法院許可，則該另案監聽之結果，性質上等同於有令狀之監聽，不應絕對排除。大法庭明確援引此學說作為另案監聽不當然排除之理論依據之一。</p>
+            </div>
+            <div class="ref-case yi">
+                <div class="ref-case-title">【學說】類似犯罪例外／一聽即知法則（Plain Hearing Rule）</div>
+                <p style="margin:0;">類比搜索法則中「明顯可見」原則，執行監聽時若「一聽即知」所取得之通話內容涉及與本案具客觀關連性之重罪，則不因超出令狀範圍而當然無效。大法庭以此補強另案監聽可補正程序之論理。</p>
+            </div>
+            <div class="ref-case yi">
+                <div class="ref-case-title">【考題提示】律師考試常見考點</div>
+                <p style="margin:0;"><strong>①</strong> 「一人一票原則」之意義與例外；<strong>②</strong>「其他案件」之認定標準（監察對象不同 vs. 涉嫌法條不同）；<strong>③</strong> 另案監聽與非法監聽之區別；<strong>④</strong> 7日內陳報補正程序及法院審查標準（關連性 or 重罪列舉）；<strong>⑤</strong> 聲請書已記載上下游對話，是否影響「其他案件」之認定。</p>
+            </div>
+        </div>
+    </details>
+
+    <div class="note-toggle" onclick="toggleNote('n1')">✏️ 我的小結</div>
+    <div class="note-area" id="n1">
+        <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n1',this.value)"></textarea>
+        <div class="note-saved" id="n1-saved"></div>
+    </div>
+</div>
+
+<div id="noResults">查無符合的內容，請試試其他關鍵字。</div>
+<div id="noStarred">還沒有收藏的項目，點卡片右上角的 ⭐ 加入收藏。</div>
+</div>
+
+<script>
+const STORE_KEY='110_5765_grand_notes',STAR_KEY='110_5765_grand_stars';
+(function initDark(){if(localStorage.getItem('night_mode')==='1'){document.body.classList.add('dark');document.getElementById('darkBtn').textContent='☀️';}})();
+function loadNotes(){try{return JSON.parse(localStorage.getItem(STORE_KEY))||{};}catch{return{};}}
+function loadStars(){try{return JSON.parse(localStorage.getItem(STAR_KEY))||{};}catch{return{};}}
+function saveAllNotes(d){localStorage.setItem(STORE_KEY,JSON.stringify(d));}
+function saveAllStars(d){localStorage.setItem(STAR_KEY,JSON.stringify(d));}
+(function(){const n=loadNotes(),s=loadStars();Object.entries(n).forEach(([id,v])=>{const a=document.getElementById(id);if(!a)return;const t=a.querySelector('textarea');if(t)t.value=v;if(v)a.classList.add('open');});Object.entries(s).forEach(([id,v])=>{if(!v)return;const b=document.querySelector(`#${id} .star-btn`);if(b)b.classList.add('starred');});})();
+function toggleStar(id,btn){const s=loadStars();const now=!btn.classList.contains('starred');btn.classList.toggle('starred',now);s[id]=now;saveAllStars(s);if(filterActive)applyFilter();}
+let filterActive=false;
+function toggleFilter(){filterActive=!filterActive;document.getElementById('filterBtn').classList.toggle('active',filterActive);document.getElementById('searchInput').value='';clearSearchHighlights();updateSearchUI();applyFilter();}
+function applyFilter(){const s=loadStars();const q=document.getElementById('searchInput').value.trim().toLowerCase();let any=false;document.querySelectorAll('.card').forEach(c=>{const kw=(c.dataset.kw||'').toLowerCase();const txt=c.textContent.toLowerCase();const ms=!q||kw.includes(q)||txt.includes(q);const mf=!filterActive||!!s[c.id];const show=ms&&mf;c.classList.toggle('hidden',!show);if(show)any=true;});document.getElementById('noResults').style.display=(!any&&!filterActive)?'block':'none';document.getElementById('noStarred').style.display=(!any&&filterActive)?'block':'none';}
+let _matches=[],_cur=-1;
+function clearSearchHighlights(){document.querySelectorAll('mark.search-hl').forEach(m=>{const p=m.parentNode;while(m.firstChild)p.insertBefore(m.firstChild,m);p.removeChild(m);p.normalize();});_matches=[];_cur=-1;}
+function highlightInNode(node,q){if(node.nodeType===3){const txt=node.textContent;const idx=txt.toLowerCase().indexOf(q);if(idx===-1)return false;const m=document.createElement('mark');m.className='search-hl';const before=document.createTextNode(txt.slice(0,idx));const matched=document.createTextNode(txt.slice(idx,idx+q.length));const after=document.createTextNode(txt.slice(idx+q.length));m.appendChild(matched);const p=node.parentNode;p.insertBefore(before,node);p.insertBefore(m,node);p.insertBefore(after,node);p.removeChild(node);_matches.push(m);return true;}else if(node.nodeType===1){const skip=new Set(['SCRIPT','STYLE','TEXTAREA']);if(skip.has(node.tagName))return false;[...node.childNodes].forEach(ch=>highlightInNode(ch,q));return false;}}
+function doSearch(q){clearSearchHighlights();applyFilter();if(!q||!q.trim()){updateSearchUI();return;}const lq=q.trim().toLowerCase();document.querySelectorAll('.card:not(.hidden)').forEach(c=>highlightInNode(c,lq));if(_matches.length>0){_cur=0;setCurrent();}updateSearchUI();}
+function setCurrent(){_matches.forEach((m,i)=>m.classList.toggle('current',i===_cur));if(_matches[_cur]){_matches[_cur].scrollIntoView({behavior:'smooth',block:'center'});}}
+function navMatch(dir){if(!_matches.length)return;_cur=(_cur+dir+_matches.length)%_matches.length;setCurrent();updateSearchUI();}
+function updateSearchUI(){const c=document.getElementById('searchCount');if(!c)return;if(!_matches.length){c.textContent='';return;}c.textContent=(_cur+1)+'/'+_matches.length;}
+function handleSearchKey(e){if(e.key==='Enter'){e.preventDefault();navMatch(e.shiftKey?-1:1);}}
+function toggleNote(id){document.getElementById(id).classList.toggle('open');}
+function toggleDark(){const on=document.body.classList.toggle('dark');document.getElementById('darkBtn').textContent=on?'☀️':'🌙';localStorage.setItem('night_mode',on?'1':'0');}
+const timers={};
+function saveNote(id,v){clearTimeout(timers[id]);timers[id]=setTimeout(()=>{const n=loadNotes();n[id]=v;saveAllNotes(n);const el=document.getElementById(id+'-saved');if(el){el.textContent='已儲存';setTimeout(()=>el.textContent='',1500);}},500);}
+let savedRange=null;
+document.addEventListener('selectionchange',()=>{const s=window.getSelection();if(s&&!s.isCollapsed&&s.rangeCount)savedRange=s.getRangeAt(0).cloneRange();});
+function highlightText(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;if(!r||r.collapsed){alert('💡 請先反白想要標記的文字');return;}const sp=document.createElement('span');sp.className='hl';sp.style.backgroundColor='#ffe066';try{r.surroundContents(sp);savedRange=null;}catch{alert('💡 請選取同一段落內的文字');}s&&s.removeAllRanges();}
+function removeHighlight(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;if(!r||r.collapsed){alert('💡 請先反白想擦除標記的文字');return;}const anc=r.commonAncestorContainer.nodeType===1?r.commonAncestorContainer:r.commonAncestorContainer.parentElement;anc.querySelectorAll('span.hl').forEach(sp=>{if(r.intersectsNode(sp)){const p=sp.parentNode;while(sp.firstChild)p.insertBefore(sp.firstChild,sp);p.removeChild(sp);}});savedRange=null;s&&s.removeAllRanges();}
+function clearHighlights(){const sp=document.querySelectorAll('span.hl');if(!sp.length)return;if(confirm('確定要清除所有重點標記嗎？')){sp.forEach(s=>{const p=s.parentNode;while(s.firstChild)p.insertBefore(s.firstChild,s);p.removeChild(s);});}}
+function openExport(){
+    const stars=loadStars();
+    let out='最高法院刑事大法庭 110年度台上大字第5765號\n'+'═'.repeat(44)+'\n\n';
+    document.querySelectorAll('.card').forEach(c=>{
+        const star=stars[c.id]?'⭐ ':'';
+        const title=c.querySelector('.card-title')?.textContent.trim()||'';
+        out+=`【${star}${title}】\n\n`;
+        const vMain=c.querySelector('.verdict-main');
+        const vSub=c.querySelector('.verdict-sub');
+        if(vMain) out+='▌大法庭主文\n'+vMain.textContent.trim()+'\n';
+        if(vSub)  out+=vSub.textContent.trim()+'\n';
+        out+='\n';
+        c.querySelectorAll('.op').forEach(op=>{
+            const head=op.querySelector('.op-label')?.textContent.trim()||'';
+            out+=`▌${head}\n`;
+            op.querySelectorAll('.op-body p, .op-body li, .op-result').forEach(el=>{
+                const t=el.textContent.trim();
+                if(t) out+=(el.tagName==='LI'?'  • ':'')+t+'\n';
+            });
+            out+='\n';
+        });
+        const law=c.querySelector('.law-ref');
+        if(law) out+=law.textContent.trim()+'\n\n';
+        const ta=c.querySelector('.note-textarea');
+        if(ta&&ta.value.trim()) out+='✏️ 小結：\n'+ta.value.trim()+'\n\n';
+        out+='═'.repeat(44)+'\n\n';
+    });
+    const b=new Blob([out.trim()],{type:'text/plain;charset=utf-8'});
+    const u=URL.createObjectURL(b);
+    const a=document.createElement('a');
+    a.href=u;a.download='110台上大字第5765號_通保法另案監聽.txt';a.click();
+    URL.revokeObjectURL(u);
+}
+const REG_KEY='exam_completion_registry';
+function _loadReg(){try{return JSON.parse(localStorage.getItem(REG_KEY))||{};}catch{return{};}}
+function _saveReg(r){try{localStorage.setItem(REG_KEY,JSON.stringify(r));}catch{}}
+function _fmt(ts){const d=new Date(ts);return(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();}
+function _updateDate(){const r=_loadReg();const k='case_criminal_grand_110_5765.html';const l=document.getElementById('doneDateLabel');if(!l)return;l.textContent=(r[k]&&r[k].done&&r[k].ts)?_fmt(r[k].ts):'';}
+function _syncIndex(done){try{const r=JSON.parse(localStorage.getItem('gc_reads')||'{}');r['c38']=done;localStorage.setItem('gc_reads',JSON.stringify(r));}catch(e){console.log('sync err',e);}}
+function toggleDone(){const btn=document.getElementById('doneBtn');const r=_loadReg();const k='case_criminal_grand_110_5765.html';const done=r[k]&&r[k].done;if(done){delete r[k];_saveReg(r);btn.classList.remove('active');_syncIndex(false);}else{const now=new Date();r[k]={done:true,score:null,total:null,ts:now.getTime(),tsLabel:now.toLocaleDateString('zh-TW')+' '+now.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false})};_saveReg(r);btn.classList.add('active');_syncIndex(true);}_updateDate();}
+(function initSync(){const r=_loadReg();const k='case_criminal_grand_110_5765.html';_syncIndex(!!(r[k]&&r[k].done));})();
+(function(){const r=_loadReg();const k='case_criminal_grand_110_5765.html';if(r[k]&&r[k].done){const b=document.getElementById('doneBtn');if(b)b.classList.add('active');}_updateDate();})();
+</script>
+</body>
+</html>
