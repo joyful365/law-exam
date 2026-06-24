@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>113年度台簡抗大字第246號 民事大法庭裁定</title>
+    <style>
+        /* ── 無印良品色系 ──────────────────────────────
+           背景：溫米白  #f5f0eb
+           卡片：純白    #ffffff
+           主色：深墨灰  #3d3530  （文字、標題）
+           次色：中棕    #8c7b6b  （meta、label）
+           線條：淺麻    #ddd8d0
+           強調1：陶土紅 #9e5c45  （多數意見）
+           強調2：橄欖綠 #5a6e4e  （法條、結論框）
+           強調3：焦糖棕 #b07d4a  （無本件不同意見，改用於補充說明）
+           警示：淡黃米  #f5f0d8  （考試陷阱底）
+        ─────────────────────────────────────────── */
+        :root {
+            --bg:       #f5f0eb;
+            --card:     #ffffff;
+            --text:     #3d3530;
+            --sub:      #8c7b6b;
+            --line:     #ddd8d0;
+            --majority: #9e5c45;
+            --law:      #5a6e4e;
+            --dissent:  #b07d4a;
+            --trap:     #f5f0d8;
+            --header-bg:#5c4f47;
+        }
+        /* ── 夜覽模式 ── */
+        body.night-mode {
+            --bg:       #1a1714;
+            --card:     #252220;
+            --text:     #d4cec8;
+            --sub:      #8a7d72;
+            --line:     #383330;
+            --majority: #b87060;
+            --law:      #6a8a5e;
+            --dissent:  #c4935a;
+            --trap:     #2a2518;
+            --header-bg:#111010;
+        }
+        body.night-mode header { box-shadow: 0 2px 8px rgba(0,0,0,0.5); }
+        body.night-mode .top-bar { background: #1e1b18; }
+        body.night-mode .top-btn { background: #3a3530; }
+        body.night-mode .fact-box,
+        body.night-mode .issue-box { background: #1e1b18; }
+        body.night-mode .op-head { background: #2a2520; }
+        body.night-mode .op-body { background: var(--card); }
+        body.night-mode .op-result { background: #2a2018; }
+        body.night-mode .ref-case { background: #242018; }
+        body.night-mode .law-ref { background: #1c2018; }
+        body.night-mode .note-textarea { background: #1e1b18; color: var(--text); border-color: var(--line); }
+        body.night-mode .judge-chip { background: #2a2520; border-color: var(--line); }
+        body.night-mode .judge-chip.chief { background: #3a3530; }
+        body.night-mode mark.search-hl { background: #7a6010; color: #f0e8c8; }
+        body.night-mode mark.search-hl.current { background: #c47000; color: #fff; }
+        body.night-mode .verdict { background: #2e2a26; }
+        body.night-mode .trap-box { border-color: #5a5020; }
+        body.night-mode .trap-title { color: #c8a840; }
+        body.night-mode .trap-item { border-left-color: #7a6830; }
+        body.night-mode #nightBtn { background: #4a4030; color: #e8d898; font-weight: 700; }
+        body.night-mode .timeline-item::before { background: #3a3530; }
+        body.night-mode .timeline-item { border-left-color: #383330; }
+        body { transition: background 0.3s, color 0.3s; }
+        .card { transition: background 0.3s, border-color 0.3s; }
+
+        * { box-sizing: border-box; }
+        body { font-family: "Helvetica Neue", Helvetica, "PingFang TC", "LiHei Pro", "Microsoft JhengHei", sans-serif;
+               background: var(--bg); color: var(--text); line-height: 1.85; font-size: 16px; margin: 0; padding: 0 0 60px; }
+
+        /* ── Header ── */
+        header { background: var(--header-bg); color: #f5f0eb; padding: 16px 16px 8px; text-align: center;
+                 position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+        header h1 { margin: 0 0 10px; font-size: 1.05em; line-height: 1.5; font-weight: 600; letter-spacing: 0.02em; color: #ffffff; }
+        .header-controls { display: flex; gap: 8px; align-items: center; }
+        .search-wrap { position: relative; flex: 1; display: flex; align-items: center; gap: 4px; }
+        #searchInput { flex: 1; padding: 8px 14px 8px 32px; border: none; border-radius: 6px;
+                       font-size: 14px; background: rgba(245,240,235,0.15); color: #f5f0eb; outline: none; }
+        #searchInput::placeholder { color: rgba(245,240,235,0.45); }
+        #searchInput:focus { background: rgba(245,240,235,0.25); }
+        .search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 13px;
+                       opacity: 0.5; pointer-events: none; }
+        .search-count { font-size: 12px; color: rgba(255,255,255,0.7); white-space: nowrap; min-width: 44px; text-align: center; }
+        .search-nav { background: rgba(255,255,255,0.13); border: none; border-radius: 6px; color: white; font-size: 13px; padding: 6px 8px; cursor: pointer; line-height: 1; }
+        .search-nav:hover { background: rgba(255,255,255,0.25); }
+        .search-nav:disabled { opacity: 0.3; cursor: default; }
+        mark.search-hl { background: #ffe066; color: #1a1a1a; border-radius: 2px; padding: 0 1px; }
+        mark.search-hl.current { background: #ff8c00; color: #fff; border-radius: 3px; outline: 2px solid #ff8c00; }
+        #filterBtn { background: rgba(245,240,235,0.15); border: none; border-radius: 6px;
+                     color: #f5f0eb; font-size: 13px; padding: 8px 12px; cursor: pointer; white-space: nowrap; }
+        #filterBtn.active { background: var(--dissent); color: #fff; font-weight: bold; }
+        .top-bar { background: #e8e2da; padding: 5px 14px; display: flex; gap: 6px; justify-content: flex-end; flex-wrap: nowrap; }
+        .top-btn { background: #b0a898; color: #fff; border: none; padding: 4px 10px; border-radius: 20px;
+                   font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap; transition: opacity 0.15s; }
+        .top-btn:hover { opacity: 0.8; }
+        .top-btn.done { background: #8c7b6b; }
+        .top-btn.done.active { background: linear-gradient(135deg, #b8860b, #daa520); color: #fff8e1; font-weight: 700; box-shadow: 0 0 8px rgba(218,165,32,0.5); }
+        .done-date { font-size: 11px; color: #a0a0a0; white-space: nowrap; align-self: center; font-weight: 500; }
+
+        /* ── Layout ── */
+        .container { padding: 18px 16px; max-width: 640px; margin: 0 auto; }
+        @media (min-width: 768px) { .container { max-width: 880px; padding: 24px 20px; } body { font-size: 17px; } header h1 { font-size: 1.15em; } }
+        .card { background: var(--card); border-radius: 14px; padding: 24px 22px; margin-bottom: 24px;
+                box-shadow: 0 1px 6px rgba(61,53,48,0.08); position: relative; border: 1px solid var(--line); }
+        .card.hidden { display: none; }
+        .star-btn { position: absolute; top: 18px; right: 18px; background: none; border: none; font-size: 20px;
+                    cursor: pointer; opacity: 0.15; transition: opacity 0.15s; padding: 0; }
+        .star-btn.starred { opacity: 1; }
+        .card-title { color: var(--text); font-size: 1.15em; font-weight: 700; margin: 0 0 4px; padding-right: 30px; line-height: 1.6; }
+        .meta-line { font-size: 0.75em; color: var(--sub); margin-bottom: 20px; letter-spacing: 0.04em; }
+
+        /* ── 大法庭主文橫幅 ── */
+        .verdict { background: #4a3f38; color: #f5f0eb; border-radius: 10px; padding: 16px 18px; margin-bottom: 22px; }
+        .verdict-label { font-size: 0.66em; letter-spacing: 0.14em; opacity: 0.5; margin-bottom: 6px; }
+        .verdict-main { font-size: 1.05em; font-weight: 700; line-height: 1.5; margin-bottom: 10px; color: #ffffff; }
+        .vote-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 12px; padding-top: 10px;
+                    border-top: 1px solid rgba(245,240,235,0.15); }
+        .v-chip { font-size: 0.72em; background: rgba(245,240,235,0.1); border-radius: 20px;
+                  padding: 3px 10px; white-space: nowrap; color: rgba(245,240,235,0.75); }
+        .v-chip.unanimous { background: rgba(90,110,78,0.5); color: #f5f0eb; font-weight: 700; }
+
+        /* ── Section heading ── */
+        .section-heading { font-size: 0.85em; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+                           color: var(--sub); margin: 22px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--line); }
+
+        /* ── 事實 ── */
+        .fact-box { background: #faf8f5; border-left: 3px solid var(--sub); border-radius: 0 8px 8px 0;
+                    padding: 14px 16px; margin-bottom: 16px; font-size: 0.9em; }
+        .fact-box p { margin: 0 0 8px; }
+        .fact-box p:last-child { margin: 0; }
+
+        /* ── 時間軸 ── */
+        .timeline { margin: 0 0 16px; padding-left: 14px; }
+        .timeline-item { position: relative; padding: 0 0 14px 20px; border-left: 2px solid var(--line); font-size: 0.88em; }
+        .timeline-item:last-child { padding-bottom: 0; border-left: 2px solid transparent; }
+        .timeline-item::before { content: ''; position: absolute; left: -6px; top: 6px;
+                                  width: 10px; height: 10px; border-radius: 50%; background: var(--majority);
+                                  border: 2px solid var(--bg); }
+        .tl-year { font-weight: 700; color: var(--majority); font-size: 0.9em; margin-bottom: 2px; }
+        .tl-desc { color: var(--text); line-height: 1.65; }
+
+        /* ── 爭點 ── */
+        .issue-box { background: #faf8f5; border-radius: 8px; padding: 14px 16px; margin-bottom: 16px;
+                     font-size: 0.9em; border: 1px solid var(--line); }
+        .issue-box p { margin: 0 0 8px; }
+        .issue-box p:last-child { margin: 0; }
+
+        /* ── 理由區塊 ── */
+        .opinions { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+        .op { border-radius: 8px; overflow: hidden; border: 1px solid var(--line); }
+        .op-head { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #f7f4f0; }
+        .op-num { width: 26px; height: 26px; border-radius: 50%; background: var(--majority); color: white;
+                  font-size: 0.75em; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .op-label { font-weight: 700; font-size: 0.92em; color: var(--majority); flex: 1; }
+        .op-body { padding: 13px 15px; font-size: 0.9em; background: var(--card); }
+        .op-body p { margin: 0 0 9px; }
+        .op-body p:last-child { margin: 0; }
+        .op-body ul { margin: 5px 0 8px; padding-left: 18px; }
+        .op-body li { margin-bottom: 5px; }
+        .op-result { background: #fdf9f7; border-radius: 6px; padding: 10px 13px; margin-top: 10px;
+                     font-size: 0.9em; border-left: 3px solid var(--majority); }
+
+        /* ── 法條對照表 ── */
+        .compare-table { width: 100%; border-collapse: collapse; margin-bottom: 18px; font-size: 0.88em; }
+        .compare-table th { padding: 10px 13px; font-weight: 700; font-size: 0.85em; letter-spacing: 0.05em; }
+        .compare-table th.th-issue { background: #ede0da; color: var(--sub); width: 28%; border-radius: 6px 0 0 0; }
+        .compare-table th.th-before { background: #7a6a60; color: #fff; width: 36%; }
+        .compare-table th.th-after { background: var(--majority); color: #fff; width: 36%; border-radius: 0 6px 0 0; }
+        .compare-table td { padding: 11px 13px; vertical-align: top; border-bottom: 1px solid var(--line); line-height: 1.65; }
+        .compare-table td.td-issue { background: #f5eeea; font-weight: 700; font-size: 0.87em; color: var(--sub); }
+        .compare-table td.td-before { background: #fafafa; border-left: 2px solid #a0908a; }
+        .compare-table td.td-after { background: #fdf8f6; border-left: 2px solid var(--majority); }
+        .compare-table tr:last-child td { border-bottom: none; }
+        .compare-table tr:last-child td.td-issue { border-radius: 0 0 0 6px; }
+        .compare-table tr:last-child td.td-after { border-radius: 0 0 6px 0; }
+        @media (max-width: 640px) {
+            .compare-table thead { display: none; }
+            .compare-table, .compare-table tbody { display: block; }
+            .compare-table tr { display: block; margin-bottom: 14px; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+            .compare-table td.td-issue { display: block; width: 100%; background: #ede0da; padding: 8px 14px; font-size: 0.85em; font-weight: 700; color: var(--sub); border-bottom: none; border-left: none !important; }
+            .compare-table td.td-before,
+            .compare-table td.td-after { display: inline-block; width: 50%; vertical-align: top; box-sizing: border-box; padding: 10px 11px; border-bottom: none; font-size: 0.83em; line-height: 1.6; border-left: none !important; border-top: none; }
+            .compare-table td.td-before { border-right: 1px solid var(--line); border-top: 3px solid #a0908a; }
+            .compare-table td.td-after { border-top: 3px solid var(--majority); }
+            .compare-table td.td-before::before { content: "裁定前"; display: block; margin-bottom: 5px; font-size: 0.78em; font-weight: 700; color: #7a6a60; letter-spacing: 0.05em; }
+            .compare-table td.td-after::before { content: "裁定後"; display: block; margin-bottom: 5px; font-size: 0.78em; font-weight: 700; color: var(--majority); letter-spacing: 0.05em; }
+            body.night-mode .compare-table td.td-issue { background: #2a1e18; }
+            body.night-mode .compare-table td.td-before { background: #1e1a16; }
+            body.night-mode .compare-table td.td-after { background: #1e1612; }
+        }
+        body.night-mode .compare-table th.th-issue { background: #2a1e18; }
+        body.night-mode .compare-table td.td-issue { background: #2a1e18; }
+        body.night-mode .compare-table td.td-before { background: #1e1a16; }
+        body.night-mode .compare-table td.td-after { background: #1e1612; }
+
+        /* ── 考試陷阱 ── */
+        .trap-box { background: var(--trap); border-radius: 8px; padding: 14px 16px; margin-bottom: 16px;
+                    border: 1px solid #e0d8b0; font-size: 0.9em; }
+        .trap-title { font-weight: 700; color: #7a6820; margin-bottom: 10px; font-size: 0.92em;
+                      display: flex; align-items: center; gap: 6px; }
+        .trap-item { margin-bottom: 10px; padding-left: 14px; border-left: 2px solid #c8b860; }
+        .trap-item:last-child { margin-bottom: 0; }
+        .trap-q { font-weight: 700; color: var(--text); margin-bottom: 3px; }
+        .trap-a { color: var(--text); opacity: 0.85; }
+
+        /* ── 法條 ── */
+        .law-ref { background: #f2f5f0; border-radius: 8px; padding: 10px 14px; font-size: 0.84em;
+                   color: #3d4e38; margin-top: 14px; border-left: 3px solid var(--law); }
+
+        /* ── 折疊 ── */
+        details { margin-top: 16px; }
+        details summary { cursor: pointer; color: var(--sub); font-size: 0.84em; font-weight: 600;
+                          padding: 5px 0; user-select: none; list-style: none; display: flex; align-items: center; gap: 6px; }
+        details summary::before { content: '▶'; font-size: 0.62em; transition: transform 0.2s; color: var(--sub); }
+        details[open] summary::before { transform: rotate(90deg); }
+        .ref-case { background: #f7f4f0; border-radius: 7px; padding: 10px 13px; margin-bottom: 8px;
+                    font-size: 0.84em; border-left: 3px solid var(--majority); }
+        .ref-case-title { font-weight: 700; color: var(--majority); margin-bottom: 3px; font-size: 0.9em; }
+
+        /* ── 筆記 ── */
+        .note-toggle { display: inline-block; margin-top: 14px; font-size: 0.8em; color: #b0a898; cursor: pointer; user-select: none; }
+        .note-toggle:hover { color: var(--majority); }
+        .note-area { display: none; margin-top: 8px; }
+        .note-area.open { display: block; }
+        .note-textarea { width: 100%; min-height: 68px; border: 1px solid var(--line); border-radius: 7px;
+                         padding: 10px 12px; font-size: 0.87em; font-family: inherit; color: var(--text);
+                         background: #faf8f5; resize: vertical; outline: none; line-height: 1.75; }
+        .note-textarea:focus { border-color: var(--majority); }
+        .note-textarea::placeholder { color: #c8beb0; }
+        .note-saved { font-size: 0.72em; color: var(--law); text-align: right; height: 14px; margin-top: 2px; }
+
+        /* ── 法官 ── */
+        .judges-grid { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+        .judge-chip { font-size: 0.77em; background: #f0ece7; border-radius: 20px; padding: 3px 11px;
+                      color: var(--text); border: 1px solid var(--line); }
+        .judge-chip.chief { background: var(--text); color: #f5f0eb; font-weight: 700; border-color: var(--text); }
+
+        /* ── 自我測驗 ── */
+        .quiz-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 0; }
+        .quiz-item { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+        .quiz-q { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;
+                  padding: 11px 14px; cursor: pointer; font-size: 0.9em; background: var(--card); }
+        .quiz-q:hover { background: #faf8f5; }
+        .quiz-toggle { font-size: 1.1em; color: var(--majority); flex-shrink: 0; font-weight: 300; line-height: 1.4; }
+        .quiz-a { display: none; padding: 11px 14px; background: #f0f4ee; font-size: 0.87em;
+                  line-height: 1.75; border-top: 1px solid var(--line); color: #3d4e38; }
+        .quiz-a.open { display: block; }
+        body.night-mode .quiz-q { background: var(--card); }
+        body.night-mode .quiz-q:hover { background: #2a2520; }
+        body.night-mode .quiz-a { background: #1c2018; color: #9fbf90; }
+
+        #noResults, #noStarred { display: none; text-align: center; color: var(--sub); padding: 40px 0; font-size: 0.9em; }
+        ::-webkit-scrollbar { display: none; }
+        ::selection { background: #e8ddd0; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>最高法院民事大法庭<br>113年度台簡抗大字第246號</h1>
+    <div class="header-controls">
+        <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="搜尋關鍵字、法條…" oninput="doSearch(this.value)" onkeydown="handleSearchKey(event)">
+            <span class="search-count" id="searchCount"></span>
+            <button class="search-nav" id="prevBtn" onclick="navMatch(-1)" disabled title="上一個">▲</button>
+            <button class="search-nav" id="nextBtn" onclick="navMatch(1)" disabled title="下一個">▼</button>
+        </div>
+        <button id="filterBtn" onclick="toggleFilter()">⭐ 收藏</button>
+    </div>
+    <div class="top-bar">
+        <button class="top-btn" onclick="highlightText()">🖊️</button>
+        <button class="top-btn" onclick="removeHighlight()">🧽</button>
+        <button class="top-btn" onclick="clearHighlights()">🗑️</button>
+        <button class="top-btn" onclick="openExport()">📤</button>
+        <button class="top-btn" id="nightBtn" onclick="toggleNight()">🌙</button>
+        <button class="top-btn done" id="doneBtn" onclick="toggleDone()">朕已閱</button>
+        <span class="done-date" id="doneDateLabel"></span>
+    </div>
+</header>
+
+<div class="container">
+<div class="card" id="case1" data-kw="未成年子女 扶養費 民法第1055條 民法第1120條 民法第1084條 民法第1055條之1 家事事件法 親子非訟 兒童最佳利益 兒童權利公約 親屬會議 扶養方法 協議 大法庭 離婚 親權 子女最佳利益">
+    <button class="star-btn" onclick="toggleStar('case1',this)">⭐</button>
+    <h2 class="card-title">
+        法院依民法第1055條定未成年子女親權後——未成年子女請求父母給付扶養費，是否須適用民法第1120條先行協議或召開親屬會議？
+    </h2>
+    <div class="meta-line">裁定日期：中華民國114年8月26日　｜　案號：113年度台簡抗大字第246號　｜　提案庭：最高法院民事第九庭</div>
+
+    <!-- 大法庭主文 -->
+    <div class="verdict">
+        <div class="verdict-label">大法庭主文</div>
+        <div class="verdict-main">法院依民法第1055條定未成年子女權利義務之行使或負擔後，未成年子女請求父母給付扶養費者，不受民法第1120條規定之限制。</div>
+        <div class="vote-row">
+            <span class="v-chip unanimous">全體一致意見 ✔</span>
+            <span class="v-chip">裁定日：114.08.26</span>
+            <span class="v-chip">法官共11人</span>
+            <span class="v-chip">無不同意見書</span>
+        </div>
+    </div>
+
+    <!-- 基礎事實 -->
+    <div class="section-heading">基礎事實</div>
+    <div class="fact-box">
+        <p>甲、乙於民國<strong>106年</strong>間經臺灣臺中地方法院判決離婚，並依民法第1055條規定酌定，對其所生未成年子女<strong>丙、丁</strong>之親權由甲、乙<strong>2人共同</strong>行使或負擔確定。</p>
+        <p>嗣於<strong>110年</strong>間，丙、丁依民法第1084條第2項，請求乙按月給付自<strong>110年7月起至各自成年時止之扶養費</strong>。</p>
+        <p><strong>乙之抗辯：</strong>與丙、丁間未曾協議扶養方法，應依民法第1120條本文先行協議；協議不成應召開<strong>親屬會議</strong>，不得逕行請求給付扶養費。</p>
+    </div>
+    <div class="timeline">
+        <div class="timeline-item">
+            <div class="tl-year">民國106年</div>
+            <div class="tl-desc">甲乙離婚，法院依§1055酌定丙丁親權由甲乙<strong>共同</strong>行使或負擔。</div>
+        </div>
+        <div class="timeline-item">
+            <div class="tl-year">民國110年</div>
+            <div class="tl-desc">丙丁依§1084第2項，請求乙按月給付扶養費至各自成年時止。</div>
+        </div>
+        <div class="timeline-item">
+            <div class="tl-year">乙抗辯</div>
+            <div class="tl-desc">主張應先依§1120協議，或召開親屬會議，不得逕行訴請。</div>
+        </div>
+        <div class="timeline-item">
+            <div class="tl-year">114年8月26日</div>
+            <div class="tl-desc">最高法院民事大法庭裁定：不受§1120限制，法院應直接依子女最佳利益為適當處分。</div>
+        </div>
+    </div>
+
+    <!-- 法律爭議 -->
+    <div class="section-heading">法律爭議</div>
+    <div class="issue-box">
+        <p><strong>核心問題：</strong> 法院依民法第1055條定對未成年子女權利義務之行使或負擔後，未成年子女請求父母給付扶養費，是否應適用民法<strong>第1120條</strong>之規定？</p>
+        <p><strong>正方（乙之主張）：</strong> 民法第1120條明定「扶養之方法，由當事人協議定之；不能協議時，由親屬會議定之」，程序上應先行協議、召開親屬會議，不得逕行請求給付。</p>
+        <p><strong>大法庭裁定：</strong> 否定適用§1120。法院應依兒童最佳利益，直接就具體個案酌定扶養費金額及給付方法，不受前置程序限制。</p>
+    </div>
+
+    <!-- 理由 -->
+    <div class="section-heading">大法庭裁定理由</div>
+    <div class="opinions">
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈠</div>
+                <span class="op-label">憲法與兒童權利公約——兒童最佳利益為最高指導原則</span>
+            </div>
+            <div class="op-body">
+                <p>憲法第156條揭示國家對兒童少年負有特別保護義務。聯合國兒童權利公約第3條第1項規定：「所有關係兒童之事務，均應以<strong>兒童最佳利益</strong>為優先考量。」（我國103年6月4日制定公布施行法，自同年11月20日起具<strong>內國法效力</strong>）</p>
+                <p>依兒童權利公約<strong>第14號一般性意見</strong>第32至40點：兒童最佳利益為靈活且可調整適用之概念，應根據所涉兒童之具體情況個案界定，並列為採取一切執行措施之優先考量。</p>
+                <div class="op-result">
+                    <strong>結論：</strong>維護未成年子女最佳利益，為憲法保障未成年子女人格權及人性尊嚴之重要內涵。未成年子女扶養費攸關其<strong>生存與發展</strong>，應使其得以更迅速、便利之方式獲得保障與實現。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈡</div>
+                <span class="op-label">立法沿革——§1120早於子女最佳利益體系，未及修正</span>
+            </div>
+            <div class="op-body">
+                <p>民法第1120條本文訂定於<strong>85年9月25日修正§1055及增訂§1055-1以前</strong>，當時尚未考量未成年子女最佳利益優先之精神。</p>
+                <p>85年修法後，民法第1055條之1已揭示「子女之最佳利益」為最高指導原則；家事事件法第107條亦明定法院得依職權酌定扶養費，不受當事人聲明拘束。</p>
+                <ul>
+                    <li>82年兒童福利法第41條：父母離婚者，法院得為兒童之利益酌定扶養費負擔，<strong>不受民法§1051、§1055、§1094之限制</strong></li>
+                    <li>85年修正§1055、增訂§1055-1：以子女最佳利益為最高指導原則</li>
+                    <li>88年增訂民事訴訟法§572-1、非訟事件法§71-6：得命未行使親權一方給付扶養費</li>
+                    <li>101年家事事件法§107：法院得依職權酌定適當金額，不受聲明拘束</li>
+                </ul>
+                <div class="op-result">
+                    <strong>結論：</strong>民法§1120訂定時未及考量子女最佳利益精神，且85年後之立法已建立完整保護體系，故於未成年子女請求父母給付扶養費時，法院應不受§1120之限制，而依§1055-1審酌具體個案，為適當處分。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈢</div>
+                <span class="op-label">程序法性質——親子非訟事件，無須表明請求權基礎</span>
+            </div>
+            <div class="op-body">
+                <p>未成年子女請求父母給付扶養費事件，乃家事事件法第4編第3章之「<strong>親子非訟事件</strong>」，與：</p>
+                <ul>
+                    <li>同編第2章之<strong>夫妻</strong>請求扶養事件</li>
+                    <li>同編第6章之一般<strong>親屬間</strong>扶養事件</li>
+                </ul>
+                <p>各有<strong>明顯區別</strong>，不得混用。</p>
+                <p>依家事事件法第75條第3項第5款：聲請書狀或筆錄，<strong>僅須載明聲請之意旨及其原因事實，無須記載實體法上之請求權基礎</strong>。</p>
+                <p>又，法院於必要時得依職權開始程序，並得依職權酌定適當金額，不受當事人聲明及所表明實體法上請求權之拘束（§1055第4項、§1055-1、家事事件法§107-2準用§99、§100）。</p>
+                <div class="op-result">
+                    <strong>結論：</strong>未成年子女無須表明實體法依據，亦不生因主張請求權基礎不同而異其應否受§1120限制之問題。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈣</div>
+                <span class="op-label">綜合結論——貫徹國家對未成年子女特別保護之義務</span>
+            </div>
+            <div class="op-body">
+                <p>法院依民法第1055條定未成年子女親權後，未成年子女請求父母給付扶養費，<strong>法院不受其表明之實體法請求權及民法第1120條規定之限制</strong>。</p>
+                <p>法院應視具體個案情形，依其需求為適當之處分，始能貫徹國家對未成年子女特別保護之義務。</p>
+                <div class="op-result">
+                    <strong>補充：</strong>法院審理時，認為親屬會議成員熟悉父母子女之景況，命其先行提出方案，供作審酌情狀之一，<strong>自無不可</strong>——惟此非必要程序，不得以此拒絕子女之請求。
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 適用前後對照 -->
+    <div class="section-heading">裁定前後　快速對照</div>
+    <table class="compare-table">
+        <thead>
+            <tr>
+                <th class="th-issue">面向</th>
+                <th class="th-before">舊見解（適用§1120）</th>
+                <th class="th-after">本裁定（不適用§1120）</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="td-issue">前置程序</td>
+                <td class="td-before">須先協議扶養方法；協議不成須召開親屬會議，否則不得請求</td>
+                <td class="td-after">✔ 無須前置協議或親屬會議，可直接向法院聲請</td>
+            </tr>
+            <tr>
+                <td class="td-issue">法院角色</td>
+                <td class="td-before">受當事人聲明拘束，消極處理</td>
+                <td class="td-after">✔ 得依職權主動酌定金額及方法，不受聲明拘束</td>
+            </tr>
+            <tr>
+                <td class="td-issue">請求權基礎</td>
+                <td class="td-before">須明確表明實體法依據（§1084等），且因依據不同而有不同結果</td>
+                <td class="td-after">✔ 無須表明，僅需載明意旨及原因事實</td>
+            </tr>
+            <tr>
+                <td class="td-issue">審酌標準</td>
+                <td class="td-before">§1120扶養方法之當事人協議、親屬會議</td>
+                <td class="td-after">✔ §1055-1「子女最佳利益」為最高指導原則</td>
+            </tr>
+            <tr>
+                <td class="td-issue">親屬會議地位</td>
+                <td class="td-before">必要前置程序，不經此程序不得訴請</td>
+                <td class="td-after">✔ 法院可命提出方案供審酌，但非必要，不得以此為由拒絕聲請</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- 考試陷阱 -->
+    <div class="section-heading">⚠️ 考試陷阱提示</div>
+    <div class="trap-box">
+        <div class="trap-title">📌 常見混淆點</div>
+        <div class="trap-item">
+            <div class="trap-q">Q：本件大法庭有無不同意見書？</div>
+            <div class="trap-a">A：<strong>無。</strong>本裁定為全體11名法官一致意見，無任何不同意見書或協同意見書。與111年度台上大字第932號（6:5）不同，應注意區分。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：本件未成年子女之請求權基礎為何？是§1084還是§1055？</div>
+            <div class="trap-a">A：大法庭明確指出：此為親子非訟事件，聲請書狀<strong>無須記載實體法上之請求權基礎</strong>，亦不因主張之請求權基礎不同而有不同結論，故此爭點本身不重要——重要的是程序上不受§1120限制。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：親屬會議在裁定後是否完全無用？</div>
+            <div class="trap-a">A：<strong>非完全無用。</strong>法院審理時，如認為親屬會議成員熟悉父母子女景況，得命其先行提出方案，供作審酌情狀之一——但此為法院裁量，並非子女之義務，不得以「未召開親屬會議」拒絕其請求。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：兒童權利公約的內國法效力如何？</div>
+            <div class="trap-a">A：我國於<strong>103年6月4日</strong>制訂公布兒童權利公約施行法，自<strong>同年11月20日</strong>施行，因而具內國法效力。大法庭並援引公約<strong>第14號一般性意見</strong>作為解釋依據，考試常考此施行時間點。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：本件屬何種家事事件？與夫妻或一般親屬扶養事件有何不同？</div>
+            <div class="trap-a">A：屬家事事件法第4編第3章之「<strong>親子非訟事件</strong>」。夫妻請求扶養係第4編第2章「婚姻非訟事件」；一般親屬扶養係第4編第6章「親屬間扶養事件」——三者各自獨立，規定不同，不可混用。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：「子女最佳利益」的審酌標準在哪一條文？</div>
+            <div class="trap-a">A：民法<strong>第1055條之1</strong>明文規定法院酌定、改定或變更親權時，應依「子女之最佳利益」為審酌時之最高指導原則，並列舉應審酌之因素。本裁定即以此條取代§1120在扶養費事件中的地位。</div>
+        </div>
+    </div>
+
+    <!-- 自我測驗 -->
+    <div class="section-heading">自我測驗</div>
+    <div class="quiz-list">
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>1. 本大法庭裁定主文之結論為何？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">
+                法院依民法第1055條定未成年子女親權後，未成年子女請求父母給付扶養費，<strong>不受民法第1120條規定之限制</strong>。法院應視具體個案，依子女需求為適當之處分，不得以未協議、未召開親屬會議為由拒絕其請求。
+            </div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>2. 大法庭援引哪三個層次的規範依據？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">
+                ⑴ <strong>憲法層次</strong>：憲法第156條——國家對兒童少年之特別保護義務。<br>
+                ⑵ <strong>國際法（具內國法效力）</strong>：兒童權利公約第3條第1項——兒童最佳利益優先（103年施行法）及第14號一般性意見。<br>
+                ⑶ <strong>法律層次</strong>：民法第1055條之1、家事事件法第107條——以子女最佳利益為最高指導原則，排除§1120之適用。
+            </div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>3. 民法第1120條為何不適用於本類事件？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">
+                §1120訂定於<strong>民國85年9月25日修正§1055及增訂§1055-1以前</strong>，立法當時未及考量未成年子女最佳利益優先之精神。85年後之立法已建立以子女最佳利益為核心之完整保護體系（§1055-1、家事事件法§107等），§1120不應凌駕此一體系，故於未成年子女扶養費案件中不適用。
+            </div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>4. 親子非訟事件在程序上有哪些特點？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">
+                ⑴ 聲請書狀<strong>僅須載明意旨及原因事實</strong>，無須記載實體法上請求權基礎（家事事件法§75第3項第5款）。<br>
+                ⑵ 法院得<strong>依職權開始</strong>程序。<br>
+                ⑶ 法院得<strong>依職權酌定適當金額</strong>，不受當事人聲明及所表明實體法請求權之拘束（§1055第4項、§1055-1、家事事件法§107第2項準用§99、§100）。
+            </div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>5. 本件屬何種家事事件類型？與哪兩種事件相區別？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">
+                本件屬家事事件法第4編第3章之「<strong>親子非訟事件</strong>」，應與：<br>
+                • 同編第2章<strong>婚姻非訟事件</strong>中之夫妻請求扶養事件<br>
+                • 同編第6章<strong>親屬間扶養事件</strong><br>
+                相區別。三者規範目的、程序及審酌標準各有不同。
+            </div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>6. 親屬會議在本裁定後是否仍有任何功能？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">
+                有。法院審理時，如認為親屬會議成員熟悉父母子女之景況，<strong>得命其先行提出方案</strong>，供作法院決定符合子女最佳利益之審酌情狀之一。惟此為法院裁量，而非必要前置程序，不得以此為由拒絕未成年子女之請求。
+            </div>
+        </div>
+    </div>
+
+    <!-- 法條 -->
+    <div class="law-ref">
+        <strong>相關法條：</strong>民法§1055（酌定子女親權）；§1055-1（子女最佳利益）；§1084第2項（父母扶養義務）；§1120（扶養方法，本案不適用）；家事事件法§75（聲請書狀）；§99、§100（職權進行）；§107（未成年子女扶養費）；憲法§156（兒童保護）；兒童權利公約§3第1項（最佳利益）
+    </div>
+
+    <!-- 合議庭成員 -->
+    <details>
+        <summary>大法庭組成（11名法官）</summary>
+        <div style="padding-top:10px;">
+            <div class="judges-grid">
+                <span class="judge-chip chief">審判長　高孟焄</span>
+                <span class="judge-chip">沈方維</span>
+                <span class="judge-chip">袁靜文</span>
+                <span class="judge-chip">魏大喨</span>
+                <span class="judge-chip">盧彥如</span>
+                <span class="judge-chip">李寶堂</span>
+                <span class="judge-chip">林金吾</span>
+                <span class="judge-chip">彭昭芬</span>
+                <span class="judge-chip">鍾任賜</span>
+                <span class="judge-chip">吳麗惠</span>
+                <span class="judge-chip">邱景芬</span>
+            </div>
+            <p style="font-size:0.82em;color:var(--sub);margin:10px 0 0;">書記官：陳禹任　｜　裁定日期：中華民國114年8月26日</p>
+        </div>
+    </details>
+
+    <!-- 立法沿革參考 -->
+    <details>
+        <summary>立法沿革與參考法規</summary>
+        <div style="padding-top:10px;">
+            <div class="ref-case">
+                <div class="ref-case-title">【82年】兒童福利法第41條</div>
+                <p style="margin:0;">父母離婚者，法院得依職權、聲請，為兒童之利益酌定扶養費負擔之人或方式，不受民法§1051、§1055、§1094之限制。→ 最早明文排除民法相關規定之適用。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">【85年】民法修正§1055、增訂§1055-1</div>
+                <p style="margin:0;">揭示「子女之最佳利益」為酌定親權之最高指導原則，並列舉應審酌之事項。→ 奠定子女最佳利益體系之核心。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">【101年】家事事件法第107條</div>
+                <p style="margin:0;">法院酌定扶養費時，得依職權為適當處分，不受當事人聲明及所表明實體法請求權之拘束。→ 本件大法庭裁定之程序法依據。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">【103年】兒童權利公約施行法</div>
+                <p style="margin:0;">103年6月4日制訂公布，自103年11月20日施行，使兒童權利公約及其第14號一般性意見具有內國法效力，成為法院解釋適用法律之重要依據。</p>
+            </div>
+        </div>
+    </details>
+
+    <div class="note-toggle" onclick="toggleNote('n1')">✏️ 我的小結</div>
+    <div class="note-area" id="n1">
+        <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n1',this.value)"></textarea>
+        <div class="note-saved" id="n1-saved"></div>
+    </div>
+</div>
+
+<div id="noResults">查無符合的內容，請試試其他關鍵字。</div>
+<div id="noStarred">還沒有收藏的項目，點卡片右上角的 ⭐ 加入收藏。</div>
+</div>
+
+<script>
+const NIGHT_KEY='night_mode_pref';
+function toggleNight(){const on=document.body.classList.toggle('night-mode');localStorage.setItem(NIGHT_KEY,on?'1':'0');document.getElementById('nightBtn').textContent=on?'☀️':'🌙';}
+(function(){if(localStorage.getItem(NIGHT_KEY)==='1'){document.body.classList.add('night-mode');const b=document.getElementById('nightBtn');if(b)b.textContent='☀️';}})();
+const STORE_KEY='113_246_grand_notes',STAR_KEY='113_246_grand_stars';
+function loadNotes(){try{return JSON.parse(localStorage.getItem(STORE_KEY))||{};}catch{return{};}}
+function loadStars(){try{return JSON.parse(localStorage.getItem(STAR_KEY))||{};}catch{return{};}}
+function saveAllNotes(d){localStorage.setItem(STORE_KEY,JSON.stringify(d));}
+function saveAllStars(d){localStorage.setItem(STAR_KEY,JSON.stringify(d));}
+(function(){const n=loadNotes(),s=loadStars();
+  Object.entries(n).forEach(([id,v])=>{const a=document.getElementById(id);if(!a)return;const t=a.querySelector('textarea');if(t)t.value=v;if(v)a.classList.add('open');});
+  Object.entries(s).forEach(([id,v])=>{if(!v)return;const b=document.querySelector(`#${id} .star-btn`);if(b)b.classList.add('starred');});
+})();
+function toggleStar(id,btn){const s=loadStars();const now=!btn.classList.contains('starred');btn.classList.toggle('starred',now);s[id]=now;saveAllStars(s);if(filterActive)applyFilter();}
+let filterActive=false;
+function toggleFilter(){filterActive=!filterActive;document.getElementById('filterBtn').classList.toggle('active',filterActive);document.getElementById('searchInput').value='';clearSearchHighlights();updateSearchUI([],0);applyFilter();}
+function applyFilter(){const s=loadStars();const q=document.getElementById('searchInput').value.trim().toLowerCase();let any=false;
+  document.querySelectorAll('.card').forEach(c=>{const kw=(c.dataset.kw||'').toLowerCase();const txt=c.textContent.toLowerCase();
+  const ms=!q||kw.includes(q)||txt.includes(q);const mf=!filterActive||!!s[c.id];const show=ms&&mf;
+  c.classList.toggle('hidden',!show);if(show)any=true;});
+  document.getElementById('noResults').style.display=(!any&&!filterActive)?'block':'none';
+  document.getElementById('noStarred').style.display=(!any&&filterActive)?'block':'none';}
+
+/* ── 搜尋高亮 + 跳轉 ── */
+let _matches=[],_cur=-1;
+function clearSearchHighlights(){document.querySelectorAll('mark.search-hl').forEach(m=>{const p=m.parentNode;p.replaceChild(document.createTextNode(m.textContent),m);p.normalize();});}
+function highlightInNode(node,re){if(node.nodeType===3){const text=node.nodeValue;const frag=document.createDocumentFragment();let last=0,m;re.lastIndex=0;while((m=re.exec(text))!==null){if(m.index>last)frag.appendChild(document.createTextNode(text.slice(last,m.index)));const mk=document.createElement('mark');mk.className='search-hl';mk.textContent=m[0];frag.appendChild(mk);last=re.lastIndex;}if(last===0)return;frag.appendChild(document.createTextNode(text.slice(last)));node.parentNode.replaceChild(frag,node);return;}if(node.nodeType===1){const tag=node.tagName;if(tag==='SCRIPT'||tag==='STYLE'||tag==='TEXTAREA'||tag==='INPUT')return;if(node.classList&&node.classList.contains('search-hl'))return;[...node.childNodes].forEach(c=>highlightInNode(c,re));}}
+function doSearch(q){clearSearchHighlights();_matches=[];_cur=-1;const qt=(q||'').trim();if(!qt){updateSearchUI([],0);applyFilter();return;}applyFilter();const esc=qt.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');const re=new RegExp(esc,'gi');document.querySelectorAll('.container .card:not(.hidden)').forEach(card=>{highlightInNode(card,re);});_matches=[...document.querySelectorAll('mark.search-hl')];if(_matches.length){_cur=0;setCurrent(0);}updateSearchUI(_matches,_cur);}
+function setCurrent(idx){_matches.forEach((m,i)=>m.classList.toggle('current',i===idx));if(_matches[idx])_matches[idx].scrollIntoView({behavior:'smooth',block:'center'});}
+function navMatch(dir){if(!_matches.length)return;_cur=(_cur+dir+_matches.length)%_matches.length;setCurrent(_cur);updateSearchUI(_matches,_cur);}
+function updateSearchUI(matches,cur){const cnt=document.getElementById('searchCount');const prev=document.getElementById('prevBtn');const next=document.getElementById('nextBtn');if(!matches.length){cnt.textContent='';prev.disabled=true;next.disabled=true;return;}cnt.textContent=(cur+1)+'/'+matches.length;prev.disabled=false;next.disabled=false;}
+function handleSearchKey(e){if(e.key==='Enter'){e.shiftKey?navMatch(-1):navMatch(1);}if(e.key==='Escape'){document.getElementById('searchInput').value='';doSearch('');}}
+function toggleNote(id){document.getElementById(id).classList.toggle('open');}
+const timers={};
+function saveNote(id,v){clearTimeout(timers[id]);timers[id]=setTimeout(()=>{const n=loadNotes();n[id]=v;saveAllNotes(n);const el=document.getElementById(id+'-saved');if(el){el.textContent='已儲存';setTimeout(()=>el.textContent='',1500);}},500);}
+let savedRange=null;
+document.addEventListener('selectionchange',()=>{const s=window.getSelection();if(s&&!s.isCollapsed&&s.rangeCount)savedRange=s.getRangeAt(0).cloneRange();});
+function highlightText(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;
+  if(!r||r.collapsed){alert('💡 請先反白想要標記的文字');return;}
+  const sp=document.createElement('span');sp.className='hl';sp.style.cssText='background:#f0d98a;border-radius:2px;';
+  try{r.surroundContents(sp);savedRange=null;}catch{alert('💡 請選取同一段落內的文字');}s&&s.removeAllRanges();}
+function removeHighlight(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;
+  if(!r||r.collapsed){alert('💡 請先反白想擦除標記的文字');return;}
+  const anc=r.commonAncestorContainer.nodeType===1?r.commonAncestorContainer:r.commonAncestorContainer.parentElement;
+  anc.querySelectorAll('span.hl').forEach(sp=>{if(r.intersectsNode(sp)){const p=sp.parentNode;while(sp.firstChild)p.insertBefore(sp.firstChild,sp);p.removeChild(sp);}});
+  savedRange=null;s&&s.removeAllRanges();}
+function clearHighlights(){const sp=document.querySelectorAll('span.hl');if(!sp.length)return;
+  if(confirm('確定要清除所有重點標記嗎？')){sp.forEach(s=>{const p=s.parentNode;while(s.firstChild)p.insertBefore(s.firstChild,s);p.removeChild(s);});}}
+function openExport(){
+  let out='最高法院民事大法庭 113年度台簡抗大字第246號\n'+'═'.repeat(44)+'\n\n';
+  out+='【主文】\n法院依民法第1055條定未成年子女權利義務之行使或負擔後，未成年子女請求父母給付扶養費者，不受民法第1120條規定之限制。\n\n';
+  document.querySelectorAll('.op').forEach(op=>{
+    const head=op.querySelector('.op-label')?.textContent.trim()||'';
+    out+=`▌${head}\n`;
+    op.querySelectorAll('.op-body p,.op-body li,.op-result').forEach(el=>{
+      const t=el.textContent.trim();if(t)out+=(el.tagName==='LI'?'  • ':'')+t+'\n';});
+    out+='\n';});
+  const ta=document.querySelector('.note-textarea');if(ta&&ta.value.trim())out+='✏️ 小結：\n'+ta.value.trim()+'\n\n';
+  out+='═'.repeat(44)+'\n';
+  const b=new Blob([out.trim()],{type:'text/plain;charset=utf-8'});
+  const u=URL.createObjectURL(b);const a=document.createElement('a');
+  a.href=u;a.download='113台簡抗大字第246號_未成年子女扶養費不受1120條限制.txt';a.click();URL.revokeObjectURL(u);}
+function toggleQuiz(el){const ans=el.nextElementSibling;const tog=el.querySelector('.quiz-toggle');if(ans.classList.contains('open')){ans.classList.remove('open');tog.textContent='＋';}else{ans.classList.add('open');tog.textContent='－';}}
+const REG_KEY='exam_completion_registry';
+function _loadReg(){try{return JSON.parse(localStorage.getItem(REG_KEY))||{};}catch{return{};}}
+function _saveReg(r){try{localStorage.setItem(REG_KEY,JSON.stringify(r));}catch{}}
+function _file(){const p=location.pathname.split('/');return decodeURIComponent(p[p.length-1]||'');}
+function _fmt(ts){const d=new Date(ts);const date=(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();const time=d.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false});return date+' '+time;}
+function _updateDate(){const r=_loadReg();const k=_file()||'case_civil_grand_113_246_study.html';const l=document.getElementById('doneDateLabel');if(!l)return;l.textContent=(r[k]&&r[k].done&&r[k].ts)?_fmt(r[k].ts):'';}
+const _INDEX_CARD_ID='c_246';
+function _syncIndex(done){try{const r=JSON.parse(localStorage.getItem('gc_reads')||'{}');r[_INDEX_CARD_ID]=done;localStorage.setItem('gc_reads',JSON.stringify(r));}catch(e){}}
+function toggleDone(){const btn=document.getElementById('doneBtn');const r=_loadReg();const k=_file()||'case_civil_grand_113_246_study.html';const done=r[k]&&r[k].done;
+  if(done){delete r[k];_saveReg(r);btn.classList.remove('active');_syncIndex(false);}
+  else{const now=new Date();r[k]={done:true,score:null,total:null,ts:now.getTime(),tsLabel:now.toLocaleDateString('zh-TW')+' '+now.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false})};_saveReg(r);btn.classList.add('active');_syncIndex(true);}
+  _updateDate();}
+(function(){const r=_loadReg();const k=_file()||'case_civil_grand_113_246_study.html';if(r[k]&&r[k].done){const b=document.getElementById('doneBtn');if(b)b.classList.add('active');}_updateDate();})();
+</script>
+</body>
+</html>

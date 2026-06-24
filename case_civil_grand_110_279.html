@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>110年度台上大字第279號 民事大法庭裁定</title>
+    <style>
+        :root {
+            --bg:       #f5f0eb;
+            --card:     #ffffff;
+            --text:     #3d3530;
+            --sub:      #8c7b6b;
+            --line:     #ddd8d0;
+            --majority: #9e5c45;
+            --law:      #5a6e4e;
+            --dissent:  #b07d4a;
+            --trap:     #f5f0d8;
+            --header-bg:#5c4f47;
+        }
+        body.night-mode {
+            --bg:       #1a1714;
+            --card:     #252220;
+            --text:     #d4cec8;
+            --sub:      #8a7d72;
+            --line:     #383330;
+            --majority: #b87060;
+            --law:      #6a8a5e;
+            --dissent:  #c4935a;
+            --trap:     #2a2518;
+            --header-bg:#111010;
+        }
+        body.night-mode header { box-shadow: 0 2px 8px rgba(0,0,0,0.5); }
+        body.night-mode .top-bar { background: #1e1b18; }
+        body.night-mode .top-btn { background: #3a3530; }
+        body.night-mode .fact-box,
+        body.night-mode .issue-box { background: #1e1b18; }
+        body.night-mode .op-head { background: #2a2520; }
+        body.night-mode .op-body { background: var(--card); }
+        body.night-mode .op-result { background: #2a2018; }
+        body.night-mode .d-op-head { background: #261f14; }
+        body.night-mode .d-op-body { background: #201c14; }
+        body.night-mode .d-op-result { background: #261f14; }
+        body.night-mode .dissent-judges { background: #261f14; }
+        body.night-mode .compare-table th.th-issue { background: #2a1e18; }
+        body.night-mode .compare-table td.td-issue { background: #2a1e18; }
+        body.night-mode .compare-table td.td-majority { background: #1e1612; }
+        body.night-mode .compare-table td.td-dissent { background: #1e1814; }
+        @media (max-width: 640px) {
+            body.night-mode .compare-table td.td-issue { background: #2a1e18; }
+            body.night-mode .compare-table td.td-majority { background: #1e1612; }
+            body.night-mode .compare-table td.td-dissent { background: #1e1814; }
+        }
+        body.night-mode .ref-case { background: #242018; }
+        body.night-mode .law-ref { background: #1c2018; }
+        body.night-mode .note-textarea { background: #1e1b18; color: var(--text); border-color: var(--line); }
+        body.night-mode .judge-chip { background: #2a2520; border-color: var(--line); }
+        body.night-mode .judge-chip.chief { background: #3a3530; }
+        body.night-mode mark.search-hl { background: #7a6010; color: #f0e8c8; }
+        body.night-mode mark.search-hl.current { background: #c47000; color: #fff; }
+        body.night-mode .verdict { background: #2e2a26; }
+        body.night-mode .trap-box { border-color: #5a5020; }
+        body.night-mode .trap-title { color: #c8a840; }
+        body.night-mode .trap-item { border-left-color: #7a6830; }
+        body.night-mode #nightBtn { background: #4a4030; color: #e8d898; font-weight: 700; }
+        body.night-mode .quiz-q { background: var(--card); }
+        body.night-mode .quiz-q:hover { background: #2a2520; }
+        body.night-mode .quiz-a { background: #1c2018; color: #9fbf90; }
+        body { transition: background 0.3s, color 0.3s; }
+        .card { transition: background 0.3s, border-color 0.3s; }
+
+        * { box-sizing: border-box; }
+        body { font-family: "Helvetica Neue", Helvetica, "PingFang TC", "LiHei Pro", "Microsoft JhengHei", sans-serif;
+               background: var(--bg); color: var(--text); line-height: 1.85; font-size: 16px; margin: 0; padding: 0 0 60px; }
+
+        header { background: var(--header-bg); color: #f5f0eb; padding: 16px 16px 8px; text-align: center;
+                 position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+        header h1 { margin: 0 0 10px; font-size: 1.05em; line-height: 1.5; font-weight: 600; letter-spacing: 0.02em; color: #ffffff; }
+        .header-controls { display: flex; gap: 8px; align-items: center; }
+        .search-wrap { position: relative; flex: 1; display: flex; align-items: center; gap: 4px; }
+        #searchInput { flex: 1; padding: 8px 14px 8px 32px; border: none; border-radius: 6px;
+                       font-size: 14px; background: rgba(245,240,235,0.15); color: #f5f0eb; outline: none; }
+        #searchInput::placeholder { color: rgba(245,240,235,0.45); }
+        #searchInput:focus { background: rgba(245,240,235,0.25); }
+        .search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 13px; opacity: 0.5; pointer-events: none; }
+        .search-count { font-size: 12px; color: rgba(255,255,255,0.7); white-space: nowrap; min-width: 44px; text-align: center; }
+        .search-nav { background: rgba(255,255,255,0.13); border: none; border-radius: 6px; color: white; font-size: 13px; padding: 6px 8px; cursor: pointer; line-height: 1; }
+        .search-nav:hover { background: rgba(255,255,255,0.25); }
+        .search-nav:disabled { opacity: 0.3; cursor: default; }
+        mark.search-hl { background: #ffe066; color: #1a1a1a; border-radius: 2px; padding: 0 1px; }
+        mark.search-hl.current { background: #ff8c00; color: #fff; border-radius: 3px; outline: 2px solid #ff8c00; }
+        #filterBtn { background: rgba(245,240,235,0.15); border: none; border-radius: 6px;
+                     color: #f5f0eb; font-size: 13px; padding: 8px 12px; cursor: pointer; white-space: nowrap; }
+        #filterBtn.active { background: var(--dissent); color: #fff; font-weight: bold; }
+        .top-bar { background: #e8e2da; padding: 5px 14px; display: flex; gap: 6px; justify-content: flex-end; flex-wrap: nowrap; }
+        .top-btn { background: #b0a898; color: #fff; border: none; padding: 4px 10px; border-radius: 20px;
+                   font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap; transition: opacity 0.15s; }
+        .top-btn:hover { opacity: 0.8; }
+        .top-btn.done { background: #8c7b6b; }
+        .top-btn.done.active { background: linear-gradient(135deg, #b8860b, #daa520); color: #fff8e1; font-weight: 700; box-shadow: 0 0 8px rgba(218,165,32,0.5); }
+        .done-date { font-size: 11px; color: #a0a0a0; white-space: nowrap; align-self: center; font-weight: 500; }
+
+        .container { padding: 18px 16px; max-width: 640px; margin: 0 auto; }
+        @media (min-width: 768px) { .container { max-width: 880px; padding: 24px 20px; } body { font-size: 17px; } header h1 { font-size: 1.15em; } }
+        .card { background: var(--card); border-radius: 14px; padding: 24px 22px; margin-bottom: 24px;
+                box-shadow: 0 1px 6px rgba(61,53,48,0.08); position: relative; border: 1px solid var(--line); }
+        .card.hidden { display: none; }
+        .star-btn { position: absolute; top: 18px; right: 18px; background: none; border: none; font-size: 20px;
+                    cursor: pointer; opacity: 0.15; transition: opacity 0.15s; padding: 0; }
+        .star-btn.starred { opacity: 1; }
+        .card-title { color: var(--text); font-size: 1.15em; font-weight: 700; margin: 0 0 4px; padding-right: 30px; line-height: 1.6; }
+        .meta-line { font-size: 0.75em; color: var(--sub); margin-bottom: 20px; letter-spacing: 0.04em; }
+
+        .verdict { background: #4a3f38; color: #f5f0eb; border-radius: 10px; padding: 16px 18px; margin-bottom: 22px; }
+        .verdict-label { font-size: 0.66em; letter-spacing: 0.14em; opacity: 0.5; margin-bottom: 6px; }
+        .verdict-main { font-size: 1.05em; font-weight: 700; line-height: 1.6; margin-bottom: 10px; color: #ffffff; }
+        .verdict-items { display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px; }
+        .verdict-item { border-left: 3px solid rgba(245,240,235,0.35); padding-left: 12px; }
+        .verdict-item-num { font-size: 0.7em; opacity: 0.55; margin-bottom: 2px; }
+        .verdict-item-text { font-size: 0.97em; font-weight: 400; line-height: 1.55; opacity: 0.85; }
+        .vote-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 12px; padding-top: 10px;
+                    border-top: 1px solid rgba(245,240,235,0.15); }
+        .v-chip { font-size: 0.72em; background: rgba(245,240,235,0.1); border-radius: 20px;
+                  padding: 3px 10px; white-space: nowrap; color: rgba(245,240,235,0.75); }
+        .v-chip.majority { background: rgba(158,92,69,0.5); color: #f5f0eb; font-weight: 700; }
+        .v-chip.dissent-c { background: rgba(176,125,74,0.45); color: #f5f0eb; }
+
+        .section-heading { font-size: 0.85em; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+                           color: var(--sub); margin: 22px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--line); }
+
+        .fact-box { background: #faf8f5; border-left: 3px solid var(--sub); border-radius: 0 8px 8px 0;
+                    padding: 14px 16px; margin-bottom: 16px; font-size: 0.9em; }
+        .fact-box p { margin: 0 0 8px; }
+        .fact-box p:last-child { margin: 0; }
+
+        .issue-box { background: #faf8f5; border-radius: 8px; padding: 14px 16px; margin-bottom: 16px;
+                     font-size: 0.9em; border: 1px solid var(--line); }
+        .issue-box p { margin: 0 0 8px; }
+        .issue-box p:last-child { margin: 0; }
+
+        .opinions { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+        .op { border-radius: 8px; overflow: hidden; border: 1px solid var(--line); }
+        .op-head { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #f7f4f0; }
+        .op-num { width: 26px; height: 26px; border-radius: 50%; background: var(--majority); color: white;
+                  font-size: 0.75em; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .op-label { font-weight: 700; font-size: 0.92em; color: var(--majority); flex: 1; }
+        .op-body { padding: 13px 15px; font-size: 0.9em; background: var(--card); }
+        .op-body p { margin: 0 0 9px; }
+        .op-body p:last-child { margin: 0; }
+        .op-body ul { margin: 5px 0 8px; padding-left: 18px; }
+        .op-body li { margin-bottom: 5px; }
+        .op-result { background: #fdf9f7; border-radius: 6px; padding: 10px 13px; margin-top: 10px;
+                     font-size: 0.9em; border-left: 3px solid var(--majority); }
+
+        .d-opinions { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+        .d-op { border-radius: 8px; overflow: hidden; border: 1px solid #e6d8bc; }
+        .d-op-head { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #fdf7ec; }
+        .d-op-num { width: 26px; height: 26px; border-radius: 50%; background: var(--dissent); color: white;
+                    font-size: 0.75em; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .d-op-label { font-weight: 700; font-size: 0.92em; color: var(--dissent); flex: 1; }
+        .d-op-body { padding: 13px 15px; font-size: 0.9em; background: #fffdf8; }
+        .d-op-body p { margin: 0 0 9px; }
+        .d-op-body p:last-child { margin: 0; }
+        .d-op-body ul { margin: 5px 0 8px; padding-left: 18px; }
+        .d-op-body li { margin-bottom: 5px; }
+        .d-op-result { background: #fdf7ec; border-radius: 6px; padding: 10px 13px; margin-top: 10px;
+                       font-size: 0.9em; border-left: 3px solid var(--dissent); }
+        .dissent-judges { font-size: 0.82em; color: var(--dissent); margin-bottom: 12px;
+                          padding: 8px 12px; background: #fdf7ec; border-radius: 6px; border-left: 3px solid var(--dissent); }
+
+        .compare-table { width: 100%; border-collapse: collapse; margin-bottom: 18px; font-size: 0.88em; }
+        .compare-table th { padding: 10px 13px; font-weight: 700; font-size: 0.85em; letter-spacing: 0.05em; }
+        .compare-table th.th-issue { background: #ede0da; color: var(--sub); width: 22%; border-radius: 6px 0 0 0; }
+        .compare-table th.th-majority { background: var(--majority); color: #fff; width: 39%; }
+        .compare-table th.th-dissent { background: var(--dissent); color: #fff; width: 39%; border-radius: 0 6px 0 0; }
+        .compare-table td { padding: 11px 13px; vertical-align: top; border-bottom: 1px solid var(--line); line-height: 1.65; }
+        .compare-table td.td-issue { background: #f5eeea; font-weight: 700; font-size: 0.87em; color: var(--sub); }
+        .compare-table td.td-majority { background: #fdf8f6; border-left: 2px solid var(--majority); }
+        .compare-table td.td-dissent { background: #fdf8f4; border-left: 2px solid var(--dissent); }
+        .compare-table tr:last-child td { border-bottom: none; }
+        .compare-table tr:last-child td.td-issue { border-radius: 0 0 0 6px; }
+        .compare-table tr:last-child td.td-dissent { border-radius: 0 0 6px 0; }
+        @media (max-width: 640px) {
+            .compare-table thead { display: none; }
+            .compare-table, .compare-table tbody { display: block; }
+            .compare-table tr { display: block; margin-bottom: 14px; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+            .compare-table td.td-issue { display: block; width: 100%; background: #ede0da; padding: 8px 14px; font-size: 0.85em; font-weight: 700; color: var(--sub); border-bottom: none; border-left: none !important; }
+            .compare-table td.td-majority, .compare-table td.td-dissent { display: inline-block; width: 50%; vertical-align: top; box-sizing: border-box; padding: 10px 11px; border-bottom: none; font-size: 0.83em; line-height: 1.6; border-left: none !important; border-top: none; }
+            .compare-table td.td-majority { border-right: 1px solid var(--line); border-top: 3px solid var(--majority); }
+            .compare-table td.td-dissent { border-top: 3px solid var(--dissent); }
+            .compare-table td.td-majority::before { content: "多數"; display: block; margin-bottom: 5px; font-size: 0.78em; font-weight: 700; color: var(--majority); letter-spacing: 0.05em; }
+            .compare-table td.td-dissent::before { content: "不同"; display: block; margin-bottom: 5px; font-size: 0.78em; font-weight: 700; color: var(--dissent); letter-spacing: 0.05em; }
+        }
+
+        .trap-box { background: var(--trap); border-radius: 8px; padding: 14px 16px; margin-bottom: 16px;
+                    border: 1px solid #e0d8b0; font-size: 0.9em; }
+        .trap-title { font-weight: 700; color: #7a6820; margin-bottom: 10px; font-size: 0.92em; display: flex; align-items: center; gap: 6px; }
+        .trap-item { margin-bottom: 10px; padding-left: 14px; border-left: 2px solid #c8b860; }
+        .trap-item:last-child { margin-bottom: 0; }
+        .trap-q { font-weight: 700; color: var(--text); margin-bottom: 3px; }
+        .trap-a { color: var(--text); opacity: 0.85; }
+
+        .law-ref { background: #f2f5f0; border-radius: 8px; padding: 10px 14px; font-size: 0.84em;
+                   color: #3d4e38; margin-top: 14px; border-left: 3px solid var(--law); }
+
+        details { margin-top: 16px; }
+        details summary { cursor: pointer; color: var(--sub); font-size: 0.84em; font-weight: 600;
+                          padding: 5px 0; user-select: none; list-style: none; display: flex; align-items: center; gap: 6px; }
+        details summary::before { content: '▶'; font-size: 0.62em; transition: transform 0.2s; color: var(--sub); }
+        details[open] summary::before { transform: rotate(90deg); }
+        .ref-case { background: #f7f4f0; border-radius: 7px; padding: 10px 13px; margin-bottom: 8px;
+                    font-size: 0.84em; border-left: 3px solid var(--majority); }
+        .ref-case.d { border-left-color: var(--dissent); }
+        .ref-case-title { font-weight: 700; color: var(--majority); margin-bottom: 3px; font-size: 0.9em; }
+        .ref-case.d .ref-case-title { color: var(--dissent); }
+
+        .note-toggle { display: inline-block; margin-top: 14px; font-size: 0.8em; color: #b0a898; cursor: pointer; user-select: none; }
+        .note-toggle:hover { color: var(--majority); }
+        .note-area { display: none; margin-top: 8px; }
+        .note-area.open { display: block; }
+        .note-textarea { width: 100%; min-height: 68px; border: 1px solid var(--line); border-radius: 7px;
+                         padding: 10px 12px; font-size: 0.87em; font-family: inherit; color: var(--text);
+                         background: #faf8f5; resize: vertical; outline: none; line-height: 1.75; }
+        .note-textarea:focus { border-color: var(--majority); }
+        .note-textarea::placeholder { color: #c8beb0; }
+        .note-saved { font-size: 0.72em; color: var(--law); text-align: right; height: 14px; margin-top: 2px; }
+
+        .judges-grid { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+        .judge-chip { font-size: 0.77em; background: #f0ece7; border-radius: 20px; padding: 3px 11px;
+                      color: var(--text); border: 1px solid var(--line); }
+        .judge-chip.chief { background: var(--text); color: #f5f0eb; font-weight: 700; border-color: var(--text); }
+        .judge-chip.dissenter { background: var(--dissent); color: #fff; font-weight: 600; border-color: var(--dissent); }
+
+        .quiz-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 0; }
+        .quiz-item { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+        .quiz-q { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;
+                  padding: 11px 14px; cursor: pointer; font-size: 0.9em; background: var(--card); }
+        .quiz-q:hover { background: #faf8f5; }
+        .quiz-toggle { font-size: 1.1em; color: var(--majority); flex-shrink: 0; font-weight: 300; line-height: 1.4; }
+        .quiz-a { display: none; padding: 11px 14px; background: #f0f4ee; font-size: 0.87em;
+                  line-height: 1.75; border-top: 1px solid var(--line); color: #3d4e38; }
+        .quiz-a.open { display: block; }
+
+        #noResults, #noStarred { display: none; text-align: center; color: var(--sub); padding: 40px 0; font-size: 0.9em; }
+        ::-webkit-scrollbar { display: none; }
+        ::selection { background: #e8ddd0; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>最高法院民事大法庭<br>110年度台上大字第279號</h1>
+    <div class="header-controls">
+        <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="搜尋關鍵字、法條…" oninput="doSearch(this.value)" onkeydown="handleSearchKey(event)">
+            <span class="search-count" id="searchCount"></span>
+            <button class="search-nav" id="prevBtn" onclick="navMatch(-1)" disabled title="上一個">▲</button>
+            <button class="search-nav" id="nextBtn" onclick="navMatch(1)" disabled title="下一個">▼</button>
+        </div>
+        <button id="filterBtn" onclick="toggleFilter()">⭐ 收藏</button>
+    </div>
+    <div class="top-bar">
+        <button class="top-btn" onclick="highlightText()">🖊️</button>
+        <button class="top-btn" onclick="removeHighlight()">🧽</button>
+        <button class="top-btn" onclick="clearHighlights()">🗑️</button>
+        <button class="top-btn" onclick="openExport()">📤</button>
+        <button class="top-btn" id="nightBtn" onclick="toggleNight()">🌙</button>
+        <button class="top-btn done" id="doneBtn" onclick="toggleDone()">朕已閱</button>
+        <span class="done-date" id="doneDateLabel"></span>
+    </div>
+</header>
+
+<div class="container">
+<div class="card" id="case1" data-kw="上訴利益 抵銷抗辯 裁判費 民事訴訟法第466條 民事訴訟法第400條第2項 民事訴訟法第77條之16 上訴第三審 既判力 抵銷債權 訴訟標的 合併計算 上訴利益額 抵銷 被告上訴 裁判費計算 訴訟費用 大法庭 雷稻樟 林月麗">
+    <button class="star-btn" onclick="toggleStar('case1',this)">⭐</button>
+    <h2 class="card-title">
+        有抵銷抗辯案件被告上訴第三審——上訴利益如何計算？上訴裁判費應如何計徵？
+    </h2>
+    <div class="meta-line">裁定日期：中華民國112年6月16日　｜　案號：110年度台上大字第279號　｜　提案庭：最高法院民事第五庭（原第六庭）　｜　併案：111台上627、112台上544、110台上2724</div>
+
+    <!-- 大法庭主文 -->
+    <div class="verdict">
+        <div class="verdict-label">大法庭主文</div>
+        <div class="verdict-main">有抵銷抗辯之被告，就原告請求全部存在、抵銷全部或一部不成立之第二審判決上訴第三審者——</div>
+        <div class="verdict-items">
+            <div class="verdict-item">
+                <div class="verdict-item-num">上訴利益</div>
+                <div class="verdict-item-text">應將所不服第二審認原告請求存在之金額，及經裁判否准之抵銷額，<strong>合併計算之</strong>。</div>
+            </div>
+            <div class="verdict-item">
+                <div class="verdict-item-num">上訴裁判費</div>
+                <div class="verdict-item-text">應於其不服範圍內，按<strong>原告請求之訴訟標的金額</strong>，依民事訴訟法第77條之16第1項規定計徵。</div>
+            </div>
+        </div>
+        <div class="vote-row">
+            <span class="v-chip majority">多數意見 10票 ✔</span>
+            <span class="v-chip dissent-c">不同意見 1票（鄭純惠）</span>
+            <span class="v-chip">裁定日：112.06.16</span>
+            <span class="v-chip">法官共11人</span>
+        </div>
+    </div>
+
+    <!-- 基礎事實 -->
+    <div class="section-heading">基礎事實</div>
+    <div class="fact-box">
+        <p><strong>原告（被上訴人）林月麗</strong>主張：其於民國105年4月15日將不動產出售予被告（上訴人）雷稻樟，因雷稻樟未依約給付第4期分期價金，扣除負欠林月麗之損害賠償債務9,687元後，依買賣契約關係及民法第367條，請求雷稻樟給付<strong>第4期價金249萬0,313元本息</strong>。</p>
+        <p><strong>被告（上訴人）雷稻樟</strong>抗辯：林月麗無上開價金債權，且伊對林月麗有損害賠償⑴425萬元、⑵399萬6,408元；違約金⑴300萬元、⑵48萬2,500元；不當得利60萬元等債權，<strong>得與上開價金債權互為抵銷</strong>，資為抗辯。</p>
+        <p><strong>第二審</strong>認林月麗之請求有理由，雷稻樟所為抵銷抗辯之主動債權均不存在，爰維持第一審所為命雷稻樟給付249萬0,313元本息部分之判決，駁回雷稻樟之上訴。</p>
+        <p><strong>核心問題：</strong>雷稻樟提起第三審上訴，其上訴利益應如何計算？裁判費應如何計徵？</p>
+    </div>
+
+    <!-- 法律爭議 -->
+    <div class="section-heading">法律爭議</div>
+    <div class="issue-box">
+        <p><strong>爭議一：</strong>上訴人（被告）就其所受不利判決全部提起上訴，應如何計算其<strong>上訴利益</strong>？（是否可合併計算訴訟標的請求金額＋被否准之抵銷額？）</p>
+        <p><strong>爭議二：</strong>倘應合併計算其上訴利益，是否依<strong>併計之上訴利益</strong>計徵裁判費？（抑或僅就原告請求訴訟標的金額計徵？）</p>
+        <p><strong>核心張力：</strong>民事訴訟法第400條第2項賦予抵銷債權數額既判力，被告對此有實質財產上之不利益，且其上訴利益影響能否逾越§466第1項上訴利益門檻而提起第三審上訴。</p>
+    </div>
+
+    <!-- 多數理由 -->
+    <div class="section-heading">大法庭裁定理由（多數意見）</div>
+    <div class="opinions">
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈠</div>
+                <span class="op-label">憲法訴訟權保障——上訴利益計算應確保救濟可能性</span>
+            </div>
+            <div class="op-body">
+                <p>憲法第16條保障人民訴訟權，核心在於使人民於權利遭受侵害時得依正當法律程序請求救濟。</p>
+                <p>民事訴訟法第466條第1項所定上訴利益數額，係立法者衡酌第三審救濟制度功能及訴訟事件屬性對訴訟權行使所為之合理限制（釋字第574號解釋參照）。</p>
+                <div class="op-result">
+                    <strong>結論：</strong>上訴利益之計算，應確保人民權利遭受損害時可獲得應有之救濟，以免對訴訟權之行使逾越合理之限制。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈡</div>
+                <span class="op-label">抵銷債權數額之既判力——被告有獨立上訴利益</span>
+            </div>
+            <div class="op-body">
+                <p>民事訴訟法第400條第2項規定：「主張抵銷之請求，其成立與否經裁判者，以主張抵銷之額為限，有既判力。」</p>
+                <p>法院認定原告請求債權存在時，須就非訴訟標的而被告為抵銷抗辯之另一債權（抵銷債權），其成立與否及數額，在兩造充分攻防後，<strong>併為實質認定</strong>，以為原告之訴有無理由之終局判決。</p>
+                <p>§400第2項所稱「成立與否經裁判者」，自應併指主張抵銷之額<strong>成立及不成立部分</strong>，以發揮裁判解決紛爭之功能。</p>
+                <div class="op-result">
+                    <strong>結論：</strong>被告之抵銷債權數額一旦被法院認定不存在，確定判決就抵銷債權法律關係之判斷，即成為規範當事人間法律關係之基準，嗣後同一事項於訴訟中再起爭執時，當事人不得為與該確定判決意旨相反之主張，法院亦不得為相反之判斷。被告因此有實質財產上之不利益，具有上訴利益。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈢</div>
+                <span class="op-label">上訴利益之計算——合併計算訴訟標的請求金額＋被否准抵銷額</span>
+            </div>
+            <div class="op-body">
+                <p>提起上訴，為當事人對所受不利益之終局判決聲明不服之方法。依民事訴訟法第481條準用第441條第1項第3款，被告上訴第三審，應於上訴狀表明「對於第二審判決不服之程度，及應如何廢棄或變更之聲明」。</p>
+                <p>有抵銷抗辯之事件，「不服之程度」應同時表明：</p>
+                <ul>
+                    <li>就<strong>原告請求經第二審法院准許而不服之數額</strong></li>
+                    <li>就<strong>被告抵銷抗辯經第二審法院否准而不服之數額</strong></li>
+                </ul>
+                <p>被告因原判決而實際所受財產上之不利益，已超過限制上訴第三審數額，卻無請求再救濟之機會，致對其訴訟權行使之限制，逾越合理範圍。</p>
+                <div class="op-result">
+                    <strong>結論：</strong>應就被告表明不服原判決程度之數額（含對原法院就原告請求債權認定存在、就被告抵銷債權認定不存在），<strong>合併計算其上訴利益</strong>，始可避免被告因原判決而實際所受財產上之不利益，已超過限制上訴第三審數額，卻無請求再救濟之機會。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈣</div>
+                <span class="op-label">裁判費之計徵——依原告請求訴訟標的金額計徵，不重複</span>
+            </div>
+            <div class="op-body">
+                <p>裁判費係國家向人民徵收之規費，徵收項目及數額應依法律規範，不得於法未明定之情形下，逾課予當事人繳納義務。</p>
+                <p>三種上訴情形，分別處理：</p>
+                <ul>
+                    <li><strong>情形一（僅就原告請求存在上訴）：</strong>目的在否認原告請求，使准許抵銷之裁判失所依附，回復抵銷債權不致因抵銷而消滅之狀態——故上訴利益即為其否認之原告請求，應據此計徵裁判費。</li>
+                    <li><strong>情形二（僅就抵銷不成立上訴）：</strong>目的在解免自己關於原告請求之給付義務，法無徵收裁判費之明文；如上訴有理由，將可與原告請求互為抵銷，減少或免除其給付義務，獲有利之裁判結果——此時上訴裁判費係就原告訴訟標的<strong>將受影響之部分</strong>計徵，非就抵銷請求為徵收。</li>
+                    <li><strong>情形三（兩者合併上訴）：</strong>因被告本應就原告請求部分繳納上訴裁判費，為免重複徵收，致生兩造額外裁判費之負擔，應<strong>僅得就被告所不服第二審認原告請求存在之額計徵裁判費</strong>。</li>
+                </ul>
+                <div class="op-result">
+                    <strong>結論（主文）：</strong>上訴裁判費應於其不服範圍內，<strong>按原告請求之訴訟標的金額</strong>，依§77條之16第1項規定計徵，以免重複徵收，並符法制。
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 不同意見書 -->
+    <div class="section-heading">不同意見書（法官鄭純惠）</div>
+    <div class="dissent-judges">
+        ✍️ 提出不同意見之法官（1名）：<strong>鄭純惠</strong>
+    </div>
+    <div class="d-opinions">
+
+        <div class="d-op">
+            <div class="d-op-head">
+                <div class="d-op-num">壹</div>
+                <span class="d-op-label">程序方面：本件提案程序不合法，應予駁回</span>
+            </div>
+            <div class="d-op-body">
+                <p><strong>⑴ 提案事實與個案事實不符：</strong>本件提案之法律爭議為「上訴人就其所受不利判決全部提起上訴，應如何計算其上訴利益」，提案之原因事實應符合「上訴人就其所受不利判決全部提起上訴」。然依大法庭準備程序，上訴人訴訟代理人明白表示「沒有不服，我們只就抵銷抗辯敗訴部分提起上訴而已」——可見個案事實是<strong>僅就抵銷抗辯不利判斷提起上訴</strong>，並非全部不服，與提案事實不符。</p>
+                <p><strong>⑵ 追加提案與歧異提案要件不符：</strong>法院組織法第51條之2第1項所稱「歧異」提案，包括積極歧異（先前裁判已有複數紛歧見解）及潛在歧異（擬與先前裁判為不同見解裁判）。本件追加提案，未提出「複數」紛歧見解之先前裁判，亦未提出無紛歧之各庭已作成之「其他終局裁判」，僅提出提案庭就該未終結之受理案件自為之命補費裁定，不符「先前裁判」之要件。</p>
+                <div class="d-op-result">
+                    <strong>結論：</strong>本件提案及追加提案均與個案事實不符，程序要件既有未合，大法庭裁定所表示之法律見解能否拘束個案，非無疑問。大法庭應依注意事項第36條規定以裁定駁回，逕行實體審理，程序上自有未合。
+                </div>
+            </div>
+        </div>
+
+        <div class="d-op">
+            <div class="d-op-head">
+                <div class="d-op-num">貳</div>
+                <span class="d-op-label">實體方面：抵銷數額有既判力，應算入上訴利益並計徵裁判費</span>
+            </div>
+            <div class="d-op-body">
+                <p>不同意見書贊同多數見解關於「抵銷數額有既判力、被告有上訴利益並應合併計算」之基本立場，但對多數見解之<strong>裁判費計徵部分</strong>提出批評：</p>
+                <ul>
+                    <li>多數裁定主文關於上訴利益之計算，所稱「不服第二審認原告請求存在之金額」，與關於上訴裁判費之計徵，所稱「於其不服範圍內，按原告請求之訴訟標的金額」，用語不同，如何解讀，實難懸揣，恐生將來實務上適用、運作之爭議。</li>
+                    <li>民事訴訟採有償主義，裁判費之徵收應以原告（或上訴人）所得受之起訴（或上訴）利益為標準。上訴人就其主張之抵銷數額經裁判所受之不利益，既得算入其上訴利益額，自<strong>應計徵裁判費</strong>，始符民事訴訟為有償之原則。</li>
+                    <li>本件多數見解謂就此部分毋庸徵收上訴裁判費，亦失公平，且裁判費之徵收，涉及司法資源之有效利用，隱含防止濫行起訴或上訴之目的，攸關公益。</li>
+                </ul>
+                <div class="d-op-result">
+                    <strong>不同意見之核心：</strong>上訴人就其主張之抵銷數額經裁判所受之不利益，既算入其上訴利益額，自應一併計徵裁判費，始符有償主義原則，本席難以同意多數見解就此部分毋庸計徵之論述。
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 快速對照 -->
+    <div class="section-heading">多數意見 v. 不同意見　快速對照</div>
+    <table class="compare-table">
+        <thead>
+            <tr>
+                <th class="th-issue">爭點</th>
+                <th class="th-majority">多數意見（10票）</th>
+                <th class="th-dissent">不同意見（鄭純惠，1票）</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="td-issue">提案程序</td>
+                <td class="td-majority">程序合法，進行實體審理。</td>
+                <td class="td-dissent">✘ 提案事實與個案事實不符（上訴人僅就抵銷抗辯敗訴部分上訴，非就不利判決「全部」上訴）；追加提案亦不符歧異提案要件，應裁定駁回。</td>
+            </tr>
+            <tr>
+                <td class="td-issue">上訴利益計算</td>
+                <td class="td-majority">✔ 應合併計算：所不服第二審認原告請求存在之金額＋經裁判否准之抵銷額。</td>
+                <td class="td-dissent">（同意多數）：抵銷數額有既判力，被告有獨立上訴利益，應合併計算。</td>
+            </tr>
+            <tr>
+                <td class="td-issue">上訴裁判費計徵</td>
+                <td class="td-majority">✔ 於不服範圍內，<strong>按原告請求之訴訟標的金額</strong>計徵，不就被否准之抵銷額另徵——以免重複徵收。</td>
+                <td class="td-dissent">✘ 抵銷數額既已算入上訴利益，<strong>自應一併計徵裁判費</strong>，始符有償主義。多數見解毋庸計徵，亦失公平，且有礙防止濫訴之公益功能。</td>
+            </tr>
+            <tr>
+                <td class="td-issue">裁定拘束力</td>
+                <td class="td-majority">大法庭裁定具法院組織法§51-10之拘束力。</td>
+                <td class="td-dissent">✘ 因程序不合法，大法庭裁定所表示之法律見解能否拘束個案，非無疑問；且裁定主文關於旁論部分，無拘束力。</td>
+            </tr>
+            <tr>
+                <td class="td-issue">主文用語一致性</td>
+                <td class="td-majority">主文「不服第二審認原告請求存在之金額」與「按原告請求之訴訟標的金額計徵」係就不同情形之分別規定。</td>
+                <td class="td-dissent">✘ 主文用語前後不同，且裁定理由中「應僅得就被告所不服第二審認原告請求存在之額計徵裁判費」，與「仍應於其不服範圍內，按原告請求之訴訟標的金額計徵」，亦非相同，如何解讀，實難懸揣，恐生實務爭議。</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- 考試陷阱 -->
+    <div class="section-heading">⚠️ 考試陷阱提示</div>
+    <div class="trap-box">
+        <div class="trap-title">📌 常見混淆點</div>
+        <div class="trap-item">
+            <div class="trap-q">Q：本件大法庭裁定的票數為何？有幾位法官提出不同意見書？</div>
+            <div class="trap-a">A：<strong>多數意見10票，不同意見1票</strong>（法官鄭純惠）。本件並非全體一致，與113年度台簡抗大字第246號（全體一致）不同，應注意區分。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：上訴利益與裁判費計算的關係為何？多數見解是否主張兩者應一致？</div>
+            <div class="trap-a">A：<strong>不一致。</strong>多數見解認為上訴利益應合併計算（訴訟標的金額＋被否准之抵銷額），但上訴裁判費<strong>僅</strong>按原告請求之訴訟標的金額計徵，不另就被否准之抵銷額加徵——理由是避免重複徵收。不同意見則主張兩者應一致，算入上訴利益者，自應計徵裁判費。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：民事訴訟法第400條第2項規定的既判力範圍為何？</div>
+            <div class="trap-a">A：§400第2項：「主張抵銷之請求，其成立與否經裁判者，以主張抵銷之額為限，有既判力。」大法庭認為「成立與否」係指主張抵銷之額<strong>成立及不成立部分</strong>均有既判力，包括被告主張抵銷但法院認定不成立（否准）之部分，亦拘束當事人，嗣後不得再為相反主張。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：大法庭裁定理由中的「旁論」有無拘束力？</div>
+            <div class="trap-a">A：<strong>無。</strong>依法院組織法第51條之10，拘束力係指提案庭就提交案件，應以大法庭裁定所表示之法律見解為基礎，為本案終局裁判。但大法庭裁定內之<strong>旁論</strong>（非針對法律爭議核心所為之論述）無拘束提案庭之拘束力（注意事項第48條）。不同意見書即援引此點，主張裁定主文關於被告僅就抵銷請求一部不成立上訴之論述，屬旁論。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：不同意見書的「程序不合法」論點是指什麼？</div>
+            <div class="trap-a">A：不同意見書（鄭純惠）指出兩點：⑴個案上訴人明確表示「只就抵銷抗辯敗訴部分提起上訴」，並非「就所受不利判決全部提起上訴」，與提案所描述之事實不符；⑵追加提案未提出「複數」紛歧見解之先前裁判，不符歧異提案要件。因此認大法庭應以裁定駁回，逕行實體審理，程序上有未合。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：三種不同上訴情形下，裁判費計徵方式有何差異？</div>
+            <div class="trap-a">A：⑴ <strong>僅就原告請求存在不服上訴</strong>：按原告請求之訴訟標的金額計徵。⑵ <strong>僅就抵銷不成立不服上訴</strong>：上訴裁判費係就原告訴訟標的將受影響之部分計徵，非就抵銷請求為徵收（法無明文）。⑶ <strong>兩者合併上訴</strong>：因被告本應就原告請求部分繳納上訴裁判費，為免重複徵收，應<strong>僅得就被告所不服第二審認原告請求存在之額計徵裁判費</strong>。</div>
+        </div>
+    </div>
+
+    <!-- 自我測驗 -->
+    <div class="section-heading">自我測驗</div>
+    <div class="quiz-list">
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>1. 本件大法庭裁定主文結論為何？（上訴利益＋裁判費各為何）</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">
+                <strong>上訴利益：</strong>應將所不服第二審認原告請求存在之金額，及經裁判否准之抵銷額，<strong>合併計算之</strong>。<br><br>
+                <strong>上訴裁判費：</strong>應於其不服範圍內，<strong>按原告請求之訴訟標的金額</strong>，依民事訴訟法第77條之16第1項規定計徵。<br><br>
+                （注意：兩者計算基礎不同，上訴利益合併計算，但裁判費不就被否准之抵銷額另徵。）
+            </div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>2. 為何抵銷債權被否准之部分，被告具有「上訴利益」？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">
+                依民事訴訟法第400條第2項，主張抵銷之請求，其成立與否經裁判者，以主張抵銷之額為限，<strong>有既判力</strong>。法院認定抵銷債權不存在之裁判，確定後即成為規範當事人間法律關係之基準，當事人嗣後不得為與確定判決意旨相反之主張，法院亦不得為相反之判斷。被告因此喪失該抵銷債權，受有<strong>實質財產上之不利益</strong>，具有上訴利益，且應將此部分算入以判斷能否逾越§466第1項之上訴利益門檻。
+            </div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>3. 多數見解為何認為上訴裁判費不就被否准之抵銷額計徵？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">
+                因被告合併就原告請求存在及抵銷不成立部分上訴時，被告<strong>本應就原告請求部分繳納上訴裁判費</strong>。若再另就被否准之抵銷額加徵，將<strong>重複徵收</strong>，致生兩造額外裁判費之負擔。裁判費係依法律規範徵收，不得於法未明定之情形下逾課，故應僅得就被告所不服第二審認原告請求存在之額計徵裁判費。
+            </div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>4. 不同意見書（鄭純惠）在程序面的核心批評為何？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">
+                兩點：⑴ <strong>提案事實與個案事實不符</strong>：本件法律爭議設定為「上訴人就其所受不利判決全部提起上訴」，但個案上訴人訴訟代理人明白表示「只就抵銷抗辯敗訴部分提起上訴」，並非就不利判決全部不服，與提案事實不符，大法庭應裁定駁回。<br>⑵ <strong>追加提案不符歧異提案要件</strong>：未提出「複數」紛歧見解之先前裁判，亦未提出無紛歧之各庭已作成之「其他終局裁判」，不符法院組織法§51-2第1項「歧異」之要件。
+            </div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>5. 不同意見書在實體面的核心批評為何？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">
+                不同意見認為：民事訴訟採<strong>有償主義</strong>，裁判費之徵收應以上訴人所得受之上訴利益為標準。上訴人就其主張之抵銷數額經裁判所受之不利益，既已算入其上訴利益額，自應<strong>一併計徵裁判費</strong>，始符有償主義原則。多數見解就此部分毋庸計徵，亦失公平；且裁判費之徵收涉及司法資源之有效利用，隱含防止濫行上訴之公益目的，多數見解有礙此功能。
+            </div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>6. 大法庭裁定「旁論」的拘束力為何？本件不同意見書如何運用此概念？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">
+                依法院組織法第51條之10，提案庭應以大法庭裁定所表示之法律見解為基礎為終局裁判，但<strong>旁論無拘束力</strong>（注意事項第48條）。且大法庭裁定之拘束力，限於與提案相同事實之同一法律爭議。<br><br>不同意見書援引此概念，認為裁定主文及理由關於「被告對於第二審認其主張抵銷之請求一部不成立之判決，提起第三審上訴部分」，核屬<strong>旁論</strong>（因提案之法律爭議為「全部」上訴之情形），不生法院組織法§51-10所定之拘束力。
+            </div>
+        </div>
+    </div>
+
+    <!-- 法條 -->
+    <div class="law-ref">
+        <strong>相關法條：</strong>民事訴訟法§400第2項（抵銷之既判力）；§441第1項第3款（上訴狀應記載事項）；§466第1項（財產權上訴第三審利益額限制）；§481（第三審準用規定）；§77條之16第1項（裁判費計徵）；法院組織法§51條之2第1項（歧異提案）；§51條之10（大法庭裁定拘束力）；憲法§16（訴訟權）；釋字第574號（上訴利益限制合憲性）
+    </div>
+
+    <!-- 合議庭 -->
+    <details>
+        <summary>大法庭組成（11名法官）</summary>
+        <div style="padding-top:10px;">
+            <div class="judges-grid">
+                <span class="judge-chip chief">審判長　沈方維</span>
+                <span class="judge-chip">高孟焄</span>
+                <span class="judge-chip">袁靜文</span>
+                <span class="judge-chip">林恩山</span>
+                <span class="judge-chip">陳玉完</span>
+                <span class="judge-chip">盧彥如</span>
+                <span class="judge-chip">李寶堂</span>
+                <span class="judge-chip">鍾任賜</span>
+                <span class="judge-chip dissenter">鄭純惠（不同意見）</span>
+                <span class="judge-chip">王本源</span>
+                <span class="judge-chip">石有為</span>
+            </div>
+            <p style="font-size:0.82em;color:var(--sub);margin:10px 0 0;">書記官：林蔚菁　｜　裁定日期：中華民國112年6月16日</p>
+        </div>
+    </details>
+
+    <!-- 參考 -->
+    <details>
+        <summary>併案案號與參考法律依據</summary>
+        <div style="padding-top:10px;">
+            <div class="ref-case">
+                <div class="ref-case-title">併案：111年度台上字第627號（因特美 v. 優協）</div>
+                <p style="margin:0;">優協公司請求委託行銷費用134萬7,417元，因特美公司以損失126萬2,622元（或106萬5,851元跌價損失）為抵銷抗辯。第二審認優協請求有理由，抵銷抗辯不可採。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">併案：112年度台上字第544號（新照明 v. 晶睿）</div>
+                <p style="margin:0;">晶睿公司請求買賣價金138萬6,000元，新照明公司以溢付稅款47萬4,308元及其他債權為抵銷抗辯。第二審認晶睿請求有理由，抵銷抗辯部分有理由（1,089元範圍內），命新照明給付76萬4,794元。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">併案：110年度台上字第2724號（蔦君室內裝修 v. 台北榮民總醫院）</div>
+                <p style="margin:0;">蔦君公司請求工程款727萬6,980元，榮總以違約金、額外損費等多項債權為抵銷抗辯。第二審認蔦君請求部分有理由，榮總抵銷僅送審逾期違約金298萬2,440元有理由，改判榮總給付。</p>
+            </div>
+            <div class="ref-case d">
+                <div class="ref-case-title">【不同意見引用】釋字第574號解釋</div>
+                <p style="margin:0;">民事訴訟法第466條第1項所定上訴利益數額限制，係立法者衡酌第三審救濟制度功能及訴訟事件屬性對人民訴訟權行使所為之合理限制，與憲法第16條保障訴訟權之意旨尚無牴觸。</p>
+            </div>
+        </div>
+    </details>
+
+    <div class="note-toggle" onclick="toggleNote('n1')">✏️ 我的小結</div>
+    <div class="note-area" id="n1">
+        <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n1',this.value)"></textarea>
+        <div class="note-saved" id="n1-saved"></div>
+    </div>
+</div>
+
+<div id="noResults">查無符合的內容，請試試其他關鍵字。</div>
+<div id="noStarred">還沒有收藏的項目，點卡片右上角的 ⭐ 加入收藏。</div>
+</div>
+
+<script>
+const NIGHT_KEY='night_mode_pref';
+function toggleNight(){const on=document.body.classList.toggle('night-mode');localStorage.setItem(NIGHT_KEY,on?'1':'0');document.getElementById('nightBtn').textContent=on?'☀️':'🌙';}
+(function(){if(localStorage.getItem(NIGHT_KEY)==='1'){document.body.classList.add('night-mode');const b=document.getElementById('nightBtn');if(b)b.textContent='☀️';}})();
+const STORE_KEY='110_279_grand_notes',STAR_KEY='110_279_grand_stars';
+function loadNotes(){try{return JSON.parse(localStorage.getItem(STORE_KEY))||{};}catch{return{};}}
+function loadStars(){try{return JSON.parse(localStorage.getItem(STAR_KEY))||{};}catch{return{};}}
+function saveAllNotes(d){localStorage.setItem(STORE_KEY,JSON.stringify(d));}
+function saveAllStars(d){localStorage.setItem(STAR_KEY,JSON.stringify(d));}
+(function(){const n=loadNotes(),s=loadStars();
+  Object.entries(n).forEach(([id,v])=>{const a=document.getElementById(id);if(!a)return;const t=a.querySelector('textarea');if(t)t.value=v;if(v)a.classList.add('open');});
+  Object.entries(s).forEach(([id,v])=>{if(!v)return;const b=document.querySelector(`#${id} .star-btn`);if(b)b.classList.add('starred');});
+})();
+function toggleStar(id,btn){const s=loadStars();const now=!btn.classList.contains('starred');btn.classList.toggle('starred',now);s[id]=now;saveAllStars(s);if(filterActive)applyFilter();}
+let filterActive=false;
+function toggleFilter(){filterActive=!filterActive;document.getElementById('filterBtn').classList.toggle('active',filterActive);document.getElementById('searchInput').value='';clearSearchHighlights();updateSearchUI([],0);applyFilter();}
+function applyFilter(){const s=loadStars();const q=document.getElementById('searchInput').value.trim().toLowerCase();let any=false;
+  document.querySelectorAll('.card').forEach(c=>{const kw=(c.dataset.kw||'').toLowerCase();const txt=c.textContent.toLowerCase();
+  const ms=!q||kw.includes(q)||txt.includes(q);const mf=!filterActive||!!s[c.id];const show=ms&&mf;
+  c.classList.toggle('hidden',!show);if(show)any=true;});
+  document.getElementById('noResults').style.display=(!any&&!filterActive)?'block':'none';
+  document.getElementById('noStarred').style.display=(!any&&filterActive)?'block':'none';}
+let _matches=[],_cur=-1;
+function clearSearchHighlights(){document.querySelectorAll('mark.search-hl').forEach(m=>{const p=m.parentNode;p.replaceChild(document.createTextNode(m.textContent),m);p.normalize();});}
+function highlightInNode(node,re){if(node.nodeType===3){const text=node.nodeValue;const frag=document.createDocumentFragment();let last=0,m;re.lastIndex=0;while((m=re.exec(text))!==null){if(m.index>last)frag.appendChild(document.createTextNode(text.slice(last,m.index)));const mk=document.createElement('mark');mk.className='search-hl';mk.textContent=m[0];frag.appendChild(mk);last=re.lastIndex;}if(last===0)return;frag.appendChild(document.createTextNode(text.slice(last)));node.parentNode.replaceChild(frag,node);return;}if(node.nodeType===1){const tag=node.tagName;if(tag==='SCRIPT'||tag==='STYLE'||tag==='TEXTAREA'||tag==='INPUT')return;if(node.classList&&node.classList.contains('search-hl'))return;[...node.childNodes].forEach(c=>highlightInNode(c,re));}}
+function doSearch(q){clearSearchHighlights();_matches=[];_cur=-1;const qt=(q||'').trim();if(!qt){updateSearchUI([],0);applyFilter();return;}applyFilter();const esc=qt.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');const re=new RegExp(esc,'gi');document.querySelectorAll('.container .card:not(.hidden)').forEach(card=>{highlightInNode(card,re);});_matches=[...document.querySelectorAll('mark.search-hl')];if(_matches.length){_cur=0;setCurrent(0);}updateSearchUI(_matches,_cur);}
+function setCurrent(idx){_matches.forEach((m,i)=>m.classList.toggle('current',i===idx));if(_matches[idx])_matches[idx].scrollIntoView({behavior:'smooth',block:'center'});}
+function navMatch(dir){if(!_matches.length)return;_cur=(_cur+dir+_matches.length)%_matches.length;setCurrent(_cur);updateSearchUI(_matches,_cur);}
+function updateSearchUI(matches,cur){const cnt=document.getElementById('searchCount');const prev=document.getElementById('prevBtn');const next=document.getElementById('nextBtn');if(!matches.length){cnt.textContent='';prev.disabled=true;next.disabled=true;return;}cnt.textContent=(cur+1)+'/'+matches.length;prev.disabled=false;next.disabled=false;}
+function handleSearchKey(e){if(e.key==='Enter'){e.shiftKey?navMatch(-1):navMatch(1);}if(e.key==='Escape'){document.getElementById('searchInput').value='';doSearch('');}}
+function toggleNote(id){document.getElementById(id).classList.toggle('open');}
+const timers={};
+function saveNote(id,v){clearTimeout(timers[id]);timers[id]=setTimeout(()=>{const n=loadNotes();n[id]=v;saveAllNotes(n);const el=document.getElementById(id+'-saved');if(el){el.textContent='已儲存';setTimeout(()=>el.textContent='',1500);}},500);}
+let savedRange=null;
+document.addEventListener('selectionchange',()=>{const s=window.getSelection();if(s&&!s.isCollapsed&&s.rangeCount)savedRange=s.getRangeAt(0).cloneRange();});
+function highlightText(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;
+  if(!r||r.collapsed){alert('💡 請先反白想要標記的文字');return;}
+  const sp=document.createElement('span');sp.className='hl';sp.style.cssText='background:#f0d98a;border-radius:2px;';
+  try{r.surroundContents(sp);savedRange=null;}catch{alert('💡 請選取同一段落內的文字');}s&&s.removeAllRanges();}
+function removeHighlight(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;
+  if(!r||r.collapsed){alert('💡 請先反白想擦除標記的文字');return;}
+  const anc=r.commonAncestorContainer.nodeType===1?r.commonAncestorContainer:r.commonAncestorContainer.parentElement;
+  anc.querySelectorAll('span.hl').forEach(sp=>{if(r.intersectsNode(sp)){const p=sp.parentNode;while(sp.firstChild)p.insertBefore(sp.firstChild,sp);p.removeChild(sp);}});
+  savedRange=null;s&&s.removeAllRanges();}
+function clearHighlights(){const sp=document.querySelectorAll('span.hl');if(!sp.length)return;
+  if(confirm('確定要清除所有重點標記嗎？')){sp.forEach(s=>{const p=s.parentNode;while(s.firstChild)p.insertBefore(s.firstChild,s);p.removeChild(s);});}}
+function openExport(){
+  let out='最高法院民事大法庭 110年度台上大字第279號\n'+'═'.repeat(44)+'\n\n';
+  out+='【主文】\n上訴利益：應合併計算所不服第二審認原告請求存在之金額及經裁判否准之抵銷額。\n上訴裁判費：於其不服範圍內，按原告請求之訴訟標的金額，依§77條之16第1項計徵。\n\n';
+  document.querySelectorAll('.op,.d-op').forEach(op=>{
+    const head=op.querySelector('.op-label,.d-op-label')?.textContent.trim()||'';
+    out+=`▌${head}\n`;
+    op.querySelectorAll('.op-body p,.op-body li,.op-result,.d-op-body p,.d-op-body li,.d-op-result').forEach(el=>{
+      const t=el.textContent.trim();if(t)out+=(el.tagName==='LI'?'  • ':'')+t+'\n';});
+    out+='\n';});
+  const ta=document.querySelector('.note-textarea');if(ta&&ta.value.trim())out+='✏️ 小結：\n'+ta.value.trim()+'\n\n';
+  out+='═'.repeat(44)+'\n';
+  const b=new Blob([out.trim()],{type:'text/plain;charset=utf-8'});
+  const u=URL.createObjectURL(b);const a=document.createElement('a');
+  a.href=u;a.download='110台上大字第279號_抵銷抗辯上訴利益裁判費.txt';a.click();URL.revokeObjectURL(u);}
+function toggleQuiz(el){const ans=el.nextElementSibling;const tog=el.querySelector('.quiz-toggle');if(ans.classList.contains('open')){ans.classList.remove('open');tog.textContent='＋';}else{ans.classList.add('open');tog.textContent='－';}}
+const REG_KEY='exam_completion_registry';
+function _loadReg(){try{return JSON.parse(localStorage.getItem(REG_KEY))||{};}catch{return{};}}
+function _saveReg(r){try{localStorage.setItem(REG_KEY,JSON.stringify(r));}catch{}}
+function _file(){const p=location.pathname.split('/');return decodeURIComponent(p[p.length-1]||'');}
+function _fmt(ts){const d=new Date(ts);const date=(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();const time=d.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false});return date+' '+time;}
+function _updateDate(){const r=_loadReg();const k=_file()||'case_civil_grand_110_279_study.html';const l=document.getElementById('doneDateLabel');if(!l)return;l.textContent=(r[k]&&r[k].done&&r[k].ts)?_fmt(r[k].ts):'';}
+const _INDEX_CARD_ID='c_279';
+function _syncIndex(done){try{const r=JSON.parse(localStorage.getItem('gc_reads')||'{}');r[_INDEX_CARD_ID]=done;localStorage.setItem('gc_reads',JSON.stringify(r));}catch(e){}}
+function toggleDone(){const btn=document.getElementById('doneBtn');const r=_loadReg();const k=_file()||'case_civil_grand_110_279_study.html';const done=r[k]&&r[k].done;
+  if(done){delete r[k];_saveReg(r);btn.classList.remove('active');_syncIndex(false);}
+  else{const now=new Date();r[k]={done:true,score:null,total:null,ts:now.getTime(),tsLabel:now.toLocaleDateString('zh-TW')+' '+now.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false})};_saveReg(r);btn.classList.add('active');_syncIndex(true);}
+  _updateDate();}
+(function(){const r=_loadReg();const k=_file()||'case_civil_grand_110_279_study.html';if(r[k]&&r[k].done){const b=document.getElementById('doneBtn');if(b)b.classList.add('active');}_updateDate();})();
+</script>
+</body>
+</html>

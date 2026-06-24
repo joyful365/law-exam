@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>112年度台上大字第544號 民事大法庭裁定</title>
+    <style>
+        :root {
+            --bg:#f5f0eb;--card:#ffffff;--text:#3d3530;--sub:#8c7b6b;--line:#ddd8d0;
+            --majority:#9e5c45;--law:#5a6e4e;--dissent:#b07d4a;--trap:#f5f0d8;--header-bg:#5c4f47;
+        }
+        body.night-mode{--bg:#1a1714;--card:#252220;--text:#d4cec8;--sub:#8a7d72;--line:#383330;--majority:#b87060;--law:#6a8a5e;--dissent:#c4935a;--trap:#2a2518;--header-bg:#111010;}
+        body.night-mode header{box-shadow:0 2px 8px rgba(0,0,0,0.5);}
+        body.night-mode .top-bar{background:#1e1b18;}
+        body.night-mode .top-btn{background:#3a3530;}
+        body.night-mode .fact-box,body.night-mode .issue-box{background:#1e1b18;}
+        body.night-mode .op-head{background:#2a2520;}
+        body.night-mode .op-body{background:var(--card);}
+        body.night-mode .op-result{background:#2a2018;}
+        body.night-mode .d-op-head{background:#261f14;}
+        body.night-mode .d-op-body{background:#201c14;}
+        body.night-mode .d-op-result{background:#261f14;}
+        body.night-mode .dissent-judges{background:#261f14;}
+        body.night-mode .compare-table th.th-issue{background:#2a1e18;}
+        body.night-mode .compare-table td.td-issue{background:#2a1e18;}
+        body.night-mode .compare-table td.td-majority{background:#1e1612;}
+        body.night-mode .compare-table td.td-dissent{background:#1e1814;}
+        body.night-mode .ref-case{background:#242018;}
+        body.night-mode .law-ref{background:#1c2018;}
+        body.night-mode .note-textarea{background:#1e1b18;color:var(--text);border-color:var(--line);}
+        body.night-mode .judge-chip{background:#2a2520;border-color:var(--line);}
+        body.night-mode .judge-chip.chief{background:#3a3530;}
+        body.night-mode mark.search-hl{background:#7a6010;color:#f0e8c8;}
+        body.night-mode mark.search-hl.current{background:#c47000;color:#fff;}
+        body.night-mode .verdict{background:#2e2a26;}
+        body.night-mode .trap-box{border-color:#5a5020;}
+        body.night-mode .trap-title{color:#c8a840;}
+        body.night-mode .trap-item{border-left-color:#7a6830;}
+        body.night-mode #nightBtn{background:#4a4030;color:#e8d898;font-weight:700;}
+        body.night-mode .quiz-q{background:var(--card);}
+        body.night-mode .quiz-q:hover{background:#2a2520;}
+        body.night-mode .quiz-a{background:#1c2018;color:#9fbf90;}
+        body{transition:background 0.3s,color 0.3s;}
+        .card{transition:background 0.3s,border-color 0.3s;}
+        *{box-sizing:border-box;}
+        body{font-family:"Helvetica Neue",Helvetica,"PingFang TC","LiHei Pro","Microsoft JhengHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.85;font-size:16px;margin:0;padding:0 0 60px;}
+        header{background:var(--header-bg);color:#f5f0eb;padding:16px 16px 8px;text-align:center;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.2);}
+        header h1{margin:0 0 10px;font-size:1.05em;line-height:1.5;font-weight:600;letter-spacing:0.02em;color:#ffffff;}
+        .header-controls{display:flex;gap:8px;align-items:center;}
+        .search-wrap{position:relative;flex:1;display:flex;align-items:center;gap:4px;}
+        #searchInput{flex:1;padding:8px 14px 8px 32px;border:none;border-radius:6px;font-size:14px;background:rgba(245,240,235,0.15);color:#f5f0eb;outline:none;}
+        #searchInput::placeholder{color:rgba(245,240,235,0.45);}
+        #searchInput:focus{background:rgba(245,240,235,0.25);}
+        .search-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:13px;opacity:0.5;pointer-events:none;}
+        .search-count{font-size:12px;color:rgba(255,255,255,0.7);white-space:nowrap;min-width:44px;text-align:center;}
+        .search-nav{background:rgba(255,255,255,0.13);border:none;border-radius:6px;color:white;font-size:13px;padding:6px 8px;cursor:pointer;line-height:1;}
+        .search-nav:hover{background:rgba(255,255,255,0.25);}
+        .search-nav:disabled{opacity:0.3;cursor:default;}
+        mark.search-hl{background:#ffe066;color:#1a1a1a;border-radius:2px;padding:0 1px;}
+        mark.search-hl.current{background:#ff8c00;color:#fff;border-radius:3px;outline:2px solid #ff8c00;}
+        #filterBtn{background:rgba(245,240,235,0.15);border:none;border-radius:6px;color:#f5f0eb;font-size:13px;padding:8px 12px;cursor:pointer;white-space:nowrap;}
+        #filterBtn.active{background:var(--dissent);color:#fff;font-weight:bold;}
+        .top-bar{background:#e8e2da;padding:5px 14px;display:flex;gap:6px;justify-content:flex-end;flex-wrap:nowrap;}
+        .top-btn{background:#b0a898;color:#fff;border:none;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;transition:opacity 0.15s;}
+        .top-btn:hover{opacity:0.8;}
+        .top-btn.done{background:#8c7b6b;}
+        .top-btn.done.active{background:linear-gradient(135deg,#b8860b,#daa520);color:#fff8e1;font-weight:700;box-shadow:0 0 8px rgba(218,165,32,0.5);}
+        .done-date{font-size:11px;color:#a0a0a0;white-space:nowrap;align-self:center;font-weight:500;}
+        .container{padding:18px 16px;max-width:640px;margin:0 auto;}
+        @media(min-width:768px){.container{max-width:880px;padding:24px 20px;}body{font-size:17px;}header h1{font-size:1.15em;}}
+        .card{background:var(--card);border-radius:14px;padding:24px 22px;margin-bottom:24px;box-shadow:0 1px 6px rgba(61,53,48,0.08);position:relative;border:1px solid var(--line);}
+        .card.hidden{display:none;}
+        .star-btn{position:absolute;top:18px;right:18px;background:none;border:none;font-size:20px;cursor:pointer;opacity:0.15;transition:opacity 0.15s;padding:0;}
+        .star-btn.starred{opacity:1;}
+        .card-title{color:var(--text);font-size:1.15em;font-weight:700;margin:0 0 4px;padding-right:30px;line-height:1.6;}
+        .meta-line{font-size:0.75em;color:var(--sub);margin-bottom:20px;letter-spacing:0.04em;}
+        .verdict{background:#4a3f38;color:#f5f0eb;border-radius:10px;padding:16px 18px;margin-bottom:22px;}
+        .verdict-label{font-size:0.66em;letter-spacing:0.14em;opacity:0.5;margin-bottom:6px;}
+        .verdict-main{font-size:1.05em;font-weight:700;line-height:1.6;margin-bottom:10px;color:#ffffff;}
+        .verdict-items{display:flex;flex-direction:column;gap:10px;margin-bottom:12px;}
+        .verdict-item{border-left:3px solid rgba(245,240,235,0.35);padding-left:12px;}
+        .verdict-item-num{font-size:0.7em;opacity:0.55;margin-bottom:2px;}
+        .verdict-item-text{font-size:0.97em;font-weight:400;line-height:1.55;opacity:0.85;}
+        .vote-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px;padding-top:10px;border-top:1px solid rgba(245,240,235,0.15);}
+        .v-chip{font-size:0.72em;background:rgba(245,240,235,0.1);border-radius:20px;padding:3px 10px;white-space:nowrap;color:rgba(245,240,235,0.75);}
+        .v-chip.majority{background:rgba(158,92,69,0.5);color:#f5f0eb;font-weight:700;}
+        .v-chip.dissent-c{background:rgba(176,125,74,0.45);color:#f5f0eb;}
+        .section-heading{font-size:0.85em;font-weight:700;letter-spacing:0.08em;color:var(--sub);margin:22px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line);}
+        .fact-box{background:#faf8f5;border-left:3px solid var(--sub);border-radius:0 8px 8px 0;padding:14px 16px;margin-bottom:16px;font-size:0.9em;}
+        .fact-box p{margin:0 0 8px;}
+        .fact-box p:last-child{margin:0;}
+        .issue-box{background:#faf8f5;border-radius:8px;padding:14px 16px;margin-bottom:16px;font-size:0.9em;border:1px solid var(--line);}
+        .issue-box p{margin:0 0 8px;}
+        .issue-box p:last-child{margin:0;}
+        .opinions{display:flex;flex-direction:column;gap:10px;margin-bottom:16px;}
+        .op{border-radius:8px;overflow:hidden;border:1px solid var(--line);}
+        .op-head{display:flex;align-items:center;gap:10px;padding:10px 14px;background:#f7f4f0;}
+        .op-num{width:26px;height:26px;border-radius:50%;background:var(--majority);color:white;font-size:0.75em;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+        .op-label{font-weight:700;font-size:0.92em;color:var(--majority);flex:1;}
+        .op-body{padding:13px 15px;font-size:0.9em;background:var(--card);}
+        .op-body p{margin:0 0 9px;}
+        .op-body p:last-child{margin:0;}
+        .op-body ul{margin:5px 0 8px;padding-left:18px;}
+        .op-body li{margin-bottom:5px;}
+        .op-result{background:#fdf9f7;border-radius:6px;padding:10px 13px;margin-top:10px;font-size:0.9em;border-left:3px solid var(--majority);}
+        .d-opinions{display:flex;flex-direction:column;gap:10px;margin-bottom:16px;}
+        .d-op{border-radius:8px;overflow:hidden;border:1px solid #e6d8bc;}
+        .d-op-head{display:flex;align-items:center;gap:10px;padding:10px 14px;background:#fdf7ec;}
+        .d-op-num{width:26px;height:26px;border-radius:50%;background:var(--dissent);color:white;font-size:0.75em;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+        .d-op-label{font-weight:700;font-size:0.92em;color:var(--dissent);flex:1;}
+        .d-op-body{padding:13px 15px;font-size:0.9em;background:#fffdf8;}
+        .d-op-body p{margin:0 0 9px;}
+        .d-op-body p:last-child{margin:0;}
+        .d-op-body ul{margin:5px 0 8px;padding-left:18px;}
+        .d-op-body li{margin-bottom:5px;}
+        .d-op-result{background:#fdf7ec;border-radius:6px;padding:10px 13px;margin-top:10px;font-size:0.9em;border-left:3px solid var(--dissent);}
+        .dissent-judges{font-size:0.82em;color:var(--dissent);margin-bottom:12px;padding:8px 12px;background:#fdf7ec;border-radius:6px;border-left:3px solid var(--dissent);}
+        .compare-table{width:100%;border-collapse:collapse;margin-bottom:18px;font-size:0.88em;}
+        .compare-table th{padding:10px 13px;font-weight:700;font-size:0.85em;letter-spacing:0.05em;}
+        .compare-table th.th-issue{background:#ede0da;color:var(--sub);width:22%;border-radius:6px 0 0 0;}
+        .compare-table th.th-majority{background:var(--majority);color:#fff;width:39%;}
+        .compare-table th.th-dissent{background:var(--dissent);color:#fff;width:39%;border-radius:0 6px 0 0;}
+        .compare-table td{padding:11px 13px;vertical-align:top;border-bottom:1px solid var(--line);line-height:1.65;}
+        .compare-table td.td-issue{background:#f5eeea;font-weight:700;font-size:0.87em;color:var(--sub);}
+        .compare-table td.td-majority{background:#fdf8f6;border-left:2px solid var(--majority);}
+        .compare-table td.td-dissent{background:#fdf8f4;border-left:2px solid var(--dissent);}
+        .compare-table tr:last-child td{border-bottom:none;}
+        .compare-table tr:last-child td.td-issue{border-radius:0 0 0 6px;}
+        .compare-table tr:last-child td.td-dissent{border-radius:0 0 6px 0;}
+        @media(max-width:640px){
+            .compare-table thead{display:none;}
+            .compare-table,.compare-table tbody{display:block;}
+            .compare-table tr{display:block;margin-bottom:14px;border-radius:10px;overflow:hidden;border:1px solid var(--line);box-shadow:0 1px 4px rgba(0,0,0,0.06);}
+            .compare-table td.td-issue{display:block;width:100%;background:#ede0da;padding:8px 14px;font-size:0.85em;font-weight:700;color:var(--sub);border-bottom:none;border-left:none!important;}
+            .compare-table td.td-majority,.compare-table td.td-dissent{display:inline-block;width:50%;vertical-align:top;box-sizing:border-box;padding:10px 11px;border-bottom:none;font-size:0.83em;line-height:1.6;border-left:none!important;border-top:none;}
+            .compare-table td.td-majority{border-right:1px solid var(--line);border-top:3px solid var(--majority);}
+            .compare-table td.td-dissent{border-top:3px solid var(--dissent);}
+            .compare-table td.td-majority::before{content:"多數";display:block;margin-bottom:5px;font-size:0.78em;font-weight:700;color:var(--majority);letter-spacing:0.05em;}
+            .compare-table td.td-dissent::before{content:"不同";display:block;margin-bottom:5px;font-size:0.78em;font-weight:700;color:var(--dissent);letter-spacing:0.05em;}
+        }
+        .trap-box{background:var(--trap);border-radius:8px;padding:14px 16px;margin-bottom:16px;border:1px solid #e0d8b0;font-size:0.9em;}
+        .trap-title{font-weight:700;color:#7a6820;margin-bottom:10px;font-size:0.92em;display:flex;align-items:center;gap:6px;}
+        .trap-item{margin-bottom:10px;padding-left:14px;border-left:2px solid #c8b860;}
+        .trap-item:last-child{margin-bottom:0;}
+        .trap-q{font-weight:700;color:var(--text);margin-bottom:3px;}
+        .trap-a{color:var(--text);opacity:0.85;}
+        .law-ref{background:#f2f5f0;border-radius:8px;padding:10px 14px;font-size:0.84em;color:#3d4e38;margin-top:14px;border-left:3px solid var(--law);}
+        details{margin-top:16px;}
+        details summary{cursor:pointer;color:var(--sub);font-size:0.84em;font-weight:600;padding:5px 0;user-select:none;list-style:none;display:flex;align-items:center;gap:6px;}
+        details summary::before{content:'▶';font-size:0.62em;transition:transform 0.2s;color:var(--sub);}
+        details[open] summary::before{transform:rotate(90deg);}
+        .ref-case{background:#f7f4f0;border-radius:7px;padding:10px 13px;margin-bottom:8px;font-size:0.84em;border-left:3px solid var(--majority);}
+        .ref-case.d{border-left-color:var(--dissent);}
+        .ref-case-title{font-weight:700;color:var(--majority);margin-bottom:3px;font-size:0.9em;}
+        .ref-case.d .ref-case-title{color:var(--dissent);}
+        .judges-grid{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:6px;}
+        .judge-chip{background:#f5f0eb;border:1px solid var(--line);border-radius:20px;padding:3px 12px;font-size:0.82em;color:var(--text);white-space:nowrap;}
+        .judge-chip.chief{background:#ede0da;font-weight:700;}
+        .judge-chip.dissenter{border-color:var(--dissent);color:var(--dissent);}
+        .note-toggle{color:var(--sub);font-size:0.84em;font-weight:600;cursor:pointer;padding:5px 0;margin-top:16px;display:flex;align-items:center;gap:6px;}
+        .note-area{display:none;margin-top:8px;}
+        .note-area.open{display:block;}
+        .note-textarea{width:100%;min-height:90px;border:1px solid var(--line);border-radius:8px;padding:10px 13px;font-size:0.88em;font-family:inherit;resize:vertical;background:#faf8f5;color:var(--text);outline:none;line-height:1.7;}
+        .note-textarea:focus{border-color:var(--sub);}
+        .note-saved{font-size:0.76em;color:var(--law);margin-top:4px;min-height:16px;}
+        .quiz-list{border-radius:8px;overflow:hidden;border:1px solid var(--line);margin-bottom:16px;}
+        .quiz-item{border-bottom:1px solid var(--line);}
+        .quiz-item:last-child{border-bottom:none;}
+        .quiz-q{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;padding:11px 14px;cursor:pointer;font-size:0.9em;background:var(--card);}
+        .quiz-q:hover{background:#faf8f5;}
+        .quiz-toggle{font-size:1.1em;color:var(--majority);flex-shrink:0;font-weight:300;line-height:1.4;}
+        .quiz-a{display:none;padding:11px 14px;background:#f0f4ee;font-size:0.87em;line-height:1.75;border-top:1px solid var(--line);color:#3d4e38;}
+        .quiz-a.open{display:block;}
+        #noResults,#noStarred{display:none;text-align:center;color:var(--sub);padding:40px 0;font-size:0.9em;}
+        ::-webkit-scrollbar{display:none;}
+        ::selection{background:#e8ddd0;}
+    </style>
+</head>
+<body>
+<header>
+    <h1>最高法院民事大法庭<br>112年度台上大字第544號</h1>
+    <div class="header-controls">
+        <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="搜尋關鍵字、法條…" oninput="doSearch(this.value)" onkeydown="handleSearchKey(event)">
+            <span class="search-count" id="searchCount"></span>
+            <button class="search-nav" id="prevBtn" onclick="navMatch(-1)" disabled title="上一個">▲</button>
+            <button class="search-nav" id="nextBtn" onclick="navMatch(1)" disabled title="下一個">▼</button>
+        </div>
+        <button id="filterBtn" onclick="toggleFilter()">⭐ 收藏</button>
+    </div>
+    <div class="top-bar">
+        <button class="top-btn" onclick="highlightText()">🖊️</button>
+        <button class="top-btn" onclick="removeHighlight()">🧽</button>
+        <button class="top-btn" onclick="clearHighlights()">🗑️</button>
+        <button class="top-btn" onclick="openExport()">📤</button>
+        <button class="top-btn" id="nightBtn" onclick="toggleNight()">🌙</button>
+        <button class="top-btn done" id="doneBtn" onclick="toggleDone()">朕已閱</button>
+        <span class="done-date" id="doneDateLabel"></span>
+    </div>
+</header>
+
+<div class="container">
+<div class="card" id="case1" data-kw="法人 名譽 信用 人格權 非財產上損害 慰撫金 民法第195條 民法第18條 公司法人 商譽 設立目的 非財產上損害賠償 精神上損害 李寶堂 鄭純惠 部分不同意見 財產權 非財產權 二分法 商業會計法 民法第214條 民法第215條">
+    <button class="star-btn" onclick="toggleStar('case1',this)">⭐</button>
+    <h2 class="card-title">法人之名譽或信用遭侵害，得否請求非財產上損害之金錢賠償？</h2>
+    <div class="meta-line">案號：112年度台上大字第544號　｜　提案庭：最高法院民事庭　｜　部分不同意見：李寶堂、鄭純惠</div>
+
+    <div class="verdict">
+        <div class="verdict-label">大法庭主文（多數見解）</div>
+        <div class="verdict-main">法人之名譽或信用人格權受侵害時——</div>
+        <div class="verdict-items">
+            <div class="verdict-item">
+                <div class="verdict-item-num">第一點（部分不同意見亦贊同）</div>
+                <div class="verdict-item-text">法人於法令限制內，依其性質得享有<strong>名譽、信用之人格權</strong>，受民法及憲法之保障。</div>
+            </div>
+            <div class="verdict-item">
+                <div class="verdict-item-num">第二點（部分不同意見提出批評）</div>
+                <div class="verdict-item-text">法人之名譽或信用遭侵害，致受有<strong>對達成其設立目的有重大影響而無法以金錢量化之損害</strong>，得依民法第195條第1項規定，請求金錢賠償。</div>
+            </div>
+        </div>
+        <div class="vote-row">
+            <span class="v-chip majority">多數意見 ✔</span>
+            <span class="v-chip dissent-c">部分不同意見（李寶堂、鄭純惠）</span>
+            <span class="v-chip">民事大法庭</span>
+        </div>
+    </div>
+
+    <div class="section-heading">基礎事實</div>
+    <div class="fact-box">
+        <p><strong>提案及併案背景：</strong>本件提案及併案之請求人均為<strong>本國公司法人</strong>，主張其名譽或信用遭他人侵害，依民法第195條第1項規定請求賠償相當之金額（即非財產上損害之金錢賠償）。</p>
+        <p><strong>核心爭議：</strong>法人是否得主張名譽、信用等人格權？若得，法人名譽或信用受侵害，得否依民法第195條第1項請求非財產上損害之金錢賠償？其要件為何？</p>
+        <p><strong>制度背景：</strong>民法第18條第2項採法律保留：人格權受侵害所生非財產上損害金錢賠償，「以法律有特別規定者為限」始得請求。民法第195條第1項即為該特別規定，明文列舉名譽、信用等得請求「相當之金額」之人格權類型。</p>
+    </div>
+
+    <div class="section-heading">法律爭議</div>
+    <div class="issue-box">
+        <p><strong>爭議一：</strong>法人依其性質，是否得享有名譽、信用之<strong>人格權</strong>？（民法第26條：法人於法令限制內，有享受權利之能力，但專屬於自然人之權利義務，不在此限。）</p>
+        <p><strong>爭議二：</strong>法人名譽或信用遭侵害，得否依民法第195條第1項請求<strong>非財產上損害之金錢賠償</strong>？若得，其要件是否與自然人不同？</p>
+        <p><strong>爭議三：</strong>民法第195條第1項所稱「非財產上損害」，是否以「精神上損害（痛苦）」為限？抑或包括其他無法以金錢量化之非財產上損害？</p>
+        <p><strong>核心張力：</strong>法人無精神、無痛苦感受，傳統解釋下難以請求「慰撫金」性質之非財產上損害賠償；但法人商譽受損未必產生可量化之財產結果損害，救濟恐出現漏洞。</p>
+    </div>
+
+    <div class="section-heading">大法庭裁定理由（多數意見）</div>
+    <div class="opinions">
+        <div class="op">
+            <div class="op-head"><div class="op-num">㈠</div><span class="op-label">法人得享有名譽、信用之人格權——憲法與民法依據</span></div>
+            <div class="op-body">
+                <p>憲法第22條保障人格權為基本權；釋字第372、664號解釋確認人格權乃維護個人主體性及人格自由發展所不可或缺之憲法保障。</p>
+                <p>依釋字第486號：自然人及法人均為憲法保護之對象；法人為基本權保障之主體。民法第26條規定法人依其性質享有非專屬於自然人之權利。</p>
+                <p>名譽、信用非「專屬於自然人」之人格權；法人存在於社會活動中亦有社會評價與信用需求，對法人名譽、信用之法律保障於今更形重要。</p>
+                <div class="op-result"><strong>結論：</strong>法人於法令限制內，依其性質得享有名譽、信用之人格權，受民法第18條、第195條及憲法保障。</div>
+            </div>
+        </div>
+        <div class="op">
+            <div class="op-head"><div class="op-num">㈡</div><span class="op-label">§195「非財產上損害」不以精神上損害為限——文義、體系與比較法</span></div>
+            <div class="op-body">
+                <p><strong>文義解釋：</strong>民法第195條第1項條文文字為「非財產上之損害」，並未明文限定為「精神上損害」或「精神上痛苦」。</p>
+                <p><strong>體系解釋：</strong>民法第514條之8規定旅遊時間浪費之非財產上損害賠償，立法者已肯認時間浪費係有別於精神上痛苦之非財產上損害，可見「非財產上損害」之範疇可逐步擴大。</p>
+                <p><strong>比較法：</strong>瑞士債務法第49條（修正後）已允許法人於一定要件下請求非財產上損害之金錢賠償；法國、日本、波蘭、歐盟及歐洲人權法院判決亦多予肯認。</p>
+                <div class="op-result"><strong>結論：</strong>民法第195條第1項所稱「非財產上損害」，不以「精神上損害」為限，應包括其他無法以金錢量化之非財產上損害，法人得直接適用。</div>
+            </div>
+        </div>
+        <div class="op">
+            <div class="op-head"><div class="op-num">㈢</div><span class="op-label">法人請求之特別要件——對設立目的有重大影響且無法金錢量化</span></div>
+            <div class="op-body">
+                <p>法人名譽或信用所受損害，原多屬得以金錢量化之財產上損害，此於被害人為<strong>營利法人</strong>時尤然（例如：營業額減少、股價下跌等均可量化）。</p>
+                <p>考量法人與自然人本質上之差異，法人得請求之非財產上損害應限於：</p>
+                <ul>
+                    <li>對達成其<strong>設立目的有重大影響</strong>，且</li>
+                    <li>受有<strong>無法以金錢量化</strong>之損害。</li>
+                </ul>
+                <div class="op-result"><strong>結論（主文）：</strong>法人之名譽或信用遭侵害，致受有「對達成其設立目的有重大影響而無法以金錢量化之損害」者，得依民法第195條第1項規定請求金錢賠償。兩要件須同時具備。</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-heading">部分不同意見書（法官李寶堂、鄭純惠）</div>
+    <div class="dissent-judges">
+        ✍️ 提出部分不同意見之法官（2名）：<strong>李寶堂、鄭純惠</strong><br>
+        ✔ 贊同部分：法人得享有名譽、信用之人格權（第一點）。<br>
+        ✘ 不同意部分：法人得依民法第195條第1項請求非財產上損害之金錢賠償（第二點）。
+    </div>
+    <div class="d-opinions">
+        <div class="d-op">
+            <div class="d-op-head"><div class="d-op-num">一</div><span class="d-op-label">不同意：§195「非財產上損害」解釋之理由構成缺陷</span></div>
+            <div class="d-op-body">
+                <p><strong>⑴ 立法本旨被忽視：</strong>民法第195條第1項係仿德國民法第847條第1項，條文所稱「相當金額」（慰撫金）歷來裁判先例及學說通說均認係針對<strong>精神上損害</strong>而言——賦予金錢利益旨在「恢復被干擾精神之平衡及慰撫其痛苦」（本院108年度台上大字第2680號裁定參照）。本裁定未闡釋立法本旨，僅以「社會情況變遷、時移世異」為由擴張解釋，<strong>理由構成尚有未足</strong>。</p>
+                <p><strong>⑵ 比較法論據不充分：</strong>引用瑞士、法國等國，但未詳述各國具體內涵及不肯認國之理由，亦未就我國與各國法制之異同加以比較；且<strong>瑞士係以法律修正（而非司法解釋）方式</strong>肯認，不宜直接援引作為我國法院擴張解釋之依據。</p>
+                <p><strong>⑶ 旅遊時間浪費（§514-8）援引前提可疑：</strong>時間之浪費與否涉及旅客個人主觀感知（失落、鬱悶、沮喪等），其性質仍屬精神上損害，並非有別於精神痛苦之另一種非財產上損害，以此作體系解釋前提仍待商榷。</p>
+                <div class="d-op-result"><strong>核心批評：</strong>本裁定擴張§195「非財產上損害」文義之論據，在立法本旨、比較法、體系解釋三方面均有不足，理由構成有瑕疵。</div>
+            </div>
+        </div>
+        <div class="d-op">
+            <div class="d-op-head"><div class="d-op-num">二</div><span class="d-op-label">不同意：要件設計之疑義——「重大影響」不確定、營利法人實質無從求償</span></div>
+            <div class="d-op-body">
+                <p><strong>⑴ 差別要件之合理依據未充分說明：</strong>本裁定僅以「法人與自然人有本質上之差異」為由限定「重大影響」要件，但關於差別對待之合理依據，宜為更詳細之理由論述。</p>
+                <p><strong>⑵ 「重大影響」為不確定法律概念：</strong>何謂「對達成其設立目的有重大影響」，恐生將來事實審法院解讀爭議。</p>
+                <p><strong>⑶ 營利法人個案實質無從求償：</strong>本裁定自承「法人之名譽或信用遭侵害所受之損害，<strong>原多屬得以金錢量化之財產上損害，此於被害人為營利法人時尤然</strong>」——本件提案及併案請求人均為營利公司法人，恐因未符合「無法以金錢量化之損害」要件而實質上仍無法求償。基於強化法人人格權保障目的所為之解釋，具體存在於本件個案適用之意義為何，值得思考。</p>
+                <div class="d-op-result"><strong>核心質疑：</strong>裁定目的（強化法人人格權保障）與個案效果（營利公司恐仍無法求償）之間存在顯著落差。</div>
+            </div>
+        </div>
+        <div class="d-op">
+            <div class="d-op-head"><div class="d-op-num">三</div><span class="d-op-label">代結論：重新檢視財產權／非財產權二分法——商譽兼具雙重性質</span></div>
+            <div class="d-op-body">
+                <p>不同意見書提出另一充實公司法人商譽保護之方向：</p>
+                <ul>
+                    <li><strong>商譽之雙重性質：</strong>公司法人之商譽（名譽＋信用）兼具人格權（非財產權）與財產權之雙重性質。商譽代表品牌價值、客戶關係、管理能力等無形優勢，為兼具財產價值之無形資產——商業會計法第50條第1項、商業會計處理準則第21條規定可佐。</li>
+                    <li><strong>得依民法第214、215條請求財產價值利益賠償：</strong>商譽既具財產權性質，公司法人就商譽受侵害致<strong>價值減損</strong>，得依民法§214（回復原狀不能時）或§215（損害非金錢者，以金錢賠償）請求賠償，不必依§216另證明整體財產結果損害，亦無需援引§195（非財產上損害）之規定。</li>
+                    <li><strong>損害數額酌定：</strong>商譽損害金額不易計算，倘已證明受有損害而不能證明其數額，得適用民事訴訟法§222-2由法院審酌一切情況定其數額；實務上無形資產評價方法亦可供參考。</li>
+                </ul>
+                <div class="d-op-result"><strong>替代路徑：</strong>與其迂迴糾結於§195非財產上損害要件而未果，不如透過<strong>重新檢視財產權與非財產權二分法</strong>，解析法人商譽之雙重性質，經由財產價值利益之賠償（§214、§215）實質填補損害，或許是更妥當的方向。</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-heading">多數意見 v. 部分不同意見　快速對照</div>
+    <table class="compare-table">
+        <thead>
+            <tr>
+                <th class="th-issue">爭點</th>
+                <th class="th-majority">多數意見</th>
+                <th class="th-dissent">部分不同意見（李寶堂、鄭純惠）</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="td-issue">法人得享有名譽、信用人格權</td>
+                <td class="td-majority">✔ 肯定。依法令限制，依其性質得享有，且今日更形重要。</td>
+                <td class="td-dissent">✔ 同意（此為「部分」不同意見，非全部不同意見）。</td>
+            </tr>
+            <tr>
+                <td class="td-issue">§195「非財產上損害」是否限於精神上損害</td>
+                <td class="td-majority">✔ 不限於精神上損害；包括其他無法金錢量化之損害，法人得直接適用。</td>
+                <td class="td-dissent">✘ 立法本旨係針對精神上損害（慰撫金）；以時移世異為由擴張解釋，理由不足；§18-2之法律保留設計亦限制法院造法空間。</td>
+            </tr>
+            <tr>
+                <td class="td-issue">比較法（瑞士等）之援引</td>
+                <td class="td-majority">援引瑞士、法國、日本、波蘭、歐盟等為世界潮流依據。</td>
+                <td class="td-dissent">✘ 未詳述各國具體內涵及不肯認國之理由；瑞士係「法律修正」非「司法解釋」，不宜直接比附援引。</td>
+            </tr>
+            <tr>
+                <td class="td-issue">法人請求之特別要件</td>
+                <td class="td-majority">✔ 須：①對達成設立目的有「重大影響」，且②「無法以金錢量化」之損害——兩者同時具備。</td>
+                <td class="td-dissent">✘ 差別要件說明不足；「重大影響」為不確定概念恐生爭議；兩要件設計使營利公司幾乎無從適用。</td>
+            </tr>
+            <tr>
+                <td class="td-issue">營利公司法人個案可否求償</td>
+                <td class="td-majority">理論上可，但裁定自承「此類損害原多屬可量化，營利法人時尤然」。</td>
+                <td class="td-dissent">✘ 實質上難符「無法量化」要件，裁定目的與個案效果落差甚大。</td>
+            </tr>
+            <tr>
+                <td class="td-issue">商譽保護之替代路徑</td>
+                <td class="td-majority">（多數未提出替代路徑。）</td>
+                <td class="td-dissent">✔ 商譽兼具財產權性質；應改依§214、§215請求財產價值利益賠償，輔以§222-2酌定數額，更能實質填補損害。</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="section-heading">⚠️ 考試陷阱提示</div>
+    <div class="trap-box">
+        <div class="trap-title">📌 常見混淆點</div>
+        <div class="trap-item">
+            <div class="trap-q">Q：本件不同意見書的性質為何？有幾位法官提出？對哪部分不同意？</div>
+            <div class="trap-a">A：<strong>部分不同意見書，2名法官（李寶堂、鄭純惠）</strong>。兩位法官對「法人得享有名譽、信用人格權」部分表示贊同；僅就「法人得依§195第1項請求非財產上損害金錢賠償」部分持不同意見。注意：鄭純惠在本件（112台上大544）提部分不同意見，在110台上大279亦提不同意見，但兩件性質不同（一為實體法解釋論，一為程序法有償主義），應分別記憶。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：法人請求非財產上損害賠償的兩項要件為何？</div>
+            <div class="trap-a">A：依多數見解，<strong>兩要件須同時具備</strong>：①對達成其<strong>設立目的有重大影響</strong>；②受有<strong>無法以金錢量化</strong>之損害。若損害可量化（例如：可計算之營業額損失），即不符要件②，不得依此規定請求。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：多數見解與部分不同意見對§195「非財產上損害」之解釋差異為何？</div>
+            <div class="trap-a">A：<strong>多數見解：</strong>不以精神上損害為限，包括無法量化之其他非財產上損害，法人得直接適用。<strong>部分不同意見：</strong>立法本旨係精神上損害（慰撫金），賦予金錢利益旨在恢復受干擾精神之平衡、慰撫痛苦；多數以時移世異擴張解釋，未充分說明理由；且§18-2之法律保留設計有意限制法院造法空間。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：部分不同意見書提出的「商譽雙重性質」理論，其法律依據為何？</div>
+            <div class="trap-a">A：不同意見書認為商譽具有：⑴ <strong>人格權（非財產權）性質</strong>：涉及企業識別度、品牌同一性之人格發展自主決定；⑵ <strong>財產權性質</strong>：商譽為得認列之無形資產（商業會計法§50-1、商業會計處理準則§21）。既具財產權性質，得依民法§214、§215請求商譽價值減損之賠償，損害數額不明時可適用民事訴訟法§222-2由法院酌定。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：民法第18條第2項的「法律保留」設計，與本裁定解釋方式的關係為何？</div>
+            <div class="trap-a">A：民法§18-2：非財產上損害金錢賠償「以<strong>法律有特別規定者為限</strong>」始得請求——立法者有意以法律保留制約司法解釋或法官造法方式擴大適用範圍。部分不同意見認為：本裁定以司法解釋方式擴張§195文義使法人得適用，與此法律保留設計有所扞格，在方法論上有可議之處。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：瑞士法的援引，多數與部分不同意見各有何立場？</div>
+            <div class="trap-a">A：<strong>多數：</strong>援引瑞士債務法§49（修正後允許法人請求非財產上損害賠償）作為世界潮流依據。<strong>部分不同意見：</strong>瑞士係以<strong>法律修正（立法途徑）</strong>方式肯認，而非透過司法解釋擴張，不宜作為我國法院以司法解釋方式擴張§195文義之比較法依據，在方法論上有所不同。</div>
+        </div>
+    </div>
+
+    <div class="section-heading">自我測驗</div>
+    <div class="quiz-list">
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)"><span>1. 大法庭多數見解認為法人得請求非財產上損害賠償的兩項要件為何？</span><span class="quiz-toggle">＋</span></div>
+            <div class="quiz-a">
+                依多數見解，法人之名譽或信用遭侵害，得請求金錢賠償的兩項要件：<br><br>
+                ① 對達成其<strong>設立目的有重大影響</strong>；<br>
+                ② 且受有<strong>無法以金錢量化之損害</strong>。<br><br>
+                兩要件須同時具備。若損害可量化（如：可計算之財產損失），即不符要件②，不得請求。
+            </div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)"><span>2. 部分不同意見書對於民法第195條「非財產上損害」解釋的主要批評為何？</span><span class="quiz-toggle">＋</span></div>
+            <div class="quiz-a">
+                三點批評：<br><br>
+                ⑴ <strong>立法本旨被忽視：</strong>§195立法本旨（仿德民§847）係針對精神上損害之慰撫金；本院108台上大字第2680號裁定亦採此立場；本裁定未說明如何考量客觀規範意旨，僅以時移世異為由擴張，理由不足。<br><br>
+                ⑵ <strong>比較法援引不充分：</strong>未詳述各國具體內涵及各國法制異同；瑞士係以法律修正（非司法解釋）方式肯認，不宜直接比附援引。<br><br>
+                ⑶ <strong>旅遊時間浪費援引前提可疑：</strong>民法§514-8之旅遊時間浪費，其性質仍屬旅客主觀感受精神上損害（失落、鬱悶等），並非有別於精神痛苦之另一種非財產上損害，以此作體系解釋前提仍有疑問。
+            </div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)"><span>3. 部分不同意見書提出何種替代路徑來充實公司法人商譽保護？</span><span class="quiz-toggle">＋</span></div>
+            <div class="quiz-a">
+                不同意見書提出<strong>重新檢視財產權與非財產權二分法</strong>之方向：<br><br>
+                公司法人之商譽兼具<strong>人格權（非財產權）與財產權之雙重性質</strong>——商譽為商業會計法所認列之無形資產，具財產價值。<br><br>
+                既具財產權性質，就商譽受侵害<strong>致價值減損</strong>，得依民法§214（回復原狀不能）或§215（損害非金錢者，以金錢賠償）請求<strong>財產價值利益之賠償</strong>，不需依§216證明整體財產結果損害，亦毋須援引§195之非財產上損害規定。損害數額不明時，可依民事訴訟法§222-2由法院酌定。
+            </div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)"><span>4. 為何部分不同意見認為本裁定對「營利公司法人」個案的保護意義有限？</span><span class="quiz-toggle">＋</span></div>
+            <div class="quiz-a">
+                本裁定多數意見自承：「法人之名譽或信用遭侵害所受之損害，<strong>原多屬得以金錢量化之財產上損害，此於被害人為營利法人時尤然</strong>」（如：營業額減少、股價下跌等均可量化）。<br><br>
+                然本裁定要求受有「無法以金錢量化之損害」作為請求要件——對<strong>營利公司</strong>而言幾乎難以滿足。本件提案及併案之請求人均為營利公司法人，恐因不符此要件而實質上仍無法依本裁定求償。<br><br>
+                不同意見批評：基於強化法人人格權保障目的所作之解釋，具體存在於個案之適用意義為何，值得深思。
+            </div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)"><span>5. 民法§18-2「法律保留」與本裁定擴張解釋方式有何方法論上的緊張關係？</span><span class="quiz-toggle">＋</span></div>
+            <div class="quiz-a">
+                民法§18-2規定：人格權受侵害所生非財產上損害金錢賠償，「以<strong>法律有特別規定者為限</strong>」始得請求。<br><br>
+                部分不同意見認為：立法者<strong>具目的性地</strong>以法律保留制約以司法解釋或法官造法方式擴大其適用範圍——亦即，非財產上損害金錢賠償之適用範圍，立法者有意留給自己決定，而非交由法院透過解釋擴張。<br><br>
+                因此，本裁定以司法解釋方式擴張§195「非財產上損害」文義使法人得適用，在方法論上與此法律保留設計存在緊張關係，是部分不同意見批評的制度性根據之一。
+            </div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)"><span>6. 本件（112台上大544）與110台上大279之不同意見，在性質上有何差異？</span><span class="quiz-toggle">＋</span></div>
+            <div class="quiz-a">
+                <strong>110台上大279</strong>（抵銷抗辯上訴利益）：爭點在<strong>程序法</strong>——上訴利益計算及裁判費計徵；不同意見人（鄭純惠）對上訴利益合併計算結論同意，僅就裁判費計徵部分不同意（認應一併計徵，始符有償主義）。<br><br>
+                <strong>112台上大544</strong>（法人人格權）：爭點在<strong>實體法</strong>——民法§195「非財產上損害」之文義解釋；部分不同意見（李寶堂、鄭純惠）對「法人有人格權」同意，但對「非財產上損害得包括非精神上損害」之解釋方法論及結果不同意，並提出商譽雙重性質之替代思考路徑。<br><br>
+                兩件鄭純惠均有提不同意見，但性質截然不同，應分別記憶。
+            </div>
+        </div>
+    </div>
+
+    <div class="law-ref">
+        <strong>相關法條：</strong>民法§18（人格權一般保護；法律保留）；§26（法人權利能力；性質上限制）；§184-1前段（侵權行為一般規定）；§195-1（名譽、信用等人格權之非財產上損害金錢賠償）；§213（損害賠償方法；回復原狀）；§214（回復原狀不能）；§215（損害非金錢，以金錢賠償）；§216（損害賠償範圍）；§514-8（旅遊時間浪費之非財產上損害）；商業會計法§50-1（無形資產商譽）；商業會計處理準則§21；民事訴訟法§222-2（損害數額難以證明由法院酌定）；憲法§16（訴訟權）；§22（人格權保障）；釋字第372、486、664、765號解釋
+    </div>
+
+    <details>
+        <summary>大法庭組成</summary>
+        <div style="padding-top:10px;">
+            <div class="judges-grid">
+                <span class="judge-chip chief">審判長（詳見裁定）</span>
+                <span class="judge-chip dissenter">李寶堂（部分不同意見）</span>
+                <span class="judge-chip dissenter">鄭純惠（部分不同意見）</span>
+            </div>
+            <p style="font-size:0.82em;color:var(--sub);margin:10px 0 0;">部分不同意見書：法官李寶堂、鄭純惠　｜　不同意點：法人得請求非財產上損害金錢賠償部分</p>
+        </div>
+    </details>
+
+    <details>
+        <summary>引用先例與重要參考資料</summary>
+        <div style="padding-top:10px;">
+            <div class="ref-case">
+                <div class="ref-case-title">【多數及不同意見均引用】108年度台上大字第2680號裁定</div>
+                <p style="margin:0;">關於人格權受侵害之慰撫金或相當金額之賠償，向來認為係供賠償人格權遭受侵害之精神上損害。部分不同意見書援引此裁定，主張多數見解偏離先前見解而未充分說明理由。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">【引用】司法院釋字第486號解釋</div>
+                <p style="margin:0;">自然人及法人均為憲法保護之對象；法人為基本權保障之主體。本裁定據此肯認法人得享有名譽、信用人格權。</p>
+            </div>
+            <div class="ref-case d">
+                <div class="ref-case-title">【不同意見引用】商業會計法第50條第1項</div>
+                <p style="margin:0;">商業因合併、讓受他人營業或股份溢價發行所發生之商譽，應加以認列；商譽為企業得認列之無形資產，具財產價值性質。不同意見書援引此作為商譽兼具財產權性質之實證依據，提出透過§214、§215請求財產價值利益賠償之替代路徑。</p>
+            </div>
+            <div class="ref-case d">
+                <div class="ref-case-title">【不同意見引用】個人資料保護法§28-2及醫療器材管理法§82-2立法理由</div>
+                <p style="margin:0;">個資法§28-2立法理由：「當事人可能不發生財產上損害而僅生精神上痛苦，爰參照民法第195條之規定，於本條第2項規定被害人亦得請求相當之慰藉金」；醫療器材管理法§82-2立法理由：「非財產上損害係指非得以金錢計算之損害，乃精神或肉體痛苦」——顯示立法者仍認為§195所稱「非財產上損害」之金錢賠償係指精神上痛苦之慰撫金，部分不同意見援引以質疑多數擴張解釋。</p>
+            </div>
+        </div>
+    </details>
+
+    <div class="note-toggle" onclick="toggleNote('n1')">✏️ 我的小結</div>
+    <div class="note-area" id="n1">
+        <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n1',this.value)"></textarea>
+        <div class="note-saved" id="n1-saved"></div>
+    </div>
+</div>
+
+<div id="noResults">查無符合的內容，請試試其他關鍵字。</div>
+<div id="noStarred">還沒有收藏的項目，點卡片右上角的 ⭐ 加入收藏。</div>
+</div>
+
+<script>
+const NIGHT_KEY='night_mode_pref';
+function toggleNight(){const on=document.body.classList.toggle('night-mode');localStorage.setItem(NIGHT_KEY,on?'1':'0');document.getElementById('nightBtn').textContent=on?'☀️':'🌙';}
+(function(){if(localStorage.getItem(NIGHT_KEY)==='1'){document.body.classList.add('night-mode');const b=document.getElementById('nightBtn');if(b)b.textContent='☀️';}})();
+const STORE_KEY='112_544_grand_notes',STAR_KEY='112_544_grand_stars';
+function loadNotes(){try{return JSON.parse(localStorage.getItem(STORE_KEY))||{};}catch{return{};}}
+function loadStars(){try{return JSON.parse(localStorage.getItem(STAR_KEY))||{};}catch{return{};}}
+function saveAllNotes(d){localStorage.setItem(STORE_KEY,JSON.stringify(d));}
+function saveAllStars(d){localStorage.setItem(STAR_KEY,JSON.stringify(d));}
+(function(){const n=loadNotes(),s=loadStars();
+  Object.entries(n).forEach(([id,v])=>{const a=document.getElementById(id);if(!a)return;const t=a.querySelector('textarea');if(t)t.value=v;if(v)a.classList.add('open');});
+  Object.entries(s).forEach(([id,v])=>{if(!v)return;const b=document.querySelector(`#${id} .star-btn`);if(b)b.classList.add('starred');});
+})();
+function toggleStar(id,btn){const s=loadStars();const now=!btn.classList.contains('starred');btn.classList.toggle('starred',now);s[id]=now;saveAllStars(s);if(filterActive)applyFilter();}
+let filterActive=false;
+function toggleFilter(){filterActive=!filterActive;document.getElementById('filterBtn').classList.toggle('active',filterActive);document.getElementById('searchInput').value='';clearSearchHighlights();updateSearchUI([],0);applyFilter();}
+function applyFilter(){const s=loadStars();const q=document.getElementById('searchInput').value.trim().toLowerCase();let any=false;
+  document.querySelectorAll('.card').forEach(c=>{const kw=(c.dataset.kw||'').toLowerCase();const txt=c.textContent.toLowerCase();
+  const ms=!q||kw.includes(q)||txt.includes(q);const mf=!filterActive||!!s[c.id];const show=ms&&mf;
+  c.classList.toggle('hidden',!show);if(show)any=true;});
+  document.getElementById('noResults').style.display=(!any&&!filterActive)?'block':'none';
+  document.getElementById('noStarred').style.display=(!any&&filterActive)?'block':'none';}
+let _matches=[],_cur=-1;
+function clearSearchHighlights(){document.querySelectorAll('mark.search-hl').forEach(m=>{const p=m.parentNode;p.replaceChild(document.createTextNode(m.textContent),m);p.normalize();});}
+function highlightInNode(node,re){if(node.nodeType===3){const text=node.nodeValue;const frag=document.createDocumentFragment();let last=0,m;re.lastIndex=0;while((m=re.exec(text))!==null){if(m.index>last)frag.appendChild(document.createTextNode(text.slice(last,m.index)));const mk=document.createElement('mark');mk.className='search-hl';mk.textContent=m[0];frag.appendChild(mk);last=re.lastIndex;}if(last===0)return;frag.appendChild(document.createTextNode(text.slice(last)));node.parentNode.replaceChild(frag,node);return;}if(node.nodeType===1){const tag=node.tagName;if(tag==='SCRIPT'||tag==='STYLE'||tag==='TEXTAREA'||tag==='INPUT')return;if(node.classList&&node.classList.contains('search-hl'))return;[...node.childNodes].forEach(c=>highlightInNode(c,re));}}
+function doSearch(q){clearSearchHighlights();_matches=[];_cur=-1;const qt=(q||'').trim();if(!qt){updateSearchUI([],0);applyFilter();return;}applyFilter();const esc=qt.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');const re=new RegExp(esc,'gi');document.querySelectorAll('.container .card:not(.hidden)').forEach(card=>{highlightInNode(card,re);});_matches=[...document.querySelectorAll('mark.search-hl')];if(_matches.length){_cur=0;setCurrent(0);}updateSearchUI(_matches,_cur);}
+function setCurrent(idx){_matches.forEach((m,i)=>m.classList.toggle('current',i===idx));if(_matches[idx])_matches[idx].scrollIntoView({behavior:'smooth',block:'center'});}
+function navMatch(dir){if(!_matches.length)return;_cur=(_cur+dir+_matches.length)%_matches.length;setCurrent(_cur);updateSearchUI(_matches,_cur);}
+function updateSearchUI(matches,cur){const cnt=document.getElementById('searchCount');const prev=document.getElementById('prevBtn');const next=document.getElementById('nextBtn');if(!matches.length){cnt.textContent='';prev.disabled=true;next.disabled=true;return;}cnt.textContent=(cur+1)+'/'+matches.length;prev.disabled=false;next.disabled=false;}
+function handleSearchKey(e){if(e.key==='Enter'){e.shiftKey?navMatch(-1):navMatch(1);}if(e.key==='Escape'){document.getElementById('searchInput').value='';doSearch('');}}
+function toggleNote(id){document.getElementById(id).classList.toggle('open');}
+const timers={};
+function saveNote(id,v){clearTimeout(timers[id]);timers[id]=setTimeout(()=>{const n=loadNotes();n[id]=v;saveAllNotes(n);const el=document.getElementById(id+'-saved');if(el){el.textContent='已儲存';setTimeout(()=>el.textContent='',1500);}},500);}
+let savedRange=null;
+document.addEventListener('selectionchange',()=>{const s=window.getSelection();if(s&&!s.isCollapsed&&s.rangeCount)savedRange=s.getRangeAt(0).cloneRange();});
+function highlightText(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;
+  if(!r||r.collapsed){alert('💡 請先反白想要標記的文字');return;}
+  const sp=document.createElement('span');sp.className='hl';sp.style.cssText='background:#f0d98a;border-radius:2px;';
+  try{r.surroundContents(sp);savedRange=null;}catch{alert('💡 請選取同一段落內的文字');}s&&s.removeAllRanges();}
+function removeHighlight(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;
+  if(!r||r.collapsed){alert('💡 請先反白想擦除標記的文字');return;}
+  const anc=r.commonAncestorContainer.nodeType===1?r.commonAncestorContainer:r.commonAncestorContainer.parentElement;
+  anc.querySelectorAll('span.hl').forEach(sp=>{if(r.intersectsNode(sp)){const p=sp.parentNode;while(sp.firstChild)p.insertBefore(sp.firstChild,sp);p.removeChild(sp);}});
+  savedRange=null;s&&s.removeAllRanges();}
+function clearHighlights(){const sp=document.querySelectorAll('span.hl');if(!sp.length)return;
+  if(confirm('確定要清除所有重點標記嗎？')){sp.forEach(s=>{const p=s.parentNode;while(s.firstChild)p.insertBefore(s.firstChild,s);p.removeChild(s);});}}
+function openExport(){
+  let out='最高法院民事大法庭 112年度台上大字第544號\n'+'═'.repeat(44)+'\n\n';
+  out+='【多數主文】\n法人之名譽或信用遭侵害，致受有對達成其設立目的有重大影響而無法以金錢量化之損害，得依民法第195條第1項規定請求金錢賠償。\n\n';
+  out+='【部分不同意見重點（李寶堂、鄭純惠）】\n① §195立法本旨係精神上損害（慰撫金），多數以時移世異擴張解釋理由不足。\n② 商譽具雙重性質（人格權＋財產權），應改依§214、§215請求財產價值利益賠償。\n\n';
+  document.querySelectorAll('.op,.d-op').forEach(op=>{
+    const head=op.querySelector('.op-label,.d-op-label')?.textContent.trim()||'';
+    out+=`▌${head}\n`;
+    op.querySelectorAll('.op-body p,.op-body li,.op-result,.d-op-body p,.d-op-body li,.d-op-result').forEach(el=>{
+      const t=el.textContent.trim();if(t)out+=(el.tagName==='LI'?'  • ':'')+t+'\n';});
+    out+='\n';});
+  const ta=document.querySelector('.note-textarea');if(ta&&ta.value.trim())out+='✏️ 小結：\n'+ta.value.trim()+'\n\n';
+  out+='═'.repeat(44)+'\n';
+  const b=new Blob([out.trim()],{type:'text/plain;charset=utf-8'});
+  const u=URL.createObjectURL(b);const a=document.createElement('a');
+  a.href=u;a.download='112台上大字第544號_法人名譽信用人格權非財產上損害.txt';a.click();URL.revokeObjectURL(u);}
+function toggleQuiz(el){const ans=el.nextElementSibling;const tog=el.querySelector('.quiz-toggle');if(ans.classList.contains('open')){ans.classList.remove('open');tog.textContent='＋';}else{ans.classList.add('open');tog.textContent='－';}}
+const REG_KEY='exam_completion_registry';
+function _loadReg(){try{return JSON.parse(localStorage.getItem(REG_KEY))||{};}catch{return{};}}
+function _saveReg(r){try{localStorage.setItem(REG_KEY,JSON.stringify(r));}catch{}}
+function _file(){const p=location.pathname.split('/');return decodeURIComponent(p[p.length-1]||'');}
+function _fmt(ts){const d=new Date(ts);const date=(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();const time=d.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false});return date+' '+time;}
+function _updateDate(){const r=_loadReg();const k=_file()||'case_civil_grand_112_544.html';const l=document.getElementById('doneDateLabel');if(!l)return;l.textContent=(r[k]&&r[k].done&&r[k].ts)?_fmt(r[k].ts):'';}
+const _INDEX_CARD_ID='c_544';
+function _syncIndex(done){try{const r=JSON.parse(localStorage.getItem('gc_reads')||'{}');r[_INDEX_CARD_ID]=done;localStorage.setItem('gc_reads',JSON.stringify(r));}catch(e){}}
+function toggleDone(){const btn=document.getElementById('doneBtn');const r=_loadReg();const k=_file()||'case_civil_grand_112_544.html';const done=r[k]&&r[k].done;
+  if(done){delete r[k];_saveReg(r);btn.classList.remove('active');_syncIndex(false);}
+  else{const now=new Date();r[k]={done:true,score:null,total:null,ts:now.getTime(),tsLabel:now.toLocaleDateString('zh-TW')+' '+now.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false})};_saveReg(r);btn.classList.add('active');_syncIndex(true);}
+  _updateDate();}
+(function(){const r=_loadReg();const k=_file()||'case_civil_grand_112_544.html';if(r[k]&&r[k].done){const b=document.getElementById('doneBtn');if(b)b.classList.add('active');}_updateDate();})();
+</script>
+</body>
+</html>

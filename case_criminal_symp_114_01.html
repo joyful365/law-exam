@@ -90,6 +90,43 @@
         #noResults, #noStarred { display: none; text-align: center; color: #a0aec0; padding: 40px 0; font-size: 0.9em; }
         ::-webkit-scrollbar { display: none; }
         ::selection { background: #c8d8ef; }
+
+        /* ── 夜覽模式 ── */
+        body.night { background: #12151a; color: #d4d8e0; }
+        body.night header { background: #1a1f2a; }
+        body.night .top-bar { background: #1e2330; }
+        body.night .card { background: #1e2330; box-shadow: 0 2px 10px rgba(0,0,0,0.4); }
+        body.night .op-head { background: #252b38; }
+        body.night .op { border-color: #2e3547; }
+        body.night .op-body { background: #1e2330; color: #cdd2dc; }
+        body.night .op-result { background: #1a2235; border-left-color: #4a7fc1; }
+        body.night .op-num { background: #2a4a7a; }
+        body.night .op-label { color: #7ab0e8; }
+        body.night .issue-box { background: #1a1f2a; color: #bfc5d0; }
+        body.night .verdict { background: #1a2a40; }
+        body.night .v-chip { background: rgba(255,255,255,0.08); }
+        body.night .v-chip.win { background: rgba(100,160,230,0.25); color: #a8d0ff; }
+        body.night .section-heading { color: #5a7090; border-bottom-color: #2a3244; }
+        body.night .ref-case { background: #1a1f2a; border-left-color: #3a5a8a; }
+        body.night .ref-case-title { color: #7ab0e8; }
+        body.night .ref-case.yi { border-left-color: #4a5a70; }
+        body.night .ref-case.yi .ref-case-title { color: #8a9ab0; }
+        body.night .law-ref { background: #1a1f2a; color: #8a9ab0; border-left-color: #3a5a8a; }
+        body.night .note-textarea { background: #161a22; border-color: #2a3244; color: #c0c8d8; }
+        body.night .note-textarea:focus { border-color: #4a7fc1; }
+        body.night .note-toggle { color: #5a6880; }
+        body.night .card-title { color: #7ab0e8; }
+        body.night .meta-line { color: #5a6880; }
+        body.night .top-btn { background: #2a3244; }
+        body.night .top-btn.erase { background: #2e3850; }
+        body.night .top-btn.clear { background: #252b38; }
+        body.night .top-btn.export { background: #1e2330; color: #8a9ab0; }
+        body.night mark.search-hl { background: #7a5200; color: #ffe0a0; }
+        body.night mark.search-hl.current { background: #b06000; color: #fff; }
+        body.night #searchInput { background: rgba(255,255,255,0.07); }
+        body.night details summary { color: #5a7090; }
+        #nightBtn { background: #5a6375; color: white; border: none; padding: 5px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap; transition: background 0.2s, color 0.2s; }
+        #nightBtn.active { background: #1e2d4a; color: #a8d0ff; }
     </style>
 </head>
 <body>
@@ -111,6 +148,7 @@
         <button class="top-btn erase" onclick="removeHighlight()">🧽</button>
         <button class="top-btn clear" onclick="clearHighlights()">🗑️</button>
         <button class="top-btn export" onclick="openExport()">📤</button>
+        <button class="top-btn" id="nightBtn" onclick="toggleNight()" title="夜覽模式">🌙</button>
         <button class="top-btn done" id="doneBtn" onclick="toggleDone()">朕已閱</button>
         <span class="done-date" id="doneDateLabel"></span>
     </div>
@@ -373,6 +411,17 @@ function _fmt(ts){const d=new Date(ts);return(d.getMonth()+1)+'/'+d.getDate()+'/
 function _updateDate(){const r=_loadReg();const k=_file();const l=document.getElementById('doneDateLabel');if(!l)return;l.textContent=(r[k]&&r[k].done&&r[k].ts)?_fmt(r[k].ts):'';}
 function toggleDone(){const btn=document.getElementById('doneBtn');const r=_loadReg();const k=_file();const done=r[k]&&r[k].done;if(done){delete r[k];_saveReg(r);btn.classList.remove('active');}else{const now=new Date();r[k]={done:true,score:null,total:null,ts:now.getTime(),tsLabel:now.toLocaleDateString('zh-TW')+' '+now.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false})};_saveReg(r);btn.classList.add('active');}_updateDate();}
 (function(){const r=_loadReg();const k=_file();if(r[k]&&r[k].done){const b=document.getElementById('doneBtn');if(b)b.classList.add('active');}_updateDate();})();
+
+/* ── 夜覽模式 ── */
+const NIGHT_KEY='night_mode_pref';
+function toggleNight(){
+  const on=document.body.classList.toggle('night');
+  document.getElementById('nightBtn').classList.toggle('active',on);
+  try{localStorage.setItem(NIGHT_KEY,on?'1':'0');}catch{}
+}
+(function(){
+  try{if(localStorage.getItem(NIGHT_KEY)==='1'){document.body.classList.add('night');const b=document.getElementById('nightBtn');if(b)b.classList.add('active');}}catch{}
+})();
 </script>
 </body>
 </html>
