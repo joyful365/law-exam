@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>111年度台非大字第34號 大法庭裁定</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: "Helvetica Neue", Helvetica, "PingFang TC", "LiHei Pro", "Microsoft JhengHei", sans-serif; background: #eef0f3; color: #1a1a1a; line-height: 1.8; font-size: 16px; margin: 0; padding: 0 0 56px; }
+        header { background: #1a365d; color: white; padding: 18px 16px 10px; text-align: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.18); }
+        header h1 { margin: 0 0 10px; font-size: 1.05em; line-height: 1.5; font-weight: 600; letter-spacing: 0.02em; }
+        .header-controls { display: flex; gap: 8px; align-items: center; }
+        .search-wrap { position: relative; flex: 1; display: flex; align-items: center; gap: 4px; }
+        #searchInput { flex: 1; padding: 8px 14px 8px 34px; border: none; border-radius: 8px; font-size: 14px; background: rgba(255,255,255,0.13); color: white; outline: none; min-width: 0; }
+        #searchInput::placeholder { color: rgba(255,255,255,0.5); }
+        #searchInput:focus { background: rgba(255,255,255,0.22); }
+        .search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 13px; opacity: 0.6; pointer-events: none; }
+        .search-count { font-size: 11px; color: rgba(255,255,255,0.6); white-space: nowrap; min-width: 32px; text-align: center; }
+        .search-nav { background: rgba(255,255,255,0.15); border: none; border-radius: 6px; color: white; font-size: 11px; padding: 4px 7px; cursor: pointer; line-height: 1; }
+        .search-nav:hover { background: rgba(255,255,255,0.28); }
+        mark.search-hl { background: #ffe066; color: #1a1a1a; border-radius: 2px; padding: 0 1px; }
+        mark.search-hl.current { background: #ff9500; color: #fff; }
+        #filterBtn { background: rgba(255,255,255,0.13); border: none; border-radius: 8px; color: white; font-size: 13px; padding: 8px 12px; cursor: pointer; white-space: nowrap; }
+        #filterBtn.active { background: #c9a84c; color: #1a365d; font-weight: bold; }
+        .top-bar { background: #dde0e5; padding: 6px 14px; display: flex; gap: 6px; justify-content: flex-end; flex-wrap: nowrap; }
+        .top-btn { background: #5a6375; color: white; border: none; padding: 5px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap; transition: transform 0.1s; }
+        .top-btn:active { transform: scale(0.92); }
+        .top-btn.erase { background: #7a8494; }
+        .top-btn.clear { background: #a0a8b4; }
+        .top-btn.export { background: #c5cad3; color: #2d3748; }
+        .top-btn.done { background: #a0a8b4; color: #1a2a3a; }
+        .top-btn.done.active { background: linear-gradient(135deg,#7a5c00,#a07820); color: #fff3c4; }
+        .done-date { font-size: 11px; color: #8a9ab0; white-space: nowrap; align-self: center; }
+        .container { padding: 16px; max-width: 600px; margin: 0 auto; }
+        @media (min-width: 768px) { body { font-size: 17.5px; } .container { max-width: 860px; padding: 20px; } header h1 { font-size: 1.15em; } }
+        .card { background: #fff; border-radius: 16px; padding: 22px 20px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); position: relative; }
+        .card.hidden { display: none; }
+        .star-btn { position: absolute; top: 18px; right: 18px; background: none; border: none; font-size: 20px; cursor: pointer; opacity: 0.18; transition: opacity 0.15s, transform 0.15s; padding: 0; }
+        .star-btn:active { transform: scale(1.3); }
+        .star-btn.starred { opacity: 1; }
+        .card-title { color: #1a365d; font-size: 1.25em; font-weight: 700; margin: 0 0 4px; padding-right: 28px; line-height: 1.55; }
+        .meta-line { font-size: 0.76em; color: #999; margin-bottom: 18px; letter-spacing: 0.03em; }
+        .verdict { background: #1a365d; color: white; border-radius: 11px; padding: 15px 18px; margin-bottom: 20px; }
+        .verdict-label { font-size: 0.68em; letter-spacing: 0.12em; opacity: 0.55; text-transform: uppercase; margin-bottom: 4px; }
+        .verdict-main { font-size: 1.02em; font-weight: 700; line-height: 1.6; margin-bottom: 5px; }
+        .verdict-sub { font-size: 0.83em; opacity: 0.75; line-height: 1.6; margin-bottom: 10px; }
+        .vote-row { display: flex; gap: 7px; flex-wrap: wrap; }
+        .v-chip { font-size: 0.73em; background: rgba(255,255,255,0.12); border-radius: 20px; padding: 3px 10px; white-space: nowrap; color: rgba(255,255,255,0.8); }
+        .v-chip.win { background: rgba(255,255,255,0.28); color: #fff; font-weight: 700; }
+        .section-heading { font-size: 0.72em; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #8a9ab0; margin: 20px 0 10px; padding-bottom: 5px; border-bottom: 1px solid #e8eaee; }
+        .issue-box { background: #f5f6f8; border-radius: 10px; padding: 14px 16px; margin-bottom: 16px; font-size: 0.91em; color: #333; }
+        .issue-box p { margin: 0 0 8px; }
+        .issue-box p:last-child { margin: 0; }
+        .fact-box { background: #f9f7f0; border-left: 4px solid #c9a84c; border-radius: 0 10px 10px 0; padding: 14px 16px; margin-bottom: 16px; font-size: 0.91em; color: #333; }
+        .fact-box p { margin: 0 0 8px; }
+        .fact-box p:last-child { margin: 0; }
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+        @media (max-width: 600px) { .two-col { grid-template-columns: 1fr; } }
+        .compare-box { background: #f5f6f8; border-radius: 10px; padding: 13px 15px; font-size: 0.88em; }
+        .compare-box h4 { margin: 0 0 6px; font-size: 0.95em; color: #1a365d; }
+        .compare-box.right { background: #f0f7ee; }
+        .compare-box.right h4 { color: #276749; }
+        .compare-box.amber { background: #fff8e8; }
+        .compare-box.amber h4 { color: #92400e; }
+        .compare-box.red { background: #fff0f0; }
+        .compare-box.red h4 { color: #922b21; }
+        .opinions { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+        .op { border-radius: 10px; overflow: hidden; border: 1px solid #e4e7ec; }
+        .op-head { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #f5f6f8; }
+        .op-num { width: 26px; height: 26px; border-radius: 50%; background: #1a365d; color: white; font-size: 0.75em; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .op-num.green { background: #276749; }
+        .op-num.amber { background: #92400e; }
+        .op-num.red { background: #922b21; }
+        .op-label { font-weight: 700; font-size: 0.93em; color: #1a365d; flex: 1; }
+        .op-label.green { color: #276749; }
+        .op-label.amber { color: #92400e; }
+        .op-label.red { color: #922b21; }
+        .op-body { padding: 13px 15px; font-size: 0.9em; background: #fff; }
+        .op-body p { margin: 0 0 9px; }
+        .op-body p:last-child { margin: 0; }
+        .op-body ul { margin: 5px 0 8px; padding-left: 18px; }
+        .op-body li { margin-bottom: 5px; }
+        .op-result { background: #f0f3f8; border-radius: 7px; padding: 10px 13px; margin-top: 10px; font-size: 0.9em; border-left: 3px solid #1a365d; }
+        .op-result.green { background: #f0f7ee; border-left-color: #276749; }
+        .op-result.amber { background: #fff8e8; border-left-color: #92400e; }
+        .op-result.red { background: #fff0f0; border-left-color: #922b21; }
+        details { margin-top: 16px; }
+        details summary { cursor: pointer; color: #5a6880; font-size: 0.85em; font-weight: 600; padding: 5px 0; user-select: none; list-style: none; display: flex; align-items: center; gap: 5px; }
+        details summary::before { content: '▶'; font-size: 0.65em; transition: transform 0.2s; color: #8a9ab0; }
+        details[open] summary::before { transform: rotate(90deg); }
+        .ref-case { background: #f5f6f8; border-radius: 8px; padding: 11px 14px; margin-bottom: 8px; font-size: 0.85em; border-left: 3px solid #1a365d; }
+        .ref-case.yi { border-left-color: #8a9ab0; }
+        .ref-case.warn { border-left-color: #c0392b; background: #fff5f5; }
+        .ref-case.green { border-left-color: #276749; background: #f0f7ee; }
+        .ref-case-title { font-weight: 700; color: #1a365d; margin-bottom: 4px; font-size: 0.9em; }
+        .ref-case.yi .ref-case-title { color: #4a5568; }
+        .ref-case.warn .ref-case-title { color: #922b21; }
+        .ref-case.green .ref-case-title { color: #276749; }
+        .law-ref { background: #f0f2f5; border-radius: 8px; padding: 10px 14px; font-size: 0.85em; color: #4a5568; margin-top: 14px; border-left: 3px solid #1a365d; }
+        .judges-grid { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+        .judge-chip { font-size: 0.78em; background: #eef1f6; border-radius: 20px; padding: 3px 11px; color: #3a4a6a; border: 1px solid #d8dde8; }
+        .judge-chip.chief { background: #1a365d; color: white; font-weight: 700; border-color: #1a365d; }
+        .note-toggle { display: inline-block; margin-top: 14px; font-size: 0.8em; color: #b0b8c4; cursor: pointer; user-select: none; }
+        .note-toggle:hover { color: #1a365d; }
+        .note-area { display: none; margin-top: 8px; }
+        .note-area.open { display: block; }
+        .note-textarea { width: 100%; min-height: 68px; border: 1px solid #e0e4ea; border-radius: 8px; padding: 10px 12px; font-size: 0.87em; font-family: inherit; color: #333; background: #fafbfc; resize: vertical; outline: none; line-height: 1.7; }
+        .note-textarea:focus { border-color: #1a365d; }
+        .note-textarea::placeholder { color: #ccc; }
+        .note-saved { font-size: 0.72em; color: #68d391; text-align: right; height: 14px; margin-top: 2px; }
+        #noResults, #noStarred { display: none; text-align: center; color: #a0aec0; padding: 40px 0; font-size: 0.9em; }
+        ::-webkit-scrollbar { display: none; }
+        ::selection { background: #c8d8ef; }
+        .flow-wrap { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+        .flow-step { display: flex; align-items: flex-start; gap: 10px; background: #f5f6f8; border-radius: 8px; padding: 10px 13px; font-size: 0.88em; }
+        .flow-num { width: 24px; height: 24px; border-radius: 50%; background: #1a365d; color: white; font-size: 0.78em; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+        .flow-arrow { text-align: center; color: #8a9ab0; font-size: 1.1em; }
+        .tag-row { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 14px; }
+        .tag { font-size: 0.72em; background: #eef1f6; border-radius: 12px; padding: 2px 10px; color: #3a4a6a; border: 1px solid #d0d8e8; }
+        .tag.red { background: #fff0f0; border-color: #f0c0c0; color: #922b21; }
+        .tag.green { background: #f0f7ee; border-color: #b0d8c0; color: #276749; }
+        .tag.amber { background: #fff8e8; border-color: #f0d8a0; color: #92400e; }
+        /* 時間軸 */
+        .timeline { display: flex; flex-direction: column; gap: 0; margin-bottom: 16px; position: relative; padding-left: 28px; }
+        .timeline::before { content: ''; position: absolute; left: 10px; top: 8px; bottom: 8px; width: 2px; background: #d0d8e8; border-radius: 2px; }
+        .tl-item { position: relative; padding: 8px 0 8px 16px; font-size: 0.88em; }
+        .tl-dot { position: absolute; left: -22px; top: 14px; width: 12px; height: 12px; border-radius: 50%; background: #1a365d; border: 2px solid #fff; box-shadow: 0 0 0 2px #1a365d; }
+        .tl-dot.red { background: #922b21; box-shadow: 0 0 0 2px #922b21; }
+        .tl-dot.amber { background: #92400e; box-shadow: 0 0 0 2px #92400e; }
+        .tl-dot.green { background: #276749; box-shadow: 0 0 0 2px #276749; }
+        .tl-date { font-size: 0.82em; color: #8a9ab0; font-weight: 600; margin-bottom: 2px; }
+        /* 夜覽 */
+        body.dark { background: #13151a; color: #d4d8e0; }
+        body.dark header { background: #0d1117; box-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        body.dark .top-bar { background: #1c1f27; }
+        body.dark .top-btn { background: #2e3340; color: #b0b8c8; }
+        body.dark .top-btn.erase { background: #383d4a; }
+        body.dark .top-btn.clear { background: #404655; }
+        body.dark .top-btn.export { background: #2a2e3a; color: #8a96a8; }
+        body.dark .top-btn.done { background: #2a2e3a; color: #7a8898; }
+        body.dark .top-btn.done.active { background: linear-gradient(135deg,#5a3e00,#7a5a10); color: #ffe090; }
+        body.dark .card { background: #1c1f27; box-shadow: 0 2px 14px rgba(0,0,0,0.35); }
+        body.dark .card-title { color: #7ea8d8; }
+        body.dark .meta-line { color: #5a6578; }
+        body.dark .verdict { background: #0d1a2e; }
+        body.dark .section-heading { color: #5a6880; border-bottom-color: #2a2e3a; }
+        body.dark .issue-box { background: #20232d; color: #c0c8d4; }
+        body.dark .fact-box { background: #1e1c14; border-left-color: #8a6820; color: #c0c8d4; }
+        body.dark .compare-box { background: #20232d; color: #c0c8d4; }
+        body.dark .compare-box h4 { color: #7ea8d8; }
+        body.dark .compare-box.right { background: #14201a; }
+        body.dark .compare-box.right h4 { color: #7acda0; }
+        body.dark .compare-box.amber { background: #1e1608; }
+        body.dark .compare-box.amber h4 { color: #d4a060; }
+        body.dark .compare-box.red { background: #200f0e; }
+        body.dark .compare-box.red h4 { color: #e88070; }
+        body.dark .op { border-color: #2a2e3a; }
+        body.dark .op-head { background: #20232d; }
+        body.dark .op-label { color: #7ea8d8; }
+        body.dark .op-label.green { color: #7acda0; }
+        body.dark .op-label.amber { color: #d4a060; }
+        body.dark .op-label.red { color: #e88070; }
+        body.dark .op-body { background: #1c1f27; color: #c0c8d4; }
+        body.dark .op-result { background: #161a24; border-left-color: #3a5a8a; }
+        body.dark .op-result.green { background: #12201a; border-left-color: #3a7a5a; }
+        body.dark .op-result.amber { background: #1e1608; border-left-color: #7a5020; }
+        body.dark .op-result.red { background: #200f0e; border-left-color: #8a2a20; }
+        body.dark .ref-case { background: #20232d; border-left-color: #3a5a8a; }
+        body.dark .ref-case.warn { background: #200f0e; border-left-color: #8a2a20; }
+        body.dark .ref-case.green { background: #12201a; border-left-color: #3a7a5a; }
+        body.dark .ref-case-title { color: #7ea8d8; }
+        body.dark .ref-case.yi .ref-case-title { color: #7a8898; }
+        body.dark .ref-case.warn .ref-case-title { color: #e88070; }
+        body.dark .ref-case.green .ref-case-title { color: #7acda0; }
+        body.dark .law-ref { background: #1c1f27; border-left-color: #3a5a8a; color: #8a96a8; }
+        body.dark .judge-chip { background: #20232d; color: #8a9ab8; border-color: #2e3340; }
+        body.dark .judge-chip.chief { background: #0d1a2e; color: #9abcd8; border-color: #1a3a60; }
+        body.dark .note-textarea { background: #161a24; border-color: #2e3340; color: #c0c8d4; }
+        body.dark .note-textarea:focus { border-color: #3a5a8a; }
+        body.dark .note-textarea::placeholder { color: #3a404e; }
+        body.dark .note-toggle { color: #3a4a5e; }
+        body.dark .note-toggle:hover { color: #7ea8d8; }
+        body.dark details summary { color: #4a5a70; }
+        body.dark #noResults, body.dark #noStarred { color: #3a4a5e; }
+        body.dark mark.search-hl { background: #7a5a00; color: #ffe090; }
+        body.dark mark.search-hl.current { background: #c07800; color: #fff; }
+        body.dark ::selection { background: #1a3a60; }
+        body.dark .flow-step { background: #20232d; color: #c0c8d4; }
+        body.dark .tag { background: #20232d; border-color: #2e3340; color: #8a9ab8; }
+        body.dark .tag.red { background: #200f0e; border-color: #5a2020; color: #e88070; }
+        body.dark .tag.green { background: #12201a; border-color: #2a5a3a; color: #7acda0; }
+        body.dark .tag.amber { background: #1e1608; border-color: #5a4010; color: #d4a060; }
+        body.dark .timeline::before { background: #2e3340; }
+        body.dark .tl-date { color: #5a6880; }
+        body.dark .tl-dot { border-color: #1c1f27; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>最高法院刑事大法庭<br>111年度台非大字第34號</h1>
+    <div class="header-controls">
+        <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="搜尋關鍵字、法條…" oninput="doSearch(this.value)" onkeydown="handleSearchKey(event)">
+            <span class="search-count" id="searchCount"></span>
+            <button class="search-nav" id="searchPrev" onclick="navMatch(-1)" title="上一個">▲</button>
+            <button class="search-nav" id="searchNext" onclick="navMatch(1)" title="下一個">▼</button>
+        </div>
+        <button id="filterBtn" onclick="toggleFilter()">⭐ 收藏</button>
+    </div>
+    <div class="top-bar">
+        <button class="top-btn" onclick="highlightText()">🖊️</button>
+        <button class="top-btn erase" onclick="removeHighlight()">🧽</button>
+        <button class="top-btn clear" onclick="clearHighlights()">🗑️</button>
+        <button class="top-btn export" onclick="openExport()">📤</button>
+        <button class="top-btn" id="darkBtn" onclick="toggleDark()" title="夜覽模式">🌙</button>
+        <button class="top-btn done" id="doneBtn" onclick="toggleDone()">朕已閱</button>
+        <span class="done-date" id="doneDateLabel"></span>
+    </div>
+</header>
+
+<div class="container">
+
+<!-- ══════════════════ 卡片一：核心主文與爭議 ══════════════════ -->
+<div class="card" id="case1" data-kw="111台非大34 累犯 軍法 刑法49條 修正 95年7月1日 軍法前案 後案 不適用 劉宗明 毒品 非常上訴 罪刑法定 不溯及既往">
+    <button class="star-btn" onclick="toggleStar('case1',this)">⭐</button>
+
+    <h2 class="card-title">【核心爭議】刑法第49條修正前依軍法受裁判並執行完畢者，於修正後再犯，有無累犯規定之適用？</h2>
+    <div class="meta-line">裁定日期：中華民國111年10月5日　｜　案號：111年度台非大字第34號　｜　提案庭：最高法院刑事第六庭　｜　上訴人：最高檢察署檢察總長（被告：劉宗明，違反毒品危害防制條例）</div>
+
+    <div class="tag-row">
+        <span class="tag red">司律必考</span>
+        <span class="tag">累犯§47Ⅰ</span>
+        <span class="tag">§49修正</span>
+        <span class="tag amber">軍法前案</span>
+        <span class="tag">罪刑法定</span>
+        <span class="tag green">溯及禁止</span>
+        <span class="tag">非常上訴</span>
+        <span class="tag">兩階段要件</span>
+    </div>
+
+    <div class="verdict">
+        <div class="verdict-label">大法庭主文</div>
+        <div class="verdict-main">被告前所犯罪依軍法受裁判，於民國95年7月1日修正刑法第49條施行前受徒刑之執行完畢，復於5年以內即同條修正施行日之後，故意再犯有期徒刑以上之罪者，不適用累犯之規定。</div>
+        <div class="vote-row">
+            <span class="v-chip win">大法庭裁定 ✔（不適用累犯）</span>
+            <span class="v-chip">提案庭：刑事第六庭</span>
+            <span class="v-chip">裁定日：111.10.5</span>
+        </div>
+    </div>
+
+    <!-- 時間軸 -->
+    <div class="section-heading">本案事實時間軸</div>
+    <div class="timeline">
+        <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-date">民國93年</div>
+            <div>被告劉宗明因<strong>違反部屬職責之軍法案件</strong>，經國防部東部地方軍事法院處有期徒刑1年2月確定（即「<strong>軍法前案</strong>」）</div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-dot amber"></div>
+            <div class="tl-date">94年2月2日</div>
+            <div>刑法第49條修正公布（刪除「依軍法受裁判者不適用累犯」之規定），預定95年7月1日施行</div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-date">94年10月2日</div>
+            <div>被告軍法前案<strong>執行完畢</strong>（此時§49舊法仍有效，軍法前案依舊法不得作為累犯前案）</div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-dot red"></div>
+            <div class="tl-date">95年7月1日</div>
+            <div>修正後刑法第49條<strong>正式施行</strong>——刪除軍法案件不適用累犯之規定；此時軍法前案「執行完畢」早已是既存法律效果</div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-dot red"></div>
+            <div class="tl-date">96年5月11日</div>
+            <div>被告再犯<strong>共同販賣第二級毒品</strong>（即「<strong>後案</strong>」，在軍法前案執行完畢後5年以內），嗣被論以累犯加重</div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-dot green"></div>
+            <div class="tl-date">111年10月5日</div>
+            <div>大法庭裁定：<strong>不適用累犯規定</strong>——以修正前§49之法律效果為準，軍法前案不得作為累犯第一階段要件</div>
+        </div>
+    </div>
+
+    <!-- 法律爭議 -->
+    <div class="section-heading">本案提案之法律爭議</div>
+    <div class="issue-box">
+        <p><strong>核心問題：</strong>被告於刑法第49條規定修正前，因犯罪受軍法裁判處有期徒刑確定，並執行完畢（未受司法最終審查，即「軍法前案」）後，5年以內即刑法第49條規定修正刪除「依軍法」受裁判者不適用累犯規定後，故意再犯有期徒刑以上之罪（即「後案」），有無刑法第47條第1項關於<strong>累犯規定之適用</strong>？</p>
+        <p><strong>正方（適用累犯）：</strong>修正後§49已刪除軍法案件不適用累犯之規定，後案（96年）發生於修正施行（95年）後，應依修正後§49適用累犯規定，以§47Ⅰ加重其刑。</p>
+        <p><strong>反方（不適用累犯／大法庭採此說）：</strong>軍法前案執行完畢（94年10月）時，修正前§49尚有效，其不適用累犯之法律效果已告確定；修正後§49不得回溯適用，撤銷此已確定之法律效果，否則違反罪刑法定主義之溯及處罰禁止原則。</p>
+    </div>
+
+    <div class="law-ref"><strong>主要相關法條：</strong>刑法§1（罪刑法定主義）、§47Ⅰ（累犯之成立要件與效果）、§49修正前（軍法受裁判不適用累犯）、§49修正後（94年2月2日修正公布、95年7月1日施行，刪除軍法例外）；憲法§8（人身自由）；聯合國世界人權宣言§11、公民與政治權利國際公約§15（罪刑法定主義之國際人權規範）</div>
+
+    <div class="note-toggle" onclick="toggleNote('n1')">✏️ 我的小結</div>
+    <div class="note-area" id="n1">
+        <textarea class="note-textarea" placeholder="例如：軍法前案執行完畢時舊法有效→法律效果已確定→修正後§49不得回溯→不適用累犯…" oninput="saveNote('n1',this.value)"></textarea>
+        <div class="note-saved" id="n1-saved"></div>
+    </div>
+</div>
+
+<!-- ══════════════════ 卡片二：罪刑法定主義與溯及處罰禁止原則 ══════════════════ -->
+<div class="card" id="case2" data-kw="111台非大34 罪刑法定主義 溯及處罰禁止 刑法第1條 fair notice 事先告知 法之安定性 法律效果 聯合國 公政公約 不溯及既往 刑罰 累犯 加重">
+    <button class="star-btn" onclick="toggleStar('case2',this)">⭐</button>
+
+    <h2 class="card-title">【理由一】罪刑法定主義與溯及處罰禁止原則——不得回溯撤銷已確定之法律效果</h2>
+    <div class="meta-line">大法庭見解第一部分　｜　111年度台非大字第34號</div>
+
+    <div class="section-heading">罪刑法定主義之內涵</div>
+    <div class="opinions">
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">壹</div>
+                <span class="op-label">罪刑法定主義之核心——事先告知（fair notice）原則</span>
+            </div>
+            <div class="op-body">
+                <p>罪刑法定主義，係指犯罪之法律要件及相關之法律效果（例如刑罰），均須事先以法律明文規定，亦即，基於正當程序的要求，尤其關於<strong>不利於人民之罪與刑的施加或刑罰的增減</strong>，必須落實<strong>事先告知（fair notice）之原則</strong>，以避免事後之突襲性裁判。</p>
+                <p>是以，行為、事實終了時之法律若未設處罰規定者，即無犯罪與刑罰可言。</p>
+                <div class="op-result">
+                    <strong>國際人權依據：</strong>聯合國世界人權宣言§11及公民與政治權利國際公約§15均明白揭示此原則，已成為普世人權價值之重要指標，為現代法治國家最重要之刑法基石。我國刑法§1亦為明文依據。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">貳</div>
+                <span class="op-label">「刑罰」規定之範圍——涵蓋累犯等類型性加重處斷刑</span>
+            </div>
+            <div class="op-body">
+                <p>所謂「刑罰」規定，係犯罪之「法律效果」，除<strong>法定本刑</strong>外，亦包括<strong>類型性之加重（例如累犯）、減輕或免除其刑等處斷刑之規定</strong>。</p>
+                <p>是以，「<strong>無法律即無刑罰</strong>」乃貫徹罪刑法定主義所當然之理，俾防止國家刑罰權之濫用，以保障人權。</p>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num amber">參</div>
+                <span class="op-label amber">溯及處罰禁止原則——禁止事後惡化行為人之法律地位</span>
+            </div>
+            <div class="op-body">
+                <p>罪刑法定主義所派生之<strong>溯及處罰禁止原則</strong>，則係以<strong>禁止事後惡化行為人之法律地位</strong>，作為核心思想。</p>
+                <p>強調無論是法律之適用或立法行為，皆不得將刑事處罰之法律，<strong>回溯適用於該法律生效施行前已發生之行為或已確定（既存）之法律效果（或法律地位）</strong>，俾行為人對於行為之處罰得合理預見，以維護法之確實安定性。</p>
+                <div class="op-result amber">
+                    <strong>關鍵核心：</strong>溯及禁止的保護對象不只是「行為」，更包括已確定之「法律效果」（法律地位）。即使是刑法修正（刪除不利規定），也不得回溯撤銷修正前已確定存在的有利法律效果。
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="note-toggle" onclick="toggleNote('n2')">✏️ 我的小結</div>
+    <div class="note-area" id="n2">
+        <textarea class="note-textarea" placeholder="例如：罪刑法定=事先告知=fair notice；累犯加重=刑罰規定（處斷刑）；溯及禁止=禁止事後惡化法律地位=保護已確定法律效果…" oninput="saveNote('n2',this.value)"></textarea>
+        <div class="note-saved" id="n2-saved"></div>
+    </div>
+</div>
+
+<!-- ══════════════════ 卡片三：累犯兩階段要件分析 ══════════════════ -->
+<div class="card" id="case3" data-kw="111台非大34 累犯 兩階段 第一階段 第二階段 47條第1項 執行完畢 5年以內 故意 再犯 分別涵攝 事實終了時 法規範 各別判斷">
+    <button class="star-btn" onclick="toggleStar('case3',this)">⭐</button>
+
+    <h2 class="card-title">【理由二】累犯成立之兩階段要件——應分別依各階段事實終了時之法規範涵攝判斷</h2>
+    <div class="meta-line">大法庭見解第二部分　｜　111年度台非大字第34號</div>
+
+    <!-- 兩階段圖示 -->
+    <div class="section-heading">§47Ⅰ累犯成立之兩階段要件</div>
+    <div class="two-col">
+        <div class="compare-box">
+            <h4>🔵 第一階段要件</h4>
+            <p style="font-size:0.9em;margin:0;">
+                「<strong>受徒刑之執行完畢，或一部之執行而赦免後</strong>」<br><br>
+                事實終了時點：<strong>前案執行完畢或赦免時</strong><br>
+                本案：94年10月2日（軍法前案執行完畢）<br>
+                當時有效法規：<strong>修正前§49</strong>（軍法案件不適用累犯）<br>
+                涵攝結果：<strong>軍法前案≠累犯第一階段要件</strong>（法律效果已確定）
+            </p>
+        </div>
+        <div class="compare-box right">
+            <h4>🟢 第二階段要件</h4>
+            <p style="font-size:0.9em;margin:0;">
+                「<strong>5年以內故意再犯有期徒刑以上之罪者</strong>」<br><br>
+                事實終了時點：<strong>後案犯罪時</strong><br>
+                本案：96年5月11日（販賣毒品）<br>
+                當時有效法規：修正後§49（95年7月1日施行，已無軍法例外）<br>
+                涵攝結果：後案依修正後§49本應適用累犯，但<strong>第一階段已告確定不構成</strong>，累犯整體不成立
+            </p>
+        </div>
+    </div>
+
+    <div class="opinions">
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">壹</div>
+                <span class="op-label">累犯兩要件具「跨期間性」——不得單以後案時法規範決之</span>
+            </div>
+            <div class="op-body">
+                <p>刑法§47Ⅰ關於累犯之成立，必須滿足前案為「受徒刑之執行完畢，或一部之執行而赦免後」（第一階段要件）以及後案係於「5年以內故意再犯有期徒刑以上之罪」（第二階段要件），<strong>二個具跨期間性之相關聯要件，疊加前後二階段之要件而綜合判斷，始足當之，缺一不可</strong>。</p>
+                <p>而該二階段要件之齊備與否，因各階段要件不同，<strong>終了時點可分，且係分階段實現確立</strong>，評價其法律效果時，自須<strong>分別依各該階段要件之事實終了時的法規範個別涵攝判斷</strong>，並非單以第二階段要件之事實終了時之法規範決之，而忽略第一階段要件之事實終了時有效存在之法規範的涵攝結果，始符合罪刑法定主義之精神。</p>
+                <div class="op-result">
+                    <strong>方法論確立：</strong>兩階段要件→分別涵攝（各依各階段事實終了時之法規範）→綜合判斷。不得以後案（第二階段）時的法規範，「回頭」評價前案（第一階段）的法律效果。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">貳</div>
+                <span class="op-label">修正前§49使「軍法前案執行完畢」已確定不構成第一階段要件</span>
+            </div>
+            <div class="op-body">
+                <p>修正前刑法第49條規定：「累犯之規定，於前所犯罪依軍法……受裁判者，不適用之。」<strong>明文將被告於95年7月1日前受徒刑執行完畢或一部之執行而赦免之「軍法前案」，排除於該當「後案」累犯之第一階段要件外，形成確定（既存）之法律效果</strong>。</p>
+                <p>易言之，此時已確立之法律地位，<strong>嗣後不能重複為對被告不利之負面評價</strong>。</p>
+                <p>依第一階段要件之事實終了時（即「軍法前案」執行完畢或一部之執行而赦免時）之法規範的涵攝結果，該「軍法前案」並非將來「後案」該當累犯之第一階段要件的法律效果，於「軍法前案」執行完畢或一部之赦免後，已屬確定，此乃罪刑法定主義「<strong>無法律即無刑罰</strong>」之內涵所當然。</p>
+                <div class="op-result red">
+                    <strong>不得回溯：</strong>自不能將修正於後（並向後生效）之刑法第49條規定，回溯適用於「軍法前案」執行完畢或一部之赦免時之事實，而推翻業依修正前刑法第49條規定而確定之上開法律效果，「重新評價」為該當於「後案」刑罰類型性加重規定之累犯的第一階段要件，否則會<strong>對該確定之法律效果造成極度不利益於被告之重大衝擊</strong>，而有悖於罪刑法定主義之精神。
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="note-toggle" onclick="toggleNote('n3')">✏️ 我的小結</div>
+    <div class="note-area" id="n3">
+        <textarea class="note-textarea" placeholder="例如：累犯=兩階段+缺一不可；各階段依各自事實終了時法規範判斷；第一階段（前案執行完畢時）依舊法→軍法前案≠第一階段要件→已確定→不得回溯重評…" oninput="saveNote('n3',this.value)"></textarea>
+        <div class="note-saved" id="n3-saved"></div>
+    </div>
+</div>
+
+<!-- ══════════════════ 卡片四：規範目的與法益衡量 ══════════════════ -->
+<div class="card" id="case4" data-kw="111台非大34 規範目的 法益衡量 存續保障 憲法第8條 人身自由 罪刑相當 修正前後 公益 軍法前案 累犯第一階段">
+    <button class="star-btn" onclick="toggleStar('case4',this)">⭐</button>
+
+    <h2 class="card-title">【理由三】規範目的與法益衡量——§49修正所追求公益不及於「軍法前案」之回溯評價</h2>
+    <div class="meta-line">大法庭見解第三部分　｜　111年度台非大字第34號</div>
+
+    <div class="opinions">
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">壹</div>
+                <span class="op-label">目的解釋——§49修正後之公益不包括使舊法軍法前案適用累犯</span>
+            </div>
+            <div class="op-body">
+                <p>自刑法第49條規定修正前、後之<strong>規範目的</strong>以言，亦應認凡該條規定修正前「軍法前案」均不適用刑法關於累犯之規定，必該條規定修正後<strong>依軍法受裁判者，始有累犯規定之適用</strong>。</p>
+                <p>亦即，<strong>此項法律變動所追求之公益，並不包括將該條修正前「軍法前案」亦納入後案該當累犯第一階段要件之適用範圍</strong>，基於法益衡量之結果，自應給予上開已確定之法律效果<strong>充分的存續保障</strong>。</p>
+                <div class="op-result">
+                    <strong>目的解釋：</strong>§49修正（刪除軍法例外）僅向後生效，規範目的是使「修正後」依軍法受裁判者適用累犯，不及於修正前已確定執行完畢之軍法前案。修正前既存之法律效果（軍法前案不構成累犯第一階段）應受充分存續保障。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num red">貳</div>
+                <span class="op-label red">罪刑相當原則——對人身自由之限制不得超出規範目的必要範圍</span>
+            </div>
+            <div class="op-body">
+                <p>如未釐清刑法第49條規定修正前、後之規範目的，而於該條修正後，<strong>不分前案受徒刑之執行完畢或一部之執行而赦免之情形，是否為「軍法前案」，就後案該當累犯之第一階段及第二階段要件，一律適用刑法第49條修正後之累犯規定</strong>，未以「軍法前案」事實終了時之法規範判斷後案累犯之第一階段要件是否該當，對<strong>人民受憲法第8條保障之人身自由</strong>所為之限制，<strong>超出規範目的之必要範圍，不符罪刑相當原則</strong>。</p>
+                <div class="op-result red">
+                    <strong>結論：</strong>一律適用修正後§49，不區分是否為軍法前案者，違反罪刑相當原則，對人身自由之限制超出必要範圍。
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 修正前後比較 -->
+    <div class="section-heading">§49修正前後適用範圍比較</div>
+    <div class="two-col">
+        <div class="compare-box amber">
+            <h4>修正前§49（95年7月1日前）</h4>
+            <p style="font-size:0.9em;margin:0;">
+                「累犯之規定，於前所犯罪<strong>依軍法</strong>……受裁判者，不適用之。」<br><br>
+                → 依軍法受裁判並執行完畢者，<strong>不得</strong>作為後案累犯之第一階段要件<br>
+                → 此法律效果於執行完畢時即告確定
+            </p>
+        </div>
+        <div class="compare-box right">
+            <h4>修正後§49（95年7月1日起）</h4>
+            <p style="font-size:0.9em;margin:0;">
+                刪除「依軍法受裁判者不適用累犯」之規定<br><br>
+                → 修正後依軍法受裁判並執行完畢者，<strong>得</strong>作為後案累犯之第一階段要件<br>
+                → 修正前已確定之法律效果，仍受存續保障，<strong>不受修正後規定回溯影響</strong>
+            </p>
+        </div>
+    </div>
+
+    <div class="law-ref"><strong>相關法條：</strong>刑法§1（罪刑法定）、§47Ⅰ（累犯加重至二分之一）、§49修正前（軍法受裁判不適用累犯）、§49修正後（94年2月2日修正公布，95年7月1日施行）；憲法§8（人身自由）；聯合國世界人權宣言§11、公民與政治權利國際公約§15</div>
+
+    <div class="note-toggle" onclick="toggleNote('n4')">✏️ 我的小結</div>
+    <div class="note-area" id="n4">
+        <textarea class="note-textarea" placeholder="例如：目的解釋→修正公益不及於軍法前案之回溯；法益衡量→存續保障＞修正後一律適用；罪刑相當→不得對人身自由限制超出規範目的…" oninput="saveNote('n4',this.value)"></textarea>
+        <div class="note-saved" id="n4-saved"></div>
+    </div>
+</div>
+
+<!-- ══════════════════ 卡片五：考試重點彙整 ══════════════════ -->
+<div class="card" id="case5" data-kw="111台非大34 考試重點 司律 考點 累犯 軍法 49條 兩階段 分別涵攝 溯及 不溯及既往 法律效果 存續保障 罪刑法定 罪刑相當">
+    <button class="star-btn" onclick="toggleStar('case5',this)">⭐</button>
+
+    <h2 class="card-title">【考試重點彙整】司法官 &amp; 律師考試必讀考點</h2>
+    <div class="meta-line">111年度台非大字第34號　｜　裁定日：111.10.5</div>
+
+    <div class="section-heading">核心考點速覽</div>
+    <div class="opinions">
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">①</div>
+                <span class="op-label">主文結論——「不適用累犯規定」</span>
+            </div>
+            <div class="op-body">
+                <p>被告前所犯罪依軍法受裁判，於<strong>95年7月1日修正刑法第49條施行前受徒刑之執行完畢</strong>，復於5年以內即同條修正施行日之後，故意再犯有期徒刑以上之罪者，<strong>不適用累犯之規定</strong>（即不依§47Ⅰ加重其刑）。</p>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">②</div>
+                <span class="op-label">累犯兩階段要件應「分別涵攝」——不得僅以後案時法規範決之</span>
+            </div>
+            <div class="op-body">
+                <p>§47Ⅰ累犯的成立有兩個跨期間性要件，<strong>應分別依各階段事實終了時之有效法規範個別涵攝判斷</strong>，不得單以後案（第二階段）犯罪時之法規範，回頭重評前案（第一階段）執行完畢時已確定之法律效果。</p>
+                <div class="op-result amber">
+                    <strong>考試申論架構：</strong>第一步確認兩階段要件→第二步分別找出各階段事實終了時點→第三步依各時點有效法規範涵攝→第四步綜合判斷（兩階段均成立方為累犯）。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">③</div>
+                <span class="op-label">溯及處罰禁止——保護「已確定法律效果」，不只保護「行為」</span>
+            </div>
+            <div class="op-body">
+                <p>溯及處罰禁止原則之保護範圍不限於行為本身，<strong>亦及於已確定（既存）之法律效果（或法律地位）</strong>。軍法前案執行完畢時，依當時有效之修正前§49，其「不構成後案累犯第一階段要件」之法律效果已告確定，嗣後不得以修正後§49回溯撤銷此已確定之有利效果。</p>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">④</div>
+                <span class="op-label">「刑罰」規定涵蓋累犯加重——罪刑法定主義之保障範圍</span>
+            </div>
+            <div class="op-body">
+                <p>「刑罰」規定不僅指法定本刑，亦包括<strong>類型性之加重（累犯）、減輕或免除其刑等處斷刑之規定</strong>。因此累犯加重（§47Ⅰ）屬「刑罰」規定，受罪刑法定主義完整保障（包括溯及禁止）。</p>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">⑤</div>
+                <span class="op-label">目的解釋——§49修正之公益範圍不及於軍法前案之回溯</span>
+            </div>
+            <div class="op-body">
+                <p>§49修正（刪除軍法例外）所追求之公益，<strong>僅及於修正後依軍法受裁判者</strong>，並不包括將修正前軍法前案納入後案累犯第一階段要件。已確定之法律效果應受<strong>充分的存續保障</strong>。</p>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">⑥</div>
+                <span class="op-label">罪刑相當原則——不得超出規範目的對人身自由過度限制</span>
+            </div>
+            <div class="op-body">
+                <p>一律以修正後§49適用累犯（不區分是否為軍法前案），對<strong>人民受憲法§8保障之人身自由</strong>所為之限制，超出規範目的之必要範圍，<strong>不符罪刑相當原則</strong>。</p>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">⑦</div>
+                <span class="op-label">本案非常上訴之意義——檢察總長對不利被告之確定判決提非常上訴</span>
+            </div>
+            <div class="op-body">
+                <p>本案由<strong>最高檢察署檢察總長</strong>對確定判決（系爭確定判決已依累犯加重被告刑罰）提起<strong>非常上訴</strong>，指摘系爭確定判決適用法則不當（錯誤援引修正後§49論以累犯），屬<strong>對被告不利之確定判決，由檢察總長依刑訴法§441提非常上訴</strong>予以糾正之典型案例。</p>
+                <div class="op-result green">
+                    <strong>考試提示：</strong>注意非常上訴之提起，不以有利被告為限（刑訴§441），檢察總長亦得就不利被告之確定判決提起，本案即係檢察總長發現判決適用法則不當而主動糾正，結果有利被告（不應論以累犯）。
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 整體邏輯圖 -->
+    <div class="section-heading">本案判斷邏輯完整流程</div>
+    <div class="flow-wrap">
+        <div class="flow-step"><div class="flow-num">1</div><div>94年10月2日：軍法前案執行完畢 → 確認<strong>第一階段事實終了時點</strong></div></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><div class="flow-num">2</div><div>依該時點有效法規範（<strong>修正前§49</strong>）涵攝 → 軍法前案<strong>不構成</strong>累犯第一階段要件 → 此法律效果<strong>已告確定</strong></div></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><div class="flow-num">3</div><div>95年7月1日：修正後§49施行，刪除軍法例外 → 但<strong>不得回溯適用</strong>於94年10月2日已確定之法律效果</div></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><div class="flow-num">4</div><div>96年5月11日：被告再犯後案 → 確認<strong>第二階段事實終了時點</strong></div></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step" style="border-left: 3px solid #276749;"><div class="flow-num" style="background:#276749;">✔</div><div>綜合判斷：第一階段<strong>不構成</strong>（已確定，受存續保障）→ 累犯兩階段要件未齊備 → <strong>不適用累犯規定</strong>，不依§47Ⅰ加重</div></div>
+    </div>
+
+    <!-- 合議庭成員 -->
+    <details>
+        <summary>大法庭組成</summary>
+        <div style="padding-top:10px;">
+            <div class="judges-grid">
+                <span class="judge-chip chief">審判長　吳燦</span>
+                <span class="judge-chip">郭毓洲</span>
+                <span class="judge-chip">林立華</span>
+                <span class="judge-chip">徐昌錦</span>
+                <span class="judge-chip">段景榕</span>
+                <span class="judge-chip">李英勇</span>
+                <span class="judge-chip">李錦樑</span>
+                <span class="judge-chip">林勤純</span>
+                <span class="judge-chip">梁宏哲</span>
+                <span class="judge-chip">何信慶</span>
+                <span class="judge-chip">邱忠義</span>
+            </div>
+            <p style="font-size:0.82em;color:#888;margin:10px 0 0;">提案庭：最高法院刑事第六庭　｜　上訴人：最高檢察署檢察總長　｜　被告：劉宗明（選任辯護人：黃昱中律師、李艾倫律師）　｜　裁定日：中華民國111年10月5日</p>
+        </div>
+    </details>
+
+    <div class="note-toggle" onclick="toggleNote('n5')">✏️ 我的小結</div>
+    <div class="note-area" id="n5">
+        <textarea class="note-textarea" placeholder="考點整理或申論題架構…" oninput="saveNote('n5',this.value)"></textarea>
+        <div class="note-saved" id="n5-saved"></div>
+    </div>
+</div>
+
+<div id="noResults">查無符合的內容，請試試其他關鍵字。</div>
+<div id="noStarred">還沒有收藏的項目，點卡片右上角的 ⭐ 加入收藏。</div>
+</div>
+
+<script>
+const STORE_KEY='111_fei34_grand_notes',STAR_KEY='111_fei34_grand_stars';
+(function initDark(){if(localStorage.getItem('night_mode')==='1'){document.body.classList.add('dark');document.getElementById('darkBtn').textContent='☀️';}})();
+function loadNotes(){try{return JSON.parse(localStorage.getItem(STORE_KEY))||{};}catch{return{};}}
+function loadStars(){try{return JSON.parse(localStorage.getItem(STAR_KEY))||{};}catch{return{};}}
+function saveAllNotes(d){localStorage.setItem(STORE_KEY,JSON.stringify(d));}
+function saveAllStars(d){localStorage.setItem(STAR_KEY,JSON.stringify(d));}
+(function(){const n=loadNotes(),s=loadStars();Object.entries(n).forEach(([id,v])=>{const a=document.getElementById(id);if(!a)return;const t=a.querySelector('textarea');if(t)t.value=v;if(v)a.classList.add('open');});Object.entries(s).forEach(([id,v])=>{ if(!v)return;const b=document.querySelector(`#${id} .star-btn`);if(b)b.classList.add('starred');});})();
+function toggleStar(id,btn){const s=loadStars();const now=!btn.classList.contains('starred');btn.classList.toggle('starred',now);s[id]=now;saveAllStars(s);if(filterActive)applyFilter();}
+let filterActive=false;
+function toggleFilter(){filterActive=!filterActive;document.getElementById('filterBtn').classList.toggle('active',filterActive);document.getElementById('searchInput').value='';clearSearchHighlights();updateSearchUI();applyFilter();}
+function applyFilter(){const s=loadStars();const q=document.getElementById('searchInput').value.trim().toLowerCase();let any=false;document.querySelectorAll('.card').forEach(c=>{const kw=(c.dataset.kw||'').toLowerCase();const txt=c.textContent.toLowerCase();const ms=!q||kw.includes(q)||txt.includes(q);const mf=!filterActive||!!s[c.id];const show=ms&&mf;c.classList.toggle('hidden',!show);if(show)any=true;});document.getElementById('noResults').style.display=(!any&&!filterActive)?'block':'none';document.getElementById('noStarred').style.display=(!any&&filterActive)?'block':'none';}
+let _matches=[],_cur=-1;
+function clearSearchHighlights(){document.querySelectorAll('mark.search-hl').forEach(m=>{const p=m.parentNode;while(m.firstChild)p.insertBefore(m.firstChild,m);p.removeChild(m);p.normalize();});_matches=[];_cur=-1;}
+function highlightInNode(node,q){if(node.nodeType===3){const txt=node.textContent;const idx=txt.toLowerCase().indexOf(q);if(idx===-1)return false;const m=document.createElement('mark');m.className='search-hl';const before=document.createTextNode(txt.slice(0,idx));const matched=document.createTextNode(txt.slice(idx,idx+q.length));const after=document.createTextNode(txt.slice(idx+q.length));m.appendChild(matched);const p=node.parentNode;p.insertBefore(before,node);p.insertBefore(m,node);p.insertBefore(after,node);p.removeChild(node);_matches.push(m);return true;}else if(node.nodeType===1){const skip=new Set(['SCRIPT','STYLE','TEXTAREA']);if(skip.has(node.tagName))return false;[...node.childNodes].forEach(ch=>highlightInNode(ch,q));return false;}}
+function doSearch(q){clearSearchHighlights();applyFilter();if(!q||!q.trim()){updateSearchUI();return;}const lq=q.trim().toLowerCase();document.querySelectorAll('.card:not(.hidden)').forEach(c=>highlightInNode(c,lq));if(_matches.length>0){_cur=0;setCurrent();}updateSearchUI();}
+function setCurrent(){_matches.forEach((m,i)=>m.classList.toggle('current',i===_cur));if(_matches[_cur]){_matches[_cur].scrollIntoView({behavior:'smooth',block:'center'});}}
+function navMatch(dir){if(!_matches.length)return;_cur=(_cur+dir+_matches.length)%_matches.length;setCurrent();updateSearchUI();}
+function updateSearchUI(){const c=document.getElementById('searchCount');if(!c)return;if(!_matches.length){c.textContent='';return;}c.textContent=(_cur+1)+'/'+_matches.length;}
+function handleSearchKey(e){if(e.key==='Enter'){e.preventDefault();navMatch(e.shiftKey?-1:1);}}
+function toggleNote(id){document.getElementById(id).classList.toggle('open');}
+function toggleDark(){const on=document.body.classList.toggle('dark');document.getElementById('darkBtn').textContent=on?'☀️':'🌙';localStorage.setItem('night_mode',on?'1':'0');}
+const timers={};
+function saveNote(id,v){clearTimeout(timers[id]);timers[id]=setTimeout(()=>{const n=loadNotes();n[id]=v;saveAllNotes(n);const el=document.getElementById(id+'-saved');if(el){el.textContent='已儲存';setTimeout(()=>el.textContent='',1500);}},500);}
+let savedRange=null;
+document.addEventListener('selectionchange',()=>{const s=window.getSelection();if(s&&!s.isCollapsed&&s.rangeCount)savedRange=s.getRangeAt(0).cloneRange();});
+function highlightText(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;if(!r||r.collapsed){alert('💡 請先反白想要標記的文字');return;}const sp=document.createElement('span');sp.className='hl';sp.style.backgroundColor='#ffe066';try{r.surroundContents(sp);savedRange=null;}catch{alert('💡 請選取同一段落內的文字');}s&&s.removeAllRanges();}
+function removeHighlight(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;if(!r||r.collapsed){alert('💡 請先反白想擦除標記的文字');return;}const anc=r.commonAncestorContainer.nodeType===1?r.commonAncestorContainer:r.commonAncestorContainer.parentElement;anc.querySelectorAll('span.hl').forEach(sp=>{if(r.intersectsNode(sp)){const p=sp.parentNode;while(sp.firstChild)p.insertBefore(sp.firstChild,sp);p.removeChild(sp);}});savedRange=null;s&&s.removeAllRanges();}
+function clearHighlights(){const sp=document.querySelectorAll('span.hl');if(!sp.length)return;if(confirm('確定要清除所有重點標記嗎？')){sp.forEach(s=>{const p=s.parentNode;while(s.firstChild)p.insertBefore(s.firstChild,s);p.removeChild(s);});}}
+function openExport(){
+    const stars=loadStars();
+    let out='最高法院刑事大法庭 111年度台非大字第34號\n'+'═'.repeat(44)+'\n\n';
+    document.querySelectorAll('.card').forEach(c=>{
+        const star=stars[c.id]?'⭐ ':'';
+        const title=c.querySelector('.card-title')?.textContent.trim()||'';
+        out+=`【${star}${title}】\n\n`;
+        const vMain=c.querySelector('.verdict-main');
+        const vSub=c.querySelector('.verdict-sub');
+        if(vMain) out+='▌大法庭主文\n'+vMain.textContent.trim()+'\n';
+        if(vSub)  out+=vSub.textContent.trim()+'\n';
+        out+='\n';
+        c.querySelectorAll('.op').forEach(op=>{
+            const head=op.querySelector('.op-label')?.textContent.trim()||'';
+            out+=`▌${head}\n`;
+            op.querySelectorAll('.op-body p, .op-body li, .op-result').forEach(el=>{
+                const t=el.textContent.trim();
+                if(t) out+=(el.tagName==='LI'?'  • ':'')+t+'\n';
+            });
+            out+='\n';
+        });
+        const law=c.querySelector('.law-ref');
+        if(law) out+=law.textContent.trim()+'\n\n';
+        const ta=c.querySelector('.note-textarea');
+        if(ta&&ta.value.trim()) out+='✏️ 小結：\n'+ta.value.trim()+'\n\n';
+        out+='═'.repeat(44)+'\n\n';
+    });
+    const b=new Blob([out.trim()],{type:'text/plain;charset=utf-8'});
+    const u=URL.createObjectURL(b);
+    const a=document.createElement('a');
+    a.href=u;a.download='111台非大字第34號_軍法前案累犯不適用.txt';a.click();
+    URL.revokeObjectURL(u);
+}
+const REG_KEY='exam_completion_registry';
+function _loadReg(){try{return JSON.parse(localStorage.getItem(REG_KEY))||{};}catch{return{};}}
+function _saveReg(r){try{localStorage.setItem(REG_KEY,JSON.stringify(r));}catch{}}
+function _fmt(ts){const d=new Date(ts);return(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();}
+function _updateDate(){const r=_loadReg();const k='case_criminal_grand_111_fei34.html';const l=document.getElementById('doneDateLabel');if(!l)return;l.textContent=(r[k]&&r[k].done&&r[k].ts)?_fmt(r[k].ts):'';}
+function _syncIndex(done){try{const r=JSON.parse(localStorage.getItem('gc_reads')||'{}');r['c43']=done;localStorage.setItem('gc_reads',JSON.stringify(r));}catch(e){}}
+function toggleDone(){const btn=document.getElementById('doneBtn');const r=_loadReg();const k='case_criminal_grand_111_fei34.html';const done=r[k]&&r[k].done;if(done){delete r[k];_saveReg(r);btn.classList.remove('active');_syncIndex(false);}else{const now=new Date();r[k]={done:true,ts:now.getTime(),tsLabel:now.toLocaleDateString('zh-TW')+' '+now.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false})};_saveReg(r);btn.classList.add('active');_syncIndex(true);}_updateDate();}
+(function(){const r=_loadReg();const k='case_criminal_grand_111_fei34.html';if(r[k]&&r[k].done){const b=document.getElementById('doneBtn');if(b)b.classList.add('active');}_updateDate();})();
+</script>
+</body>
+</html>

@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>111年度台非大字第15號 大法庭裁定</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: "Helvetica Neue", Helvetica, "PingFang TC", "LiHei Pro", "Microsoft JhengHei", sans-serif; background: #eef0f3; color: #1a1a1a; line-height: 1.8; font-size: 16px; margin: 0; padding: 0 0 56px; }
+        header { background: #1a365d; color: white; padding: 18px 16px 10px; text-align: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.18); }
+        header h1 { margin: 0 0 10px; font-size: 1.05em; line-height: 1.5; font-weight: 600; letter-spacing: 0.02em; }
+        .header-controls { display: flex; gap: 8px; align-items: center; }
+        .search-wrap { position: relative; flex: 1; display: flex; align-items: center; gap: 4px; }
+        #searchInput { flex: 1; padding: 8px 14px 8px 34px; border: none; border-radius: 8px; font-size: 14px; background: rgba(255,255,255,0.13); color: white; outline: none; min-width: 0; }
+        #searchInput::placeholder { color: rgba(255,255,255,0.5); }
+        #searchInput:focus { background: rgba(255,255,255,0.22); }
+        .search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 13px; opacity: 0.6; pointer-events: none; }
+        .search-count { font-size: 11px; color: rgba(255,255,255,0.6); white-space: nowrap; min-width: 32px; text-align: center; }
+        .search-nav { background: rgba(255,255,255,0.15); border: none; border-radius: 6px; color: white; font-size: 11px; padding: 4px 7px; cursor: pointer; line-height: 1; }
+        .search-nav:hover { background: rgba(255,255,255,0.28); }
+        mark.search-hl { background: #ffe066; color: #1a1a1a; border-radius: 2px; padding: 0 1px; }
+        mark.search-hl.current { background: #ff9500; color: #fff; }
+        #filterBtn { background: rgba(255,255,255,0.13); border: none; border-radius: 8px; color: white; font-size: 13px; padding: 8px 12px; cursor: pointer; white-space: nowrap; }
+        #filterBtn.active { background: #c9a84c; color: #1a365d; font-weight: bold; }
+        .top-bar { background: #dde0e5; padding: 6px 14px; display: flex; gap: 6px; justify-content: flex-end; flex-wrap: nowrap; }
+        .top-btn { background: #5a6375; color: white; border: none; padding: 5px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap; transition: transform 0.1s; }
+        .top-btn:active { transform: scale(0.92); }
+        .top-btn.erase { background: #7a8494; }
+        .top-btn.clear { background: #a0a8b4; }
+        .top-btn.export { background: #c5cad3; color: #2d3748; }
+        .top-btn.done { background: #a0a8b4; color: #1a2a3a; }
+        .top-btn.done.active { background: linear-gradient(135deg,#7a5c00,#a07820); color: #fff3c4; }
+        .done-date { font-size: 11px; color: #8a9ab0; white-space: nowrap; align-self: center; }
+        .container { padding: 16px; max-width: 600px; margin: 0 auto; }
+        @media (min-width: 768px) { body { font-size: 17.5px; } .container { max-width: 860px; padding: 20px; } header h1 { font-size: 1.15em; } }
+        .card { background: #fff; border-radius: 16px; padding: 22px 20px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); position: relative; }
+        .card.hidden { display: none; }
+        .star-btn { position: absolute; top: 18px; right: 18px; background: none; border: none; font-size: 20px; cursor: pointer; opacity: 0.18; transition: opacity 0.15s, transform 0.15s; padding: 0; }
+        .star-btn:active { transform: scale(1.3); }
+        .star-btn.starred { opacity: 1; }
+        .card-title { color: #1a365d; font-size: 1.25em; font-weight: 700; margin: 0 0 4px; padding-right: 28px; line-height: 1.55; }
+        .meta-line { font-size: 0.76em; color: #999; margin-bottom: 18px; letter-spacing: 0.03em; }
+        .verdict { background: #1a365d; color: white; border-radius: 11px; padding: 15px 18px; margin-bottom: 20px; }
+        .verdict-label { font-size: 0.68em; letter-spacing: 0.12em; opacity: 0.55; text-transform: uppercase; margin-bottom: 4px; }
+        .verdict-main { font-size: 1.02em; font-weight: 700; line-height: 1.5; margin-bottom: 5px; }
+        .verdict-sub { font-size: 0.83em; opacity: 0.75; line-height: 1.6; margin-bottom: 10px; }
+        .vote-row { display: flex; gap: 7px; flex-wrap: wrap; }
+        .v-chip { font-size: 0.73em; background: rgba(255,255,255,0.12); border-radius: 20px; padding: 3px 10px; white-space: nowrap; color: rgba(255,255,255,0.8); }
+        .v-chip.win { background: rgba(255,255,255,0.28); color: #fff; font-weight: 700; }
+        .section-heading { font-size: 0.72em; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #8a9ab0; margin: 20px 0 10px; padding-bottom: 5px; border-bottom: 1px solid #e8eaee; }
+        .issue-box { background: #f5f6f8; border-radius: 10px; padding: 14px 16px; margin-bottom: 16px; font-size: 0.91em; color: #333; }
+        .issue-box p { margin: 0 0 8px; }
+        .issue-box p:last-child { margin: 0; }
+        .fact-box { background: #f9f7f0; border-left: 4px solid #c9a84c; border-radius: 0 10px 10px 0; padding: 14px 16px; margin-bottom: 16px; font-size: 0.91em; color: #333; }
+        .fact-box p { margin: 0 0 8px; }
+        .fact-box p:last-child { margin: 0; }
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+        @media (max-width: 600px) { .two-col { grid-template-columns: 1fr; } }
+        .compare-box { background: #f5f6f8; border-radius: 10px; padding: 13px 15px; font-size: 0.88em; }
+        .compare-box h4 { margin: 0 0 6px; font-size: 0.95em; color: #1a365d; }
+        .compare-box.right { background: #f0f7ee; }
+        .compare-box.right h4 { color: #276749; }
+        .compare-box.amber { background: #fff8e8; }
+        .compare-box.amber h4 { color: #92400e; }
+        .compare-box.red { background: #fff0f0; }
+        .compare-box.red h4 { color: #922b21; }
+        .opinions { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+        .op { border-radius: 10px; overflow: hidden; border: 1px solid #e4e7ec; }
+        .op-head { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #f5f6f8; }
+        .op-num { width: 26px; height: 26px; border-radius: 50%; background: #1a365d; color: white; font-size: 0.75em; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .op-num.green { background: #276749; }
+        .op-num.amber { background: #92400e; }
+        .op-num.red { background: #922b21; }
+        .op-label { font-weight: 700; font-size: 0.93em; color: #1a365d; flex: 1; }
+        .op-label.green { color: #276749; }
+        .op-label.amber { color: #92400e; }
+        .op-label.red { color: #922b21; }
+        .op-body { padding: 13px 15px; font-size: 0.9em; background: #fff; }
+        .op-body p { margin: 0 0 9px; }
+        .op-body p:last-child { margin: 0; }
+        .op-body ul { margin: 5px 0 8px; padding-left: 18px; }
+        .op-body li { margin-bottom: 5px; }
+        .op-result { background: #f0f3f8; border-radius: 7px; padding: 10px 13px; margin-top: 10px; font-size: 0.9em; border-left: 3px solid #1a365d; }
+        .op-result.green { background: #f0f7ee; border-left-color: #276749; }
+        .op-result.amber { background: #fff8e8; border-left-color: #92400e; }
+        .op-result.red { background: #fff0f0; border-left-color: #922b21; }
+        details { margin-top: 16px; }
+        details summary { cursor: pointer; color: #5a6880; font-size: 0.85em; font-weight: 600; padding: 5px 0; user-select: none; list-style: none; display: flex; align-items: center; gap: 5px; }
+        details summary::before { content: '▶'; font-size: 0.65em; transition: transform 0.2s; color: #8a9ab0; }
+        details[open] summary::before { transform: rotate(90deg); }
+        .ref-case { background: #f5f6f8; border-radius: 8px; padding: 11px 14px; margin-bottom: 8px; font-size: 0.85em; border-left: 3px solid #1a365d; }
+        .ref-case.yi { border-left-color: #8a9ab0; }
+        .ref-case.warn { border-left-color: #c0392b; background: #fff5f5; }
+        .ref-case.green { border-left-color: #276749; background: #f0f7ee; }
+        .ref-case-title { font-weight: 700; color: #1a365d; margin-bottom: 4px; font-size: 0.9em; }
+        .ref-case.yi .ref-case-title { color: #4a5568; }
+        .ref-case.warn .ref-case-title { color: #922b21; }
+        .ref-case.green .ref-case-title { color: #276749; }
+        .law-ref { background: #f0f2f5; border-radius: 8px; padding: 10px 14px; font-size: 0.85em; color: #4a5568; margin-top: 14px; border-left: 3px solid #1a365d; }
+        .judges-grid { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+        .judge-chip { font-size: 0.78em; background: #eef1f6; border-radius: 20px; padding: 3px 11px; color: #3a4a6a; border: 1px solid #d8dde8; }
+        .judge-chip.chief { background: #1a365d; color: white; font-weight: 700; border-color: #1a365d; }
+        .note-toggle { display: inline-block; margin-top: 14px; font-size: 0.8em; color: #b0b8c4; cursor: pointer; user-select: none; }
+        .note-toggle:hover { color: #1a365d; }
+        .note-area { display: none; margin-top: 8px; }
+        .note-area.open { display: block; }
+        .note-textarea { width: 100%; min-height: 68px; border: 1px solid #e0e4ea; border-radius: 8px; padding: 10px 12px; font-size: 0.87em; font-family: inherit; color: #333; background: #fafbfc; resize: vertical; outline: none; line-height: 1.7; }
+        .note-textarea:focus { border-color: #1a365d; }
+        .note-textarea::placeholder { color: #ccc; }
+        .note-saved { font-size: 0.72em; color: #68d391; text-align: right; height: 14px; margin-top: 2px; }
+        #noResults, #noStarred { display: none; text-align: center; color: #a0aec0; padding: 40px 0; font-size: 0.9em; }
+        ::-webkit-scrollbar { display: none; }
+        ::selection { background: #c8d8ef; }
+        .flow-wrap { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+        .flow-step { display: flex; align-items: flex-start; gap: 10px; background: #f5f6f8; border-radius: 8px; padding: 10px 13px; font-size: 0.88em; }
+        .flow-num { width: 24px; height: 24px; border-radius: 50%; background: #1a365d; color: white; font-size: 0.78em; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+        .flow-arrow { text-align: center; color: #8a9ab0; font-size: 1.1em; }
+        .tag-row { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 14px; }
+        .tag { font-size: 0.72em; background: #eef1f6; border-radius: 12px; padding: 2px 10px; color: #3a4a6a; border: 1px solid #d0d8e8; }
+        .tag.red { background: #fff0f0; border-color: #f0c0c0; color: #922b21; }
+        .tag.green { background: #f0f7ee; border-color: #b0d8c0; color: #276749; }
+        .tag.amber { background: #fff8e8; border-color: #f0d8a0; color: #92400e; }
+        /* 夜覽模式 */
+        body.dark { background: #13151a; color: #d4d8e0; }
+        body.dark header { background: #0d1117; box-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        body.dark .top-bar { background: #1c1f27; }
+        body.dark .top-btn { background: #2e3340; color: #b0b8c8; }
+        body.dark .top-btn.erase { background: #383d4a; }
+        body.dark .top-btn.clear { background: #404655; }
+        body.dark .top-btn.export { background: #2a2e3a; color: #8a96a8; }
+        body.dark .top-btn.done { background: #2a2e3a; color: #7a8898; }
+        body.dark .top-btn.done.active { background: linear-gradient(135deg,#5a3e00,#7a5a10); color: #ffe090; }
+        body.dark .card { background: #1c1f27; box-shadow: 0 2px 14px rgba(0,0,0,0.35); }
+        body.dark .card-title { color: #7ea8d8; }
+        body.dark .meta-line { color: #5a6578; }
+        body.dark .verdict { background: #0d1a2e; }
+        body.dark .section-heading { color: #5a6880; border-bottom-color: #2a2e3a; }
+        body.dark .issue-box { background: #20232d; color: #c0c8d4; }
+        body.dark .fact-box { background: #1e1c14; border-left-color: #8a6820; color: #c0c8d4; }
+        body.dark .compare-box { background: #20232d; color: #c0c8d4; }
+        body.dark .compare-box h4 { color: #7ea8d8; }
+        body.dark .compare-box.right { background: #14201a; }
+        body.dark .compare-box.right h4 { color: #7acda0; }
+        body.dark .compare-box.amber { background: #1e1608; }
+        body.dark .compare-box.amber h4 { color: #d4a060; }
+        body.dark .compare-box.red { background: #200f0e; }
+        body.dark .compare-box.red h4 { color: #e88070; }
+        body.dark .op { border-color: #2a2e3a; }
+        body.dark .op-head { background: #20232d; }
+        body.dark .op-label { color: #7ea8d8; }
+        body.dark .op-label.green { color: #7acda0; }
+        body.dark .op-label.amber { color: #d4a060; }
+        body.dark .op-label.red { color: #e88070; }
+        body.dark .op-body { background: #1c1f27; color: #c0c8d4; }
+        body.dark .op-result { background: #161a24; border-left-color: #3a5a8a; }
+        body.dark .op-result.green { background: #12201a; border-left-color: #3a7a5a; }
+        body.dark .op-result.amber { background: #1e1608; border-left-color: #7a5020; }
+        body.dark .op-result.red { background: #200f0e; border-left-color: #8a2a20; }
+        body.dark .ref-case { background: #20232d; border-left-color: #3a5a8a; }
+        body.dark .ref-case.warn { background: #200f0e; border-left-color: #8a2a20; }
+        body.dark .ref-case.green { background: #12201a; border-left-color: #3a7a5a; }
+        body.dark .ref-case-title { color: #7ea8d8; }
+        body.dark .ref-case.yi .ref-case-title { color: #7a8898; }
+        body.dark .ref-case.warn .ref-case-title { color: #e88070; }
+        body.dark .ref-case.green .ref-case-title { color: #7acda0; }
+        body.dark .law-ref { background: #1c1f27; border-left-color: #3a5a8a; color: #8a96a8; }
+        body.dark .judge-chip { background: #20232d; color: #8a9ab8; border-color: #2e3340; }
+        body.dark .judge-chip.chief { background: #0d1a2e; color: #9abcd8; border-color: #1a3a60; }
+        body.dark .note-textarea { background: #161a24; border-color: #2e3340; color: #c0c8d4; }
+        body.dark .note-textarea:focus { border-color: #3a5a8a; }
+        body.dark .note-textarea::placeholder { color: #3a404e; }
+        body.dark .note-toggle { color: #3a4a5e; }
+        body.dark .note-toggle:hover { color: #7ea8d8; }
+        body.dark details summary { color: #4a5a70; }
+        body.dark #noResults, body.dark #noStarred { color: #3a4a5e; }
+        body.dark mark.search-hl { background: #7a5a00; color: #ffe090; }
+        body.dark mark.search-hl.current { background: #c07800; color: #fff; }
+        body.dark ::selection { background: #1a3a60; }
+        body.dark .flow-step { background: #20232d; color: #c0c8d4; }
+        body.dark .tag { background: #20232d; border-color: #2e3340; color: #8a9ab8; }
+        body.dark .tag.red { background: #200f0e; border-color: #5a2020; color: #e88070; }
+        body.dark .tag.green { background: #12201a; border-color: #2a5a3a; color: #7acda0; }
+        body.dark .tag.amber { background: #1e1608; border-color: #5a4010; color: #d4a060; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>最高法院刑事大法庭<br>111年度台非大字第15號</h1>
+    <div class="header-controls">
+        <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="搜尋關鍵字、法條…" oninput="doSearch(this.value)" onkeydown="handleSearchKey(event)">
+            <span class="search-count" id="searchCount"></span>
+            <button class="search-nav" id="searchPrev" onclick="navMatch(-1)" title="上一個">▲</button>
+            <button class="search-nav" id="searchNext" onclick="navMatch(1)" title="下一個">▼</button>
+        </div>
+        <button id="filterBtn" onclick="toggleFilter()">⭐ 收藏</button>
+    </div>
+    <div class="top-bar">
+        <button class="top-btn" onclick="highlightText()">🖊️</button>
+        <button class="top-btn erase" onclick="removeHighlight()">🧽</button>
+        <button class="top-btn clear" onclick="clearHighlights()">🗑️</button>
+        <button class="top-btn export" onclick="openExport()">📤</button>
+        <button class="top-btn" id="darkBtn" onclick="toggleDark()" title="夜覽模式">🌙</button>
+        <button class="top-btn done" id="doneBtn" onclick="toggleDone()">朕已閱</button>
+        <span class="done-date" id="doneDateLabel"></span>
+    </div>
+</header>
+
+<div class="container">
+
+<!-- ══════════════════ 卡片一：核心主文與爭議 ══════════════════ -->
+<div class="card" id="case1" data-kw="111台非大15 協商程序 協商判決 確定 宣示 宣示判決 455條之10 上訴期間 非常上訴 陳明輝 毒品 協商 科刑 不得上訴">
+    <button class="star-btn" onclick="toggleStar('case1',this)">⭐</button>
+
+    <h2 class="card-title">【核心爭議】第一審依協商程序所為之科刑判決，如未提起上訴，應於何時確定？</h2>
+    <div class="meta-line">裁定日期：中華民國111年11月9日　｜　案號：111年度台非大字第15號　｜　提案庭：最高法院刑事第四庭　｜　上訴人：最高檢察署檢察總長（被告：陳明輝，毒品危害防制條例等罪）</div>
+
+    <div class="tag-row">
+        <span class="tag red">司律必考</span>
+        <span class="tag">協商程序</span>
+        <span class="tag">§455之10</span>
+        <span class="tag amber">宣示時確定</span>
+        <span class="tag">非常上訴</span>
+        <span class="tag green">不得上訴之本質</span>
+    </div>
+
+    <div class="verdict">
+        <div class="verdict-label">大法庭主文</div>
+        <div class="verdict-main">第一審依協商程序所為之科刑判決，於宣示判決時確定。</div>
+        <div class="verdict-sub">協商判決依刑訴法§455之10Ⅰ本文「不得上訴」之性質，無論有無提起上訴，均於宣示判決時即告確定（§455之10Ⅲ除外情形不影響此結論）。</div>
+        <div class="vote-row">
+            <span class="v-chip win">大法庭裁定 ✔</span>
+            <span class="v-chip">提案庭：刑事第四庭</span>
+            <span class="v-chip">裁定日：111.11.9</span>
+        </div>
+    </div>
+
+    <!-- 基礎事實 -->
+    <div class="section-heading">基礎事實（非常上訴緣由）</div>
+    <div class="fact-box">
+        <p>被告陳明輝因違反毒品危害防制條例等<strong>4罪</strong>，經臺灣高雄地方法院於民國99年1月25日，以<strong>99年度審聲字第233號裁定應執行有期徒刑1年8月確定</strong>。</p>
+        <p>最高檢察署檢察總長以上開裁定附表編號1、2所示高雄地院<strong>97年度審訴字第5555號判決係依協商程序所為之判決</strong>，應於<strong>98年1月20日第一審宣示判決時即告確定</strong>，非如上開裁定所載之因未提起上訴而於上訴期間屆滿時之同年2月23日始確定。</p>
+        <p>而同附表編號3、4所示之罪，犯罪時間分別為98年2月5日及同年2月3日，<strong>既在該編號1、2所示之罪判決確定後</strong>，自不得與該編號1、2所示之罪合併定應執行刑為由，指上開裁定有適用法則不當之違背法令，對之提起<strong>非常上訴</strong>。</p>
+    </div>
+
+    <!-- 爭議 -->
+    <div class="section-heading">本案提案之法律爭議</div>
+    <div class="issue-box">
+        <p><strong>核心問題：</strong>第一審依協商程序所為之科刑判決（下稱「協商判決」），如<strong>未提起上訴</strong>，應於何時確定？</p>
+        <p><strong>爭點A（宣示時說）：</strong>依§455之10Ⅰ「不得上訴」之文義，判決係於不能聲明不服時確定，故協商判決於<strong>宣示時即告確定</strong>，不必等到上訴期間屆滿。</p>
+        <p><strong>爭點B（期滿時說）：</strong>依通常程序§344Ⅰ、§361Ⅰ，當事人對下級法院之判決有不服者，得上訴於上級法院；協商判決既未提起上訴，應適用通常程序，於<strong>上訴期間屆滿時確定</strong>。</p>
+        <p><strong>本案意義：</strong>確定時點攸關數罪合併定執行刑之基準時，若協商判決宣示即確定，則後續犯罪不得與之合併；若須等到期滿，則合併定刑之範圍不同，直接影響被告之刑期計算。</p>
+    </div>
+
+    <div class="law-ref"><strong>主要相關法條：</strong>刑事訴訟法§455之2至§455之11（協商程序）、§455之10Ⅰ（協商判決不得上訴，但書特別救濟事由）、§455之10Ⅲ（有效判決書送達被告或辯護人有不符時得上訴）、§344Ⅰ（當事人上訴權）、§361Ⅰ（第二審上訴程序）；憲法§16（訴訟權）</div>
+
+    <div class="note-toggle" onclick="toggleNote('n1')">✏️ 我的小結</div>
+    <div class="note-area" id="n1">
+        <textarea class="note-textarea" placeholder="例如：協商判決＝不得上訴＝宣示時確定；確定時點影響數罪定執行刑之合併範圍…" oninput="saveNote('n1',this.value)"></textarea>
+        <div class="note-saved" id="n1-saved"></div>
+    </div>
+</div>
+
+<!-- ══════════════════ 卡片二：協商程序立法目的與「不得上訴」之本質 ══════════════════ -->
+<div class="card" id="case2" data-kw="111台非大15 協商程序 立法目的 改良式當事人進行主義 認罪協商 93年 455條之2 特別程序 美國 義大利 不得上訴 疏減訟源 司法資源">
+    <button class="star-btn" onclick="toggleStar('case2',this)">⭐</button>
+
+    <h2 class="card-title">【理由一】協商程序之立法目的與「不得上訴」之規範本質</h2>
+    <div class="meta-line">大法庭見解第一、二部分　｜　111年度台非大字第15號</div>
+
+    <div class="section-heading">協商程序立法沿革</div>
+    <div class="opinions">
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">壹</div>
+                <span class="op-label">91年、92年修法背景——改良式當事人進行主義</span>
+            </div>
+            <div class="op-body">
+                <p>立法者鑑於91年2月8日、92年2月6日先後修正刑事訴訟法公布後，我國刑事訴訟制度明確朝<strong>「改良式當事人進行主義」</strong>之方向調整，要求通常程序案件於第一審即行合議審判，並須以集中審理、交互詰問方式發見真實。</p>
+                <p>為有效運用訴訟資源，讓法院有更多之時間與精神致力於重大繁雜案件之審理，使已悔過之初犯、犯罪情節非屬嚴重或已與被害人達成和解之被告早日脫離訴訟，用啟自新，遂參考<strong>88年全國司法改革會議所達成「為強化當事人進行主義之配套措施，應擴大運用刑事簡易程序並酌採認罪協商求刑制度」之結論</strong>，視被告罪行輕重及是否認罪，採行認罪協商求刑制度。</p>
+                <div class="op-result">
+                    <strong>立法目的：</strong>①有效運用司法資源；②疏減訟源；③使輕微案件被告早日脫離訴訟。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">貳</div>
+                <span class="op-label">93年4月7日增訂第七編之一協商程序——仿效美國與義大利</span>
+            </div>
+            <div class="op-body">
+                <p>立法者於<strong>93年4月7日修正公布刑訴法，仿效美國與義大利立法例增訂第七編之一協商程序，共10條文（即同法§455之2至§455之11）</strong>，係屬<strong>有別於通常訴訟程序之特別程序</strong>。</p>
+                <p>為達成前揭立法目的，使法院得以迅速、簡易方式終結訴訟，乃以協商程序均經當事人同意，於刑訴法<strong>§455之10Ⅰ本文規定：「依本編所為之科刑判決，不得上訴。」</strong>已明定依協商程序所為之科刑判決（下稱協商判決）<strong>不得上訴</strong>。</p>
+                <div class="op-result">
+                    <strong>制度設計核心：</strong>當事人已同意（含認罪及接受協商結果）→ 無反覆上訴、推翻合意之餘地 →「不得上訴」係協商程序之本質規定，非得以通常程序填補之缺口。
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 不得上訴之本質 -->
+    <div class="section-heading">「不得上訴」之規範性質解析</div>
+    <div class="two-col">
+        <div class="compare-box">
+            <h4>❌ 如允許當事人反覆上訴</h4>
+            <p style="font-size:0.9em;margin:0;">
+                ・當事人在協商判決後，又反覆上訴執拗，推翻先前之合意<br>
+                ・將使前揭立法目的落空（疏減訟源、迅速終結訴訟）<br>
+                ・協商程序喪失存在意義
+            </p>
+        </div>
+        <div class="compare-box amber">
+            <h4>⚖️ 例外：憲法§16訴訟權保障</h4>
+            <p style="font-size:0.9em;margin:0;">
+                ・憲法§16明文保障人民訴訟權，人民於其權利遭受侵害時，有請求法院救濟之權利<br>
+                ・上訴制度目的：糾正下級審裁判之違法或不當，避免冤擅、誤判<br>
+                ・<strong>§455之10Ⅰ但書</strong>：於特定情形下保留特別救濟管道，兼顧訴訟權保障
+            </p>
+        </div>
+    </div>
+
+    <!-- 但書特別救濟事由 -->
+    <details>
+        <summary>§455之10Ⅰ但書特別救濟事由（6款）</summary>
+        <div style="padding-top:10px;">
+            <div class="ref-case">
+                <div class="ref-case-title">第1款：撤銷合意或撤回協商聲請（§455之4Ⅰ①）</div>
+                <p style="margin:0;">當事人在宣示協商判決前撤銷合意或撤回協商聲請，法院應改以通常程序審判。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">第2款：被告協商之意思非出於自由意志</div>
+                <p style="margin:0;">被告在協商時意思表示欠缺自由，合意本身有瑕疵，應予救濟。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">第4款：被告所犯之罪非依法得以協商者（§455之4Ⅰ④）</div>
+                <p style="margin:0;">不符協商程序適用範圍之案件，不得以協商方式終結。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">第6款：被告有其他較重之裁判上一罪之犯罪事實（§455之4Ⅰ⑥）</div>
+                <p style="margin:0;">協商範圍之外另有較重裁判上一罪，應一併審理，不得分割協商。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">第7款：法院認應諭知免刑、免訴或不受理（§455之4Ⅰ⑦）</div>
+                <p style="margin:0;">存在應諭知免刑、免訴或不受理判決之事由時，法院不應適用協商程序。</p>
+            </div>
+            <div class="ref-case warn">
+                <div class="ref-case-title">「或協商判決違反同條第2項之規定者」——科刑超過協商所得科之刑</div>
+                <p style="margin:0;">協商判決所為科刑超過協商判決得科之刑（§455之4Ⅱ），得提起特別救濟，於第二審法院認為上訴有理由者，應將原審判決撤銷，將案件發回第一審法院依判決前之程序更為審判。</p>
+            </div>
+        </div>
+    </details>
+
+    <div class="note-toggle" onclick="toggleNote('n2')">✏️ 我的小結</div>
+    <div class="note-area" id="n2">
+        <textarea class="note-textarea" placeholder="例如：協商程序=當事人合意=不得上訴=立法目的（疏減訟源）；但書6款=例外特別救濟管道（保留訴訟權保障）…" oninput="saveNote('n2',this.value)"></textarea>
+        <div class="note-saved" id="n2-saved"></div>
+    </div>
+</div>
+
+<!-- ══════════════════ 卡片三：協商程序為獨立特別程序 ══════════════════ -->
+<div class="card" id="case3" data-kw="111台非大15 協商程序 特別程序 獨立 455條之11 準用 通常程序 344條 361條 特別規定 補充適用 不得上訴 確定時點 宣示 上訴期間">
+    <button class="star-btn" onclick="toggleStar('case3',this)">⭐</button>
+
+    <h2 class="card-title">【理由二】協商程序係獨立之特別程序，§455之10Ⅰ排除通常程序上訴規定之適用</h2>
+    <div class="meta-line">大法庭見解第三部分　｜　111年度台非大字第15號</div>
+
+    <div class="section-heading">特別程序 vs. 通常程序——規範體系之關係</div>
+    <div class="opinions">
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">壹</div>
+                <span class="op-label">協商程序為獨立特別規定——§344Ⅰ、§361Ⅰ不適用</span>
+            </div>
+            <div class="op-body">
+                <p>關於協商判決之特別救濟，刑訴法§455之11Ⅰ規定：<strong>「協商判決之上訴，除本編有特別規定外，準用第三編第一章及第二章之規定。」</strong></p>
+                <p>而同法§344Ⅰ、§361Ⅰ雖分別規定：「當事人對於下級法院之判決有不服者，得上訴於上級法院。」「不服地方法院之第一審判決而上訴者，應向管轄第二審之高等法院為之。」</p>
+                <p>惟同法<strong>§455之10Ⅰ本文既已明定協商判決不得上訴</strong>，僅於有特定之情形始得依同條項但書規定為特別救濟，且係<strong>獨立規定於協商程序編，即屬上開同法§455之11Ⅰ所指「本編有特別規定」</strong>，並無上開同法§344Ⅰ、§361Ⅰ等通常程序上訴規定之適用。</p>
+                <div class="op-result">
+                    <strong>結論：</strong>§455之10Ⅰ（特別規定）→ 排除 §344Ⅰ、§361Ⅰ（通常程序）之適用。不能以通常上訴規定來填補協商程序之「空白」。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">貳</div>
+                <span class="op-label">「不能聲明不服時確定」——協商判決宣示時即確定</span>
+            </div>
+            <div class="op-body">
+                <p>又判決係於<strong>不能聲明不服時確定</strong>，上開§455之10Ⅰ本文既明定協商判決<strong>「不得上訴」</strong>，顯然於協商判決宣示時即告確定。</p>
+                <div class="op-result green">
+                    <strong>三段論式推理：</strong><br>
+                    大前提：判決係於不能聲明不服時確定。<br>
+                    小前提：協商判決依§455之10Ⅰ「不得上訴」（不能聲明不服）。<br>
+                    結論：協商判決於<strong>宣示時即告確定</strong>。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num amber">參</div>
+                <span class="op-label amber">但書特別救濟不能改變「宣示確定」之本質</span>
+            </div>
+            <div class="op-body">
+                <p>至協商判決是否有刑訴法§455之10Ⅰ但書所規定之特別救濟事由，除已提起上訴者，可由第二審法院實質審認外，<strong>別無其他判斷機制</strong>。</p>
+                <p>則未提起上訴之第一審協商判決有無前揭但書之特別情形，<strong>既無從判斷，即無自行假設或認可能有該特別情形存在等不確定因素之必要</strong>，而應回歸條文「不得上訴」之文義，一經宣示判決即告確定。</p>
+                <p>始符合前揭增訂協商程序，對無爭執之非重罪案件明案速判，以達疏減訟源，合理、有效運用有限司法資源之立法意旨。</p>
+                <p>倘有符合前揭同條項但書規定之得上訴之情形，<strong>只能認係對於原應確定之協商判決所為特殊救濟程序，尚難據此改變協商判決原定「不得上訴」之本質</strong>。</p>
+                <div class="op-result amber">
+                    <strong>關鍵區分：</strong>但書特別救濟（事後）≠ 改變宣示確定之時點（事前）。即使但書存在，協商判決之確定時點仍為宣示時，但書只是賦予特定情形下「事後打開」已確定判決之救濟管道。
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="law-ref"><strong>相關法條：</strong>刑事訴訟法§455之10Ⅰ本文（協商判決不得上訴）、§455之10Ⅰ但書（特別救濟）、§455之10Ⅲ（判決書送達不符，辯護人得上訴）、§455之11Ⅰ（協商上訴準用第三編一、二章）、§344Ⅰ（當事人上訴權）、§361Ⅰ（第二審上訴程序）</div>
+
+    <div class="note-toggle" onclick="toggleNote('n3')">✏️ 我的小結</div>
+    <div class="note-area" id="n3">
+        <textarea class="note-textarea" placeholder="例如：§455之10Ⅰ=特別規定→排除通常§344、§361；不得上訴=不能聲明不服=宣示時確定；但書=事後特殊救濟≠改變確定時點…" oninput="saveNote('n3',this.value)"></textarea>
+        <div class="note-saved" id="n3-saved"></div>
+    </div>
+</div>
+
+<!-- ══════════════════ 卡片四：綜合結論與體系效果 ══════════════════ -->
+<div class="card" id="case4" data-kw="111台非大15 綜合 結論 立法目的 立法體例 法律規定 宣示確定 不得上訴 本質 執行刑 合併 數罪 判決確定 基準時">
+    <button class="star-btn" onclick="toggleStar('case4',this)">⭐</button>
+
+    <h2 class="card-title">【理由三】三面向綜合論證——立法目的、立法體例、法律規定均指向「宣示確定」</h2>
+    <div class="meta-line">大法庭見解第四、五部分　｜　111年度台非大字第15號</div>
+
+    <div class="section-heading">三面向論證一覽</div>
+    <div class="opinions">
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">①</div>
+                <span class="op-label">立法目的面——疏減訟源、有效運用司法資源</span>
+            </div>
+            <div class="op-body">
+                <p>協商程序之立法目的在使法院得以迅速、簡易方式終結訴訟，對<strong>無爭執之非重罪案件明案速判</strong>，以達疏減訟源，合理、有效運用有限司法資源。</p>
+                <p>若協商判決須等待上訴期間屆滿才確定，不但增加程序上之等待，且等待期間內之法律狀態不確定，與立法目的顯然相悖。</p>
+                <div class="op-result">
+                    <strong>目的解釋→宣示確定：</strong>「明案速判」之目的要求即時確定，不應懸置。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">②</div>
+                <span class="op-label">立法體例面——協商程序係獨立特別程序，自有其規範體系</span>
+            </div>
+            <div class="op-body">
+                <p>刑訴法第七編之一協商程序既係<strong>獨立於通常程序之特別規定</strong>，自應依協商判決不得上訴之本質，認為第一審協商判決應於宣示判決時即告確定。</p>
+                <p>通常程序§344Ⅰ、§361Ⅰ規定之上訴期間，係為通常程序有上訴權之設計，於協商程序本質上不得上訴之架構下，<strong>並無適用餘地</strong>，不得援引通常程序規定反推協商判決應等至期滿始確定。</p>
+                <div class="op-result">
+                    <strong>體系解釋→宣示確定：</strong>特別規定（協商程序）優先，不能以通常程序規定（有上訴期間）填補協商程序之空白。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num green">③</div>
+                <span class="op-label green">法律規定面——§455之10Ⅰ明文「不得上訴」即不能聲明不服</span>
+            </div>
+            <div class="op-body">
+                <p>刑訴法§455之10Ⅰ本文明定：「依本編所為之科刑判決，<strong>不得上訴。</strong>」判決係於<strong>不能聲明不服時確定</strong>，協商判決既不得上訴，顯然於<strong>宣示判決時即告確定</strong>。</p>
+                <p>除有§455之10Ⅲ之情形外（判決書送達被告或辯護人有不符時），其餘協商判決不論有無提起上訴，均於宣示判決時確定。</p>
+                <div class="op-result green">
+                    <strong>文義解釋→宣示確定：</strong>「不得上訴」→「不能聲明不服」→「宣示時確定」，三個推論環環相扣，邏輯清晰。
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 實務影響 -->
+    <div class="section-heading">確定時點之實務影響——數罪合併定執行刑</div>
+    <div class="fact-box">
+        <p><strong>本案示例：</strong>協商判決於98年1月20日宣示時確定（非2月23日期滿確定）→ 被告於98年2月3日、2月5日之後續犯罪，發生在協商判決確定之後 → <strong>不得與已確定之協商判決合併定執行刑</strong> → 原99年度審聲字第233號合併定執行刑裁定有適用法則不當之違誤。</p>
+        <p><strong>一般規則：</strong>數罪合併定執行刑（刑法§50、§53），以各罪判決確定之時點為基準，只有在<strong>最後事實審言詞辯論終結前</strong>所犯之各罪，方得合併。若某罪之判決確定後，被告再犯他罪，則不得合併。</p>
+    </div>
+
+    <details>
+        <summary>§455之10Ⅲ之特別情形——例外得上訴之情況</summary>
+        <div style="padding-top:10px;">
+            <div class="ref-case green">
+                <div class="ref-case-title">§455之10Ⅲ：協商判決書送達被告或辯護人有不符時</div>
+                <p style="margin:0;">此為協商判決確定之例外，於判決書送達被告或辯護人有不符（例如：未合法送達）時，辯護人得於送達後提起上訴，此時確定時點須另行計算，<strong>不適用宣示即確定之原則</strong>。本大法庭裁定明確指出此一例外，但確認其餘情形均宣示確定。</p>
+            </div>
+        </div>
+    </details>
+
+    <div class="note-toggle" onclick="toggleNote('n4')">✏️ 我的小結</div>
+    <div class="note-area" id="n4">
+        <textarea class="note-textarea" placeholder="例如：三面向（目的+體例+規定）均指向宣示確定；確定時點影響數罪合併定執行刑；§455之10Ⅲ為唯一例外…" oninput="saveNote('n4',this.value)"></textarea>
+        <div class="note-saved" id="n4-saved"></div>
+    </div>
+</div>
+
+<!-- ══════════════════ 卡片五：考試重點彙整 ══════════════════ -->
+<div class="card" id="case5" data-kw="111台非大15 考試重點 司律 考點 協商程序 宣示確定 上訴 不得上訴 但書 特別救濟 455條之10 執行刑 合併 非常上訴">
+    <button class="star-btn" onclick="toggleStar('case5',this)">⭐</button>
+
+    <h2 class="card-title">【考試重點彙整】司法官 &amp; 律師考試必讀考點</h2>
+    <div class="meta-line">111年度台非大字第15號　｜　裁定日：111.11.9</div>
+
+    <div class="section-heading">核心考點速覽</div>
+    <div class="opinions">
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">①</div>
+                <span class="op-label">主文結論——協商判決於「宣示判決時確定」</span>
+            </div>
+            <div class="op-body">
+                <p>第一審依協商程序所為之科刑判決，<strong>於宣示判決時確定</strong>（§455之10Ⅰ），不因當事人未提起上訴而改以上訴期間屆滿時為確定時點。</p>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">②</div>
+                <span class="op-label">§455之10Ⅰ「不得上訴」=「不能聲明不服」=「宣示確定」</span>
+            </div>
+            <div class="op-body">
+                <p>三段論式推理：「不得上訴」→「不能聲明不服」→「宣示時即告確定」。此為本裁定最核心之邏輯鏈，考試申論題應完整呈現此三段推論。</p>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">③</div>
+                <span class="op-label">特別程序優先——排除通常程序§344Ⅰ、§361Ⅰ之適用</span>
+            </div>
+            <div class="op-body">
+                <p>§455之10Ⅰ（協商程序特別規定）屬§455之11Ⅰ所指「本編有特別規定」，故通常程序§344Ⅰ（上訴權）、§361Ⅰ（第二審上訴）之<strong>上訴期間規定，於協商程序無適用餘地</strong>。</p>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">④</div>
+                <span class="op-label">但書特別救濟≠改變確定時點</span>
+            </div>
+            <div class="op-body">
+                <p>§455之10Ⅰ但書六款特別救濟事由，係對<strong>原應確定</strong>之協商判決賦予「事後特殊救濟程序」，<strong>尚難據此改變協商判決原定「不得上訴」之本質及宣示即確定之時點</strong>。</p>
+                <div class="op-result amber">
+                    <strong>考試陷阱：</strong>但書之存在不代表協商判決有上訴期間！但書只是在協商判決已確定的前提下，賦予特定情形下的特殊救濟管道（類似再審、非常上訴之性質），而非將協商程序改造成與通常程序相同的上訴體系。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">⑤</div>
+                <span class="op-label">§455之10Ⅲ——唯一例外（判決書送達不符）</span>
+            </div>
+            <div class="op-body">
+                <p>§455之10Ⅲ（協商判決書送達被告或辯護人有不符時）為宣示確定原則之<strong>唯一例外</strong>，於此情形下確定時點另行計算。考試若出現此情節，須另外分析。</p>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">⑥</div>
+                <span class="op-label">實務影響——數罪合併定執行刑之基準時</span>
+            </div>
+            <div class="op-body">
+                <p>協商判決之確定時點（宣示日 vs. 上訴期滿日）直接影響<strong>數罪合併定執行刑（刑法§50、§53）之範圍</strong>：協商判決宣示確定後所犯之罪，<strong>不得與協商判決合併定執行刑</strong>；若誤以期滿日為確定時點，則確定時點延後，可能將本不應合併之罪錯誤納入合併範圍，此即本案非常上訴之爭點。</p>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">⑦</div>
+                <span class="op-label">協商程序適用之前提要件（§455之2至§455之9）</span>
+            </div>
+            <div class="op-body">
+                <p>協商程序適用之前提（考試亦常考）：①被告所犯非死刑、無期徒刑、最輕本刑3年以上有期徒刑之罪；②非高等法院管轄第一審案件；③被告認罪；④在偵查中或起訴後第一審言詞辯論終結前，被告或辯護人與檢察官合意，並由檢察官聲請法院改依協商程序審判（§455之2）。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 比較表 -->
+    <div class="section-heading">協商程序 vs. 通常程序——確定時點比較</div>
+    <div class="two-col">
+        <div class="compare-box red">
+            <h4>通常程序判決</h4>
+            <p style="font-size:0.9em;margin:0;">
+                ・有上訴期間（20日）<br>
+                ・未上訴→上訴期間屆滿時確定<br>
+                ・上訴→第二審判決後確定<br>
+                ・法條依據：§344Ⅰ、§361Ⅰ
+            </p>
+        </div>
+        <div class="compare-box green">
+            <h4>協商程序判決</h4>
+            <p style="font-size:0.9em;margin:0;">
+                ・原則：不得上訴→<strong>宣示時確定</strong><br>
+                ・例外①：§455之10Ⅰ但書（特別救濟）<br>
+                ・例外②：§455之10Ⅲ（送達不符）<br>
+                ・法條依據：§455之10Ⅰ
+            </p>
+        </div>
+    </div>
+
+    <!-- 合議庭成員 -->
+    <details>
+        <summary>大法庭組成</summary>
+        <div style="padding-top:10px;">
+            <div class="judges-grid">
+                <span class="judge-chip chief">審判長　吳燦</span>
+                <span class="judge-chip">郭毓洲</span>
+                <span class="judge-chip">徐昌錦</span>
+                <span class="judge-chip">段景榕</span>
+                <span class="judge-chip">李英勇</span>
+                <span class="judge-chip">李錦樑</span>
+                <span class="judge-chip">林勤純</span>
+                <span class="judge-chip">謝靜恒</span>
+                <span class="judge-chip">梁宏哲</span>
+                <span class="judge-chip">何信慶</span>
+                <span class="judge-chip">李麗珠</span>
+            </div>
+            <p style="font-size:0.82em;color:#888;margin:10px 0 0;">提案庭：最高法院刑事第四庭　｜　上訴人：最高檢察署檢察總長　｜　被告：陳明輝（選任辯護人：周宇修律師、薛煒育律師、李艾倫律師）　｜　裁定日：中華民國111年11月9日</p>
+        </div>
+    </details>
+
+    <div class="note-toggle" onclick="toggleNote('n5')">✏️ 我的小結</div>
+    <div class="note-area" id="n5">
+        <textarea class="note-textarea" placeholder="考點整理或申論題架構…" oninput="saveNote('n5',this.value)"></textarea>
+        <div class="note-saved" id="n5-saved"></div>
+    </div>
+</div>
+
+<div id="noResults">查無符合的內容，請試試其他關鍵字。</div>
+<div id="noStarred">還沒有收藏的項目，點卡片右上角的 ⭐ 加入收藏。</div>
+</div>
+
+<script>
+const STORE_KEY='111_fei15_grand_notes',STAR_KEY='111_fei15_grand_stars';
+(function initDark(){if(localStorage.getItem('night_mode')==='1'){document.body.classList.add('dark');document.getElementById('darkBtn').textContent='☀️';}})();
+function loadNotes(){try{return JSON.parse(localStorage.getItem(STORE_KEY))||{};}catch{return{};}}
+function loadStars(){try{return JSON.parse(localStorage.getItem(STAR_KEY))||{};}catch{return{};}}
+function saveAllNotes(d){localStorage.setItem(STORE_KEY,JSON.stringify(d));}
+function saveAllStars(d){localStorage.setItem(STAR_KEY,JSON.stringify(d));}
+(function(){const n=loadNotes(),s=loadStars();Object.entries(n).forEach(([id,v])=>{const a=document.getElementById(id);if(!a)return;const t=a.querySelector('textarea');if(t)t.value=v;if(v)a.classList.add('open');});Object.entries(s).forEach(([id,v])=>{if(!v)return;const b=document.querySelector(`#${id} .star-btn`);if(b)b.classList.add('starred');});})();
+function toggleStar(id,btn){const s=loadStars();const now=!btn.classList.contains('starred');btn.classList.toggle('starred',now);s[id]=now;saveAllStars(s);if(filterActive)applyFilter();}
+let filterActive=false;
+function toggleFilter(){filterActive=!filterActive;document.getElementById('filterBtn').classList.toggle('active',filterActive);document.getElementById('searchInput').value='';clearSearchHighlights();updateSearchUI();applyFilter();}
+function applyFilter(){const s=loadStars();const q=document.getElementById('searchInput').value.trim().toLowerCase();let any=false;document.querySelectorAll('.card').forEach(c=>{const kw=(c.dataset.kw||'').toLowerCase();const txt=c.textContent.toLowerCase();const ms=!q||kw.includes(q)||txt.includes(q);const mf=!filterActive||!!s[c.id];const show=ms&&mf;c.classList.toggle('hidden',!show);if(show)any=true;});document.getElementById('noResults').style.display=(!any&&!filterActive)?'block':'none';document.getElementById('noStarred').style.display=(!any&&filterActive)?'block':'none';}
+let _matches=[],_cur=-1;
+function clearSearchHighlights(){document.querySelectorAll('mark.search-hl').forEach(m=>{const p=m.parentNode;while(m.firstChild)p.insertBefore(m.firstChild,m);p.removeChild(m);p.normalize();});_matches=[];_cur=-1;}
+function highlightInNode(node,q){if(node.nodeType===3){const txt=node.textContent;const idx=txt.toLowerCase().indexOf(q);if(idx===-1)return false;const m=document.createElement('mark');m.className='search-hl';const before=document.createTextNode(txt.slice(0,idx));const matched=document.createTextNode(txt.slice(idx,idx+q.length));const after=document.createTextNode(txt.slice(idx+q.length));m.appendChild(matched);const p=node.parentNode;p.insertBefore(before,node);p.insertBefore(m,node);p.insertBefore(after,node);p.removeChild(node);_matches.push(m);return true;}else if(node.nodeType===1){const skip=new Set(['SCRIPT','STYLE','TEXTAREA']);if(skip.has(node.tagName))return false;[...node.childNodes].forEach(ch=>highlightInNode(ch,q));return false;}}
+function doSearch(q){clearSearchHighlights();applyFilter();if(!q||!q.trim()){updateSearchUI();return;}const lq=q.trim().toLowerCase();document.querySelectorAll('.card:not(.hidden)').forEach(c=>highlightInNode(c,lq));if(_matches.length>0){_cur=0;setCurrent();}updateSearchUI();}
+function setCurrent(){_matches.forEach((m,i)=>m.classList.toggle('current',i===_cur));if(_matches[_cur]){_matches[_cur].scrollIntoView({behavior:'smooth',block:'center'});}}
+function navMatch(dir){if(!_matches.length)return;_cur=(_cur+dir+_matches.length)%_matches.length;setCurrent();updateSearchUI();}
+function updateSearchUI(){const c=document.getElementById('searchCount');if(!c)return;if(!_matches.length){c.textContent='';return;}c.textContent=(_cur+1)+'/'+_matches.length;}
+function handleSearchKey(e){if(e.key==='Enter'){e.preventDefault();navMatch(e.shiftKey?-1:1);}}
+function toggleNote(id){document.getElementById(id).classList.toggle('open');}
+function toggleDark(){const on=document.body.classList.toggle('dark');document.getElementById('darkBtn').textContent=on?'☀️':'🌙';localStorage.setItem('night_mode',on?'1':'0');}
+const timers={};
+function saveNote(id,v){clearTimeout(timers[id]);timers[id]=setTimeout(()=>{const n=loadNotes();n[id]=v;saveAllNotes(n);const el=document.getElementById(id+'-saved');if(el){el.textContent='已儲存';setTimeout(()=>el.textContent='',1500);}},500);}
+let savedRange=null;
+document.addEventListener('selectionchange',()=>{const s=window.getSelection();if(s&&!s.isCollapsed&&s.rangeCount)savedRange=s.getRangeAt(0).cloneRange();});
+function highlightText(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;if(!r||r.collapsed){alert('💡 請先反白想要標記的文字');return;}const sp=document.createElement('span');sp.className='hl';sp.style.backgroundColor='#ffe066';try{r.surroundContents(sp);savedRange=null;}catch{alert('💡 請選取同一段落內的文字');}s&&s.removeAllRanges();}
+function removeHighlight(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;if(!r||r.collapsed){alert('💡 請先反白想擦除標記的文字');return;}const anc=r.commonAncestorContainer.nodeType===1?r.commonAncestorContainer:r.commonAncestorContainer.parentElement;anc.querySelectorAll('span.hl').forEach(sp=>{if(r.intersectsNode(sp)){const p=sp.parentNode;while(sp.firstChild)p.insertBefore(sp.firstChild,sp);p.removeChild(sp);}});savedRange=null;s&&s.removeAllRanges();}
+function clearHighlights(){const sp=document.querySelectorAll('span.hl');if(!sp.length)return;if(confirm('確定要清除所有重點標記嗎？')){sp.forEach(s=>{const p=s.parentNode;while(s.firstChild)p.insertBefore(s.firstChild,s);p.removeChild(s);});}}
+function openExport(){
+    const stars=loadStars();
+    let out='最高法院刑事大法庭 111年度台非大字第15號\n'+'═'.repeat(44)+'\n\n';
+    document.querySelectorAll('.card').forEach(c=>{
+        const star=stars[c.id]?'⭐ ':'';
+        const title=c.querySelector('.card-title')?.textContent.trim()||'';
+        out+=`【${star}${title}】\n\n`;
+        const vMain=c.querySelector('.verdict-main');
+        const vSub=c.querySelector('.verdict-sub');
+        if(vMain) out+='▌大法庭主文\n'+vMain.textContent.trim()+'\n';
+        if(vSub)  out+=vSub.textContent.trim()+'\n';
+        out+='\n';
+        c.querySelectorAll('.op').forEach(op=>{
+            const head=op.querySelector('.op-label')?.textContent.trim()||'';
+            out+=`▌${head}\n`;
+            op.querySelectorAll('.op-body p, .op-body li, .op-result').forEach(el=>{
+                const t=el.textContent.trim();
+                if(t) out+=(el.tagName==='LI'?'  • ':'')+t+'\n';
+            });
+            out+='\n';
+        });
+        const law=c.querySelector('.law-ref');
+        if(law) out+=law.textContent.trim()+'\n\n';
+        const ta=c.querySelector('.note-textarea');
+        if(ta&&ta.value.trim()) out+='✏️ 小結：\n'+ta.value.trim()+'\n\n';
+        out+='═'.repeat(44)+'\n\n';
+    });
+    const b=new Blob([out.trim()],{type:'text/plain;charset=utf-8'});
+    const u=URL.createObjectURL(b);
+    const a=document.createElement('a');
+    a.href=u;a.download='111台非大字第15號_協商判決宣示確定.txt';a.click();
+    URL.revokeObjectURL(u);
+}
+const REG_KEY='exam_completion_registry';
+function _loadReg(){try{return JSON.parse(localStorage.getItem(REG_KEY))||{};}catch{return{};}}
+function _saveReg(r){try{localStorage.setItem(REG_KEY,JSON.stringify(r));}catch{}}
+function _fmt(ts){const d=new Date(ts);return(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();}
+function _updateDate(){const r=_loadReg();const k='case_criminal_grand_111_fei15.html';const l=document.getElementById('doneDateLabel');if(!l)return;l.textContent=(r[k]&&r[k].done&&r[k].ts)?_fmt(r[k].ts):'';}
+function _syncIndex(done){try{const r=JSON.parse(localStorage.getItem('gc_reads')||'{}');r['c42']=done;localStorage.setItem('gc_reads',JSON.stringify(r));}catch(e){}}
+function toggleDone(){const btn=document.getElementById('doneBtn');const r=_loadReg();const k='case_criminal_grand_111_fei15.html';const done=r[k]&&r[k].done;if(done){delete r[k];_saveReg(r);btn.classList.remove('active');_syncIndex(false);}else{const now=new Date();r[k]={done:true,ts:now.getTime(),tsLabel:now.toLocaleDateString('zh-TW')+' '+now.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false})};_saveReg(r);btn.classList.add('active');_syncIndex(true);}_updateDate();}
+(function(){const r=_loadReg();const k='case_criminal_grand_111_fei15.html';if(r[k]&&r[k].done){const b=document.getElementById('doneBtn');if(b)b.classList.add('active');}_updateDate();})();
+</script>
+</body>
+</html>
