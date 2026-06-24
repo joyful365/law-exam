@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>111年度台上大字第1924號 大法庭裁定</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: "Helvetica Neue", Helvetica, "PingFang TC", "LiHei Pro", "Microsoft JhengHei", sans-serif; background: #eef0f3; color: #1a1a1a; line-height: 1.8; font-size: 16px; margin: 0; padding: 0 0 56px; }
+        header { background: #1a365d; color: white; padding: 18px 16px 10px; text-align: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.18); }
+        header h1 { margin: 0 0 10px; font-size: 1.05em; line-height: 1.5; font-weight: 600; letter-spacing: 0.02em; }
+        .header-controls { display: flex; gap: 8px; align-items: center; }
+        .search-wrap { position: relative; flex: 1; display: flex; align-items: center; gap: 4px; }
+        #searchInput { flex: 1; padding: 8px 14px 8px 34px; border: none; border-radius: 8px; font-size: 14px; background: rgba(255,255,255,0.13); color: white; outline: none; min-width: 0; }
+        #searchInput::placeholder { color: rgba(255,255,255,0.5); }
+        #searchInput:focus { background: rgba(255,255,255,0.22); }
+        .search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 13px; opacity: 0.6; pointer-events: none; }
+        .search-count { font-size: 11px; color: rgba(255,255,255,0.6); white-space: nowrap; min-width: 32px; text-align: center; }
+        .search-nav { background: rgba(255,255,255,0.15); border: none; border-radius: 6px; color: white; font-size: 11px; padding: 4px 7px; cursor: pointer; line-height: 1; }
+        .search-nav:hover { background: rgba(255,255,255,0.28); }
+        mark.search-hl { background: #ffe066; color: #1a1a1a; border-radius: 2px; padding: 0 1px; }
+        mark.search-hl.current { background: #ff9500; color: #fff; }
+        #filterBtn { background: rgba(255,255,255,0.13); border: none; border-radius: 8px; color: white; font-size: 13px; padding: 8px 12px; cursor: pointer; white-space: nowrap; }
+        #filterBtn.active { background: #c9a84c; color: #1a365d; font-weight: bold; }
+        .top-bar { background: #dde0e5; padding: 6px 14px; display: flex; gap: 6px; justify-content: flex-end; flex-wrap: nowrap; }
+        .top-btn { background: #5a6375; color: white; border: none; padding: 5px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap; transition: transform 0.1s; }
+        .top-btn:active { transform: scale(0.92); }
+        .top-btn.erase { background: #7a8494; }
+        .top-btn.clear { background: #a0a8b4; }
+        .top-btn.export { background: #c5cad3; color: #2d3748; }
+        .top-btn.done { background: #a0a8b4; color: #1a2a3a; }
+        .top-btn.done.active { background: linear-gradient(135deg,#7a5c00,#a07820); color: #fff3c4; }
+        .done-date { font-size: 11px; color: #8a9ab0; white-space: nowrap; align-self: center; }
+        .container { padding: 16px; max-width: 600px; margin: 0 auto; }
+        @media (min-width: 768px) { body { font-size: 17.5px; } .container { max-width: 860px; padding: 20px; } header h1 { font-size: 1.15em; } }
+        .card { background: #fff; border-radius: 16px; padding: 22px 20px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); position: relative; }
+        .card.hidden { display: none; }
+        .star-btn { position: absolute; top: 18px; right: 18px; background: none; border: none; font-size: 20px; cursor: pointer; opacity: 0.18; transition: opacity 0.15s, transform 0.15s; padding: 0; }
+        .star-btn:active { transform: scale(1.3); }
+        .star-btn.starred { opacity: 1; }
+        .card-title { color: #1a365d; font-size: 1.25em; font-weight: 700; margin: 0 0 4px; padding-right: 28px; line-height: 1.55; }
+        .meta-line { font-size: 0.76em; color: #999; margin-bottom: 18px; letter-spacing: 0.03em; }
+        .verdict { background: #1a365d; color: white; border-radius: 11px; padding: 15px 18px; margin-bottom: 20px; }
+        .verdict-label { font-size: 0.68em; letter-spacing: 0.12em; opacity: 0.55; text-transform: uppercase; margin-bottom: 4px; }
+        .verdict-main { font-size: 1.02em; font-weight: 700; line-height: 1.5; margin-bottom: 5px; }
+        .verdict-sub { font-size: 0.83em; opacity: 0.75; line-height: 1.6; margin-bottom: 10px; }
+        .vote-row { display: flex; gap: 7px; flex-wrap: wrap; }
+        .v-chip { font-size: 0.73em; background: rgba(255,255,255,0.12); border-radius: 20px; padding: 3px 10px; white-space: nowrap; color: rgba(255,255,255,0.8); }
+        .v-chip.win { background: rgba(255,255,255,0.28); color: #fff; font-weight: 700; }
+        .section-heading { font-size: 0.72em; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #8a9ab0; margin: 20px 0 10px; padding-bottom: 5px; border-bottom: 1px solid #e8eaee; }
+        .issue-box { background: #f5f6f8; border-radius: 10px; padding: 14px 16px; margin-bottom: 16px; font-size: 0.91em; color: #333; }
+        .issue-box p { margin: 0 0 8px; }
+        .issue-box p:last-child { margin: 0; }
+        .fact-box { background: #f9f7f0; border-left: 4px solid #c9a84c; border-radius: 0 10px 10px 0; padding: 14px 16px; margin-bottom: 16px; font-size: 0.91em; color: #333; }
+        .fact-box p { margin: 0 0 8px; }
+        .fact-box p:last-child { margin: 0; }
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+        @media (max-width: 600px) { .two-col { grid-template-columns: 1fr; } }
+        .compare-box { background: #f5f6f8; border-radius: 10px; padding: 13px 15px; font-size: 0.88em; }
+        .compare-box h4 { margin: 0 0 6px; font-size: 0.95em; color: #1a365d; }
+        .compare-box.right { background: #f0f7ee; }
+        .compare-box.right h4 { color: #276749; }
+        .compare-box.amber { background: #fff8e8; }
+        .compare-box.amber h4 { color: #92400e; }
+        .opinions { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+        .op { border-radius: 10px; overflow: hidden; border: 1px solid #e4e7ec; }
+        .op-head { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #f5f6f8; }
+        .op-num { width: 26px; height: 26px; border-radius: 50%; background: #1a365d; color: white; font-size: 0.75em; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .op-num.green { background: #276749; }
+        .op-num.amber { background: #92400e; }
+        .op-label { font-weight: 700; font-size: 0.93em; color: #1a365d; flex: 1; }
+        .op-label.green { color: #276749; }
+        .op-label.amber { color: #92400e; }
+        .op-body { padding: 13px 15px; font-size: 0.9em; background: #fff; }
+        .op-body p { margin: 0 0 9px; }
+        .op-body p:last-child { margin: 0; }
+        .op-body ul { margin: 5px 0 8px; padding-left: 18px; }
+        .op-body li { margin-bottom: 5px; }
+        .op-result { background: #f0f3f8; border-radius: 7px; padding: 10px 13px; margin-top: 10px; font-size: 0.9em; border-left: 3px solid #1a365d; }
+        .op-result.green { background: #f0f7ee; border-left-color: #276749; }
+        .op-result.amber { background: #fff8e8; border-left-color: #92400e; }
+        details { margin-top: 16px; }
+        details summary { cursor: pointer; color: #5a6880; font-size: 0.85em; font-weight: 600; padding: 5px 0; user-select: none; list-style: none; display: flex; align-items: center; gap: 5px; }
+        details summary::before { content: '▶'; font-size: 0.65em; transition: transform 0.2s; color: #8a9ab0; }
+        details[open] summary::before { transform: rotate(90deg); }
+        .ref-case { background: #f5f6f8; border-radius: 8px; padding: 11px 14px; margin-bottom: 8px; font-size: 0.85em; border-left: 3px solid #1a365d; }
+        .ref-case.yi { border-left-color: #8a9ab0; }
+        .ref-case.warn { border-left-color: #c0392b; background: #fff5f5; }
+        .ref-case.green { border-left-color: #276749; background: #f0f7ee; }
+        .ref-case-title { font-weight: 700; color: #1a365d; margin-bottom: 4px; font-size: 0.9em; }
+        .ref-case.yi .ref-case-title { color: #4a5568; }
+        .ref-case.warn .ref-case-title { color: #922b21; }
+        .ref-case.green .ref-case-title { color: #276749; }
+        .law-ref { background: #f0f2f5; border-radius: 8px; padding: 10px 14px; font-size: 0.85em; color: #4a5568; margin-top: 14px; border-left: 3px solid #1a365d; }
+        .judges-grid { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+        .judge-chip { font-size: 0.78em; background: #eef1f6; border-radius: 20px; padding: 3px 11px; color: #3a4a6a; border: 1px solid #d8dde8; }
+        .judge-chip.chief { background: #1a365d; color: white; font-weight: 700; border-color: #1a365d; }
+        .note-toggle { display: inline-block; margin-top: 14px; font-size: 0.8em; color: #b0b8c4; cursor: pointer; user-select: none; }
+        .note-toggle:hover { color: #1a365d; }
+        .note-area { display: none; margin-top: 8px; }
+        .note-area.open { display: block; }
+        .note-textarea { width: 100%; min-height: 68px; border: 1px solid #e0e4ea; border-radius: 8px; padding: 10px 12px; font-size: 0.87em; font-family: inherit; color: #333; background: #fafbfc; resize: vertical; outline: none; line-height: 1.7; }
+        .note-textarea:focus { border-color: #1a365d; }
+        .note-textarea::placeholder { color: #ccc; }
+        .note-saved { font-size: 0.72em; color: #68d391; text-align: right; height: 14px; margin-top: 2px; }
+        #noResults, #noStarred { display: none; text-align: center; color: #a0aec0; padding: 40px 0; font-size: 0.9em; }
+        ::-webkit-scrollbar { display: none; }
+        ::selection { background: #c8d8ef; }
+        .flow-wrap { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+        .flow-step { display: flex; align-items: flex-start; gap: 10px; background: #f5f6f8; border-radius: 8px; padding: 10px 13px; font-size: 0.88em; }
+        .flow-num { width: 24px; height: 24px; border-radius: 50%; background: #1a365d; color: white; font-size: 0.78em; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+        .flow-arrow { text-align: center; color: #8a9ab0; font-size: 1.1em; }
+        .tag-row { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 14px; }
+        .tag { font-size: 0.72em; background: #eef1f6; border-radius: 12px; padding: 2px 10px; color: #3a4a6a; border: 1px solid #d0d8e8; }
+        .tag.red { background: #fff0f0; border-color: #f0c0c0; color: #922b21; }
+        .tag.green { background: #f0f7ee; border-color: #b0d8c0; color: #276749; }
+        /* 夜覽模式 */
+        body.dark { background: #13151a; color: #d4d8e0; }
+        body.dark header { background: #0d1117; box-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        body.dark .top-bar { background: #1c1f27; }
+        body.dark .top-btn { background: #2e3340; color: #b0b8c8; }
+        body.dark .top-btn.erase { background: #383d4a; }
+        body.dark .top-btn.clear { background: #404655; }
+        body.dark .top-btn.export { background: #2a2e3a; color: #8a96a8; }
+        body.dark .top-btn.done { background: #2a2e3a; color: #7a8898; }
+        body.dark .top-btn.done.active { background: linear-gradient(135deg,#5a3e00,#7a5a10); color: #ffe090; }
+        body.dark .card { background: #1c1f27; box-shadow: 0 2px 14px rgba(0,0,0,0.35); }
+        body.dark .card-title { color: #7ea8d8; }
+        body.dark .meta-line { color: #5a6578; }
+        body.dark .verdict { background: #0d1a2e; }
+        body.dark .section-heading { color: #5a6880; border-bottom-color: #2a2e3a; }
+        body.dark .issue-box { background: #20232d; color: #c0c8d4; }
+        body.dark .fact-box { background: #1e1c14; border-left-color: #8a6820; color: #c0c8d4; }
+        body.dark .compare-box { background: #20232d; color: #c0c8d4; }
+        body.dark .compare-box h4 { color: #7ea8d8; }
+        body.dark .compare-box.right { background: #14201a; }
+        body.dark .compare-box.right h4 { color: #7acda0; }
+        body.dark .compare-box.amber { background: #1e1608; }
+        body.dark .compare-box.amber h4 { color: #d4a060; }
+        body.dark .op { border-color: #2a2e3a; }
+        body.dark .op-head { background: #20232d; }
+        body.dark .op-label { color: #7ea8d8; }
+        body.dark .op-label.green { color: #7acda0; }
+        body.dark .op-label.amber { color: #d4a060; }
+        body.dark .op-body { background: #1c1f27; color: #c0c8d4; }
+        body.dark .op-result { background: #161a24; border-left-color: #3a5a8a; }
+        body.dark .op-result.green { background: #12201a; border-left-color: #3a7a5a; }
+        body.dark .op-result.amber { background: #1e1608; border-left-color: #7a5020; }
+        body.dark .ref-case { background: #20232d; border-left-color: #3a5a8a; }
+        body.dark .ref-case.warn { background: #200f0e; border-left-color: #8a2a20; }
+        body.dark .ref-case.green { background: #12201a; border-left-color: #3a7a5a; }
+        body.dark .ref-case-title { color: #7ea8d8; }
+        body.dark .ref-case.yi .ref-case-title { color: #7a8898; }
+        body.dark .ref-case.warn .ref-case-title { color: #e88070; }
+        body.dark .ref-case.green .ref-case-title { color: #7acda0; }
+        body.dark .law-ref { background: #1c1f27; border-left-color: #3a5a8a; color: #8a96a8; }
+        body.dark .judge-chip { background: #20232d; color: #8a9ab8; border-color: #2e3340; }
+        body.dark .judge-chip.chief { background: #0d1a2e; color: #9abcd8; border-color: #1a3a60; }
+        body.dark .note-textarea { background: #161a24; border-color: #2e3340; color: #c0c8d4; }
+        body.dark .note-textarea:focus { border-color: #3a5a8a; }
+        body.dark .note-textarea::placeholder { color: #3a404e; }
+        body.dark .note-toggle { color: #3a4a5e; }
+        body.dark .note-toggle:hover { color: #7ea8d8; }
+        body.dark details summary { color: #4a5a70; }
+        body.dark #noResults, body.dark #noStarred { color: #3a4a5e; }
+        body.dark mark.search-hl { background: #7a5a00; color: #ffe090; }
+        body.dark mark.search-hl.current { background: #c07800; color: #fff; }
+        body.dark ::selection { background: #1a3a60; }
+        body.dark .flow-step { background: #20232d; color: #c0c8d4; }
+        body.dark .tag { background: #20232d; border-color: #2e3340; color: #8a9ab8; }
+        body.dark .tag.red { background: #200f0e; border-color: #5a2020; color: #e88070; }
+        body.dark .tag.green { background: #12201a; border-color: #2a5a3a; color: #7acda0; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>最高法院刑事大法庭<br>111年度台上大字第1924號</h1>
+    <div class="header-controls">
+        <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="搜尋關鍵字、法條…" oninput="doSearch(this.value)" onkeydown="handleSearchKey(event)">
+            <span class="search-count" id="searchCount"></span>
+            <button class="search-nav" id="searchPrev" onclick="navMatch(-1)" title="上一個">▲</button>
+            <button class="search-nav" id="searchNext" onclick="navMatch(1)" title="下一個">▼</button>
+        </div>
+        <button id="filterBtn" onclick="toggleFilter()">⭐ 收藏</button>
+    </div>
+    <div class="top-bar">
+        <button class="top-btn" onclick="highlightText()">🖊️</button>
+        <button class="top-btn erase" onclick="removeHighlight()">🧽</button>
+        <button class="top-btn clear" onclick="clearHighlights()">🗑️</button>
+        <button class="top-btn export" onclick="openExport()">📤</button>
+        <button class="top-btn" id="darkBtn" onclick="toggleDark()" title="夜覽模式">🌙</button>
+        <button class="top-btn done" id="doneBtn" onclick="toggleDone()">朕已閱</button>
+        <span class="done-date" id="doneDateLabel"></span>
+    </div>
+</header>
+
+<div class="container">
+
+<!-- ══════════════════ 卡片一：核心主文與爭議 ══════════════════ -->
+<div class="card" id="case1" data-kw="111台上大1924 交付審判 迴避 自行迴避 刑訴17條7款 控訴原則 審檢分立 公平審判 黃郁仁 偽造私文書 詐欺取財 258條之3 379條2款">
+    <button class="star-btn" onclick="toggleStar('case1',this)">⭐</button>
+
+    <h2 class="card-title">【核心爭議】法官曾參與准予交付審判之裁定，於嗣後同一案件之審判，應否自行迴避？</h2>
+    <div class="meta-line">裁定日期：中華民國111年12月28日　｜　案號：111年度台上大字第1924號　｜　提案庭：最高法院刑事第一庭　｜　被告：黃郁仁（偽造私文書、詐欺取財）</div>
+
+    <div class="tag-row">
+        <span class="tag red">司律必考</span>
+        <span class="tag">刑訴§17⑦類推</span>
+        <span class="tag">控訴原則</span>
+        <span class="tag">審檢分立</span>
+        <span class="tag">交付審判</span>
+        <span class="tag green">§379②當然違背法令</span>
+    </div>
+
+    <div class="verdict">
+        <div class="verdict-label">大法庭主文</div>
+        <div class="verdict-main">法官曾參與准予交付審判之裁定者，於嗣後同一案件之審判，應類推適用刑事訴訟法第17條第7款規定自行迴避，不得執行職務。</div>
+        <div class="verdict-sub">若未自行迴避而仍參與審判者，其判決自有同法第379條第2款所規定之當然違背法令。</div>
+        <div class="vote-row">
+            <span class="v-chip win">大法庭裁定 ✔</span>
+            <span class="v-chip">提案庭：刑事第一庭</span>
+            <span class="v-chip">裁定日：111.12.28</span>
+        </div>
+    </div>
+
+    <!-- 基礎事實 -->
+    <div class="section-heading">基礎事實（訴訟程序始末）</div>
+    <div class="fact-box">
+        <p>告訴人向臺灣高雄地方檢察署對被告黃郁仁提出<strong>行使偽造私文書及詐欺取財</strong>之告訴，檢察官以<strong>109年度偵字第14080號</strong>為不起訴處分。</p>
+        <p>告訴人聲請再議，經臺灣高等檢察署高雄檢察分署檢察長以<strong>109年度上聲議字第1971號</strong>駁回再議聲請。</p>
+        <p>告訴人委任律師向臺灣高雄地方法院<strong>聲請交付審判</strong>。經分案由刑事第十一庭審判長法官莊珮吟、法官黃鳳歧及法官李貞瑩合議審理後，認被告涉有刑法§216、§210行使偽造私文書及同法§339Ⅰ詐欺取財罪嫌，並敘明犯罪事實、證據及所犯法條，以<strong>109年度聲判字第92號裁定准予交付審判</strong>。</p>
+        <p>同法院嗣分案<strong>110年度訴字第269號</strong>，仍由上揭3位法官合議審理並參與判決，論處被告行使偽造私文書及詐欺取財罪刑。</p>
+        <p>被告不服第一審判決提起上訴，指稱本件由相同之合議庭法官成員裁定交付審判並參與審判，違反<strong>審檢分立、控訴及正當法律程序原則</strong>，有§379②所稱「依法律或裁判應迴避之法官參與審判」之判決當然違背法令事由。</p>
+    </div>
+
+    <!-- 程序流程圖 -->
+    <div class="section-heading">本案訴訟程序流程</div>
+    <div class="flow-wrap">
+        <div class="flow-step"><div class="flow-num">1</div><div>告訴人提出告訴 → 檢察官<strong>不起訴處分</strong>（109偵字14080號）</div></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><div class="flow-num">2</div><div>告訴人聲請再議 → 高檢署檢察長<strong>駁回再議</strong>（109上聲議字1971號）</div></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><div class="flow-num">3</div><div>告訴人聲請交付審判 → <strong>【同一合議庭（莊、黃、李）】</strong>裁定准予交付審判（109聲判字92號）</div></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step" style="border-left: 3px solid #c0392b;"><div class="flow-num" style="background:#c0392b;">4</div><div><strong>【同一合議庭】</strong>仍參與實體審判（110訴字269號）→ 被告提上訴，主張應迴避</div></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step" style="border-left: 3px solid #276749;"><div class="flow-num" style="background:#276749;">✔</div><div>大法庭裁定：應<strong>類推適用§17⑦</strong>自行迴避，不得執行職務</div></div>
+    </div>
+
+    <!-- 法律爭議 -->
+    <div class="section-heading">本案提案之法律問題</div>
+    <div class="issue-box">
+        <p><strong>核心問題：</strong>刑事訴訟法第258條之3第4項規定，法院為交付審判之裁定時，視為案件已提起公訴。則法官依上揭規定裁定准予交付審判，並於裁定中敘明被告涉嫌之犯罪事實、證據及所犯法條等起訴書法定應記載事項，<strong>實質上是否等同已執行檢察官提起公訴之職務</strong>，而應於嗣後同一案件迴避審判，不得執行職務？</p>
+        <p><strong>爭議根源：</strong>刑事訴訟法第17條第7款規定法官「曾執行檢察官或司法警察官之職務」者應自行迴避，但現行條文文義上未明文涵蓋「曾參與准予交付審判裁定之法官」，形成<strong>法律漏洞</strong>，是否應以類推適用填補？</p>
+    </div>
+
+    <div class="law-ref"><strong>主要相關法條：</strong>刑事訴訟法§17⑦（自行迴避—曾執行檢察官或司法警察官職務）、§258之1至§258之4（交付審判制度）、§258之3④（准予交付審判之法律效果：視為提起公訴）、§266（不告不理原則）、§268（法院不得就未起訴犯罪審判）、§319（自訴）、§379②（當然違背法令—應迴避法官參與審判）；憲法§16（訴訟權）、§80（法官獨立審判）；法院組織法§14之1②（承辦偵查中強制處分案件法官不得審理同一案件）</div>
+
+    <div class="note-toggle" onclick="toggleNote('n1')">✏️ 我的小結</div>
+    <div class="note-area" id="n1">
+        <textarea class="note-textarea" placeholder="例如：交付審判=視為起訴=法官已執行檢察官職務→類推§17⑦迴避；未迴避=§379②當然違背法令…" oninput="saveNote('n1',this.value)"></textarea>
+        <div class="note-saved" id="n1-saved"></div>
+    </div>
+</div>
+
+<!-- ══════════════════ 卡片二：控訴原則與公平審判 ══════════════════ -->
+<div class="card" id="case2" data-kw="111台上大1924 控訴原則 彈劾主義 審檢分立 法定法官 弾劾主義 不告不理 公平審判 憲法第16條 憲法第80條 訴訟權 公正第三者">
+    <button class="star-btn" onclick="toggleStar('case2',this)">⭐</button>
+
+    <h2 class="card-title">【理由一】控訴原則（彈劾主義）係公平審判之基石，公平審判為訴訟權之核心領域</h2>
+    <div class="meta-line">大法庭見解第一部分　｜　111年度台上大字第1924號</div>
+
+    <!-- 三原則對照 -->
+    <div class="section-heading">三大憲法原則體系</div>
+    <div class="two-col" style="grid-template-columns: 1fr 1fr;">
+        <div class="compare-box">
+            <h4>🏛️ 控訴原則（彈劾主義）</h4>
+            <p style="font-size:0.9em;margin:0;">非由法院以外之追訴者（即檢察官及自訴人）起訴或自訴，<strong>法院不能對未經起訴或自訴之被告或犯罪審判</strong>（§266、§268、§319）。確保司法機關之<strong>被動性</strong>。</p>
+        </div>
+        <div class="compare-box right">
+            <h4>⚖️ 審檢分立原則</h4>
+            <p style="font-size:0.9em;margin:0;">法官對受理之案件，負有合法、公正、妥速處理之義務，基於公平法院原則，應立於<strong>客觀、公正、超然</strong>地位，依據法律獨立審判，不受任何干涉（憲法§80）。</p>
+        </div>
+    </div>
+    <div class="compare-box amber" style="margin-bottom:16px;">
+        <h4>🔒 法定法官原則（法官獨立審判）</h4>
+        <p style="font-size:0.9em;margin:0;">憲法§16保障人民有訴訟之權，旨在確保人民有請求受<strong>公正而獨立之法院依正當法律程序</strong>審判之權利，且人民身體自由應予保障，非由法院依法定程序，不得審問處罰（憲法§16、§8）。</p>
+    </div>
+
+    <!-- 大法庭見解 -->
+    <div class="section-heading">大法庭見解</div>
+    <div class="opinions">
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">壹</div>
+                <span class="op-label">法官兼任訴追者與審判者——顯與控訴原則有悖</span>
+            </div>
+            <div class="op-body">
+                <p>刑事訴訟係以實現國家刑罰權為目的之司法程序，其審判乃以<strong>追訴開始</strong>，而追訴必須由自訴人依法提起自訴，或由檢察官依法實施偵查、提起公訴、實行公訴。</p>
+                <p>我國現制以<strong>檢察官為偵查之主體</strong>，對於法院獨立行使其職權，請求法院為法律正當之適用，並於判決確定後負責指揮監督判決之適當執行（法院組織法§60、§61）。</p>
+                <p>法官之審判係出於<strong>被動</strong>，即所謂控訴、彈劾或不告不理原則，與檢察官之主動偵查、提起公訴，性質上截然有別。</p>
+                <p>法官如兼為同一案件之<strong>訴追者及審判者</strong>，顯與控訴原則及其應公正執行審判職務之旨意有悖，自應迴避該案件之審判，不得執行職務（§17⑦）。</p>
+                <div class="op-result">
+                    <strong>原則確立：</strong>訴追者與審判者應嚴格分離，不得集於一身（「自己起訴、自己審判」之禁止）。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">貳</div>
+                <span class="op-label">法官審判應否自行迴避——攸關憲法上公平審判之保障</span>
+            </div>
+            <div class="op-body">
+                <p>法官對於案件之審判應否自行迴避，攸關人民訴訟權及受公正審判之<strong>憲法上權利保障</strong>。</p>
+                <p>法官於該管案件如存有<strong>主觀預斷成見</strong>或違反無罪推定原則之疑慮，客觀上顯難期其能公正執行審判職務，雖法律規範密度不足，司法者尚非不能基於<strong>合憲性及合目的性之思維</strong>予以填補。</p>
+                <div class="op-result">
+                    <strong>結論：</strong>認為法官仍應自行迴避，不得執行審判職務，以發揮法的續造功能，俾能確保人民得受公平之審判，而維繫人民對司法公正性之信賴。
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="note-toggle" onclick="toggleNote('n2')">✏️ 我的小結</div>
+    <div class="note-area" id="n2">
+        <textarea class="note-textarea" placeholder="例如：控訴原則=審判被動性；法官起訴又審判=違反審檢分立；憲§80獨立審判要求超然立場…" oninput="saveNote('n2',this.value)"></textarea>
+        <div class="note-saved" id="n2-saved"></div>
+    </div>
+</div>
+
+<!-- ══════════════════ 卡片三：交付審判實質效果等同公訴 ══════════════════ -->
+<div class="card" id="case3" data-kw="111台上大1924 258條之3 第4項 視為提起公訴 交付審判 主動性 公訴 職務 起訴 實質效果 法律擬制 弾劾主義 被動性 當事人性">
+    <button class="star-btn" onclick="toggleStar('case3',this)">⭐</button>
+
+    <h2 class="card-title">【理由二】法官曾參與准予交付審判之裁定，在實質效果上等同已執行檢察官提起公訴之職務</h2>
+    <div class="meta-line">大法庭見解第二部分　｜　111年度台上大字第1924號</div>
+
+    <!-- 比較分析 -->
+    <div class="section-heading">交付審判裁定 vs. 檢察官提起公訴——實質等同</div>
+    <div class="two-col">
+        <div class="compare-box">
+            <h4>📋 交付審判裁定（§258之3④）</h4>
+            <p style="font-size:0.9em;margin:0;">
+                ・法律擬制：<strong>視為已提起公訴</strong><br>
+                ・裁定中須敘明犯罪事實、證據及所犯法條等<strong>起訴書法定應記載事項</strong><br>
+                ・功能：使案件繫屬法院、發生訴訟關係及特定審判範圍之<strong>主動性功能</strong><br>
+                ・性質：近似於<strong>公訴性（公益性、主動性及當事人性）</strong>
+            </p>
+        </div>
+        <div class="compare-box right">
+            <h4>📄 檢察官提起公訴（§264）</h4>
+            <p style="font-size:0.9em;margin:0;">
+                ・需撰寫起訴書，記載犯罪事實、所犯法條<br>
+                ・向管轄法院提出，使案件繫屬於法院<br>
+                ・開啟審判程序、特定審判範圍<br>
+                ・性質：<strong>公訴性（公益性、主動性及當事人性）</strong><br>
+                ・主導後續訴訟推進
+            </p>
+        </div>
+    </div>
+
+    <div class="section-heading">大法庭見解</div>
+    <div class="opinions">
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">壹</div>
+                <span class="op-label">偵查已終局終結，法院主動調查裁定交付——顯與審判權特徵不符</span>
+            </div>
+            <div class="op-body">
+                <p>被告原經檢察官為<strong>不起訴處分</strong>，上級檢察署檢察長亦告知告訴人再議聲請為無理由，<strong>偵查程序至此本已終局終結</strong>。</p>
+                <p>復因法院得就偵查中所發現之證據為必要之調查，而裁定准予交付審判，顯與<strong>審判權正義性、被動性、公正第三者性及獨立性</strong>之特徵不符，反而近似於<strong>檢察權之具有公益性、主動性及當事人性</strong>質。</p>
+                <p>交付審判程序，雖在偵查程序終結以後，固非屬偵查程序或其延伸程序；但<strong>一經裁定准予交付審判，則法律擬制視為提起公訴，而開啟審判程序</strong>對被告所涉犯罪嫌疑進行審判。</p>
+                <div class="op-result">
+                    <strong>關鍵認定：</strong>其參與准予交付審判裁定之法官，形式上雖非檢察官，但所為之交付審判裁定，<strong>實質效果上已等同於執行檢察官提起公訴之法定職務</strong>，倘仍參與其後之審判，無異集起訴與審判職權於一身，形成類似「<strong>自己起訴、自己審判</strong>」之糾問現象，違反控訴原則之精神。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num green">貳</div>
+                <span class="op-label green">縱使後續審判程序仍需嚴格證明，預斷之外觀已成立</span>
+            </div>
+            <div class="op-body">
+                <p>縱使該案件嗣後於審判程序，仍應經<strong>檢察官踐行舉證、調查證據及辯論</strong>等嚴格證明程序，參與准予交付審判裁定之法官，亦能保持客觀中立而不致有所偏頗，然該法官<strong>實際上既已等同於執行檢察官之起訴職務</strong>，客觀上自足以使一般人懷疑法官已經具有<strong>主觀預斷成見</strong>，而難以維持公平審判之外觀及裁判之公信力，自應迴避嗣後本案之審判。</p>
+                <div class="op-result green">
+                    <strong>結論：</strong>不僅是「實質偏頗」，連「<strong>公平審判之外觀</strong>」（客觀上使人懷疑）亦足以構成應迴避之事由。此參諸立法者為維護法官中立性功能、貫徹公平審判之法官迴避制度本旨，乃於民國105年6月22日增訂法院組織法§14之1②，就承辦偵查中強制處分聲請案件審核之法官，規定不得辦理同一案件之審判事務，可資印證。
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 比較立法 -->
+    <details>
+        <summary>參照外國及我國立法例</summary>
+        <div style="padding-top:10px;">
+            <div class="ref-case">
+                <div class="ref-case-title">【德國】強制起訴制度——由邦高等法院管轄（德國刑事訴訟法§172④、§175）</div>
+                <p style="margin:0;">德國強制起訴制度規定，如聲請有理由，則應為提起公訴之裁定，<strong>檢察官有義務執行強制起訴之裁定，故須提出起訴書</strong>向對應管轄之下級審法院提起公訴，並無違反控訴原則之問題，<strong>由法院決定是否起訴，但實際起訴仍由檢察官執行</strong>。</p>
+            </div>
+            <div class="ref-case green">
+                <div class="ref-case-title">【日本】付審判（準起訴）制度——明文規定法官迴避（日本刑事訴訟法§265①、§20⑦）</div>
+                <p style="margin:0;">日本立法例雖與我國同規定由地方法院合議庭管轄，但<strong>同時規定法官曾參與准予付審判裁定時，應自行迴避執行職務</strong>。</p>
+            </div>
+            <div class="ref-case warn">
+                <div class="ref-case-title">【我國】立法漏洞——91年修法參考德、日但未同步規定迴避事由</div>
+                <p style="margin:0;">我國刑事訴訟法既參考德、日立法例，於91年2月8日修正公布增訂§258之1至§258之4等關於交付審判制度之條文，復於92年2月6日修正§258之1規定，在制度設計上更接近於日本法制，但並<strong>未同時規定曾參與准予交付審判裁定之法官，應自行迴避本案之審判，或在§17條增訂上述法官應自行迴避之事由</strong>，倘係立法者有意為之，應見其特別說明，但上述相關條文之立法過程或立法說明均未見對此有所討論敘述，<strong>應係明顯之法律漏洞，並非立法者有意排除</strong>。</p>
+            </div>
+        </div>
+    </details>
+
+    <div class="law-ref"><strong>相關法條：</strong>刑事訴訟法§258之3④（交付審判裁定視為提起公訴）、§17⑦（曾執行檢察官職務應迴避）；法院組織法§14之1②（105年6月22日增訂：承辦偵查中強制處分聲請審核之法官，不得辦理同一案件審判事務）；日本刑事訴訟法§265①、§20⑦（法官曾參與付審判裁定，應自行迴避）；德國刑事訴訟法§172④、§175</div>
+
+    <div class="note-toggle" onclick="toggleNote('n3')">✏️ 我的小結</div>
+    <div class="note-area" id="n3">
+        <textarea class="note-textarea" placeholder="例如：交付審判=擬制公訴=執行檢察官職務→類推§17⑦；德國由檢察官執行起訴書故無問題；日本明文規定迴避；我國漏洞應類推…" oninput="saveNote('n3',this.value)"></textarea>
+        <div class="note-saved" id="n3-saved"></div>
+    </div>
+</div>
+
+<!-- ══════════════════ 卡片四：法律漏洞與類推適用 ══════════════════ -->
+<div class="card" id="case4" data-kw="111台上大1924 法律漏洞 類推適用 17條7款 相同法理 舉輕以明重 合憲性 合目的性 法的續造 法院組織法14條之1 強制處分 偵查 迴避">
+    <button class="star-btn" onclick="toggleStar('case4',this)">⭐</button>
+
+    <h2 class="card-title">【理由三】現制未規定法官曾參與交付審判裁定者應迴避，係屬法律漏洞，應類推適用§17⑦規定自行迴避</h2>
+    <div class="meta-line">大法庭見解第三部分　｜　111年度台上大字第1924號</div>
+
+    <div class="section-heading">類推適用之邏輯</div>
+    <div class="opinions">
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">壹</div>
+                <span class="op-label">法律漏洞之認定——並非立法者有意排除</span>
+            </div>
+            <div class="op-body">
+                <p>刑事訴訟法現制<strong>未規定</strong>法官曾參與准予交付審判之裁定者，應自行迴避嗣後本案之審判，係屬<strong>法律漏洞</strong>。</p>
+                <p>而法官參與准予交付審判裁定，解釋上雖<strong>不能直接適用</strong>刑事訴訟法第17條第7款規定以自行迴避嗣後本案之審判，但基於確保人民得受公平之審判及對司法公正性之信賴考量，在法律未修正增訂前，本於<strong>相同法理</strong>，自應類推適用刑事訴訟法第17條第7款之規定，自行迴避嗣後本案之審判。</p>
+                <div class="op-result">
+                    <strong>類推三步驟：</strong>①確認法律漏洞 → ②找出相同法理（§17⑦旨在避免曾執行檢察官職務者審判同一案件）→ ③類推適用至相同情形（曾參與交付審判裁定）
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">貳</div>
+                <span class="op-label">§17⑦之立法目的——同一法理之確認</span>
+            </div>
+            <div class="op-body">
+                <p>刑事訴訟法第17條第7款關於法官應自行迴避之規定，旨在<strong>避免法官就同一案件曾因執行檢察官或司法警察官之職務，而生主觀預斷或違反控訴及無罪推定原則之疑慮</strong>，以確保人民得受公平之審判，而維繫人民對司法公正性之信賴。</p>
+                <p>因此，法官曾執行檢察官或司法警察官之職務者，固應依上述規定自行迴避。而<strong>參與准予交付審判裁定之法官，在實質效果上既等同於執行檢察官提起公訴之法定職務</strong>，倘仍參與其後同一案件之審判，顯已違反審檢分立、控訴原則及公平法院等憲法保障訴訟權之規定，本於同一法理，及合憲性與合目的性之觀點，自應<strong>類推適用本條款規定自行迴避</strong>，不得執行職務。</p>
+                <div class="op-result">
+                    <strong>結論：</strong>若未自行迴避而仍參與審判者，其判決自有同法<strong>第379條第2款</strong>所規定之<strong>當然違背法令</strong>。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num amber">參</div>
+                <span class="op-label amber">舉輕以明重——法院組織法§14之1②之啟示</span>
+            </div>
+            <div class="op-body">
+                <p>立法者為維護法官中立性功能、貫徹公平審判之法官迴避制度本旨，乃於民國<strong>105年6月22日增訂法院組織法第14條之1第2項</strong>，就<strong>承辦偵查中強制處分聲請案件審核之法官</strong>，規定<strong>不得辦理同一案件之審判事務</strong>。</p>
+                <p>而曾參與准予交付審判裁定之法官，對於被告涉嫌犯罪<strong>預斷成見之程度，顯較承辦偵查中強制處分聲請案件審核之法官為強</strong>，依<strong>舉輕以明重</strong>之法理，本件尤應為相同之處理。</p>
+                <div class="op-result amber">
+                    <strong>邏輯：</strong>承辦強制處分聲請審核之法官（預斷程度較輕）→ 已明文禁止再審同一案件；曾裁定准予交付審判之法官（預斷程度更重，實質等同起訴）→ 舉輕以明重，更應迴避。
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="note-toggle" onclick="toggleNote('n4')">✏️ 我的小結</div>
+    <div class="note-area" id="n4">
+        <textarea class="note-textarea" placeholder="例如：漏洞→類推§17⑦；強制處分審核法官（輕）已禁止，交付審判法官（重）更應禁止→舉輕以明重…" oninput="saveNote('n4',this.value)"></textarea>
+        <div class="note-saved" id="n4-saved"></div>
+    </div>
+</div>
+
+<!-- ══════════════════ 卡片五：考試重點彙整 ══════════════════ -->
+<div class="card" id="case5" data-kw="111台上大1924 考試重點 司律 考點 迴避 交付審判 379條 當然違背法令 類推 漏洞 法官 自行迴避 控訴原則 審檢分立">
+    <button class="star-btn" onclick="toggleStar('case5',this)">⭐</button>
+
+    <h2 class="card-title">【考試重點彙整】司法官 & 律師考試必讀考點</h2>
+    <div class="meta-line">111年度台上大字第1924號　｜　裁定日：111.12.28</div>
+
+    <div class="section-heading">核心考點速覽</div>
+    <div class="opinions">
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">①</div>
+                <span class="op-label">主文結論——「應類推適用§17⑦自行迴避」</span>
+            </div>
+            <div class="op-body">
+                <p>法官曾參與<strong>准予交付審判</strong>之裁定者，於嗣後<strong>同一案件之審判</strong>，應<strong>類推適用</strong>刑事訴訟法§17⑦規定自行迴避，不得執行職務。若未自行迴避而仍參與審判者，其判決自有§379②所規定之<strong>當然違背法令</strong>。</p>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">②</div>
+                <span class="op-label">§258之3④「視為提起公訴」之法律效果</span>
+            </div>
+            <div class="op-body">
+                <p>法院為交付審判之裁定時，視為案件已<strong>提起公訴</strong>（§258之3④）。裁定准予交付審判，在實質效果上<strong>等同於執行檢察官提起公訴之法定職務</strong>，因此同一法官繼續審判，形同「自己起訴、自己審判」，違反控訴原則。</p>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">③</div>
+                <span class="op-label">§17⑦規定之構成——曾「執行」檢察官職務</span>
+            </div>
+            <div class="op-body">
+                <p>§17⑦規定：法官曾執行<strong>檢察官或司法警察官之職務</strong>者，應自行迴避。交付審判裁定雖非「直接適用」§17⑦（因形式上非檢察官），但大法庭認定屬「<strong>法律漏洞</strong>」，應以<strong>類推適用</strong>填補之。</p>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">④</div>
+                <span class="op-label">法律漏洞 vs. 有意排除之區分</span>
+            </div>
+            <div class="op-body">
+                <p>我國刑事訴訟法91年修法參考德、日立法例，卻<strong>未同步規定</strong>參與交付審判裁定之法官應迴避（日本明文規定；德國制度設計不產生此問題），且立法說明未見討論，應係<strong>明顯之法律漏洞，並非立法者有意排除</strong>。存在漏洞方得類推，若係有意排除則不得類推。</p>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">⑤</div>
+                <span class="op-label">舉輕以明重——法院組織法§14之1②的對比</span>
+            </div>
+            <div class="op-body">
+                <p>法院組織法§14之1②（105年6月22日增訂）規定承辦<strong>偵查中強制處分聲請</strong>案件審核之法官，不得辦理同一案件之審判事務。而曾裁定准予交付審判之法官預斷程度<strong>遠重於</strong>承辦強制處分審核者，依<strong>舉輕以明重</strong>之法理，更應迴避。</p>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">⑥</div>
+                <span class="op-label">公平審判之「外觀標準」</span>
+            </div>
+            <div class="op-body">
+                <p>大法庭採「<strong>客觀外觀標準</strong>」：縱使該法官實際上能保持客觀中立，然客觀上自足以使<strong>一般人懷疑</strong>法官已經具有主觀預斷成見，而難以維持公平審判之外觀及裁判之公信力，亦應迴避。</p>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">⑦</div>
+                <span class="op-label">違反迴避義務之法律效果——§379②當然違背法令</span>
+            </div>
+            <div class="op-body">
+                <p>依§379②：有「<strong>依法律或裁判應迴避之法官參與審判</strong>」者，其判決當然違背法令，構成第三審上訴得廢棄之事由。大法庭明確指出本案即有此事由。</p>
+                <div class="op-result">
+                    <strong>考試陷阱：</strong>注意§379②之「當然」違背法令，意指<strong>不論其判決結果是否影響</strong>，均應予廢棄，此為強行規定，不得以「即便未迴避結果相同」為由主張無影響。
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 比較表 -->
+    <div class="section-heading">迴避制度相關規定比較</div>
+    <div class="flow-wrap">
+        <div class="flow-step"><div class="flow-num" style="background:#92400e;">A</div><div><strong>§17⑦（直接適用）：</strong>曾執行<u>檢察官或司法警察官</u>之職務者，應自行迴避</div></div>
+        <div class="flow-step"><div class="flow-num" style="background:#c0392b;">B</div><div><strong>§17⑦（類推適用）：</strong>曾參與<u>准予交付審判裁定</u>之法官，應類推適用§17⑦（本件大法庭見解）</div></div>
+        <div class="flow-step"><div class="flow-num" style="background:#276749;">C</div><div><strong>法院組織法§14之1②：</strong>承辦<u>偵查中強制處分聲請審核</u>之法官，不得辦理同一案件審判事務（明文規定）</div></div>
+    </div>
+
+    <!-- 合議庭成員 -->
+    <details>
+        <summary>大法庭組成</summary>
+        <div style="padding-top:10px;">
+            <div class="judges-grid">
+                <span class="judge-chip chief">審判長　吳燦</span>
+                <span class="judge-chip">郭毓洲</span>
+                <span class="judge-chip">林立華</span>
+                <span class="judge-chip">徐昌錦</span>
+                <span class="judge-chip">段景榕</span>
+                <span class="judge-chip">李英勇</span>
+                <span class="judge-chip">李錦樑</span>
+                <span class="judge-chip">林勤純</span>
+                <span class="judge-chip">梁宏哲</span>
+                <span class="judge-chip">何信慶</span>
+                <span class="judge-chip">林英志</span>
+            </div>
+            <p style="font-size:0.82em;color:#888;margin:10px 0 0;">提案庭：最高法院刑事第一庭　｜　上訴人：臺灣高等檢察署高雄檢察分署檢察官劉玲興　｜　被告：黃郁仁（選任辯護人：李艾倫律師、謝孟羽律師、莊華隆律師）　｜　裁定日：中華民國111年12月28日</p>
+        </div>
+    </details>
+
+    <div class="note-toggle" onclick="toggleNote('n5')">✏️ 我的小結</div>
+    <div class="note-area" id="n5">
+        <textarea class="note-textarea" placeholder="考點整理或申論題架構…" oninput="saveNote('n5',this.value)"></textarea>
+        <div class="note-saved" id="n5-saved"></div>
+    </div>
+</div>
+
+<div id="noResults">查無符合的內容，請試試其他關鍵字。</div>
+<div id="noStarred">還沒有收藏的項目，點卡片右上角的 ⭐ 加入收藏。</div>
+</div>
+
+<script>
+const STORE_KEY='111_1924_grand_notes',STAR_KEY='111_1924_grand_stars';
+(function initDark(){if(localStorage.getItem('night_mode')==='1'){document.body.classList.add('dark');document.getElementById('darkBtn').textContent='☀️';}})();
+function loadNotes(){try{return JSON.parse(localStorage.getItem(STORE_KEY))||{};}catch{return{};}}
+function loadStars(){try{return JSON.parse(localStorage.getItem(STAR_KEY))||{};}catch{return{};}}
+function saveAllNotes(d){localStorage.setItem(STORE_KEY,JSON.stringify(d));}
+function saveAllStars(d){localStorage.setItem(STAR_KEY,JSON.stringify(d));}
+(function(){const n=loadNotes(),s=loadStars();Object.entries(n).forEach(([id,v])=>{const a=document.getElementById(id);if(!a)return;const t=a.querySelector('textarea');if(t)t.value=v;if(v)a.classList.add('open');});Object.entries(s).forEach(([id,v])=>{if(!v)return;const b=document.querySelector(`#${id} .star-btn`);if(b)b.classList.add('starred');});})();
+function toggleStar(id,btn){const s=loadStars();const now=!btn.classList.contains('starred');btn.classList.toggle('starred',now);s[id]=now;saveAllStars(s);if(filterActive)applyFilter();}
+let filterActive=false;
+function toggleFilter(){filterActive=!filterActive;document.getElementById('filterBtn').classList.toggle('active',filterActive);document.getElementById('searchInput').value='';clearSearchHighlights();updateSearchUI();applyFilter();}
+function applyFilter(){const s=loadStars();const q=document.getElementById('searchInput').value.trim().toLowerCase();let any=false;document.querySelectorAll('.card').forEach(c=>{const kw=(c.dataset.kw||'').toLowerCase();const txt=c.textContent.toLowerCase();const ms=!q||kw.includes(q)||txt.includes(q);const mf=!filterActive||!!s[c.id];const show=ms&&mf;c.classList.toggle('hidden',!show);if(show)any=true;});document.getElementById('noResults').style.display=(!any&&!filterActive)?'block':'none';document.getElementById('noStarred').style.display=(!any&&filterActive)?'block':'none';}
+let _matches=[],_cur=-1;
+function clearSearchHighlights(){document.querySelectorAll('mark.search-hl').forEach(m=>{const p=m.parentNode;while(m.firstChild)p.insertBefore(m.firstChild,m);p.removeChild(m);p.normalize();});_matches=[];_cur=-1;}
+function highlightInNode(node,q){if(node.nodeType===3){const txt=node.textContent;const idx=txt.toLowerCase().indexOf(q);if(idx===-1)return false;const m=document.createElement('mark');m.className='search-hl';const before=document.createTextNode(txt.slice(0,idx));const matched=document.createTextNode(txt.slice(idx,idx+q.length));const after=document.createTextNode(txt.slice(idx+q.length));m.appendChild(matched);const p=node.parentNode;p.insertBefore(before,node);p.insertBefore(m,node);p.insertBefore(after,node);p.removeChild(node);_matches.push(m);return true;}else if(node.nodeType===1){const skip=new Set(['SCRIPT','STYLE','TEXTAREA']);if(skip.has(node.tagName))return false;[...node.childNodes].forEach(ch=>highlightInNode(ch,q));return false;}}
+function doSearch(q){clearSearchHighlights();applyFilter();if(!q||!q.trim()){updateSearchUI();return;}const lq=q.trim().toLowerCase();document.querySelectorAll('.card:not(.hidden)').forEach(c=>highlightInNode(c,lq));if(_matches.length>0){_cur=0;setCurrent();}updateSearchUI();}
+function setCurrent(){_matches.forEach((m,i)=>m.classList.toggle('current',i===_cur));if(_matches[_cur]){_matches[_cur].scrollIntoView({behavior:'smooth',block:'center'});}}
+function navMatch(dir){if(!_matches.length)return;_cur=(_cur+dir+_matches.length)%_matches.length;setCurrent();updateSearchUI();}
+function updateSearchUI(){const c=document.getElementById('searchCount');if(!c)return;if(!_matches.length){c.textContent='';return;}c.textContent=(_cur+1)+'/'+_matches.length;}
+function handleSearchKey(e){if(e.key==='Enter'){e.preventDefault();navMatch(e.shiftKey?-1:1);}}
+function toggleNote(id){document.getElementById(id).classList.toggle('open');}
+function toggleDark(){const on=document.body.classList.toggle('dark');document.getElementById('darkBtn').textContent=on?'☀️':'🌙';localStorage.setItem('night_mode',on?'1':'0');}
+const timers={};
+function saveNote(id,v){clearTimeout(timers[id]);timers[id]=setTimeout(()=>{const n=loadNotes();n[id]=v;saveAllNotes(n);const el=document.getElementById(id+'-saved');if(el){el.textContent='已儲存';setTimeout(()=>el.textContent='',1500);}},500);}
+let savedRange=null;
+document.addEventListener('selectionchange',()=>{const s=window.getSelection();if(s&&!s.isCollapsed&&s.rangeCount)savedRange=s.getRangeAt(0).cloneRange();});
+function highlightText(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;if(!r||r.collapsed){alert('💡 請先反白想要標記的文字');return;}const sp=document.createElement('span');sp.className='hl';sp.style.backgroundColor='#ffe066';try{r.surroundContents(sp);savedRange=null;}catch{alert('💡 請選取同一段落內的文字');}s&&s.removeAllRanges();}
+function removeHighlight(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;if(!r||r.collapsed){alert('💡 請先反白想擦除標記的文字');return;}const anc=r.commonAncestorContainer.nodeType===1?r.commonAncestorContainer:r.commonAncestorContainer.parentElement;anc.querySelectorAll('span.hl').forEach(sp=>{if(r.intersectsNode(sp)){const p=sp.parentNode;while(sp.firstChild)p.insertBefore(sp.firstChild,sp);p.removeChild(sp);}});savedRange=null;s&&s.removeAllRanges();}
+function clearHighlights(){const sp=document.querySelectorAll('span.hl');if(!sp.length)return;if(confirm('確定要清除所有重點標記嗎？')){sp.forEach(s=>{const p=s.parentNode;while(s.firstChild)p.insertBefore(s.firstChild,s);p.removeChild(s);});}}
+function openExport(){
+    const stars=loadStars();
+    let out='最高法院刑事大法庭 111年度台上大字第1924號\n'+'═'.repeat(44)+'\n\n';
+    document.querySelectorAll('.card').forEach(c=>{
+        const star=stars[c.id]?'⭐ ':'';
+        const title=c.querySelector('.card-title')?.textContent.trim()||'';
+        out+=`【${star}${title}】\n\n`;
+        const vMain=c.querySelector('.verdict-main');
+        const vSub=c.querySelector('.verdict-sub');
+        if(vMain) out+='▌大法庭主文\n'+vMain.textContent.trim()+'\n';
+        if(vSub)  out+=vSub.textContent.trim()+'\n';
+        out+='\n';
+        c.querySelectorAll('.op').forEach(op=>{
+            const head=op.querySelector('.op-label')?.textContent.trim()||'';
+            out+=`▌${head}\n`;
+            op.querySelectorAll('.op-body p, .op-body li, .op-result').forEach(el=>{
+                const t=el.textContent.trim();
+                if(t) out+=(el.tagName==='LI'?'  • ':'')+t+'\n';
+            });
+            out+='\n';
+        });
+        const law=c.querySelector('.law-ref');
+        if(law) out+=law.textContent.trim()+'\n\n';
+        const ta=c.querySelector('.note-textarea');
+        if(ta&&ta.value.trim()) out+='✏️ 小結：\n'+ta.value.trim()+'\n\n';
+        out+='═'.repeat(44)+'\n\n';
+    });
+    const b=new Blob([out.trim()],{type:'text/plain;charset=utf-8'});
+    const u=URL.createObjectURL(b);
+    const a=document.createElement('a');
+    a.href=u;a.download='111台上大字第1924號_交付審判法官迴避.txt';a.click();
+    URL.revokeObjectURL(u);
+}
+const REG_KEY='exam_completion_registry';
+function _loadReg(){try{return JSON.parse(localStorage.getItem(REG_KEY))||{};}catch{return{};}}
+function _saveReg(r){try{localStorage.setItem(REG_KEY,JSON.stringify(r));}catch{}}
+function _fmt(ts){const d=new Date(ts);return(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();}
+function _updateDate(){const r=_loadReg();const k='case_criminal_grand_111_1924.html';const l=document.getElementById('doneDateLabel');if(!l)return;l.textContent=(r[k]&&r[k].done&&r[k].ts)?_fmt(r[k].ts):'';}
+function _syncIndex(done){try{const r=JSON.parse(localStorage.getItem('gc_reads')||'{}');r['c41']=done;localStorage.setItem('gc_reads',JSON.stringify(r));}catch(e){}}
+function toggleDone(){const btn=document.getElementById('doneBtn');const r=_loadReg();const k='case_criminal_grand_111_1924.html';const done=r[k]&&r[k].done;if(done){delete r[k];_saveReg(r);btn.classList.remove('active');_syncIndex(false);}else{const now=new Date();r[k]={done:true,ts:now.getTime(),tsLabel:now.toLocaleDateString('zh-TW')+' '+now.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false})};_saveReg(r);btn.classList.add('active');_syncIndex(true);}_updateDate();}
+(function(){const r=_loadReg();const k='case_criminal_grand_111_1924.html';if(r[k]&&r[k].done){const b=document.getElementById('doneBtn');if(b)b.classList.add('active');}_updateDate();})();
+</script>
+</body>
+</html>

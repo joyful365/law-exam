@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>110年度台上大字第5217號 大法庭裁定</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: "Helvetica Neue", Helvetica, "PingFang TC", "LiHei Pro", "Microsoft JhengHei", sans-serif; background: #eef0f3; color: #1a1a1a; line-height: 1.8; font-size: 16px; margin: 0; padding: 0 0 56px; }
+        header { background: #1a365d; color: white; padding: 18px 16px 10px; text-align: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.18); }
+        header h1 { margin: 0 0 10px; font-size: 1.05em; line-height: 1.5; font-weight: 600; letter-spacing: 0.02em; }
+        .header-controls { display: flex; gap: 8px; align-items: center; }
+        .search-wrap { position: relative; flex: 1; display: flex; align-items: center; gap: 4px; }
+        #searchInput { flex: 1; padding: 8px 14px 8px 34px; border: none; border-radius: 8px; font-size: 14px; background: rgba(255,255,255,0.13); color: white; outline: none; min-width: 0; }
+        #searchInput::placeholder { color: rgba(255,255,255,0.5); }
+        #searchInput:focus { background: rgba(255,255,255,0.22); }
+        .search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 13px; opacity: 0.6; pointer-events: none; }
+        .search-count { font-size: 11px; color: rgba(255,255,255,0.6); white-space: nowrap; min-width: 32px; text-align: center; }
+        .search-nav { background: rgba(255,255,255,0.15); border: none; border-radius: 6px; color: white; font-size: 11px; padding: 4px 7px; cursor: pointer; line-height: 1; }
+        .search-nav:hover { background: rgba(255,255,255,0.28); }
+        mark.search-hl { background: #ffe066; color: #1a1a1a; border-radius: 2px; padding: 0 1px; }
+        mark.search-hl.current { background: #ff9500; color: #fff; }
+        #filterBtn { background: rgba(255,255,255,0.13); border: none; border-radius: 8px; color: white; font-size: 13px; padding: 8px 12px; cursor: pointer; white-space: nowrap; }
+        #filterBtn.active { background: #c9a84c; color: #1a365d; font-weight: bold; }
+        .top-bar { background: #dde0e5; padding: 6px 14px; display: flex; gap: 6px; justify-content: flex-end; flex-wrap: nowrap; }
+        .top-btn { background: #5a6375; color: white; border: none; padding: 5px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap; transition: transform 0.1s; }
+        .top-btn:active { transform: scale(0.92); }
+        .top-btn.erase { background: #7a8494; }
+        .top-btn.clear { background: #a0a8b4; }
+        .top-btn.export { background: #c5cad3; color: #2d3748; }
+        .top-btn.done { background: #a0a8b4; color: #1a2a3a; }
+        .top-btn.done.active { background: linear-gradient(135deg,#7a5c00,#a07820); color: #fff3c4; }
+        .done-date { font-size: 11px; color: #8a9ab0; white-space: nowrap; align-self: center; }
+        .container { padding: 16px; max-width: 600px; margin: 0 auto; }
+        @media (min-width: 768px) { body { font-size: 17.5px; } .container { max-width: 860px; padding: 20px; } header h1 { font-size: 1.15em; } }
+        .card { background: #fff; border-radius: 16px; padding: 22px 20px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); position: relative; }
+        .card.hidden { display: none; }
+        .star-btn { position: absolute; top: 18px; right: 18px; background: none; border: none; font-size: 20px; cursor: pointer; opacity: 0.18; transition: opacity 0.15s, transform 0.15s; padding: 0; }
+        .star-btn:active { transform: scale(1.3); }
+        .star-btn.starred { opacity: 1; }
+        .card-title { color: #1a365d; font-size: 1.25em; font-weight: 700; margin: 0 0 4px; padding-right: 28px; line-height: 1.55; }
+        .meta-line { font-size: 0.76em; color: #999; margin-bottom: 18px; letter-spacing: 0.03em; }
+        .verdict { background: #1a365d; color: white; border-radius: 11px; padding: 15px 18px; margin-bottom: 20px; }
+        .verdict-label { font-size: 0.68em; letter-spacing: 0.12em; opacity: 0.55; text-transform: uppercase; margin-bottom: 4px; }
+        .verdict-main { font-size: 1.02em; font-weight: 700; line-height: 1.5; margin-bottom: 5px; }
+        .verdict-sub { font-size: 0.83em; opacity: 0.75; line-height: 1.6; margin-bottom: 10px; }
+        .vote-row { display: flex; gap: 7px; flex-wrap: wrap; }
+        .v-chip { font-size: 0.73em; background: rgba(255,255,255,0.12); border-radius: 20px; padding: 3px 10px; white-space: nowrap; color: rgba(255,255,255,0.8); }
+        .v-chip.win { background: rgba(255,255,255,0.28); color: #fff; font-weight: 700; }
+        .section-heading { font-size: 0.72em; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #8a9ab0; margin: 20px 0 10px; padding-bottom: 5px; border-bottom: 1px solid #e8eaee; }
+        .issue-box { background: #f5f6f8; border-radius: 10px; padding: 14px 16px; margin-bottom: 16px; font-size: 0.91em; color: #333; }
+        .issue-box p { margin: 0 0 8px; }
+        .issue-box p:last-child { margin: 0; }
+        .fact-box { background: #f9f7f0; border-left: 4px solid #c9a84c; border-radius: 0 10px 10px 0; padding: 14px 16px; margin-bottom: 16px; font-size: 0.91em; color: #333; }
+        .fact-box p { margin: 0 0 8px; }
+        .fact-box p:last-child { margin: 0; }
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+        @media (max-width: 600px) { .two-col { grid-template-columns: 1fr; } }
+        .compare-box { background: #f5f6f8; border-radius: 10px; padding: 13px 15px; font-size: 0.88em; }
+        .compare-box h4 { margin: 0 0 6px; font-size: 0.95em; color: #1a365d; }
+        .compare-box.right { background: #f0f7ee; }
+        .compare-box.right h4 { color: #276749; }
+        .opinions { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+        .op { border-radius: 10px; overflow: hidden; border: 1px solid #e4e7ec; }
+        .op-head { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #f5f6f8; }
+        .op-num { width: 26px; height: 26px; border-radius: 50%; background: #1a365d; color: white; font-size: 0.75em; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .op-num.green { background: #276749; }
+        .op-label { font-weight: 700; font-size: 0.93em; color: #1a365d; flex: 1; }
+        .op-label.green { color: #276749; }
+        .op-body { padding: 13px 15px; font-size: 0.9em; background: #fff; }
+        .op-body p { margin: 0 0 9px; }
+        .op-body p:last-child { margin: 0; }
+        .op-body ul { margin: 5px 0 8px; padding-left: 18px; }
+        .op-body li { margin-bottom: 5px; }
+        .op-result { background: #f0f3f8; border-radius: 7px; padding: 10px 13px; margin-top: 10px; font-size: 0.9em; border-left: 3px solid #1a365d; }
+        .op-result.green { background: #f0f7ee; border-left-color: #276749; }
+        details { margin-top: 16px; }
+        details summary { cursor: pointer; color: #5a6880; font-size: 0.85em; font-weight: 600; padding: 5px 0; user-select: none; list-style: none; display: flex; align-items: center; gap: 5px; }
+        details summary::before { content: '▶'; font-size: 0.65em; transition: transform 0.2s; color: #8a9ab0; }
+        details[open] summary::before { transform: rotate(90deg); }
+        .ref-case { background: #f5f6f8; border-radius: 8px; padding: 11px 14px; margin-bottom: 8px; font-size: 0.85em; border-left: 3px solid #1a365d; }
+        .ref-case.yi { border-left-color: #8a9ab0; }
+        .ref-case.warn { border-left-color: #c0392b; background: #fff5f5; }
+        .ref-case-title { font-weight: 700; color: #1a365d; margin-bottom: 4px; font-size: 0.9em; }
+        .ref-case.yi .ref-case-title { color: #4a5568; }
+        .ref-case.warn .ref-case-title { color: #922b21; }
+        .law-ref { background: #f0f2f5; border-radius: 8px; padding: 10px 14px; font-size: 0.85em; color: #4a5568; margin-top: 14px; border-left: 3px solid #1a365d; }
+        .judges-grid { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+        .judge-chip { font-size: 0.78em; background: #eef1f6; border-radius: 20px; padding: 3px 11px; color: #3a4a6a; border: 1px solid #d8dde8; }
+        .judge-chip.chief { background: #1a365d; color: white; font-weight: 700; border-color: #1a365d; }
+        .note-toggle { display: inline-block; margin-top: 14px; font-size: 0.8em; color: #b0b8c4; cursor: pointer; user-select: none; }
+        .note-toggle:hover { color: #1a365d; }
+        .note-area { display: none; margin-top: 8px; }
+        .note-area.open { display: block; }
+        .note-textarea { width: 100%; min-height: 68px; border: 1px solid #e0e4ea; border-radius: 8px; padding: 10px 12px; font-size: 0.87em; font-family: inherit; color: #333; background: #fafbfc; resize: vertical; outline: none; line-height: 1.7; }
+        .note-textarea:focus { border-color: #1a365d; }
+        .note-textarea::placeholder { color: #ccc; }
+        .note-saved { font-size: 0.72em; color: #68d391; text-align: right; height: 14px; margin-top: 2px; }
+        #noResults, #noStarred { display: none; text-align: center; color: #a0aec0; padding: 40px 0; font-size: 0.9em; }
+        ::-webkit-scrollbar { display: none; }
+        ::selection { background: #c8d8ef; }
+        /* ── 夜覽模式 ── */
+        body.dark { background: #13151a; color: #d4d8e0; }
+        body.dark header { background: #0d1117; box-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        body.dark .top-bar { background: #1c1f27; }
+        body.dark .top-btn { background: #2e3340; color: #b0b8c8; }
+        body.dark .top-btn.erase { background: #383d4a; }
+        body.dark .top-btn.clear { background: #404655; }
+        body.dark .top-btn.export { background: #2a2e3a; color: #8a96a8; }
+        body.dark .top-btn.done { background: #2a2e3a; color: #7a8898; }
+        body.dark .top-btn.done.active { background: linear-gradient(135deg,#5a3e00,#7a5a10); color: #ffe090; }
+        body.dark .card { background: #1c1f27; box-shadow: 0 2px 14px rgba(0,0,0,0.35); }
+        body.dark .card-title { color: #7ea8d8; }
+        body.dark .meta-line { color: #5a6578; }
+        body.dark .verdict { background: #0d1a2e; }
+        body.dark .section-heading { color: #5a6880; border-bottom-color: #2a2e3a; }
+        body.dark .issue-box { background: #20232d; color: #c0c8d4; }
+        body.dark .fact-box { background: #1e1c14; border-left-color: #8a6820; color: #c0c8d4; }
+        body.dark .compare-box { background: #20232d; color: #c0c8d4; }
+        body.dark .compare-box h4 { color: #7ea8d8; }
+        body.dark .compare-box.right { background: #14201a; }
+        body.dark .compare-box.right h4 { color: #7acda0; }
+        body.dark .op { border-color: #2a2e3a; }
+        body.dark .op-head { background: #20232d; }
+        body.dark .op-label { color: #7ea8d8; }
+        body.dark .op-label.green { color: #7acda0; }
+        body.dark .op-body { background: #1c1f27; color: #c0c8d4; }
+        body.dark .op-result { background: #161a24; border-left-color: #3a5a8a; }
+        body.dark .op-result.green { background: #12201a; border-left-color: #3a7a5a; }
+        body.dark .ref-case { background: #20232d; border-left-color: #3a5a8a; }
+        body.dark .ref-case.warn { background: #200f0e; border-left-color: #8a2a20; }
+        body.dark .ref-case-title { color: #7ea8d8; }
+        body.dark .ref-case.yi .ref-case-title { color: #7a8898; }
+        body.dark .ref-case.warn .ref-case-title { color: #e88070; }
+        body.dark .law-ref { background: #1c1f27; border-left-color: #3a5a8a; color: #8a96a8; }
+        body.dark .judge-chip { background: #20232d; color: #8a9ab8; border-color: #2e3340; }
+        body.dark .judge-chip.chief { background: #0d1a2e; color: #9abcd8; border-color: #1a3a60; }
+        body.dark .note-textarea { background: #161a24; border-color: #2e3340; color: #c0c8d4; }
+        body.dark .note-textarea:focus { border-color: #3a5a8a; }
+        body.dark .note-textarea::placeholder { color: #3a404e; }
+        body.dark .note-toggle { color: #3a4a5e; }
+        body.dark .note-toggle:hover { color: #7ea8d8; }
+        body.dark details summary { color: #4a5a70; }
+        body.dark #noResults, body.dark #noStarred { color: #3a4a5e; }
+        body.dark mark.search-hl { background: #7a5a00; color: #ffe090; }
+        body.dark mark.search-hl.current { background: #c07800; color: #fff; }
+        body.dark ::selection { background: #1a3a60; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>最高法院刑事大法庭<br>110年度台上大字第5217號</h1>
+    <div class="header-controls">
+        <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="搜尋關鍵字、法條…" oninput="doSearch(this.value)" onkeydown="handleSearchKey(event)">
+            <span class="search-count" id="searchCount"></span>
+            <button class="search-nav" id="searchPrev" onclick="navMatch(-1)" title="上一個">▲</button>
+            <button class="search-nav" id="searchNext" onclick="navMatch(1)" title="下一個">▼</button>
+        </div>
+        <button id="filterBtn" onclick="toggleFilter()">⭐ 收藏</button>
+    </div>
+    <div class="top-bar">
+        <button class="top-btn" onclick="highlightText()">🖊️</button>
+        <button class="top-btn erase" onclick="removeHighlight()">🧽</button>
+        <button class="top-btn clear" onclick="clearHighlights()">🗑️</button>
+        <button class="top-btn export" onclick="openExport()">📤</button>
+        <button class="top-btn" id="darkBtn" onclick="toggleDark()" title="夜覽模式">🌙</button>
+        <button class="top-btn done" id="doneBtn" onclick="toggleDone()">朕已閱</button>
+        <span class="done-date" id="doneDateLabel"></span>
+    </div>
+</header>
+
+<div class="container">
+
+<!-- ══════════════════ 卡片一：法律爭議一（受賄罪） ══════════════════ -->
+<div class="card" id="case1" data-kw="110台上大5217 貪污 受賄 職務上行為 民意代表 關說 請託 施壓 職務密切關連 實質影響力 林益世 立法委員 大黨鞭 中鋼 中聯 利益衝突迴避法 圖利">
+    <button class="star-btn" onclick="toggleStar('case1',this)">⭐</button>
+
+    <h2 class="card-title">【爭議一】民意代表在議場外關說、請託或施壓，是否屬貪污治罪條例§5Ⅰ③「職務上之行為」？可否援引「實質影響力說」？</h2>
+    <div class="meta-line">裁定日期：民國112年3月2日　｜　案號：110年度台上大字第5217號　｜　提案庭：最高法院刑事第七庭　｜　被告：林益世（立委兼大黨鞭）</div>
+
+    <div class="verdict">
+        <div class="verdict-label">大法庭主文（法律爭議一）</div>
+        <div class="verdict-main">民意代表受託於議場外對行政機關或公營事業機構人員為關說、請託或施壓等行為，實質上係運用其職務或身分地位之影響力，使該管承辦人員為積極之行為或消極不為行為，如形式上又具公務活動之性質者，即與其職務具有密切關連，該當於貪污治罪條例第5條第1項第3款公務員職務受賄罪之「職務上之行為」。</div>
+        <div class="vote-row">
+            <span class="v-chip win">大法庭裁定 ✔</span>
+            <span class="v-chip">提案庭：刑事第七庭</span>
+            <span class="v-chip">裁定日：112.3.2</span>
+        </div>
+    </div>
+
+    <!-- 基礎事實 -->
+    <div class="section-heading">基礎事實</div>
+    <div class="fact-box">
+        <p>被告林益世於民國99年間任<strong>立法委員</strong>，為具有法定職務權限之公務員，兼執政黨中央政策委員會執行長（俗稱<strong>大黨鞭</strong>）。中鋼公司（經濟部持股逾20%）及中聯公司（中鋼持股35%之子公司）均受政府實質控制，其高層人事之選派，經濟部具實質控制力。</p>
+        <p>甲廠商為取得中聯公司銷售某產品契約，與被告約定給付一定金錢為對價後，再由被告先後為甲廠商：<br>
+        ⒈私下介紹認識中鋼公司總經理及請託取得標案資料；<br>
+        ⒉以立法委員名義出具請託便箋予經濟部國會聯絡人轉交中鋼、中聯公司；<br>
+        ⒊於立法院召開院會時，口頭提醒經濟部部長注意請託事項；<br>
+        ⒋得知甲廠商未得標，即<strong>以撤換中聯公司承辦人副總經理等語</strong>施壓，使中鋼公司總經理承諾再給評選機會。</p>
+        <p>中聯公司高層因而屈從，修改標準重新評分，甲廠商因此取得承購契約，被告則收得約定之金錢。</p>
+    </div>
+
+    <!-- 法律爭議 -->
+    <div class="section-heading">法律爭議</div>
+    <div class="issue-box">
+        <p><strong>爭議核心：</strong>民意代表（立委）受託於<strong>議場外</strong>對行政機關或公營事業機構人員為關說、請託或施壓等行為，是否屬貪污治罪條例§5Ⅰ③職務受賄罪之「職務上之行為」？</p>
+        <p><strong>舊說（具體職務權限說）：</strong>本院67年台上字第473號早期判決先例見解，認職務上之行為必須屬<strong>該公務員實際所負擔之職務</strong>（具體職務權限），僅具一般職務權限者，不該當受賄罪，成立圖利罪。</p>
+        <p><strong>新說（一般職務權限說）：</strong>本院103年第8次刑事庭會議決議變更先前見解，擴張及於公務員之<strong>一般職務權限</strong>，不以實際具體負擔之事務為限。</p>
+        <p><strong>實務發展（實質影響力說）：</strong>本院嗣後就公務員「職務上之行為」提出「祇要該行為與其職務具有關連性，實質上為該職務影響力所及者，即屬相當」之見解，將「<strong>實質影響力之職務密切關連行為</strong>」概念涵攝於「職務上之行為」文義範圍內。爭點在於此說是否可直接援引適用於民意代表？</p>
+    </div>
+
+    <!-- 多數意見理由 -->
+    <div class="section-heading">大法庭裁定理由</div>
+    <div class="opinions">
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">壹</div>
+                <span class="op-label">「職務密切關連行為」之判斷基準——兩大要件</span>
+            </div>
+            <div class="op-body">
+                <p>受賄罪之規範目的及保護法益，重在<strong>保護職務執行公正性</strong>，要求不受經濟利益介入之破壞或妨害。「職務密切關連行為」之內涵著重在：</p>
+                <ul>
+                    <li>行為人是否<strong>實質上有運用其職務或身分地位</strong>對相對人發揮影響力（對相對人職務執行之公正有無實質影響，或於後續執行相關職務時有無因此受拘束）——<strong>實質要件</strong></li>
+                    <li>形式上又須<strong>具有公務活動之性質</strong>——<strong>形式要件</strong>（基於構成要件明確性原則，避免不當擴大受賄罪處罰範圍）</li>
+                </ul>
+                <p>兩項要件均具備，始屬「職務密切關連行為」。至與職務<strong>完全無關</strong>之私人活動，則不能肯認具職務性。</p>
+                <p>影響力之對象，包括行政機關、公營事業機構（含其他<strong>受政府實質支配控制之公有民營企業</strong>）人員。</p>
+                <div class="op-result">
+                    <strong>判斷公式：</strong>實質運用職務或身分地位影響力（使承辦人員積極作為或消極不為）＋形式上具公務活動性質 ＝ 職務密切關連行為 ＝ 職務上之行為 ✔
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">貳</div>
+                <span class="op-label">「形式上具公務活動性質」的具體態樣</span>
+            </div>
+            <div class="op-body">
+                <p>向同一人或多數人為多次關說、請託或施壓等情形，應就<strong>前後整體行為觀察</strong>，判斷是否具形式上公務活動性質，類型如下（<strong>不論是否在公務時間或公務場所均屬之</strong>）：</p>
+                <ul>
+                    <li><strong>同具形式公務活動性質：</strong>開會前拜會、議場中休息協商、出具建議補助單等</li>
+                    <li><strong>相類之客觀公務活動：</strong>至行政機關或公營事業機構拜會、以電話表達關切或要求至辦公室說明、出具便箋或名片轉交承辦人員等</li>
+                    <li><strong>與公務活動有關及其延伸行為：</strong>具名發函或透過行政機關國會聯絡人向行政機關反映特定意見、召開協調會邀請行政機關說明等</li>
+                    <li><strong>於議場之行為：</strong>對具同一權限之民意代表於議場外勸誘、請託或施壓使其贊成某議案而連署，或代為提案、質詢等，亦屬職務上之行為</li>
+                </ul>
+                <div class="op-result">
+                    <strong>⚠️ 注意：</strong>若不符「形式上具公務活動性質」之要件（例如純屬私人聚會場合之口頭關說），尚應探究<strong>貪污治罪條例§6Ⅰ⑤非主管或監督圖利罪</strong>有無適用（大法庭另行敘明）。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">參</div>
+                <span class="op-label">民意代表特殊性——可罰性與一般公務員相同</span>
+            </div>
+            <div class="op-body">
+                <p>民意代表負責立法權行使，有權責反映民意以監督行政機關，或據為政策主張、推動成為法案，並得憑藉其<strong>職權、身分地位對於第三人之職務行為形成一定程度之影響</strong>，其職務性質及義務固與行使司法權、行政權之公務員有異，然倘對其職務上之行為收受賄賂，已侵害其執行職務之<strong>公正性及國民對該職務公正之信賴</strong>，可罰性與一般公務員並無不同。</p>
+                <p>本院相關案例已肯認民意代表職務上之行為，包括「職務密切關連行為」（106年度台上字第283、3122號；107年度台上字第1563、2052、2545號；109年度台上字第5024號；110年度台上字第932號等判決參照）。</p>
+                <div class="op-result">
+                    <strong>結論：</strong>「實質影響力說」（職務密切關連行為）可適用於民意代表，但必須附加「形式上具公務活動性質」之形式要件，以符合構成要件明確性原則。
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="law-ref"><strong>相關法條：</strong>貪污治罪條例§5Ⅰ③（公務員職務受賄罪）、§6Ⅰ④（主管或監督圖利罪）、§6Ⅰ⑤（非主管或監督圖利罪）；國營事業管理法§3Ⅲ</div>
+
+    <details>
+        <summary>本案行為態樣逐一檢驗</summary>
+        <div style="padding-top:10px;">
+            <div class="ref-case">
+                <div class="ref-case-title">⒈私下介紹認識中鋼總經理及請託取得標案資料</div>
+                <p style="margin:0;">以大黨鞭身分私下引介→運用身分地位影響力；利用立委身份接近行政體系人員→具客觀公務活動之性質。✔</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">⒉以立委名義出具請託便箋予經濟部國會聯絡人轉交</div>
+                <p style="margin:0;">具名出具便箋並透過國會聯絡人（行政機關）轉交→與公務活動有關及其延伸行為。✔</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">⒊於立法院院會時口頭提醒經濟部部長</div>
+                <p style="margin:0;">在立法院院會（公務場所、公務時間）對部長為提醒→同具形式上公務活動性質。✔</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">⒋以撤換副總經理施壓，使中鋼總經理承諾再給評選機會</div>
+                <p style="margin:0;">運用立委對公營事業人事控制之身分地位影響力（經濟部對中鋼高層人事具實質控制力）施壓→使承辦人員屈從→積極作為（修改標準重新評分）。✔</p>
+            </div>
+        </div>
+    </details>
+
+    <div class="note-toggle" onclick="toggleNote('n1')">✏️ 我的小結</div>
+    <div class="note-area" id="n1">
+        <textarea class="note-textarea" placeholder="例如：實質+形式雙要件缺一不可；私人場合關說→探討圖利罪…" oninput="saveNote('n1',this.value)"></textarea>
+        <div class="note-saved" id="n1-saved"></div>
+    </div>
+</div>
+
+<!-- ══════════════════ 卡片二：法律爭議二（圖利罪） ══════════════════ -->
+<div class="card" id="case2" data-kw="110台上大5217 貪污 圖利 違背法令 違背法律 利益衝突迴避法 第12條 非主管監督 §6 第4款 第5款 林益世">
+    <button class="star-btn" onclick="toggleStar('case2',this)">⭐</button>
+
+    <h2 class="card-title">【爭議二】民意代表違反公職人員利益衝突迴避法§12，是否該當貪污§6Ⅰ⑤圖利罪「違背法律」？§4款與§5款「違背法令」適用範圍是否相同？</h2>
+    <div class="meta-line">裁定日期：民國112年3月2日　｜　案號：110年度台上大字第5217號</div>
+
+    <div class="verdict">
+        <div class="verdict-label">大法庭主文（法律爭議二）</div>
+        <div class="verdict-main">民意代表違反公職人員利益衝突迴避法第12條之規定，該當貪污治罪條例第6條第1項第5款圖利罪所稱之「違背法律」。</div>
+        <div class="vote-row">
+            <span class="v-chip win">大法庭裁定 ✔</span>
+            <span class="v-chip">裁定日：112.3.2</span>
+        </div>
+    </div>
+
+    <!-- §4款 vs §5款 對照 -->
+    <div class="section-heading">§6Ⅰ④（主管）vs. §6Ⅰ⑤（非主管）違背法令之範圍</div>
+    <div class="two-col">
+        <div class="compare-box">
+            <h4>§6Ⅰ④ 主管或監督圖利罪<br>「違背法令」——限縮說</h4>
+            <p style="font-size:0.9em;margin:0;">對象：有主管或監督事務之公務員<br>違背法令範圍：<strong>限於與執行該職務有直接關係之法令</strong><br>立法依據：98年修法說明明指「應限縮適用範圍，以與公務員之職務具有直接關係者為限」<br>目的：避免公務員形成「只顧防弊、不敢任事」的消極心態</p>
+        </div>
+        <div class="compare-box right">
+            <h4>§6Ⅰ⑤ 非主管或監督圖利罪<br>「違背法令」——廣義說</h4>
+            <p style="font-size:0.9em;margin:0;">對象：非主管或監督事務之公務員（含民意代表）<br>違背法令範圍：<strong>及於所有公務員應遵守之基本規範</strong>（含行政倫理、利益衝突迴避規定等）<br>立法依據：90年立法說明第六點：「非主管或監督之事務，如有違反其他公務員應遵守之法令或義務者，仍屬違背法令」<br>目的：防止濫用身分影響力圖利，維護廉潔義務</p>
+        </div>
+    </div>
+
+    <!-- 理由 -->
+    <div class="section-heading">大法庭裁定理由</div>
+    <div class="opinions">
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">壹</div>
+                <span class="op-label">§4款與§5款「違背法令」範圍本質不同——同辭不必同義</span>
+            </div>
+            <div class="op-body">
+                <p>大法庭援引解釋原則：<strong>「在法概念個別化下，相同文字使用於同一法規，未必一定要作同辭同義之解釋。」</strong>參照或增訂或修正違背法令之相續立法緣由，以及§4款主管或監督圖利罪與§5款非主管或監督圖利罪有其<strong>本質上之差異</strong>，其行為人所應遵循法令之適用範圍自亦有不同。</p>
+                <p>90年11月立法說明第六點已區分：§4款之「違背法令」係著眼於使公務員易於瞭解遵循職務執行法令（防弊興利之衡平）；§5款之「違背法令」則<strong>及於所有公務員應遵守之基本規範</strong>，蓋第5款行為人本身並無主管監督事務，係<strong>利用職權機會或身分</strong>而圖利，自無違反其職務上義務之可能，因此對其他公務員應遵守之法令或義務之違反，仍屬違背法令。</p>
+                <p>98年修法所指「法令，應限縮適用範圍，以與公務員之職務具有直接關係者為限」，<strong>僅限於§4款之主管或監督圖利罪</strong>，始有其適用。否則此類犯罪，終將因難覓與職務執行有關之法令，而得以脫免處罰，洵非立法旨意。</p>
+                <div class="op-result">
+                    <strong>結論：</strong>§6Ⅰ⑤（非主管或監督圖利罪）之「違背法令」，<strong>維持90年立法說明六所指之廣義適用範圍</strong>，不因98年修法而限縮，包括利益衝突迴避法等公務員倫理基本規範在內。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num op-num green">貳</div>
+                <span class="op-label green">利益衝突迴避法§12係「違背法律」——民意代表適用§6Ⅰ⑤圖利罪</span>
+            </div>
+            <div class="op-body">
+                <p>利益衝突迴避法§12：「<strong>公職人員不得假借職務上之權力、機會或方法，圖其本人或關係人之利益。</strong>」</p>
+                <p>本條：</p>
+                <ul>
+                    <li>立法目的：促進廉能政治、端正政治風氣，<strong>建立公職人員利益衝突迴避之規範，有效遏阻貪污腐化及不當利益輸送</strong></li>
+                    <li>性質：屬「<strong>義務性道德</strong>」（而非僅期待性道德），同法§17規定違反§12者須科以公法上處罰，非僅受行政懲處</li>
+                    <li>與貪污§6Ⅰ⑤同質性：均係就公務員透過濫權行為創造之不法利益輸送之圖利行為予以規範，以確保職務執行之<strong>公正、廉潔性</strong></li>
+                    <li>「各級民意機關之民意代表」係利益衝突迴避法§2Ⅰ⑤所稱公職人員（高度權力、影響力之公務員），為該法規範對象，§12即係規定民意代表假借職權機會、方法圖利之禁制</li>
+                </ul>
+                <div class="op-result green">
+                    <strong>結論：</strong>民意代表違反利益衝突迴避法§12，<strong>自該當於貪污§6Ⅰ⑤非主管或監督圖利罪所稱之「違背法律」</strong>，構成圖利罪之要件之一。
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="law-ref"><strong>相關法條：</strong>貪污治罪條例§6Ⅰ④（主管或監督圖利罪）、§6Ⅰ⑤（非主管或監督圖利罪）；公職人員利益衝突迴避法§2Ⅰ⑤、§5、§6Ⅰ、§12、§17；刑法§131（主管或監督圖利罪）</div>
+
+    <!-- 參考資料 -->
+    <details>
+        <summary>圖利罪「違背法令」沿革時間軸</summary>
+        <div style="padding-top:10px;">
+            <div class="ref-case">
+                <div class="ref-case-title">【90年11月7日】增訂「明知違背法令」要件（§4款、§5款同時修正）</div>
+                <p style="margin:0;">立法說明三（針對§4款）：公務員行政裁量範圍內之事項與非法圖利行為之區分，加列「違背法令」使之明確，避免公務員不敢任事。<br>立法說明六（針對§5款）：§5款行為人利用職權機會或身分圖利，雖無職務上義務可違反，但「違背法令」及於所有公務員應遵守之基本規範。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">【98年4月22日】將「明知違背法令」明文化為現行條文（§4款、§5款同步修正）</div>
+                <p style="margin:0;">陳根德委員等提案：「法令應限縮，以與職務具直接關係者為限」→<strong>大法庭認此僅針對§4款</strong>。審查會通過文字為「法律、法律授權之法規命令、職權命令、自治條例、自治規則、委辦規則或其他對多數不特定人民就一般事項所作對外發生法律效果之規定」。§5款雖同步修正文字，但<strong>實質內涵（及於基本倫理規範）不因此產生質變</strong>。</p>
+            </div>
+            <div class="ref-case warn">
+                <div class="ref-case-title">【⚠️ 考試常見陷阱】§4款與§5款「違背法令」範圍是否相同？</div>
+                <p style="margin:0;"><strong>答：不同。</strong>§4款採限縮說（限與職務執行有直接關係之法令）；§5款採廣義說（及於所有公務員應遵守之基本規範，包括利益衝突迴避法等行政倫理法規）。大法庭明確確立「同辭不必同義」之解釋原則。</p>
+            </div>
+            <div class="ref-case warn">
+                <div class="ref-case-title">【⚠️ 考試常見考點】律師考試重點整理</div>
+                <p style="margin:0;"><strong>①</strong> 受賄罪「職務上之行為」三個演進：具體職務說→一般職務說→實質影響力（職務密切關連行為）說；<br>
+                <strong>②</strong> 職務密切關連行為「雙要件」：實質（運用職務或身分地位影響力）＋形式（具公務活動性質）；<br>
+                <strong>③</strong> 若僅具實質要件而無形式要件（例如純私人場合關說）→不成立受賄罪→探討§6Ⅰ⑤圖利罪；<br>
+                <strong>④</strong> §4款「違背法令」限縮說 vs. §5款「違背法令」廣義說（本裁定最重要結論之一）；<br>
+                <strong>⑤</strong> 利益衝突迴避法§12之定性：義務性道德、具公法處罰效力、適用於民意代表→構成§6Ⅰ⑤「違背法律」；<br>
+                <strong>⑥</strong> 本裁定援引的法律解釋方法論：歷史解釋（探求立法者意思）、目的解釋、法概念個別化原則（同辭不必同義）。</p>
+            </div>
+        </div>
+    </details>
+
+    <!-- 合議庭成員 -->
+    <details>
+        <summary>大法庭組成</summary>
+        <div style="padding-top:10px;">
+            <div class="judges-grid">
+                <span class="judge-chip chief">審判長　吳燦</span>
+                <span class="judge-chip">郭毓洲</span>
+                <span class="judge-chip">林立華</span>
+                <span class="judge-chip">徐昌錦</span>
+                <span class="judge-chip">段景榕</span>
+                <span class="judge-chip">李英勇</span>
+                <span class="judge-chip">李錦樑</span>
+                <span class="judge-chip">林勤純</span>
+                <span class="judge-chip">梁宏哲</span>
+                <span class="judge-chip">何信慶</span>
+                <span class="judge-chip">汪梅芬</span>
+            </div>
+            <p style="font-size:0.82em;color:#888;margin:10px 0 0;">提案庭：最高法院刑事第七庭　｜　案號：110年度台上大字第5217號　｜　裁定日：中華民國112年3月2日</p>
+        </div>
+    </details>
+
+    <div class="note-toggle" onclick="toggleNote('n2')">✏️ 我的小結</div>
+    <div class="note-area" id="n2">
+        <textarea class="note-textarea" placeholder="例如：§4款限縮＝防弊興利；§5款廣義＝連基本倫理都要守…" oninput="saveNote('n2',this.value)"></textarea>
+        <div class="note-saved" id="n2-saved"></div>
+    </div>
+</div>
+
+<div id="noResults">查無符合的內容，請試試其他關鍵字。</div>
+<div id="noStarred">還沒有收藏的項目，點卡片右上角的 ⭐ 加入收藏。</div>
+</div>
+
+<script>
+const STORE_KEY='110_5217_grand_notes',STAR_KEY='110_5217_grand_stars';
+(function initDark(){if(localStorage.getItem('night_mode')==='1'){document.body.classList.add('dark');document.getElementById('darkBtn').textContent='☀️';}})();
+function loadNotes(){try{return JSON.parse(localStorage.getItem(STORE_KEY))||{};}catch{return{};}}
+function loadStars(){try{return JSON.parse(localStorage.getItem(STAR_KEY))||{};}catch{return{};}}
+function saveAllNotes(d){localStorage.setItem(STORE_KEY,JSON.stringify(d));}
+function saveAllStars(d){localStorage.setItem(STAR_KEY,JSON.stringify(d));}
+(function(){const n=loadNotes(),s=loadStars();Object.entries(n).forEach(([id,v])=>{const a=document.getElementById(id);if(!a)return;const t=a.querySelector('textarea');if(t)t.value=v;if(v)a.classList.add('open');});Object.entries(s).forEach(([id,v])=>{if(!v)return;const b=document.querySelector(`#${id} .star-btn`);if(b)b.classList.add('starred');});})();
+function toggleStar(id,btn){const s=loadStars();const now=!btn.classList.contains('starred');btn.classList.toggle('starred',now);s[id]=now;saveAllStars(s);if(filterActive)applyFilter();}
+let filterActive=false;
+function toggleFilter(){filterActive=!filterActive;document.getElementById('filterBtn').classList.toggle('active',filterActive);document.getElementById('searchInput').value='';clearSearchHighlights();updateSearchUI();applyFilter();}
+function applyFilter(){const s=loadStars();const q=document.getElementById('searchInput').value.trim().toLowerCase();let any=false;document.querySelectorAll('.card').forEach(c=>{const kw=(c.dataset.kw||'').toLowerCase();const txt=c.textContent.toLowerCase();const ms=!q||kw.includes(q)||txt.includes(q);const mf=!filterActive||!!s[c.id];const show=ms&&mf;c.classList.toggle('hidden',!show);if(show)any=true;});document.getElementById('noResults').style.display=(!any&&!filterActive)?'block':'none';document.getElementById('noStarred').style.display=(!any&&filterActive)?'block':'none';}
+let _matches=[],_cur=-1;
+function clearSearchHighlights(){document.querySelectorAll('mark.search-hl').forEach(m=>{const p=m.parentNode;while(m.firstChild)p.insertBefore(m.firstChild,m);p.removeChild(m);p.normalize();});_matches=[];_cur=-1;}
+function highlightInNode(node,q){if(node.nodeType===3){const txt=node.textContent;const idx=txt.toLowerCase().indexOf(q);if(idx===-1)return false;const m=document.createElement('mark');m.className='search-hl';const before=document.createTextNode(txt.slice(0,idx));const matched=document.createTextNode(txt.slice(idx,idx+q.length));const after=document.createTextNode(txt.slice(idx+q.length));m.appendChild(matched);const p=node.parentNode;p.insertBefore(before,node);p.insertBefore(m,node);p.insertBefore(after,node);p.removeChild(node);_matches.push(m);return true;}else if(node.nodeType===1){const skip=new Set(['SCRIPT','STYLE','TEXTAREA']);if(skip.has(node.tagName))return false;[...node.childNodes].forEach(ch=>highlightInNode(ch,q));return false;}}
+function doSearch(q){clearSearchHighlights();applyFilter();if(!q||!q.trim()){updateSearchUI();return;}const lq=q.trim().toLowerCase();document.querySelectorAll('.card:not(.hidden)').forEach(c=>highlightInNode(c,lq));if(_matches.length>0){_cur=0;setCurrent();}updateSearchUI();}
+function setCurrent(){_matches.forEach((m,i)=>m.classList.toggle('current',i===_cur));if(_matches[_cur]){_matches[_cur].scrollIntoView({behavior:'smooth',block:'center'});}}
+function navMatch(dir){if(!_matches.length)return;_cur=(_cur+dir+_matches.length)%_matches.length;setCurrent();updateSearchUI();}
+function updateSearchUI(){const c=document.getElementById('searchCount');if(!c)return;if(!_matches.length){c.textContent='';return;}c.textContent=(_cur+1)+'/'+_matches.length;}
+function handleSearchKey(e){if(e.key==='Enter'){e.preventDefault();navMatch(e.shiftKey?-1:1);}}
+function toggleNote(id){document.getElementById(id).classList.toggle('open');}
+function toggleDark(){const on=document.body.classList.toggle('dark');document.getElementById('darkBtn').textContent=on?'☀️':'🌙';localStorage.setItem('night_mode',on?'1':'0');}
+const timers={};
+function saveNote(id,v){clearTimeout(timers[id]);timers[id]=setTimeout(()=>{const n=loadNotes();n[id]=v;saveAllNotes(n);const el=document.getElementById(id+'-saved');if(el){el.textContent='已儲存';setTimeout(()=>el.textContent='',1500);}},500);}
+let savedRange=null;
+document.addEventListener('selectionchange',()=>{const s=window.getSelection();if(s&&!s.isCollapsed&&s.rangeCount)savedRange=s.getRangeAt(0).cloneRange();});
+function highlightText(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;if(!r||r.collapsed){alert('💡 請先反白想要標記的文字');return;}const sp=document.createElement('span');sp.className='hl';sp.style.backgroundColor='#ffe066';try{r.surroundContents(sp);savedRange=null;}catch{alert('💡 請選取同一段落內的文字');}s&&s.removeAllRanges();}
+function removeHighlight(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;if(!r||r.collapsed){alert('💡 請先反白想擦除標記的文字');return;}const anc=r.commonAncestorContainer.nodeType===1?r.commonAncestorContainer:r.commonAncestorContainer.parentElement;anc.querySelectorAll('span.hl').forEach(sp=>{if(r.intersectsNode(sp)){const p=sp.parentNode;while(sp.firstChild)p.insertBefore(sp.firstChild,sp);p.removeChild(sp);}});savedRange=null;s&&s.removeAllRanges();}
+function clearHighlights(){const sp=document.querySelectorAll('span.hl');if(!sp.length)return;if(confirm('確定要清除所有重點標記嗎？')){sp.forEach(s=>{const p=s.parentNode;while(s.firstChild)p.insertBefore(s.firstChild,s);p.removeChild(s);});}}
+function openExport(){
+    const stars=loadStars();
+    let out='最高法院刑事大法庭 110年度台上大字第5217號\n'+'═'.repeat(44)+'\n\n';
+    document.querySelectorAll('.card').forEach(c=>{
+        const star=stars[c.id]?'⭐ ':'';
+        const title=c.querySelector('.card-title')?.textContent.trim()||'';
+        out+=`【${star}${title}】\n\n`;
+        const vMain=c.querySelector('.verdict-main');
+        const vSub=c.querySelector('.verdict-sub');
+        if(vMain) out+='▌大法庭主文\n'+vMain.textContent.trim()+'\n';
+        if(vSub)  out+=vSub.textContent.trim()+'\n';
+        out+='\n';
+        c.querySelectorAll('.op').forEach(op=>{
+            const head=op.querySelector('.op-label')?.textContent.trim()||'';
+            out+=`▌${head}\n`;
+            op.querySelectorAll('.op-body p, .op-body li, .op-result').forEach(el=>{
+                const t=el.textContent.trim();
+                if(t) out+=(el.tagName==='LI'?'  • ':'')+t+'\n';
+            });
+            out+='\n';
+        });
+        const law=c.querySelector('.law-ref');
+        if(law) out+=law.textContent.trim()+'\n\n';
+        const ta=c.querySelector('.note-textarea');
+        if(ta&&ta.value.trim()) out+='✏️ 小結：\n'+ta.value.trim()+'\n\n';
+        out+='═'.repeat(44)+'\n\n';
+    });
+    const b=new Blob([out.trim()],{type:'text/plain;charset=utf-8'});
+    const u=URL.createObjectURL(b);
+    const a=document.createElement('a');
+    a.href=u;a.download='110台上大字第5217號_受賄圖利民意代表職務行為.txt';a.click();
+    URL.revokeObjectURL(u);
+}
+const REG_KEY='exam_completion_registry';
+function _loadReg(){try{return JSON.parse(localStorage.getItem(REG_KEY))||{};}catch{return{};}}
+function _saveReg(r){try{localStorage.setItem(REG_KEY,JSON.stringify(r));}catch{}}
+function _fmt(ts){const d=new Date(ts);return(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();}
+function _updateDate(){const r=_loadReg();const k='case_criminal_grand_110_5217.html';const l=document.getElementById('doneDateLabel');if(!l)return;l.textContent=(r[k]&&r[k].done&&r[k].ts)?_fmt(r[k].ts):'';}
+function _syncIndex(done){try{const r=JSON.parse(localStorage.getItem('gc_reads')||'{}');r['c40']=done;localStorage.setItem('gc_reads',JSON.stringify(r));}catch(e){}}
+function toggleDone(){const btn=document.getElementById('doneBtn');const r=_loadReg();const k='case_criminal_grand_110_5217.html';const done=r[k]&&r[k].done;if(done){delete r[k];_saveReg(r);btn.classList.remove('active');_syncIndex(false);}else{const now=new Date();r[k]={done:true,ts:now.getTime(),tsLabel:now.toLocaleDateString('zh-TW')+' '+now.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false})};_saveReg(r);btn.classList.add('active');_syncIndex(true);}_updateDate();}
+(function(){const r=_loadReg();const k='case_criminal_grand_110_5217.html';if(r[k]&&r[k].done){const b=document.getElementById('doneBtn');if(b)b.classList.add('active');}_updateDate();})();
+</script>
+</body>
+</html>

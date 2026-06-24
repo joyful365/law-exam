@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>112年度台上大字第991號 大法庭裁定</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: "Helvetica Neue", Helvetica, "PingFang TC", "LiHei Pro", "Microsoft JhengHei", sans-serif; background: #eef0f3; color: #1a1a1a; line-height: 1.8; font-size: 16px; margin: 0; padding: 0 0 56px; }
+        header { background: #1a365d; color: white; padding: 18px 16px 10px; text-align: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.18); }
+        header h1 { margin: 0 0 10px; font-size: 1.05em; line-height: 1.5; font-weight: 600; letter-spacing: 0.02em; }
+        .header-controls { display: flex; gap: 8px; align-items: center; }
+        .search-wrap { position: relative; flex: 1; display: flex; align-items: center; gap: 4px; }
+        #searchInput { flex: 1; padding: 8px 14px 8px 34px; border: none; border-radius: 8px; font-size: 14px; background: rgba(255,255,255,0.13); color: white; outline: none; min-width: 0; }
+        #searchInput::placeholder { color: rgba(255,255,255,0.5); }
+        #searchInput:focus { background: rgba(255,255,255,0.22); }
+        .search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 13px; opacity: 0.6; pointer-events: none; }
+        .search-count { font-size: 11px; color: rgba(255,255,255,0.6); white-space: nowrap; min-width: 32px; text-align: center; }
+        .search-nav { background: rgba(255,255,255,0.15); border: none; border-radius: 6px; color: white; font-size: 11px; padding: 4px 7px; cursor: pointer; line-height: 1; }
+        .search-nav:hover { background: rgba(255,255,255,0.28); }
+        mark.search-hl { background: #ffe066; color: #1a1a1a; border-radius: 2px; padding: 0 1px; }
+        mark.search-hl.current { background: #ff9500; color: #fff; }
+        #filterBtn { background: rgba(255,255,255,0.13); border: none; border-radius: 8px; color: white; font-size: 13px; padding: 8px 12px; cursor: pointer; white-space: nowrap; }
+        #filterBtn.active { background: #c9a84c; color: #1a365d; font-weight: bold; }
+        .top-bar { background: #dde0e5; padding: 6px 14px; display: flex; gap: 6px; justify-content: flex-end; flex-wrap: nowrap; }
+        .top-btn { background: #5a6375; color: white; border: none; padding: 5px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap; transition: transform 0.1s; }
+        .top-btn:active { transform: scale(0.92); }
+        .top-btn.erase { background: #7a8494; }
+        .top-btn.clear { background: #a0a8b4; }
+        .top-btn.export { background: #c5cad3; color: #2d3748; }
+        .top-btn.done { background: #a0a8b4; color: #1a2a3a; }
+        .top-btn.done.active { background: linear-gradient(135deg,#7a5c00,#a07820); color: #fff3c4; }
+        .done-date { font-size: 11px; color: #8a9ab0; white-space: nowrap; align-self: center; }
+        .container { padding: 16px; max-width: 600px; margin: 0 auto; }
+        @media (min-width: 768px) { body { font-size: 17.5px; } .container { max-width: 860px; padding: 20px; } header h1 { font-size: 1.15em; } }
+        .card { background: #fff; border-radius: 16px; padding: 22px 20px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); position: relative; }
+        .card.hidden { display: none; }
+        .star-btn { position: absolute; top: 18px; right: 18px; background: none; border: none; font-size: 20px; cursor: pointer; opacity: 0.18; transition: opacity 0.15s, transform 0.15s; padding: 0; }
+        .star-btn:active { transform: scale(1.3); }
+        .star-btn.starred { opacity: 1; }
+        .card-title { color: #1a365d; font-size: 1.25em; font-weight: 700; margin: 0 0 4px; padding-right: 28px; line-height: 1.55; }
+        .meta-line { font-size: 0.76em; color: #999; margin-bottom: 18px; letter-spacing: 0.03em; }
+        .verdict { background: #1a365d; color: white; border-radius: 11px; padding: 15px 18px; margin-bottom: 20px; }
+        .verdict-label { font-size: 0.68em; letter-spacing: 0.12em; opacity: 0.55; text-transform: uppercase; margin-bottom: 4px; }
+        .verdict-main { font-size: 1.08em; font-weight: 700; line-height: 1.45; margin-bottom: 5px; }
+        .verdict-sub { font-size: 0.83em; opacity: 0.75; line-height: 1.6; margin-bottom: 10px; }
+        .vote-row { display: flex; gap: 7px; flex-wrap: wrap; }
+        .v-chip { font-size: 0.73em; background: rgba(255,255,255,0.12); border-radius: 20px; padding: 3px 10px; white-space: nowrap; color: rgba(255,255,255,0.8); }
+        .v-chip.win { background: rgba(255,255,255,0.28); color: #fff; font-weight: 700; }
+        .v-chip.dissent { background: rgba(220,80,60,0.55); color: #fff; }
+        .section-heading { font-size: 0.72em; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #8a9ab0; margin: 20px 0 10px; padding-bottom: 5px; border-bottom: 1px solid #e8eaee; }
+        .issue-box { background: #f5f6f8; border-radius: 10px; padding: 14px 16px; margin-bottom: 16px; font-size: 0.91em; color: #333; }
+        .issue-box p { margin: 0 0 8px; }
+        .issue-box p:last-child { margin: 0; }
+        .fact-box { background: #f9f7f0; border-left: 4px solid #c9a84c; border-radius: 0 10px 10px 0; padding: 14px 16px; margin-bottom: 16px; font-size: 0.91em; color: #333; }
+        .fact-box p { margin: 0 0 8px; }
+        .fact-box p:last-child { margin: 0; }
+        .opinions { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+        .op { border-radius: 10px; overflow: hidden; border: 1px solid #e4e7ec; }
+        .op.dissent-op { border-color: #f0c0b8; }
+        .op-head { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #f5f6f8; }
+        .op-head.dissent-head { background: #fff0ee; }
+        .op-num { width: 26px; height: 26px; border-radius: 50%; background: #1a365d; color: white; font-size: 0.75em; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .op-num.dissent-num { background: #c0392b; }
+        .op-label { font-weight: 700; font-size: 0.93em; color: #1a365d; flex: 1; }
+        .op-label.dissent-label { color: #922b21; }
+        .op-conclusion-chip { font-size: 0.74em; color: #666; background: #eaecf0; border-radius: 20px; padding: 2px 9px; white-space: nowrap; }
+        .op-body { padding: 13px 15px; font-size: 0.9em; background: #fff; }
+        .op-body p { margin: 0 0 9px; }
+        .op-body p:last-child { margin: 0; }
+        .op-body ul { margin: 5px 0 8px; padding-left: 18px; }
+        .op-body li { margin-bottom: 4px; }
+        .op-result { background: #f0f3f8; border-radius: 7px; padding: 10px 13px; margin-top: 10px; font-size: 0.9em; border-left: 3px solid #1a365d; }
+        .op-result.dissent-result { background: #fff5f5; border-left-color: #c0392b; }
+        /* 不同意見書區塊 */
+        .dissent-banner { background: linear-gradient(135deg, #7b241c, #c0392b); color: white; border-radius: 11px; padding: 12px 16px; margin: 24px 0 12px; display: flex; align-items: center; gap: 10px; }
+        .dissent-banner-icon { font-size: 1.4em; }
+        .dissent-banner-text { font-size: 0.88em; font-weight: 700; line-height: 1.4; }
+        .dissent-banner-sub { font-size: 0.76em; font-weight: 400; opacity: 0.85; margin-top: 2px; }
+        details { margin-top: 16px; }
+        details summary { cursor: pointer; color: #5a6880; font-size: 0.85em; font-weight: 600; padding: 5px 0; user-select: none; list-style: none; display: flex; align-items: center; gap: 5px; }
+        details summary::before { content: '▶'; font-size: 0.65em; transition: transform 0.2s; color: #8a9ab0; }
+        details[open] summary::before { transform: rotate(90deg); }
+        .ref-case { background: #f5f6f8; border-radius: 8px; padding: 11px 14px; margin-bottom: 8px; font-size: 0.85em; border-left: 3px solid #1a365d; }
+        .ref-case.yi { border-left-color: #8a9ab0; }
+        .ref-case.warn { border-left-color: #c0392b; background: #fff5f5; }
+        .ref-case-title { font-weight: 700; color: #1a365d; margin-bottom: 4px; font-size: 0.9em; }
+        .ref-case.yi .ref-case-title { color: #4a5568; }
+        .ref-case.warn .ref-case-title { color: #922b21; }
+        .law-ref { background: #f0f2f5; border-radius: 8px; padding: 10px 14px; font-size: 0.85em; color: #4a5568; margin-top: 14px; border-left: 3px solid #1a365d; }
+        .judges-grid { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+        .judge-chip { font-size: 0.78em; background: #eef1f6; border-radius: 20px; padding: 3px 11px; color: #3a4a6a; border: 1px solid #d8dde8; }
+        .judge-chip.chief { background: #1a365d; color: white; font-weight: 700; border-color: #1a365d; }
+        .judge-chip.dissenter { background: #fdecea; color: #922b21; border-color: #f5b7b1; }
+        .note-toggle { display: inline-block; margin-top: 14px; font-size: 0.8em; color: #b0b8c4; cursor: pointer; user-select: none; }
+        .note-toggle:hover { color: #1a365d; }
+        .note-area { display: none; margin-top: 8px; }
+        .note-area.open { display: block; }
+        .note-textarea { width: 100%; min-height: 68px; border: 1px solid #e0e4ea; border-radius: 8px; padding: 10px 12px; font-size: 0.87em; font-family: inherit; color: #333; background: #fafbfc; resize: vertical; outline: none; line-height: 1.7; }
+        .note-textarea:focus { border-color: #1a365d; }
+        .note-textarea::placeholder { color: #ccc; }
+        .note-saved { font-size: 0.72em; color: #68d391; text-align: right; height: 14px; margin-top: 2px; }
+        #noResults, #noStarred { display: none; text-align: center; color: #a0aec0; padding: 40px 0; font-size: 0.9em; }
+        ::-webkit-scrollbar { display: none; }
+        ::selection { background: #c8d8ef; }
+        /* ── 夜覽模式 ── */
+        body.dark { background: #13151a; color: #d4d8e0; }
+        body.dark header { background: #0d1117; box-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        body.dark .top-bar { background: #1c1f27; }
+        body.dark .top-btn { background: #2e3340; color: #b0b8c8; }
+        body.dark .top-btn.erase { background: #383d4a; }
+        body.dark .top-btn.clear { background: #404655; }
+        body.dark .top-btn.export { background: #2a2e3a; color: #8a96a8; }
+        body.dark .top-btn.done { background: #2a2e3a; color: #7a8898; }
+        body.dark .top-btn.done.active { background: linear-gradient(135deg,#5a3e00,#7a5a10); color: #ffe090; }
+        body.dark .card { background: #1c1f27; box-shadow: 0 2px 14px rgba(0,0,0,0.35); }
+        body.dark .card-title { color: #7ea8d8; }
+        body.dark .meta-line { color: #5a6578; }
+        body.dark .verdict { background: #0d1a2e; }
+        body.dark .section-heading { color: #5a6880; border-bottom-color: #2a2e3a; }
+        body.dark .issue-box { background: #20232d; color: #c0c8d4; }
+        body.dark .fact-box { background: #1e1c14; border-left-color: #8a6820; color: #c0c8d4; }
+        body.dark .op { border-color: #2a2e3a; }
+        body.dark .op.dissent-op { border-color: #4a1a18; }
+        body.dark .op-head { background: #20232d; }
+        body.dark .op-head.dissent-head { background: #2a1410; }
+        body.dark .op-label { color: #7ea8d8; }
+        body.dark .op-label.dissent-label { color: #e88070; }
+        body.dark .op-body { background: #1c1f27; color: #c0c8d4; }
+        body.dark .op-result { background: #161a24; border-left-color: #3a5a8a; }
+        body.dark .op-result.dissent-result { background: #200f0e; border-left-color: #8a2a20; }
+        body.dark .dissent-banner { background: linear-gradient(135deg,#4a0e0a,#8a2a20); }
+        body.dark .ref-case { background: #20232d; border-left-color: #3a5a8a; }
+        body.dark .ref-case.warn { background: #200f0e; border-left-color: #8a2a20; }
+        body.dark .ref-case-title { color: #7ea8d8; }
+        body.dark .ref-case.yi .ref-case-title { color: #7a8898; }
+        body.dark .ref-case.warn .ref-case-title { color: #e88070; }
+        body.dark .law-ref { background: #1c1f27; border-left-color: #3a5a8a; color: #8a96a8; }
+        body.dark .judge-chip { background: #20232d; color: #8a9ab8; border-color: #2e3340; }
+        body.dark .judge-chip.chief { background: #0d1a2e; color: #9abcd8; border-color: #1a3a60; }
+        body.dark .judge-chip.dissenter { background: #2a0e0c; color: #e88070; border-color: #5a1a18; }
+        body.dark .note-textarea { background: #161a24; border-color: #2e3340; color: #c0c8d4; }
+        body.dark .note-textarea:focus { border-color: #3a5a8a; }
+        body.dark .note-textarea::placeholder { color: #3a404e; }
+        body.dark .note-toggle { color: #3a4a5e; }
+        body.dark .note-toggle:hover { color: #7ea8d8; }
+        body.dark details summary { color: #4a5a70; }
+        body.dark #noResults, body.dark #noStarred { color: #3a4a5e; }
+        body.dark mark.search-hl { background: #7a5a00; color: #ffe090; }
+        body.dark mark.search-hl.current { background: #c07800; color: #fff; }
+        body.dark ::selection { background: #1a3a60; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>最高法院刑事大法庭<br>112年度台上大字第991號</h1>
+    <div class="header-controls">
+        <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="搜尋關鍵字、法條…" oninput="doSearch(this.value)" onkeydown="handleSearchKey(event)">
+            <span class="search-count" id="searchCount"></span>
+            <button class="search-nav" id="searchPrev" onclick="navMatch(-1)" title="上一個">▲</button>
+            <button class="search-nav" id="searchNext" onclick="navMatch(1)" title="下一個">▼</button>
+        </div>
+        <button id="filterBtn" onclick="toggleFilter()">⭐ 收藏</button>
+    </div>
+    <div class="top-bar">
+        <button class="top-btn" onclick="highlightText()">🖊️</button>
+        <button class="top-btn erase" onclick="removeHighlight()">🧽</button>
+        <button class="top-btn clear" onclick="clearHighlights()">🗑️</button>
+        <button class="top-btn export" onclick="openExport()">📤</button>
+        <button class="top-btn" id="darkBtn" onclick="toggleDark()" title="夜覽模式">🌙</button>
+        <button class="top-btn done" id="doneBtn" onclick="toggleDone()">朕已閱</button>
+        <span class="done-date" id="doneDateLabel"></span>
+    </div>
+</header>
+
+<div class="container">
+<div class="card" id="case1" data-kw="112台上大991 刑訴348 一部上訴 科刑 罪刑不可分 上訴不可分 移送併辦 想像競合 洗錢 不同意見書 徐昌錦 李英勇 梁宏哲 何信慶 林勤純 可分性準則 Trennbarkeitsformel">
+    <button class="star-btn" onclick="toggleStar('case1',this)">⭐</button>
+
+    <h2 class="card-title">檢察官僅就科刑部分上訴，嗣於二審宣示判決前移送併辦（想像競合），二審應如何處理？§348第3項「科刑一部上訴」與§348第2項「上訴不可分」之關係</h2>
+    <div class="meta-line">裁定日期：民國113年1月24日　｜　案號：112年度台上大字第991號　｜　提案庭：最高法院刑事第一庭　｜　附：2份不同意見書</div>
+
+    <!-- 結論橫幅 -->
+    <div class="verdict">
+        <div class="verdict-label">大法庭主文（多數意見）</div>
+        <div class="verdict-main">二審如認併辦事實與一審認定之犯罪事實具實質上或裁判上一罪關係，即應就一審科刑暨所認定之犯罪事實，與併辦之犯罪事實一併加以審判</div>
+        <div class="verdict-sub">檢察官明示僅就第一審判決之科刑部分提起上訴，嗣於第二審法院宣示判決前，指被告另有起訴書未記載之犯罪事實，與第一審判決所認定之犯罪事實具有想像競合犯關係，請求第二審法院一併加以審判。第二審法院如認檢察官請求併辦之犯罪事實，與第一審判決所認定之犯罪事實具有實質上或裁判上一罪關係，即應就第一審判決之科刑暨所認定之犯罪事實，與檢察官請求併辦之犯罪事實一併加以審判。</div>
+        <div class="vote-row">
+            <span class="v-chip win">多數意見 ✔</span>
+            <span class="v-chip">提案庭：刑事第一庭</span>
+            <span class="v-chip">裁定日：113.1.24</span>
+            <span class="v-chip dissent">不同意見：徐昌錦、李英勇、梁宏哲、何信慶（共同）；林勤純</span>
+        </div>
+    </div>
+
+    <!-- 基礎事實 -->
+    <div class="section-heading">基礎事實</div>
+    <div class="fact-box">
+        <p>第一審認定被告莊博智基於幫助普通詐欺取財及一般洗錢之不確定故意，提供銀行帳戶之提款卡與密碼予不詳之人使用，致8位被害人均受騙而匯款至被告所提供之金融帳戶，依<strong>想像競合犯</strong>從一重以幫助一般洗錢罪處斷，量處<strong>有期徒刑4月，併科罰金2萬元</strong>。</p>
+        <p>副檢察官認量刑過輕，依刑訴法§348第3項規定，<strong>明示僅就科刑部分提起上訴</strong>（被告未上訴）。原審法院依檢察官明示上訴之科刑部分調查審理後辯論終結，並定期宣判。</p>
+        <p>惟檢察官於<strong>宣示判決前</strong>，向原審法院提出「移送併辦意旨書」及相關卷證，指被告另有<strong>12位被害人</strong>受騙匯款之犯罪事實，與第一審判決所認定犯罪事實具有想像競合犯之裁判上一罪關係，為本件起訴效力所及，請求原審法院一併加以審理。</p>
+        <p>原審法院以檢察官既明示僅就科刑部分提起上訴，僅須就該明示上訴之科刑部分加以審理，一審科刑並無違法或不當，因而予以維持，<strong>駁回</strong>檢察官在第二審之上訴；並於宣示判決後，將檢察官請求併辦之相關卷宗<strong>退回</strong>檢察官。</p>
+        <p>檢察官不服，向最高法院提起第三審上訴，主張原審未將請求併辦部分事實一併加以審究，有刑訴法§379第12款「已受請求之事項未予判決」之當然違背法令。</p>
+    </div>
+
+    <!-- 法律爭議 -->
+    <div class="section-heading">法律爭議</div>
+    <div class="issue-box">
+        <p><strong>核心問題：</strong>刑訴法§348第3項（110年修正）規定「上訴得明示僅就判決之刑、沒收或保安處分一部為之」，與同條第2項規定「對於判決之一部上訴者，其有關係之部分，視為亦已上訴」（上訴不可分原則），二者之適用關係為何？</p>
+        <p><strong>爭議焦點：</strong>檢察官依§348第3項僅就科刑部分上訴後，嗣於二審宣判前提出移送併辦（主張與一審認定犯罪事實具想像競合），二審法院：<br>
+        ①應受「僅就科刑上訴」之拘束，拒絕審理併辦事實？<br>
+        ②還是應依§348第2項上訴不可分原則，將一審科刑及犯罪事實連同併辦事實一併審判？</p>
+        <p><strong>§348第3項立法背景：</strong>110年6月16日修正公布，配合原擬修正第二審改為事後審兼續審制之規劃而單獨抽出立法，目的在於「尊重當事人設定攻防之範圍，並減輕上訴審審理之負擔」，容許上訴權人僅針對刑、沒收或保安處分一部提起上訴，其未表明上訴之認定犯罪事實部分，則不在第二審之審判範圍。</p>
+    </div>
+
+    <!-- 多數意見 -->
+    <div class="section-heading">大法庭多數意見理由</div>
+    <div class="opinions">
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">壹</div>
+                <span class="op-label">一部上訴仍受上訴不可分原則限制——§348第3項係§348第2項之例外</span>
+            </div>
+            <div class="op-body">
+                <p>§348第3項本質與§348第1項相同，均係法律賦予當事人一部上訴權之規定，差別僅在§348第1項係針對「同一判決數罪中之一罪或部分數罪」或「同一判決數被告中之一被告或部分被告」上訴；而§348第3項係針對「同一判決之數罪或一罪其中之刑、沒收或保安處分」上訴，二者範圍寬窄有別，基本意義相同。</p>
+                <p>§348第2項前段規定之立法目的，係在<strong>避免因當事人一部上訴權之行使，抵觸前述不可分原則而造成裁判之錯誤、矛盾</strong>而無從依審級制度加以糾正救濟，以維護裁判正確及科刑暨其他法律效果之妥當性。從法條文義、規範體系及立法目的以觀，不論當事人係依§348第1項或依第3項之規定行使其一部上訴權，<strong>除有同條第2項但書所定之情形以外，解釋上均應受同條第2項前段規定之拘束</strong>。</p>
+                <div class="op-result">
+                    <strong>關鍵命題：</strong>§348第3項係§348第2項之「例外規定」，而非完全獨立於第2項之外。科刑一部上訴，仍應受上訴不可分原則之節制——犯罪事實（論罪）與科刑之間，因具有<strong>本質上內蘊之不可分性（inherent indivisibility）</strong>，同屬§348第2項前段所謂之「有關係之部分」。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">貳</div>
+                <span class="op-label">順向性罪刑不可分 vs. 逆向性罪刑不可分</span>
+            </div>
+            <div class="op-body">
+                <p><strong>順向性罪刑不可分：</strong>當事人對認定犯罪事實或所論處之罪名部分提起上訴者，依§348第2項前段規定，其效力當然及於相關之科刑、沒收或保安處分部分（第3項立法說明第3點）——因犯罪事實及論罪部分如經第二審法院撤銷，科刑或其他法律效果當然連帶受影響而不具可分性。</p>
+                <p><strong>逆向性罪刑不可分：</strong>當事人明示僅就科刑一部上訴之情形，第二審法院審查第一審判決之科刑結果是否合法妥適，<strong>仍應依第一審判決認定之事實暨所論斷之罪名</strong>，甚至所踐行之訴訟程序是否正當合法而為判斷——換言之，犯罪事實（包括論罪暨所踐行之訴訟程序等）與科刑之間因具有本質上內蘊之不可分性，同屬§348第2項前段所謂之「有關係之部分」。</p>
+                <div class="op-result">
+                    <strong>小結：</strong>科刑之爭執牽動或影響第一審判決事實之認定及所論斷之罪名、甚至第一審所踐行之訴訟程序、管轄或法院組織有嚴重違誤者，則應視為全部上訴，而為第二審法院之審判範圍，否則即會發生裁判錯誤、矛盾與窒礙，而與刑事訴訟制度旨在維護被告合法權益及國家刑罰權正確行使之根本目的相悖離。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">參</div>
+                <span class="op-label">科刑一部上訴後移送併辦——二審應一併審判</span>
+            </div>
+            <div class="op-body">
+                <p>§348第3項增訂公布前，實務向認事實認定與論罪、科刑在審判上具有不可分離之關係，無論係就事實認定、論罪或科刑之一部聲明上訴，依罪刑不可分原則，其效力及於全部，第二審法院應全部加以審理判決。惟§348第3項既經增訂公布，本諸立法者尊重當事人程序主體地位暨其所設定攻防範圍之意旨，<strong>在不違反§348第2項前段上訴不可分原則規定之前提下</strong>，如刑與罪分離審判結果，不致造成判決矛盾、顯然影響於判決之正確性，或為科刑基礎之罪責事實評價明顯違反公平、比例及罪刑相當原則等內部性界限者，第二審法院仍應允許當事人就科刑一部上訴。</p>
+                <p>惟本件犯罪事實部分依罪刑不可分原則仍移審於第二審法院，第二審法院依刑訴法§366條之規定，及受當事人自主設定攻防範圍之限制，得<strong>僅依第一審法院認定之犯罪事實及其論罪與所適用之法律</strong>，據以審查其科刑結果是否妥適而為判決，以達成訴訟迅速及經濟之目的。</p>
+                <p>檢察官請求併辦之性質，係在促請第二審法院<strong>注意二者間有無裁判上一罪之審判不可分關係存在</strong>，固無拘束第二審法院之法律上效力。惟第二審法院若認為檢察官請求併辦部分與第一審判決所認定之犯罪事實部分確具有實質上或裁判上一罪關係，因其刑罰權單一，在審判上為一不可分割之單一訴訟客體，依刑訴法§267條之規定，上開檢察官請求併案審理部分，本為起訴效力所及。第一審法院未及審理判決，非但影響被告犯罪事實之完整追究及判決之正確性，且顯然影響於科刑之結果，縱檢察官明示僅對於第一審判決之科刑部分上訴，其未經一併聲明上訴之犯罪事實部分，應屬於§348第2項前段所稱之「有關係部分」，而視為亦已上訴，同為第二審法院之審判範圍。</p>
+                <div class="op-result">
+                    <strong>結論：</strong>第二審法院自應就<strong>第一審判決科刑暨所認定之犯罪事實，與檢察官請求併辦之犯罪事實一併加以審判</strong>，不受檢察官原先僅明示就科刑部分上訴之拘束。
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 不同意見書一（徐昌錦等4人） -->
+    <div class="dissent-banner">
+        <div class="dissent-banner-icon">⚖️</div>
+        <div>
+            <div class="dissent-banner-text">不同意見書一：徐昌錦、李英勇、梁宏哲、何信慶 法官（共同提出）</div>
+            <div class="dissent-banner-sub">主旨：本裁定既名不正、也言不順；§348第3項係第2項之「例外」而非受第2項拘束，多數意見將第3項修法目的完全架空，更造成上訴審之土石洪流</div>
+        </div>
+    </div>
+    <div class="opinions">
+
+        <div class="op dissent-op">
+            <div class="op-head dissent-head">
+                <div class="op-num dissent-num">Ⅰ</div>
+                <span class="op-label dissent-label">本裁定提案不符要件——既名不正，也言不順</span>
+            </div>
+            <div class="op-body">
+                <p>依法院組織法§51條之2、§51條之3明定本院各刑事合議庭向大法庭提案之類型，限於法律見解歧異之提案與法律見解原則重要性之提案二種，惟不論何種提案，<strong>必以有採該法律見解為裁判基礎</strong>，亦即該法律見解在合議庭受理之案件，對於裁判形成具有必要性，始足當之。</p>
+                <p>本件移送併辦部分<strong>既未經起訴，亦未經原審法院認係起訴效力所及而予以判決</strong>，故原審法院未將檢察官於「辯論終結」後、「宣示判決」前請求併辦部分事實一併加以審究，而以行政公函敘明理由予以退回檢察官，此併辦部分並不生判決之效力，亦即應認此部分未經原審法院審理、判決，並無上訴之客體存在。檢察官顯係對於不在原審審理範圍內之認定犯罪事實部分提起第三審上訴，其屬形式上觀察即可認定係明顯不合法，本院自應從程序上予以駁回。本件提案之法律問題，就提案庭審理之個案而言，<strong>自非對裁判之形成具有必要性，尚無所謂採為基礎之法律見解存在，顯不符提案大法庭之要件</strong>。本件裁定在不合提案要件之前提下，借題發揮，既名不正，也言不順，更非國家設置本庭之本意。</p>
+                <div class="op-result dissent-result">
+                    <strong>不同意見核心①：</strong>本件根本不應由大法庭受理，提案庭之個案應直接從程序上駁回，大法庭借題發揮所形成之見解，不足以昭信服。
+                </div>
+            </div>
+        </div>
+
+        <div class="op dissent-op">
+            <div class="op-head dissent-head">
+                <div class="op-num dissent-num">Ⅱ</div>
+                <span class="op-label dissent-label">§348第3項之立法目的——「早日確定上訴範圍」，係第2項之例外而非受其拘束</span>
+            </div>
+            <div class="op-body">
+                <p>本條第3項立法說明明指：「其未表明上訴之認定犯罪事實部分，<strong>則不在第二審之審判範圍</strong>。」、「爰增訂本條第三項，作為第二項之例外規定，以資適用。」已明揭未聲明不服之論罪部分，不在上訴審之審判範圍，<strong>大幅鬆綁上訴不可分原則之適用</strong>。本條第3項修法之目的，即為改弦更張，將「罪」與「刑」絕對不可分，改採得與「罪」為相對可分之「刑」一部上訴，除尊重當事人設定之攻防範圍，也得以避免被告受到突襲裁判。</p>
+                <p>多數意見謂§348第3項係§348第2項前段之例外規定，惟應「受第2項前段節制」，實質上乃將「例外規定使原則規定失效」之法理倒置，使§348第3項之修法目的完全架空。且將確定上訴範圍之時點往後延至<strong>宣示判決前</strong>，不僅使「刑」之一部上訴再度陷入上訴不可分原則之泥沼中，更難以避免被告遭受突襲性裁判，嚴重影響被告訴訟上之權益；甚至使上訴範圍之確定較修法前更加複雜、越趨浮動，不但無法減輕上訴審審理之負擔，反而變本加厲，<strong>不但產生滑坡效應，更會造成上訴審的土石洪流，吾人焉能無視？</strong></p>
+                <div class="op-result dissent-result">
+                    <strong>不同意見核心②：</strong>§348第3項係第2項之例外，「刑」之一部上訴後，論罪部分（犯罪事實）應<strong>早日確定</strong>不在上訴審審判範圍，不得再因移送併辦而破壞此確定性。多數意見倒果為因，邏輯順序錯亂。
+                </div>
+            </div>
+        </div>
+
+        <div class="op dissent-op">
+            <div class="op-head dissent-head">
+                <div class="op-num dissent-num">Ⅲ</div>
+                <span class="op-label dissent-label">本裁定倒掉的是洗澡水，還是嬰兒？</span>
+            </div>
+            <div class="op-body">
+                <p>西諺有云：「倒洗澡水時，別把嬰兒一起倒掉。」本裁定以檢察官於原審法院宣示判決前請求併辦部分與第一審判決所認定之犯罪事實具有實質上或裁判上一罪關係，第二審法院如認併辦之嫌疑事實部分有實質上或裁判上一罪關係，未一併加以審判，會影響於科刑之妥當性，即應以§348第2項規定視為亦已上訴等旨，<strong>不僅倒果為因，邏輯順序錯亂，即先判斷結論，再校正回歸，溯及界定上訴範圍</strong>，使此次修法旨在「早日確定上訴範圍」之主旋律完全走調，恐怕也是在倒洗澡水時，把嬰兒一起給倒掉了。</p>
+                <div class="op-result dissent-result">
+                    <strong>不同意見核心③：</strong>正確的邏輯應是「先確定上訴範圍，再進行審判」——而非「先審查併辦事實是否具一罪關係，再反過來界定上訴範圍」。多數意見的操作方式使§348第3項修法目的完全落空。
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 不同意見書二（林勤純） -->
+    <div class="dissent-banner">
+        <div class="dissent-banner-icon">📝</div>
+        <div>
+            <div class="dissent-banner-text">不同意見書二：林勤純 法官（單獨提出）</div>
+            <div class="dissent-banner-sub">主旨：§348第3項係當事人進行主義之體現，與§348第1、2項性質截然不同，不應援引§348第2項上訴不可分原則將審判範圍擴張及於第3項未聲明上訴部分</div>
+        </div>
+    </div>
+    <div class="opinions">
+
+        <div class="op dissent-op">
+            <div class="op-head dissent-head">
+                <div class="op-num dissent-num">A</div>
+                <span class="op-label dissent-label">§348第3項之沿革——係當事人進行主義之體現，與§348第1、2項性質迥異</span>
+            </div>
+            <div class="op-body">
+                <p>§348第3項之制定，歷經1998年最高法院學術研究會研討、1999年全國司法改革會議建議、2014年司法院提出刑訴法修正草案（於上訴審程序通則部分增訂§348第3項），至2021年10月16日總統令修正公布施行，其修正歷史始終與<strong>建構刑事金字塔訴訟制度（第二審採事後審）</strong>連動。</p>
+                <p>§348第1項、第2項係就<strong>可分之一部判決</strong>（如實質數罪之其中部分）、<strong>一部判決與其不可分之部分</strong>視為提起上訴（如實質一罪或裁判上一罪）一部上訴之效力；同條第3項則係規定第二審以第一審所認定之事實為基礎，<strong>審理第一審之刑、沒收或保安處分有無違法</strong>。「§348第1項、第2項」與「2021年增訂之第3項」，彼此並無任何關聯性之存在，<strong>其等性質與立法目的，均逕渭分明，無從直接適用或為對被告有利之比附援引</strong>。</p>
+                <div class="op-result dissent-result">
+                    <strong>林勤純法官核心見解：</strong>§348第3項係採德國實務「對科刑或法律效果之一部上訴」與日本實務上「攻防對象論」，基於尊重當事人對審理範圍決定之立法，<strong>與公訴不可分、審判不可分或上訴不可分等原則，均無任何關聯</strong>。因此多數意見援引§348第2項上訴不可分原則將審判範圍擴張，在法理上根本無從成立。
+                </div>
+            </div>
+        </div>
+
+        <div class="op dissent-op">
+            <div class="op-head dissent-head">
+                <div class="op-num dissent-num">B</div>
+                <span class="op-label dissent-label">本案之正確處理方式——檢察官併案請求應不予准許</span>
+            </div>
+            <div class="op-body">
+                <p>本案中，原審法院僅針對檢察官明示上訴之量刑部分為調查審理後辯論終結，則犯罪事實及罪名既不在原審法院之審判範圍內，移送併辦部分亦未經原審法院認係起訴效力所及而予以判決，故原審法院未將檢察官於「辯論終結」後、「宣示判決」前請求併辦部分事實一併加以審究，而以行政公函敘明理由予以退回檢察官，此<strong>併辦部分並不生判決之效力</strong>，並無上訴之客體存在。</p>
+                <p>況請求併案事實，亦與第一審所認定犯罪事實之時、地、物、被害人數、所生損害不同，已超越當事人於提起上訴時已無爭議之第一審所認定之事實，而<strong>不應予以調查審理。從而，檢察官請求併辦，自不應准許</strong>。</p>
+                <div class="op-result dissent-result">
+                    <strong>附記（林勤純法官對多數結論之回應）：</strong>大法庭成員多數認為本件法律爭點應同意檢察官併案請求，本人敬表尊重，惟基於控訴原則，<strong>起訴範圍與上訴範圍，允宜於案件繫屬時，即行確立，俾利法院整理爭點，交由當事人進行攻防釐清及科責</strong>。偵查機關對於同一被告是否尚有其他涉嫌案件，應於前案紀錄為詳盡之列載，審查新案之檢察官或第一審法官受理案件時，允宜即依卷內所附被告之前案紀錄表，檢視並確認是否尚有可能為實質上一罪或裁判上一罪關係之其他案件，以便及早處理。
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 法條 -->
+    <div class="law-ref"><strong>相關法條：</strong>刑事訴訟法§267（起訴不可分）、§348第1項（一部上訴）、§348第2項（上訴不可分）、§348第3項（110年修正，科刑一部上訴）、§366（第二審審判範圍）、§379第12款（已受請求之事項未予判決，當然違背法令）</div>
+
+    <!-- 合議庭成員 -->
+    <details>
+        <summary>大法庭組成（多數／不同意見）</summary>
+        <div style="padding-top:10px;">
+            <p style="font-size:0.82em;color:#666;margin:0 0 8px;">🔵 多數意見　🔴 不同意見</p>
+            <div class="judges-grid">
+                <span class="judge-chip chief">審判長　郭毓洲</span>
+                <span class="judge-chip">林立華</span>
+                <span class="judge-chip">段景榕</span>
+                <span class="judge-chip">李錦樑</span>
+                <span class="judge-chip">林勤純 <span style="font-size:0.8em;color:#c0392b;">※不同意見書2</span></span>
+                <span class="judge-chip">梁宏哲 <span style="font-size:0.8em;color:#c0392b;">※不同意見書1</span></span>
+                <span class="judge-chip">何信慶 <span style="font-size:0.8em;color:#c0392b;">※不同意見書1</span></span>
+                <span class="judge-chip">林英志</span>
+                <span class="judge-chip">蔡憲德</span>
+                <span class="judge-chip dissenter">徐昌錦 ※不同意見書1</span>
+                <span class="judge-chip dissenter">李英勇 ※不同意見書1</span>
+            </div>
+            <p style="font-size:0.82em;color:#888;margin:10px 0 0;">提案庭：最高法院刑事第一庭　｜　案號：112年度台上大字第991號　｜　裁定日：中華民國113年1月24日</p>
+        </div>
+    </details>
+
+    <!-- 爭點整理 -->
+    <details>
+        <summary>多數 vs. 不同意見——爭點對照表</summary>
+        <div style="padding-top:10px;">
+            <div class="ref-case">
+                <div class="ref-case-title">【爭點①】§348第3項與§348第2項之關係</div>
+                <p style="margin:0;"><strong>多數意見：</strong>第3項係第2項之例外，但仍受第2項前段上訴不可分原則之節制，不論科刑或論罪，具有本質上不可分性（inherent indivisibility）。<br>
+                <strong>不同意見（徐等4人）：</strong>第3項明文係第2項之例外規定，「例外」即排除原則之適用，多數意見將第3項架空，邏輯矛盾。<br>
+                <strong>不同意見（林勤純）：</strong>第3項性質本屬當事人進行主義之體現，與第1、2項性質迥異，根本無從援引第2項。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">【爭點②】上訴範圍確定之時點</div>
+                <p style="margin:0;"><strong>多數意見：</strong>得延至第二審宣示判決前，視具體情形決定是否納入併辦犯罪事實（動態確定）。<br>
+                <strong>不同意見：</strong>應於上訴時即早確定，§348第3項修法主旋律即「早日確定上訴範圍」，多數意見使上訴範圍越趨浮動，完全走調。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">【爭點③】移送併辦意旨書之法律性質</div>
+                <p style="margin:0;"><strong>多數意見：</strong>在促請第二審法院注意是否具一罪之審判不可分關係，若法院認具一罪關係，則應依§267起訴效力所及一併審判。<br>
+                <strong>不同意見（徐等4人）：</strong>援引82年第8次刑庭會議決議，移送併辦公函<strong>非屬訴訟上之請求</strong>，法院就此部分即使未為任何諭知及說明，亦不在所謂「已受請求之事項未予判決」之違背法令可言。</p>
+            </div>
+            <div class="ref-case warn">
+                <div class="ref-case-title">【⚠️ 考試重點】律師考試常考角度</div>
+                <p style="margin:0;"><strong>①</strong> §348第3項「科刑一部上訴」之意義及立法目的；<br>
+                <strong>②</strong> §348第2項「上訴不可分原則」（有關係之部分視為亦已上訴）之適用範圍；<br>
+                <strong>③</strong> 「順向性罪刑不可分」（論罪上訴→效力及於科刑）vs.「逆向性罪刑不可分」（科刑上訴→二審仍須依一審事實審查）；<br>
+                <strong>④</strong> 移送併辦意旨書之法律性質（訴訟請求 or 促使法院注意）；<br>
+                <strong>⑤</strong> 本裁定對§348第3項立法目的「早日確定上訴範圍」之影響——多數意見是否架空修法？（不同意見之核心批評）；<br>
+                <strong>⑥</strong> 德國「可分性準則（Trennbarkeitsformel）」與日本「攻防對象論」在我國§348第3項之適用。</p>
+            </div>
+        </div>
+    </details>
+
+    <div class="note-toggle" onclick="toggleNote('n1')">✏️ 我的小結</div>
+    <div class="note-area" id="n1">
+        <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n1',this.value)"></textarea>
+        <div class="note-saved" id="n1-saved"></div>
+    </div>
+</div>
+
+<div id="noResults">查無符合的內容，請試試其他關鍵字。</div>
+<div id="noStarred">還沒有收藏的項目，點卡片右上角的 ⭐ 加入收藏。</div>
+</div>
+
+<script>
+const STORE_KEY='112_991_grand_notes',STAR_KEY='112_991_grand_stars';
+(function initDark(){if(localStorage.getItem('night_mode')==='1'){document.body.classList.add('dark');document.getElementById('darkBtn').textContent='☀️';}})();
+function loadNotes(){try{return JSON.parse(localStorage.getItem(STORE_KEY))||{};}catch{return{};}}
+function loadStars(){try{return JSON.parse(localStorage.getItem(STAR_KEY))||{};}catch{return{};}}
+function saveAllNotes(d){localStorage.setItem(STORE_KEY,JSON.stringify(d));}
+function saveAllStars(d){localStorage.setItem(STAR_KEY,JSON.stringify(d));}
+(function(){const n=loadNotes(),s=loadStars();Object.entries(n).forEach(([id,v])=>{const a=document.getElementById(id);if(!a)return;const t=a.querySelector('textarea');if(t)t.value=v;if(v)a.classList.add('open');});Object.entries(s).forEach(([id,v])=>{if(!v)return;const b=document.querySelector(`#${id} .star-btn`);if(b)b.classList.add('starred');});})();
+function toggleStar(id,btn){const s=loadStars();const now=!btn.classList.contains('starred');btn.classList.toggle('starred',now);s[id]=now;saveAllStars(s);if(filterActive)applyFilter();}
+let filterActive=false;
+function toggleFilter(){filterActive=!filterActive;document.getElementById('filterBtn').classList.toggle('active',filterActive);document.getElementById('searchInput').value='';clearSearchHighlights();updateSearchUI();applyFilter();}
+function applyFilter(){const s=loadStars();const q=document.getElementById('searchInput').value.trim().toLowerCase();let any=false;document.querySelectorAll('.card').forEach(c=>{const kw=(c.dataset.kw||'').toLowerCase();const txt=c.textContent.toLowerCase();const ms=!q||kw.includes(q)||txt.includes(q);const mf=!filterActive||!!s[c.id];const show=ms&&mf;c.classList.toggle('hidden',!show);if(show)any=true;});document.getElementById('noResults').style.display=(!any&&!filterActive)?'block':'none';document.getElementById('noStarred').style.display=(!any&&filterActive)?'block':'none';}
+let _matches=[],_cur=-1;
+function clearSearchHighlights(){document.querySelectorAll('mark.search-hl').forEach(m=>{const p=m.parentNode;while(m.firstChild)p.insertBefore(m.firstChild,m);p.removeChild(m);p.normalize();});_matches=[];_cur=-1;}
+function highlightInNode(node,q){if(node.nodeType===3){const txt=node.textContent;const idx=txt.toLowerCase().indexOf(q);if(idx===-1)return false;const m=document.createElement('mark');m.className='search-hl';const before=document.createTextNode(txt.slice(0,idx));const matched=document.createTextNode(txt.slice(idx,idx+q.length));const after=document.createTextNode(txt.slice(idx+q.length));m.appendChild(matched);const p=node.parentNode;p.insertBefore(before,node);p.insertBefore(m,node);p.insertBefore(after,node);p.removeChild(node);_matches.push(m);return true;}else if(node.nodeType===1){const skip=new Set(['SCRIPT','STYLE','TEXTAREA']);if(skip.has(node.tagName))return false;[...node.childNodes].forEach(ch=>highlightInNode(ch,q));return false;}}
+function doSearch(q){clearSearchHighlights();applyFilter();if(!q||!q.trim()){updateSearchUI();return;}const lq=q.trim().toLowerCase();document.querySelectorAll('.card:not(.hidden)').forEach(c=>highlightInNode(c,lq));if(_matches.length>0){_cur=0;setCurrent();}updateSearchUI();}
+function setCurrent(){_matches.forEach((m,i)=>m.classList.toggle('current',i===_cur));if(_matches[_cur]){_matches[_cur].scrollIntoView({behavior:'smooth',block:'center'});}}
+function navMatch(dir){if(!_matches.length)return;_cur=(_cur+dir+_matches.length)%_matches.length;setCurrent();updateSearchUI();}
+function updateSearchUI(){const c=document.getElementById('searchCount');if(!c)return;if(!_matches.length){c.textContent='';return;}c.textContent=(_cur+1)+'/'+_matches.length;}
+function handleSearchKey(e){if(e.key==='Enter'){e.preventDefault();navMatch(e.shiftKey?-1:1);}}
+function toggleNote(id){document.getElementById(id).classList.toggle('open');}
+function toggleDark(){const on=document.body.classList.toggle('dark');document.getElementById('darkBtn').textContent=on?'☀️':'🌙';localStorage.setItem('night_mode',on?'1':'0');}
+const timers={};
+function saveNote(id,v){clearTimeout(timers[id]);timers[id]=setTimeout(()=>{const n=loadNotes();n[id]=v;saveAllNotes(n);const el=document.getElementById(id+'-saved');if(el){el.textContent='已儲存';setTimeout(()=>el.textContent='',1500);}},500);}
+let savedRange=null;
+document.addEventListener('selectionchange',()=>{const s=window.getSelection();if(s&&!s.isCollapsed&&s.rangeCount)savedRange=s.getRangeAt(0).cloneRange();});
+function highlightText(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;if(!r||r.collapsed){alert('💡 請先反白想要標記的文字');return;}const sp=document.createElement('span');sp.className='hl';sp.style.backgroundColor='#ffe066';try{r.surroundContents(sp);savedRange=null;}catch{alert('💡 請選取同一段落內的文字');}s&&s.removeAllRanges();}
+function removeHighlight(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;if(!r||r.collapsed){alert('💡 請先反白想擦除標記的文字');return;}const anc=r.commonAncestorContainer.nodeType===1?r.commonAncestorContainer:r.commonAncestorContainer.parentElement;anc.querySelectorAll('span.hl').forEach(sp=>{if(r.intersectsNode(sp)){const p=sp.parentNode;while(sp.firstChild)p.insertBefore(sp.firstChild,sp);p.removeChild(sp);}});savedRange=null;s&&s.removeAllRanges();}
+function clearHighlights(){const sp=document.querySelectorAll('span.hl');if(!sp.length)return;if(confirm('確定要清除所有重點標記嗎？')){sp.forEach(s=>{const p=s.parentNode;while(s.firstChild)p.insertBefore(s.firstChild,s);p.removeChild(s);});}}
+function openExport(){
+    const stars=loadStars();
+    let out='最高法院刑事大法庭 112年度台上大字第991號\n'+'═'.repeat(44)+'\n\n';
+    document.querySelectorAll('.card').forEach(c=>{
+        const star=stars[c.id]?'⭐ ':'';
+        const title=c.querySelector('.card-title')?.textContent.trim()||'';
+        out+=`【${star}${title}】\n\n`;
+        const vMain=c.querySelector('.verdict-main');
+        const vSub=c.querySelector('.verdict-sub');
+        if(vMain) out+='▌大法庭主文\n'+vMain.textContent.trim()+'\n';
+        if(vSub)  out+=vSub.textContent.trim()+'\n';
+        out+='\n';
+        c.querySelectorAll('.op').forEach(op=>{
+            const head=op.querySelector('.op-label')?.textContent.trim()||'';
+            out+=`▌${head}\n`;
+            op.querySelectorAll('.op-body p, .op-body li, .op-result').forEach(el=>{
+                const t=el.textContent.trim();
+                if(t) out+=(el.tagName==='LI'?'  • ':'')+t+'\n';
+            });
+            out+='\n';
+        });
+        const law=c.querySelector('.law-ref');
+        if(law) out+=law.textContent.trim()+'\n\n';
+        const ta=c.querySelector('.note-textarea');
+        if(ta&&ta.value.trim()) out+='✏️ 小結：\n'+ta.value.trim()+'\n\n';
+        out+='═'.repeat(44)+'\n\n';
+    });
+    const b=new Blob([out.trim()],{type:'text/plain;charset=utf-8'});
+    const u=URL.createObjectURL(b);
+    const a=document.createElement('a');
+    a.href=u;a.download='112台上大字第991號_§348一部上訴移送併辦.txt';a.click();
+    URL.revokeObjectURL(u);
+}
+const REG_KEY='exam_completion_registry';
+function _loadReg(){try{return JSON.parse(localStorage.getItem(REG_KEY))||{};}catch{return{};}}
+function _saveReg(r){try{localStorage.setItem(REG_KEY,JSON.stringify(r));}catch{}}
+function _fmt(ts){const d=new Date(ts);return(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();}
+function _updateDate(){const r=_loadReg();const k='case_criminal_grand_112_991.html';const l=document.getElementById('doneDateLabel');if(!l)return;l.textContent=(r[k]&&r[k].done&&r[k].ts)?_fmt(r[k].ts):'';}
+function _syncIndex(done){try{const r=JSON.parse(localStorage.getItem('gc_reads')||'{}');r['c39']=done;localStorage.setItem('gc_reads',JSON.stringify(r));}catch(e){console.log('sync err',e);}}
+function toggleDone(){const btn=document.getElementById('doneBtn');const r=_loadReg();const k='case_criminal_grand_112_991.html';const done=r[k]&&r[k].done;if(done){delete r[k];_saveReg(r);btn.classList.remove('active');_syncIndex(false);}else{const now=new Date();r[k]={done:true,score:null,total:null,ts:now.getTime(),tsLabel:now.toLocaleDateString('zh-TW')+' '+now.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false})};_saveReg(r);btn.classList.add('active');_syncIndex(true);}_updateDate();}
+(function initSync(){const r=_loadReg();const k='case_criminal_grand_112_991.html';_syncIndex(!!(r[k]&&r[k].done));})();
+(function(){const r=_loadReg();const k='case_criminal_grand_112_991.html';if(r[k]&&r[k].done){const b=document.getElementById('doneBtn');if(b)b.classList.add('active');}_updateDate();})();
+</script>
+</body>
+</html>
