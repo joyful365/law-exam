@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>112年度台上大字第840號 民事大法庭裁定</title>
+    <style>
+        :root{--bg:#f5f0eb;--card:#ffffff;--text:#3d3530;--sub:#8c7b6b;--line:#ddd8d0;--majority:#9e5c45;--law:#5a6e4e;--dissent:#b07d4a;--trap:#f5f0d8;--header-bg:#5c4f47;}
+        body.night-mode{--bg:#1a1714;--card:#252220;--text:#d4cec8;--sub:#8a7d72;--line:#383330;--majority:#b87060;--law:#6a8a5e;--dissent:#c4935a;--trap:#2a2518;--header-bg:#111010;}
+        body.night-mode header{box-shadow:0 2px 8px rgba(0,0,0,0.5);}
+        body.night-mode .top-bar{background:#1e1b18;}
+        body.night-mode .top-btn{background:#3a3530;}
+        body.night-mode .fact-box,body.night-mode .issue-box{background:#1e1b18;}
+        body.night-mode .op-head{background:#2a2520;}
+        body.night-mode .op-body{background:var(--card);}
+        body.night-mode .op-result{background:#2a2018;}
+        body.night-mode .ref-case{background:#242018;}
+        body.night-mode .law-ref{background:#1c2018;}
+        body.night-mode .note-textarea{background:#1e1b18;color:var(--text);border-color:var(--line);}
+        body.night-mode .judge-chip{background:#2a2520;border-color:var(--line);}
+        body.night-mode .judge-chip.chief{background:#3a3530;}
+        body.night-mode mark.search-hl{background:#7a6010;color:#f0e8c8;}
+        body.night-mode mark.search-hl.current{background:#c47000;color:#fff;}
+        body.night-mode .verdict{background:#2e2a26;}
+        body.night-mode .trap-box{border-color:#5a5020;}
+        body.night-mode .trap-title{color:#c8a840;}
+        body.night-mode .trap-item{border-left-color:#7a6830;}
+        body.night-mode #nightBtn{background:#4a4030;color:#e8d898;font-weight:700;}
+        body.night-mode .quiz-q{background:var(--card);}
+        body.night-mode .quiz-q:hover{background:#2a2520;}
+        body.night-mode .quiz-a{background:#1c2018;color:#9fbf90;}
+        body{transition:background 0.3s,color 0.3s;}
+        .card{transition:background 0.3s,border-color 0.3s;}
+        *{box-sizing:border-box;}
+        body{font-family:"Helvetica Neue",Helvetica,"PingFang TC","LiHei Pro","Microsoft JhengHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.85;font-size:16px;margin:0;padding:0 0 60px;}
+        header{background:var(--header-bg);color:#f5f0eb;padding:16px 16px 8px;text-align:center;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.2);}
+        header h1{margin:0 0 10px;font-size:1.05em;line-height:1.5;font-weight:600;letter-spacing:0.02em;color:#ffffff;}
+        .header-controls{display:flex;gap:8px;align-items:center;}
+        .search-wrap{position:relative;flex:1;display:flex;align-items:center;gap:4px;}
+        #searchInput{flex:1;padding:8px 14px 8px 32px;border:none;border-radius:6px;font-size:14px;background:rgba(245,240,235,0.15);color:#f5f0eb;outline:none;}
+        #searchInput::placeholder{color:rgba(245,240,235,0.45);}
+        #searchInput:focus{background:rgba(245,240,235,0.25);}
+        .search-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:13px;opacity:0.5;pointer-events:none;}
+        .search-count{font-size:12px;color:rgba(255,255,255,0.7);white-space:nowrap;min-width:44px;text-align:center;}
+        .search-nav{background:rgba(255,255,255,0.13);border:none;border-radius:6px;color:white;font-size:13px;padding:6px 8px;cursor:pointer;line-height:1;}
+        .search-nav:hover{background:rgba(255,255,255,0.25);}
+        .search-nav:disabled{opacity:0.3;cursor:default;}
+        mark.search-hl{background:#ffe066;color:#1a1a1a;border-radius:2px;padding:0 1px;}
+        mark.search-hl.current{background:#ff8c00;color:#fff;border-radius:3px;outline:2px solid #ff8c00;}
+        #filterBtn{background:rgba(245,240,235,0.15);border:none;border-radius:6px;color:#f5f0eb;font-size:13px;padding:8px 12px;cursor:pointer;white-space:nowrap;}
+        #filterBtn.active{background:var(--dissent);color:#fff;font-weight:bold;}
+        .top-bar{background:#e8e2da;padding:5px 14px;display:flex;gap:6px;justify-content:flex-end;flex-wrap:nowrap;}
+        .top-btn{background:#b0a898;color:#fff;border:none;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;transition:opacity 0.15s;}
+        .top-btn:hover{opacity:0.8;}
+        .top-btn.done{background:#8c7b6b;}
+        .top-btn.done.active{background:linear-gradient(135deg,#b8860b,#daa520);color:#fff8e1;font-weight:700;box-shadow:0 0 8px rgba(218,165,32,0.5);}
+        .done-date{font-size:11px;color:#a0a0a0;white-space:nowrap;align-self:center;font-weight:500;}
+        .container{padding:18px 16px;max-width:640px;margin:0 auto;}
+        @media(min-width:768px){.container{max-width:880px;padding:24px 20px;}body{font-size:17px;}header h1{font-size:1.15em;}}
+        .card{background:var(--card);border-radius:14px;padding:24px 22px;margin-bottom:24px;box-shadow:0 1px 6px rgba(61,53,48,0.08);position:relative;border:1px solid var(--line);}
+        .card.hidden{display:none;}
+        .star-btn{position:absolute;top:18px;right:18px;background:none;border:none;font-size:20px;cursor:pointer;opacity:0.15;transition:opacity 0.15s;padding:0;}
+        .star-btn.starred{opacity:1;}
+        .card-title{color:var(--text);font-size:1.15em;font-weight:700;margin:0 0 4px;padding-right:30px;line-height:1.6;}
+        .meta-line{font-size:0.75em;color:var(--sub);margin-bottom:20px;letter-spacing:0.04em;}
+        .verdict{background:#4a3f38;color:#f5f0eb;border-radius:10px;padding:16px 18px;margin-bottom:22px;}
+        .verdict-label{font-size:0.66em;letter-spacing:0.14em;opacity:0.5;margin-bottom:6px;}
+        .verdict-main{font-size:1.05em;font-weight:700;line-height:1.6;margin-bottom:10px;color:#ffffff;}
+        .vote-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px;padding-top:10px;border-top:1px solid rgba(245,240,235,0.15);}
+        .v-chip{font-size:0.72em;background:rgba(245,240,235,0.1);border-radius:20px;padding:3px 10px;white-space:nowrap;color:rgba(245,240,235,0.75);}
+        .v-chip.majority{background:rgba(158,92,69,0.5);color:#f5f0eb;font-weight:700;}
+        .section-heading{font-size:0.85em;font-weight:700;letter-spacing:0.08em;color:var(--sub);margin:22px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line);}
+        .fact-box{background:#faf8f5;border-left:3px solid var(--sub);border-radius:0 8px 8px 0;padding:14px 16px;margin-bottom:16px;font-size:0.9em;}
+        .fact-box p{margin:0 0 8px;}
+        .fact-box p:last-child{margin:0;}
+        .issue-box{background:#faf8f5;border-radius:8px;padding:14px 16px;margin-bottom:16px;font-size:0.9em;border:1px solid var(--line);}
+        .issue-box p{margin:0 0 8px;}
+        .issue-box p:last-child{margin:0;}
+        .opinions{display:flex;flex-direction:column;gap:10px;margin-bottom:16px;}
+        .op{border-radius:8px;overflow:hidden;border:1px solid var(--line);}
+        .op-head{display:flex;align-items:center;gap:10px;padding:10px 14px;background:#f7f4f0;}
+        .op-num{width:26px;height:26px;border-radius:50%;background:var(--majority);color:white;font-size:0.75em;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+        .op-label{font-weight:700;font-size:0.92em;color:var(--majority);flex:1;}
+        .op-body{padding:13px 15px;font-size:0.9em;background:var(--card);}
+        .op-body p{margin:0 0 9px;}
+        .op-body p:last-child{margin:0;}
+        .op-body ul{margin:5px 0 8px;padding-left:18px;}
+        .op-body li{margin-bottom:5px;}
+        .op-result{background:#fdf9f7;border-radius:6px;padding:10px 13px;margin-top:10px;font-size:0.9em;border-left:3px solid var(--majority);}
+        .trap-box{background:var(--trap);border-radius:8px;padding:14px 16px;margin-bottom:16px;border:1px solid #e0d8b0;font-size:0.9em;}
+        .trap-title{font-weight:700;color:#7a6820;margin-bottom:10px;font-size:0.92em;display:flex;align-items:center;gap:6px;}
+        .trap-item{margin-bottom:10px;padding-left:14px;border-left:2px solid #c8b860;}
+        .trap-item:last-child{margin-bottom:0;}
+        .trap-q{font-weight:700;color:var(--text);margin-bottom:3px;}
+        .trap-a{color:var(--text);opacity:0.85;}
+        .law-ref{background:#f2f5f0;border-radius:8px;padding:10px 14px;font-size:0.84em;color:#3d4e38;margin-top:14px;border-left:3px solid var(--law);}
+        details{margin-top:16px;}
+        details summary{cursor:pointer;color:var(--sub);font-size:0.84em;font-weight:600;padding:5px 0;user-select:none;list-style:none;display:flex;align-items:center;gap:6px;}
+        details summary::before{content:'▶';font-size:0.62em;transition:transform 0.2s;color:var(--sub);}
+        details[open] summary::before{transform:rotate(90deg);}
+        .ref-case{background:#f7f4f0;border-radius:7px;padding:10px 13px;margin-bottom:8px;font-size:0.84em;border-left:3px solid var(--majority);}
+        .ref-case-title{font-weight:700;color:var(--majority);margin-bottom:3px;font-size:0.9em;}
+        .judges-grid{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:6px;}
+        .judge-chip{background:#f5f0eb;border:1px solid var(--line);border-radius:20px;padding:3px 12px;font-size:0.82em;color:var(--text);white-space:nowrap;}
+        .judge-chip.chief{background:#ede0da;font-weight:700;}
+        .note-toggle{color:var(--sub);font-size:0.84em;font-weight:600;cursor:pointer;padding:5px 0;margin-top:16px;display:flex;align-items:center;gap:6px;}
+        .note-area{display:none;margin-top:8px;}
+        .note-area.open{display:block;}
+        .note-textarea{width:100%;min-height:90px;border:1px solid var(--line);border-radius:8px;padding:10px 13px;font-size:0.88em;font-family:inherit;resize:vertical;background:#faf8f5;color:var(--text);outline:none;line-height:1.7;}
+        .note-textarea:focus{border-color:var(--sub);}
+        .note-saved{font-size:0.76em;color:var(--law);margin-top:4px;min-height:16px;}
+        .quiz-list{border-radius:8px;overflow:hidden;border:1px solid var(--line);margin-bottom:16px;}
+        .quiz-item{border-bottom:1px solid var(--line);}
+        .quiz-item:last-child{border-bottom:none;}
+        .quiz-q{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;padding:11px 14px;cursor:pointer;font-size:0.9em;background:var(--card);}
+        .quiz-q:hover{background:#faf8f5;}
+        .quiz-toggle{font-size:1.1em;color:var(--majority);flex-shrink:0;font-weight:300;line-height:1.4;}
+        .quiz-a{display:none;padding:11px 14px;background:#f0f4ee;font-size:0.87em;line-height:1.75;border-top:1px solid var(--line);color:#3d4e38;}
+        .quiz-a.open{display:block;}
+        #noResults,#noStarred{display:none;text-align:center;color:var(--sub);padding:40px 0;font-size:0.9em;}
+        ::-webkit-scrollbar{display:none;}
+        ::selection{background:#e8ddd0;}
+    </style>
+</head>
+<body>
+<header>
+    <h1>最高法院民事大法庭<br>112年度台上大字第840號</h1>
+    <div class="header-controls">
+        <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="搜尋關鍵字、法條…" oninput="doSearch(this.value)" onkeydown="handleSearchKey(event)">
+            <span class="search-count" id="searchCount"></span>
+            <button class="search-nav" id="prevBtn" onclick="navMatch(-1)" disabled title="上一個">▲</button>
+            <button class="search-nav" id="nextBtn" onclick="navMatch(1)" disabled title="下一個">▼</button>
+        </div>
+        <button id="filterBtn" onclick="toggleFilter()">⭐ 收藏</button>
+    </div>
+    <div class="top-bar">
+        <button class="top-btn" onclick="highlightText()">🖊️</button>
+        <button class="top-btn" onclick="removeHighlight()">🧽</button>
+        <button class="top-btn" onclick="clearHighlights()">🗑️</button>
+        <button class="top-btn" onclick="openExport()">📤</button>
+        <button class="top-btn" id="nightBtn" onclick="toggleNight()">🌙</button>
+        <button class="top-btn done" id="doneBtn" onclick="toggleDone()">朕已閱</button>
+        <span class="done-date" id="doneDateLabel"></span>
+    </div>
+</header>
+
+<div class="container">
+<div class="card" id="case1" data-kw="投保法 投保法第10條之1 裁判解任 已卸任董事 失格效 失格效規定 形成訴訟 當事人適格 法律保留 工作權 董事失格 投資人保護 高孟焄 同泰電子 李遠智 投保中心">
+    <button class="star-btn" onclick="toggleStar('case1',this)">⭐</button>
+    <h2 class="card-title">投保法裁判解任訴訟，得否對起訴時已卸任之董事提起？</h2>
+    <div class="meta-line">裁定日期：中華民國113年10月18日　｜　案號：112年度台上大字第840號　｜　提案庭：最高法院民事第六庭　｜　併案：112台上1751、112台上2514、112台上1992　｜　全體一致</div>
+
+    <div class="verdict">
+        <div class="verdict-label">大法庭主文</div>
+        <div class="verdict-main">證券投資人及期貨交易人保護法第10條之1第1項第2款所定裁判解任訴訟之適用範圍，<strong>不包括起訴時已卸任之董事</strong>。</div>
+        <div class="vote-row">
+            <span class="v-chip majority">全體一致 11票 ✔</span>
+            <span class="v-chip">無不同意見書</span>
+            <span class="v-chip">裁定日：113.10.18</span>
+            <span class="v-chip">法官共11人</span>
+        </div>
+    </div>
+
+    <div class="section-heading">基礎事實</div>
+    <div class="fact-box">
+        <p><strong>原告（上訴人）：</strong>財團法人證券投資人及期貨交易人保護中心（投保中心），為依投保法第7條設立之保護機構。</p>
+        <p><strong>被告（被上訴人）：</strong>李遠智，於106年間起擔任同泰電子科技股份有限公司（上市公司）之董事兼執行長、總經理，嗣於<strong>108年8月22日辭任董事</strong>。</p>
+        <p><strong>起訴時間：</strong>111年5月12日（距辭任董事已逾2年8個月）。</p>
+        <p><strong>主張之違法事實：</strong>李遠智於106年擔任董事期間，將PUNCH加工訂單藉輾轉下單方式二度墊高加工成本，賺取不法利差，以不合營業常規之交易使A公司受有重大損害。</p>
+        <p><strong>核心問題：</strong>投保中心起訴時，李遠智已非在任董事，投保法第10條之1第1項第2款之裁判解任訴訟，得否對<strong>起訴時已卸任之董事</strong>提起？</p>
+    </div>
+
+    <div class="section-heading">法律爭議</div>
+    <div class="issue-box">
+        <p><strong>系爭規定：</strong>投保法第10條之1第1項第2款：「（保護機構）得為公司之股東，以公司有公開發行股票，董事……執行業務，有重大損害公司之行為或違反法令或章程之重大事項……訴請法院裁判解任公司之董事……」</p>
+        <p><strong>爭議：</strong>「訴請法院裁判解任公司之董事」，文義上之「公司之董事」是否包括<strong>起訴時已卸任</strong>之前董事？</p>
+        <p><strong>對立立場：</strong>投保中心主張：立法目的在保障投資人、促進公司治理，且投保法第10條之1第7項「失格效規定」具公益性，應擴張解釋；被告方主張：「解任」文義僅能針對在任董事，且工作權（憲法§15）之限制須符合法律保留原則。</p>
+        <p><strong>109年修法對照：</strong>同次修法第1款（代表訴訟）明文增訂適用範圍包括「已卸任之董事」，系爭規定（第2款，裁判解任）卻<strong>未同步增訂</strong>，形成顯著對照。</p>
+    </div>
+
+    <div class="section-heading">大法庭裁定理由（全體一致）</div>
+    <div class="opinions">
+
+        <div class="op">
+            <div class="op-head"><div class="op-num">㈠</div><span class="op-label">文義解釋：「解任」文義堪稱明確，不包括已卸任董事</span></div>
+            <div class="op-body">
+                <p>法律解釋始於文義，文義涵蓋之範圍應為一般或法律特殊用詞所被理解之意涵，此亦為解釋之<strong>界限</strong>。</p>
+                <p>系爭規定文義「訴請法院裁判解任公司之董事」，裁判解任之對象為「公司之董事」，<strong>字義堪稱明確</strong>；法條既謂「解任」，依一般認知自指起訴時在任之公司董事，難謂存在多種解釋可能性。</p>
+                <div class="op-result"><strong>結論：</strong>自文義解釋以觀，系爭規定之適用範圍，並不包括起訴時「已卸任」之董事。</div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head"><div class="op-num">㈡</div><span class="op-label">體系、歷史、目的解釋：109年修法明顯區別代表訴訟與裁判解任</span></div>
+            <div class="op-body">
+                <p><strong>109年6月10日修法之比較：</strong>同次修正之投保法第10條之1第1項，就<strong>第1款代表訴訟規定</strong>，增訂其適用範圍包括「<strong>已卸任之董事</strong>」；同時修正之系爭規定（第2款，裁判解任）則<strong>未同步增訂</strong>。兩相對照，足見立法者並無意將裁判解任訴訟之適用範圍，包括起訴時已卸任之董事。</p>
+                <p><strong>立法沿革：</strong>投保法第10條之1第1項係98年5月20日增訂，立法理由載明係為解決公司法§214、§200所定訴訟制度門檻過高之問題；立法之初適用範圍即為起訴時<strong>在任</strong>之董事。109年修法後，裁判解任規定既未如代表訴訟般擴大範圍，自應認維持原狀，仍限於在任董事。</p>
+                <p><strong>109年修法之真正目的（針對解任事由，非解任對象）：</strong>系爭規定於109年修正時，僅增訂「且解任事由不以起訴時任期內發生者為限」（即所謂<strong>跨任期解任</strong>），其立法目的係配合本院106年度台上字第177號判決意旨，明文化解任事由可跨越先前任期；申言之，修法方向係針對<strong>解任事由</strong>之擴張，而非針對<strong>解任對象</strong>之擴張。</p>
+                <div class="op-result"><strong>結論：</strong>無論依體系解釋、歷史解釋或目的解釋，均無從將系爭規定之適用範圍，解為包括起訴時已卸任之董事。</div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head"><div class="op-num">㈢</div><span class="op-label">失格效規定（§10-1-7）不能反推裁判解任適用範圍</span></div>
+            <div class="op-body">
+                <p><strong>失格效規定之性質：</strong>109年修法增訂投保法§10條之1第7項規定，明定董事經裁判解任確定後，自裁判確定日起3年內不得充任上市、上櫃或興櫃公司之董事、監察人及依§27第1項受指定代表行使職務之自然人，其已充任者當然解任。</p>
+                <p>該規定係對裁判解任確定後之董事賦與失格之<strong>附隨效果</strong>，並非系爭規定之構成要件，<strong>自無可能倒果為因</strong>，用以解釋系爭規定之適用範圍。</p>
+                <p><strong>「繼續訴訟」立法理由的正確解讀：</strong>立法理由七揭示：保護機構之裁判解任訴訟具有失格效力，董事於訴訟繫屬中卸任時，訴訟仍具訴之利益，保護機構自得繼續訴訟。此係考量失格效規定之公益性，對起訴時在任而<strong>訴訟繫屬中卸任</strong>之董事，仍有繼續訴訟使生失格效之訴訟利益。換言之，立法者明示僅將「<strong>訴訟繫屬中卸任董事</strong>」納入規範，而非起訴前已卸任之董事。</p>
+                <p>因此自不能執此立法理由，認為裁判解任訴訟未包括起訴時已卸任之董事，係屬立法者<strong>漏未規範之法律漏洞</strong>。</p>
+                <p><strong>外國立法例不可比附援引：</strong>英、美等國採行董事失格制度之「宣告失格制度」，與我國僅具附隨效果之失格效規定，立法體例完全不同，無法比附援引而使系爭規定兼具宣告失格之屬性。</p>
+                <div class="op-result"><strong>結論：</strong>失格效規定具公益性，但其公益目的不得成為逾越文義、擴張裁判解任適用範圍之依據。</div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head"><div class="op-num">㈣</div><span class="op-label">工作權保障與法律保留原則——失格效之規範方式應由立法者決定</span></div>
+            <div class="op-body">
+                <p><strong>職業自由之憲法保障：</strong>職業自由為人民充實生活內涵及自由發展人格所必要，不因職業性質為公益或私益、營利或非營利而有異，均屬憲法§15工作權保障之範疇（釋字第724、443號解釋意旨參照）。</p>
+                <p>限制人民於一定期間不得擔任董事職業之失格效規範，屬對工作權之限制，依憲法§23，須以法律定之或經立法機關明確授權，始符法律保留原則。</p>
+                <p><strong>失格效之重大立法選擇，非司法機關所得代為：</strong>諸如下列問題，均應由立法者本其立法計畫及價值衡量而為明確規定：</p>
+                <ul>
+                    <li>失格效機制應採附隨效抑或宣告失格方式？</li>
+                    <li>規範對象僅限上市櫃董事，抑或應將握有公司治理實權之人均包括在內？</li>
+                    <li>範圍僅以裁判解任之董事（起訴時在任者）為限，抑或併將<strong>起訴時已卸任之董事</strong>納入？</li>
+                    <li>失格期間應一律3年，抑或賦與司法機關裁量空間？</li>
+                </ul>
+                <p>立法者已就失格效採行<strong>附隨效</strong>規範方式、明定規範對象、將失格期間定為一律3年未賦與司法機關裁量空間，此乃<strong>立法政策之選擇</strong>。</p>
+                <div class="op-result"><strong>結論：</strong>本於權力分立及法律保留之憲法本旨，司法機關不得進行超越法律計畫外之法之續造，不得逕憑失格效規定之公益性目的，將裁判解任訴訟之適用範圍擴及起訴時已卸任董事，使之亦受失格效之拘束。</div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="section-heading">⚠️ 考試陷阱提示</div>
+    <div class="trap-box">
+        <div class="trap-title">📌 常見混淆點</div>
+        <div class="trap-item">
+            <div class="trap-q">Q：109年修法時，代表訴訟（第1款）與裁判解任訴訟（第2款）對「已卸任董事」的處理有何不同？</div>
+            <div class="trap-a">A：<strong>截然不同。</strong>第1款（代表訴訟）：109年修法<strong>明文增訂</strong>適用範圍包括「已卸任之董事」。第2款（裁判解任）：同次修法<strong>未同步增訂</strong>，系爭規定仍限於起訴時在任之董事。大法庭認為兩者之不同處理，正足以顯示立法者有意區別，不能解釋為漏未規定。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：109年修法增訂「解任事由不以起訴時任期內發生者為限」（跨任期解任），是否代表裁判解任對象也可擴張至已卸任董事？</div>
+            <div class="trap-a">A：<strong>不可。</strong>大法庭明確指出：109年系爭規定之修法方向係針對<strong>解任事由</strong>（發生時間可跨任期），而非針對<strong>解任對象</strong>（仍限在任董事）。兩者層次不同，不能混淆。「跨任期解任」是指：起訴時在任之董事，其被主張之不當行為可發生於先前任期，並非指起訴時已卸任之前任董事。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：失格效規定（§10-1-7）具公益性，能否據此擴張裁判解任之適用範圍？</div>
+            <div class="trap-a">A：<strong>不能。</strong>大法庭指出兩點：⑴ 失格效規定係裁判解任確定後之<strong>附隨效果</strong>，非構成要件，不能倒果為因。⑵ 即使失格效具公益性，在法律保留原則下，失格規範之範圍（包括是否含已卸任董事）仍須由<strong>立法者</strong>本其立法計畫決定，司法機關不得超越法律計畫外進行法之續造。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：訴訟繫屬中卸任的董事，與起訴前已卸任的董事，處理有何不同？</div>
+            <div class="trap-a">A：<strong>不同。</strong>訴訟繫屬中卸任者：立法理由七明示，保護機構仍得<strong>繼續訴訟</strong>，使生失格效之訴訟利益存在，不因卸任而喪失當事人適格。起訴前已卸任者：本不具備對之提起裁判解任訴訟之<strong>當事人適格</strong>，系爭規定不適用。兩者乃分屬二事，不生區別對待問題。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：本件大法庭裁定的票數為何？</div>
+            <div class="trap-a">A：<strong>全體一致，11票，無不同意見書。</strong>本件是少數全體一致通過之大法庭裁定，與同為鄭純惠參與的112台上大544（有部分不同意見）形成對照。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：本件為何涉及憲法第15條工作權保障？</div>
+            <div class="trap-a">A：失格效使董事3年內不得擔任上市櫃公司董事、監察人，屬對<strong>職業自由（工作權）之限制</strong>。依憲法§23及法律保留原則，此類限制須以法律定之或經立法明確授權。大法庭以此為由，強調失格效之規範對象（是否含已卸任董事）屬立法政策選擇，司法機關不得以目的解釋方式擴張，以免違反法律保留原則。</div>
+        </div>
+    </div>
+
+    <div class="section-heading">自我測驗</div>
+    <div class="quiz-list">
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)"><span>1. 本件大法庭主文結論為何？理由採用哪些解釋方法？</span><span class="quiz-toggle">＋</span></div>
+            <div class="quiz-a">
+                <strong>主文：</strong>投保法§10-1-1-2所定裁判解任訴訟之適用範圍，<strong>不包括起訴時已卸任之董事</strong>。<br><br>
+                <strong>解釋方法（四層）：</strong><br>
+                ① 文義解釋：「解任」文義即指解除在任狀態，自指起訴時在任之董事，字義明確，無擴張餘地。<br>
+                ② 體系解釋：同次修法第1款（代表訴訟）明文增訂含已卸任董事，第2款（裁判解任）未同步增訂，立法者有意區別。<br>
+                ③ 歷史解釋：立法之初適用範圍即為在任董事，109年修法未擴張對象。<br>
+                ④ 目的解釋：109年修法目的係擴張解任「事由」（跨任期），非擴張解任「對象」。
+            </div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)"><span>2. 109年修法「解任事由不以起訴時任期內發生者為限」（跨任期解任），與本件爭點有何關係？</span><span class="quiz-toggle">＋</span></div>
+            <div class="quiz-a">
+                <strong>跨任期解任：</strong>係指起訴時<strong>在任</strong>之董事，其被主張之違法事由可發生於更早的任期（非必然是當次任期），此係配合本院106年台上字第177號判決所為之明文化。<br><br>
+                與本件爭點（是否含已卸任董事）<strong>無關聯</strong>——大法庭明確指出，修法方向係針對「解任事由」，而非「解任對象」，不能以此推論裁判解任之對象得擴及起訴時已卸任之前任董事。
+            </div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)"><span>3. 訴訟繫屬中卸任的董事，與起訴前已卸任的董事，在本裁定中有何不同處理？</span><span class="quiz-toggle">＋</span></div>
+            <div class="quiz-a">
+                <strong>訴訟繫屬中卸任：</strong>立法理由七明示，保護機構仍得繼續訴訟（不喪失訴之利益及當事人適格），理由是使生失格效之公益目的仍存在。<br><br>
+                <strong>起訴前（起訴時）已卸任：</strong>本不具備對之提起裁判解任訴訟之<strong>當事人適格</strong>，系爭規定不適用。<br><br>
+                大法庭強調：立法者已明示僅將「訴訟繫屬中卸任者」納入規範，因此不能認為起訴時已卸任者屬漏未規定之法律漏洞。兩者乃分屬二事，不生區別對待問題。
+            </div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)"><span>4. 大法庭為何以工作權（憲法§15）及法律保留原則論述不得擴張解釋？</span><span class="quiz-toggle">＋</span></div>
+            <div class="quiz-a">
+                失格效規定使董事3年內不得擔任上市櫃董事、監察人，屬對<strong>職業自由（工作權）之限制</strong>，依憲法§23，須以法律定之。<br><br>
+                大法庭指出，失格效之重大規範選擇——包括：⑴採附隨效或宣告失格制度？⑵規範對象範圍？⑶是否含已卸任董事？⑷失格期間是否賦予裁量空間？——均涉及對工作權之限制，應由立法者本其立法計畫決定。<br><br>
+                立法者已為明確選擇（附隨效、規範對象限在任董事、3年不賦予裁量）。<strong>本於權力分立及法律保留，司法機關不得逾越法律計畫進行法之續造</strong>，不得以失格效之公益目的為由擴張適用範圍。
+            </div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)"><span>5. 英美董事失格制度能否援引支持本件應擴張解釋？</span><span class="quiz-toggle">＋</span></div>
+            <div class="quiz-a">
+                <strong>不能。</strong>大法庭指出：英、美等國採行之「<strong>宣告失格制度</strong>」，係由司法或行政機關主動宣告失格，具有獨立之失格訴訟性質。<br><br>
+                我國投保法§10-1-7之失格效，僅係裁判解任確定後之<strong>附隨效果</strong>，立法體例與英美「宣告失格制度」<strong>完全不同</strong>，無法比附援引。不能以外國宣告失格制度之功能性理由，使我國之附隨效規定兼具宣告失格之屬性，從而擴張裁判解任之適用對象。
+            </div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)"><span>6. 本件裁判解任訴訟之性質為何？與此性質如何推導「起訴時須在任」的要件？</span><span class="quiz-toggle">＋</span></div>
+            <div class="quiz-a">
+                裁判解任訴訟之性質為<strong>形成訴訟</strong>——其目的在藉由法院判決「解消」被告之董事受任狀態（使之從有職務變為無職務）。<br><br>
+                既然係「形成訴訟」，起訴時被告須為<strong>在任之董事</strong>，方足以達到訴訟所欲達成解消其受任狀態之目的。<br><br>
+                若被告起訴時已卸任，其受任狀態已自行解消，裁判解任訴訟根本無從達到「解消」之目的，自不具當事人適格。
+            </div>
+        </div>
+    </div>
+
+    <div class="law-ref">
+        <strong>相關法條：</strong>投保法§10-1-1-2（裁判解任訴訟）；投保法§10-1-7（失格效規定，109年修法增訂）；投保法§10-1-1-1（代表訴訟，109年修法增訂含已卸任董事）；公司法§200（裁判解任）；公司法§214（代表訴訟）；憲法§15（工作權）；憲法§23（比例原則、法律保留）；釋字第724、443號解釋（職業自由、法律保留）；本院106年度台上字第177號判決（跨任期解任事由之先例）
+    </div>
+
+    <details>
+        <summary>大法庭組成（11名法官，全體一致）</summary>
+        <div style="padding-top:10px;">
+            <div class="judges-grid">
+                <span class="judge-chip chief">審判長　高孟焄</span>
+                <span class="judge-chip">沈方維</span>
+                <span class="judge-chip">魏大喨</span>
+                <span class="judge-chip">盧彥如</span>
+                <span class="judge-chip">李寶堂</span>
+                <span class="judge-chip">林金吾</span>
+                <span class="judge-chip">彭昭芬</span>
+                <span class="judge-chip">鍾任賜</span>
+                <span class="judge-chip">鄭純惠</span>
+                <span class="judge-chip">張競文</span>
+                <span class="judge-chip">邱華紋</span>
+            </div>
+            <p style="font-size:0.82em;color:var(--sub);margin:10px 0 0;">書記官：林書英　｜　裁定日期：中華民國113年10月18日　｜　全體一致，無不同意見書</p>
+        </div>
+    </details>
+
+    <details>
+        <summary>併案案號與基礎事實摘要</summary>
+        <div style="padding-top:10px;">
+            <div class="ref-case">
+                <div class="ref-case-title">併案：112年度台上字第1751號（投保中心 v. 邁達特/吳祚綏）</div>
+                <p style="margin:0;">吳祚綏自87年起擔任A公司董事長，108年9月26日卸任董事長仍任董事，<strong>109年11月5日辭任董事</strong>。原告於111年4月19日起訴，主張吳於101至107年擔任董事長期間有違法重大事項。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">併案：112年度台上字第2514號（投保中心 v. 友通資訊/呂衍星）</div>
+                <p style="margin:0;">呂衍星於105年6月起擔任A公司董事，<strong>106年11月9日因股份轉讓超過1/2而當然解任</strong>。原告於111年11月11日起訴，主張呂於任職期間買入B公司股票違反§157-1規定（內線交易）。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">併案：112年度台上字第1992號（投保中心 v. 國統國際/梁家源/葉清正）</div>
+                <p style="margin:0;">梁家源、葉清正分別於109年6月30日、110年11月15日離任A公司董事。原告於111年12月16日起訴，主張兩人任職期間從事內線交易。</p>
+            </div>
+        </div>
+    </details>
+
+    <div class="note-toggle" onclick="toggleNote('n1')">✏️ 我的小結</div>
+    <div class="note-area" id="n1">
+        <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n1',this.value)"></textarea>
+        <div class="note-saved" id="n1-saved"></div>
+    </div>
+</div>
+
+<div id="noResults">查無符合的內容，請試試其他關鍵字。</div>
+<div id="noStarred">還沒有收藏的項目，點卡片右上角的 ⭐ 加入收藏。</div>
+</div>
+
+<script>
+const NIGHT_KEY='night_mode_pref';
+function toggleNight(){const on=document.body.classList.toggle('night-mode');localStorage.setItem(NIGHT_KEY,on?'1':'0');document.getElementById('nightBtn').textContent=on?'☀️':'🌙';}
+(function(){if(localStorage.getItem(NIGHT_KEY)==='1'){document.body.classList.add('night-mode');const b=document.getElementById('nightBtn');if(b)b.textContent='☀️';}})();
+const STORE_KEY='112_840_grand_notes',STAR_KEY='112_840_grand_stars';
+function loadNotes(){try{return JSON.parse(localStorage.getItem(STORE_KEY))||{};}catch{return{};}}
+function loadStars(){try{return JSON.parse(localStorage.getItem(STAR_KEY))||{};}catch{return{};}}
+function saveAllNotes(d){localStorage.setItem(STORE_KEY,JSON.stringify(d));}
+function saveAllStars(d){localStorage.setItem(STAR_KEY,JSON.stringify(d));}
+(function(){const n=loadNotes(),s=loadStars();
+  Object.entries(n).forEach(([id,v])=>{const a=document.getElementById(id);if(!a)return;const t=a.querySelector('textarea');if(t)t.value=v;if(v)a.classList.add('open');});
+  Object.entries(s).forEach(([id,v])=>{if(!v)return;const b=document.querySelector(`#${id} .star-btn`);if(b)b.classList.add('starred');});
+})();
+function toggleStar(id,btn){const s=loadStars();const now=!btn.classList.contains('starred');btn.classList.toggle('starred',now);s[id]=now;saveAllStars(s);if(filterActive)applyFilter();}
+let filterActive=false;
+function toggleFilter(){filterActive=!filterActive;document.getElementById('filterBtn').classList.toggle('active',filterActive);document.getElementById('searchInput').value='';clearSearchHighlights();updateSearchUI([],0);applyFilter();}
+function applyFilter(){const s=loadStars();const q=document.getElementById('searchInput').value.trim().toLowerCase();let any=false;
+  document.querySelectorAll('.card').forEach(c=>{const kw=(c.dataset.kw||'').toLowerCase();const txt=c.textContent.toLowerCase();
+  const ms=!q||kw.includes(q)||txt.includes(q);const mf=!filterActive||!!s[c.id];const show=ms&&mf;
+  c.classList.toggle('hidden',!show);if(show)any=true;});
+  document.getElementById('noResults').style.display=(!any&&!filterActive)?'block':'none';
+  document.getElementById('noStarred').style.display=(!any&&filterActive)?'block':'none';}
+let _matches=[],_cur=-1;
+function clearSearchHighlights(){document.querySelectorAll('mark.search-hl').forEach(m=>{const p=m.parentNode;p.replaceChild(document.createTextNode(m.textContent),m);p.normalize();});}
+function highlightInNode(node,re){if(node.nodeType===3){const text=node.nodeValue;const frag=document.createDocumentFragment();let last=0,m;re.lastIndex=0;while((m=re.exec(text))!==null){if(m.index>last)frag.appendChild(document.createTextNode(text.slice(last,m.index)));const mk=document.createElement('mark');mk.className='search-hl';mk.textContent=m[0];frag.appendChild(mk);last=re.lastIndex;}if(last===0)return;frag.appendChild(document.createTextNode(text.slice(last)));node.parentNode.replaceChild(frag,node);return;}if(node.nodeType===1){const tag=node.tagName;if(tag==='SCRIPT'||tag==='STYLE'||tag==='TEXTAREA'||tag==='INPUT')return;if(node.classList&&node.classList.contains('search-hl'))return;[...node.childNodes].forEach(c=>highlightInNode(c,re));}}
+function doSearch(q){clearSearchHighlights();_matches=[];_cur=-1;const qt=(q||'').trim();if(!qt){updateSearchUI([],0);applyFilter();return;}applyFilter();const esc=qt.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');const re=new RegExp(esc,'gi');document.querySelectorAll('.container .card:not(.hidden)').forEach(card=>{highlightInNode(card,re);});_matches=[...document.querySelectorAll('mark.search-hl')];if(_matches.length){_cur=0;setCurrent(0);}updateSearchUI(_matches,_cur);}
+function setCurrent(idx){_matches.forEach((m,i)=>m.classList.toggle('current',i===idx));if(_matches[idx])_matches[idx].scrollIntoView({behavior:'smooth',block:'center'});}
+function navMatch(dir){if(!_matches.length)return;_cur=(_cur+dir+_matches.length)%_matches.length;setCurrent(_cur);updateSearchUI(_matches,_cur);}
+function updateSearchUI(matches,cur){const cnt=document.getElementById('searchCount');const prev=document.getElementById('prevBtn');const next=document.getElementById('nextBtn');if(!matches.length){cnt.textContent='';prev.disabled=true;next.disabled=true;return;}cnt.textContent=(cur+1)+'/'+matches.length;prev.disabled=false;next.disabled=false;}
+function handleSearchKey(e){if(e.key==='Enter'){e.shiftKey?navMatch(-1):navMatch(1);}if(e.key==='Escape'){document.getElementById('searchInput').value='';doSearch('');}}
+function toggleNote(id){document.getElementById(id).classList.toggle('open');}
+const timers={};
+function saveNote(id,v){clearTimeout(timers[id]);timers[id]=setTimeout(()=>{const n=loadNotes();n[id]=v;saveAllNotes(n);const el=document.getElementById(id+'-saved');if(el){el.textContent='已儲存';setTimeout(()=>el.textContent='',1500);}},500);}
+let savedRange=null;
+document.addEventListener('selectionchange',()=>{const s=window.getSelection();if(s&&!s.isCollapsed&&s.rangeCount)savedRange=s.getRangeAt(0).cloneRange();});
+function highlightText(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;
+  if(!r||r.collapsed){alert('💡 請先反白想要標記的文字');return;}
+  const sp=document.createElement('span');sp.className='hl';sp.style.cssText='background:#f0d98a;border-radius:2px;';
+  try{r.surroundContents(sp);savedRange=null;}catch{alert('💡 請選取同一段落內的文字');}s&&s.removeAllRanges();}
+function removeHighlight(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;
+  if(!r||r.collapsed){alert('💡 請先反白想擦除標記的文字');return;}
+  const anc=r.commonAncestorContainer.nodeType===1?r.commonAncestorContainer:r.commonAncestorContainer.parentElement;
+  anc.querySelectorAll('span.hl').forEach(sp=>{if(r.intersectsNode(sp)){const p=sp.parentNode;while(sp.firstChild)p.insertBefore(sp.firstChild,sp);p.removeChild(sp);}});
+  savedRange=null;s&&s.removeAllRanges();}
+function clearHighlights(){const sp=document.querySelectorAll('span.hl');if(!sp.length)return;
+  if(confirm('確定要清除所有重點標記嗎？')){sp.forEach(s=>{const p=s.parentNode;while(s.firstChild)p.insertBefore(s.firstChild,s);p.removeChild(s);});}}
+function openExport(){
+  let out='最高法院民事大法庭 112年度台上大字第840號\n'+'═'.repeat(44)+'\n\n';
+  out+='【主文】\n投保法§10-1-1-2所定裁判解任訴訟之適用範圍，不包括起訴時已卸任之董事。\n\n';
+  document.querySelectorAll('.op').forEach(op=>{
+    const head=op.querySelector('.op-label')?.textContent.trim()||'';
+    out+=`▌${head}\n`;
+    op.querySelectorAll('.op-body p,.op-body li,.op-result').forEach(el=>{
+      const t=el.textContent.trim();if(t)out+=(el.tagName==='LI'?'  • ':'')+t+'\n';});
+    out+='\n';});
+  const ta=document.querySelector('.note-textarea');if(ta&&ta.value.trim())out+='✏️ 小結：\n'+ta.value.trim()+'\n\n';
+  out+='═'.repeat(44)+'\n';
+  const b=new Blob([out.trim()],{type:'text/plain;charset=utf-8'});
+  const u=URL.createObjectURL(b);const a=document.createElement('a');
+  a.href=u;a.download='112台上大字第840號_投保法裁判解任已卸任董事.txt';a.click();URL.revokeObjectURL(u);}
+function toggleQuiz(el){const ans=el.nextElementSibling;const tog=el.querySelector('.quiz-toggle');if(ans.classList.contains('open')){ans.classList.remove('open');tog.textContent='＋';}else{ans.classList.add('open');tog.textContent='－';}}
+const REG_KEY='exam_completion_registry';
+function _loadReg(){try{return JSON.parse(localStorage.getItem(REG_KEY))||{};}catch{return{};}}
+function _saveReg(r){try{localStorage.setItem(REG_KEY,JSON.stringify(r));}catch{}}
+function _file(){const p=location.pathname.split('/');return decodeURIComponent(p[p.length-1]||'');}
+function _fmt(ts){const d=new Date(ts);const date=(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();const time=d.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false});return date+' '+time;}
+function _updateDate(){const r=_loadReg();const k=_file()||'case_civil_grand_112_840.html';const l=document.getElementById('doneDateLabel');if(!l)return;l.textContent=(r[k]&&r[k].done&&r[k].ts)?_fmt(r[k].ts):'';}
+const _INDEX_CARD_ID='c_840';
+function _syncIndex(done){try{const r=JSON.parse(localStorage.getItem('gc_reads')||'{}');r[_INDEX_CARD_ID]=done;localStorage.setItem('gc_reads',JSON.stringify(r));}catch(e){}}
+function toggleDone(){const btn=document.getElementById('doneBtn');const r=_loadReg();const k=_file()||'case_civil_grand_112_840.html';const done=r[k]&&r[k].done;
+  if(done){delete r[k];_saveReg(r);btn.classList.remove('active');_syncIndex(false);}
+  else{const now=new Date();r[k]={done:true,score:null,total:null,ts:now.getTime(),tsLabel:now.toLocaleDateString('zh-TW')+' '+now.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false})};_saveReg(r);btn.classList.add('active');_syncIndex(true);}
+  _updateDate();}
+(function(){const r=_loadReg();const k=_file()||'case_civil_grand_112_840.html';if(r[k]&&r[k].done){const b=document.getElementById('doneBtn');if(b)b.classList.add('active');}_updateDate();})();
+</script>
+</body>
+</html>
