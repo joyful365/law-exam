@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>111年度台上大字第1958號 民事大法庭裁定</title>
+    <style>
+        :root{--bg:#f5f0eb;--card:#ffffff;--text:#3d3530;--sub:#8c7b6b;--line:#ddd8d0;--majority:#9e5c45;--law:#5a6e4e;--dissent:#b07d4a;--trap:#f5f0d8;--header-bg:#5c4f47;}
+        body.night-mode{--bg:#1a1714;--card:#252220;--text:#d4cec8;--sub:#8a7d72;--line:#383330;--majority:#b87060;--law:#6a8a5e;--dissent:#c4935a;--trap:#2a2518;--header-bg:#111010;}
+        body.night-mode header{box-shadow:0 2px 8px rgba(0,0,0,0.5);}
+        body.night-mode .top-bar{background:#1e1b18;}
+        body.night-mode .top-btn{background:#3a3530;}
+        body.night-mode .fact-box,body.night-mode .issue-box{background:#1e1b18;}
+        body.night-mode .op-head{background:#2a2520;}
+        body.night-mode .op-body{background:var(--card);}
+        body.night-mode .op-result{background:#2a2018;}
+        body.night-mode .d-op-head{background:#261f14;}
+        body.night-mode .d-op-body{background:#201c14;}
+        body.night-mode .d-op-result{background:#261f14;}
+        body.night-mode .dissent-judges{background:#261f14;}
+        body.night-mode .compare-table th.th-issue{background:#2a1e18;}
+        body.night-mode .compare-table td.td-issue{background:#2a1e18;}
+        body.night-mode .compare-table td.td-majority{background:#1e1612;}
+        body.night-mode .compare-table td.td-dissent{background:#1e1814;}
+        body.night-mode .ref-case{background:#242018;}
+        body.night-mode .law-ref{background:#1c2018;}
+        body.night-mode .note-textarea{background:#1e1b18;color:var(--text);border-color:var(--line);}
+        body.night-mode .judge-chip{background:#2a2520;border-color:var(--line);}
+        body.night-mode .judge-chip.chief{background:#3a3530;}
+        body.night-mode mark.search-hl{background:#7a6010;color:#f0e8c8;}
+        body.night-mode mark.search-hl.current{background:#c47000;color:#fff;}
+        body.night-mode .verdict{background:#2e2a26;}
+        body.night-mode .trap-box{border-color:#5a5020;}
+        body.night-mode .trap-title{color:#c8a840;}
+        body.night-mode .trap-item{border-left-color:#7a6830;}
+        body.night-mode #nightBtn{background:#4a4030;color:#e8d898;font-weight:700;}
+        body.night-mode .quiz-q{background:var(--card);}
+        body.night-mode .quiz-q:hover{background:#2a2520;}
+        body.night-mode .quiz-a{background:#1c2018;color:#9fbf90;}
+        body{transition:background 0.3s,color 0.3s;}.card{transition:background 0.3s,border-color 0.3s;}
+        *{box-sizing:border-box;}
+        body{font-family:"Helvetica Neue",Helvetica,"PingFang TC","LiHei Pro","Microsoft JhengHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.85;font-size:16px;margin:0;padding:0 0 60px;}
+        header{background:var(--header-bg);color:#f5f0eb;padding:16px 16px 8px;text-align:center;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.2);}
+        header h1{margin:0 0 10px;font-size:1.05em;line-height:1.5;font-weight:600;letter-spacing:0.02em;color:#fff;}
+        .header-controls{display:flex;gap:8px;align-items:center;}
+        .search-wrap{position:relative;flex:1;display:flex;align-items:center;gap:4px;}
+        #searchInput{flex:1;padding:8px 14px 8px 32px;border:none;border-radius:6px;font-size:14px;background:rgba(245,240,235,0.15);color:#f5f0eb;outline:none;}
+        #searchInput::placeholder{color:rgba(245,240,235,0.45);}
+        #searchInput:focus{background:rgba(245,240,235,0.25);}
+        .search-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:13px;opacity:0.5;pointer-events:none;}
+        .search-count{font-size:12px;color:rgba(255,255,255,0.7);white-space:nowrap;min-width:44px;text-align:center;}
+        .search-nav{background:rgba(255,255,255,0.13);border:none;border-radius:6px;color:white;font-size:13px;padding:6px 8px;cursor:pointer;line-height:1;}
+        .search-nav:hover{background:rgba(255,255,255,0.25);}
+        .search-nav:disabled{opacity:0.3;cursor:default;}
+        mark.search-hl{background:#ffe066;color:#1a1a1a;border-radius:2px;padding:0 1px;}
+        mark.search-hl.current{background:#ff8c00;color:#fff;border-radius:3px;outline:2px solid #ff8c00;}
+        #filterBtn{background:rgba(245,240,235,0.15);border:none;border-radius:6px;color:#f5f0eb;font-size:13px;padding:8px 12px;cursor:pointer;white-space:nowrap;}
+        #filterBtn.active{background:var(--dissent);color:#fff;font-weight:bold;}
+        .top-bar{background:#e8e2da;padding:5px 14px;display:flex;gap:6px;justify-content:flex-end;flex-wrap:nowrap;}
+        .top-btn{background:#b0a898;color:#fff;border:none;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;transition:opacity 0.15s;}
+        .top-btn:hover{opacity:0.8;}
+        .top-btn.done{background:#8c7b6b;}
+        .top-btn.done.active{background:linear-gradient(135deg,#b8860b,#daa520);color:#fff8e1;font-weight:700;box-shadow:0 0 8px rgba(218,165,32,0.5);}
+        .done-date{font-size:11px;color:#a0a0a0;white-space:nowrap;align-self:center;font-weight:500;}
+        .container{padding:18px 16px;max-width:640px;margin:0 auto;}
+        @media(min-width:768px){.container{max-width:880px;padding:24px 20px;}body{font-size:17px;}header h1{font-size:1.15em;}}
+        .card{background:var(--card);border-radius:14px;padding:24px 22px;margin-bottom:24px;box-shadow:0 1px 6px rgba(61,53,48,0.08);position:relative;border:1px solid var(--line);}
+        .card.hidden{display:none;}
+        .star-btn{position:absolute;top:18px;right:18px;background:none;border:none;font-size:20px;cursor:pointer;opacity:0.15;transition:opacity 0.15s;padding:0;}
+        .star-btn.starred{opacity:1;}
+        .card-title{color:var(--text);font-size:1.15em;font-weight:700;margin:0 0 4px;padding-right:30px;line-height:1.6;}
+        .meta-line{font-size:0.75em;color:var(--sub);margin-bottom:20px;letter-spacing:0.04em;}
+        .verdict{background:#4a3f38;color:#f5f0eb;border-radius:10px;padding:16px 18px;margin-bottom:22px;}
+        .verdict-label{font-size:0.66em;letter-spacing:0.14em;opacity:0.5;margin-bottom:6px;}
+        .verdict-main{font-size:0.97em;font-weight:700;line-height:1.7;margin-bottom:10px;color:#fff;}
+        .verdict-items{display:flex;flex-direction:column;gap:10px;margin-bottom:12px;}
+        .verdict-item{border-left:3px solid rgba(245,240,235,0.35);padding-left:12px;}
+        .verdict-item-num{font-size:0.7em;opacity:0.55;margin-bottom:2px;}
+        .verdict-item-text{font-size:0.95em;line-height:1.6;opacity:0.88;}
+        .vote-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px;padding-top:10px;border-top:1px solid rgba(245,240,235,0.15);}
+        .v-chip{font-size:0.72em;background:rgba(245,240,235,0.1);border-radius:20px;padding:3px 10px;white-space:nowrap;color:rgba(245,240,235,0.75);}
+        .v-chip.majority{background:rgba(158,92,69,0.5);color:#f5f0eb;font-weight:700;}
+        .v-chip.dissent-c{background:rgba(176,125,74,0.45);color:#f5f0eb;}
+        .section-heading{font-size:0.85em;font-weight:700;letter-spacing:0.08em;color:var(--sub);margin:22px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line);}
+        .fact-box{background:#faf8f5;border-left:3px solid var(--sub);border-radius:0 8px 8px 0;padding:14px 16px;margin-bottom:16px;font-size:0.9em;}
+        .fact-box p{margin:0 0 8px;}.fact-box p:last-child{margin:0;}
+        .issue-box{background:#faf8f5;border-radius:8px;padding:14px 16px;margin-bottom:16px;font-size:0.9em;border:1px solid var(--line);}
+        .issue-box p{margin:0 0 8px;}.issue-box p:last-child{margin:0;}
+        .opinions{display:flex;flex-direction:column;gap:10px;margin-bottom:16px;}
+        .op{border-radius:8px;overflow:hidden;border:1px solid var(--line);}
+        .op-head{display:flex;align-items:center;gap:10px;padding:10px 14px;background:#f7f4f0;}
+        .op-num{width:26px;height:26px;border-radius:50%;background:var(--majority);color:white;font-size:0.75em;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+        .op-label{font-weight:700;font-size:0.92em;color:var(--majority);flex:1;}
+        .op-body{padding:13px 15px;font-size:0.9em;background:var(--card);}
+        .op-body p{margin:0 0 9px;}.op-body p:last-child{margin:0;}
+        .op-body ul{margin:5px 0 8px;padding-left:18px;}.op-body li{margin-bottom:5px;}
+        .op-result{background:#fdf9f7;border-radius:6px;padding:10px 13px;margin-top:10px;font-size:0.9em;border-left:3px solid var(--majority);}
+        .d-opinions{display:flex;flex-direction:column;gap:10px;margin-bottom:16px;}
+        .d-op{border-radius:8px;overflow:hidden;border:1px solid #e6d8bc;}
+        .d-op-head{display:flex;align-items:center;gap:10px;padding:10px 14px;background:#fdf7ec;}
+        .d-op-num{width:26px;height:26px;border-radius:50%;background:var(--dissent);color:white;font-size:0.75em;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+        .d-op-label{font-weight:700;font-size:0.92em;color:var(--dissent);flex:1;}
+        .d-op-body{padding:13px 15px;font-size:0.9em;background:#fffdf8;}
+        .d-op-body p{margin:0 0 9px;}.d-op-body p:last-child{margin:0;}
+        .d-op-body ul{margin:5px 0 8px;padding-left:18px;}.d-op-body li{margin-bottom:5px;}
+        .d-op-result{background:#fdf7ec;border-radius:6px;padding:10px 13px;margin-top:10px;font-size:0.9em;border-left:3px solid var(--dissent);}
+        .dissent-judges{font-size:0.82em;color:var(--dissent);margin-bottom:12px;padding:8px 12px;background:#fdf7ec;border-radius:6px;border-left:3px solid var(--dissent);}
+        .compare-table{width:100%;border-collapse:collapse;margin-bottom:18px;font-size:0.88em;}
+        .compare-table th{padding:10px 13px;font-weight:700;font-size:0.85em;letter-spacing:0.05em;}
+        .compare-table th.th-issue{background:#ede0da;color:var(--sub);width:22%;border-radius:6px 0 0 0;}
+        .compare-table th.th-majority{background:var(--majority);color:#fff;width:39%;}
+        .compare-table th.th-dissent{background:var(--dissent);color:#fff;width:39%;border-radius:0 6px 0 0;}
+        .compare-table td{padding:11px 13px;vertical-align:top;border-bottom:1px solid var(--line);line-height:1.65;}
+        .compare-table td.td-issue{background:#f5eeea;font-weight:700;font-size:0.87em;color:var(--sub);}
+        .compare-table td.td-majority{background:#fdf8f6;border-left:2px solid var(--majority);}
+        .compare-table td.td-dissent{background:#fdf8f4;border-left:2px solid var(--dissent);}
+        .compare-table tr:last-child td{border-bottom:none;}
+        @media(max-width:640px){
+            .compare-table thead{display:none;}
+            .compare-table,.compare-table tbody{display:block;}
+            .compare-table tr{display:block;margin-bottom:14px;border-radius:10px;overflow:hidden;border:1px solid var(--line);}
+            .compare-table td.td-issue{display:block;width:100%;background:#ede0da;padding:8px 14px;font-size:0.85em;font-weight:700;border-bottom:none;border-left:none!important;}
+            .compare-table td.td-majority,.compare-table td.td-dissent{display:inline-block;width:50%;vertical-align:top;box-sizing:border-box;padding:10px 11px;border-bottom:none;font-size:0.83em;border-left:none!important;border-top:none;}
+            .compare-table td.td-majority{border-right:1px solid var(--line);border-top:3px solid var(--majority);}
+            .compare-table td.td-dissent{border-top:3px solid var(--dissent);}
+            .compare-table td.td-majority::before{content:"多數";display:block;margin-bottom:5px;font-size:0.78em;font-weight:700;color:var(--majority);}
+            .compare-table td.td-dissent::before{content:"不同";display:block;margin-bottom:5px;font-size:0.78em;font-weight:700;color:var(--dissent);}
+        }
+        .trap-box{background:var(--trap);border-radius:8px;padding:14px 16px;margin-bottom:16px;border:1px solid #e0d8b0;font-size:0.9em;}
+        .trap-title{font-weight:700;color:#7a6820;margin-bottom:10px;font-size:0.92em;display:flex;align-items:center;gap:6px;}
+        .trap-item{margin-bottom:10px;padding-left:14px;border-left:2px solid #c8b860;}
+        .trap-item:last-child{margin-bottom:0;}
+        .trap-q{font-weight:700;color:var(--text);margin-bottom:3px;}
+        .trap-a{color:var(--text);opacity:0.85;}
+        .law-ref{background:#f2f5f0;border-radius:8px;padding:10px 14px;font-size:0.84em;color:#3d4e38;margin-top:14px;border-left:3px solid var(--law);}
+        details{margin-top:16px;}
+        details summary{cursor:pointer;color:var(--sub);font-size:0.84em;font-weight:600;padding:5px 0;user-select:none;list-style:none;display:flex;align-items:center;gap:6px;}
+        details summary::before{content:'▶';font-size:0.62em;transition:transform 0.2s;color:var(--sub);}
+        details[open] summary::before{transform:rotate(90deg);}
+        .ref-case{background:#f7f4f0;border-radius:7px;padding:10px 13px;margin-bottom:8px;font-size:0.84em;border-left:3px solid var(--majority);}
+        .ref-case.d{border-left-color:var(--dissent);}
+        .ref-case-title{font-weight:700;color:var(--majority);margin-bottom:3px;font-size:0.9em;}
+        .ref-case.d .ref-case-title{color:var(--dissent);}
+        .judges-grid{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:6px;}
+        .judge-chip{background:#f5f0eb;border:1px solid var(--line);border-radius:20px;padding:3px 12px;font-size:0.82em;color:var(--text);white-space:nowrap;}
+        .judge-chip.chief{background:#ede0da;font-weight:700;}
+        .judge-chip.dissenter{border-color:var(--dissent);color:var(--dissent);}
+        .note-toggle{color:var(--sub);font-size:0.84em;font-weight:600;cursor:pointer;padding:5px 0;margin-top:16px;display:flex;align-items:center;gap:6px;}
+        .note-area{display:none;margin-top:8px;}.note-area.open{display:block;}
+        .note-textarea{width:100%;min-height:90px;border:1px solid var(--line);border-radius:8px;padding:10px 13px;font-size:0.88em;font-family:inherit;resize:vertical;background:#faf8f5;color:var(--text);outline:none;line-height:1.7;}
+        .note-textarea:focus{border-color:var(--sub);}
+        .note-saved{font-size:0.76em;color:var(--law);margin-top:4px;min-height:16px;}
+        .quiz-list{border-radius:8px;overflow:hidden;border:1px solid var(--line);margin-bottom:16px;}
+        .quiz-item{border-bottom:1px solid var(--line);}.quiz-item:last-child{border-bottom:none;}
+        .quiz-q{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;padding:11px 14px;cursor:pointer;font-size:0.9em;background:var(--card);}
+        .quiz-q:hover{background:#faf8f5;}
+        .quiz-toggle{font-size:1.1em;color:var(--majority);flex-shrink:0;font-weight:300;line-height:1.4;}
+        .quiz-a{display:none;padding:11px 14px;background:#f0f4ee;font-size:0.87em;line-height:1.75;border-top:1px solid var(--line);color:#3d4e38;}
+        .quiz-a.open{display:block;}
+        #noResults,#noStarred{display:none;text-align:center;color:var(--sub);padding:40px 0;font-size:0.9em;}
+        ::-webkit-scrollbar{display:none;}::selection{background:#e8ddd0;}
+    </style>
+</head>
+<body>
+<header>
+    <h1>最高法院民事大法庭<br>111年度台上大字第1958號</h1>
+    <div class="header-controls">
+        <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="搜尋關鍵字、法條…" oninput="doSearch(this.value)" onkeydown="handleSearchKey(event)">
+            <span class="search-count" id="searchCount"></span>
+            <button class="search-nav" id="prevBtn" onclick="navMatch(-1)" disabled>▲</button>
+            <button class="search-nav" id="nextBtn" onclick="navMatch(1)" disabled>▼</button>
+        </div>
+        <button id="filterBtn" onclick="toggleFilter()">⭐ 收藏</button>
+    </div>
+    <div class="top-bar">
+        <button class="top-btn" onclick="highlightText()">🖊️</button>
+        <button class="top-btn" onclick="removeHighlight()">🧽</button>
+        <button class="top-btn" onclick="clearHighlights()">🗑️</button>
+        <button class="top-btn" onclick="openExport()">📤</button>
+        <button class="top-btn" id="nightBtn" onclick="toggleNight()">🌙</button>
+        <button class="top-btn done" id="doneBtn" onclick="toggleDone()">朕已閱</button>
+        <span class="done-date" id="doneDateLabel"></span>
+    </div>
+</header>
+
+<div class="container">
+<div class="card" id="case1" data-kw="自辦市地重劃 獎勵重劃辦法 系爭同意比例 理事 監事 選任 通謀虛偽 人頭 脫法行為 強制規定 平均地權條例 財產權 正當法律程序 主管機關核定 民法第71條 民法第87條 盧彥如 林金吾 不同意見 各別同意比例 整體同意比例">
+    <button class="star-btn" onclick="toggleStar('case1',this)">⭐</button>
+    <h2 class="card-title">自辦市地重劃會選任理監事之同意比例，係各別選任或整體通過？人頭虛偽移轉土地所有權者應否計入？</h2>
+    <div class="meta-line">裁定日期：中華民國114年5月23日　｜　案號：111年度台上大字第1958號　｜　併案5件　｜　不同意見（法律問題二）：盧彥如、林金吾</div>
+
+    <div class="verdict">
+        <div class="verdict-label">大法庭主文（多數見解）</div>
+        <div class="verdict-items">
+            <div class="verdict-item">
+                <div class="verdict-item-num">主文一（法律問題二──系爭同意比例之意義）</div>
+                <div class="verdict-item-text">獎勵重劃辦法第13條第3項，關於第2項第2款選任理事、監事決議所定之同意比例，係指<strong>各別理事及監事之選任獲得同意之比例</strong>，不得以會員大會決議之章程或另訂理監事選舉辦法而降低之。未達上開同意比例或無法判斷之選任決議，除該當不成立外，應屬<strong>無效</strong>，重劃會未合法成立，不因主管機關已為核定且未撤銷而受影響。</div>
+            </div>
+            <div class="verdict-item">
+                <div class="verdict-item-num">主文二（法律問題三──通謀虛偽移轉土地所有權者）</div>
+                <div class="verdict-item-text">以規避上開同意比例之目的而<strong>通謀虛偽移轉土地所有權</strong>者，受移轉登記人之人數及所有土地面積不列入選任決議計算。</div>
+            </div>
+        </div>
+        <div class="vote-row">
+            <span class="v-chip majority">多數意見（主文一、二）</span>
+            <span class="v-chip dissent-c">不同意見（法律問題二）：盧彥如、林金吾</span>
+            <span class="v-chip">裁定日：114.05.23</span>
+        </div>
+    </div>
+
+    <div class="section-heading">基礎事實</div>
+    <div class="fact-box">
+        <p><strong>背景：</strong>甲重劃區籌備會依95年獎勵重劃辦法召開第一次會員大會，依辦法第13條第3項（系爭同意比例：全體會員1/2以上，及所有土地面積超過重劃區總面積1/2以上之同意）決議通過理監事選舉辦法，再依<strong>無記名連記法及得票數多寡</strong>選出13名理事、3名監事，惟未確認有無符合系爭同意比例。</p>
+        <p><strong>人頭問題：</strong>開會時有<strong>66名通謀虛偽登記為土地所有權人</strong>者出席及參與投票；倘扣除該66人，部分當選理、監事之同意票數即不足全體會員1/2。</p>
+        <p><strong>主管機關核定：</strong>甲重劃會依辦法第11條第4項，將章程、會員與理監事名冊、第一次會員大會及理事會紀錄送請主管機關核定獲准，且該核定未經撤銷。</p>
+        <p><strong>原告訴求：</strong>先位確認甲重劃會不成立；備位確認第一次會員大會通過理監事選舉辦法之決議及第三次會員大會決議均不成立、無效或應予撤銷。</p>
+    </div>
+
+    <div class="section-heading">三大法律爭議</div>
+    <div class="issue-box">
+        <p><strong>爭議一（法律問題一）：</strong>選任理監事之決議不合系爭同意比例，惟主管機關已為核定且迄未撤銷，重劃會是否成立？</p>
+        <p><strong>爭議二（法律問題二）：</strong>系爭同意比例，係指<strong>各別理、監事之選任</strong>各自須達到同意比例？抑或指選任理、監事「事項」之決議整體達到同意比例（即整體過半即可，個別得票不須各自過半）？會員大會得否另訂章程或選舉辦法，以無記名投票及得票數多寡選定？</p>
+        <p><strong>爭議三（法律問題三）：</strong>重劃區內有<strong>通謀虛偽登記為土地所有權人</strong>者，於其所有權登記被塗銷前，得否為重劃會會員並參與選任理監事之表決？</p>
+    </div>
+
+    <div class="section-heading">大法庭裁定理由（多數意見）</div>
+    <div class="opinions">
+
+        <div class="op">
+            <div class="op-head"><div class="op-num">㈠</div><span class="op-label">系爭同意比例為「各別選任」之強制規定，不得以章程或選舉辦法降低</span></div>
+            <div class="op-body">
+                <p><strong>文義及規範目的：</strong>辦法第13條第2項第2款、第3項規定，已揭明會員大會選任或解任理監事應取得「全體會員以系爭同意比例同意」之文義，符合授權母法平均地權條例第58條第1項、第3項（半數以上土地所有權人及過半面積之同意）之規範意旨。</p>
+                <p><strong>自辦市地重劃之財產權影響：</strong>重劃一旦發動，不同意參與者被迫面臨財產權（土地使用、收益、處分限制）與居住自由被限制之危險；系爭同意比例係自辦市地重劃符合憲法要求保障財產權之<strong>正當程序</strong>，執法者應以嚴謹態度看待，難認有調整空間。</p>
+                <p><strong>理監事之授權代理性質：</strong>自辦市地重劃會包括不同意參與重劃而被迫參與者，有別於一般私法自治團體；理監事係受重劃區內土地所有權人委任<strong>代為處分財產</strong>，須取得充分授權，始具代表性及正當性。選定主導重劃進行之理監事，自應符合重劃會<strong>絕對多數</strong>之民意。</p>
+                <p>因此，系爭同意比例應解釋為<strong>各別理、監事取得會員同意而得合法代表會員之必要當選比例</strong>，屬強制規定，非自治事項，不能由會員大會以章程或另訂選舉辦法或決議予以調降。</p>
+                <div class="op-result"><strong>結論：</strong>系爭同意比例係各別理監事之選任所需之當選比例，為強制規定；以無記名連記法及得票數多寡選定（未確認各別是否達到同意比例）之選舉辦法，不符規定。</div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head"><div class="op-num">㈡</div><span class="op-label">不符系爭同意比例之選任決議無效，主管機關核定不能治癒，民事法院有審判權</span></div>
+            <div class="op-body">
+                <p><strong>法律效果：</strong>未達系爭同意比例或<strong>無法判斷</strong>已達該比例之選任決議，除參與表決之人數或土地面積未達半數致決議不成立外，依<strong>民法第71條</strong>（法律行為違反強制規定者，無效），應屬<strong>無效</strong>。</p>
+                <p><strong>民事法院之審判權：</strong>自辦市地重劃關於選任理監事之決議，係私法行為性質；重劃會是否合法成立，屬私權紛爭，民事法院有審判權，縱涉及公法關係之爭議亦不影響（釋字第758號解釋參照）。</p>
+                <p><strong>主管機關核定之效力：</strong>系爭核定前提之選任決議不符系爭同意比例之瑕疵<strong>無法治癒</strong>；無論核定性質為何，民事法院仍得對重劃會是否合法成立之私法行為加以審判，<strong>不受核定之拘束</strong>。</p>
+                <div class="op-result"><strong>結論：</strong>選任決議無效→重劃會未合法成立，不因主管機關已核定且未撤銷而受影響；民事法院就此私法爭議有完整審判權。</div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head"><div class="op-num">㈢</div><span class="op-label">通謀虛偽移轉土地所有權者（人頭）之議決行為無效，不列入計算</span></div>
+            <div class="op-body">
+                <p><strong>參與決議之資格限制：</strong>得參與決議並計入同意或不同意之人數及面積者，本應以重劃區內就重劃事務有<strong>切身利害關係之真正土地所有權人</strong>為限。</p>
+                <p><strong>立法沿革（防堵人頭之歷程）：</strong>89年修法將舊規定之計算方式改為同時計算人數及面積，立法理由載明係為避免「藉土地移轉共有，增加人頭，以掌控重劃會」之情事；101年辦法另增訂最小持有面積門檻；106年再提高門檻——均在遏止投機者藉小面積移轉以人數優勢掌控重劃業務。</p>
+                <p><strong>通謀虛偽移轉之法律評價：</strong>其他會員雖對虛偽土地權利變動無從逕依<strong>民法第87條第1項</strong>主張無效，但若係以虛灌人頭方式藉以影響決議，顯在規避系爭同意比例之強制規定，並實質違反該規定欲使理監事具正當性與代表性之法律效果，屬<strong>脫法行為</strong>，非法之所許。受移轉登記之人參與議決之行為應屬<strong>無效</strong>，<strong>不得計入議決之人數及面積</strong>。</p>
+                <div class="op-result"><strong>結論：</strong>以規避系爭同意比例為目的而通謀虛偽移轉土地所有權者，受移轉登記人之人數及所有土地面積不列入選任決議計算。</div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head"><div class="op-num">㈣</div><span class="op-label">附論：誠信原則仍拘束主張重劃會不成立之會員</span></div>
+            <div class="op-body">
+                <p>市地重劃一旦開始施行，土地不論實體或權利內容將逐漸變動並趨複雜。</p>
+                <p>民事法院對重劃會是否因未合法選任理監事而未合法成立之審查權限，雖不因重劃業務進行之程度而受限，但<strong>主張重劃會不成立之會員，其行使權利仍不能違背誠信原則</strong>。</p>
+                <div class="op-result"><strong>結論：</strong>審查權不受限，但誠信原則仍適用於主張重劃會不成立之一方。</div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="section-heading">不同意見書（法官盧彥如、林金吾）——僅就法律問題二</div>
+    <div class="dissent-judges">
+        ✍️ 不同意見法官（2名）：<strong>盧彥如、林金吾</strong><br>
+        ✘ 不同意點：法律問題二——系爭同意比例之意義（應為「整體事項通過之比例」，而非「各別理監事之當選比例」）<br>
+        ℹ️ 法律問題一、三：無不同意見（推定同意多數）
+    </div>
+    <div class="d-opinions">
+        <div class="d-op">
+            <div class="d-op-head"><div class="d-op-num">一</div><span class="d-op-label">系爭同意比例應為「選任理監事事項」之整體決議同意比例，非各別當選比例</span></div>
+            <div class="d-op-body">
+                <p><strong>文義及體系解釋：</strong>辦法第13條第3項規定：「會員大會對於前項各款<strong>事項</strong>之決議，應有系爭同意比例」——係針對第2項各款「事項」所為規範。同條第2項除第2款外，其他款均為明顯的「事項」；且會議規範及人民團體法均將「事之表決」與「人之選舉」分別規定，足見第2款「選任或解任理事、監事」依文義及體系解釋，應指選任或解任理監事之「<strong>事項</strong>」，而非個別理監事之各別當選。</p>
+                <p><strong>理監事為執行職員，非授權代理：</strong>理監事性質上為重劃團體之職員，依章程及會員大會決議案執行業務，再受會員大會之監督——其重大業務（重劃計畫書、配地結果、抵費地處分、預算決算等）均須經會員大會決議通過。由此觀之，系爭同意比例係指選任理監事「事項」決議之同意比例，即<strong>以整個執行團隊為觀察對象</strong>，投票有效總票數達到同意比例即足，而非每位理監事須各自獲得系爭同意比例方能當選。</p>
+                <p><strong>可行性考量：</strong>倘各別理監事之選任均須獲得系爭同意比例（全體會員1/2以上，且土地面積過半），有選舉不易完成之弊端及爭執。且若允許章程訂定選舉方式（無記名連記法及得票數多寡），而選舉時之會員投票有效總票數亦達系爭同意比例者，應認與規定文義相符，無悖於憲法上正當法律程序原則。</p>
+                <div class="d-op-result"><strong>不同意見結論：</strong>系爭同意比例係「選任理監事事項」之整體決議同意比例；以無記名連記法及得票數多寡選舉，若投票有效總票數達系爭同意比例，即符合規定，不需各別理監事均獲得系爭同意比例。</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-heading">多數意見 v. 不同意見　快速對照（法律問題二）</div>
+    <table class="compare-table">
+        <thead>
+            <tr>
+                <th class="th-issue">爭點</th>
+                <th class="th-majority">多數意見</th>
+                <th class="th-dissent">不同意見（盧彥如、林金吾）</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="td-issue">§13-3「同意比例」之文義</td>
+                <td class="td-majority">各別理、監事之選任均須獲得全體會員1/2以上及土地面積過半之同意——為必要當選比例。</td>
+                <td class="td-dissent">係對「選任理監事事項」之決議所設之整體同意比例——投票有效總票數達比例即足，各別理監事不需各自過半。</td>
+            </tr>
+            <tr>
+                <td class="td-issue">§13-2-2之「選任理監事」性質</td>
+                <td class="td-majority">係授權代為處分財產之行為，性質上為對各別理監事人選行使同意權；理監事須具代表性及正當性。</td>
+                <td class="td-dissent">係重劃團體之職員選任「事項」；第13條第3項針對「各款事項」之決議，應指事項整體而言，「選舉人」與「事之表決」本屬二事。</td>
+            </tr>
+            <tr>
+                <td class="td-issue">以無記名連記法及得票多寡選定，是否合法</td>
+                <td class="td-majority">✘ 不合法——無法確認各別理監事是否獲得系爭同意比例，違反強制規定。</td>
+                <td class="td-dissent">✔ 合法——若投票有效總票數達系爭同意比例，以章程另訂選舉方式，符合文義且無悖正當法律程序。</td>
+            </tr>
+            <tr>
+                <td class="td-issue">可調整性</td>
+                <td class="td-majority">強制規定，非自治事項，不能以章程或選舉辦法調降。</td>
+                <td class="td-dissent">允許章程訂定具體選舉方式，只要整體投票有效總票數達比例即可。</td>
+            </tr>
+            <tr>
+                <td class="td-issue">實務操作上之問題</td>
+                <td class="td-majority">（未特別討論操作困難，認屬正當程序之必要要求）。</td>
+                <td class="td-dissent">各別理監事均須個別過半，有選舉不易完成之弊端及爭執。</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="section-heading">⚠️ 考試陷阱提示</div>
+    <div class="trap-box">
+        <div class="trap-title">📌 常見混淆點</div>
+        <div class="trap-item">
+            <div class="trap-q">Q：本件不同意見書是就全部主文不同意，還是只就部分不同意？</div>
+            <div class="trap-a">A：<strong>只就法律問題二（系爭同意比例之意義）不同意。</strong>盧彥如、林金吾兩位法官對法律問題一（核定效力）及法律問題三（通謀虛偽移轉）並無不同意見，僅就「系爭同意比例是指各別當選比例還是整體決議比例」提出不同意見書。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：多數見解認為選任決議違反系爭同意比例，法律效果為何（無效或不成立）？</div>
+            <div class="trap-a">A：<strong>兩種可能：</strong>⑴ 若參與表決之人數或土地面積未達半數→決議<strong>不成立</strong>；⑵ 若有達到參與門檻但未達同意比例（或無法判斷）→依民法第71條，違反強制規定而<strong>無效</strong>。多數主文同時列舉兩種情形（「除該當不成立外，應屬無效」）。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：通謀虛偽移轉土地所有權之人頭，其他會員得否依民法第87條主張無效並請求塗銷？</div>
+            <div class="trap-a">A：<strong>不得直接依§87-1請求，但其議決行為無效。</strong>大法庭指出：其他重劃會會員對於該土地權利變動無可資主張之權利，無從逕依民法§87-1以訴主張無效或請求塗銷。但若人頭係以規避系爭同意比例之目的而虛偽移轉，其參與議決之行為構成<strong>脫法行為</strong>，應屬無效，不得計入議決人數及面積——這是另一個不同的法律基礎，勿混淆。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：主管機關已核定且未撤銷，民事法院可否就重劃會是否成立作出判決？</div>
+            <div class="trap-a">A：<strong>可以，民事法院不受核定拘束。</strong>大法庭：⑴ 選任理監事之決議係私法行為，屬私權紛爭，民事法院有審判權（釋字§758參照）。⑵ 主管機關核定之前提（選任決議）本身有無法治癒之瑕疵，無論核定性質為何，民事法院仍得就重劃會是否合法成立加以審判，不受核定拘束。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：不同意見書的核心論點「體系解釋：§13-3係針對各款事項之決議」是什麼意思？</div>
+            <div class="trap-a">A：不同意見認為：§13-3用語為「對於前項各款<strong>事項</strong>之決議」，「事」與「人（選舉）」在會議規範及人民團體法中本屬二事分別規定。§13-2-2「選任理監事」應理解為選任理監事之「事項」（即此事通過與否），而非對各別理監事人選之逐一認可。因此同意比例係指整個選任「事項」之決議須整體過半，不要求各別理監事各自達到同意比例。多數則認為理監事具財產授權代理性質，各別理監事均需獲得充分授權。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：本件裁定日期為114年5月23日，提案係「111年度台上大字」，這有何特殊之處？</div>
+            <div class="trap-a">A：本件從提案到裁定歷時較長（提案時間早於裁定約2至3年），顯示本件涉及之法律問題複雜，討論時間較長。在複習時注意：案號中「111」係提案年度，裁定年度為民國114年。</div>
+        </div>
+    </div>
+
+    <div class="section-heading">自我測驗</div>
+    <div class="quiz-list">
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)"><span>1. 多數見解認為系爭同意比例之意義為何？與不同意見見解有何差異？</span><span class="quiz-toggle">＋</span></div>
+            <div class="quiz-a">
+                <strong>多數見解：</strong>系爭同意比例係指<strong>各別理、監事之選任</strong>均須各自獲得全體會員1/2以上及土地面積過半之同意，為必要當選比例，屬強制規定，不能以章程或選舉辦法調降。<br><br>
+                <strong>不同意見（盧彥如、林金吾）：</strong>系爭同意比例係指「選任理監事事項」之整體決議須達到同意比例，以整個執行團隊為觀察對象，投票有效總票數達比例即足，各別理監事不需各自達到系爭比例。<br><br>
+                <strong>實際差異：</strong>以無記名連記法及得票數多寡選定理監事，多數認不合法（無法確認各別是否達比例）；不同意見認若整體投票有效總票數達比例，則合法。
+            </div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)"><span>2. 選任決議不符系爭同意比例，法律效果為無效還是不成立？依據為何？</span><span class="quiz-toggle">＋</span></div>
+            <div class="quiz-a">
+                <strong>兩種情形：</strong><br>
+                ① 參與表決之人數或土地面積未達半數→決議<strong>不成立</strong>（欠缺成立要件）。<br>
+                ② 有達到參與門檻但未達同意比例，或無法判斷→系爭同意比例屬強制規定，依<strong>民法第71條</strong>（法律行為違反強制規定者，無效）→決議<strong>無效</strong>。<br><br>
+                主文明確列舉：「除該當不成立外，應屬無效」，兩者並列，視具體情形適用。
+            </div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)"><span>3. 主管機關核定之效力為何？民事法院得否就重劃會是否成立作判斷？</span><span class="quiz-toggle">＋</span></div>
+            <div class="quiz-a">
+                <strong>民事法院有審判權：</strong>選任理監事之決議係私法行為，重劃會是否合法成立屬私權紛爭，由民事法院審判（釋字第758號）。<br><br>
+                <strong>核定不能治癒瑕疵：</strong>主管機關核定之前提（選任決議）有違反強制規定之根本瑕疵，無法因核定而治癒；無論核定性質為何（確認性或設權性），民事法院仍得對重劃會是否合法成立之<strong>私法行為</strong>加以審判，<strong>不受核定拘束</strong>。
+            </div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)"><span>4. 通謀虛偽移轉土地所有權之「人頭」，其參與議決之法律效果為何？可否依民法第87條塗銷？</span><span class="quiz-toggle">＋</span></div>
+            <div class="quiz-a">
+                <strong>議決行為無效，不列入計算：</strong>以規避系爭同意比例為目的之通謀虛偽移轉，受移轉登記人參與議決係<strong>脫法行為</strong>，其議決行為無效，不得計入議決之人數及面積。<br><br>
+                <strong>但不能依§87-1塗銷：</strong>其他重劃會會員對於該土地權利變動無可資主張之權利，無從逕依民法§87-1（通謀虛偽意思表示無效）以訴主張無效或請求塗銷——兩者法律基礎不同，勿混淆。
+            </div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)"><span>5. 不同意見書的體系解釋論據為何？</span><span class="quiz-toggle">＋</span></div>
+            <div class="quiz-a">
+                不同意見（盧彥如、林金吾）援引三點體系解釋：<br><br>
+                ① 辦法§13-3用語為「對於前項各款<strong>事項</strong>之決議」——針對「事項」，非「人選」。<br>
+                ② <strong>會議規範</strong>（捌、拾貳規定）及<strong>人民團體法</strong>（§27決議、§17-1理監事選舉）均將「事之表決」與「人之選舉」分別規定。<br>
+                ③ 理監事係重劃團體之<strong>職員</strong>，依章程及大會決議執行業務，重大事項均須再經大會決議——由此觀之，同意比例係針對選任理監事「事項」整體，以執行團隊為觀察對象，整體投票有效總票數達比例即足，而非逐一對各別理監事行使同意權。
+            </div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)"><span>6. 本件大法庭為何認為系爭同意比例係憲法要求之正當程序？</span><span class="quiz-toggle">＋</span></div>
+            <div class="quiz-a">
+                多數見解從憲法財產權保障出發：<br><br>
+                ① 自辦市地重劃一旦發動，不同意參與者被迫面臨土地使用、收益、處分受限（禁止移轉或建築等），及須負擔重劃費用之義務。<br>
+                ② 被迫參與重劃者之<strong>財產權與居住自由</strong>均受限制，不同於自願加入之私法自治團體。<br>
+                ③ 理監事係受全體土地所有權人委任<strong>代為處分財產</strong>，必須取得充分授權始具代表性及正當性，要求各別理監事獲得絕對多數民意之授權，係確保財產處分代理之正當程序。<br>
+                ④ 平均地權條例§58-1、§58-3（半數以上、過半面積）之母法規定，亦呼應此要求。
+            </div>
+        </div>
+    </div>
+
+    <div class="law-ref">
+        <strong>相關法條：</strong>平均地權條例§58（自辦市地重劃授權依據）；95年獎勵重劃辦法§11（重劃會成立）；§13（會員大會；系爭同意比例）；§14（理事會）；§15（監事會）；101年獎勵重劃辦法§13（含最小持有面積門檻增訂）；民法§71（違反強制規定無效）；民法§87-1（通謀虛偽意思表示無效）；司法院釋字第758號（公私法爭議分流）；釋字第709、689號（正當法律程序）；憲法§15（財產權保障）
+    </div>
+
+    <details>
+        <summary>不同意見書引用之法規及會議規範</summary>
+        <div style="padding-top:10px;">
+            <div class="ref-case d">
+                <div class="ref-case-title">【不同意見引用】會議規範（捌、拾貳）</div>
+                <p style="margin:0;">會議規範對於「事之表決」（捌）及「人之選舉」（拾貳）分屬二事予以規定，足見「事」（決議）與「人」（選舉）在規範體系中本有區別。不同意見據此主張§13-2-2之「選任理監事」應指「事項」，非逐一對各別理監事行使同意權。</p>
+            </div>
+            <div class="ref-case d">
+                <div class="ref-case-title">【不同意見引用】人民團體法§27（決議）、§17-1（理監事選舉）</div>
+                <p style="margin:0;">人民團體法亦就「事項之決議」及「理監事之選舉」分別規定，顯示兩者在法規體系上本為不同性質之規範對象，支持不同意見所採之體系解釋。</p>
+            </div>
+        </div>
+    </details>
+
+    <details>
+        <summary>大法庭組成</summary>
+        <div style="padding-top:10px;">
+            <div class="judges-grid">
+                <span class="judge-chip chief">審判長（詳見裁定）</span>
+                <span class="judge-chip dissenter">盧彥如（不同意見，法律問題二）</span>
+                <span class="judge-chip dissenter">林金吾（不同意見，法律問題二）</span>
+            </div>
+            <p style="font-size:0.82em;color:var(--sub);margin:10px 0 0;">裁定日期：中華民國114年5月23日　｜　不同意見：法官盧彥如、林金吾，就法律問題二提出</p>
+        </div>
+    </details>
+
+    <div class="note-toggle" onclick="toggleNote('n1')">✏️ 我的小結</div>
+    <div class="note-area" id="n1">
+        <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n1',this.value)"></textarea>
+        <div class="note-saved" id="n1-saved"></div>
+    </div>
+</div>
+
+<div id="noResults">查無符合的內容，請試試其他關鍵字。</div>
+<div id="noStarred">還沒有收藏的項目，點卡片右上角的 ⭐ 加入收藏。</div>
+</div>
+
+<script>
+const NIGHT_KEY='night_mode_pref';
+function toggleNight(){const on=document.body.classList.toggle('night-mode');localStorage.setItem(NIGHT_KEY,on?'1':'0');document.getElementById('nightBtn').textContent=on?'☀️':'🌙';}
+(function(){if(localStorage.getItem(NIGHT_KEY)==='1'){document.body.classList.add('night-mode');const b=document.getElementById('nightBtn');if(b)b.textContent='☀️';}})();
+const STORE_KEY='111_1958_grand_notes',STAR_KEY='111_1958_grand_stars';
+function loadNotes(){try{return JSON.parse(localStorage.getItem(STORE_KEY))||{};}catch{return{};}}
+function loadStars(){try{return JSON.parse(localStorage.getItem(STAR_KEY))||{};}catch{return{};}}
+function saveAllNotes(d){localStorage.setItem(STORE_KEY,JSON.stringify(d));}
+function saveAllStars(d){localStorage.setItem(STAR_KEY,JSON.stringify(d));}
+(function(){const n=loadNotes(),s=loadStars();
+  Object.entries(n).forEach(([id,v])=>{const a=document.getElementById(id);if(!a)return;const t=a.querySelector('textarea');if(t)t.value=v;if(v)a.classList.add('open');});
+  Object.entries(s).forEach(([id,v])=>{if(!v)return;const b=document.querySelector(`#${id} .star-btn`);if(b)b.classList.add('starred');});
+})();
+function toggleStar(id,btn){const s=loadStars();const now=!btn.classList.contains('starred');btn.classList.toggle('starred',now);s[id]=now;saveAllStars(s);if(filterActive)applyFilter();}
+let filterActive=false;
+function toggleFilter(){filterActive=!filterActive;document.getElementById('filterBtn').classList.toggle('active',filterActive);document.getElementById('searchInput').value='';clearSearchHighlights();updateSearchUI([],0);applyFilter();}
+function applyFilter(){const s=loadStars();const q=document.getElementById('searchInput').value.trim().toLowerCase();let any=false;
+  document.querySelectorAll('.card').forEach(c=>{const kw=(c.dataset.kw||'').toLowerCase();const txt=c.textContent.toLowerCase();
+  const ms=!q||kw.includes(q)||txt.includes(q);const mf=!filterActive||!!s[c.id];const show=ms&&mf;
+  c.classList.toggle('hidden',!show);if(show)any=true;});
+  document.getElementById('noResults').style.display=(!any&&!filterActive)?'block':'none';
+  document.getElementById('noStarred').style.display=(!any&&filterActive)?'block':'none';}
+let _matches=[],_cur=-1;
+function clearSearchHighlights(){document.querySelectorAll('mark.search-hl').forEach(m=>{const p=m.parentNode;p.replaceChild(document.createTextNode(m.textContent),m);p.normalize();});}
+function highlightInNode(node,re){if(node.nodeType===3){const text=node.nodeValue;const frag=document.createDocumentFragment();let last=0,m;re.lastIndex=0;while((m=re.exec(text))!==null){if(m.index>last)frag.appendChild(document.createTextNode(text.slice(last,m.index)));const mk=document.createElement('mark');mk.className='search-hl';mk.textContent=m[0];frag.appendChild(mk);last=re.lastIndex;}if(last===0)return;frag.appendChild(document.createTextNode(text.slice(last)));node.parentNode.replaceChild(frag,node);return;}if(node.nodeType===1){const tag=node.tagName;if(tag==='SCRIPT'||tag==='STYLE'||tag==='TEXTAREA'||tag==='INPUT')return;if(node.classList&&node.classList.contains('search-hl'))return;[...node.childNodes].forEach(c=>highlightInNode(c,re));}}
+function doSearch(q){clearSearchHighlights();_matches=[];_cur=-1;const qt=(q||'').trim();if(!qt){updateSearchUI([],0);applyFilter();return;}applyFilter();const esc=qt.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');const re=new RegExp(esc,'gi');document.querySelectorAll('.container .card:not(.hidden)').forEach(card=>{highlightInNode(card,re);});_matches=[...document.querySelectorAll('mark.search-hl')];if(_matches.length){_cur=0;setCurrent(0);}updateSearchUI(_matches,_cur);}
+function setCurrent(idx){_matches.forEach((m,i)=>m.classList.toggle('current',i===idx));if(_matches[idx])_matches[idx].scrollIntoView({behavior:'smooth',block:'center'});}
+function navMatch(dir){if(!_matches.length)return;_cur=(_cur+dir+_matches.length)%_matches.length;setCurrent(_cur);updateSearchUI(_matches,_cur);}
+function updateSearchUI(matches,cur){const cnt=document.getElementById('searchCount');const prev=document.getElementById('prevBtn');const next=document.getElementById('nextBtn');if(!matches.length){cnt.textContent='';prev.disabled=true;next.disabled=true;return;}cnt.textContent=(cur+1)+'/'+matches.length;prev.disabled=false;next.disabled=false;}
+function handleSearchKey(e){if(e.key==='Enter'){e.shiftKey?navMatch(-1):navMatch(1);}if(e.key==='Escape'){document.getElementById('searchInput').value='';doSearch('');}}
+function toggleNote(id){document.getElementById(id).classList.toggle('open');}
+const timers={};
+function saveNote(id,v){clearTimeout(timers[id]);timers[id]=setTimeout(()=>{const n=loadNotes();n[id]=v;saveAllNotes(n);const el=document.getElementById(id+'-saved');if(el){el.textContent='已儲存';setTimeout(()=>el.textContent='',1500);}},500);}
+let savedRange=null;
+document.addEventListener('selectionchange',()=>{const s=window.getSelection();if(s&&!s.isCollapsed&&s.rangeCount)savedRange=s.getRangeAt(0).cloneRange();});
+function highlightText(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;
+  if(!r||r.collapsed){alert('💡 請先反白想要標記的文字');return;}
+  const sp=document.createElement('span');sp.className='hl';sp.style.cssText='background:#f0d98a;border-radius:2px;';
+  try{r.surroundContents(sp);savedRange=null;}catch{alert('💡 請選取同一段落內的文字');}s&&s.removeAllRanges();}
+function removeHighlight(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;
+  if(!r||r.collapsed){alert('💡 請先反白想擦除標記的文字');return;}
+  const anc=r.commonAncestorContainer.nodeType===1?r.commonAncestorContainer:r.commonAncestorContainer.parentElement;
+  anc.querySelectorAll('span.hl').forEach(sp=>{if(r.intersectsNode(sp)){const p=sp.parentNode;while(sp.firstChild)p.insertBefore(sp.firstChild,sp);p.removeChild(sp);}});
+  savedRange=null;s&&s.removeAllRanges();}
+function clearHighlights(){const sp=document.querySelectorAll('span.hl');if(!sp.length)return;
+  if(confirm('確定要清除所有重點標記嗎？')){sp.forEach(s=>{const p=s.parentNode;while(s.firstChild)p.insertBefore(s.firstChild,s);p.removeChild(s);});}}
+function openExport(){
+  let out='最高法院民事大法庭 111年度台上大字第1958號\n'+'═'.repeat(44)+'\n\n';
+  out+='【主文一】系爭同意比例係各別理、監事之選任獲得同意之比例，為強制規定，不得以章程或選舉辦法降低之。\n未達上開同意比例或無法判斷之選任決議，除不成立外，應屬無效，重劃會未合法成立，不因主管機關核定未撤銷而受影響。\n\n';
+  out+='【主文二】以規避上開同意比例之目的而通謀虛偽移轉土地所有權者，受移轉登記人之人數及所有土地面積不列入選任決議計算。\n\n';
+  out+='【不同意見（法律問題二）：盧彥如、林金吾】\n系爭同意比例係對「選任理監事事項」之整體決議同意比例，以整個執行團隊為觀察對象，投票有效總票數達比例即足；允許章程另訂選舉方式（無記名連記法及得票多寡），若整體投票有效總票數達比例，即屬合法。\n\n';
+  const ta=document.querySelector('.note-textarea');if(ta&&ta.value.trim())out+='✏️ 小結：\n'+ta.value.trim()+'\n\n';
+  out+='═'.repeat(44)+'\n';
+  const b=new Blob([out.trim()],{type:'text/plain;charset=utf-8'});
+  const u=URL.createObjectURL(b);const a=document.createElement('a');
+  a.href=u;a.download='111台上大字第1958號_自辦市地重劃理監事選任同意比例.txt';a.click();URL.revokeObjectURL(u);}
+function toggleQuiz(el){const ans=el.nextElementSibling;const tog=el.querySelector('.quiz-toggle');if(ans.classList.contains('open')){ans.classList.remove('open');tog.textContent='＋';}else{ans.classList.add('open');tog.textContent='－';}}
+const REG_KEY='exam_completion_registry';
+function _loadReg(){try{return JSON.parse(localStorage.getItem(REG_KEY))||{};}catch{return{};}}
+function _saveReg(r){try{localStorage.setItem(REG_KEY,JSON.stringify(r));}catch{}}
+function _file(){const p=location.pathname.split('/');return decodeURIComponent(p[p.length-1]||'');}
+function _fmt(ts){const d=new Date(ts);const date=(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();const time=d.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false});return date+' '+time;}
+function _updateDate(){const r=_loadReg();const k=_file()||'case_civil_grand_111_1958.html';const l=document.getElementById('doneDateLabel');if(!l)return;l.textContent=(r[k]&&r[k].done&&r[k].ts)?_fmt(r[k].ts):'';}
+const _INDEX_CARD_ID='c_1958';
+function _syncIndex(done){try{const r=JSON.parse(localStorage.getItem('gc_reads')||'{}');r[_INDEX_CARD_ID]=done;localStorage.setItem('gc_reads',JSON.stringify(r));}catch(e){}}
+function toggleDone(){const btn=document.getElementById('doneBtn');const r=_loadReg();const k=_file()||'case_civil_grand_111_1958.html';const done=r[k]&&r[k].done;
+  if(done){delete r[k];_saveReg(r);btn.classList.remove('active');_syncIndex(false);}
+  else{const now=new Date();r[k]={done:true,score:null,total:null,ts:now.getTime(),tsLabel:now.toLocaleDateString('zh-TW')+' '+now.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false})};_saveReg(r);btn.classList.add('active');_syncIndex(true);}
+  _updateDate();}
+(function(){const r=_loadReg();const k=_file()||'case_civil_grand_111_1958.html';if(r[k]&&r[k].done){const b=document.getElementById('doneBtn');if(b)b.classList.add('active');}_updateDate();})();
+</script>
+</body>
+</html>

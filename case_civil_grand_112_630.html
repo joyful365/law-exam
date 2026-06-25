@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>112年度台抗大字第630號 民事大法庭裁定</title>
+    <style>
+        :root{--bg:#f5f0eb;--card:#ffffff;--text:#3d3530;--sub:#8c7b6b;--line:#ddd8d0;--majority:#9e5c45;--law:#5a6e4e;--dissent:#b07d4a;--trap:#f5f0d8;--header-bg:#5c4f47;}
+        body.night-mode{--bg:#1a1714;--card:#252220;--text:#d4cec8;--sub:#8a7d72;--line:#383330;--majority:#b87060;--law:#6a8a5e;--dissent:#c4935a;--trap:#2a2518;--header-bg:#111010;}
+        body.night-mode header{box-shadow:0 2px 8px rgba(0,0,0,0.5);}
+        body.night-mode .top-bar{background:#1e1b18;}
+        body.night-mode .top-btn{background:#3a3530;}
+        body.night-mode .fact-box,body.night-mode .issue-box{background:#1e1b18;}
+        body.night-mode .op-head{background:#2a2520;}
+        body.night-mode .op-body{background:var(--card);}
+        body.night-mode .op-result{background:#2a2018;}
+        body.night-mode .ref-case{background:#242018;}
+        body.night-mode .law-ref{background:#1c2018;}
+        body.night-mode .note-textarea{background:#1e1b18;color:var(--text);border-color:var(--line);}
+        body.night-mode .judge-chip{background:#2a2520;border-color:var(--line);}
+        body.night-mode .judge-chip.chief{background:#3a3530;}
+        body.night-mode mark.search-hl{background:#7a6010;color:#f0e8c8;}
+        body.night-mode mark.search-hl.current{background:#c47000;color:#fff;}
+        body.night-mode .verdict{background:#2e2a26;}
+        body.night-mode .trap-box{border-color:#5a5020;}
+        body.night-mode .trap-title{color:#c8a840;}
+        body.night-mode .trap-item{border-left-color:#7a6830;}
+        body.night-mode #nightBtn{background:#4a4030;color:#e8d898;font-weight:700;}
+        body.night-mode .quiz-q{background:var(--card);}
+        body.night-mode .quiz-q:hover{background:#2a2520;}
+        body.night-mode .quiz-a{background:#1c2018;color:#9fbf90;}
+        body{transition:background 0.3s,color 0.3s;}.card{transition:background 0.3s,border-color 0.3s;}
+        *{box-sizing:border-box;}
+        body{font-family:"Helvetica Neue",Helvetica,"PingFang TC","LiHei Pro","Microsoft JhengHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.85;font-size:16px;margin:0;padding:0 0 60px;}
+        header{background:var(--header-bg);color:#f5f0eb;padding:16px 16px 8px;text-align:center;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.2);}
+        header h1{margin:0 0 10px;font-size:1.05em;line-height:1.5;font-weight:600;letter-spacing:0.02em;color:#fff;}
+        .header-controls{display:flex;gap:8px;align-items:center;}
+        .search-wrap{position:relative;flex:1;display:flex;align-items:center;gap:4px;}
+        #searchInput{flex:1;padding:8px 14px 8px 32px;border:none;border-radius:6px;font-size:14px;background:rgba(245,240,235,0.15);color:#f5f0eb;outline:none;}
+        #searchInput::placeholder{color:rgba(245,240,235,0.45);}
+        #searchInput:focus{background:rgba(245,240,235,0.25);}
+        .search-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:13px;opacity:0.5;pointer-events:none;}
+        .search-count{font-size:12px;color:rgba(255,255,255,0.7);white-space:nowrap;min-width:44px;text-align:center;}
+        .search-nav{background:rgba(255,255,255,0.13);border:none;border-radius:6px;color:white;font-size:13px;padding:6px 8px;cursor:pointer;line-height:1;}
+        .search-nav:hover{background:rgba(255,255,255,0.25);}
+        .search-nav:disabled{opacity:0.3;cursor:default;}
+        mark.search-hl{background:#ffe066;color:#1a1a1a;border-radius:2px;padding:0 1px;}
+        mark.search-hl.current{background:#ff8c00;color:#fff;border-radius:3px;outline:2px solid #ff8c00;}
+        #filterBtn{background:rgba(245,240,235,0.15);border:none;border-radius:6px;color:#f5f0eb;font-size:13px;padding:8px 12px;cursor:pointer;white-space:nowrap;}
+        #filterBtn.active{background:var(--dissent);color:#fff;font-weight:bold;}
+        .top-bar{background:#e8e2da;padding:5px 14px;display:flex;gap:6px;justify-content:flex-end;flex-wrap:nowrap;}
+        .top-btn{background:#b0a898;color:#fff;border:none;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;transition:opacity 0.15s;}
+        .top-btn:hover{opacity:0.8;}
+        .top-btn.done{background:#8c7b6b;}
+        .top-btn.done.active{background:linear-gradient(135deg,#b8860b,#daa520);color:#fff8e1;font-weight:700;box-shadow:0 0 8px rgba(218,165,32,0.5);}
+        .done-date{font-size:11px;color:#a0a0a0;white-space:nowrap;align-self:center;font-weight:500;}
+        .container{padding:18px 16px;max-width:640px;margin:0 auto;}
+        @media(min-width:768px){.container{max-width:880px;padding:24px 20px;}body{font-size:17px;}header h1{font-size:1.15em;}}
+        .card{background:var(--card);border-radius:14px;padding:24px 22px;margin-bottom:24px;box-shadow:0 1px 6px rgba(61,53,48,0.08);position:relative;border:1px solid var(--line);}
+        .card.hidden{display:none;}
+        .star-btn{position:absolute;top:18px;right:18px;background:none;border:none;font-size:20px;cursor:pointer;opacity:0.15;transition:opacity 0.15s;padding:0;}
+        .star-btn.starred{opacity:1;}
+        .card-title{color:var(--text);font-size:1.15em;font-weight:700;margin:0 0 4px;padding-right:30px;line-height:1.6;}
+        .meta-line{font-size:0.75em;color:var(--sub);margin-bottom:20px;letter-spacing:0.04em;}
+        .verdict{background:#4a3f38;color:#f5f0eb;border-radius:10px;padding:16px 18px;margin-bottom:22px;}
+        .verdict-label{font-size:0.66em;letter-spacing:0.14em;opacity:0.5;margin-bottom:6px;}
+        .verdict-main{font-size:1.0em;font-weight:700;line-height:1.7;margin-bottom:10px;color:#fff;}
+        .vote-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px;padding-top:10px;border-top:1px solid rgba(245,240,235,0.15);}
+        .v-chip{font-size:0.72em;background:rgba(245,240,235,0.1);border-radius:20px;padding:3px 10px;white-space:nowrap;color:rgba(245,240,235,0.75);}
+        .v-chip.majority{background:rgba(158,92,69,0.5);color:#f5f0eb;font-weight:700;}
+        .section-heading{font-size:0.85em;font-weight:700;letter-spacing:0.08em;color:var(--sub);margin:22px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line);}
+        .fact-box{background:#faf8f5;border-left:3px solid var(--sub);border-radius:0 8px 8px 0;padding:14px 16px;margin-bottom:16px;font-size:0.9em;}
+        .fact-box p{margin:0 0 8px;}.fact-box p:last-child{margin:0;}
+        .issue-box{background:#faf8f5;border-radius:8px;padding:14px 16px;margin-bottom:16px;font-size:0.9em;border:1px solid var(--line);}
+        .issue-box p{margin:0 0 8px;}.issue-box p:last-child{margin:0;}
+        .opinions{display:flex;flex-direction:column;gap:10px;margin-bottom:16px;}
+        .op{border-radius:8px;overflow:hidden;border:1px solid var(--line);}
+        .op-head{display:flex;align-items:center;gap:10px;padding:10px 14px;background:#f7f4f0;}
+        .op-num{width:26px;height:26px;border-radius:50%;background:var(--majority);color:white;font-size:0.75em;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+        .op-label{font-weight:700;font-size:0.92em;color:var(--majority);flex:1;}
+        .op-body{padding:13px 15px;font-size:0.9em;background:var(--card);}
+        .op-body p{margin:0 0 9px;}.op-body p:last-child{margin:0;}
+        .op-body ul{margin:5px 0 8px;padding-left:18px;}.op-body li{margin-bottom:5px;}
+        .op-result{background:#fdf9f7;border-radius:6px;padding:10px 13px;margin-top:10px;font-size:0.9em;border-left:3px solid var(--majority);}
+        .highlight-box{background:#e8f0e4;border-radius:8px;padding:13px 15px;margin-bottom:14px;font-size:0.9em;border-left:3px solid var(--law);}
+        .trap-box{background:var(--trap);border-radius:8px;padding:14px 16px;margin-bottom:16px;border:1px solid #e0d8b0;font-size:0.9em;}
+        .trap-title{font-weight:700;color:#7a6820;margin-bottom:10px;font-size:0.92em;display:flex;align-items:center;gap:6px;}
+        .trap-item{margin-bottom:10px;padding-left:14px;border-left:2px solid #c8b860;}
+        .trap-item:last-child{margin-bottom:0;}
+        .trap-q{font-weight:700;color:var(--text);margin-bottom:3px;}
+        .trap-a{color:var(--text);opacity:0.85;}
+        .law-ref{background:#f2f5f0;border-radius:8px;padding:10px 14px;font-size:0.84em;color:#3d4e38;margin-top:14px;border-left:3px solid var(--law);}
+        details{margin-top:16px;}
+        details summary{cursor:pointer;color:var(--sub);font-size:0.84em;font-weight:600;padding:5px 0;user-select:none;list-style:none;display:flex;align-items:center;gap:6px;}
+        details summary::before{content:'▶';font-size:0.62em;transition:transform 0.2s;color:var(--sub);}
+        details[open] summary::before{transform:rotate(90deg);}
+        .ref-case{background:#f7f4f0;border-radius:7px;padding:10px 13px;margin-bottom:8px;font-size:0.84em;border-left:3px solid var(--majority);}
+        .ref-case-title{font-weight:700;color:var(--majority);margin-bottom:3px;font-size:0.9em;}
+        .judges-grid{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:6px;}
+        .judge-chip{background:#f5f0eb;border:1px solid var(--line);border-radius:20px;padding:3px 12px;font-size:0.82em;color:var(--text);white-space:nowrap;}
+        .judge-chip.chief{background:#ede0da;font-weight:700;}
+        .note-toggle{color:var(--sub);font-size:0.84em;font-weight:600;cursor:pointer;padding:5px 0;margin-top:16px;display:flex;align-items:center;gap:6px;}
+        .note-area{display:none;margin-top:8px;}.note-area.open{display:block;}
+        .note-textarea{width:100%;min-height:90px;border:1px solid var(--line);border-radius:8px;padding:10px 13px;font-size:0.88em;font-family:inherit;resize:vertical;background:#faf8f5;color:var(--text);outline:none;line-height:1.7;}
+        .note-textarea:focus{border-color:var(--sub);}
+        .note-saved{font-size:0.76em;color:var(--law);margin-top:4px;min-height:16px;}
+        .quiz-list{border-radius:8px;overflow:hidden;border:1px solid var(--line);margin-bottom:16px;}
+        .quiz-item{border-bottom:1px solid var(--line);}.quiz-item:last-child{border-bottom:none;}
+        .quiz-q{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;padding:11px 14px;cursor:pointer;font-size:0.9em;background:var(--card);}
+        .quiz-q:hover{background:#faf8f5;}
+        .quiz-toggle{font-size:1.1em;color:var(--majority);flex-shrink:0;font-weight:300;line-height:1.4;}
+        .quiz-a{display:none;padding:11px 14px;background:#f0f4ee;font-size:0.87em;line-height:1.75;border-top:1px solid var(--line);color:#3d4e38;}
+        .quiz-a.open{display:block;}
+        #noResults,#noStarred{display:none;text-align:center;color:var(--sub);padding:40px 0;font-size:0.9em;}
+        ::-webkit-scrollbar{display:none;}::selection{background:#e8ddd0;}
+    </style>
+</head>
+<body>
+<header>
+    <h1>最高法院民事大法庭<br>112年度台抗大字第630號</h1>
+    <div class="header-controls">
+        <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="搜尋關鍵字、法條…" oninput="doSearch(this.value)" onkeydown="handleSearchKey(event)">
+            <span class="search-count" id="searchCount"></span>
+            <button class="search-nav" id="prevBtn" onclick="navMatch(-1)" disabled>▲</button>
+            <button class="search-nav" id="nextBtn" onclick="navMatch(1)" disabled>▼</button>
+        </div>
+        <button id="filterBtn" onclick="toggleFilter()">⭐ 收藏</button>
+    </div>
+    <div class="top-bar">
+        <button class="top-btn" onclick="highlightText()">🖊️</button>
+        <button class="top-btn" onclick="removeHighlight()">🧽</button>
+        <button class="top-btn" onclick="clearHighlights()">🗑️</button>
+        <button class="top-btn" onclick="openExport()">📤</button>
+        <button class="top-btn" id="nightBtn" onclick="toggleNight()">🌙</button>
+        <button class="top-btn done" id="doneBtn" onclick="toggleDone()">朕已閱</button>
+        <span class="done-date" id="doneDateLabel"></span>
+    </div>
+</header>
+
+<div class="container">
+<div class="card" id="case1" data-kw="裁判費 退還 撤回起訴 普通共同訴訟 可分債務 共同訴訟人獨立原則 民事訴訟法第83條 民事訴訟法第55條 部分撤回 上訴審裁判費 訴訟經濟 平等原則 吳孟勳 高孟焄">
+    <button class="star-btn" onclick="toggleStar('case1',this)">⭐</button>
+    <h2 class="card-title">普通共同訴訟敗訴上訴後，僅就部分被告撤回起訴，得否聲請退還該部分上訴審裁判費？</h2>
+    <div class="meta-line">裁定日期：中華民國113年2月20日　｜　案號：112年度台抗大字第630號　｜　提案庭：最高法院民事第五庭　｜　全體一致</div>
+
+    <div class="verdict">
+        <div class="verdict-label">大法庭主文</div>
+        <div class="verdict-main">債權人本於同種類原因事實所生之請求權，以二人以上之多數債務人為共同被告，就非屬連帶或不可分之<strong>可分債務</strong>，合併提起<strong>普通共同訴訟</strong>，經法院判決敗訴並提起上訴後，僅就部分債務人撤回起訴時，得依修正後民事訴訟法第83條第3項規定，聲請<strong>退還該撤回部分之上訴審裁判費</strong>。</div>
+        <div class="vote-row">
+            <span class="v-chip majority">全體一致 11票 ✔</span>
+            <span class="v-chip">無不同意見書</span>
+            <span class="v-chip">裁定日：113.02.20</span>
+        </div>
+    </div>
+
+    <div class="section-heading">基礎事實</div>
+    <div class="fact-box">
+        <p><strong>原告（抗告人）：</strong>吳孟勳，主張A報社記者A1、B報社記者B1、C報社記者C1，未盡合理查證義務即撰寫對其不利之報導，嚴重損害其名譽。</p>
+        <p><strong>訴訟架構：</strong>依侵權行為法律關係，起訴請求<strong>A與A1連帶給付100萬元、B與B1連帶給付100萬元、C與C1連帶給付100萬元</strong>（三組各自連帶，各組之間互相獨立，為可分債務之普通共同訴訟）。</p>
+        <p><strong>第一審：</strong>全部敗訴。原告提起第二審上訴。</p>
+        <p><strong>爭議行為：</strong>112年2月間，原告於第二審審理期間，<strong>撤回對C與C1部分之起訴</strong>，並依民事訴訟法第83條規定聲請退還該撤回部分之第二審裁判費三分之二。</p>
+        <p><strong>舊見解（95年第7次民事庭會議決議）：</strong>須「訴訟全部繫屬消滅而告終結」，始得聲請退還裁判費——本件因仍有A、B兩組訴訟繫屬，不符合此要件而被駁回。</p>
+        <p><strong>適用新法：</strong>112年12月1日增訂施行之民事訴訟法第83條第3項；依民事訴訟法施行法第2條，修正民事訴訟法於施行前發生之事項亦適用，故本件適用新法。</p>
+    </div>
+
+    <div class="section-heading">法律爭議</div>
+    <div class="issue-box">
+        <p><strong>系爭規定：</strong>民事訴訟法第83條（鼓勵撤回，退還裁判費三分之二）；112年12月1日增訂第3項（明定於上訴審撤回起訴時亦得聲請退還）。</p>
+        <p><strong>爭議：</strong>普通共同訴訟中，若原告僅就<strong>部分被告</strong>撤回起訴（整體訴訟尚未終結），得否依§83聲請退還該部分之上訴審裁判費？</p>
+        <p><strong>舊見解之問題：</strong>95年決議要求「訴訟全部繫屬消滅」，使普通共同訴訟中，只要還有任何一組訴訟在繫屬，任何部分之撤回均無法退費，不論該撤回部分與其他部分是否各自獨立、互無關聯。</p>
+        <p><strong>核心：</strong>普通共同訴訟之「共同訴訟人獨立原則」（§55）能否貫徹至退費機制？</p>
+    </div>
+
+    <div class="section-heading">大法庭裁定理由（全體一致）</div>
+    <div class="opinions">
+
+        <div class="op">
+            <div class="op-head"><div class="op-num">㈠</div><span class="op-label">新法（§83第3項）適用——施行法第2條溯及效力</span></div>
+            <div class="op-body">
+                <p>民事訴訟法第83條之立法意旨：鼓勵當事人撤回無益或不必要之訴訟，以<strong>減輕訟累並減省法院勞費</strong>。</p>
+                <p>為貫徹此規範目的，於原告在上訴審撤回起訴之情形，上訴人不論係原告或被告，均應肯認其得於原告撤回後<strong>3個月內</strong>聲請退還該審級所繳裁判費三分之二，此為112年12月1日增訂施行之第3項所明定。</p>
+                <p>本件原告撤回起訴雖在第3項施行前，但依<strong>民事訴訟法施行法第2條</strong>：「除本施行法別有規定外，修正民事訴訟法於其施行前發生之事項亦適用之」，仍應適用新法。</p>
+                <div class="op-result"><strong>結論：</strong>本件適用112年12月1日施行之民事訴訟法第83條第3項。</div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head"><div class="op-num">㈡</div><span class="op-label">舊見解（95年決議）增加法文所無之限制，有違平等原則</span></div>
+            <div class="op-body">
+                <p>民事訴訟法第83條僅就原告「撤回其訴或上訴人撤回上訴」為規定，<strong>未區別係撤回全部或部分訴訟</strong>。</p>
+                <p>95年第7次民事庭會議決議認須「訴訟全部繫屬消滅而告終結」始得退費，使所有基於訴訟經濟而合併在同一訴訟程序提起之普通共同訴訟，只要尚有一部繫屬，均不得退費——此係<strong>增加法文所無之限制</strong>，影響當事人權益。</p>
+                <p>更重要的是：當事人提起複數訴訟，僅部分撤回，而仍有部分訴訟繫屬時，無論撤回部分與未撤回部分是否各自獨立、勝敗互無關連、利害互不相及，均受未撤回部分之影響而不准退費。</p>
+                <div class="op-result"><strong>結論：</strong>舊見解將普通共同訴訟之部分撤回，限制為不得退費，已增加法文所無之限制，應予揚棄。</div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head"><div class="op-num">㈢</div><span class="op-label">共同訴訟人獨立原則（§55）——部分撤回等同個別訴訟之全部撤回</span></div>
+            <div class="op-body">
+                <p><strong>普通共同訴訟之本質：單純訴之合併。</strong>債權人本於同種類原因事實所生之請求權，以多數債務人為共同被告，就<strong>可分債務</strong>合併提起普通共同訴訟，係單純訴之合併——其數權利與義務各自獨立，多數當事人原得<strong>個別起訴或被訴</strong>，法院亦按個別訴訟標的核定金額、價額，並據以計算徵收裁判費。</p>
+                <p>依民事訴訟法<strong>第55條共同訴訟人獨立原則</strong>，在上訴審若原告撤回部分被告之訴，該撤回之被告脫離訴訟繫屬，與<strong>單一訴訟繫屬消滅</strong>之情形，並無不同，自應退還該部分之上訴審裁判費。</p>
+                <p><strong>平等原則：</strong>原告原可獨立起訴（各自對A、B、C分別起訴），基於訴訟經濟而就數被告共同起訴，卻於撤回息訟之際，受與個別起訴後撤回所得之退費優惠為<strong>不同處置</strong>，有違平等原則及普通共同訴訟規定之體系上一貫性。</p>
+                <p><strong>規範目的契合：</strong>債權人為該獨立部分之撤回，除減輕訟累，亦減省法院審理該訴訟之勞費，准予退還符合§83之規範意旨。</p>
+                <div class="op-result"><strong>結論：</strong>普通共同訴訟中，原告撤回對部分被告之起訴，依共同訴訟人獨立原則，該部分訴訟繫屬消滅，應退還該部分之上訴審裁判費。</div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head"><div class="op-num">㈣</div><span class="op-label">退費金額之計算方式——差額三分之二</span></div>
+            <div class="op-body">
+                <p>原告因合併起訴或上訴，享有徵收裁判費之<strong>級距優惠</strong>（合計金額愈高，邊際稅率遞減）。</p>
+                <p>計算聲請退還撤回部分之裁判費時，應以：</p>
+                <ul>
+                    <li><strong>原繳納裁判費總額</strong>，減去</li>
+                    <li><strong>其仍繫屬部分應徵之裁判費</strong>，得出差額，</li>
+                    <li>再按<strong>差額之三分之二比例退還</strong>。</li>
+                </ul>
+                <p>此計算方式可確保法院就尚繫屬部分仍徵收足額之裁判費，同時合理退還撤回部分所對應之費用。</p>
+                <div class="op-result"><strong>退費公式：</strong>退還金額 ＝（原繳裁判費總額 － 仍繫屬部分應徵之裁判費）×2/3</div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="section-heading">⚠️ 考試陷阱提示</div>
+    <div class="trap-box">
+        <div class="trap-title">📌 常見混淆點</div>
+        <div class="trap-item">
+            <div class="trap-q">Q：本件普通共同訴訟與連帶債務共同訴訟，退費規則有何不同？</div>
+            <div class="trap-a">A：本件僅適用於<strong>可分債務之普通共同訴訟</strong>（主文明確限定「非屬連帶或不可分之可分債務」）。若係連帶債務或不可分債務之共同訴訟，因各債務人之訴訟勝敗可能相互影響，不適用本裁定見解，仍應視整體訴訟情況處理。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：95年第7次民事庭會議決議是否仍有效力？</div>
+            <div class="trap-a">A：<strong>就普通共同訴訟部分已被本裁定揚棄。</strong>大法庭指出，舊決議要求「訴訟全部繫屬消滅而告終結」係增加法文所無之限制，應不再援用。但注意：大法庭裁定之拘束力限於「與提案相同事實之同一法律爭議」，其他類型之多數當事人訴訟是否受影響，仍應個別判斷。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：本件民事訴訟法第83條第3項（112年12月1日施行）是否具有溯及效力？</div>
+            <div class="trap-a">A：<strong>是，依民事訴訟法施行法第2條溯及適用。</strong>施行法第2條規定：「除本施行法別有規定外，修正民事訴訟法於其施行前發生之事項亦適用之」，本件撤回起訴發生於112年2月（第3項施行前），但仍適用新法。此為程序法通例（新訴訟程序法一般即時適用）。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：退費之計算公式為何？為何不直接按撤回部分原繳費之2/3退還？</div>
+            <div class="trap-a">A：因原告合併起訴時享有<strong>裁判費級距優惠</strong>（合計金額高，邊際費率低），若直接按撤回部分「單獨起訴時應繳費之2/3」退還，對法院不公平。故正確公式為：<strong>（原繳裁判費總額 − 仍繫屬部分應徵之裁判費）× 2/3</strong>，以確保仍繫屬部分仍徵收足額裁判費。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：本件的關鍵法律概念「共同訴訟人獨立原則」是哪條規定？</div>
+            <div class="trap-a">A：<strong>民事訴訟法第55條。</strong>該條規定普通共同訴訟中，共同訴訟人各自獨立進行訴訟，其訴訟行為之效力不及於他共同訴訟人（有別於必要共同訴訟之「合一確定原則」§56）。大法庭據此認為，撤回對部分被告之起訴，即使整體訴訟未全部終結，該被告仍脫離訴訟繫屬，與單一訴訟繫屬消滅無異，應予退費。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：本件為「台抗大」（抗告）而非「台上大」（上訴），其程序意義為何？</div>
+            <div class="trap-a">A：因退費聲請遭第二審法院駁回後，當事人係提起<strong>抗告</strong>（而非上訴），故本件大法庭提案性質為「台抗大」。裁定退費問題屬裁定事項（非判決事項），故循抗告程序，與一般上訴審判決不同。</div>
+        </div>
+    </div>
+
+    <div class="section-heading">自我測驗</div>
+    <div class="quiz-list">
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)"><span>1. 本件大法庭主文之結論為何？適用要件有哪些？</span><span class="quiz-toggle">＋</span></div>
+            <div class="quiz-a">
+                <strong>結論：</strong>得聲請退還該撤回部分之上訴審裁判費。<br><br>
+                <strong>適用要件（主文明定）：</strong><br>
+                ① 債權人本於<strong>同種類原因事實</strong>所生之請求權；<br>
+                ② 以二人以上之多數債務人為共同被告；<br>
+                ③ 就<strong>非屬連帶或不可分之可分債務</strong>；<br>
+                ④ 合併提起<strong>普通共同訴訟</strong>；<br>
+                ⑤ 經法院判決<strong>敗訴並提起上訴</strong>後；<br>
+                ⑥ 僅就<strong>部分債務人撤回起訴</strong>。<br><br>
+                依民事訴訟法第83條第3項，於撤回後3個月內聲請，退還該部分上訴審裁判費之三分之二（按差額計算）。
+            </div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)"><span>2. 大法庭為何揚棄95年第7次民事庭會議決議？</span><span class="quiz-toggle">＋</span></div>
+            <div class="quiz-a">
+                95年決議要求「訴訟全部繫屬消滅而告終結」方可退費，大法庭認為此係<strong>增加法文所無之限制</strong>，因為：<br><br>
+                ① 民事訴訟法第83條條文本身<strong>未區別全部或部分撤回</strong>；<br>
+                ② 可分債務之普通共同訴訟各組訴訟<strong>各自獨立</strong>，撤回一組與單一訴訟全部撤回無異；<br>
+                ③ 造成當事人基於訴訟經濟而合併起訴，卻在撤回時受到比<strong>個別起訴更不利之待遇</strong>，有違平等原則；<br>
+                ④ 撤回部分訴訟已減省法院勞費，符合§83之規範目的。
+            </div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)"><span>3. 退費金額應如何計算？為何不直接按撤回部分原繳費的2/3退還？</span><span class="quiz-toggle">＋</span></div>
+            <div class="quiz-a">
+                <strong>正確公式：</strong>（原繳裁判費總額 − 仍繫屬部分應徵之裁判費）× 2/3<br><br>
+                <strong>理由：</strong>原告合併起訴時享有裁判費之<strong>級距優惠</strong>（訴訟標的合計金額愈高，邊際費率遞減，總費用比分別起訴較低）。若直接按撤回部分單獨計算2/3退還，可能使法院就仍繫屬部分收取之費用不足。故以<strong>差額</strong>計算，確保仍繫屬部分仍徵收足額裁判費後，再就差額之2/3退還。
+            </div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)"><span>4. 民事訴訟法第55條（共同訴訟人獨立原則）在本件扮演何種角色？</span><span class="quiz-toggle">＋</span></div>
+            <div class="quiz-a">
+                第55條規定普通共同訴訟之共同訴訟人各自獨立進行訴訟。大法庭援引此原則，論述：<br><br>
+                普通共同訴訟係<strong>單純訴之合併</strong>，各組訴訟（本件A組、B組、C組）各自獨立，互無影響。在上訴審撤回對C與C1之起訴，依§55，<strong>C組訴訟繫屬即告消滅</strong>，與單一訴訟因撤回而繫屬消滅，在法律效果上<strong>並無不同</strong>，故應退還C組部分之上訴審裁判費——不因A組、B組仍在繫屬而受影響。
+            </div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)"><span>5. 本件「普通共同訴訟」與「必要共同訴訟」在退費問題上有何不同？</span><span class="quiz-toggle">＋</span></div>
+            <div class="quiz-a">
+                <strong>普通共同訴訟（本件）：</strong>共同訴訟人獨立原則（§55），各組訴訟各自獨立，部分撤回即可退費（本件大法庭見解）。<br><br>
+                <strong>必要共同訴訟（§56）：</strong>合一確定原則，訴訟標的對全體共同訴訟人必須合一確定，一人之訴訟行為對其他人發生效力或不利益。若係必要共同訴訟，則訴訟本質上不可分割，<strong>不能對部分被告撤回</strong>（且訴訟上亦無法分割），無本件退費問題。<br><br>
+                本件主文明確限定「非屬連帶或不可分之<strong>可分債務</strong>」，即係排除連帶債務及不可分債務，僅適用於獨立可分之普通共同訴訟。
+            </div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)"><span>6. 民事訴訟法施行法第2條在本件的作用為何？</span><span class="quiz-toggle">＋</span></div>
+            <div class="quiz-a">
+                民事訴訟法第83條第3項係<strong>112年12月1日</strong>增訂施行，明定於上訴審撤回起訴時，上訴人得於3個月內聲請退還該審級裁判費三分之二。<br><br>
+                本件撤回起訴係<strong>112年2月</strong>（施行前），依施行法第2條：「除本施行法別有規定外，修正民事訴訟法於其施行前發生之事項<strong>亦適用之</strong>」，本件仍適用新法§83第3項。<br><br>
+                此反映程序法之<strong>即時適用原則</strong>（新程序法原則上適用於施行後尚未終結之程序事項），施行法第2條即為此原則之明文化。
+            </div>
+        </div>
+    </div>
+
+    <div class="law-ref">
+        <strong>相關法條：</strong>民事訴訟法§83（撤回退費；第3項112.12.01增訂）；§55（普通共同訴訟人獨立原則）；§56（必要共同訴訟合一確定原則）；民事訴訟法施行法§2（修正後訴訟法溯及適用）；本院95年度第7次民事庭會議決議（就普通共同訴訟部分已遭本裁定揚棄）
+    </div>
+
+    <details>
+        <summary>大法庭組成（11名法官，全體一致）</summary>
+        <div style="padding-top:10px;">
+            <div class="judges-grid">
+                <span class="judge-chip chief">審判長　高孟焄</span>
+                <span class="judge-chip">沈方維</span>
+                <span class="judge-chip">魏大喨</span>
+                <span class="judge-chip">陳玉完</span>
+                <span class="judge-chip">盧彥如</span>
+                <span class="judge-chip">彭昭芬</span>
+                <span class="judge-chip">李寶堂</span>
+                <span class="judge-chip">林金吾</span>
+                <span class="judge-chip">鄭純惠</span>
+                <span class="judge-chip">張競文</span>
+                <span class="judge-chip">林玉珮</span>
+            </div>
+            <p style="font-size:0.82em;color:var(--sub);margin:10px 0 0;">書記官：李佳芬　｜　裁定日期：中華民國113年2月20日　｜　全體一致，無不同意見書</p>
+        </div>
+    </details>
+
+    <div class="note-toggle" onclick="toggleNote('n1')">✏️ 我的小結</div>
+    <div class="note-area" id="n1">
+        <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n1',this.value)"></textarea>
+        <div class="note-saved" id="n1-saved"></div>
+    </div>
+</div>
+
+<div id="noResults">查無符合的內容，請試試其他關鍵字。</div>
+<div id="noStarred">還沒有收藏的項目，點卡片右上角的 ⭐ 加入收藏。</div>
+</div>
+
+<script>
+const NIGHT_KEY='night_mode_pref';
+function toggleNight(){const on=document.body.classList.toggle('night-mode');localStorage.setItem(NIGHT_KEY,on?'1':'0');document.getElementById('nightBtn').textContent=on?'☀️':'🌙';}
+(function(){if(localStorage.getItem(NIGHT_KEY)==='1'){document.body.classList.add('night-mode');const b=document.getElementById('nightBtn');if(b)b.textContent='☀️';}})();
+const STORE_KEY='112_630_grand_notes',STAR_KEY='112_630_grand_stars';
+function loadNotes(){try{return JSON.parse(localStorage.getItem(STORE_KEY))||{};}catch{return{};}}
+function loadStars(){try{return JSON.parse(localStorage.getItem(STAR_KEY))||{};}catch{return{};}}
+function saveAllNotes(d){localStorage.setItem(STORE_KEY,JSON.stringify(d));}
+function saveAllStars(d){localStorage.setItem(STAR_KEY,JSON.stringify(d));}
+(function(){const n=loadNotes(),s=loadStars();
+  Object.entries(n).forEach(([id,v])=>{const a=document.getElementById(id);if(!a)return;const t=a.querySelector('textarea');if(t)t.value=v;if(v)a.classList.add('open');});
+  Object.entries(s).forEach(([id,v])=>{if(!v)return;const b=document.querySelector(`#${id} .star-btn`);if(b)b.classList.add('starred');});
+})();
+function toggleStar(id,btn){const s=loadStars();const now=!btn.classList.contains('starred');btn.classList.toggle('starred',now);s[id]=now;saveAllStars(s);if(filterActive)applyFilter();}
+let filterActive=false;
+function toggleFilter(){filterActive=!filterActive;document.getElementById('filterBtn').classList.toggle('active',filterActive);document.getElementById('searchInput').value='';clearSearchHighlights();updateSearchUI([],0);applyFilter();}
+function applyFilter(){const s=loadStars();const q=document.getElementById('searchInput').value.trim().toLowerCase();let any=false;
+  document.querySelectorAll('.card').forEach(c=>{const kw=(c.dataset.kw||'').toLowerCase();const txt=c.textContent.toLowerCase();
+  const ms=!q||kw.includes(q)||txt.includes(q);const mf=!filterActive||!!s[c.id];const show=ms&&mf;
+  c.classList.toggle('hidden',!show);if(show)any=true;});
+  document.getElementById('noResults').style.display=(!any&&!filterActive)?'block':'none';
+  document.getElementById('noStarred').style.display=(!any&&filterActive)?'block':'none';}
+let _matches=[],_cur=-1;
+function clearSearchHighlights(){document.querySelectorAll('mark.search-hl').forEach(m=>{const p=m.parentNode;p.replaceChild(document.createTextNode(m.textContent),m);p.normalize();});}
+function highlightInNode(node,re){if(node.nodeType===3){const text=node.nodeValue;const frag=document.createDocumentFragment();let last=0,m;re.lastIndex=0;while((m=re.exec(text))!==null){if(m.index>last)frag.appendChild(document.createTextNode(text.slice(last,m.index)));const mk=document.createElement('mark');mk.className='search-hl';mk.textContent=m[0];frag.appendChild(mk);last=re.lastIndex;}if(last===0)return;frag.appendChild(document.createTextNode(text.slice(last)));node.parentNode.replaceChild(frag,node);return;}if(node.nodeType===1){const tag=node.tagName;if(tag==='SCRIPT'||tag==='STYLE'||tag==='TEXTAREA'||tag==='INPUT')return;if(node.classList&&node.classList.contains('search-hl'))return;[...node.childNodes].forEach(c=>highlightInNode(c,re));}}
+function doSearch(q){clearSearchHighlights();_matches=[];_cur=-1;const qt=(q||'').trim();if(!qt){updateSearchUI([],0);applyFilter();return;}applyFilter();const esc=qt.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');const re=new RegExp(esc,'gi');document.querySelectorAll('.container .card:not(.hidden)').forEach(card=>{highlightInNode(card,re);});_matches=[...document.querySelectorAll('mark.search-hl')];if(_matches.length){_cur=0;setCurrent(0);}updateSearchUI(_matches,_cur);}
+function setCurrent(idx){_matches.forEach((m,i)=>m.classList.toggle('current',i===idx));if(_matches[idx])_matches[idx].scrollIntoView({behavior:'smooth',block:'center'});}
+function navMatch(dir){if(!_matches.length)return;_cur=(_cur+dir+_matches.length)%_matches.length;setCurrent(_cur);updateSearchUI(_matches,_cur);}
+function updateSearchUI(matches,cur){const cnt=document.getElementById('searchCount');const prev=document.getElementById('prevBtn');const next=document.getElementById('nextBtn');if(!matches.length){cnt.textContent='';prev.disabled=true;next.disabled=true;return;}cnt.textContent=(cur+1)+'/'+matches.length;prev.disabled=false;next.disabled=false;}
+function handleSearchKey(e){if(e.key==='Enter'){e.shiftKey?navMatch(-1):navMatch(1);}if(e.key==='Escape'){document.getElementById('searchInput').value='';doSearch('');}}
+function toggleNote(id){document.getElementById(id).classList.toggle('open');}
+const timers={};
+function saveNote(id,v){clearTimeout(timers[id]);timers[id]=setTimeout(()=>{const n=loadNotes();n[id]=v;saveAllNotes(n);const el=document.getElementById(id+'-saved');if(el){el.textContent='已儲存';setTimeout(()=>el.textContent='',1500);}},500);}
+let savedRange=null;
+document.addEventListener('selectionchange',()=>{const s=window.getSelection();if(s&&!s.isCollapsed&&s.rangeCount)savedRange=s.getRangeAt(0).cloneRange();});
+function highlightText(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;
+  if(!r||r.collapsed){alert('💡 請先反白想要標記的文字');return;}
+  const sp=document.createElement('span');sp.className='hl';sp.style.cssText='background:#f0d98a;border-radius:2px;';
+  try{r.surroundContents(sp);savedRange=null;}catch{alert('💡 請選取同一段落內的文字');}s&&s.removeAllRanges();}
+function removeHighlight(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;
+  if(!r||r.collapsed){alert('💡 請先反白想擦除標記的文字');return;}
+  const anc=r.commonAncestorContainer.nodeType===1?r.commonAncestorContainer:r.commonAncestorContainer.parentElement;
+  anc.querySelectorAll('span.hl').forEach(sp=>{if(r.intersectsNode(sp)){const p=sp.parentNode;while(sp.firstChild)p.insertBefore(sp.firstChild,sp);p.removeChild(sp);}});
+  savedRange=null;s&&s.removeAllRanges();}
+function clearHighlights(){const sp=document.querySelectorAll('span.hl');if(!sp.length)return;
+  if(confirm('確定要清除所有重點標記嗎？')){sp.forEach(s=>{const p=s.parentNode;while(s.firstChild)p.insertBefore(s.firstChild,s);p.removeChild(s);});}}
+function openExport(){
+  let out='最高法院民事大法庭 112年度台抗大字第630號\n'+'═'.repeat(44)+'\n\n';
+  out+='【主文】\n債權人本於同種類原因事實所生之請求權，以二人以上之多數債務人為共同被告，就非屬連帶或不可分之可分債務，合併提起普通共同訴訟，經法院判決敗訴並提起上訴後，僅就部分債務人撤回起訴時，得依修正後民事訴訟法第83條第3項規定，聲請退還該撤回部分之上訴審裁判費。\n\n';
+  out+='【退費公式】\n（原繳裁判費總額 - 仍繫屬部分應徵之裁判費）× 2/3\n\n';
+  document.querySelectorAll('.op').forEach(op=>{
+    const head=op.querySelector('.op-label')?.textContent.trim()||'';
+    out+=`▌${head}\n`;
+    op.querySelectorAll('.op-body p,.op-body li,.op-result').forEach(el=>{
+      const t=el.textContent.trim();if(t)out+=(el.tagName==='LI'?'  • ':'')+t+'\n';});
+    out+='\n';});
+  const ta=document.querySelector('.note-textarea');if(ta&&ta.value.trim())out+='✏️ 小結：\n'+ta.value.trim()+'\n\n';
+  out+='═'.repeat(44)+'\n';
+  const b=new Blob([out.trim()],{type:'text/plain;charset=utf-8'});
+  const u=URL.createObjectURL(b);const a=document.createElement('a');
+  a.href=u;a.download='112台抗大字第630號_普通共同訴訟部分撤回退還裁判費.txt';a.click();URL.revokeObjectURL(u);}
+function toggleQuiz(el){const ans=el.nextElementSibling;const tog=el.querySelector('.quiz-toggle');if(ans.classList.contains('open')){ans.classList.remove('open');tog.textContent='＋';}else{ans.classList.add('open');tog.textContent='－';}}
+const REG_KEY='exam_completion_registry';
+function _loadReg(){try{return JSON.parse(localStorage.getItem(REG_KEY))||{};}catch{return{};}}
+function _saveReg(r){try{localStorage.setItem(REG_KEY,JSON.stringify(r));}catch{}}
+function _file(){const p=location.pathname.split('/');return decodeURIComponent(p[p.length-1]||'');}
+function _fmt(ts){const d=new Date(ts);const date=(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();const time=d.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false});return date+' '+time;}
+function _updateDate(){const r=_loadReg();const k=_file()||'case_civil_grand_112_630.html';const l=document.getElementById('doneDateLabel');if(!l)return;l.textContent=(r[k]&&r[k].done&&r[k].ts)?_fmt(r[k].ts):'';}
+const _INDEX_CARD_ID='c_630';
+function _syncIndex(done){try{const r=JSON.parse(localStorage.getItem('gc_reads')||'{}');r[_INDEX_CARD_ID]=done;localStorage.setItem('gc_reads',JSON.stringify(r));}catch(e){}}
+function toggleDone(){const btn=document.getElementById('doneBtn');const r=_loadReg();const k=_file()||'case_civil_grand_112_630.html';const done=r[k]&&r[k].done;
+  if(done){delete r[k];_saveReg(r);btn.classList.remove('active');_syncIndex(false);}
+  else{const now=new Date();r[k]={done:true,score:null,total:null,ts:now.getTime(),tsLabel:now.toLocaleDateString('zh-TW')+' '+now.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false})};_saveReg(r);btn.classList.add('active');_syncIndex(true);}
+  _updateDate();}
+(function(){const r=_loadReg();const k=_file()||'case_civil_grand_112_630.html';if(r[k]&&r[k].done){const b=document.getElementById('doneBtn');if(b)b.classList.add('active');}_updateDate();})();
+</script>
+</body>
+</html>
