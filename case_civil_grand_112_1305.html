@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>112年度台上大字第1305號 民事大法庭裁定</title>
+    <style>
+        :root{--bg:#f5f0eb;--card:#ffffff;--text:#3d3530;--sub:#8c7b6b;--line:#ddd8d0;--majority:#9e5c45;--law:#5a6e4e;--dissent:#b07d4a;--trap:#f5f0d8;--header-bg:#5c4f47;}
+        body.night-mode{--bg:#1a1714;--card:#252220;--text:#d4cec8;--sub:#8a7d72;--line:#383330;--majority:#b87060;--law:#6a8a5e;--dissent:#c4935a;--trap:#2a2518;--header-bg:#111010;}
+        body.night-mode header{box-shadow:0 2px 8px rgba(0,0,0,0.5);}
+        body.night-mode .top-bar{background:#1e1b18;}
+        body.night-mode .top-btn{background:#3a3530;}
+        body.night-mode .fact-box,body.night-mode .issue-box{background:#1e1b18;}
+        body.night-mode .op-head{background:#2a2520;}
+        body.night-mode .op-body{background:var(--card);}
+        body.night-mode .op-result{background:#2a2018;}
+        body.night-mode .ref-case{background:#242018;}
+        body.night-mode .law-ref{background:#1c2018;}
+        body.night-mode .note-textarea{background:#1e1b18;color:var(--text);border-color:var(--line);}
+        body.night-mode .judge-chip{background:#2a2520;border-color:var(--line);}
+        body.night-mode .judge-chip.chief{background:#3a3530;}
+        body.night-mode mark.search-hl{background:#7a6010;color:#f0e8c8;}
+        body.night-mode mark.search-hl.current{background:#c47000;color:#fff;}
+        body.night-mode .verdict{background:#2e2a26;}
+        body.night-mode .trap-box{border-color:#5a5020;}
+        body.night-mode .trap-title{color:#c8a840;}
+        body.night-mode .trap-item{border-left-color:#7a6830;}
+        body.night-mode #nightBtn{background:#4a4030;color:#e8d898;font-weight:700;}
+        body.night-mode .quiz-q{background:var(--card);}
+        body.night-mode .quiz-q:hover{background:#2a2520;}
+        body.night-mode .quiz-a{background:#1c2018;color:#9fbf90;}
+        body{transition:background 0.3s,color 0.3s;}.card{transition:background 0.3s,border-color 0.3s;}
+        *{box-sizing:border-box;}
+        body{font-family:"Helvetica Neue",Helvetica,"PingFang TC","LiHei Pro","Microsoft JhengHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.85;font-size:16px;margin:0;padding:0 0 60px;}
+        header{background:var(--header-bg);color:#f5f0eb;padding:16px 16px 8px;text-align:center;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.2);}
+        header h1{margin:0 0 10px;font-size:1.05em;line-height:1.5;font-weight:600;letter-spacing:0.02em;color:#fff;}
+        .header-controls{display:flex;gap:8px;align-items:center;}
+        .search-wrap{position:relative;flex:1;display:flex;align-items:center;gap:4px;}
+        #searchInput{flex:1;padding:8px 14px 8px 32px;border:none;border-radius:6px;font-size:14px;background:rgba(245,240,235,0.15);color:#f5f0eb;outline:none;}
+        #searchInput::placeholder{color:rgba(245,240,235,0.45);}
+        #searchInput:focus{background:rgba(245,240,235,0.25);}
+        .search-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:13px;opacity:0.5;pointer-events:none;}
+        .search-count{font-size:12px;color:rgba(255,255,255,0.7);white-space:nowrap;min-width:44px;text-align:center;}
+        .search-nav{background:rgba(255,255,255,0.13);border:none;border-radius:6px;color:white;font-size:13px;padding:6px 8px;cursor:pointer;line-height:1;}
+        .search-nav:hover{background:rgba(255,255,255,0.25);}
+        .search-nav:disabled{opacity:0.3;cursor:default;}
+        mark.search-hl{background:#ffe066;color:#1a1a1a;border-radius:2px;padding:0 1px;}
+        mark.search-hl.current{background:#ff8c00;color:#fff;border-radius:3px;outline:2px solid #ff8c00;}
+        #filterBtn{background:rgba(245,240,235,0.15);border:none;border-radius:6px;color:#f5f0eb;font-size:13px;padding:8px 12px;cursor:pointer;white-space:nowrap;}
+        #filterBtn.active{background:var(--dissent);color:#fff;font-weight:bold;}
+        .top-bar{background:#e8e2da;padding:5px 14px;display:flex;gap:6px;justify-content:flex-end;flex-wrap:nowrap;}
+        .top-btn{background:#b0a898;color:#fff;border:none;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;transition:opacity 0.15s;}
+        .top-btn:hover{opacity:0.8;}
+        .top-btn.done{background:#8c7b6b;}
+        .top-btn.done.active{background:linear-gradient(135deg,#b8860b,#daa520);color:#fff8e1;font-weight:700;box-shadow:0 0 8px rgba(218,165,32,0.5);}
+        .done-date{font-size:11px;color:#a0a0a0;white-space:nowrap;align-self:center;font-weight:500;}
+        .container{padding:18px 16px;max-width:640px;margin:0 auto;}
+        @media(min-width:768px){.container{max-width:880px;padding:24px 20px;}body{font-size:17px;}header h1{font-size:1.15em;}}
+        .card{background:var(--card);border-radius:14px;padding:24px 22px;margin-bottom:24px;box-shadow:0 1px 6px rgba(61,53,48,0.08);position:relative;border:1px solid var(--line);}
+        .card.hidden{display:none;}
+        .star-btn{position:absolute;top:18px;right:18px;background:none;border:none;font-size:20px;cursor:pointer;opacity:0.15;transition:opacity 0.15s;padding:0;}
+        .star-btn.starred{opacity:1;}
+        .card-title{color:var(--text);font-size:1.15em;font-weight:700;margin:0 0 4px;padding-right:30px;line-height:1.6;}
+        .meta-line{font-size:0.75em;color:var(--sub);margin-bottom:20px;letter-spacing:0.04em;}
+        .verdict{background:#4a3f38;color:#f5f0eb;border-radius:10px;padding:16px 18px;margin-bottom:22px;}
+        .verdict-label{font-size:0.66em;letter-spacing:0.14em;opacity:0.5;margin-bottom:6px;}
+        .verdict-main{font-size:1.0em;font-weight:700;line-height:1.7;margin-bottom:10px;color:#fff;}
+        .vote-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px;padding-top:10px;border-top:1px solid rgba(245,240,235,0.15);}
+        .v-chip{font-size:0.72em;background:rgba(245,240,235,0.1);border-radius:20px;padding:3px 10px;white-space:nowrap;color:rgba(245,240,235,0.75);}
+        .v-chip.majority{background:rgba(158,92,69,0.5);color:#f5f0eb;font-weight:700;}
+        .section-heading{font-size:0.85em;font-weight:700;letter-spacing:0.08em;color:var(--sub);margin:22px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line);}
+        .fact-box{background:#faf8f5;border-left:3px solid var(--sub);border-radius:0 8px 8px 0;padding:14px 16px;margin-bottom:16px;font-size:0.9em;}
+        .fact-box p{margin:0 0 8px;}.fact-box p:last-child{margin:0;}
+        .issue-box{background:#faf8f5;border-radius:8px;padding:14px 16px;margin-bottom:16px;font-size:0.9em;border:1px solid var(--line);}
+        .issue-box p{margin:0 0 8px;}.issue-box p:last-child{margin:0;}
+        .opinions{display:flex;flex-direction:column;gap:10px;margin-bottom:16px;}
+        .op{border-radius:8px;overflow:hidden;border:1px solid var(--line);}
+        .op-head{display:flex;align-items:center;gap:10px;padding:10px 14px;background:#f7f4f0;}
+        .op-num{width:26px;height:26px;border-radius:50%;background:var(--majority);color:white;font-size:0.75em;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+        .op-label{font-weight:700;font-size:0.92em;color:var(--majority);flex:1;}
+        .op-body{padding:13px 15px;font-size:0.9em;background:var(--card);}
+        .op-body p{margin:0 0 9px;}.op-body p:last-child{margin:0;}
+        .op-body ul{margin:5px 0 8px;padding-left:18px;}.op-body li{margin-bottom:5px;}
+        .op-result{background:#fdf9f7;border-radius:6px;padding:10px 13px;margin-top:10px;font-size:0.9em;border-left:3px solid var(--majority);}
+        .flow-box{background:#f0f4ee;border-radius:8px;padding:14px 16px;margin:14px 0;font-size:0.9em;border-left:3px solid var(--law);}
+        .flow-box strong{color:var(--law);}
+        .trap-box{background:var(--trap);border-radius:8px;padding:14px 16px;margin-bottom:16px;border:1px solid #e0d8b0;font-size:0.9em;}
+        .trap-title{font-weight:700;color:#7a6820;margin-bottom:10px;font-size:0.92em;display:flex;align-items:center;gap:6px;}
+        .trap-item{margin-bottom:10px;padding-left:14px;border-left:2px solid #c8b860;}
+        .trap-item:last-child{margin-bottom:0;}
+        .trap-q{font-weight:700;color:var(--text);margin-bottom:3px;}
+        .trap-a{color:var(--text);opacity:0.85;}
+        .law-ref{background:#f2f5f0;border-radius:8px;padding:10px 14px;font-size:0.84em;color:#3d4e38;margin-top:14px;border-left:3px solid var(--law);}
+        details{margin-top:16px;}
+        details summary{cursor:pointer;color:var(--sub);font-size:0.84em;font-weight:600;padding:5px 0;user-select:none;list-style:none;display:flex;align-items:center;gap:6px;}
+        details summary::before{content:'▶';font-size:0.62em;transition:transform 0.2s;color:var(--sub);}
+        details[open] summary::before{transform:rotate(90deg);}
+        .ref-case{background:#f7f4f0;border-radius:7px;padding:10px 13px;margin-bottom:8px;font-size:0.84em;border-left:3px solid var(--majority);}
+        .ref-case-title{font-weight:700;color:var(--majority);margin-bottom:3px;font-size:0.9em;}
+        .judges-grid{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:6px;}
+        .judge-chip{background:#f5f0eb;border:1px solid var(--line);border-radius:20px;padding:3px 12px;font-size:0.82em;color:var(--text);white-space:nowrap;}
+        .judge-chip.chief{background:#ede0da;font-weight:700;}
+        .note-toggle{color:var(--sub);font-size:0.84em;font-weight:600;cursor:pointer;padding:5px 0;margin-top:16px;display:flex;align-items:center;gap:6px;}
+        .note-area{display:none;margin-top:8px;}.note-area.open{display:block;}
+        .note-textarea{width:100%;min-height:90px;border:1px solid var(--line);border-radius:8px;padding:10px 13px;font-size:0.88em;font-family:inherit;resize:vertical;background:#faf8f5;color:var(--text);outline:none;line-height:1.7;}
+        .note-textarea:focus{border-color:var(--sub);}
+        .note-saved{font-size:0.76em;color:var(--law);margin-top:4px;min-height:16px;}
+        .quiz-list{border-radius:8px;overflow:hidden;border:1px solid var(--line);margin-bottom:16px;}
+        .quiz-item{border-bottom:1px solid var(--line);}.quiz-item:last-child{border-bottom:none;}
+        .quiz-q{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;padding:11px 14px;cursor:pointer;font-size:0.9em;background:var(--card);}
+        .quiz-q:hover{background:#faf8f5;}
+        .quiz-toggle{font-size:1.1em;color:var(--majority);flex-shrink:0;font-weight:300;line-height:1.4;}
+        .quiz-a{display:none;padding:11px 14px;background:#f0f4ee;font-size:0.87em;line-height:1.75;border-top:1px solid var(--line);color:#3d4e38;}
+        .quiz-a.open{display:block;}
+        #noResults,#noStarred{display:none;text-align:center;color:var(--sub);padding:40px 0;font-size:0.9em;}
+        ::-webkit-scrollbar{display:none;}::selection{background:#e8ddd0;}
+    </style>
+</head>
+<body>
+<header>
+    <h1>最高法院民事大法庭<br>112年度台上大字第1305號</h1>
+    <div class="header-controls">
+        <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="搜尋關鍵字、法條…" oninput="doSearch(this.value)" onkeydown="handleSearchKey(event)">
+            <span class="search-count" id="searchCount"></span>
+            <button class="search-nav" id="prevBtn" onclick="navMatch(-1)" disabled>▲</button>
+            <button class="search-nav" id="nextBtn" onclick="navMatch(1)" disabled>▼</button>
+        </div>
+        <button id="filterBtn" onclick="toggleFilter()">⭐ 收藏</button>
+    </div>
+    <div class="top-bar">
+        <button class="top-btn" onclick="highlightText()">🖊️</button>
+        <button class="top-btn" onclick="removeHighlight()">🧽</button>
+        <button class="top-btn" onclick="clearHighlights()">🗑️</button>
+        <button class="top-btn" onclick="openExport()">📤</button>
+        <button class="top-btn" id="nightBtn" onclick="toggleNight()">🌙</button>
+        <button class="top-btn done" id="doneBtn" onclick="toggleDone()">朕已閱</button>
+        <span class="done-date" id="doneDateLabel"></span>
+    </div>
+</header>
+
+<div class="container">
+<div class="card" id="case1" data-kw="公司法第23條第2項 公司負責人 消滅時效 民法第197條 侵權行為 短期時效 兩年十年 15年 一般時效 民法第125條 八仙水樂園 塵爆 民商法合一 特殊侵權行為 法律特別規定說 連帶賠償 高孟焄">
+    <button class="star-btn" onclick="toggleStar('case1',this)">⭐</button>
+    <h2 class="card-title">依公司法第23條第2項對公司負責人請求賠償損害，消滅時效期間為何？</h2>
+    <div class="meta-line">裁定日期：中華民國113年7月26日　｜　案號：112年度台上大字第1305號　｜　併案：112台上1303　｜　全體一致</div>
+
+    <div class="verdict">
+        <div class="verdict-label">大法庭主文</div>
+        <div class="verdict-main">依公司法第23條第2項規定對公司負責人請求賠償損害者，其請求權之消滅時效期間，應適用<strong>民法第197條第1項</strong>規定。</div>
+        <div class="vote-row">
+            <span class="v-chip majority">全體一致 11票 ✔</span>
+            <span class="v-chip">無不同意見書</span>
+            <span class="v-chip">裁定日：113.07.26</span>
+        </div>
+    </div>
+
+    <div class="section-heading">基礎事實（八仙塵爆案）</div>
+    <div class="fact-box">
+        <p><strong>事件背景：</strong>甲公司（觀光遊樂業）由其負責人乙與丙公司簽訂租賃合約，出租場地供丙、丁公司舉辦「彩色派對八仙水陸戰場活動」。甲公司並提供優惠方案、請戊協助宣傳。</p>
+        <p><strong>損害發生：</strong>因色粉噴灑濃度過高及電腦燈位置未防免與色粉接觸，引發<strong>粉塵閃燃現象（塵爆）</strong>，致消費者A受身體、健康之損害。</p>
+        <p><strong>請求依據與爭議：</strong>A依公司法第23條第2項規定，請求公司負責人乙賠償損害。事實審認其消滅時效期間為<strong>15年</strong>（依民法第125條一般時效）；但究竟應適用民法§125（15年）還是§197（2年/10年）？</p>
+    </div>
+
+    <div class="section-heading">法律爭議</div>
+    <div class="issue-box">
+        <p><strong>系爭規定：</strong>公司法第23條第2項：「公司負責人對於公司業務之執行，如有違反法令致他人受有損害時，對他人應<strong>與公司負連帶賠償之責</strong>。」</p>
+        <p><strong>公司法就此請求權未明定消滅時效期間。</strong>兩說對立：</p>
+        <p><strong>法律特別規定說（事實審採15年）：</strong>§23-2係法律特別規定，非侵權行為，應適用民法§125一般消滅時效（15年）。</p>
+        <p><strong>侵權行為性質說（本件大法庭採2年/10年）：</strong>§23-2之構成要件包含「違反法令」（違背一般人相互間之行為規範），本質屬侵權行為損害賠償責任，應適用民法§197-1（知有損害及賠償義務人時起2年；行為時起10年）。</p>
+    </div>
+
+    <div class="section-heading">大法庭裁定理由（全體一致）</div>
+    <div class="opinions">
+
+        <div class="op">
+            <div class="op-head"><div class="op-num">㈠</div><span class="op-label">損害賠償責任應先確認性質，再定時效——問題意識</span></div>
+            <div class="op-body">
+                <p>民法就債之發生，因法律行為或法律規定不同，規範意定之債與法定之債，各自發生不同性質之請求權，各請求權之消滅時效期間，因各請求權之性質而異其規定。</p>
+                <p>公司法§23-2規定公司負責人就他人所受損害負賠償之責，雖公司法就此消滅時效期間未明定，但此屬損害賠償請求權，自應依我國民事法所定之<strong>損害賠償責任類型</strong>，界定其責任性質，進而確立消滅時效期間。</p>
+                <div class="op-result"><strong>方法論：</strong>先定性（侵權行為責任？契約責任？法定責任？），再依其性質決定時效規定，而非逕以「法律特別規定」跳過定性步驟直接套用一般時效。</div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head"><div class="op-num">㈡</div><span class="op-label">§23-2係「特殊侵權行為」之性質——違反法令即具侵權違法性</span></div>
+            <div class="op-body">
+                <p>我國民事法所定損害賠償責任中，<strong>僅侵權行為之損害賠償責任</strong>，係以「不法侵害他人權益」為核心，且屬一般人相互間之行為規範。</p>
+                <p>此調和被害人權益與加害人行為自由之法則，亦常隨社會經濟發展而另立特別規定，構成民法第184條一般侵權行為以外之<strong>特殊侵權行為</strong>。</p>
+                <p><strong>§23-2的構成要件分析：</strong></p>
+                <ul>
+                    <li>「對於公司業務之執行」：規範行為之場域；</li>
+                    <li>「違反法令」：指違反<strong>一般人相互間之行為規範</strong>，具違法性要件之概念；</li>
+                    <li>除有阻卻違法事由，違反法令之行為原則即屬違法性行為；</li>
+                    <li>「致他人受有損害」：損害要件；</li>
+                    <li>「負賠償之責」：損害賠償責任之法律效果。</li>
+                </ul>
+                <p>因此，§23-2之「違反法令」乃因違背一般人相互間之行為規範義務，具違法性要件之概念，其致他人受有損害而負損害賠償責任，<strong>應屬侵權行為責任之性質</strong>。</p>
+                <div class="op-result"><strong>結論：</strong>§23-2係特殊侵權行為，而非單純之法定特別規定；其損害賠償請求權之性質為侵權行為損害賠償請求權。</div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head"><div class="op-num">㈢</div><span class="op-label">§23-2之立法目的——加重負責人責任，增加受害人求償機會</span></div>
+            <div class="op-body">
+                <p>公司有行為能力，由其代表機關即負責人代表之；公司負責人代表公司所為行為若構成侵權行為，公司應以侵權行為人之身分對被害人負損害賠償責任。</p>
+                <p>§23-2的規範目的：公司業務事實上由負責人執行，為<strong>防止其執行業務違反法令</strong>損及公司權益，並<strong>增加受害人求償機會</strong>，令負責人於執行公司業務違反法令致他人受有損害時，<strong>與公司負連帶賠償責任</strong>。</p>
+                <p>基此，§23-2之公司負責人責任，亦應適用民法§197之短期消滅時效期間，始能<strong>平衡公司與負責人之責任</strong>——兩者既為連帶賠償責任，時效期間應一致，不能公司依§197負2年/10年時效，負責人卻依§125享有15年時效。</p>
+                <div class="op-result"><strong>結論：</strong>為平衡公司與負責人之連帶責任，兩者應同受§197短期時效之規制。</div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head"><div class="op-num">㈣</div><span class="op-label">否定「法律特別規定說」（15年說）——未定性即跳過，不可採</span></div>
+            <div class="op-body">
+                <p>「法律（定）特別規定說」之問題：</p>
+                <ul>
+                    <li>並未說明§23-2歸屬<strong>何類型</strong>之損害賠償責任；</li>
+                    <li>未斟酌我國損害賠償責任之<strong>體系架構</strong>；</li>
+                    <li>復未排除就損害賠償所設短期時效之法律規定，即謂應適用民法§125之一般消滅時效規定；</li>
+                    <li>本質上是「跳過定性步驟，直接援引最長時效」，邏輯上不可採。</li>
+                </ul>
+                <div class="op-result"><strong>結論：</strong>法律特別規定說未完成對§23-2之損害賠償責任類型定性，邏輯上不完整，不予採納。</div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head"><div class="op-num">㈤</div><span class="op-label">民商法合一立法政策——民法§197補充適用</span></div>
+            <div class="op-body">
+                <p>我國採<strong>民商法合一</strong>之立法政策，除性質不宜合併者另行制頒單行法（如公司法）優先適用外，特別商事法規未規定而與商事法性質相容者，仍有民法相關規定之適用。</p>
+                <p>本件：⑴ §23-2之公司負責人責任係<strong>侵權行為損害賠償責任</strong>；⑵ 公司法就此消滅時效期間<strong>無特別規定</strong>；⑶ 民法§197-1侵權行為損害賠償請求權之消滅時效規定，<strong>無違商事法之性質</strong>。三者俱足，故適用民法§197-1。</p>
+                <div class="op-result"><strong>最終結論：</strong>依§23-2對公司負責人請求賠償損害者，其請求權之消滅時效期間，應適用民法第197條第1項（知有損害及賠償義務人時起<strong>2年</strong>，行為時起<strong>10年</strong>）。</div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="section-heading">時效規定快速對照</div>
+    <div class="flow-box">
+        <strong>民法第197條第1項：</strong><br>
+        因侵權行為所生之損害賠償請求權，自請求權人知有損害及賠償義務人時起，<strong>2年</strong>間不行使而消滅；自有侵權行為時起，逾<strong>10年</strong>者亦同。<br><br>
+        <strong>民法第125條：</strong><br>
+        請求權，因<strong>15年</strong>間不行使而消滅（一般消滅時效）。<br><br>
+        <strong>本裁定：</strong>§23-2之公司負責人損害賠償請求權 → 適用 <strong>§197-1（2年/10年）</strong>，不適用§125（15年）。
+    </div>
+
+    <div class="section-heading">⚠️ 考試陷阱提示</div>
+    <div class="trap-box">
+        <div class="trap-title">📌 常見混淆點</div>
+        <div class="trap-item">
+            <div class="trap-q">Q：為何§23-2屬侵權行為性質，而非一般「法律特別規定」？</div>
+            <div class="trap-a">A：關鍵在於§23-2的<strong>構成要件</strong>：「違反法令」係指違反一般人相互間之行為規範義務——這正是侵權行為「違法性」要件的核心。大法庭指出，侵權行為損害賠償責任「以不法侵害他人權益為核心，且屬一般人相互間之行為規範」；§23-2恰好具備此一特徵，故屬特殊侵權行為，而非只是「立法者另設之特別損害賠償規定」（那樣定性則跳過了責任性質的分析）。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：民法§197-1的2年時效起算點為何？與15年有何計算上之差異？</div>
+            <div class="trap-a">A：<strong>§197-1採主觀起算＋客觀截止之雙軌制：</strong>⑴ 自請求權人<strong>知有損害及賠償義務人時起2年</strong>（主觀，短期）；⑵ 自<strong>有侵權行為時起逾10年</strong>亦同（客觀，長期上限）。兩者任一到期即消滅，取較早者。§125則是單純自請求權可行使時起算15年（一般時效），無主客觀雙軌之分。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：§23-2是「公司」的侵權責任，還是「公司負責人」的侵權責任？兩者關係為何？</div>
+            <div class="trap-a">A：兩者並列為<strong>連帶賠償責任</strong>：⑴ 公司代表人執行業務構成侵權行為→公司應以侵權行為人身分負責（§184、公司代表制度）；⑵ §23-2另令<strong>負責人個人</strong>也與公司負連帶賠償責任，目的是防止負責人違法執行業務並增加受害人求償管道。大法庭據此認為：兩者既為連帶責任，時效應一致，不能公司依§197（2年/10年），負責人卻依§125（15年）。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：本件事實審為何採15年？大法庭為何推翻？</div>
+            <div class="trap-a">A：事實審採「法律特別規定說」——認為§23-2係立法者基於政策目的另設之特別規定，非民法§184之侵權行為，故不適用§197之短期時效，而應適用§125一般時效（15年）。大法庭批評：此說未先完成對§23-2的損害賠償責任類型定性，直接跳到最長時效，邏輯上不完整，且未斟酌損害賠償體系架構，故不予採納。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：民商法合一在本件的作用為何？</div>
+            <div class="trap-a">A：我國民商法合一，公司法為民法之特別法。公司法§23-2未明定消滅時效期間→依民商法合一原則，應補充適用民法之相關規定。大法庭認定§23-2屬侵權行為責任，民法§197-1為侵權行為損害賠償之時效規定，無違商事法性質，故補充適用§197-1，而非一律跳回§125一般時效。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：本件與「公司法§23-1對公司之忠實義務責任」有何不同？</div>
+            <div class="trap-a">A：§23-1（對公司之忠實、善管義務）係公司負責人對<strong>公司內部</strong>之義務，性質上較接近委任關係之債務不履行；本件§23-2係公司負責人執行業務「對<strong>第三人（他人）</strong>」所生之損害賠償責任，性質上屬侵權行為。兩者保護對象不同，責任性質亦不同，時效規定也可能有別（§23-1對公司之請求，未必適用§197，可能涉及§125）。</div>
+        </div>
+    </div>
+
+    <div class="section-heading">自我測驗</div>
+    <div class="quiz-list">
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)"><span>1. 大法庭為何認定§23-2之公司負責人責任屬侵權行為性質？</span><span class="quiz-toggle">＋</span></div>
+            <div class="quiz-a">
+                三層論述：<br><br>
+                ① <strong>侵權行為之核心特徵：</strong>侵權行為損害賠償責任「以不法侵害他人權益為核心，且屬一般人相互間之行為規範」，此法則常隨社會發展另立特別規定，構成特殊侵權行為。<br><br>
+                ② <strong>§23-2的構成要件：</strong>「違反法令」係指違反一般人相互間之行為規範義務，除有阻卻違法事由，原則即屬違法性行為——此即侵權行為違法性要件之核心，性質上與侵權行為一致。<br><br>
+                ③ <strong>立法目的：</strong>§23-2令負責人與公司負連帶責任，係在防止執行業務違法及增加受害人求償管道，與侵權行為法之目的相符。
+            </div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)"><span>2. 民法§197-1的消滅時效結構為何？</span><span class="quiz-toggle">＋</span></div>
+            <div class="quiz-a">
+                §197-1採<strong>雙軌制</strong>：<br><br>
+                ① <strong>短期主觀時效：</strong>自請求權人<strong>知有損害及賠償義務人時起2年</strong>間不行使而消滅；<br>
+                ② <strong>長期客觀時效：</strong>自<strong>有侵權行為時起逾10年</strong>亦同。<br><br>
+                兩者取較早屆至者，時效即告消滅。對比§125（一般時效15年，單軌，自請求權可行使時起算），§197-1之保護期間對被害人較短（有主動知情後2年之限制），但對加害人也有確定性保障（客觀10年截止）。
+            </div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)"><span>3. 大法庭如何批評「法律特別規定說（15年說）」？</span><span class="quiz-toggle">＋</span></div>
+            <div class="quiz-a">
+                三點批評：<br><br>
+                ① <strong>未完成定性：</strong>並未說明§23-2歸屬「何類型」之損害賠償責任，即直接援引一般時效，邏輯上有跳躍。<br>
+                ② <strong>未斟酌體系：</strong>未考量我國損害賠償責任之體系架構（侵權行為、契約不履行、法定等各有其時效安排）。<br>
+                ③ <strong>未排除特別規定：</strong>未說明為何就損害賠償所設之短期時效（§197）不適用，即逕謂適用§125，在說理上不完整。
+            </div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)"><span>4. §23-2之公司與負責人均負連帶責任，為何時效應一致？</span><span class="quiz-toggle">＋</span></div>
+            <div class="quiz-a">
+                大法庭指出：公司代表人執行業務構成侵權行為時，公司依侵權行為規定（§184）負責，適用§197短期時效（2年/10年）。<br><br>
+                §23-2令負責人「與公司負連帶賠償責任」——若公司依§197（2年/10年），負責人卻依§125（15年），則會出現<strong>同一連帶債務中，對公司的請求因時效完成而消滅，對負責人的請求卻仍可主張</strong>的不平衡狀態。<br><br>
+                大法庭認為應<strong>平衡公司與負責人之責任</strong>，兩者既共同負連帶賠償，時效規定亦應一致，故負責人亦適用§197-1。
+            </div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)"><span>5. 民商法合一在本件如何運作？</span><span class="quiz-toggle">＋</span></div>
+            <div class="quiz-a">
+                我國採民商法合一立法政策：公司法等特別商事法規優先適用；特別法未規定而與商事法性質相容者，適用民法。<br><br>
+                本件三步驟：<br>
+                ① §23-2之公司負責人責任係<strong>侵權行為損害賠償責任</strong>（性質定性）；<br>
+                ② 公司法就此消滅時效期間<strong>無特別規定</strong>（特別法缺漏）；<br>
+                ③ 民法§197-1侵權行為損害賠償請求權之消滅時效規定，<strong>無違商事法之性質</strong>（相容性確認）。<br><br>
+                三者俱足→補充適用民法§197-1（2年/10年），而非§125（15年）。
+            </div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)"><span>6. §23-2（對第三人）與§23-1（對公司）的責任性質有何不同？</span><span class="quiz-toggle">＋</span></div>
+            <div class="quiz-a">
+                <strong>§23-1（對公司）：</strong>公司負責人對公司應盡忠實義務及善良管理人注意義務，違反者應負損害賠償——性質上較接近<strong>委任關係之債務不履行</strong>（公司與負責人間之內部義務），適用一般時效或委任之特別規定。<br><br>
+                <strong>§23-2（對第三人）：</strong>公司負責人執行業務違反法令致「他人」受有損害，與公司負連帶賠償責任——保護對象為<strong>公司以外之第三人</strong>，「違反法令」具侵權違法性要件，性質上屬<strong>特殊侵權行為</strong>，適用§197-1（2年/10年）。<br><br>
+                兩者保護對象（公司內部 v. 第三人外部）及責任性質不同，時效規定亦有別。
+            </div>
+        </div>
+    </div>
+
+    <div class="law-ref">
+        <strong>相關法條：</strong>公司法§23-2（公司負責人對第三人之連帶賠償責任）；民法§125（一般消滅時效15年）；民法§197-1（侵權行為損害賠償請求權之短期時效：2年/10年）；民法§184（一般侵權行為）；民商法合一原則（公司法為民法之特別法，公司法未規定事項補充適用民法）
+    </div>
+
+    <details>
+        <summary>大法庭組成（11名法官，全體一致）</summary>
+        <div style="padding-top:10px;">
+            <div class="judges-grid">
+                <span class="judge-chip chief">審判長　高孟焄</span>
+                <span class="judge-chip">沈方維</span>
+                <span class="judge-chip">魏大亮</span>
+                <span class="judge-chip">盧彥如</span>
+                <span class="judge-chip">李寶堂</span>
+                <span class="judge-chip">林金吾</span>
+                <span class="judge-chip">彭昭芬</span>
+                <span class="judge-chip">鄭純惠</span>
+                <span class="judge-chip">張競文</span>
+                <span class="judge-chip">陳麗玲</span>
+                <span class="judge-chip">鍾任賜</span>
+            </div>
+            <p style="font-size:0.82em;color:var(--sub);margin:10px 0 0;">書記官：王怡蓁　｜　裁定日期：中華民國113年7月26日　｜　全體一致，無不同意見書　｜　併案：112台上1303</p>
+        </div>
+    </details>
+
+    <div class="note-toggle" onclick="toggleNote('n1')">✏️ 我的小結</div>
+    <div class="note-area" id="n1">
+        <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n1',this.value)"></textarea>
+        <div class="note-saved" id="n1-saved"></div>
+    </div>
+</div>
+
+<div id="noResults">查無符合的內容，請試試其他關鍵字。</div>
+<div id="noStarred">還沒有收藏的項目，點卡片右上角的 ⭐ 加入收藏。</div>
+</div>
+
+<script>
+const NIGHT_KEY='night_mode_pref';
+function toggleNight(){const on=document.body.classList.toggle('night-mode');localStorage.setItem(NIGHT_KEY,on?'1':'0');document.getElementById('nightBtn').textContent=on?'☀️':'🌙';}
+(function(){if(localStorage.getItem(NIGHT_KEY)==='1'){document.body.classList.add('night-mode');const b=document.getElementById('nightBtn');if(b)b.textContent='☀️';}})();
+const STORE_KEY='112_1305_grand_notes',STAR_KEY='112_1305_grand_stars';
+function loadNotes(){try{return JSON.parse(localStorage.getItem(STORE_KEY))||{};}catch{return{};}}
+function loadStars(){try{return JSON.parse(localStorage.getItem(STAR_KEY))||{};}catch{return{};}}
+function saveAllNotes(d){localStorage.setItem(STORE_KEY,JSON.stringify(d));}
+function saveAllStars(d){localStorage.setItem(STAR_KEY,JSON.stringify(d));}
+(function(){const n=loadNotes(),s=loadStars();
+  Object.entries(n).forEach(([id,v])=>{const a=document.getElementById(id);if(!a)return;const t=a.querySelector('textarea');if(t)t.value=v;if(v)a.classList.add('open');});
+  Object.entries(s).forEach(([id,v])=>{if(!v)return;const b=document.querySelector(`#${id} .star-btn`);if(b)b.classList.add('starred');});
+})();
+function toggleStar(id,btn){const s=loadStars();const now=!btn.classList.contains('starred');btn.classList.toggle('starred',now);s[id]=now;saveAllStars(s);if(filterActive)applyFilter();}
+let filterActive=false;
+function toggleFilter(){filterActive=!filterActive;document.getElementById('filterBtn').classList.toggle('active',filterActive);document.getElementById('searchInput').value='';clearSearchHighlights();updateSearchUI([],0);applyFilter();}
+function applyFilter(){const s=loadStars();const q=document.getElementById('searchInput').value.trim().toLowerCase();let any=false;
+  document.querySelectorAll('.card').forEach(c=>{const kw=(c.dataset.kw||'').toLowerCase();const txt=c.textContent.toLowerCase();
+  const ms=!q||kw.includes(q)||txt.includes(q);const mf=!filterActive||!!s[c.id];const show=ms&&mf;
+  c.classList.toggle('hidden',!show);if(show)any=true;});
+  document.getElementById('noResults').style.display=(!any&&!filterActive)?'block':'none';
+  document.getElementById('noStarred').style.display=(!any&&filterActive)?'block':'none';}
+let _matches=[],_cur=-1;
+function clearSearchHighlights(){document.querySelectorAll('mark.search-hl').forEach(m=>{const p=m.parentNode;p.replaceChild(document.createTextNode(m.textContent),m);p.normalize();});}
+function highlightInNode(node,re){if(node.nodeType===3){const text=node.nodeValue;const frag=document.createDocumentFragment();let last=0,m;re.lastIndex=0;while((m=re.exec(text))!==null){if(m.index>last)frag.appendChild(document.createTextNode(text.slice(last,m.index)));const mk=document.createElement('mark');mk.className='search-hl';mk.textContent=m[0];frag.appendChild(mk);last=re.lastIndex;}if(last===0)return;frag.appendChild(document.createTextNode(text.slice(last)));node.parentNode.replaceChild(frag,node);return;}if(node.nodeType===1){const tag=node.tagName;if(tag==='SCRIPT'||tag==='STYLE'||tag==='TEXTAREA'||tag==='INPUT')return;if(node.classList&&node.classList.contains('search-hl'))return;[...node.childNodes].forEach(c=>highlightInNode(c,re));}}
+function doSearch(q){clearSearchHighlights();_matches=[];_cur=-1;const qt=(q||'').trim();if(!qt){updateSearchUI([],0);applyFilter();return;}applyFilter();const esc=qt.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');const re=new RegExp(esc,'gi');document.querySelectorAll('.container .card:not(.hidden)').forEach(card=>{highlightInNode(card,re);});_matches=[...document.querySelectorAll('mark.search-hl')];if(_matches.length){_cur=0;setCurrent(0);}updateSearchUI(_matches,_cur);}
+function setCurrent(idx){_matches.forEach((m,i)=>m.classList.toggle('current',i===idx));if(_matches[idx])_matches[idx].scrollIntoView({behavior:'smooth',block:'center'});}
+function navMatch(dir){if(!_matches.length)return;_cur=(_cur+dir+_matches.length)%_matches.length;setCurrent(_cur);updateSearchUI(_matches,_cur);}
+function updateSearchUI(matches,cur){const cnt=document.getElementById('searchCount');const prev=document.getElementById('prevBtn');const next=document.getElementById('nextBtn');if(!matches.length){cnt.textContent='';prev.disabled=true;next.disabled=true;return;}cnt.textContent=(cur+1)+'/'+matches.length;prev.disabled=false;next.disabled=false;}
+function handleSearchKey(e){if(e.key==='Enter'){e.shiftKey?navMatch(-1):navMatch(1);}if(e.key==='Escape'){document.getElementById('searchInput').value='';doSearch('');}}
+function toggleNote(id){document.getElementById(id).classList.toggle('open');}
+const timers={};
+function saveNote(id,v){clearTimeout(timers[id]);timers[id]=setTimeout(()=>{const n=loadNotes();n[id]=v;saveAllNotes(n);const el=document.getElementById(id+'-saved');if(el){el.textContent='已儲存';setTimeout(()=>el.textContent='',1500);}},500);}
+let savedRange=null;
+document.addEventListener('selectionchange',()=>{const s=window.getSelection();if(s&&!s.isCollapsed&&s.rangeCount)savedRange=s.getRangeAt(0).cloneRange();});
+function highlightText(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;
+  if(!r||r.collapsed){alert('💡 請先反白想要標記的文字');return;}
+  const sp=document.createElement('span');sp.className='hl';sp.style.cssText='background:#f0d98a;border-radius:2px;';
+  try{r.surroundContents(sp);savedRange=null;}catch{alert('💡 請選取同一段落內的文字');}s&&s.removeAllRanges();}
+function removeHighlight(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;
+  if(!r||r.collapsed){alert('💡 請先反白想擦除標記的文字');return;}
+  const anc=r.commonAncestorContainer.nodeType===1?r.commonAncestorContainer:r.commonAncestorContainer.parentElement;
+  anc.querySelectorAll('span.hl').forEach(sp=>{if(r.intersectsNode(sp)){const p=sp.parentNode;while(sp.firstChild)p.insertBefore(sp.firstChild,sp);p.removeChild(sp);}});
+  savedRange=null;s&&s.removeAllRanges();}
+function clearHighlights(){const sp=document.querySelectorAll('span.hl');if(!sp.length)return;
+  if(confirm('確定要清除所有重點標記嗎？')){sp.forEach(s=>{const p=s.parentNode;while(s.firstChild)p.insertBefore(s.firstChild,s);p.removeChild(s);});}}
+function openExport(){
+  let out='最高法院民事大法庭 112年度台上大字第1305號\n'+'═'.repeat(44)+'\n\n';
+  out+='【主文】\n依公司法第23條第2項規定對公司負責人請求賠償損害者，其請求權之消滅時效期間，應適用民法第197條第1項規定（2年/10年）。\n\n';
+  out+='【事實審錯誤】適用民法§125（15年），採法律特別規定說。\n【大法庭糾正】§23-2係特殊侵權行為（構成要件含「違反法令」即一般人相互行為規範義務之違反），應適用§197-1短期時效。\n\n';
+  const ta=document.querySelector('.note-textarea');if(ta&&ta.value.trim())out+='✏️ 小結：\n'+ta.value.trim()+'\n\n';
+  out+='═'.repeat(44)+'\n';
+  const b=new Blob([out.trim()],{type:'text/plain;charset=utf-8'});
+  const u=URL.createObjectURL(b);const a=document.createElement('a');
+  a.href=u;a.download='112台上大字第1305號_公司法23條2項消滅時效民法197條.txt';a.click();URL.revokeObjectURL(u);}
+function toggleQuiz(el){const ans=el.nextElementSibling;const tog=el.querySelector('.quiz-toggle');if(ans.classList.contains('open')){ans.classList.remove('open');tog.textContent='＋';}else{ans.classList.add('open');tog.textContent='－';}}
+const REG_KEY='exam_completion_registry';
+function _loadReg(){try{return JSON.parse(localStorage.getItem(REG_KEY))||{};}catch{return{};}}
+function _saveReg(r){try{localStorage.setItem(REG_KEY,JSON.stringify(r));}catch{}}
+function _file(){const p=location.pathname.split('/');return decodeURIComponent(p[p.length-1]||'');}
+function _fmt(ts){const d=new Date(ts);const date=(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();const time=d.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false});return date+' '+time;}
+function _updateDate(){const r=_loadReg();const k=_file()||'case_civil_grand_112_1305.html';const l=document.getElementById('doneDateLabel');if(!l)return;l.textContent=(r[k]&&r[k].done&&r[k].ts)?_fmt(r[k].ts):'';}
+const _INDEX_CARD_ID='c_1305';
+function _syncIndex(done){try{const r=JSON.parse(localStorage.getItem('gc_reads')||'{}');r[_INDEX_CARD_ID]=done;localStorage.setItem('gc_reads',JSON.stringify(r));}catch(e){}}
+function toggleDone(){const btn=document.getElementById('doneBtn');const r=_loadReg();const k=_file()||'case_civil_grand_112_1305.html';const done=r[k]&&r[k].done;
+  if(done){delete r[k];_saveReg(r);btn.classList.remove('active');_syncIndex(false);}
+  else{const now=new Date();r[k]={done:true,score:null,total:null,ts:now.getTime(),tsLabel:now.toLocaleDateString('zh-TW')+' '+now.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false})};_saveReg(r);btn.classList.add('active');_syncIndex(true);}
+  _updateDate();}
+(function(){const r=_loadReg();const k=_file()||'case_civil_grand_112_1305.html';if(r[k]&&r[k].done){const b=document.getElementById('doneBtn');if(b)b.classList.add('active');}_updateDate();})();
+</script>
+</body>
+</html>

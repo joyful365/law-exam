@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>111年度台上大字第1706號 民事大法庭裁定</title>
+    <style>
+        :root{--bg:#f5f0eb;--card:#ffffff;--text:#3d3530;--sub:#8c7b6b;--line:#ddd8d0;--majority:#9e5c45;--law:#5a6e4e;--dissent:#b07d4a;--trap:#f5f0d8;--header-bg:#5c4f47;}
+        body.night-mode{--bg:#1a1714;--card:#252220;--text:#d4cec8;--sub:#8a7d72;--line:#383330;--majority:#b87060;--law:#6a8a5e;--dissent:#c4935a;--trap:#2a2518;--header-bg:#111010;}
+        body.night-mode header{box-shadow:0 2px 8px rgba(0,0,0,0.5);}
+        body.night-mode .top-bar{background:#1e1b18;}
+        body.night-mode .top-btn{background:#3a3530;}
+        body.night-mode .fact-box,body.night-mode .issue-box{background:#1e1b18;}
+        body.night-mode .op-head{background:#2a2520;}
+        body.night-mode .op-body{background:var(--card);}
+        body.night-mode .op-result{background:#2a2018;}
+        body.night-mode .d-op-head{background:#261f14;}
+        body.night-mode .d-op-body{background:#201c14;}
+        body.night-mode .d-op-result{background:#261f14;}
+        body.night-mode .co-op-head{background:#14201a;}
+        body.night-mode .co-op-body{background:#141c17;}
+        body.night-mode .co-op-result{background:#14201a;}
+        body.night-mode .dissent-judges{background:#261f14;}
+        body.night-mode .concur-judges{background:#142018;}
+        body.night-mode .compare-table th.th-issue{background:#2a1e18;}
+        body.night-mode .compare-table td.td-issue{background:#2a1e18;}
+        body.night-mode .compare-table td.td-majority{background:#1e1612;}
+        body.night-mode .compare-table td.td-dissent{background:#1e1814;}
+        body.night-mode .compare-table td.td-concur{background:#141c17;}
+        body.night-mode .ref-case{background:#242018;}
+        body.night-mode .law-ref{background:#1c2018;}
+        body.night-mode .note-textarea{background:#1e1b18;color:var(--text);border-color:var(--line);}
+        body.night-mode .judge-chip{background:#2a2520;border-color:var(--line);}
+        body.night-mode .judge-chip.chief{background:#3a3530;}
+        body.night-mode mark.search-hl{background:#7a6010;color:#f0e8c8;}
+        body.night-mode mark.search-hl.current{background:#c47000;color:#fff;}
+        body.night-mode .verdict{background:#2e2a26;}
+        body.night-mode .trap-box{border-color:#5a5020;}
+        body.night-mode .trap-title{color:#c8a840;}
+        body.night-mode .trap-item{border-left-color:#7a6830;}
+        body.night-mode #nightBtn{background:#4a4030;color:#e8d898;font-weight:700;}
+        body.night-mode .quiz-q{background:var(--card);}
+        body.night-mode .quiz-q:hover{background:#2a2520;}
+        body.night-mode .quiz-a{background:#1c2018;color:#9fbf90;}
+        body{transition:background 0.3s,color 0.3s;}.card{transition:background 0.3s,border-color 0.3s;}
+        *{box-sizing:border-box;}
+        body{font-family:"Helvetica Neue",Helvetica,"PingFang TC","LiHei Pro","Microsoft JhengHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.85;font-size:16px;margin:0;padding:0 0 60px;}
+        header{background:var(--header-bg);color:#f5f0eb;padding:16px 16px 8px;text-align:center;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.2);}
+        header h1{margin:0 0 10px;font-size:1.05em;line-height:1.5;font-weight:600;color:#fff;}
+        .header-controls{display:flex;gap:8px;align-items:center;}
+        .search-wrap{position:relative;flex:1;display:flex;align-items:center;gap:4px;}
+        #searchInput{flex:1;padding:8px 14px 8px 32px;border:none;border-radius:6px;font-size:14px;background:rgba(245,240,235,0.15);color:#f5f0eb;outline:none;}
+        #searchInput::placeholder{color:rgba(245,240,235,0.45);}
+        #searchInput:focus{background:rgba(245,240,235,0.25);}
+        .search-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:13px;opacity:0.5;pointer-events:none;}
+        .search-count{font-size:12px;color:rgba(255,255,255,0.7);white-space:nowrap;min-width:44px;text-align:center;}
+        .search-nav{background:rgba(255,255,255,0.13);border:none;border-radius:6px;color:white;font-size:13px;padding:6px 8px;cursor:pointer;line-height:1;}
+        .search-nav:hover{background:rgba(255,255,255,0.25);}
+        .search-nav:disabled{opacity:0.3;cursor:default;}
+        mark.search-hl{background:#ffe066;color:#1a1a1a;border-radius:2px;padding:0 1px;}
+        mark.search-hl.current{background:#ff8c00;color:#fff;border-radius:3px;outline:2px solid #ff8c00;}
+        #filterBtn{background:rgba(245,240,235,0.15);border:none;border-radius:6px;color:#f5f0eb;font-size:13px;padding:8px 12px;cursor:pointer;white-space:nowrap;}
+        #filterBtn.active{background:var(--dissent);color:#fff;font-weight:bold;}
+        .top-bar{background:#e8e2da;padding:5px 14px;display:flex;gap:6px;justify-content:flex-end;flex-wrap:nowrap;}
+        .top-btn{background:#b0a898;color:#fff;border:none;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;transition:opacity 0.15s;}
+        .top-btn:hover{opacity:0.8;}
+        .top-btn.done{background:#8c7b6b;}
+        .top-btn.done.active{background:linear-gradient(135deg,#b8860b,#daa520);color:#fff8e1;font-weight:700;box-shadow:0 0 8px rgba(218,165,32,0.5);}
+        .done-date{font-size:11px;color:#a0a0a0;white-space:nowrap;align-self:center;font-weight:500;}
+        .container{padding:18px 16px;max-width:640px;margin:0 auto;}
+        @media(min-width:768px){.container{max-width:880px;padding:24px 20px;}body{font-size:17px;}header h1{font-size:1.15em;}}
+        .card{background:var(--card);border-radius:14px;padding:24px 22px;margin-bottom:24px;box-shadow:0 1px 6px rgba(61,53,48,0.08);position:relative;border:1px solid var(--line);}
+        .card.hidden{display:none;}
+        .star-btn{position:absolute;top:18px;right:18px;background:none;border:none;font-size:20px;cursor:pointer;opacity:0.15;transition:opacity 0.15s;padding:0;}
+        .star-btn.starred{opacity:1;}
+        .card-title{color:var(--text);font-size:1.15em;font-weight:700;margin:0 0 4px;padding-right:30px;line-height:1.6;}
+        .meta-line{font-size:0.75em;color:var(--sub);margin-bottom:20px;letter-spacing:0.04em;}
+        .verdict{background:#4a3f38;color:#f5f0eb;border-radius:10px;padding:16px 18px;margin-bottom:22px;}
+        .verdict-label{font-size:0.66em;letter-spacing:0.14em;opacity:0.5;margin-bottom:6px;}
+        .verdict-main{font-size:0.97em;font-weight:700;line-height:1.7;margin-bottom:10px;color:#fff;}
+        .vote-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px;padding-top:10px;border-top:1px solid rgba(245,240,235,0.15);}
+        .v-chip{font-size:0.72em;background:rgba(245,240,235,0.1);border-radius:20px;padding:3px 10px;white-space:nowrap;color:rgba(245,240,235,0.75);}
+        .v-chip.majority{background:rgba(158,92,69,0.5);color:#f5f0eb;font-weight:700;}
+        .v-chip.dissent-c{background:rgba(176,125,74,0.45);color:#f5f0eb;}
+        .v-chip.concur-c{background:rgba(70,130,90,0.45);color:#f5f0eb;}
+        .section-heading{font-size:0.85em;font-weight:700;letter-spacing:0.08em;color:var(--sub);margin:22px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line);}
+        .fact-box{background:#faf8f5;border-left:3px solid var(--sub);border-radius:0 8px 8px 0;padding:14px 16px;margin-bottom:16px;font-size:0.9em;}
+        .fact-box p{margin:0 0 8px;}.fact-box p:last-child{margin:0;}
+        .issue-box{background:#faf8f5;border-radius:8px;padding:14px 16px;margin-bottom:16px;font-size:0.9em;border:1px solid var(--line);}
+        .issue-box p{margin:0 0 8px;}.issue-box p:last-child{margin:0;}
+        .opinions{display:flex;flex-direction:column;gap:10px;margin-bottom:16px;}
+        .op{border-radius:8px;overflow:hidden;border:1px solid var(--line);}
+        .op-head{display:flex;align-items:center;gap:10px;padding:10px 14px;background:#f7f4f0;}
+        .op-num{width:26px;height:26px;border-radius:50%;background:var(--majority);color:white;font-size:0.75em;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+        .op-label{font-weight:700;font-size:0.92em;color:var(--majority);flex:1;}
+        .op-body{padding:13px 15px;font-size:0.9em;background:var(--card);}
+        .op-body p{margin:0 0 9px;}.op-body p:last-child{margin:0;}
+        .op-body ul{margin:5px 0 8px;padding-left:18px;}.op-body li{margin-bottom:5px;}
+        .op-result{background:#fdf9f7;border-radius:6px;padding:10px 13px;margin-top:10px;font-size:0.9em;border-left:3px solid var(--majority);}
+        .d-opinions,.co-opinions{display:flex;flex-direction:column;gap:10px;margin-bottom:16px;}
+        .d-op{border-radius:8px;overflow:hidden;border:1px solid #e6d8bc;}
+        .d-op-head{display:flex;align-items:center;gap:10px;padding:10px 14px;background:#fdf7ec;}
+        .d-op-num{width:26px;height:26px;border-radius:50%;background:var(--dissent);color:white;font-size:0.75em;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+        .d-op-label{font-weight:700;font-size:0.92em;color:var(--dissent);flex:1;}
+        .d-op-body{padding:13px 15px;font-size:0.9em;background:#fffdf8;}
+        .d-op-body p{margin:0 0 9px;}.d-op-body p:last-child{margin:0;}
+        .d-op-body ul{margin:5px 0 8px;padding-left:18px;}.d-op-body li{margin-bottom:5px;}
+        .d-op-result{background:#fdf7ec;border-radius:6px;padding:10px 13px;margin-top:10px;font-size:0.9em;border-left:3px solid var(--dissent);}
+        .co-op{border-radius:8px;overflow:hidden;border:1px solid #b8d4c0;}
+        .co-op-head{display:flex;align-items:center;gap:10px;padding:10px 14px;background:#ecf5ee;}
+        .co-op-num{width:26px;height:26px;border-radius:50%;background:var(--law);color:white;font-size:0.75em;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+        .co-op-label{font-weight:700;font-size:0.92em;color:var(--law);flex:1;}
+        .co-op-body{padding:13px 15px;font-size:0.9em;background:#f8fcf9;}
+        .co-op-body p{margin:0 0 9px;}.co-op-body p:last-child{margin:0;}
+        .co-op-body ul{margin:5px 0 8px;padding-left:18px;}.co-op-body li{margin-bottom:5px;}
+        .co-op-result{background:#ecf5ee;border-radius:6px;padding:10px 13px;margin-top:10px;font-size:0.9em;border-left:3px solid var(--law);}
+        .dissent-judges{font-size:0.82em;color:var(--dissent);margin-bottom:12px;padding:8px 12px;background:#fdf7ec;border-radius:6px;border-left:3px solid var(--dissent);}
+        .concur-judges{font-size:0.82em;color:var(--law);margin-bottom:12px;padding:8px 12px;background:#ecf5ee;border-radius:6px;border-left:3px solid var(--law);}
+        .compare-table{width:100%;border-collapse:collapse;margin-bottom:18px;font-size:0.86em;}
+        .compare-table th{padding:9px 12px;font-weight:700;font-size:0.84em;letter-spacing:0.04em;}
+        .compare-table th.th-issue{background:#ede0da;color:var(--sub);width:18%;}
+        .compare-table th.th-majority{background:var(--majority);color:#fff;width:27%;}
+        .compare-table th.th-dissent{background:var(--dissent);color:#fff;width:27%;}
+        .compare-table th.th-concur{background:var(--law);color:#fff;width:28%;}
+        .compare-table td{padding:10px 12px;vertical-align:top;border-bottom:1px solid var(--line);line-height:1.6;}
+        .compare-table td.td-issue{background:#f5eeea;font-weight:700;font-size:0.86em;color:var(--sub);}
+        .compare-table td.td-majority{background:#fdf8f6;border-left:2px solid var(--majority);}
+        .compare-table td.td-dissent{background:#fdf8f4;border-left:2px solid var(--dissent);}
+        .compare-table td.td-concur{background:#f4f8f5;border-left:2px solid var(--law);}
+        .compare-table tr:last-child td{border-bottom:none;}
+        @media(max-width:640px){
+            .compare-table thead{display:none;}
+            .compare-table,.compare-table tbody{display:block;}
+            .compare-table tr{display:block;margin-bottom:14px;border-radius:10px;overflow:hidden;border:1px solid var(--line);}
+            .compare-table td{display:block;width:100%;border-bottom:1px solid var(--line);border-left:none!important;}
+            .compare-table td.td-issue{background:#ede0da;font-size:0.85em;border-bottom:none;}
+            .compare-table td.td-majority::before{content:"多數 ▍";display:block;font-weight:700;color:var(--majority);margin-bottom:3px;font-size:0.78em;}
+            .compare-table td.td-dissent::before{content:"不同 ▍";display:block;font-weight:700;color:var(--dissent);margin-bottom:3px;font-size:0.78em;}
+            .compare-table td.td-concur::before{content:"協同 ▍";display:block;font-weight:700;color:var(--law);margin-bottom:3px;font-size:0.78em;}
+        }
+        .trap-box{background:var(--trap);border-radius:8px;padding:14px 16px;margin-bottom:16px;border:1px solid #e0d8b0;font-size:0.9em;}
+        .trap-title{font-weight:700;color:#7a6820;margin-bottom:10px;font-size:0.92em;display:flex;align-items:center;gap:6px;}
+        .trap-item{margin-bottom:10px;padding-left:14px;border-left:2px solid #c8b860;}
+        .trap-item:last-child{margin-bottom:0;}
+        .trap-q{font-weight:700;color:var(--text);margin-bottom:3px;}
+        .trap-a{color:var(--text);opacity:0.85;}
+        .law-ref{background:#f2f5f0;border-radius:8px;padding:10px 14px;font-size:0.84em;color:#3d4e38;margin-top:14px;border-left:3px solid var(--law);}
+        details{margin-top:16px;}
+        details summary{cursor:pointer;color:var(--sub);font-size:0.84em;font-weight:600;padding:5px 0;user-select:none;list-style:none;display:flex;align-items:center;gap:6px;}
+        details summary::before{content:'▶';font-size:0.62em;transition:transform 0.2s;}
+        details[open] summary::before{transform:rotate(90deg);}
+        .ref-case{background:#f7f4f0;border-radius:7px;padding:10px 13px;margin-bottom:8px;font-size:0.84em;border-left:3px solid var(--majority);}
+        .ref-case.d{border-left-color:var(--dissent);}
+        .ref-case-title{font-weight:700;color:var(--majority);margin-bottom:3px;font-size:0.9em;}
+        .ref-case.d .ref-case-title{color:var(--dissent);}
+        .judges-grid{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:6px;}
+        .judge-chip{background:#f5f0eb;border:1px solid var(--line);border-radius:20px;padding:3px 12px;font-size:0.82em;color:var(--text);white-space:nowrap;}
+        .judge-chip.chief{background:#ede0da;font-weight:700;}
+        .judge-chip.dissenter{border-color:var(--dissent);color:var(--dissent);}
+        .judge-chip.concur{border-color:var(--law);color:var(--law);}
+        .note-toggle{color:var(--sub);font-size:0.84em;font-weight:600;cursor:pointer;padding:5px 0;margin-top:16px;display:flex;align-items:center;gap:6px;}
+        .note-area{display:none;margin-top:8px;}.note-area.open{display:block;}
+        .note-textarea{width:100%;min-height:90px;border:1px solid var(--line);border-radius:8px;padding:10px 13px;font-size:0.88em;font-family:inherit;resize:vertical;background:#faf8f5;color:var(--text);outline:none;line-height:1.7;}
+        .note-textarea:focus{border-color:var(--sub);}
+        .note-saved{font-size:0.76em;color:var(--law);margin-top:4px;min-height:16px;}
+        .quiz-list{border-radius:8px;overflow:hidden;border:1px solid var(--line);margin-bottom:16px;}
+        .quiz-item{border-bottom:1px solid var(--line);}.quiz-item:last-child{border-bottom:none;}
+        .quiz-q{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;padding:11px 14px;cursor:pointer;font-size:0.9em;background:var(--card);}
+        .quiz-q:hover{background:#faf8f5;}
+        .quiz-toggle{font-size:1.1em;color:var(--majority);flex-shrink:0;font-weight:300;line-height:1.4;}
+        .quiz-a{display:none;padding:11px 14px;background:#f0f4ee;font-size:0.87em;line-height:1.75;border-top:1px solid var(--line);color:#3d4e38;}
+        .quiz-a.open{display:block;}
+        #noResults,#noStarred{display:none;text-align:center;color:var(--sub);padding:40px 0;font-size:0.9em;}
+        ::-webkit-scrollbar{display:none;}::selection{background:#e8ddd0;}
+    </style>
+</head>
+<body>
+<header>
+    <h1>最高法院民事大法庭<br>111年度台上大字第1706號</h1>
+    <div class="header-controls">
+        <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="搜尋關鍵字、法條…" oninput="doSearch(this.value)" onkeydown="handleSearchKey(event)">
+            <span class="search-count" id="searchCount"></span>
+            <button class="search-nav" id="prevBtn" onclick="navMatch(-1)" disabled>▲</button>
+            <button class="search-nav" id="nextBtn" onclick="navMatch(1)" disabled>▼</button>
+        </div>
+        <button id="filterBtn" onclick="toggleFilter()">⭐ 收藏</button>
+    </div>
+    <div class="top-bar">
+        <button class="top-btn" onclick="highlightText()">🖊️</button>
+        <button class="top-btn" onclick="removeHighlight()">🧽</button>
+        <button class="top-btn" onclick="clearHighlights()">🗑️</button>
+        <button class="top-btn" onclick="openExport()">📤</button>
+        <button class="top-btn" id="nightBtn" onclick="toggleNight()">🌙</button>
+        <button class="top-btn done" id="doneBtn" onclick="toggleDone()">朕已閱</button>
+        <span class="done-date" id="doneDateLabel"></span>
+    </div>
+</header>
+
+<div class="container">
+<div class="card" id="case1" data-kw="國家賠償法 國賠法第2條第2項 純粹經濟上損失 利益 權利 公務員 故意 善良風俗 BOT 乙鄉公所 路障 民法第186條 民法第184條 憲法第24條 林恩山 鍾任賜 不同意見 協同意見 立法形成自由 舉輕以明重">
+    <button class="star-btn" onclick="toggleStar('case1',this)">⭐</button>
+    <h2 class="card-title">國賠法§2-2所保護之法益，是否包括「純粹經濟上損失（利益）」？</h2>
+    <div class="meta-line">裁定日期：中華民國112年6月16日　｜　案號：111年度台上大字第1706號　｜　不同意見：林恩山　｜　部分協同部分不同意見：鍾任賜</div>
+
+    <div class="verdict">
+        <div class="verdict-label">大法庭主文（多數見解）</div>
+        <div class="verdict-main">國家賠償法第二條第二項前段所保護之法益，<strong>不以民法第一百八十四條第一項前段所定之權利為限</strong>；公務員因故意違背對於第三人應執行之職務，或執行職務行使公權力時，<strong>故意以背於善良風俗之方法</strong>，侵害人民之利益，人民得依該規定請求國家賠償。</div>
+        <div class="vote-row">
+            <span class="v-chip majority">多數意見</span>
+            <span class="v-chip dissent-c">不同意見：林恩山</span>
+            <span class="v-chip concur-c">部分協同部分不同意見：鍾任賜</span>
+            <span class="v-chip">裁定日：112.06.16</span>
+        </div>
+    </div>
+
+    <div class="section-heading">基礎事實（BOT工程勒索案）</div>
+    <div class="fact-box">
+        <p><strong>背景：</strong>甲公司標得丙機關BOT工程後，轉包予己公司施作。乙鄉公所鄉長丁、執行秘書戊於93年10月間，因向甲公司及己公司負責人<strong>勒索回饋金未果</strong>，自94年2月間起，<strong>指示第三人在系爭工程唯一聯外道路設置路障或破壞該道路</strong>，妨礙施工車輛進出，迫使甲公司派人出面協商以達索賄之目的。</p>
+        <p><strong>刑事判決：</strong>丁、戊因上開行為，以犯共同依據法令從事公務之人員藉勢及藉端勒索財物未遂罪，<strong>判刑確定</strong>。</p>
+        <p><strong>民事請求：</strong>甲公司因丁、戊行為造成工期延誤受有損害，依國賠法第2條第2項前段請求乙鄉公所賠償。</p>
+        <p><strong>第二審判決（被推翻）：</strong>認甲公司所受損害為<strong>純粹經濟上損失</strong>，援引本院110年度台上字第1114號判決，以其不屬於國賠法§2-2所保護之法益，判甲公司敗訴。</p>
+    </div>
+
+    <div class="section-heading">法律爭議</div>
+    <div class="issue-box">
+        <p><strong>系爭規定：</strong>國賠法§2-2前段：「公務員於執行職務行使公權力時，因故意或過失不法侵害人民<strong>自由或權利</strong>者，國家應負損害賠償責任……」</p>
+        <p><strong>爭議：</strong>條文所稱「自由或權利」，是否包括「純粹經濟上損失（利益）」？甲公司受有之工期延誤損失係純粹財產上損害，並非侵害人身或物權等固有利益所生之後果，得否納入國賠保護範圍？</p>
+        <p><strong>背景：</strong>民法§184-1前段：「不法侵害他人之<strong>權利</strong>者，負損害賠償責任」——實務通說認「權利」不包括純粹經濟上損失；民法§184-1後段：「<strong>故意以背於善良風俗之方法加損害於他人</strong>者亦同」——則保護及於「利益」。</p>
+        <p><strong>核心張力：</strong>88年修正民法§186-1時，刪除「之權利」使保護客體擴及利益；但同時期及其後多次修法均未同步修正國賠法§2-2之「自由或權利」文字，應如何解釋？</p>
+    </div>
+
+    <div class="section-heading">大法庭裁定理由（多數意見）</div>
+    <div class="opinions">
+        <div class="op">
+            <div class="op-head"><div class="op-num">㈠</div><span class="op-label">憲法依據——國賠法係依憲§24制定，應本於憲法意旨解釋</span></div>
+            <div class="op-body">
+                <p>憲法§24保障人民受公務員違法侵害時得依法律請求國家賠償；此所稱「自由或權利」，係指人民基於法律規範目的而取得之<strong>法的地位之總稱</strong>。</p>
+                <p>國賠法既係依憲法§24規定所制定（國賠法§1），則國賠法§2-2前段所保護之法益，即應<strong>本於憲法保障人民權益之意旨及國賠法之立法精神</strong>而為解釋，不宜僅拘泥於「自由或權利」之文字，而排除「利益」。</p>
+                <div class="op-result"><strong>結論：</strong>憲法第24條之「自由或權利」係人民法的地位之總稱，國賠法應本於此意旨解釋，不得自我限縮保護範圍。</div>
+            </div>
+        </div>
+        <div class="op">
+            <div class="op-head"><div class="op-num">㈡</div><span class="op-label">88年修正民法§186——立法者有意擴及「利益」，舉輕以明重</span></div>
+            <div class="op-body">
+                <p>民法§186-1於88年修正時，由「第三人之<strong>權利</strong>受損害者」修正為「第三人<strong>受損害</strong>者」，立法理由明揭係為「使保護客體<strong>及於利益</strong>」。立法者已有意將公務員故意執行職務違法行為之保護客體，擴大至利益。</p>
+                <p>又依民法§184-1後段，<strong>故意以背於善良風俗之方法加損害於他人者</strong>，即令僅侵害「利益」，被害人亦得請求賠償；加害人同時為受僱人時，被害人得依§188另請求僱用人連帶賠償。</p>
+                <p>國賠法係為提供人民<strong>較民法更為周全之保障</strong>所設。從個人、僱用人或公務員與國家所負損害賠償責任內涵及風險承受能力之差異，依<strong>舉輕以明重</strong>之法理：國家依國賠法對人民所負賠償責任，自不應劣於個人、僱用人或公務員依民法侵權行為規定所負賠償責任。</p>
+                <p>故公務員因故意違背職務，或故意以背於善良風俗之方法，侵害人民之利益，國家不得以非侵害權利為由解免其責。</p>
+                <div class="op-result"><strong>結論：</strong>民法已擴及利益保護，國賠法作為提供更周全保障之法制，不應反而劣於民法；故意侵害利益（純粹經濟上損失）亦在國賠法保護範圍內。</div>
+            </div>
+        </div>
+        <div class="op">
+            <div class="op-head"><div class="op-num">㈢</div><span class="op-label">民法§184-1前段限縮「權利」之目的，不得反推排除國賠法保護</span></div>
+            <div class="op-body">
+                <p>民法§184-1前段所稱「權利」限縮為既存法律體系所明認之權利，係考量<strong>利益之範圍過於廣泛，難以預見賠償範圍</strong>，為合理衡平個人行為自由與權益保護，基於法律政策上之<strong>差別性規範</strong>。此限縮目的係限制加害人侵權行為責任範圍，<strong>非用以排除侵權行為法對於利益之保護</strong>（民法§184-1後段仍保護利益）。</p>
+                <p>國賠法§2-2既未如民法§184將侵權態樣、保護法益予以分類，倘仍採相同解釋，將利益完全排除於保護客體之外，反而使人民於利益受損時<strong>完全無法獲得國家賠償</strong>，顯與國賠法之立法精神有違。</p>
+                <p>不得以88年修正民法§186-1或嗣後修正國賠法時均未修正§2-2之「自由或權利」文字，即推論立法者<strong>有意將利益完全排除</strong>於保護客體之外。</p>
+                <div class="op-result"><strong>結論：</strong>§184-1前段限縮「權利」之目的是限制私人行為自由，與國賠法的規範旨趣不同，不能比附援引將「利益」完全排除於國賠法保護之外。</div>
+            </div>
+        </div>
+        <div class="op">
+            <div class="op-head"><div class="op-num">㈣</div><span class="op-label">澄清先前判決射程——限於民法§184-1前段之範疇，與國賠法無涉</span></div>
+            <div class="op-body">
+                <p>本院先前判決（98台上1961、102台上342、109台上754、110台上2150）所謂「民法§184-1前段所保護之法益，原則上限於權利，不及於純粹經濟上損失或純粹財產上損害」等見解，均在界定<strong>民法§184-1前段所指權利之範圍</strong>，與國賠法§2-2前段之解釋<strong>無涉</strong>，不得比附援引。</p>
+                <div class="op-result"><strong>結論：</strong>先前判決關於「純粹經濟上損失不在§184-1前段保護範圍」之見解，僅限於民法之解釋，不得援引以限縮國賠法的保護範圍。</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-heading">不同意見書（法官林恩山）</div>
+    <div class="dissent-judges">✍️ 不同意見法官：<strong>林恩山</strong>（全部不同意）</div>
+    <div class="d-opinions">
+        <div class="d-op">
+            <div class="d-op-head"><div class="d-op-num">一</div><span class="d-op-label">憲法「權利」不得套用於實定法——立法形成自由應受尊重</span></div>
+            <div class="d-op-body">
+                <p>憲法條文大多僅規定「權利」，但憲法為根本大法，採廣義解釋擴及利益，尚無不可。然<strong>憲法有關權利之概念不得套用於憲法以外之實定法</strong>，因涉及立法體例及立法裁量問題。</p>
+                <p>國賠法之保護客體為何，立法機關有<strong>形成自由</strong>。我國現行法律體系中，訴願法、行政訴訟法、政府採購法等均將「權利」與「利益」分別並列規定，顯見在現行法律體系，<strong>權利並不包括利益</strong>。</p>
+                <p>民法§186-1於88年修正後，國賠法歷經多次修正均<strong>未修改§2-2之「自由或權利」文字</strong>，足見立法者認為利益之受侵害不應包括在國家賠償之列——此係立法者有意的選擇，並無違憲或法律漏洞問題，不得以解釋方式推翻。</p>
+                <div class="d-op-result"><strong>核心批評：</strong>多數見解創造新的法律體系，推翻現有法律架構及價值判斷，有侵犯立法形成自由之虞；在無法律漏洞或違憲情形下，法院解釋不得逾越立法機關所定之界線。</div>
+            </div>
+        </div>
+        <div class="d-op">
+            <div class="d-op-head"><div class="d-op-num">二</div><span class="d-op-label">過失亦一體適用之風險——純粹經濟上損失難以精確界定</span></div>
+            <div class="d-op-body">
+                <p>純粹經濟上損失之概念難以精確界定，其被害人及賠償範圍漫無邊際，難以估計。若擴及過失侵權行為，例如：號誌故障怠於修復、交通指揮不當造成隧道車禍、交通阻斷，致他人不能上班、開店、交貨、簽約、出國旅遊、參加考試等情，被害人無數，賠償範圍無限擴大，地方自治團體之財力恐難負荷。</p>
+                <p>多數見解雖增加「故意以背於善良風俗之方法」之限縮要件，但同一法條規定，<strong>不可能就故意與過失割裂適用</strong>，一旦國賠法§2-2「自由或權利」包括利益，過失侵害利益亦將一體適用，造成國家賠償責任無限擴大。</p>
+                <div class="d-op-result"><strong>核心批評：</strong>多數見解對「故意以背善良風俗」要件之限縮，僅是技術性處理，無法根本解決國賠法§2-2就過失情形一體適用後國家賠償責任無限擴大之問題。</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-heading">部分協同、部分不同意見書（法官鍾任賜）</div>
+    <div class="concur-judges">✍️ 部分協同、部分不同意見法官：<strong>鍾任賜</strong><br>
+        ✔ 協同：國賠法§2-2「權利」應包括利益（89年5月5日民法§186-1修正施行後）；且過失侵害利益亦有適用（與多數見解不同之擴張點）<br>
+        ✘ 不同意：本件應以「原則重要性」提案，而非「消極歧異」提案</div>
+    <div class="co-opinions">
+        <div class="co-op">
+            <div class="co-op-head"><div class="co-op-num">協</div><span class="co-op-label">協同一：89年民法§186-1修正後，國賠法「權利」包括利益</span></div>
+            <div class="co-op-body">
+                <p>國賠法§5規定以民法為補充法；88年修正民法§186-1使保護客體及於利益（89年5月5日施行）。依沿革解釋、體系解釋、目的解釋及合憲解釋，國賠法§2-2之「權利」，於<strong>89年5月5日之後</strong>，應包含利益在內。</p>
+                <p>理由：國賠法第5條明定以民法為補充法；民法修正規定後，若維持「國賠法之權利不包括利益」，反使國家責任劣於公務員個人責任，不符規範目的；且依舉重以明輕（按：鍾任賜用「舉重以明輕」，多數用「舉輕以明重」），國家對人民所負賠償責任不應劣於公務員。</p>
+                <div class="co-op-result"><strong>協同結論：</strong>89年5月5日後，國賠法§2-2「自由或權利」包括利益，多數見解此部分可協同。</div>
+            </div>
+        </div>
+        <div class="co-op">
+            <div class="co-op-head"><div class="co-op-num">協</div><span class="co-op-label">協同二（超越多數）：過失侵害利益，亦有國賠法§2-2適用</span></div>
+            <div class="co-op-body">
+                <p>多數見解主文限定「故意以背於善良風俗」，但鍾任賜認為：既然§2-2「權利」包括利益，則<strong>公務員因過失不法侵害人民利益，亦屬§2-2之規定，國家應負賠償責任</strong>。</p>
+                <p>§2-2就故意與過失之區別，僅在：故意者，被害人得直接請求公務員賠償（民法§186-1）；過失者，被害人不得直接對公務員請求（須先透過國家）。如此安排下，過失侵害利益亦有§2-2適用，且有國賠法§2-3（國家對有故意或重大過失公務員之求償權）為機制配合，不致過度負擔。</p>
+                <div class="co-op-result"><strong>擴張超過多數：</strong>多數見解限縮於「故意以背善良風俗」，鍾任賜認為「過失侵害利益」亦有§2-2適用，此點超越多數，為多數所不採。</div>
+            </div>
+        </div>
+        <div class="co-op">
+            <div class="co-op-head"><div class="co-op-num">異</div><span class="co-op-label">不同意見：應以「原則重要性」提案，而非「消極歧異」提案</span></div>
+            <div class="co-op-body">
+                <p>110台上1114號判決所謂「§2-2保護法益限於既存法律體系所明認之自由或權利，不及純粹經濟上損失」之見解，對其裁判形成<strong>不具必要性</strong>（因該案之損害已構成「實體財產權及金錢損害」，本即符合§2-2之「權利」，無須論及純粹經濟上損失問題）。</p>
+                <p>因此，本件提案所援引之歧異裁判，於「相同事實」之認定上有疑問，嚴格言之不符歧異提案之要件。本件法律爭議有促使法律續造之價值，屬重大且普遍性之法律問題，應以<strong>原則重要性提案</strong>為宜（提案庭亦有以原則重要性為備位提案）。</p>
+                <div class="co-op-result"><strong>程序批評：</strong>本件應改以原則重要性提案，而非消極歧異提案；大法庭就「相同事實」之認定標準，應謹守規範旨意並妥切闡述。</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-heading">三方見解快速對照</div>
+    <table class="compare-table">
+        <thead>
+            <tr>
+                <th class="th-issue">爭點</th>
+                <th class="th-majority">多數意見</th>
+                <th class="th-dissent">不同意見（林恩山）</th>
+                <th class="th-concur">部分協同（鍾任賜）</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="td-issue">§2-2「權利」是否包括利益</td>
+                <td class="td-majority">✔ 包括——不以§184-1前段之權利為限。</td>
+                <td class="td-dissent">✘ 不包括——現行法律體系均將權利、利益分列；立法者有意未修正，有立法形成自由。</td>
+                <td class="td-concur">✔ 包括——89年5月5日民法§186-1修正施行後，依國賠法§5補充適用。</td>
+            </tr>
+            <tr>
+                <td class="td-issue">適用場合之限縮</td>
+                <td class="td-majority">主文限定：<strong>故意</strong>違背職務，或<strong>故意以背善良風俗</strong>侵害利益。（未及過失）</td>
+                <td class="td-dissent">（認根本不應包括利益，此限縮仍不當）同一法條不能割裂適用，過失一體適用後國家賠償責任無限擴大。</td>
+                <td class="td-concur"><strong>超越多數</strong>：過失侵害利益亦有§2-2適用；不應僅限「故意以背善良風俗」。</td>
+            </tr>
+            <tr>
+                <td class="td-issue">民法§186-1修正之影響</td>
+                <td class="td-majority">民法修正擴及利益，國賠法不應劣於民法（舉輕以明重）。</td>
+                <td class="td-dissent">民法修正後國賠法未同步修正，足見立法者有意不將利益納入國賠保護；應督促立法者修法，非由法院解釋。</td>
+                <td class="td-concur">民法修正後依§5補充適用，§2-2「權利」應擴張解釋包括利益（自89.05.05起）。</td>
+            </tr>
+            <tr>
+                <td class="td-issue">先前判決（純粹經濟損失不在§184-1前段保護範圍）</td>
+                <td class="td-majority">僅限於民法§184-1前段之解釋，與國賠法§2-2無涉，不得比附援引。</td>
+                <td class="td-dissent">實務一貫認權利不包括利益，在無違憲或法律漏洞情形下，法院不應以解釋推翻。</td>
+                <td class="td-concur">110台上1114之見解對其裁判形成不具必要性，不符歧異要件，應改以原則重要性提案。</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="section-heading">⚠️ 考試陷阱提示</div>
+    <div class="trap-box">
+        <div class="trap-title">📌 常見混淆點</div>
+        <div class="trap-item">
+            <div class="trap-q">Q：大法庭主文限定在「故意以背善良風俗」侵害利益，則「過失」侵害利益可否依§2-2請求國賠？</div>
+            <div class="trap-a">A：<strong>依多數主文，過失侵害利益並不在本裁定明示適用範圍內。</strong>主文明確限定「故意違背職務」或「故意以背善良風俗之方法侵害利益」。但鍾任賜協同意見認為過失亦應有適用——此係超越多數見解之意見，目前大法庭裁定並未採納。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：先前判決「純粹經濟上損失不在民法§184-1前段保護範圍」，與本件有何關係？</div>
+            <div class="trap-a">A：<strong>多數明確指出：無涉。</strong>先前判決（98台上1961等）所謂純粹經濟上損失不受保護，係在界定民法§184-1前段「權利」之範圍（目的在限制私人侵權賠償範圍），與國賠法§2-2之解釋無涉，不得比附援引。這是本裁定非常重要的一個釐清。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：民法§184-1前段限縮「權利」的目的是什麼？為何不能反推國賠法也應限縮？</div>
+            <div class="trap-a">A：§184-1前段限縮「權利」的目的是：避免利益範圍過廣導致加害人賠償負擔過重，衡平<strong>個人行為自由與權益保護</strong>。但此規範目的係針對私人之間的利益衡量，國賠法面對的是<strong>國家責任</strong>（國家的風險承受能力遠大於個人），且§184-1後段及§188仍保護利益，故國賠法不得反以§184-1前段為由完全排除利益保護。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：鍾任賜的「部分協同、部分不同意見」，在哪些點上協同、哪些點上不同？</div>
+            <div class="trap-a">A：<strong>協同（贊同多數）：</strong>國賠法§2-2「權利」包括利益（89年5月5日後）。<strong>超越多數（不被採）：</strong>過失侵害利益亦有§2-2適用，不應限縮於「故意以背善良風俗」。<strong>不同意（程序問題）：</strong>本件應以「原則重要性」提案，而非「消極歧異」提案——因110台上1114號判決之見解對其裁判形成不具必要性，不符歧異要件。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：多數採「舉輕以明重」，鍾任賜採「舉重以明輕」，兩者有何不同？指涉何事？</div>
+            <div class="trap-a">A：兩者方向相同，只是論述角度不同：多數謂「公務員（輕）依民法§186-1已可就利益賠償，則國家（重）更應負賠償責任」——侵害者越有能力，責任越重，故「舉輕以明重」。鍾任賜謂「公務員（重）已就利益負賠償責任，則國家（輕）更不能免責」——輕者且須負責，重者（有公權力、更有賠償能力之國家）當然也要——「舉重以明輕」。實質結論相同，均指國家責任不應劣於公務員個人責任。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：林恩山不同意見的核心論據「立法形成自由」是什麼意思？</div>
+            <div class="trap-a">A：林恩山認為：是否將利益納入國賠保護範圍，涉及法律政策價值判斷（純粹經濟上損失範圍廣、難以控制，若含過失情形國家賠償責任將無限擴大），此應由<strong>立法機關依立法裁量決定</strong>，而非由法院以解釋方式創造。88年修法後國賠法多次修正均未修正§2-2文字，即是立法者有意不修正的選擇，法院不應逾越。在無違憲或法律漏洞情形下，法院解釋不得推翻立法者意志。</div>
+        </div>
+    </div>
+
+    <div class="section-heading">自我測驗</div>
+    <div class="quiz-list">
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)"><span>1. 本裁定主文的核心結論為何？有何附加條件？</span><span class="quiz-toggle">＋</span></div>
+            <div class="quiz-a">
+                <strong>主文結論：</strong>國賠法§2-2前段所保護之法益，不以民法§184-1前段所定之「權利」為限；<strong>純粹經濟上損失（利益）</strong>亦在保護範圍之內。<br><br>
+                <strong>附加條件（限縮要件）：</strong>須公務員係基於<strong>故意</strong>，且屬下列情形之一：<br>
+                ① 故意違背對於第三人應執行之職務；或<br>
+                ② 執行職務行使公權力時，<strong>故意以背於善良風俗之方法</strong>侵害人民之利益。<br><br>
+                過失侵害利益是否有適用，主文並未明示（鍾任賜協同意見認為有，但未被多數採納）。
+            </div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)"><span>2. 多數見解援引「舉輕以明重」的論理結構為何？</span><span class="quiz-toggle">＋</span></div>
+            <div class="quiz-a">
+                論理結構（三層）：<br><br>
+                ① 民法§184-1後段：<strong>個人</strong>故意以背善良風俗侵害他人<strong>利益</strong>，即須賠償；<br>
+                ② 民法§188：受僱人故意侵害利益，<strong>僱用人</strong>（風險承受能力較強）亦須連帶賠償；<br>
+                ③ 國賠法係為提供較民法<strong>更為周全之保障</strong>，從個人、僱用人或公務員與<strong>國家</strong>所負責任內涵及風險承受能力之差異——<br><br>
+                → 風險承受能力最強之<strong>國家</strong>，其賠償責任自不應劣於個人或僱用人（「輕者皆需負責，重者焉有不負責之理」——舉輕以明重）。
+            </div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)"><span>3. 林恩山不同意見的三大論點為何？</span><span class="quiz-toggle">＋</span></div>
+            <div class="quiz-a">
+                ① <strong>憲法概念不得套用實定法：</strong>憲法「權利」採廣義可及利益，但實定法（國賠法）有其立法裁量空間，不能當然套用憲法概念。現行法律體系（訴願法、行政訴訟法等）均將「權利」與「利益」分列，顯示實定法中兩者不同。<br><br>
+                ② <strong>立法者有意不修正：</strong>88年修正民法§186-1後，國賠法多次修法均未修正§2-2，足見立法者有意不將利益納入國賠保護；此為立法形成自由的表現，法院不應以解釋推翻。<br><br>
+                ③ <strong>純粹經濟損失難以界定、過失一體適用風險：</strong>概念難以精確界定，被害人及賠償範圍漫無邊際；且同一法條不能割裂適用，一旦權利包括利益，過失情形亦一體適用，國家賠償責任將無限擴大，地方財政難以負荷。
+            </div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)"><span>4. 鍾任賜「部分協同部分不同」的三個立場各為何？</span><span class="quiz-toggle">＋</span></div>
+            <div class="quiz-a">
+                <strong>協同一（與多數相同）：</strong>89年5月5日民法§186-1修正施行後，依國賠法§5補充適用，§2-2「自由或權利」應包括利益。<br><br>
+                <strong>協同二（超越多數，此點未被採）：</strong><strong>過失</strong>侵害利益亦有§2-2適用——因§2-2就故意與過失之區別，僅在公務員個人賠償責任之直接性，而非§2-2保護客體之差別；且§2-3（國家求償權限於故意或重大過失）有配套機制控管風險。<br><br>
+                <strong>不同意（程序問題）：</strong>本件110台上1114號判決之見解對其裁判形成不具必要性，不符「歧異」提案要件，應改以<strong>原則重要性</strong>提案。
+            </div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)"><span>5. 本裁定如何區分「民法§184-1前段限縮權利」與「國賠法§2-2是否保護利益」的關係？</span><span class="quiz-toggle">＋</span></div>
+            <div class="quiz-a">
+                大法庭作出兩層澄清：<br><br>
+                <strong>第一層（先前判決的射程）：</strong>98台上1961、102台上342、109台上754等判決所謂「純粹經濟上損失不在§184-1前段保護範圍」，均在界定民法§184-1前段「權利」之意義，<strong>與國賠法§2-2無涉</strong>，不得比附援引。<br><br>
+                <strong>第二層（§184-1前段限縮之目的不同）：</strong>§184-1前段限縮「權利」，目的是衡平個人行為自由與權益保護（避免加害人負擔過重）。此目的係對「私人」之政策考量，而國賠法面對的是<strong>國家責任</strong>，背後考量不同，不能以§184-1前段之解釋框架限縮國賠法的保護範圍。
+            </div>
+        </div>
+    </div>
+
+    <div class="law-ref">
+        <strong>相關法條：</strong>國賠法§2-2（公務員執行職務侵害人民自由或權利，國家賠償）；§2-3（國家對有故意或重大過失公務員之求償）；§5（以民法為補充法）；民法§184-1前段（侵害「權利」）；§184-1後段（故意以背善良風俗侵害「利益」）；§186-1（88年修正：公務員故意違背職務，保護客體及於利益）；§188（僱用人連帶責任）；憲法§24（公務員違法侵害人民自由或權利，得依法律向國家請求賠償）
+    </div>
+
+    <details>
+        <summary>大法庭組成</summary>
+        <div style="padding-top:10px;">
+            <div class="judges-grid">
+                <span class="judge-chip chief">審判長（詳見裁定）</span>
+                <span class="judge-chip dissenter">林恩山（不同意見）</span>
+                <span class="judge-chip concur">鍾任賜（部分協同部分不同）</span>
+            </div>
+            <p style="font-size:0.82em;color:var(--sub);margin:10px 0 0;">裁定日期：中華民國112年6月16日　｜　不同意見書：法官林恩山　｜　部分協同部分不同意見書：法官鍾任賜</p>
+        </div>
+    </details>
+
+    <div class="note-toggle" onclick="toggleNote('n1')">✏️ 我的小結</div>
+    <div class="note-area" id="n1">
+        <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n1',this.value)"></textarea>
+        <div class="note-saved" id="n1-saved"></div>
+    </div>
+</div>
+<div id="noResults">查無符合的內容，請試試其他關鍵字。</div>
+<div id="noStarred">還沒有收藏的項目，點卡片右上角的 ⭐ 加入收藏。</div>
+</div>
+<script>
+const NIGHT_KEY='night_mode_pref';
+function toggleNight(){const on=document.body.classList.toggle('night-mode');localStorage.setItem(NIGHT_KEY,on?'1':'0');document.getElementById('nightBtn').textContent=on?'☀️':'🌙';}
+(function(){if(localStorage.getItem(NIGHT_KEY)==='1'){document.body.classList.add('night-mode');const b=document.getElementById('nightBtn');if(b)b.textContent='☀️';}})();
+const STORE_KEY='111_1706_grand_notes',STAR_KEY='111_1706_grand_stars';
+function loadNotes(){try{return JSON.parse(localStorage.getItem(STORE_KEY))||{};}catch{return{};}}
+function loadStars(){try{return JSON.parse(localStorage.getItem(STAR_KEY))||{};}catch{return{};}}
+function saveAllNotes(d){localStorage.setItem(STORE_KEY,JSON.stringify(d));}
+function saveAllStars(d){localStorage.setItem(STAR_KEY,JSON.stringify(d));}
+(function(){const n=loadNotes(),s=loadStars();
+  Object.entries(n).forEach(([id,v])=>{const a=document.getElementById(id);if(!a)return;const t=a.querySelector('textarea');if(t)t.value=v;if(v)a.classList.add('open');});
+  Object.entries(s).forEach(([id,v])=>{if(!v)return;const b=document.querySelector(`#${id} .star-btn`);if(b)b.classList.add('starred');});
+})();
+function toggleStar(id,btn){const s=loadStars();const now=!btn.classList.contains('starred');btn.classList.toggle('starred',now);s[id]=now;saveAllStars(s);if(filterActive)applyFilter();}
+let filterActive=false;
+function toggleFilter(){filterActive=!filterActive;document.getElementById('filterBtn').classList.toggle('active',filterActive);document.getElementById('searchInput').value='';clearSearchHighlights();updateSearchUI([],0);applyFilter();}
+function applyFilter(){const s=loadStars();const q=document.getElementById('searchInput').value.trim().toLowerCase();let any=false;
+  document.querySelectorAll('.card').forEach(c=>{const kw=(c.dataset.kw||'').toLowerCase();const txt=c.textContent.toLowerCase();
+  const ms=!q||kw.includes(q)||txt.includes(q);const mf=!filterActive||!!s[c.id];const show=ms&&mf;
+  c.classList.toggle('hidden',!show);if(show)any=true;});
+  document.getElementById('noResults').style.display=(!any&&!filterActive)?'block':'none';
+  document.getElementById('noStarred').style.display=(!any&&filterActive)?'block':'none';}
+let _matches=[],_cur=-1;
+function clearSearchHighlights(){document.querySelectorAll('mark.search-hl').forEach(m=>{const p=m.parentNode;p.replaceChild(document.createTextNode(m.textContent),m);p.normalize();});}
+function highlightInNode(node,re){if(node.nodeType===3){const text=node.nodeValue;const frag=document.createDocumentFragment();let last=0,m;re.lastIndex=0;while((m=re.exec(text))!==null){if(m.index>last)frag.appendChild(document.createTextNode(text.slice(last,m.index)));const mk=document.createElement('mark');mk.className='search-hl';mk.textContent=m[0];frag.appendChild(mk);last=re.lastIndex;}if(last===0)return;frag.appendChild(document.createTextNode(text.slice(last)));node.parentNode.replaceChild(frag,node);return;}if(node.nodeType===1){const tag=node.tagName;if(tag==='SCRIPT'||tag==='STYLE'||tag==='TEXTAREA'||tag==='INPUT')return;if(node.classList&&node.classList.contains('search-hl'))return;[...node.childNodes].forEach(c=>highlightInNode(c,re));}}
+function doSearch(q){clearSearchHighlights();_matches=[];_cur=-1;const qt=(q||'').trim();if(!qt){updateSearchUI([],0);applyFilter();return;}applyFilter();const esc=qt.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');const re=new RegExp(esc,'gi');document.querySelectorAll('.container .card:not(.hidden)').forEach(card=>{highlightInNode(card,re);});_matches=[...document.querySelectorAll('mark.search-hl')];if(_matches.length){_cur=0;setCurrent(0);}updateSearchUI(_matches,_cur);}
+function setCurrent(idx){_matches.forEach((m,i)=>m.classList.toggle('current',i===idx));if(_matches[idx])_matches[idx].scrollIntoView({behavior:'smooth',block:'center'});}
+function navMatch(dir){if(!_matches.length)return;_cur=(_cur+dir+_matches.length)%_matches.length;setCurrent(_cur);updateSearchUI(_matches,_cur);}
+function updateSearchUI(matches,cur){const cnt=document.getElementById('searchCount');const prev=document.getElementById('prevBtn');const next=document.getElementById('nextBtn');if(!matches.length){cnt.textContent='';prev.disabled=true;next.disabled=true;return;}cnt.textContent=(cur+1)+'/'+matches.length;prev.disabled=false;next.disabled=false;}
+function handleSearchKey(e){if(e.key==='Enter'){e.shiftKey?navMatch(-1):navMatch(1);}if(e.key==='Escape'){document.getElementById('searchInput').value='';doSearch('');}}
+function toggleNote(id){document.getElementById(id).classList.toggle('open');}
+const timers={};
+function saveNote(id,v){clearTimeout(timers[id]);timers[id]=setTimeout(()=>{const n=loadNotes();n[id]=v;saveAllNotes(n);const el=document.getElementById(id+'-saved');if(el){el.textContent='已儲存';setTimeout(()=>el.textContent='',1500);}},500);}
+let savedRange=null;
+document.addEventListener('selectionchange',()=>{const s=window.getSelection();if(s&&!s.isCollapsed&&s.rangeCount)savedRange=s.getRangeAt(0).cloneRange();});
+function highlightText(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;
+  if(!r||r.collapsed){alert('💡 請先反白想要標記的文字');return;}
+  const sp=document.createElement('span');sp.className='hl';sp.style.cssText='background:#f0d98a;border-radius:2px;';
+  try{r.surroundContents(sp);savedRange=null;}catch{alert('💡 請選取同一段落內的文字');}s&&s.removeAllRanges();}
+function removeHighlight(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;
+  if(!r||r.collapsed){alert('💡 請先反白想擦除標記的文字');return;}
+  const anc=r.commonAncestorContainer.nodeType===1?r.commonAncestorContainer:r.commonAncestorContainer.parentElement;
+  anc.querySelectorAll('span.hl').forEach(sp=>{if(r.intersectsNode(sp)){const p=sp.parentNode;while(sp.firstChild)p.insertBefore(sp.firstChild,sp);p.removeChild(sp);}});
+  savedRange=null;s&&s.removeAllRanges();}
+function clearHighlights(){const sp=document.querySelectorAll('span.hl');if(!sp.length)return;
+  if(confirm('確定要清除所有重點標記嗎？')){sp.forEach(s=>{const p=s.parentNode;while(s.firstChild)p.insertBefore(s.firstChild,s);p.removeChild(s);});}}
+function openExport(){
+  let out='最高法院民事大法庭 111年度台上大字第1706號\n'+'═'.repeat(44)+'\n\n';
+  out+='【主文】\n國賠法§2-2前段所保護之法益，不以民法§184-1前段所定之權利為限；公務員因故意違背對於第三人應執行之職務，或執行職務行使公權力時，故意以背於善良風俗之方法，侵害人民之利益，人民得依該規定請求國家賠償。\n\n';
+  out+='【不同意見（林恩山）】\n現行法律體系均將權利、利益分列；立法者有意未修正§2-2，有立法形成自由；純粹經濟上損失難以界定，過失一體適用後國家賠償責任無限擴大。\n\n';
+  out+='【部分協同部分不同（鍾任賜）】\n協同：89.05.05後§2-2「權利」包括利益；超越多數：過失侵害利益亦有§2-2適用；不同意：本件應以原則重要性（而非消極歧異）提案。\n\n';
+  const ta=document.querySelector('.note-textarea');if(ta&&ta.value.trim())out+='✏️ 小結：\n'+ta.value.trim()+'\n\n';
+  out+='═'.repeat(44)+'\n';
+  const b=new Blob([out.trim()],{type:'text/plain;charset=utf-8'});
+  const u=URL.createObjectURL(b);const a=document.createElement('a');
+  a.href=u;a.download='111台上大字第1706號_國賠法2條2項利益純粹經濟損失.txt';a.click();URL.revokeObjectURL(u);}
+function toggleQuiz(el){const ans=el.nextElementSibling;const tog=el.querySelector('.quiz-toggle');if(ans.classList.contains('open')){ans.classList.remove('open');tog.textContent='＋';}else{ans.classList.add('open');tog.textContent='－';}}
+const REG_KEY='exam_completion_registry';
+function _loadReg(){try{return JSON.parse(localStorage.getItem(REG_KEY))||{};}catch{return{};}}
+function _saveReg(r){try{localStorage.setItem(REG_KEY,JSON.stringify(r));}catch{}}
+function _file(){const p=location.pathname.split('/');return decodeURIComponent(p[p.length-1]||'');}
+function _fmt(ts){const d=new Date(ts);const date=(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();const time=d.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false});return date+' '+time;}
+function _updateDate(){const r=_loadReg();const k=_file()||'case_civil_grand_111_1706.html';const l=document.getElementById('doneDateLabel');if(!l)return;l.textContent=(r[k]&&r[k].done&&r[k].ts)?_fmt(r[k].ts):'';}
+const _INDEX_CARD_ID='c_1706';
+function _syncIndex(done){try{const r=JSON.parse(localStorage.getItem('gc_reads')||'{}');r[_INDEX_CARD_ID]=done;localStorage.setItem('gc_reads',JSON.stringify(r));}catch(e){}}
+function toggleDone(){const btn=document.getElementById('doneBtn');const r=_loadReg();const k=_file()||'case_civil_grand_111_1706.html';const done=r[k]&&r[k].done;
+  if(done){delete r[k];_saveReg(r);btn.classList.remove('active');_syncIndex(false);}
+  else{const now=new Date();r[k]={done:true,score:null,total:null,ts:now.getTime(),tsLabel:now.toLocaleDateString('zh-TW')+' '+now.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false})};_saveReg(r);btn.classList.add('active');_syncIndex(true);}
+  _updateDate();}
+(function(){const r=_loadReg();const k=_file()||'case_civil_grand_111_1706.html';if(r[k]&&r[k].done){const b=document.getElementById('doneBtn');if(b)b.classList.add('active');}_updateDate();})();
+</script>
+</body>
+</html>
