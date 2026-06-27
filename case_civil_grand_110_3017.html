@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>110年度台上大字第3017號 民事大法庭裁定</title>
+    <style>
+        :root {
+            --bg:       #f5f0eb;
+            --card:     #ffffff;
+            --text:     #3d3530;
+            --sub:      #8c7b6b;
+            --line:     #ddd8d0;
+            --majority: #9e5c45;
+            --law:      #5a6e4e;
+            --dissent:  #b07d4a;
+            --trap:     #f5f0d8;
+            --header-bg:#5c4f47;
+        }
+        body.night-mode {
+            --bg:       #1a1714;
+            --card:     #252220;
+            --text:     #d4cec8;
+            --sub:      #8a7d72;
+            --line:     #383330;
+            --majority: #b87060;
+            --law:      #6a8a5e;
+            --dissent:  #c4935a;
+            --trap:     #2a2518;
+            --header-bg:#111010;
+        }
+        body.night-mode header { box-shadow: 0 2px 8px rgba(0,0,0,0.5); }
+        body.night-mode .top-bar { background: #1e1b18; }
+        body.night-mode .top-btn { background: #3a3530; }
+        body.night-mode .fact-box,
+        body.night-mode .issue-box { background: #1e1b18; }
+        body.night-mode .op-head { background: #2a2520; }
+        body.night-mode .op-body { background: var(--card); }
+        body.night-mode .op-result { background: #2a2018; }
+        body.night-mode .d-op-head { background: #261f14; }
+        body.night-mode .d-op-body { background: #201c14; }
+        body.night-mode .d-op-result { background: #261f14; }
+        body.night-mode .dissent-judges { background: #261f14; }
+        body.night-mode .compare-table th.th-issue { background: #2a1e18; }
+        body.night-mode .compare-table td.td-issue { background: #2a1e18; }
+        body.night-mode .compare-table td.td-majority { background: #1e1612; }
+        body.night-mode .compare-table td.td-dissent { background: #1e1814; }
+        @media (max-width: 640px) {
+            body.night-mode .compare-table td.td-issue { background: #2a1e18; }
+            body.night-mode .compare-table td.td-majority { background: #1e1612; }
+            body.night-mode .compare-table td.td-dissent { background: #1e1814; }
+        }
+        body.night-mode .ref-case { background: #242018; }
+        body.night-mode .law-ref { background: #1c2018; }
+        body.night-mode .note-textarea { background: #1e1b18; color: var(--text); border-color: var(--line); }
+        body.night-mode .judge-chip { background: #2a2520; border-color: var(--line); }
+        body.night-mode .judge-chip.chief { background: #3a3530; }
+        body.night-mode mark.search-hl { background: #7a6010; color: #f0e8c8; }
+        body.night-mode mark.search-hl.current { background: #c47000; color: #fff; }
+        body.night-mode .verdict { background: #2e2a26; }
+        body.night-mode .trap-box { border-color: #5a5020; }
+        body.night-mode .trap-title { color: #c8a840; }
+        body.night-mode .trap-item { border-left-color: #7a6830; }
+        body.night-mode #nightBtn { background: #4a4030; color: #e8d898; font-weight: 700; }
+        body.night-mode .quiz-q { background: var(--card); }
+        body.night-mode .quiz-q:hover { background: #2a2520; }
+        body.night-mode .quiz-a { background: #1c2018; color: #9fbf90; }
+        body { transition: background 0.3s, color 0.3s; }
+        .card { transition: background 0.3s, border-color 0.3s; }
+
+        * { box-sizing: border-box; }
+        body { font-family: "Helvetica Neue", Helvetica, "PingFang TC", "LiHei Pro", "Microsoft JhengHei", sans-serif;
+               background: var(--bg); color: var(--text); line-height: 1.85; font-size: 16px; margin: 0; padding: 0 0 60px; }
+
+        header { background: var(--header-bg); color: #f5f0eb; padding: 16px 16px 8px; text-align: center;
+                 position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+        header h1 { margin: 0 0 10px; font-size: 1.05em; line-height: 1.5; font-weight: 600; letter-spacing: 0.02em; color: #ffffff; }
+        .header-controls { display: flex; gap: 8px; align-items: center; }
+        .search-wrap { position: relative; flex: 1; display: flex; align-items: center; gap: 4px; }
+        #searchInput { flex: 1; padding: 8px 14px 8px 32px; border: none; border-radius: 6px;
+                       font-size: 14px; background: rgba(245,240,235,0.15); color: #f5f0eb; outline: none; }
+        #searchInput::placeholder { color: rgba(245,240,235,0.45); }
+        #searchInput:focus { background: rgba(245,240,235,0.25); }
+        .search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 13px; opacity: 0.5; pointer-events: none; }
+        .search-count { font-size: 12px; color: rgba(255,255,255,0.7); white-space: nowrap; min-width: 44px; text-align: center; }
+        .search-nav { background: rgba(255,255,255,0.13); border: none; border-radius: 6px; color: white; font-size: 13px; padding: 6px 8px; cursor: pointer; line-height: 1; }
+        .search-nav:hover { background: rgba(255,255,255,0.25); }
+        .search-nav:disabled { opacity: 0.3; cursor: default; }
+        mark.search-hl { background: #ffe066; color: #1a1a1a; border-radius: 2px; padding: 0 1px; }
+        mark.search-hl.current { background: #ff8c00; color: #fff; border-radius: 3px; outline: 2px solid #ff8c00; }
+        #filterBtn { background: rgba(245,240,235,0.15); border: none; border-radius: 6px;
+                     color: #f5f0eb; font-size: 13px; padding: 8px 12px; cursor: pointer; white-space: nowrap; }
+        #filterBtn.active { background: var(--dissent); color: #fff; font-weight: bold; }
+        .top-bar { background: #e8e2da; padding: 5px 14px; display: flex; gap: 6px; justify-content: flex-end; flex-wrap: nowrap; }
+        .top-btn { background: #b0a898; color: #fff; border: none; padding: 4px 10px; border-radius: 20px;
+                   font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap; transition: opacity 0.15s; }
+        .top-btn:hover { opacity: 0.8; }
+        .top-btn.done { background: #8c7b6b; }
+        .top-btn.done.active { background: linear-gradient(135deg, #b8860b, #daa520); color: #fff8e1; font-weight: 700; box-shadow: 0 0 8px rgba(218,165,32,0.5); }
+        .done-date { font-size: 11px; color: #a0a0a0; white-space: nowrap; align-self: center; font-weight: 500; }
+
+        .container { padding: 18px 16px; max-width: 640px; margin: 0 auto; }
+        @media (min-width: 768px) { .container { max-width: 880px; padding: 24px 20px; } body { font-size: 17px; } header h1 { font-size: 1.15em; } }
+        .card { background: var(--card); border-radius: 14px; padding: 24px 22px; margin-bottom: 24px;
+                box-shadow: 0 1px 6px rgba(61,53,48,0.08); position: relative; border: 1px solid var(--line); }
+        .card.hidden { display: none; }
+        .star-btn { position: absolute; top: 18px; right: 18px; background: none; border: none; font-size: 20px;
+                    cursor: pointer; opacity: 0.15; transition: opacity 0.15s; padding: 0; }
+        .star-btn.starred { opacity: 1; }
+        .card-title { color: var(--text); font-size: 1.15em; font-weight: 700; margin: 0 0 4px; padding-right: 30px; line-height: 1.6; }
+        .meta-line { font-size: 0.75em; color: var(--sub); margin-bottom: 20px; letter-spacing: 0.04em; }
+
+        .verdict { background: #4a3f38; color: #f5f0eb; border-radius: 10px; padding: 16px 18px; margin-bottom: 22px; }
+        .verdict-label { font-size: 0.66em; letter-spacing: 0.14em; opacity: 0.5; margin-bottom: 6px; }
+        .verdict-main { font-size: 1.05em; font-weight: 700; line-height: 1.6; margin-bottom: 10px; color: #ffffff; }
+        .vote-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 12px; padding-top: 10px;
+                    border-top: 1px solid rgba(245,240,235,0.15); }
+        .v-chip { font-size: 0.72em; background: rgba(245,240,235,0.1); border-radius: 20px;
+                  padding: 3px 10px; white-space: nowrap; color: rgba(245,240,235,0.75); }
+        .v-chip.majority { background: rgba(158,92,69,0.5); color: #f5f0eb; font-weight: 700; }
+        .v-chip.dissent-c { background: rgba(176,125,74,0.45); color: #f5f0eb; }
+
+        .section-heading { font-size: 0.85em; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+                           color: var(--sub); margin: 22px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--line); }
+
+        .fact-box { background: #faf8f5; border-left: 3px solid var(--sub); border-radius: 0 8px 8px 0;
+                    padding: 14px 16px; margin-bottom: 16px; font-size: 0.9em; }
+        .fact-box p { margin: 0 0 8px; }
+        .fact-box p:last-child { margin: 0; }
+
+        .issue-box { background: #faf8f5; border-radius: 8px; padding: 14px 16px; margin-bottom: 16px;
+                     font-size: 0.9em; border: 1px solid var(--line); }
+        .issue-box p { margin: 0 0 8px; }
+        .issue-box p:last-child { margin: 0; }
+
+        .opinions { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+        .op { border-radius: 8px; overflow: hidden; border: 1px solid var(--line); }
+        .op-head { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #f7f4f0; }
+        .op-num { width: 26px; height: 26px; border-radius: 50%; background: var(--majority); color: white;
+                  font-size: 0.75em; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .op-label { font-weight: 700; font-size: 0.92em; color: var(--majority); flex: 1; }
+        .op-body { padding: 13px 15px; font-size: 0.9em; background: var(--card); }
+        .op-body p { margin: 0 0 9px; }
+        .op-body p:last-child { margin: 0; }
+        .op-body ul { margin: 5px 0 8px; padding-left: 18px; }
+        .op-body li { margin-bottom: 5px; }
+        .op-result { background: #fdf9f7; border-radius: 6px; padding: 10px 13px; margin-top: 10px;
+                     font-size: 0.9em; border-left: 3px solid var(--majority); }
+
+        .d-opinions { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+        .d-op { border-radius: 8px; overflow: hidden; border: 1px solid #e6d8bc; }
+        .d-op-head { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #fdf7ec; }
+        .d-op-num { width: 26px; height: 26px; border-radius: 50%; background: var(--dissent); color: white;
+                    font-size: 0.75em; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .d-op-label { font-weight: 700; font-size: 0.92em; color: var(--dissent); flex: 1; }
+        .d-op-body { padding: 13px 15px; font-size: 0.9em; background: #fffdf8; }
+        .d-op-body p { margin: 0 0 9px; }
+        .d-op-body p:last-child { margin: 0; }
+        .d-op-body ul { margin: 5px 0 8px; padding-left: 18px; }
+        .d-op-body li { margin-bottom: 5px; }
+        .d-op-result { background: #fdf7ec; border-radius: 6px; padding: 10px 13px; margin-top: 10px;
+                       font-size: 0.9em; border-left: 3px solid var(--dissent); }
+        .dissent-judges { font-size: 0.82em; color: var(--dissent); margin-bottom: 12px;
+                          padding: 8px 12px; background: #fdf7ec; border-radius: 6px; border-left: 3px solid var(--dissent); }
+
+        .compare-table { width: 100%; border-collapse: collapse; margin-bottom: 18px; font-size: 0.88em; }
+        .compare-table th { padding: 10px 13px; font-weight: 700; font-size: 0.85em; letter-spacing: 0.05em; }
+        .compare-table th.th-issue { background: #ede0da; color: var(--sub); width: 22%; border-radius: 6px 0 0 0; }
+        .compare-table th.th-majority { background: var(--majority); color: #fff; width: 39%; }
+        .compare-table th.th-dissent { background: var(--dissent); color: #fff; width: 39%; border-radius: 0 6px 0 0; }
+        .compare-table td { padding: 11px 13px; vertical-align: top; border-bottom: 1px solid var(--line); line-height: 1.65; }
+        .compare-table td.td-issue { background: #f5eeea; font-weight: 700; font-size: 0.87em; color: var(--sub); }
+        .compare-table td.td-majority { background: #fdf8f6; border-left: 2px solid var(--majority); }
+        .compare-table td.td-dissent { background: #fdf8f4; border-left: 2px solid var(--dissent); }
+        .compare-table tr:last-child td { border-bottom: none; }
+        .compare-table tr:last-child td.td-issue { border-radius: 0 0 0 6px; }
+        .compare-table tr:last-child td.td-dissent { border-radius: 0 0 6px 0; }
+        @media (max-width: 640px) {
+            .compare-table thead { display: none; }
+            .compare-table, .compare-table tbody { display: block; }
+            .compare-table tr { display: block; margin-bottom: 14px; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+            .compare-table td.td-issue { display: block; width: 100%; background: #ede0da; padding: 8px 14px; font-size: 0.85em; font-weight: 700; color: var(--sub); border-bottom: none; border-left: none !important; }
+            .compare-table td.td-majority, .compare-table td.td-dissent { display: inline-block; width: 50%; vertical-align: top; box-sizing: border-box; padding: 10px 11px; border-bottom: none; font-size: 0.83em; line-height: 1.6; border-left: none !important; border-top: none; }
+            .compare-table td.td-majority { border-right: 1px solid var(--line); border-top: 3px solid var(--majority); }
+            .compare-table td.td-dissent { border-top: 3px solid var(--dissent); }
+            .compare-table td.td-majority::before { content: "多數"; display: block; margin-bottom: 5px; font-size: 0.78em; font-weight: 700; color: var(--majority); letter-spacing: 0.05em; }
+            .compare-table td.td-dissent::before { content: "不同"; display: block; margin-bottom: 5px; font-size: 0.78em; font-weight: 700; color: var(--dissent); letter-spacing: 0.05em; }
+        }
+
+        .trap-box { background: var(--trap); border-radius: 8px; padding: 14px 16px; margin-bottom: 16px;
+                    border: 1px solid #e0d8b0; font-size: 0.9em; }
+        .trap-title { font-weight: 700; color: #7a6820; margin-bottom: 10px; font-size: 0.92em; display: flex; align-items: center; gap: 6px; }
+        .trap-item { margin-bottom: 10px; padding-left: 14px; border-left: 2px solid #c8b860; }
+        .trap-item:last-child { margin-bottom: 0; }
+        .trap-q { font-weight: 700; color: var(--text); margin-bottom: 3px; }
+        .trap-a { color: var(--text); opacity: 0.85; }
+
+        .law-ref { background: #f2f5f0; border-radius: 8px; padding: 10px 14px; font-size: 0.84em;
+                   color: #3d4e38; margin-top: 14px; border-left: 3px solid var(--law); }
+
+        details { margin-top: 16px; }
+        details summary { cursor: pointer; color: var(--sub); font-size: 0.84em; font-weight: 600;
+                          padding: 5px 0; user-select: none; list-style: none; display: flex; align-items: center; gap: 6px; }
+        details summary::before { content: '▶'; font-size: 0.62em; transition: transform 0.2s; color: var(--sub); }
+        details[open] summary::before { transform: rotate(90deg); }
+        .ref-case { background: #f7f4f0; border-radius: 7px; padding: 10px 13px; margin-bottom: 8px;
+                    font-size: 0.84em; border-left: 3px solid var(--majority); }
+        .ref-case.d { border-left-color: var(--dissent); }
+        .ref-case-title { font-weight: 700; color: var(--majority); margin-bottom: 3px; font-size: 0.9em; }
+        .ref-case.d .ref-case-title { color: var(--dissent); }
+
+        .note-toggle { display: inline-block; margin-top: 14px; font-size: 0.8em; color: #b0a898; cursor: pointer; user-select: none; }
+        .note-toggle:hover { color: var(--majority); }
+        .note-area { display: none; margin-top: 8px; }
+        .note-area.open { display: block; }
+        .note-textarea { width: 100%; min-height: 68px; border: 1px solid var(--line); border-radius: 7px;
+                         padding: 10px 12px; font-size: 0.87em; font-family: inherit; color: var(--text);
+                         background: #faf8f5; resize: vertical; outline: none; line-height: 1.75; }
+        .note-textarea:focus { border-color: var(--majority); }
+        .note-textarea::placeholder { color: #c8beb0; }
+        .note-saved { font-size: 0.72em; color: var(--law); text-align: right; height: 14px; margin-top: 2px; }
+
+        .judges-grid { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+        .judge-chip { font-size: 0.77em; background: #f0ece7; border-radius: 20px; padding: 3px 11px;
+                      color: var(--text); border: 1px solid var(--line); }
+        .judge-chip.chief { background: var(--text); color: #f5f0eb; font-weight: 700; border-color: var(--text); }
+        .judge-chip.dissenter { background: var(--dissent); color: #fff; font-weight: 600; border-color: var(--dissent); }
+
+        .quiz-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 0; }
+        .quiz-item { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+        .quiz-q { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;
+                  padding: 11px 14px; cursor: pointer; font-size: 0.9em; background: var(--card); }
+        .quiz-q:hover { background: #faf8f5; }
+        .quiz-toggle { font-size: 1.1em; color: var(--majority); flex-shrink: 0; font-weight: 300; line-height: 1.4; }
+        .quiz-a { display: none; padding: 11px 14px; background: #f0f4ee; font-size: 0.87em;
+                  line-height: 1.75; border-top: 1px solid var(--line); color: #3d4e38; }
+        .quiz-a.open { display: block; }
+
+        #noResults, #noStarred { display: none; text-align: center; color: var(--sub); padding: 40px 0; font-size: 0.9em; }
+        ::-webkit-scrollbar { display: none; }
+        ::selection { background: #e8ddd0; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>最高法院民事大法庭<br>110年度台上大字第3017號</h1>
+    <div class="header-controls">
+        <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="搜尋關鍵字、法條…" oninput="doSearch(this.value)" onkeydown="handleSearchKey(event)">
+            <span class="search-count" id="searchCount"></span>
+            <button class="search-nav" id="prevBtn" onclick="navMatch(-1)" disabled title="上一個">▲</button>
+            <button class="search-nav" id="nextBtn" onclick="navMatch(1)" disabled title="下一個">▼</button>
+        </div>
+        <button id="filterBtn" onclick="toggleFilter()">⭐ 收藏</button>
+    </div>
+    <div class="top-bar">
+        <button class="top-btn" onclick="highlightText()">🖊️</button>
+        <button class="top-btn" onclick="removeHighlight()">🧽</button>
+        <button class="top-btn" onclick="clearHighlights()">🗑️</button>
+        <button class="top-btn" onclick="openExport()">📤</button>
+        <button class="top-btn" id="nightBtn" onclick="toggleNight()">🌙</button>
+        <button class="top-btn done" id="doneBtn" onclick="toggleDone()">朕已閱</button>
+        <span class="done-date" id="doneDateLabel"></span>
+    </div>
+</header>
+
+<div class="container">
+
+<!-- ===== 主裁定卡片 ===== -->
+<div class="card" id="case1" data-kw="土地法第68條 地政機關 無過失責任 登記錯誤 登記遺漏 虛偽登記 損害賠償 國家賠償 土地登記 最高限額抵押 登記儲金 土地法第70條 國家賠償法第6條 歸責原則 公信力 公示性 實質審查">
+    <button class="star-btn" onclick="toggleStar('case1',this)">⭐</button>
+    <h2 class="card-title">
+        土地法第68條第1項地政機關損害賠償責任——是否以登記人員有故意或過失為要件？
+    </h2>
+    <div class="meta-line">裁定日期：中華民國112年1月6日　｜　案號：110年度台上大字第3017號　｜　不同意見：鄭純惠法官</div>
+
+    <!-- 主文 -->
+    <div class="verdict">
+        <div class="verdict-label">大法庭主文</div>
+        <div class="verdict-main">因登記錯誤遺漏或虛偽致受損害者，除非該地政機關能證明其原因應歸責於受害人，否則即應負損害賠償責任，<strong>不以登記人員有故意或過失為要件</strong>。</div>
+        <div class="vote-row">
+            <span class="v-chip majority">多數意見 10票 ✔</span>
+            <span class="v-chip dissent-c">不同意見 1票（鄭純惠）</span>
+            <span class="v-chip">裁定日：112.01.06</span>
+            <span class="v-chip">法官共11人</span>
+        </div>
+    </div>
+
+    <!-- 基礎事實 -->
+    <div class="section-heading">基礎事實</div>
+    <div class="fact-box">
+        <p><strong>原告甲（抵押權人）</strong>主張：第三人丙持其弟丁之身分證、印章及丁名義之不動產所有權狀，向<strong>被告乙地政事務所</strong>申請辦理以系爭不動產設定丁為抵押人、甲為抵押權人，擔保債權總金額375萬元之<strong>最高限額抵押權登記</strong>，並以丁之名義向甲借款250萬元。</p>
+        <p>嗣系爭抵押權登記遭乙以係<strong>虛偽登記</strong>為由塗銷，甲向丙聲請強制執行無效果，受有借款250萬元無法取回之損害。</p>
+        <p><strong>核心問題：</strong>甲依土地法第68條第1項，請求乙地政事務所賠償250萬元，乙是否須負賠償責任？是否需以登記人員有故意或過失為前提？</p>
+    </div>
+
+    <!-- 法律爭議 -->
+    <div class="section-heading">法律爭議</div>
+    <div class="issue-box">
+        <p><strong>爭議一：</strong>土地法§68Ⅰ因「虛偽登記」致損害，地政機關是否應負損害賠償責任？（能否以第三人冒名行為、非地政機關可控制為由免責？）</p>
+        <p><strong>爭議二：</strong>倘地政機關應負責，其歸責原則為何？是<strong>無過失責任</strong>（不問登記人員有無故意過失），還是<strong>過失責任推定</strong>（以登記人員具有故意或過失為前提）？</p>
+        <p><strong>核心張力：</strong>土地登記採強制登記、實質審查主義，地政機關對登記結果負公信保障；但不實登記有時源於難以防範之偽造文件，由地政機關承擔無過失責任，是否合理？</p>
+    </div>
+
+    <!-- 多數理由 -->
+    <div class="section-heading">大法庭裁定理由（多數意見）</div>
+    <div class="opinions">
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈠</div>
+                <span class="op-label">強制登記原則與絕對效力——地政機關負實質審查責任</span>
+            </div>
+            <div class="op-body">
+                <p>我國土地法關於地籍管理，採取<strong>強制登記原則</strong>，賦與登記事項有<strong>絕對效力</strong>，且地政機關負<strong>實質審查責任</strong>。</p>
+                <p>此觀土地法第72條、第43條及土地登記規則第55條至第57條等規定即明。</p>
+                <div class="op-result">
+                    <strong>結論：</strong>登記具有絕對公示力與公信力，地政機關承攬實質審查義務，故對登記錯誤所生損害，理應承擔相應之賠償責任。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈡</div>
+                <span class="op-label">文義解釋——§68Ⅰ未明示「故意或過失」，應採無過失責任</span>
+            </div>
+            <div class="op-body">
+                <p>土地法§68Ⅰ前段：「因登記錯誤遺漏或虛偽致受損害者，由該地政機關負損害賠償責任」，規範目的在於貫徹土地登記之<strong>公示性及公信力</strong>，保護權利人並維持交易安全。</p>
+                <p>該規定文義<strong>未明示</strong>以登記人員之故意或過失為要件，原則上應由地政機關就<strong>登記不實之結果</strong>負<strong>無過失</strong>之賠償責任。</p>
+                <p>且不以該不實登記是否因受害人以外之第三人行為所致，而有不同。</p>
+                <div class="op-result">
+                    <strong>結論：</strong>§68Ⅰ採無過失責任，無論登記人員是否有故意或過失，地政機關一律就登記不實負損害賠償責任。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈢</div>
+                <span class="op-label">責任衡平化機制——但書免責、積極損害限制、登記儲金制度</span>
+            </div>
+            <div class="op-body">
+                <p>立法者基於<strong>責任衡平化</strong>原則，透過三層機制調和地政機關之無過失責任：</p>
+                <ul>
+                    <li><strong>§68Ⅰ但書：</strong>「地政機關證明其原因應歸責於受害人時，不在此限」→ 原因完全可歸責受害人時得<strong>免責</strong>。</li>
+                    <li><strong>§68Ⅱ：</strong>損害賠償不得超過受損害時之價值，<strong>僅限積極損害</strong>（不含所失利益），限縮賠償範圍。</li>
+                    <li><strong>§70：</strong>以登記費10%設置<strong>登記儲金</strong>專備賠償之用；地政機關對有<strong>重大過失</strong>之登記人員有求償權，以分散風險，避免登記人員責任過重。</li>
+                </ul>
+                <div class="op-result">
+                    <strong>結論：</strong>雖採無過失責任，但透過上述三層機制達成責任衡平，並非無限制課責地政機關。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈣</div>
+                <span class="op-label">特別法優先——§68為國家賠償法§2Ⅱ之特別規定</span>
+            </div>
+            <div class="op-body">
+                <p>依國家賠償法第6條：「國家損害賠償，本法及民法以外其他法律有特別規定者，適用其他法律」。</p>
+                <p>土地法第68條對登記不實損害賠償有特別規定，應<strong>優先</strong>於國家賠償法第2條第2項適用，不受國家賠償法「以公務員故意或過失為要件」之拘束。</p>
+                <div class="op-result">
+                    <strong>結論：</strong>土地法§68自為國賠法§2Ⅱ之特別規定，其無過失責任之認定不因國賠法之規定而受影響。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈤</div>
+                <span class="op-label">民法第217條與有過失——個案事實問題</span>
+            </div>
+            <div class="op-body">
+                <p>民法第217條關於<strong>被害人與有過失</strong>之規定，於債務人應負<strong>無過失責任</strong>者，亦有其適用。</p>
+                <p>受害人就損害之發生或擴大是否與有過失，係屬<strong>具體個案之事實認定問題</strong>，並非本件提案之範圍。</p>
+                <div class="op-result">
+                    <strong>結論：</strong>即使地政機關負無過失責任，受害人若就損害發生與有過失，法院仍得依§217減輕或免除地政機關賠償金額。
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 法條依據 -->
+    <div class="law-ref">
+        <strong>📋 核心法條：</strong>土地法§43（登記之絕對效力）、§68（地政機關損害賠償責任）、§70（登記儲金制度）、§72；土地登記規則§55～§57（實質審查義務）；國家賠償法§2Ⅱ、§6；民法§217（與有過失）
+    </div>
+
+    <!-- 多數v不同意見對照表 -->
+    <div class="section-heading">多數意見 vs. 不同意見（鄭純惠法官）</div>
+    <table class="compare-table">
+        <thead>
+            <tr>
+                <th class="th-issue">爭點</th>
+                <th class="th-majority">多數意見</th>
+                <th class="th-dissent">不同意見（鄭純惠）</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="td-issue">§68Ⅰ歸責原則</td>
+                <td class="td-majority"><strong>無過失責任</strong>：文義未明示故意過失為要件，即應負無過失賠償責任</td>
+                <td class="td-dissent"><strong>過失推定責任</strong>：應以登記人員故意或過失為前提，僅推定有過失以減輕受害人舉證負擔</td>
+            </tr>
+            <tr>
+                <td class="td-issue">法規體系定性</td>
+                <td class="td-majority">§68為國賠法§2Ⅱ之特別規定，不受國賠法「過失」要件拘束</td>
+                <td class="td-dissent">§68具國家賠償性質，應與國賠法採相同之「國家代位責任」架構，以公務員故意過失為前提</td>
+            </tr>
+            <tr>
+                <td class="td-issue">§70求償權意涵</td>
+                <td class="td-majority">§70設登記儲金、對重大過失登記人員有求償權，係分散風險機制，非排除無過失責任</td>
+                <td class="td-dissent">§70Ⅱ僅對「重大過失」求償，與國賠法§2Ⅲ體例相當，應認§68仍採代位責任（須有過失）</td>
+            </tr>
+            <tr>
+                <td class="td-issue">但書意義</td>
+                <td class="td-majority">但書允許地政機關證明原因歸責受害人而<strong>完全免責</strong>；不足以改變無過失責任性質</td>
+                <td class="td-dissent">但書允許地政機關以「登記人員無任何過失、原因全歸受害人」舉證免責，性質上不同於無過失責任（無過失責任不能以無過失完全免責）</td>
+            </tr>
+            <tr>
+                <td class="td-issue">實質審查效果</td>
+                <td class="td-majority">無過失責任仍可透過§70登記人員求償機制促使實質審查</td>
+                <td class="td-dissent">採無過失責任將使實質審查規範失去意義；採過失責任方能真正督促登記人員善盡審查義務</td>
+            </tr>
+            <tr>
+                <td class="td-issue">程序合法性</td>
+                <td class="td-majority">（未回應此點）</td>
+                <td class="td-dissent">本件提案忽視本院98年第6次民事庭會議決議（採過失責任之統一見解），未依歧異提案程序辦理，程序有瑕疵</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- 不同意見書 -->
+    <div class="section-heading">不同意見書重點（鄭純惠法官）</div>
+    <div class="dissent-judges">不同意見人：鄭純惠法官（1票）</div>
+    <div class="d-opinions">
+
+        <div class="d-op">
+            <div class="d-op-head">
+                <div class="d-op-num">壹</div>
+                <span class="d-op-label">程序疑義——應先適用98年第6次民事庭會議決議統一見解</span>
+            </div>
+            <div class="d-op-body">
+                <p>本院98年度第6次民事庭會議決議已明確認定：土地法§68Ⅰ「無非係就職司土地登記事務之公務員因<strong>故意或過失</strong>不法侵害人民權利，而該公務員所屬地政機關負損害賠償責任之規定」，採<strong>過失責任原則</strong>。</p>
+                <p>提案庭於受理案件擬採不同見解，應依「歧異提案程序」辦理，而非逕以「裁判歧異」為由提案，提案裁定完全未敘及上開決議。</p>
+                <div class="d-op-result">
+                    <strong>結論：</strong>提案程序有瑕疵，多數意見忽視既有統一見解，程序上已有未合。
+                </div>
+            </div>
+        </div>
+
+        <div class="d-op">
+            <div class="d-op-head">
+                <div class="d-op-num">貳</div>
+                <span class="d-op-label">實體爭點一——§68Ⅰ應以公務員故意或過失為前提（代位責任）</span>
+            </div>
+            <div class="d-op-body">
+                <p>憲法§24揭示國家賠償責任以<strong>公務員違法</strong>侵害人民為前提；國家賠償法§2Ⅱ明定以公務員故意或過失為要件，§2Ⅲ規定國家對<strong>故意或重大過失</strong>公務員有求償權。</p>
+                <p>土地法§70Ⅱ亦限制對「重大過失」登記人員求償，與國賠法體例相當，應認§68採<strong>國家代位責任</strong>，以登記人員有故意或過失為前提。</p>
+                <p>多數意見僅以「文義未明示故意過失」即採無過失責任，理由構成<strong>尚有未足</strong>。</p>
+                <div class="d-op-result">
+                    <strong>結論：</strong>§68Ⅰ本質上係過失推定責任，先推定登記人員有過失，再由地政機關舉證免責，以減輕受害人舉證負擔，並非無過失責任。
+                </div>
+            </div>
+        </div>
+
+        <div class="d-op">
+            <div class="d-op-head">
+                <div class="d-op-num">參</div>
+                <span class="d-op-label">實體爭點二——但書之免責構造有別於無過失責任</span>
+            </div>
+            <div class="d-op-body">
+                <p>真正的無過失責任，行為人縱無過失亦不能完全免責（如消費者保護法§7至多僅<strong>減輕</strong>）；且立法通常以「不論故意或過失」或「不論有無故意或過失」明示（民用航空法§89、核子損害賠償法§18）。</p>
+                <p>土地法§68Ⅰ前段並無此類文字；其但書允許地政機關以「原因完全歸責於受害人」（即地政機關<strong>無任何過失</strong>）舉證而<strong>完全免責</strong>，核與無過失責任不能以無過失免責之本質不符。</p>
+                <p>不動產登記須依賴其他機關文書（法院、稅捐機關等），文書真偽並非地政機關得完全控制，由其承擔無過失責任欠缺<strong>風險來源責任分配</strong>之合理基礎。</p>
+                <div class="d-op-result">
+                    <strong>結論：</strong>§68Ⅰ應解釋為「過失推定責任」：推定登記人員有過失，由地政機關舉證反駁，而非真正之無過失責任。
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 考試地雷 -->
+    <div class="trap-box">
+        <div class="trap-title">⚠️ 考試常見地雷</div>
+        <div class="trap-item">
+            <div class="trap-q">Q：地政機關可否以「不知情、無過失」抗辯免責？</div>
+            <div class="trap-a">A：不可。多數意見採無過失責任，地政機關就登記不實之結果一律負責，不以登記人員有故意或過失為要件。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：§68Ⅰ但書如何使地政機關免責？</div>
+            <div class="trap-a">A：僅限地政機關「證明其原因應歸責於受害人」時，方得免責。例如受害人自行提供偽造文件，致生登記不實。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：損害賠償範圍包含「所失利益」嗎？</div>
+            <div class="trap-a">A：不包含。§68Ⅱ限制賠償不得超過受損害時之價值，僅限積極損害（所受損害），不含消極損害（所失利益）。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：受害人甲本身若有疏失，地政機關賠償責任如何？</div>
+            <div class="trap-a">A：依多數意見，民法§217與有過失規定仍有適用，法院得斟酌受害人過失比例減輕或免除地政機關之賠償金額。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：土地法§68與國家賠償法之適用關係？</div>
+            <div class="trap-a">A：土地法§68為國賠法§2Ⅱ之特別規定（國賠法§6），應優先適用，故不受國賠法「以公務員故意或過失」之限制。</div>
+        </div>
+    </div>
+
+    <!-- 實務意義 -->
+    <details>
+        <summary>📎 引用法條與實務意義</summary>
+        <div style="padding: 10px 0 4px;">
+            <div class="ref-case">
+                <div class="ref-case-title">土地法第43條（登記之絕對效力）</div>
+                <p style="margin:0;">依本法所為之登記，有絕對效力。確立不動產登記之公信原則，為§68無過失責任之制度基礎。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">土地法第68條（地政機關賠償責任）</div>
+                <p style="margin:0;">Ⅰ因登記錯誤遺漏或虛偽致受損害者，由該地政機關負損害賠償責任。但該地政機關證明其原因應歸責於受害人時，不在此限。Ⅱ前項損害賠償，不得超過受損害時之價值。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">土地法第70條（登記儲金與求償）</div>
+                <p style="margin:0;">地政機關所收登記費，應提存10%作為登記儲金，專備§68賠償之用。如因登記人員之<strong>重大過失</strong>所致者，由該人員償還，撥歸登記儲金。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">國家賠償法第6條（特別法優先）</div>
+                <p style="margin:0;">國家損害賠償，本法及民法以外其他法律有特別規定者，適用其他法律。土地法§68即屬此類特別規定。</p>
+            </div>
+            <div class="ref-case d">
+                <div class="ref-case-title">【不同意見引用】本院98年度第6次民事庭會議決議</div>
+                <p style="margin:0;">土地法§68Ⅰ規定，無非係就職司土地登記事務之公務員因故意或過失不法侵害人民權利，而該公務員所屬地政機關負損害賠償責任之規定。（採過失責任見解，本件多數意見與之相左。）</p>
+            </div>
+        </div>
+    </details>
+
+    <!-- 法官名單 -->
+    <div class="section-heading">法官組成</div>
+    <div class="judges-grid">
+        <span class="judge-chip chief">審判長 沈方維</span>
+        <span class="judge-chip">高孟焄</span>
+        <span class="judge-chip">鄭雅萍</span>
+        <span class="judge-chip">袁靜文</span>
+        <span class="judge-chip">陳玉完</span>
+        <span class="judge-chip">李寶堂</span>
+        <span class="judge-chip">鍾任賜</span>
+        <span class="judge-chip">吳麗惠</span>
+        <span class="judge-chip dissenter">鄭純惠（不同意見）</span>
+        <span class="judge-chip">吳青蓉</span>
+        <span class="judge-chip">邱瑞祥</span>
+    </div>
+
+    <div class="note-toggle" onclick="toggleNote('n1')">✏️ 我的小結</div>
+    <div class="note-area" id="n1">
+        <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n1',this.value)"></textarea>
+        <div class="note-saved" id="n1-saved"></div>
+    </div>
+</div>
+
+<!-- ===== 快問快答卡片 ===== -->
+<div class="card" id="case2" data-kw="快問快答 土地法第68條 無過失責任 歸責原則 地政機關 登記儲金 國家賠償">
+    <button class="star-btn" onclick="toggleStar('case2',this)">⭐</button>
+    <h2 class="card-title">快問快答——§68地政機關責任核心概念</h2>
+    <div class="meta-line">建議先蓋住答案，自己回答後再確認</div>
+
+    <div class="quiz-list">
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>土地法§68Ⅰ地政機關之責任性質為何？（多數意見）</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">【無過失責任】：不以登記人員故意或過失為要件，地政機關就登記不實結果一律負損害賠償責任。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>地政機關如何依§68Ⅰ但書完全免責？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">地政機關須舉證證明：登記錯誤、遺漏或虛偽之原因，應完全歸責於受害人（例如受害人自行提供偽造文件）。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>§68Ⅱ賠償範圍有何限制？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">損害賠償不得超過受損害時之價值；僅限「積極損害」（所受損害），不含「消極損害」（所失利益）。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>土地法§70登記儲金制度之功能為何？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">①以登記費10%設置登記儲金，專備§68賠償之用；②地政機關對有「重大過失」之登記人員有求償權，撥歸登記儲金——達分散風險、避免國家財政負擔及登記人員責任過重之效果。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>民法§217與有過失，在本件無過失責任下有無適用？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">有適用。民法§217規定於債務人應負無過失責任者，亦適用。受害人就損害發生或擴大若與有過失，法院得減輕或免除地政機關賠償責任（屬個案事實認定問題）。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>土地法§68與國家賠償法之關係為何？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">依國賠法§6「特別法優先」原則，土地法§68為國賠法§2Ⅱ之特別規定，應優先適用；不受國賠法「公務員故意或過失」之要件限制。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>不同意見（鄭純惠）認為§68Ⅰ歸責原則應為何？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">【過失推定責任】：仍以登記人員故意或過失為前提（國家代位責任），但採推定過失（由地政機關舉證反駁），以減輕受害人舉證負擔；非真正無過失責任。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>不同意見認為多數意見的「但書」邏輯矛盾為何？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">真正之無過失責任不能以「無過失」完全免責（至多減輕）；但§68Ⅰ但書允許地政機關舉證「原因完全歸責受害人」（即地政機關無任何過失）而完全免責，性質上不符無過失責任之本質，應解釋為過失推定。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>本件基礎事實之結論：乙地政事務所應否賠償甲250萬元？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">依多數意見，乙地政事務所應依土地法§68Ⅰ負損害賠償責任（除非能證明損害原因歸責於甲）——不論登記人員是否有故意或過失，均應賠償。</div>
+        </div>
+    </div>
+
+    <div class="note-toggle" onclick="toggleNote('n2')">✏️ 我的小結</div>
+    <div class="note-area" id="n2">
+        <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n2',this.value)"></textarea>
+        <div class="note-saved" id="n2-saved"></div>
+    </div>
+</div>
+
+<div id="noResults">查無符合的內容，請試試其他關鍵字。</div>
+<div id="noStarred">還沒有收藏的項目，點卡片右上角的 ⭐ 加入收藏。</div>
+</div>
+
+<script>
+const NIGHT_KEY='night_mode_pref';
+function toggleNight(){const on=document.body.classList.toggle('night-mode');localStorage.setItem(NIGHT_KEY,on?'1':'0');document.getElementById('nightBtn').textContent=on?'☀️':'🌙';}
+(function(){if(localStorage.getItem(NIGHT_KEY)==='1'){document.body.classList.add('night-mode');const b=document.getElementById('nightBtn');if(b)b.textContent='☀️';}})();
+const STORE_KEY='110_3017_grand_notes',STAR_KEY='110_3017_grand_stars';
+function loadNotes(){try{return JSON.parse(localStorage.getItem(STORE_KEY))||{};}catch{return{};}}
+function loadStars(){try{return JSON.parse(localStorage.getItem(STAR_KEY))||{};}catch{return{};}}
+function saveAllNotes(d){localStorage.setItem(STORE_KEY,JSON.stringify(d));}
+function saveAllStars(d){localStorage.setItem(STAR_KEY,JSON.stringify(d));}
+(function(){const n=loadNotes(),s=loadStars();
+  Object.entries(n).forEach(([id,v])=>{const a=document.getElementById(id);if(!a)return;const t=a.querySelector('textarea');if(t)t.value=v;if(v)a.classList.add('open');});
+  Object.entries(s).forEach(([id,v])=>{if(!v)return;const b=document.querySelector(`#${id} .star-btn`);if(b)b.classList.add('starred');});
+})();
+function toggleStar(id,btn){const s=loadStars();const now=!btn.classList.contains('starred');btn.classList.toggle('starred',now);s[id]=now;saveAllStars(s);if(filterActive)applyFilter();}
+let filterActive=false;
+function toggleFilter(){filterActive=!filterActive;document.getElementById('filterBtn').classList.toggle('active',filterActive);document.getElementById('searchInput').value='';clearSearchHighlights();updateSearchUI([],0);applyFilter();}
+function applyFilter(){const s=loadStars();const q=document.getElementById('searchInput').value.trim().toLowerCase();let any=false;
+  document.querySelectorAll('.card').forEach(c=>{const kw=(c.dataset.kw||'').toLowerCase();const txt=c.textContent.toLowerCase();
+  const ms=!q||kw.includes(q)||txt.includes(q);const mf=!filterActive||!!s[c.id];const show=ms&&mf;
+  c.classList.toggle('hidden',!show);if(show)any=true;});
+  document.getElementById('noResults').style.display=(!any&&!filterActive)?'block':'none';
+  document.getElementById('noStarred').style.display=(!any&&filterActive)?'block':'none';}
+let _matches=[],_cur=-1;
+function clearSearchHighlights(){document.querySelectorAll('mark.search-hl').forEach(m=>{const p=m.parentNode;p.replaceChild(document.createTextNode(m.textContent),m);p.normalize();});}
+function highlightInNode(node,re){if(node.nodeType===3){const text=node.nodeValue;const frag=document.createDocumentFragment();let last=0,m;re.lastIndex=0;while((m=re.exec(text))!==null){if(m.index>last)frag.appendChild(document.createTextNode(text.slice(last,m.index)));const mk=document.createElement('mark');mk.className='search-hl';mk.textContent=m[0];frag.appendChild(mk);last=re.lastIndex;}if(last===0)return;frag.appendChild(document.createTextNode(text.slice(last)));node.parentNode.replaceChild(frag,node);return;}if(node.nodeType===1){const tag=node.tagName;if(tag==='SCRIPT'||tag==='STYLE'||tag==='TEXTAREA'||tag==='INPUT')return;if(node.classList&&node.classList.contains('search-hl'))return;[...node.childNodes].forEach(c=>highlightInNode(c,re));}}
+function doSearch(q){clearSearchHighlights();_matches=[];_cur=-1;const qt=(q||'').trim();if(!qt){updateSearchUI([],0);applyFilter();return;}applyFilter();const esc=qt.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');const re=new RegExp(esc,'gi');document.querySelectorAll('.container .card:not(.hidden)').forEach(card=>{highlightInNode(card,re);});_matches=[...document.querySelectorAll('mark.search-hl')];if(_matches.length){_cur=0;setCurrent(0);}updateSearchUI(_matches,_cur);}
+function setCurrent(idx){_matches.forEach((m,i)=>m.classList.toggle('current',i===idx));if(_matches[idx])_matches[idx].scrollIntoView({behavior:'smooth',block:'center'});}
+function navMatch(dir){if(!_matches.length)return;_cur=(_cur+dir+_matches.length)%_matches.length;setCurrent(_cur);updateSearchUI(_matches,_cur);}
+function updateSearchUI(matches,cur){const cnt=document.getElementById('searchCount');const prev=document.getElementById('prevBtn');const next=document.getElementById('nextBtn');if(!matches.length){cnt.textContent='';prev.disabled=true;next.disabled=true;return;}cnt.textContent=(cur+1)+'/'+matches.length;prev.disabled=false;next.disabled=false;}
+function handleSearchKey(e){if(e.key==='Enter'){e.shiftKey?navMatch(-1):navMatch(1);}if(e.key==='Escape'){document.getElementById('searchInput').value='';doSearch('');}}
+function toggleNote(id){document.getElementById(id).classList.toggle('open');}
+const timers={};
+function saveNote(id,v){clearTimeout(timers[id]);timers[id]=setTimeout(()=>{const n=loadNotes();n[id]=v;saveAllNotes(n);const el=document.getElementById(id+'-saved');if(el){el.textContent='已儲存';setTimeout(()=>el.textContent='',1500);}},500);}
+let savedRange=null;
+document.addEventListener('selectionchange',()=>{const s=window.getSelection();if(s&&!s.isCollapsed&&s.rangeCount)savedRange=s.getRangeAt(0).cloneRange();});
+function highlightText(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;
+  if(!r||r.collapsed){alert('💡 請先反白想要標記的文字');return;}
+  const sp=document.createElement('span');sp.className='hl';sp.style.cssText='background:#f0d98a;border-radius:2px;';
+  try{r.surroundContents(sp);savedRange=null;}catch{alert('💡 請選取同一段落內的文字');}s&&s.removeAllRanges();}
+function removeHighlight(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;
+  if(!r||r.collapsed){alert('💡 請先反白想擦除標記的文字');return;}
+  const anc=r.commonAncestorContainer.nodeType===1?r.commonAncestorContainer:r.commonAncestorContainer.parentElement;
+  anc.querySelectorAll('span.hl').forEach(sp=>{if(r.intersectsNode(sp)){const p=sp.parentNode;while(sp.firstChild)p.insertBefore(sp.firstChild,sp);p.removeChild(sp);}});
+  savedRange=null;s&&s.removeAllRanges();}
+function clearHighlights(){const sp=document.querySelectorAll('span.hl');if(!sp.length)return;
+  if(confirm('確定要清除所有重點標記嗎？')){sp.forEach(s=>{const p=s.parentNode;while(s.firstChild)p.insertBefore(s.firstChild,s);p.removeChild(s);});}}
+function openExport(){
+  let out='最高法院民事大法庭 110年度台上大字第3017號\n'+'═'.repeat(44)+'\n\n';
+  out+='【主文】\n因登記錯誤遺漏或虛偽致受損害者，除非地政機關能證明其原因應歸責於受害人，否則即應負損害賠償責任，不以登記人員有故意或過失為要件。\n\n';
+  document.querySelectorAll('.op,.d-op').forEach(op=>{
+    const head=op.querySelector('.op-label,.d-op-label')?.textContent.trim()||'';
+    out+=`▌${head}\n`;
+    op.querySelectorAll('.op-body p,.op-body li,.op-result,.d-op-body p,.d-op-body li,.d-op-result').forEach(el=>{
+      const t=el.textContent.trim();if(t)out+=(el.tagName==='LI'?'  • ':'')+t+'\n';});
+    out+='\n';});
+  const tas=document.querySelectorAll('.note-textarea');tas.forEach((ta,i)=>{if(ta&&ta.value.trim())out+=`✏️ 小結${i+1}：\n`+ta.value.trim()+'\n\n';});
+  out+='═'.repeat(44)+'\n';
+  const b=new Blob([out.trim()],{type:'text/plain;charset=utf-8'});
+  const u=URL.createObjectURL(b);const a=document.createElement('a');
+  a.href=u;a.download='110台上大字第3017號_土地法68條地政機關無過失責任.txt';a.click();URL.revokeObjectURL(u);}
+function toggleQuiz(el){const ans=el.nextElementSibling;const tog=el.querySelector('.quiz-toggle');if(ans.classList.contains('open')){ans.classList.remove('open');tog.textContent='＋';}else{ans.classList.add('open');tog.textContent='－';}}
+const REG_KEY='exam_completion_registry';
+function _loadReg(){try{return JSON.parse(localStorage.getItem(REG_KEY))||{};}catch{return{};}}
+function _saveReg(r){try{localStorage.setItem(REG_KEY,JSON.stringify(r));}catch{}}
+function _file(){const p=location.pathname.split('/');return decodeURIComponent(p[p.length-1]||'');}
+function _fmt(ts){const d=new Date(ts);const date=(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();const time=d.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false});return date+' '+time;}
+function _updateDate(){const r=_loadReg();const k=_file()||'case_civil_grand_110_3017.html';const l=document.getElementById('doneDateLabel');if(!l)return;l.textContent=(r[k]&&r[k].done&&r[k].ts)?_fmt(r[k].ts):'';}
+function toggleDone(){const btn=document.getElementById('doneBtn');const r=_loadReg();const k=_file()||'case_civil_grand_110_3017.html';const done=r[k]&&r[k].done;
+  if(done){delete r[k];_saveReg(r);btn.classList.remove('active');}
+  else{const now=new Date();r[k]={done:true,ts:now.getTime()};_saveReg(r);btn.classList.add('active');}
+  _updateDate();}
+(function(){const r=_loadReg();const k=_file()||'case_civil_grand_110_3017.html';if(r[k]&&r[k].done){const b=document.getElementById('doneBtn');if(b)b.classList.add('active');}_updateDate();})();
+</script>
+</body>
+</html>
