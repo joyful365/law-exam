@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>110年度台上大字第446號 刑事大法庭裁定</title>
+    <style>
+        :root {
+            --bg:       #eef0f3;
+            --card:     #ffffff;
+            --text:     #1a1a1a;
+            --sub:      #8a9ab0;
+            --line:     #e4e7ec;
+            --majority: #1a365d;
+            --law:      #1a365d;
+            --dissent:  #a67c2e;
+            --trap:     #f9f7f0;
+            --header-bg:#1a365d;
+        }
+        body.night-mode {
+            --bg:       #13151a;
+            --card:     #1c1f27;
+            --text:     #d4d8e0;
+            --sub:      #5a6880;
+            --line:     #2a2e3a;
+            --majority: #7ea8d8;
+            --law:      #7ea8d8;
+            --dissent:  #c4935a;
+            --trap:     #1e1c14;
+            --header-bg:#0d1117;
+        }
+        body.night-mode header { box-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        body.night-mode .top-bar { background: #1c1f27; }
+        body.night-mode .top-btn { background: #2e3340; color: #b0b8c8; }
+        body.night-mode .top-btn.done { background: #2a2e3a; color: #7a8898; }
+        body.night-mode .fact-box { background: #1e1c14; border-left-color: #8a6820; }
+        body.night-mode .issue-box, body.night-mode .flow-box { background: #20232d; }
+        body.night-mode .op-head { background: #20232d; }
+        body.night-mode .op-body { background: var(--card); }
+        body.night-mode .op-result { background: #161a24; border-left-color: #3a5a8a; }
+        body.night-mode .d-op-head { background: #261f14; }
+        body.night-mode .d-op-body { background: #201c14; }
+        body.night-mode .d-op-result { background: #261f14; }
+        body.night-mode .dissent-judges { background: #261f14; }
+        body.night-mode .compare-table th.th-issue { background: #262a31; }
+        body.night-mode .compare-table td.td-issue { background: #262a31; }
+        body.night-mode .compare-table td.td-majority { background: #161c24; }
+        body.night-mode .compare-table td.td-dissent { background: #1e1814; }
+        @media (max-width: 640px) {
+            body.night-mode .compare-table td.td-issue { background: #262a31; }
+            body.night-mode .compare-table td.td-majority { background: #161c24; }
+            body.night-mode .compare-table td.td-dissent { background: #1e1814; }
+        }
+        body.night-mode .ref-case { background: #20232d; border-left-color: #3a5a8a; }
+        body.night-mode .law-ref { background: #1c1f27; border-left-color: #3a5a8a; }
+        body.night-mode .note-textarea { background: #161a24; color: var(--text); border-color: var(--line); }
+        body.night-mode .judge-chip { background: #20232d; border-color: #2e3340; }
+        body.night-mode .judge-chip.chief { background: #0d1a2e; color: #9abcd8; border-color: #1a3a60; }
+        body.night-mode mark.search-hl { background: #7a5a00; color: #ffe090; }
+        body.night-mode mark.search-hl.current { background: #c07800; color: #fff; }
+        body.night-mode .verdict { background: #0d1a2e; }
+        body.night-mode .trap-box { border-color: #5a5020; }
+        body.night-mode .trap-title { color: #c8a840; }
+        body.night-mode .trap-item { border-left-color: #7a6830; }
+        body.night-mode #nightBtn { background: #3a4250; color: #cfe0f4; font-weight: 700; }
+        body.night-mode .quiz-q { background: var(--card); }
+        body.night-mode .quiz-q:hover { background: #20232d; }
+        body.night-mode .quiz-a { background: #161a24; color: #9abcd8; }
+        body.night-mode .flow-arrow { color: #a8b6c8; }
+        body.night-mode .compare-table td.td-issue, body.night-mode .compare-table th.th-issue { color: #9fb3d0; }
+        body { transition: background 0.3s, color 0.3s; }
+        .card { transition: background 0.3s, border-color 0.3s; }
+
+        * { box-sizing: border-box; }
+        body { font-family: "Helvetica Neue", Helvetica, "PingFang TC", "LiHei Pro", "Microsoft JhengHei", sans-serif;
+               background: var(--bg); color: var(--text); line-height: 1.85; font-size: 16px; margin: 0; padding: 0 0 60px; }
+
+        header { background: var(--header-bg); color: #ffffff; padding: 16px 16px 8px; text-align: center;
+                 position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+        header h1 { margin: 0 0 10px; font-size: 1.05em; line-height: 1.5; font-weight: 600; letter-spacing: 0.02em; color: #ffffff; }
+        .header-controls { display: flex; gap: 8px; align-items: center; }
+        .search-wrap { position: relative; flex: 1; display: flex; align-items: center; gap: 4px; }
+        #searchInput { flex: 1; padding: 8px 14px 8px 32px; border: none; border-radius: 6px;
+                       font-size: 14px; background: rgba(255,255,255,0.13); color: #ffffff; outline: none; }
+        #searchInput::placeholder { color: rgba(255,255,255,0.5); }
+        #searchInput:focus { background: rgba(255,255,255,0.22); }
+        .search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 13px; opacity: 0.55; pointer-events: none; }
+        .search-count { font-size: 12px; color: rgba(255,255,255,0.65); white-space: nowrap; min-width: 44px; text-align: center; }
+        .search-nav { background: rgba(255,255,255,0.15); border: none; border-radius: 6px; color: white; font-size: 13px; padding: 6px 8px; cursor: pointer; line-height: 1; }
+        .search-nav:hover { background: rgba(255,255,255,0.28); }
+        .search-nav:disabled { opacity: 0.3; cursor: default; }
+        mark.search-hl { background: #ffe066; color: #1a1a1a; border-radius: 2px; padding: 0 1px; }
+        mark.search-hl.current { background: #ff9500; color: #fff; border-radius: 3px; outline: 2px solid #ff9500; }
+        #filterBtn { background: rgba(255,255,255,0.13); border: none; border-radius: 6px;
+                     color: #ffffff; font-size: 13px; padding: 8px 12px; cursor: pointer; white-space: nowrap; }
+        #filterBtn.active { background: #c9a84c; color: #1a365d; font-weight: bold; }
+        .top-bar { background: #dde0e5; padding: 5px 14px; display: flex; gap: 6px; justify-content: flex-end; flex-wrap: nowrap; }
+        .top-btn { background: #5a6375; color: #fff; border: none; padding: 4px 10px; border-radius: 20px;
+                   font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap; transition: opacity 0.15s; }
+        .top-btn:hover { opacity: 0.85; }
+        .top-btn.done { background: #a0a8b4; color: #1a2a3a; }
+        .top-btn.done.active { background: linear-gradient(135deg, #7a5c00, #a07820); color: #fff3c4; font-weight: 700; box-shadow: 0 0 8px rgba(160,120,32,0.5); }
+        .done-date { font-size: 11px; color: #8a9ab0; white-space: nowrap; align-self: center; font-weight: 500; }
+
+        .container { padding: 18px 16px; max-width: 640px; margin: 0 auto; }
+        @media (min-width: 768px) { .container { max-width: 880px; padding: 24px 20px; } body { font-size: 17px; } header h1 { font-size: 1.15em; } }
+        .card { background: var(--card); border-radius: 14px; padding: 24px 22px; margin-bottom: 24px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.06); position: relative; border: 1px solid var(--line); }
+        .card.hidden { display: none; }
+        .star-btn { position: absolute; top: 18px; right: 18px; background: none; border: none; font-size: 20px;
+                    cursor: pointer; opacity: 0.18; transition: opacity 0.15s; padding: 0; }
+        .star-btn.starred { opacity: 1; }
+        .card-title { color: var(--majority); font-size: 1.15em; font-weight: 700; margin: 0 0 4px; padding-right: 30px; line-height: 1.6; }
+        .meta-line { font-size: 0.75em; color: var(--sub); margin-bottom: 20px; letter-spacing: 0.04em; }
+
+        .verdict { background: #1a365d; color: #ffffff; border-radius: 10px; padding: 16px 18px; margin-bottom: 22px; }
+        .verdict-label { font-size: 0.66em; letter-spacing: 0.14em; opacity: 0.55; margin-bottom: 6px; }
+        .verdict-main { font-size: 1.05em; font-weight: 700; line-height: 1.6; margin-bottom: 10px; color: #ffffff; }
+        .verdict-sub { font-size: 0.88em; opacity: 0.8; line-height: 1.65; margin-bottom: 10px; }
+        .vote-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 12px; padding-top: 10px;
+                    border-top: 1px solid rgba(255,255,255,0.15); }
+        .v-chip { font-size: 0.72em; background: rgba(255,255,255,0.12); border-radius: 20px;
+                  padding: 3px 10px; white-space: nowrap; color: rgba(255,255,255,0.8); }
+        .v-chip.majority { background: rgba(255,255,255,0.28); color: #fff; font-weight: 700; }
+        .v-chip.dissent-c { background: rgba(201,168,76,0.5); color: #fff; }
+
+        .section-heading { font-size: 0.85em; font-weight: 700; letter-spacing: 0.08em;
+                           color: var(--sub); margin: 22px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--line); }
+
+        .fact-box { background: #f9f7f0; border-left: 4px solid #c9a84c; border-radius: 0 8px 8px 0;
+                    padding: 14px 16px; margin-bottom: 16px; font-size: 0.9em; }
+        .fact-box p { margin: 0 0 8px; }
+        .fact-box p:last-child { margin: 0; }
+
+        .issue-box { background: #f5f6f8; border-radius: 8px; padding: 14px 16px; margin-bottom: 16px;
+                     font-size: 0.9em; border: 1px solid var(--line); }
+        .issue-box p { margin: 0 0 8px; }
+        .issue-box p:last-child { margin: 0; }
+
+        /* 概念流程圖 */
+        .flow-box { background: #f5f6f8; border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; margin-bottom: 18px; font-size: 0.87em; }
+        .flow-step { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; }
+        .flow-num { width: 22px; height: 22px; border-radius: 50%; background: var(--majority); color: #fff; font-size: 0.72em; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+        .flow-arrow { text-align: center; color: #4a5568; font-size: 1.1em; font-weight: 600; margin-bottom: 4px; }
+
+        .opinions { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+        .op { border-radius: 8px; overflow: hidden; border: 1px solid var(--line); }
+        .op-head { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #f5f6f8; }
+        .op-num { width: 26px; height: 26px; border-radius: 50%; background: var(--majority); color: white;
+                  font-size: 0.75em; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .op-label { font-weight: 700; font-size: 0.92em; color: var(--majority); flex: 1; }
+        .op-body { padding: 13px 15px; font-size: 0.9em; background: var(--card); }
+        .op-body p { margin: 0 0 9px; }
+        .op-body p:last-child { margin: 0; }
+        .op-body ul { margin: 5px 0 8px; padding-left: 18px; }
+        .op-body li { margin-bottom: 5px; }
+        .op-result { background: #f0f3f8; border-radius: 6px; padding: 10px 13px; margin-top: 10px;
+                     font-size: 0.9em; border-left: 3px solid var(--majority); }
+
+        .d-opinions { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+        .d-op { border-radius: 8px; overflow: hidden; border: 1px solid #e6d8bc; }
+        .d-op-head { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #fdf7ec; }
+        .d-op-num { width: 26px; height: 26px; border-radius: 50%; background: var(--dissent); color: white;
+                    font-size: 0.75em; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .d-op-label { font-weight: 700; font-size: 0.92em; color: var(--dissent); flex: 1; }
+        .d-op-body { padding: 13px 15px; font-size: 0.9em; background: #fffdf8; }
+        .d-op-body p { margin: 0 0 9px; }
+        .d-op-body p:last-child { margin: 0; }
+        .d-op-body ul { margin: 5px 0 8px; padding-left: 18px; }
+        .d-op-body li { margin-bottom: 5px; }
+        .d-op-result { background: #fdf7ec; border-radius: 6px; padding: 10px 13px; margin-top: 10px;
+                       font-size: 0.9em; border-left: 3px solid var(--dissent); }
+        .dissent-judges { font-size: 0.82em; color: var(--dissent); margin-bottom: 12px;
+                          padding: 8px 12px; background: #fdf7ec; border-radius: 6px; border-left: 3px solid var(--dissent); }
+
+        .compare-table { width: 100%; border-collapse: collapse; margin-bottom: 18px; font-size: 0.88em; }
+        .compare-table th { padding: 10px 13px; font-weight: 700; font-size: 0.85em; letter-spacing: 0.05em; }
+        .compare-table th.th-issue { background: #dde0e5; color: #3d4d68; width: 22%; border-radius: 6px 0 0 0; }
+        .compare-table th.th-majority { background: var(--majority); color: #fff; width: 39%; }
+        .compare-table th.th-dissent { background: var(--dissent); color: #fff; width: 39%; border-radius: 0 6px 0 0; }
+        .compare-table td { padding: 11px 13px; vertical-align: top; border-bottom: 1px solid var(--line); line-height: 1.65; }
+        .compare-table td.td-issue { background: #eef1f6; font-weight: 700; font-size: 0.87em; color: #3d4d68; }
+        .compare-table td.td-majority { background: #f4f7fb; border-left: 2px solid var(--majority); }
+        .compare-table td.td-dissent { background: #fdf8f4; border-left: 2px solid var(--dissent); }
+        .compare-table tr:last-child td { border-bottom: none; }
+        .compare-table tr:last-child td.td-issue { border-radius: 0 0 0 6px; }
+        .compare-table tr:last-child td.td-dissent { border-radius: 0 0 6px 0; }
+        @media (max-width: 640px) {
+            .compare-table thead { display: none; }
+            .compare-table, .compare-table tbody { display: block; }
+            .compare-table tr { display: block; margin-bottom: 14px; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+            .compare-table td.td-issue { display: block; width: 100%; background: #dde0e5; padding: 8px 14px; font-size: 0.85em; font-weight: 700; color: #3d4d68; border-bottom: none; border-left: none !important; }
+            .compare-table td.td-majority, .compare-table td.td-dissent { display: inline-block; width: 50%; vertical-align: top; box-sizing: border-box; padding: 10px 11px; border-bottom: none; font-size: 0.83em; line-height: 1.6; border-left: none !important; border-top: none; }
+            .compare-table td.td-majority { border-right: 1px solid var(--line); border-top: 3px solid var(--majority); }
+            .compare-table td.td-dissent { border-top: 3px solid var(--dissent); }
+            .compare-table td.td-majority::before { content: "多數"; display: block; margin-bottom: 5px; font-size: 0.78em; font-weight: 700; color: var(--majority); letter-spacing: 0.05em; }
+            .compare-table td.td-dissent::before { content: "不同"; display: block; margin-bottom: 5px; font-size: 0.78em; font-weight: 700; color: var(--dissent); letter-spacing: 0.05em; }
+        }
+
+        .trap-box { background: var(--trap); border-radius: 8px; padding: 14px 16px; margin-bottom: 16px;
+                    border: 1px solid #e0d8b0; font-size: 0.9em; }
+        .trap-title { font-weight: 700; color: #7a6820; margin-bottom: 10px; font-size: 0.92em; display: flex; align-items: center; gap: 6px; }
+        .trap-item { margin-bottom: 10px; padding-left: 14px; border-left: 2px solid #c8b860; }
+        .trap-item:last-child { margin-bottom: 0; }
+        .trap-q { font-weight: 700; color: var(--text); margin-bottom: 3px; }
+        .trap-a { color: var(--text); opacity: 0.85; }
+
+        .law-ref { background: #f0f2f5; border-radius: 8px; padding: 10px 14px; font-size: 0.84em;
+                   color: #4a5568; margin-top: 14px; border-left: 3px solid var(--law); }
+
+        details { margin-top: 16px; }
+        details summary { cursor: pointer; color: var(--sub); font-size: 0.84em; font-weight: 600;
+                          padding: 5px 0; user-select: none; list-style: none; display: flex; align-items: center; gap: 6px; }
+        details summary::before { content: '▶'; font-size: 0.62em; transition: transform 0.2s; color: var(--sub); }
+        details[open] summary::before { transform: rotate(90deg); }
+        .ref-case { background: #f5f6f8; border-radius: 7px; padding: 10px 13px; margin-bottom: 8px;
+                    font-size: 0.84em; border-left: 3px solid var(--majority); }
+        .ref-case.d { border-left-color: var(--dissent); }
+        .ref-case-title { font-weight: 700; color: var(--majority); margin-bottom: 3px; font-size: 0.9em; }
+        .ref-case.d .ref-case-title { color: var(--dissent); }
+
+        .note-toggle { display: inline-block; margin-top: 14px; font-size: 0.8em; color: #b0b8c4; cursor: pointer; user-select: none; }
+        .note-toggle:hover { color: var(--majority); }
+        .note-area { display: none; margin-top: 8px; }
+        .note-area.open { display: block; }
+        .note-textarea { width: 100%; min-height: 68px; border: 1px solid var(--line); border-radius: 7px;
+                         padding: 10px 12px; font-size: 0.87em; font-family: inherit; color: var(--text);
+                         background: #fafbfc; resize: vertical; outline: none; line-height: 1.75; }
+        .note-textarea:focus { border-color: var(--majority); }
+        .note-textarea::placeholder { color: #ccc; }
+        .note-saved { font-size: 0.72em; color: #68a06a; text-align: right; height: 14px; margin-top: 2px; }
+
+        .judges-grid { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+        .judge-chip { font-size: 0.77em; background: #eef1f6; border-radius: 20px; padding: 3px 11px;
+                      color: #3a4a6a; border: 1px solid #d8dde8; }
+        .judge-chip.chief { background: var(--majority); color: #fff; font-weight: 700; border-color: var(--majority); }
+        .judge-chip.dissenter { background: var(--dissent); color: #fff; font-weight: 600; border-color: var(--dissent); }
+
+        .quiz-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 0; }
+        .quiz-item { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+        .quiz-q { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;
+                  padding: 11px 14px; cursor: pointer; font-size: 0.9em; background: var(--card); }
+        .quiz-q:hover { background: #f5f6f8; }
+        .quiz-toggle { font-size: 1.1em; color: var(--majority); flex-shrink: 0; font-weight: 300; line-height: 1.4; }
+        .quiz-a { display: none; padding: 11px 14px; background: #f0f3f8; font-size: 0.87em;
+                  line-height: 1.75; border-top: 1px solid var(--line); color: #1a365d; }
+        .quiz-a.open { display: block; }
+
+        #noResults, #noStarred { display: none; text-align: center; color: var(--sub); padding: 40px 0; font-size: 0.9em; }
+        ::-webkit-scrollbar { display: none; }
+        ::selection { background: #c8d8ef; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>最高法院刑事大法庭<br>110年度台上大字第446號</h1>
+    <div class="header-controls">
+        <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="搜尋關鍵字、法條…" oninput="doSearch(this.value)" onkeydown="handleSearchKey(event)">
+            <span class="search-count" id="searchCount"></span>
+            <button class="search-nav" id="prevBtn" onclick="navMatch(-1)" disabled title="上一個">▲</button>
+            <button class="search-nav" id="nextBtn" onclick="navMatch(1)" disabled title="下一個">▼</button>
+        </div>
+        <button id="filterBtn" onclick="toggleFilter()">⭐ 收藏</button>
+    </div>
+    <div class="top-bar">
+        <button class="top-btn" onclick="highlightText()">🖊️</button>
+        <button class="top-btn" onclick="removeHighlight()">🧽</button>
+        <button class="top-btn" onclick="clearHighlights()">🗑️</button>
+        <button class="top-btn" onclick="openExport()">📤</button>
+        <button class="top-btn" id="nightBtn" onclick="toggleNight()">🌙</button>
+        <button class="top-btn done" id="doneBtn" onclick="toggleDone()">朕已閱</button>
+        <span class="done-date" id="doneDateLabel"></span>
+    </div>
+</header>
+
+<div class="container">
+
+<!-- ===== 主裁定卡片 ===== -->
+<div class="card" id="case1" data-kw="110台上大446 毒品危害防制條例 第12條第2項 栽種大麻 情節輕微 釋字790 定期失效 過渡規範 限期修法 1年 減輕其刑 權力分立 憲法訴訟法第54條 罪刑相當 比例原則 隋智翔 謝凱倫 謝厚浩">
+    <button class="star-btn" onclick="toggleStar('case1',this)">⭐</button>
+    <h2 class="card-title">
+        釋字790號「1年限期修法期間內」，法院可否提前依該解釋為情節輕微被告減刑？
+    </h2>
+    <div class="meta-line">裁定日期：中華民國111年6月22日　｜　案號：110年度台上大字第446號　｜　提案庭：刑事第六庭（原第八庭）　｜　全體一致・無不同意見書</div>
+
+    <!-- 主文 -->
+    <div class="verdict">
+        <div class="verdict-label">大法庭主文</div>
+        <div class="verdict-main">法院對於犯民國111年5月4日修正公布前毒品危害防制條例第12條第2項之罪、而情節輕微之被告，於司法院釋字第790號解釋文諭知之<strong>1年限期修法期間內，不得</strong>依該號解釋意旨減輕其刑。</div>
+        <div class="vote-row">
+            <span class="v-chip majority">大法庭裁定 ✔</span>
+            <span class="v-chip">全體一致・無不同意見書</span>
+            <span class="v-chip">裁定日：111.6.22</span>
+            <span class="v-chip">法官共11人</span>
+        </div>
+    </div>
+
+    <!-- 時序前導 -->
+    <div class="section-heading">關鍵時序與核心概念</div>
+    <div class="flow-box">
+        <div class="flow-step"><div class="flow-num">①</div><div><strong>109.3.20</strong>　釋字第790號公布：認§12Ⅱ對「情節輕微者」<strong>未設減刑規定</strong>違憲（違罪刑相當／憲法§23比例原則），採「<strong>定期失效</strong>」，並定<strong>1年限期修法</strong>（期限至110.3.20）</div></div>
+        <div class="flow-arrow">↓ 解釋另設「過渡規範」</div>
+        <div class="flow-step"><div class="flow-num">②</div><div><strong>過渡規範：</strong>解釋諭知「<strong>逾期未修正</strong>」者，情節輕微之被告，法院「得」減輕法定刑至<strong>1/2</strong>——適用期間＝<strong>修法期限過後（110.3.20後）至立法完成前</strong></div></div>
+        <div class="flow-arrow">↓ 但本件原審動作太快</div>
+        <div class="flow-step"><div class="flow-num">③</div><div>本件原審<strong>109.4.16</strong>判決（仍在「1年修法期間內」）即依釋字790減刑 → 檢察官上訴：<strong>期限未屆至即減刑，違反權力分立、適用法則不當</strong></div></div>
+        <div class="flow-arrow">↓ 大法庭</div>
+        <div class="flow-step"><div class="flow-num">④</div><div><strong>1年修法期間「內」不得</strong>依釋字790減刑；過渡規範<strong>僅適用於「逾期未修正」之後</strong>。（且宜將類似案件審判延後——修法後可能較過渡規範對被告<strong>更有利</strong>）</div></div>
+    </div>
+
+    <!-- 基礎事實 -->
+    <div class="section-heading">基礎事實</div>
+    <div class="fact-box">
+        <p>上訴人即被告<strong>隋智翔、謝凱倫、謝厚浩</strong>共同犯<strong>意圖供製造毒品之用而栽種大麻罪</strong>（修正前毒品危害防制條例§12Ⅱ）。</p>
+        <p>原審認其等<strong>犯罪情節輕微</strong>，於<strong>109年4月16日</strong>判決，依司法院<strong>釋字第790號</strong>解釋意旨<strong>減輕其刑</strong>。</p>
+        <p>檢察官提起上訴，理由略以：原判決<strong>未待</strong>該號解釋文諭知之1年限期修法期間（即自109年3月20日解釋公布之日起1年內）<strong>屆至</strong>，即逕依解釋意旨減輕其刑，<strong>違反權力分立原則</strong>，有適用法則不當之違法。</p>
+        <p><strong>爭點：</strong>在解釋公布後、1年修法期限屆至「之前」，法院能不能先依釋字790為情節輕微被告減刑？</p>
+    </div>
+
+    <!-- 法律爭議 -->
+    <div class="section-heading">法律爭議</div>
+    <div class="issue-box">
+        <p><strong>法律爭議：</strong>法院對於犯111年5月4日修正公布前毒品危害防制條例第12條第2項（下稱「系爭規定」）之罪、而情節輕微之被告，於<strong>釋字第790號解釋文諭知之1年限期修法期間內</strong>，<strong>得否</strong>依該號解釋意旨減輕其刑？</p>
+        <p><strong>釋字790號的兩層諭知：</strong>①「<strong>定期失效</strong>」——系爭規定於此範圍內違憲，但給立法者1年修法緩衝；②「<strong>過渡規範</strong>」——逾期未修正，情節輕微者，法院得減輕法定刑至1/2。</p>
+        <p><strong>核心張力：</strong>過渡規範的啟動點，是「<strong>解釋一公布</strong>」就生效，還是要等「<strong>1年修法期限屆至而立法者仍未修正</strong>」之後？</p>
+    </div>
+
+    <!-- 大法庭理由 -->
+    <div class="section-heading">大法庭裁定理由</div>
+    <div class="opinions">
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈠</div>
+                <span class="op-label">各級法院應受大法官解釋之拘束，並依解釋意旨為裁判</span>
+            </div>
+            <div class="op-body">
+                <p>司法院大法官職司<strong>解釋憲法及對法規範進行合憲性控制</strong>，其所為之解釋，有<strong>拘束全國各機關及人民</strong>之效力，各機關處理事項應依解釋意旨為之。</p>
+                <p>「各級法院」作為國家機關，<strong>應受大法官解釋之拘束</strong>，並應依解釋之意旨為裁判。</p>
+                <div class="op-result">
+                    <strong>前提：</strong>法院固然要依釋字790辦，但「怎麼依、何時依」，須精確按照解釋文的諭知內容與時點。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈡</div>
+                <span class="op-label">釋字790採「定期失效」——1年期間係尊重立法形成自由的緩衝</span>
+            </div>
+            <div class="op-body">
+                <p>釋字790<strong>並未宣告系爭規定之罪之構成要件違憲</strong>，只是認為系爭規定對犯該罪而情節輕微者，<strong>未併為得減輕其刑或另為適當刑度之規定</strong>，於此範圍內與憲法罪刑相當原則不符，有違憲法§23比例原則；且解釋文<strong>並無「自公布日起失其效力」之諭知</strong>。</p>
+                <p>「相關機關應自解釋公布之日起<strong>1年內</strong>依本解釋意旨修正之」部分，應係<strong>為尊重立法形成自由</strong>（立法院可能於1年內即修法，內容或併為得減輕其刑／另為適當刑度），基於<strong>法安定性及法實效性之衡平</strong>，所採違憲「<strong>定期失效</strong>」之宣告。</p>
+                <p>至「逾期未修正，情節輕微者，法院得依本解釋意旨減輕其法定刑至1/2」部分，則係<strong>為即時保障人身自由權而提出之「過渡規範」</strong>，具體指示法院於<strong>修法期限過後至立法完成前</strong>，得於裁判中對情節輕微之被告減輕法定刑至1/2。上開「定期失效」宣告及其配套過渡規範暨相關執行措施之諭知，<strong>皆有拘束各級法院之效力</strong>。</p>
+                <div class="op-result">
+                    <strong>關鍵：</strong>過渡規範的文義前提就是「<strong>逾期未修正</strong>」＝適用於「修法期限過後至立法完成前」；期限屆至「之前」，並不在過渡規範的射程內。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈢</div>
+                <span class="op-label">解釋僅諭知「期限過後」得適用過渡規範——宜延後審結，且修法後可能對被告更有利</span>
+            </div>
+            <div class="op-body">
+                <p>釋字790<strong>僅</strong>諭知「限期修法期限過後至立法完成前」之期間內，法院就<strong>尚未確定之類似案件</strong>（指情節輕微之非原因案件）得適用過渡規範，<strong>並未</strong>諭知於修法期限屆至「前」亦有過渡規範之適用。</p>
+                <p>再者，法院將類似案件之審判程序<strong>延至新法修正公布後、或解釋公布之日起1年後始予終結</strong>，較符合已於<strong>111年1月4日施行之憲法訴訟法§54Ⅰ</strong>規定之立法價值取向。況系爭規定於<strong>修法後</strong>，有可能<strong>較適用過渡規範對被告更為有利</strong>。</p>
+                <div class="op-result">
+                    <strong>結論：</strong>與其在1年期間內搶先減刑，不如把類似案件延後審結，等新法或期限屆至——這對被告未必較差，甚至可能更有利。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈣</div>
+                <span class="op-label">結論——1年限期修法期間內，不得依釋字790減刑</span>
+            </div>
+            <div class="op-body">
+                <p>從而，法院對於犯系爭規定之罪、而情節輕微之被告，於釋字第790號解釋文諭知之<strong>1年限期修法期間內，不得</strong>依該號解釋意旨減輕其刑。</p>
+                <div class="op-result">
+                    <strong>本件涵攝：</strong>原審於109.4.16（解釋公布後未滿1年、期限尚未屆至）即依釋字790減刑，於法有違；檢察官上訴為有理由。
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 法條依據 -->
+    <div class="law-ref">
+        <strong>📋 核心依據：</strong>毒品危害防制條例§12Ⅱ（意圖供製造毒品之用而栽種大麻等）；司法院釋字第790號解釋（定期失效＋過渡規範）；憲法訴訟法§54Ⅰ（合憲性裁判對原因案件／類似案件之處理，111.1.4施行）；憲法§23（比例原則）、罪刑相當原則；權力分立原則
+    </div>
+
+    <!-- 考試地雷 -->
+    <div class="trap-box">
+        <div class="trap-title">⚠️ 考試常見地雷</div>
+        <div class="trap-item">
+            <div class="trap-q">Q：本件大法庭的結論是？</div>
+            <div class="trap-a">A：在釋字790號「1年限期修法期間內」（109.3.20～110.3.20），法院對犯修正前毒品危害防制條例§12Ⅱ而情節輕微之被告，「<strong>不得</strong>」依該解釋意旨減刑。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：釋字790的「定期失效」與「過渡規範」分別是什麼？</div>
+            <div class="trap-a">A：①「定期失效」＝系爭規定於違憲範圍內不立即失效，給立法者1年修法緩衝（尊重立法形成自由）。②「過渡規範」＝諭知「逾期未修正」時，情節輕微者法院得減輕法定刑至1/2，適用期間為「<strong>修法期限過後至立法完成前</strong>」。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：過渡規範的「啟動時點」是關鍵——它從何時開始適用？</div>
+            <div class="trap-a">A：從「1年修法期限屆至而仍未修正」之後（本件即110.3.20之後）至立法完成前。<strong>不是</strong>解釋一公布（109.3.20）就啟動。故期限屆至「前」的1年期間內，法院不得依790減刑。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：釋字790有沒有宣告§12Ⅱ的「構成要件」違憲？</div>
+            <div class="trap-a">A：沒有。790只認為系爭規定「對情節輕微者未併設得減輕其刑／另為適當刑度之規定」在此範圍內違憲（違罪刑相當／比例原則），並非罪的構成要件違憲，也無「自公布日起失效」之諭知。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：大法庭為何說「延後審結」對被告未必不利？</div>
+            <div class="trap-a">A：因為系爭規定「修法後」的新法，有可能較「過渡規範（僅減1/2）」對被告更有利；且將類似案件延至新法公布後或1年後審結，較符合憲法訴訟法§54Ⅰ的立法價值取向。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：「原因案件」與「類似案件（非原因案件）」有何不同？</div>
+            <div class="trap-a">A：原因案件＝聲請解釋所由來之個案，享有解釋效力之特別優惠；本件被告屬「類似案件（情節輕微之非原因案件）」，僅能依解釋諭知之過渡規範時點適用，故在1年期間內不得減刑。</div>
+        </div>
+    </div>
+
+    <!-- 引用資料 -->
+    <details>
+        <summary>📎 引用規定與解釋整理</summary>
+        <div style="padding: 10px 0 4px;">
+            <div class="ref-case">
+                <div class="ref-case-title">毒品危害防制條例第12條第2項（修正前・系爭規定）</div>
+                <p style="margin:0;">意圖供製造毒品之用，而栽種罌粟、古柯或大麻者，處相關之罪刑（本件論罪之罪名）。111年5月4日修正公布後，就情節輕微者已增設得減輕其刑之規定。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">司法院釋字第790號解釋（109.3.20公布）</div>
+                <p style="margin:0;">認系爭規定對情節輕微者未併為得減輕其刑或另為適當刑度之規定，於此範圍內違罪刑相當原則、憲法§23比例原則。採「定期失效」並定1年限期修法；逾期未修正者，情節輕微之被告，法院得依解釋意旨減輕其法定刑至1/2（過渡規範）。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">憲法訴訟法第54條第1項（111.1.4施行）</div>
+                <p style="margin:0;">就法規範經判決宣告違憲後，對原因案件及其他已繫屬而尚未終結案件之效力與處理，設有規定。大法庭援引其「立法價值取向」，說明將類似案件延至新法公布後或1年後審結為宜。</p>
+            </div>
+        </div>
+    </details>
+
+    <!-- 法官名單 -->
+    <div class="section-heading">大法庭組成（11人・一致）</div>
+    <div class="judges-grid">
+        <span class="judge-chip chief">審判長 吳燦</span>
+        <span class="judge-chip">郭毓洲</span>
+        <span class="judge-chip">林立華</span>
+        <span class="judge-chip">徐昌錦</span>
+        <span class="judge-chip">段景榕</span>
+        <span class="judge-chip">李英勇</span>
+        <span class="judge-chip">李錦樑</span>
+        <span class="judge-chip">林勤純</span>
+        <span class="judge-chip">梁宏哲</span>
+        <span class="judge-chip">何信慶</span>
+        <span class="judge-chip">楊智勝</span>
+    </div>
+    <p style="font-size:0.78em;color:var(--sub);margin:10px 0 0;">提案庭：最高法院刑事第六庭（原第八庭）　｜　本案案號：110年度台上字第446號　｜　提案裁定案號：110年度台上大字第446號　｜　裁定日：中華民國111年6月22日（無不同意見書）</p>
+
+    <div class="note-toggle" onclick="toggleNote('n1')">✏️ 我的小結</div>
+    <div class="note-area" id="n1">
+        <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n1',this.value)"></textarea>
+        <div class="note-saved" id="n1-saved"></div>
+    </div>
+</div>
+
+<!-- ===== 快問快答卡片 ===== -->
+<div class="card" id="case2" data-kw="快問快答 釋字790 定期失效 過渡規範 限期修法 1年 減輕其刑 毒品 栽種大麻 類似案件 原因案件 憲法訴訟法第54條">
+    <button class="star-btn" onclick="toggleStar('case2',this)">⭐</button>
+    <h2 class="card-title">快問快答——本件核心概念與答題要點</h2>
+    <div class="meta-line">建議先蓋住答案，自己回答後再確認</div>
+
+    <div class="quiz-list">
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>本件的時序爭點是什麼？（一句話）</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">釋字790於109.3.20公布並定1年修法期限。法院能否在「1年期限屆至之前」，就先依790對情節輕微被告減刑？大法庭：不行。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>釋字790採哪種違憲宣告方式？為什麼給1年？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">「定期失效」。系爭規定不立即失效，保留1年給立法者修法，係為尊重立法形成自由（立法院可能自行設得減輕其刑或另定適當刑度），並基於法安定性與法實效性之衡平考量。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>【核心】過渡規範（法院得減至1/2）從什麼時點開始適用？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">從「1年修法期限屆至而仍『逾期未修正』」之後，至立法完成前。解釋文文義前提就是「逾期未修正」。因此期限屆至「之前」的1年期間內，法院不得依790減刑。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>釋字790是否宣告§12Ⅱ的罪之構成要件違憲？解釋有無諭知「即時失效」？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">都沒有。790只認為「未對情節輕微者設減刑規定」在此範圍內違憲（違罪刑相當／§23比例原則），非構成要件違憲；且解釋文並無「自公布日起失其效力」之諭知。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>大法庭為何建議把類似案件「延後審結」？對被告不會不利嗎？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">不會，甚至可能更有利。①延至新法公布後或1年後審結，較符憲法訴訟法§54Ⅰ立法價值取向；②系爭規定「修法後」的新法，有可能較「過渡規範僅減1/2」對被告更有利。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>檢察官上訴的理由是什麼？大法庭是否採納？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">檢方主張：原審未待1年修法期限屆至即依790減刑，違反權力分立、適用法則不當。大法庭實質採納此見解——確認1年期間內不得減刑，原審提前減刑於法有違。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>「原因案件」與「類似案件（非原因案件）」在本件的意義？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">原因案件＝聲請解釋所由來之個案，享解釋效力之特別優惠；本件被告屬「情節輕微之非原因案件（類似案件）」，只能依解釋諭知之過渡規範時點適用，故在1年期間內不得減刑。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>一句話記憶本裁定？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">「定期失效給的是立法者的1年緩衝，不是法院提前減刑的許可證」——過渡規範要等『逾期未修正』後才啟動，1年期間內法院不得依釋字790減刑。</div>
+        </div>
+    </div>
+
+    <div class="note-toggle" onclick="toggleNote('n2')">✏️ 我的小結</div>
+    <div class="note-area" id="n2">
+        <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n2',this.value)"></textarea>
+        <div class="note-saved" id="n2-saved"></div>
+    </div>
+</div>
+
+<div id="noResults">查無符合的內容，請試試其他關鍵字。</div>
+<div id="noStarred">還沒有收藏的項目，點卡片右上角的 ⭐ 加入收藏。</div>
+</div>
+
+<script>
+const NIGHT_KEY='night_mode_pref';
+function toggleNight(){const on=document.body.classList.toggle('night-mode');localStorage.setItem(NIGHT_KEY,on?'1':'0');document.getElementById('nightBtn').textContent=on?'☀️':'🌙';}
+(function(){if(localStorage.getItem(NIGHT_KEY)==='1'){document.body.classList.add('night-mode');const b=document.getElementById('nightBtn');if(b)b.textContent='☀️';}})();
+const STORE_KEY='110_446_grand_notes',STAR_KEY='110_446_grand_stars';
+function loadNotes(){try{return JSON.parse(localStorage.getItem(STORE_KEY))||{};}catch{return{};}}
+function loadStars(){try{return JSON.parse(localStorage.getItem(STAR_KEY))||{};}catch{return{};}}
+function saveAllNotes(d){localStorage.setItem(STORE_KEY,JSON.stringify(d));}
+function saveAllStars(d){localStorage.setItem(STAR_KEY,JSON.stringify(d));}
+(function(){const n=loadNotes(),s=loadStars();
+  Object.entries(n).forEach(([id,v])=>{const a=document.getElementById(id);if(!a)return;const t=a.querySelector('textarea');if(t)t.value=v;if(v)a.classList.add('open');});
+  Object.entries(s).forEach(([id,v])=>{if(!v)return;const b=document.querySelector(`#${id} .star-btn`);if(b)b.classList.add('starred');});
+})();
+function toggleStar(id,btn){const s=loadStars();const now=!btn.classList.contains('starred');btn.classList.toggle('starred',now);s[id]=now;saveAllStars(s);if(filterActive)applyFilter();}
+let filterActive=false;
+function toggleFilter(){filterActive=!filterActive;document.getElementById('filterBtn').classList.toggle('active',filterActive);document.getElementById('searchInput').value='';clearSearchHighlights();updateSearchUI([],0);applyFilter();}
+function applyFilter(){const s=loadStars();const q=document.getElementById('searchInput').value.trim().toLowerCase();let any=false;
+  document.querySelectorAll('.card').forEach(c=>{const kw=(c.dataset.kw||'').toLowerCase();const txt=c.textContent.toLowerCase();
+  const ms=!q||kw.includes(q)||txt.includes(q);const mf=!filterActive||!!s[c.id];const show=ms&&mf;
+  c.classList.toggle('hidden',!show);if(show)any=true;});
+  document.getElementById('noResults').style.display=(!any&&!filterActive)?'block':'none';
+  document.getElementById('noStarred').style.display=(!any&&filterActive)?'block':'none';}
+let _matches=[],_cur=-1;
+function clearSearchHighlights(){document.querySelectorAll('mark.search-hl').forEach(m=>{const p=m.parentNode;p.replaceChild(document.createTextNode(m.textContent),m);p.normalize();});}
+function highlightInNode(node,re){if(node.nodeType===3){const text=node.nodeValue;const frag=document.createDocumentFragment();let last=0,m;re.lastIndex=0;while((m=re.exec(text))!==null){if(m.index>last)frag.appendChild(document.createTextNode(text.slice(last,m.index)));const mk=document.createElement('mark');mk.className='search-hl';mk.textContent=m[0];frag.appendChild(mk);last=re.lastIndex;}if(last===0)return;frag.appendChild(document.createTextNode(text.slice(last)));node.parentNode.replaceChild(frag,node);return;}if(node.nodeType===1){const tag=node.tagName;if(tag==='SCRIPT'||tag==='STYLE'||tag==='TEXTAREA'||tag==='INPUT')return;if(node.classList&&node.classList.contains('search-hl'))return;[...node.childNodes].forEach(c=>highlightInNode(c,re));}}
+function doSearch(q){clearSearchHighlights();_matches=[];_cur=-1;const qt=(q||'').trim();if(!qt){updateSearchUI([],0);applyFilter();return;}applyFilter();const esc=qt.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');const re=new RegExp(esc,'gi');document.querySelectorAll('.container .card:not(.hidden)').forEach(card=>{highlightInNode(card,re);});_matches=[...document.querySelectorAll('mark.search-hl')];if(_matches.length){_cur=0;setCurrent(0);}updateSearchUI(_matches,_cur);}
+function setCurrent(idx){_matches.forEach((m,i)=>m.classList.toggle('current',i===idx));if(_matches[idx])_matches[idx].scrollIntoView({behavior:'smooth',block:'center'});}
+function navMatch(dir){if(!_matches.length)return;_cur=(_cur+dir+_matches.length)%_matches.length;setCurrent(_cur);updateSearchUI(_matches,_cur);}
+function updateSearchUI(matches,cur){const cnt=document.getElementById('searchCount');const prev=document.getElementById('prevBtn');const next=document.getElementById('nextBtn');if(!matches.length){cnt.textContent='';prev.disabled=true;next.disabled=true;return;}cnt.textContent=(cur+1)+'/'+matches.length;prev.disabled=false;next.disabled=false;}
+function handleSearchKey(e){if(e.key==='Enter'){e.shiftKey?navMatch(-1):navMatch(1);}if(e.key==='Escape'){document.getElementById('searchInput').value='';doSearch('');}}
+function toggleNote(id){document.getElementById(id).classList.toggle('open');}
+const timers={};
+function saveNote(id,v){clearTimeout(timers[id]);timers[id]=setTimeout(()=>{const n=loadNotes();n[id]=v;saveAllNotes(n);const el=document.getElementById(id+'-saved');if(el){el.textContent='已儲存';setTimeout(()=>el.textContent='',1500);}},500);}
+let savedRange=null;
+document.addEventListener('selectionchange',()=>{const s=window.getSelection();if(s&&!s.isCollapsed&&s.rangeCount)savedRange=s.getRangeAt(0).cloneRange();});
+function highlightText(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;
+  if(!r||r.collapsed){alert('💡 請先反白想要標記的文字');return;}
+  const sp=document.createElement('span');sp.className='hl';sp.style.cssText='background:#f0d98a;border-radius:2px;';
+  try{r.surroundContents(sp);savedRange=null;}catch{alert('💡 請選取同一段落內的文字');}s&&s.removeAllRanges();}
+function removeHighlight(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;
+  if(!r||r.collapsed){alert('💡 請先反白想擦除標記的文字');return;}
+  const anc=r.commonAncestorContainer.nodeType===1?r.commonAncestorContainer:r.commonAncestorContainer.parentElement;
+  anc.querySelectorAll('span.hl').forEach(sp=>{if(r.intersectsNode(sp)){const p=sp.parentNode;while(sp.firstChild)p.insertBefore(sp.firstChild,sp);p.removeChild(sp);}});
+  savedRange=null;s&&s.removeAllRanges();}
+function clearHighlights(){const sp=document.querySelectorAll('span.hl');if(!sp.length)return;
+  if(confirm('確定要清除所有重點標記嗎？')){sp.forEach(s=>{const p=s.parentNode;while(s.firstChild)p.insertBefore(s.firstChild,s);p.removeChild(s);});}}
+function openExport(){
+  let out='最高法院刑事大法庭 110年度台上大字第446號\n'+'═'.repeat(44)+'\n\n';
+  out+='【主文】\n法院對於犯民國111年5月4日修正公布前毒品危害防制條例第12條第2項之罪，而情節輕微之被告，於司法院釋字第790號解釋文諭知之1年限期修法期間內，不得依該號解釋意旨減輕其刑。\n\n';
+  document.querySelectorAll('.op,.d-op').forEach(op=>{
+    const head=op.querySelector('.op-label,.d-op-label')?.textContent.trim()||'';
+    out+=`▌${head}\n`;
+    op.querySelectorAll('.op-body p,.op-body li,.op-result,.d-op-body p,.d-op-body li,.d-op-result').forEach(el=>{
+      const t=el.textContent.trim();if(t)out+=(el.tagName==='LI'?'  • ':'')+t+'\n';});
+    out+='\n';});
+  const tas=document.querySelectorAll('.note-textarea');tas.forEach((ta,i)=>{if(ta&&ta.value.trim())out+=`✏️ 小結${i+1}：\n`+ta.value.trim()+'\n\n';});
+  out+='═'.repeat(44)+'\n';
+  const b=new Blob([out.trim()],{type:'text/plain;charset=utf-8'});
+  const u=URL.createObjectURL(b);const a=document.createElement('a');
+  a.href=u;a.download='110台上大字第446號_釋字790限期修法期間內不得減刑.txt';a.click();URL.revokeObjectURL(u);}
+function toggleQuiz(el){const ans=el.nextElementSibling;const tog=el.querySelector('.quiz-toggle');if(ans.classList.contains('open')){ans.classList.remove('open');tog.textContent='＋';}else{ans.classList.add('open');tog.textContent='－';}}
+const REG_KEY='exam_completion_registry';
+function _loadReg(){try{return JSON.parse(localStorage.getItem(REG_KEY))||{};}catch{return{};}}
+function _saveReg(r){try{localStorage.setItem(REG_KEY,JSON.stringify(r));}catch{}}
+function _file(){const p=location.pathname.split('/');return decodeURIComponent(p[p.length-1]||'');}
+function _fmt(ts){const d=new Date(ts);const date=(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();const time=d.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false});return date+' '+time;}
+function _updateDate(){const r=_loadReg();const k=_file()||'case_criminal_grand_110_446.html';const l=document.getElementById('doneDateLabel');if(!l)return;l.textContent=(r[k]&&r[k].done&&r[k].ts)?_fmt(r[k].ts):'';}
+function toggleDone(){const btn=document.getElementById('doneBtn');const r=_loadReg();const k=_file()||'case_criminal_grand_110_446.html';const done=r[k]&&r[k].done;
+  if(done){delete r[k];_saveReg(r);btn.classList.remove('active');}
+  else{const now=new Date();r[k]={done:true,ts:now.getTime()};_saveReg(r);btn.classList.add('active');}
+  _updateDate();}
+(function(){const r=_loadReg();const k=_file()||'case_criminal_grand_110_446.html';if(r[k]&&r[k].done){const b=document.getElementById('doneBtn');if(b)b.classList.add('active');}_updateDate();})();
+</script>
+</body>
+</html>
