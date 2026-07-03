@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>111年度台非大字第43號 刑事大法庭裁定</title>
+    <style>
+        :root {
+            --bg:       #f5f0eb;
+            --card:     #ffffff;
+            --text:     #3d3530;
+            --sub:      #8c7b6b;
+            --line:     #ddd8d0;
+            --majority: #3a5a8a;
+            --law:      #5a6e4e;
+            --dissent:  #b07d4a;
+            --trap:     #f5f0d8;
+            --header-bg:#33404f;
+        }
+        body.night-mode {
+            --bg:       #14161a;
+            --card:     #20232a;
+            --text:     #d4cec8;
+            --sub:      #8a8578;
+            --line:     #33373e;
+            --majority: #6f9bd0;
+            --law:      #6a8a5e;
+            --dissent:  #c4935a;
+            --trap:     #2a2518;
+            --header-bg:#0d1117;
+        }
+        body.night-mode header { box-shadow: 0 2px 8px rgba(0,0,0,0.5); }
+        body.night-mode .top-bar { background: #1a1d22; }
+        body.night-mode .top-btn { background: #33373e; }
+        body.night-mode .fact-box, body.night-mode .issue-box { background: #1a1d22; }
+        body.night-mode .op-head { background: #262a31; }
+        body.night-mode .op-body { background: var(--card); }
+        body.night-mode .op-result { background: #182430; }
+        body.night-mode .d-op-head { background: #261f14; }
+        body.night-mode .d-op-body { background: #201c14; }
+        body.night-mode .d-op-result { background: #261f14; }
+        body.night-mode .dissent-judges { background: #261f14; }
+        body.night-mode .compare-table th.th-issue { background: #22262c; }
+        body.night-mode .compare-table td.td-issue { background: #22262c; }
+        body.night-mode .compare-table td.td-majority { background: #161c24; }
+        body.night-mode .compare-table td.td-dissent { background: #1e1814; }
+        @media (max-width: 640px) {
+            body.night-mode .compare-table td.td-issue { background: #22262c; }
+            body.night-mode .compare-table td.td-majority { background: #161c24; }
+            body.night-mode .compare-table td.td-dissent { background: #1e1814; }
+        }
+        body.night-mode .ref-case { background: #1e2229; }
+        body.night-mode .law-ref { background: #1c2018; }
+        body.night-mode .note-textarea { background: #1a1d22; color: var(--text); border-color: var(--line); }
+        body.night-mode .judge-chip { background: #262a31; border-color: var(--line); }
+        body.night-mode .judge-chip.chief { background: #33373e; }
+        body.night-mode mark.search-hl { background: #7a6010; color: #f0e8c8; }
+        body.night-mode mark.search-hl.current { background: #c47000; color: #fff; }
+        body.night-mode .verdict { background: #1a2836; }
+        body.night-mode .trap-box { border-color: #5a5020; }
+        body.night-mode .trap-title { color: #c8a840; }
+        body.night-mode .trap-item { border-left-color: #7a6830; }
+        body.night-mode #nightBtn { background: #3a4250; color: #cfe0f4; font-weight: 700; }
+        body.night-mode .quiz-q { background: var(--card); }
+        body.night-mode .quiz-q:hover { background: #262a31; }
+        body.night-mode .quiz-a { background: #161c24; color: #9fbcdf; }
+        body { transition: background 0.3s, color 0.3s; }
+        .card { transition: background 0.3s, border-color 0.3s; }
+
+        * { box-sizing: border-box; }
+        body { font-family: "Helvetica Neue", Helvetica, "PingFang TC", "LiHei Pro", "Microsoft JhengHei", sans-serif;
+               background: var(--bg); color: var(--text); line-height: 1.85; font-size: 16px; margin: 0; padding: 0 0 60px; }
+
+        header { background: var(--header-bg); color: #f5f0eb; padding: 16px 16px 8px; text-align: center;
+                 position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+        header h1 { margin: 0 0 10px; font-size: 1.05em; line-height: 1.5; font-weight: 600; letter-spacing: 0.02em; color: #ffffff; }
+        .header-controls { display: flex; gap: 8px; align-items: center; }
+        .search-wrap { position: relative; flex: 1; display: flex; align-items: center; gap: 4px; }
+        #searchInput { flex: 1; padding: 8px 14px 8px 32px; border: none; border-radius: 6px;
+                       font-size: 14px; background: rgba(245,240,235,0.15); color: #f5f0eb; outline: none; }
+        #searchInput::placeholder { color: rgba(245,240,235,0.45); }
+        #searchInput:focus { background: rgba(245,240,235,0.25); }
+        .search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 13px; opacity: 0.5; pointer-events: none; }
+        .search-count { font-size: 12px; color: rgba(255,255,255,0.7); white-space: nowrap; min-width: 44px; text-align: center; }
+        .search-nav { background: rgba(255,255,255,0.13); border: none; border-radius: 6px; color: white; font-size: 13px; padding: 6px 8px; cursor: pointer; line-height: 1; }
+        .search-nav:hover { background: rgba(255,255,255,0.25); }
+        .search-nav:disabled { opacity: 0.3; cursor: default; }
+        mark.search-hl { background: #ffe066; color: #1a1a1a; border-radius: 2px; padding: 0 1px; }
+        mark.search-hl.current { background: #ff8c00; color: #fff; border-radius: 3px; outline: 2px solid #ff8c00; }
+        #filterBtn { background: rgba(245,240,235,0.15); border: none; border-radius: 6px;
+                     color: #f5f0eb; font-size: 13px; padding: 8px 12px; cursor: pointer; white-space: nowrap; }
+        #filterBtn.active { background: var(--dissent); color: #fff; font-weight: bold; }
+        .top-bar { background: #e8e2da; padding: 5px 14px; display: flex; gap: 6px; justify-content: flex-end; flex-wrap: nowrap; }
+        .top-btn { background: #b0a898; color: #fff; border: none; padding: 4px 10px; border-radius: 20px;
+                   font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap; transition: opacity 0.15s; }
+        .top-btn:hover { opacity: 0.8; }
+        .top-btn.done { background: #8c7b6b; }
+        .top-btn.done.active { background: linear-gradient(135deg, #b8860b, #daa520); color: #fff8e1; font-weight: 700; box-shadow: 0 0 8px rgba(218,165,32,0.5); }
+        .done-date { font-size: 11px; color: #a0a0a0; white-space: nowrap; align-self: center; font-weight: 500; }
+
+        .container { padding: 18px 16px; max-width: 640px; margin: 0 auto; }
+        @media (min-width: 768px) { .container { max-width: 880px; padding: 24px 20px; } body { font-size: 17px; } header h1 { font-size: 1.15em; } }
+        .card { background: var(--card); border-radius: 14px; padding: 24px 22px; margin-bottom: 24px;
+                box-shadow: 0 1px 6px rgba(61,53,48,0.08); position: relative; border: 1px solid var(--line); }
+        .card.hidden { display: none; }
+        .star-btn { position: absolute; top: 18px; right: 18px; background: none; border: none; font-size: 20px;
+                    cursor: pointer; opacity: 0.15; transition: opacity 0.15s; padding: 0; }
+        .star-btn.starred { opacity: 1; }
+        .card-title { color: var(--text); font-size: 1.15em; font-weight: 700; margin: 0 0 4px; padding-right: 30px; line-height: 1.6; }
+        .meta-line { font-size: 0.75em; color: var(--sub); margin-bottom: 20px; letter-spacing: 0.04em; }
+
+        .verdict { background: #2b3a4c; color: #f5f0eb; border-radius: 10px; padding: 16px 18px; margin-bottom: 22px; }
+        .verdict-label { font-size: 0.66em; letter-spacing: 0.14em; opacity: 0.5; margin-bottom: 6px; }
+        .verdict-main { font-size: 1.05em; font-weight: 700; line-height: 1.6; margin-bottom: 10px; color: #ffffff; }
+        .verdict-sub { font-size: 0.88em; opacity: 0.85; line-height: 1.65; margin-bottom: 10px; }
+        .vote-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 12px; padding-top: 10px;
+                    border-top: 1px solid rgba(245,240,235,0.15); }
+        .v-chip { font-size: 0.72em; background: rgba(245,240,235,0.1); border-radius: 20px;
+                  padding: 3px 10px; white-space: nowrap; color: rgba(245,240,235,0.75); }
+        .v-chip.majority { background: rgba(58,90,138,0.55); color: #f5f0eb; font-weight: 700; }
+        .v-chip.dissent-c { background: rgba(176,125,74,0.45); color: #f5f0eb; }
+
+        .section-heading { font-size: 0.85em; font-weight: 700; letter-spacing: 0.08em;
+                           color: var(--sub); margin: 22px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--line); }
+
+        .fact-box { background: #faf8f5; border-left: 3px solid var(--sub); border-radius: 0 8px 8px 0;
+                    padding: 14px 16px; margin-bottom: 16px; font-size: 0.9em; }
+        .fact-box p { margin: 0 0 8px; }
+        .fact-box p:last-child { margin: 0; }
+
+        .issue-box { background: #faf8f5; border-radius: 8px; padding: 14px 16px; margin-bottom: 16px;
+                     font-size: 0.9em; border: 1px solid var(--line); }
+        .issue-box p { margin: 0 0 8px; }
+        .issue-box p:last-child { margin: 0; }
+
+        /* 概念流程圖 */
+        .flow-box { background: #faf8f5; border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; margin-bottom: 18px; font-size: 0.87em; }
+        .flow-step { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; }
+        .flow-num { width: 22px; height: 22px; border-radius: 50%; background: var(--majority); color: #fff; font-size: 0.72em; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+        .flow-arrow { text-align: center; color: var(--sub); font-size: 1.1em; margin-bottom: 4px; }
+
+        .opinions { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+        .op { border-radius: 8px; overflow: hidden; border: 1px solid var(--line); }
+        .op-head { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #f7f4f0; }
+        .op-num { width: 26px; height: 26px; border-radius: 50%; background: var(--majority); color: white;
+                  font-size: 0.75em; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .op-label { font-weight: 700; font-size: 0.92em; color: var(--majority); flex: 1; }
+        .op-body { padding: 13px 15px; font-size: 0.9em; background: var(--card); }
+        .op-body p { margin: 0 0 9px; }
+        .op-body p:last-child { margin: 0; }
+        .op-body ul { margin: 5px 0 8px; padding-left: 18px; }
+        .op-body li { margin-bottom: 5px; }
+        .op-result { background: #f4f7fb; border-radius: 6px; padding: 10px 13px; margin-top: 10px;
+                     font-size: 0.9em; border-left: 3px solid var(--majority); }
+
+        .d-opinions { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+        .d-op { border-radius: 8px; overflow: hidden; border: 1px solid #e6d8bc; }
+        .d-op-head { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #fdf7ec; }
+        .d-op-num { width: 26px; height: 26px; border-radius: 50%; background: var(--dissent); color: white;
+                    font-size: 0.75em; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .d-op-label { font-weight: 700; font-size: 0.92em; color: var(--dissent); flex: 1; }
+        .d-op-body { padding: 13px 15px; font-size: 0.9em; background: #fffdf8; }
+        .d-op-body p { margin: 0 0 9px; }
+        .d-op-body p:last-child { margin: 0; }
+        .d-op-body ul { margin: 5px 0 8px; padding-left: 18px; }
+        .d-op-body li { margin-bottom: 5px; }
+        .d-op-result { background: #fdf7ec; border-radius: 6px; padding: 10px 13px; margin-top: 10px;
+                       font-size: 0.9em; border-left: 3px solid var(--dissent); }
+        .dissent-judges { font-size: 0.82em; color: var(--dissent); margin-bottom: 12px;
+                          padding: 8px 12px; background: #fdf7ec; border-radius: 6px; border-left: 3px solid var(--dissent); }
+
+        .compare-table { width: 100%; border-collapse: collapse; margin-bottom: 18px; font-size: 0.88em; }
+        .compare-table th { padding: 10px 13px; font-weight: 700; font-size: 0.85em; letter-spacing: 0.05em; }
+        .compare-table th.th-issue { background: #e3ddd6; color: var(--sub); width: 22%; border-radius: 6px 0 0 0; }
+        .compare-table th.th-majority { background: var(--majority); color: #fff; width: 39%; }
+        .compare-table th.th-dissent { background: var(--dissent); color: #fff; width: 39%; border-radius: 0 6px 0 0; }
+        .compare-table td { padding: 11px 13px; vertical-align: top; border-bottom: 1px solid var(--line); line-height: 1.65; }
+        .compare-table td.td-issue { background: #f2eeea; font-weight: 700; font-size: 0.87em; color: var(--sub); }
+        .compare-table td.td-majority { background: #f6f9fd; border-left: 2px solid var(--majority); }
+        .compare-table td.td-dissent { background: #fdf8f4; border-left: 2px solid var(--dissent); }
+        .compare-table tr:last-child td { border-bottom: none; }
+        .compare-table tr:last-child td.td-issue { border-radius: 0 0 0 6px; }
+        .compare-table tr:last-child td.td-dissent { border-radius: 0 0 6px 0; }
+        @media (max-width: 640px) {
+            .compare-table thead { display: none; }
+            .compare-table, .compare-table tbody { display: block; }
+            .compare-table tr { display: block; margin-bottom: 14px; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+            .compare-table td.td-issue { display: block; width: 100%; background: #e3ddd6; padding: 8px 14px; font-size: 0.85em; font-weight: 700; color: var(--sub); border-bottom: none; border-left: none !important; }
+            .compare-table td.td-majority, .compare-table td.td-dissent { display: inline-block; width: 50%; vertical-align: top; box-sizing: border-box; padding: 10px 11px; border-bottom: none; font-size: 0.83em; line-height: 1.6; border-left: none !important; border-top: none; }
+            .compare-table td.td-majority { border-right: 1px solid var(--line); border-top: 3px solid var(--majority); }
+            .compare-table td.td-dissent { border-top: 3px solid var(--dissent); }
+            .compare-table td.td-majority::before { content: "多數"; display: block; margin-bottom: 5px; font-size: 0.78em; font-weight: 700; color: var(--majority); letter-spacing: 0.05em; }
+            .compare-table td.td-dissent::before { content: "不同"; display: block; margin-bottom: 5px; font-size: 0.78em; font-weight: 700; color: var(--dissent); letter-spacing: 0.05em; }
+        }
+
+        .trap-box { background: var(--trap); border-radius: 8px; padding: 14px 16px; margin-bottom: 16px;
+                    border: 1px solid #e0d8b0; font-size: 0.9em; }
+        .trap-title { font-weight: 700; color: #7a6820; margin-bottom: 10px; font-size: 0.92em; display: flex; align-items: center; gap: 6px; }
+        .trap-item { margin-bottom: 10px; padding-left: 14px; border-left: 2px solid #c8b860; }
+        .trap-item:last-child { margin-bottom: 0; }
+        .trap-q { font-weight: 700; color: var(--text); margin-bottom: 3px; }
+        .trap-a { color: var(--text); opacity: 0.85; }
+
+        .law-ref { background: #f2f5f0; border-radius: 8px; padding: 10px 14px; font-size: 0.84em;
+                   color: #3d4e38; margin-top: 14px; border-left: 3px solid var(--law); }
+
+        details { margin-top: 16px; }
+        details summary { cursor: pointer; color: var(--sub); font-size: 0.84em; font-weight: 600;
+                          padding: 5px 0; user-select: none; list-style: none; display: flex; align-items: center; gap: 6px; }
+        details summary::before { content: '▶'; font-size: 0.62em; transition: transform 0.2s; color: var(--sub); }
+        details[open] summary::before { transform: rotate(90deg); }
+        .ref-case { background: #f7f4f0; border-radius: 7px; padding: 10px 13px; margin-bottom: 8px;
+                    font-size: 0.84em; border-left: 3px solid var(--majority); }
+        .ref-case.d { border-left-color: var(--dissent); }
+        .ref-case-title { font-weight: 700; color: var(--majority); margin-bottom: 3px; font-size: 0.9em; }
+        .ref-case.d .ref-case-title { color: var(--dissent); }
+
+        .note-toggle { display: inline-block; margin-top: 14px; font-size: 0.8em; color: #b0a898; cursor: pointer; user-select: none; }
+        .note-toggle:hover { color: var(--majority); }
+        .note-area { display: none; margin-top: 8px; }
+        .note-area.open { display: block; }
+        .note-textarea { width: 100%; min-height: 68px; border: 1px solid var(--line); border-radius: 7px;
+                         padding: 10px 12px; font-size: 0.87em; font-family: inherit; color: var(--text);
+                         background: #faf8f5; resize: vertical; outline: none; line-height: 1.75; }
+        .note-textarea:focus { border-color: var(--majority); }
+        .note-textarea::placeholder { color: #c8beb0; }
+        .note-saved { font-size: 0.72em; color: var(--law); text-align: right; height: 14px; margin-top: 2px; }
+
+        .judges-grid { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+        .judge-chip { font-size: 0.77em; background: #f0ece7; border-radius: 20px; padding: 3px 11px;
+                      color: var(--text); border: 1px solid var(--line); }
+        .judge-chip.chief { background: var(--text); color: #f5f0eb; font-weight: 700; border-color: var(--text); }
+        .judge-chip.dissenter { background: var(--dissent); color: #fff; font-weight: 600; border-color: var(--dissent); }
+
+        .quiz-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 0; }
+        .quiz-item { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+        .quiz-q { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;
+                  padding: 11px 14px; cursor: pointer; font-size: 0.9em; background: var(--card); }
+        .quiz-q:hover { background: #faf8f5; }
+        .quiz-toggle { font-size: 1.1em; color: var(--majority); flex-shrink: 0; font-weight: 300; line-height: 1.4; }
+        .quiz-a { display: none; padding: 11px 14px; background: #eef3f7; font-size: 0.87em;
+                  line-height: 1.75; border-top: 1px solid var(--line); color: #33404f; }
+        .quiz-a.open { display: block; }
+
+        #noResults, #noStarred { display: none; text-align: center; color: var(--sub); padding: 40px 0; font-size: 0.9em; }
+        ::-webkit-scrollbar { display: none; }
+        ::selection { background: #d6e0ec; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>最高法院刑事大法庭<br>111年度台非大字第43號</h1>
+    <div class="header-controls">
+        <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="搜尋關鍵字、法條…" oninput="doSearch(this.value)" onkeydown="handleSearchKey(event)">
+            <span class="search-count" id="searchCount"></span>
+            <button class="search-nav" id="prevBtn" onclick="navMatch(-1)" disabled title="上一個">▲</button>
+            <button class="search-nav" id="nextBtn" onclick="navMatch(1)" disabled title="下一個">▼</button>
+        </div>
+        <button id="filterBtn" onclick="toggleFilter()">⭐ 收藏</button>
+    </div>
+    <div class="top-bar">
+        <button class="top-btn" onclick="highlightText()">🖊️</button>
+        <button class="top-btn" onclick="removeHighlight()">🧽</button>
+        <button class="top-btn" onclick="clearHighlights()">🗑️</button>
+        <button class="top-btn" onclick="openExport()">📤</button>
+        <button class="top-btn" id="nightBtn" onclick="toggleNight()">🌙</button>
+        <button class="top-btn done" id="doneBtn" onclick="toggleDone()">朕已閱</button>
+        <span class="done-date" id="doneDateLabel"></span>
+    </div>
+</header>
+
+<div class="container">
+
+<!-- ===== 主裁定卡片 ===== -->
+<div class="card" id="case1" data-kw="111台非大43 定應執行刑 數罪併罰 刑法第50條 易科罰金 易服社會勞動 選擇權 審判中 受刑人 非常上訴 檢察總長 適用法則不當 聽審權 資訊充分 立法者有意省略 法律漏洞 一部上訴 刑事訴訟法第348條 白偉廷 詐欺">
+    <button class="star-btn" onclick="toggleStar('case1',this)">⭐</button>
+    <h2 class="card-title">
+        數罪併罰有刑法§50Ⅰ但書情形——被告於「審判中」可否請求法院定應執行刑？
+    </h2>
+    <div class="meta-line">裁定日期：中華民國111年8月24日　｜　案號：111年度台非大字第43號　｜　提案庭：刑事第六庭　｜　不同意見：梁宏哲、吳冠霆法官</div>
+
+    <!-- 主文 -->
+    <div class="verdict">
+        <div class="verdict-label">大法庭主文</div>
+        <div class="verdict-main">數罪併罰之各罪，有刑法第50條第1項但書之情形者，被告於審判中<strong>不可</strong>請求法院定應執行刑。如法院於審判中合併定應執行刑者，判決確定後，檢察總長對之提起非常上訴，本院應將原判決<strong>關於定應執行刑部分撤銷</strong>。</div>
+        <div class="vote-row">
+            <span class="v-chip majority">多數意見 ✔</span>
+            <span class="v-chip dissent-c">部分不同意見 2人（梁宏哲、吳冠霆）</span>
+            <span class="v-chip">裁定日：111.8.24</span>
+            <span class="v-chip">法官共11人</span>
+        </div>
+    </div>
+
+    <!-- 概念前導 -->
+    <div class="section-heading">案件脈絡與核心概念</div>
+    <div class="flow-box">
+        <div class="flow-step"><div class="flow-num">①</div><div>被告犯數罪（詐欺共21罪），其中<strong>部分「得易服社會勞動」、部分「不得易科罰金及不得易服社會勞動」</strong>→ 落入刑法§50Ⅰ<strong>但書</strong>之情形</div></div>
+        <div class="flow-arrow">↓ §50Ⅰ但書情形，原則上「<strong>不</strong>併合處罰」</div>
+        <div class="flow-step"><div class="flow-num">②</div><div>§50Ⅱ：但書情形，<strong>受刑人請求</strong>檢察官聲請定應執行刑者，依§51定之 → 立法者賦予受刑人「<strong>選擇權</strong>」（選易刑處分 or 選合併定刑得刑期折扣）</div></div>
+        <div class="flow-arrow">↓ 爭點：此選擇權，被告在「審判中」能不能提前行使？</div>
+        <div class="flow-step"><div class="flow-num">③</div><div><strong>多數：不可。</strong>選擇權<strong>專屬受刑人於「執行時」</strong>始得行使；須待判決確定後，以受刑人身分請求檢察官聲請。法院若於審判中逕行合併定刑 → <strong>適用法則不當之違法</strong> → 非常上訴撤銷該部分</div></div>
+    </div>
+
+    <!-- 基礎事實 -->
+    <div class="section-heading">基礎事實</div>
+    <div class="fact-box">
+        <p>被告<strong>白偉廷</strong>明知其無遊戲主機等物品可供販賣，竟基於為自己不法所有之意圖，於網際網路登入網站詐騙他人既遂。</p>
+        <p>經臺灣新北地方法院判決，論處<strong>以網際網路對公眾散布而犯詐欺取財罪</strong>刑（<strong>共21罪</strong>），並定應執行有期徒刑<strong>1年8月</strong>確定（下稱「系爭判決」）。</p>
+        <p>檢察總長對系爭判決提起<strong>非常上訴</strong>，理由略以：系爭判決中<strong>有部分犯罪屬「不得易科罰金及不得易服社會勞動之罪」，部分犯罪則「得聲請易服社會勞動」</strong>。依刑法§50規定，<strong>非經被告請求，不得就上開各罪併合處罰</strong>；系爭判決未正確適用§50Ⅱ，逕予合併定應執行1年8月，自有判決<strong>不適用法則</strong>之違法，且不利於被告，爰提起非常上訴以資糾正救濟。</p>
+        <p><strong>爭點：</strong>案件尚在審判中，符合§50Ⅰ但書情形之數罪，被告可否請求法院定應執行刑？法院逕行合併定刑，判決確定後應如何救濟？</p>
+    </div>
+
+    <!-- 法律爭議 -->
+    <div class="section-heading">法律爭議</div>
+    <div class="issue-box">
+        <p><strong>法律爭議一：</strong>被告所犯數罪併罰之各罪，符合「<strong>得易服社會勞動之罪</strong>」與「<strong>不得易科罰金及不得易服社會勞動之罪</strong>」（即§50Ⅰ但書情形），於<strong>審判中</strong>得否請求法院定應執行刑？</p>
+        <p><strong>法律爭議二：</strong>就上開案件，審判中<strong>未經被告請求</strong>，法院即逕予合併定應執行刑；判決確定後檢察總長對之提起非常上訴，本院應如何判決？</p>
+        <p><strong>刑法§50核心規定：</strong>（第1項）裁判確定前犯數罪者，併合處罰之。<strong>但</strong>有下列情形之一者，不在此限：一、得易科罰金之罪與不得易科罰金之罪。二、得易科罰金之罪與不得易服社會勞動之罪。三、得易服社會勞動之罪與不得易科罰金之罪。四、得易服社會勞動之罪與不得易服社會勞動之罪。（第2項）前項但書情形，<strong>受刑人</strong>請求檢察官聲請定應執行刑者，依第51條規定定之。</p>
+    </div>
+
+    <!-- 多數理由 -->
+    <div class="section-heading">大法庭裁定理由（多數意見）</div>
+    <div class="opinions">
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈠</div>
+                <span class="op-label">§50之立法目的——避免罪責失衡，賦予受刑人選擇權</span>
+            </div>
+            <div class="op-body">
+                <p>§50主要立法目的，是為明確數罪併罰適用範圍，<strong>避免</strong>「不得易科罰金／不得易服社會勞動之罪」與「得易科罰金／得易服社會勞動之罪」合併，造成得易科罰金或得易服社會勞動之罪<strong>無法單獨易科罰金或易服社會勞動</strong>，<strong>罪責失衡</strong>，不利於受刑人。</p>
+                <p>從而，為使受刑人經深思熟慮後，選擇自認最適合的處遇，<strong>賦予其選擇權</strong>，以符合其實際受刑利益。</p>
+                <div class="op-result">
+                    <strong>結論：</strong>§50Ⅱ的核心是給受刑人一個「要不要合併定刑」的選擇權——選擇合併會喪失易刑處分利益，但可換取刑期折扣。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈡</div>
+                <span class="op-label">選擇權之行使影響人身自由甚鉅——須以「資訊充分」為前提</span>
+            </div>
+            <div class="op-body">
+                <p>受刑人如依§50Ⅱ行使選擇權而請求檢察官聲請定應執行刑時，<strong>將喪失原得易刑處分之利益</strong>，對其憲法上所保障之<strong>人身自由影響甚鉅</strong>。</p>
+                <p>從而，於刑事訴訟上，本於<strong>聽審權保障</strong>之要求，應確保受刑人能<strong>獲取相關資訊</strong>，並在資訊充分之情形下，依其<strong>自由意志</strong>決定是否行使該選擇權。</p>
+                <div class="op-result">
+                    <strong>關鍵：</strong>選擇權要有效行使，前提是「資訊充分」——被告必須先知道判決結果，才能做出理性選擇。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈢</div>
+                <span class="op-label">審判中被告無從獲取充分資訊——保障不足</span>
+            </div>
+            <div class="op-body">
+                <p>刑事審判過程中，法院依<strong>無罪推定原則</strong>不得預斷被告有罪，須本<strong>直接審理原則</strong>，透過證據調查、辯論等法定程序形成心證；就科刑事項，應依刑事訴訟法§289Ⅱ聽取告訴人等意見，並經檢察官、被告及辯護人辯論後方得決定。</p>
+                <p>因此在審理過程中，以下事項<strong>皆無從知悉</strong>：①被訴數罪是否<strong>全部成立</strong>、有無一部無罪？②如有罪，所主張<strong>減刑事由</strong>是否為法院採納？③法院審酌§57各量刑因子後，<strong>各罪之宣告刑</strong>如何？</p>
+                <div class="op-result">
+                    <strong>結論：</strong>被告既未能充分獲取前開各資訊，縱於審判中表示欲依§50Ⅱ請求法院定應執行刑，<strong>當認保障不足，有害其選擇權之行使</strong>。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈣</div>
+                <span class="op-label">一部上訴（刑訴§348Ⅲ）情形亦然——第二審仍難認資訊充分</span>
+            </div>
+            <div class="op-body">
+                <p>被告若於第一審有罪判決後，依刑事訴訟法§348Ⅲ<strong>明示僅就刑</strong>提起上訴。惟第二審<strong>尚未判斷上訴是否有理由</strong>，且就科刑所審酌之事項與第一審<strong>未必全然相同</strong>。</p>
+                <p>於此情形下，<strong>仍難認被告已獲取充分資訊</strong>，而得有效行使§50Ⅱ之選擇權，自屬當然。</p>
+                <div class="op-result">
+                    <strong>結論：</strong>即使是「僅就刑一部上訴」、審理範圍看似只剩定刑，多數意見仍認為資訊不足，被告不得於審判中行使選擇權。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈤</div>
+                <span class="op-label">法條僅規定「受刑人」——立法者有意省略，非法律漏洞</span>
+            </div>
+            <div class="op-body">
+                <p>案件尚在審理時，無從認被告已獲取充分資訊而得有效行使選擇權。從而，§50Ⅱ<strong>僅規定「受刑人」請求檢察官聲請定應執行刑，未規定「審判中之被告」得行使該選擇權</strong>。</p>
+                <p>此係<strong>立法者有意省略，並非法律漏洞</strong>；自不得以「填補法律漏洞」為由，<strong>擴張解釋</strong>使被告於審判中亦得依該規定請求法院定應執行刑。</p>
+                <div class="op-result">
+                    <strong>結論（法律爭議一）：</strong>審判中之被告，就§50Ⅰ但書情形之數罪，<strong>不得</strong>依§50Ⅱ請求法院定應執行刑。
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 法律爭議二 -->
+    <div class="section-heading">大法庭裁定理由（法律爭議二）</div>
+    <div class="opinions">
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈥</div>
+                <span class="op-label">選擇權專屬「執行時」之受刑人——法院審判中逕行合併定刑係違法</span>
+            </div>
+            <div class="op-body">
+                <p>承法律爭議一，審判中之被告尚未獲取關於判決結果之充分資訊，就§50Ⅰ但書情形之數罪，<strong>不得依§50Ⅱ請求法院定應執行刑</strong>，而<strong>須待判決確定後</strong>，方得以<strong>受刑人身分</strong>行使選擇權，請求檢察官向法院聲請。</p>
+                <p>前開選擇權既<strong>專屬受刑人於「執行時」始得行使</strong>，於審判中尚不得行使。則倘法院於審判中逕將§50Ⅰ但書各罪合併定應執行刑，<strong>自屬判決適用法則不當之違法</strong>。</p>
+                <div class="op-result">
+                    <strong>結論（法律爭議二）：</strong>法院於審判中合併定刑者，判決確定後檢察總長提起非常上訴，本院應將原判決<strong>關於定應執行刑部分撤銷</strong>。
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 法條依據 -->
+    <div class="law-ref">
+        <strong>📋 核心法條：</strong>刑法§50（數罪併罰與但書情形）、§51（定應執行刑方法）、§57（量刑因子）；刑事訴訟法§289Ⅱ（科刑辯論、聽取意見）、§348Ⅲ（僅就刑一部上訴）；刑事訴訟法非常上訴相關規定
+    </div>
+
+    <!-- 對照表 -->
+    <div class="section-heading">多數意見 vs. 部分不同意見（梁宏哲、吳冠霆法官）</div>
+    <table class="compare-table">
+        <thead>
+            <tr>
+                <th class="th-issue">爭點</th>
+                <th class="th-majority">多數意見</th>
+                <th class="th-dissent">部分不同意見（梁宏哲、吳冠霆）</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="td-issue">選擇權行使時點</td>
+                <td class="td-majority"><strong>專屬受刑人於「執行時」</strong>始得行使；審判中不得。須待判決確定後以受刑人身分請求檢察官聲請</td>
+                <td class="td-dissent">被告於<strong>審判中亦得</strong>行使定應執行刑選擇權。此係被告本於<strong>訴訟程序主體地位</strong>之處分權，應予尊重</td>
+            </tr>
+            <tr>
+                <td class="td-issue">§50Ⅱ立法目的</td>
+                <td class="td-majority">僅規定「受刑人」請求，<strong>未及審判中被告</strong>，係立法者<strong>有意省略</strong>，非法律漏洞，不得擴張解釋</td>
+                <td class="td-dissent">係配合<strong>控訴原則</strong>——確定判決主文若未定刑，須由受刑人請求檢察官聲請；<strong>本意並非排除</strong>審判中被告之程序選擇權</td>
+            </tr>
+            <tr>
+                <td class="td-issue">資訊是否充分</td>
+                <td class="td-majority">審判中被告<strong>無從獲取</strong>判決結果之充分資訊（有無無罪、減刑、各罪宣告刑），故保障不足</td>
+                <td class="td-dissent">在<strong>一部上訴、簡式審判、協商程序</strong>下，被告已認罪並經詳實攻防、陳述具體刑度，<strong>資訊已足</strong></td>
+            </tr>
+            <tr>
+                <td class="td-issue">起訴／控訴範圍</td>
+                <td class="td-majority">定應執行刑係執行階段事項，選擇權專屬執行時之受刑人</td>
+                <td class="td-dissent">法院就數罪併罰各罪定應執行刑，<strong>本在檢察官起訴效力所及之控訴範圍</strong>，不能以詞害意將其推遲至執行階段</td>
+            </tr>
+            <tr>
+                <td class="td-issue">妥速審判／訴訟經濟</td>
+                <td class="td-majority">（未特別著墨；以資訊保障為優先）</td>
+                <td class="td-dissent">若第二審審理範圍僅剩定刑仍不許被告行使，<strong>徒增勞費</strong>，損及被告<strong>受妥速審判</strong>之權利，不符修法本意</td>
+            </tr>
+            <tr>
+                <td class="td-issue">實務運作之利弊</td>
+                <td class="td-majority">確定後由受刑人請求，能確保其在資訊充分下自由決定</td>
+                <td class="td-dissent">確定後實務多採<strong>形式發文或切結書</strong>書面詢問，往往使被告立於<strong>更不利</strong>地位</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- 不同意見書 -->
+    <div class="section-heading">部分不同意見書重點</div>
+    <div class="dissent-judges">部分不同意見人：梁宏哲法官、吳冠霆法官（共同提出）——認被告於審判中「亦得」請求行使定應執行刑選擇權</div>
+    <div class="d-opinions">
+
+        <div class="d-op">
+            <div class="d-op-head">
+                <div class="d-op-num">壹</div>
+                <span class="d-op-label">§50已賦予被告是否請求定刑的選擇權——屬訴訟主體之處分權</span>
+            </div>
+            <div class="d-op-body">
+                <p>增列§50Ⅱ之立法目的，是要賦予被告選擇的權利：可選擇易科罰金、易服勞役之<strong>易刑處分</strong>，不與有期徒刑合併定刑；也可選擇<strong>合併定應執行有期徒刑</strong>，而獲得<strong>刑期折扣</strong>之利益。</p>
+                <p>此乃被告本於<strong>訴訟程序主體地位</strong>所享有之處分權，自應尊重被告受<strong>正當法律程序</strong>所保障、是否請求定應執行刑之選擇權。</p>
+                <div class="d-op-result">
+                    <strong>要旨：</strong>選擇權的主體是「被告」，源自其訴訟主體地位，不應被限縮為只有執行階段的受刑人才能行使。
+                </div>
+            </div>
+        </div>
+
+        <div class="d-op">
+            <div class="d-op-head">
+                <div class="d-op-num">貳</div>
+                <span class="d-op-label">「受刑人請求」係配合控訴原則——非在排除審判中被告之程序選擇權</span>
+            </div>
+            <div class="d-op-body">
+                <p>刑事執行原則上由檢察官指揮。判決確定後，執行機關即檢察官應以確定裁判為範圍；若<strong>確定判決主文沒有定應執行刑</strong>，當然要再由受刑人請求檢察官聲請法院定刑，以符<strong>控訴原則</strong>。此即§50Ⅱ「受刑人請求檢察官聲請」之<strong>立法本意</strong>。</p>
+                <p>如案件<strong>尚在審判中</strong>，法院就數罪併罰各罪定被告應執行刑，本在檢察官<strong>起訴效力所及之控訴範圍</strong>；自不能<strong>以詞害意</strong>，解為被告須待判決確定後之執行階段方得以受刑人身分請求，而<strong>剝奪</strong>被告於審判中亦可行使之程序選擇權。</p>
+                <div class="d-op-result">
+                    <strong>要旨：</strong>條文寫「受刑人」只是因為「確定後」的情境本來就沒有被告身分了，並非要禁止審判中的被告行使選擇權。
+                </div>
+            </div>
+        </div>
+
+        <div class="d-op">
+            <div class="d-op-head">
+                <div class="d-op-num">參</div>
+                <span class="d-op-label">審判中行使契合一部上訴、簡式審判、協商、緩刑之規範精神，並保障妥速審判</span>
+            </div>
+            <div class="d-op-body">
+                <p>110年修正之刑事訴訟法§348已容許<strong>僅針對刑</strong>提起一部上訴，立法理由並揭示數罪併罰案件得<strong>僅就所定應執行刑</strong>提起一部上訴，效力不及於已確定之各罪犯罪事實及宣告刑。若第二審審理範圍<strong>只剩定應執行刑</strong>，仍不許被告於審判中行使選擇權，必待確定後再請求檢察官聲請，<strong>徒增勞費</strong>，損及被告<strong>受妥速審判權利</strong>。</p>
+                <p>尤以被告於第一審即為<strong>有罪陳述</strong>，經曉諭並聽取意見後改行<strong>簡式審判程序</strong>，選擇請求法院定刑並陳述具體刑度（甚至希望合併定2年以下並宣告附條件緩刑），並依刑訴§289Ⅱ聽取告訴人、被害人意見、經詳實攻防——此類情形被告資訊已足。相較之下，留待確定後由檢察官以<strong>形式發文或切結書</strong>詢問，往往使被告立於<strong>更不利</strong>地位。</p>
+                <div class="d-op-result">
+                    <strong>要旨：</strong>應從被告「民本位」視角，尊重其於審判中之程序選擇權，踐行正當法律程序、保障妥速審判，故多數意見所謂「保障不足」之立論並不成立。
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 考試地雷 -->
+    <div class="trap-box">
+        <div class="trap-title">⚠️ 考試常見地雷</div>
+        <div class="trap-item">
+            <div class="trap-q">Q：§50Ⅰ但書的四種情形，效果是什麼？</div>
+            <div class="trap-a">A：落入四款情形（得易科／不得易科、得易服社勞／不得易服社勞交錯）者，「不在此限」＝原則上<strong>不併合處罰</strong>，除非依§50Ⅱ由受刑人請求，才依§51定應執行刑。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：本件多數意見的結論是？</div>
+            <div class="trap-a">A：符合§50Ⅰ但書情形之數罪，被告於「<strong>審判中不可</strong>」請求法院定應執行刑；須待<strong>判決確定後</strong>以受刑人身分請求檢察官聲請。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：多數意見為何說審判中不能行使選擇權？（關鍵論據）</div>
+            <div class="trap-a">A：核心是「<strong>資訊不充分</strong>」＋「<strong>立法者有意省略</strong>」。審判中無從得知是否有一部無罪、減刑事由是否採納、各罪宣告刑為何，故行使選擇權保障不足；且條文只寫「受刑人」，係有意省略而非漏洞，不得擴張解釋。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：法院於審判中逕行合併定刑，判決確定後如何救濟？</div>
+            <div class="trap-a">A：屬「<strong>判決適用法則不當之違法</strong>」。檢察總長提起<strong>非常上訴</strong>，最高法院應將原判決「<strong>關於定應執行刑部分</strong>」撤銷（僅撤該部分，非全部）。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：不同意見（梁宏哲、吳冠霆）與多數最大的分歧在哪？</div>
+            <div class="trap-a">A：①選擇權主體與時點——不同意見認為是被告「訴訟主體地位」之處分權，審判中即得行使；②「受刑人」用語之解讀——不同意見認為僅係配合控訴原則，非排除審判中被告；③並強調審判中行使契合一部上訴、簡式審判、協商程序並保障<strong>妥速審判</strong>。</div>
+        </div>
+    </div>
+
+    <!-- 引用法條 -->
+    <details>
+        <summary>📎 引用法條整理</summary>
+        <div style="padding: 10px 0 4px;">
+            <div class="ref-case">
+                <div class="ref-case-title">刑法第50條（數罪併罰與但書）</div>
+                <p style="margin:0;">（Ⅰ）裁判確定前犯數罪者，併合處罰之。但有下列情形之一者，不在此限：一、得易科罰金之罪與不得易科罰金之罪。二、得易科罰金之罪與不得易服社會勞動之罪。三、得易服社會勞動之罪與不得易科罰金之罪。四、得易服社會勞動之罪與不得易服社會勞動之罪。（Ⅱ）前項但書情形，受刑人請求檢察官聲請定應執行刑者，依第51條規定定之。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">刑法第51條（定應執行刑之方法）</div>
+                <p style="margin:0;">數罪併罰，分別宣告其罪之刑，依同條各款規定定其應執行者（如宣告多數有期徒刑者，於各刑中之最長期以上、各刑合併之刑期以下定之等）。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">刑法第57條（科刑審酌）</div>
+                <p style="margin:0;">科刑時應以行為人之責任為基礎，並審酌一切情狀，尤應注意各款事項（犯罪動機、目的、手段、所生危害、犯後態度等），為量刑輕重之標準。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">刑事訴訟法第289條第2項（科刑辯論、聽取意見）</div>
+                <p style="margin:0;">依規定調查證據、辯論後，應予當事人就科刑範圍表示意見之機會，並聽取告訴人、被害人或其家屬等表示意見，經檢察官、被告及辯護人辯論後，方得就科刑事項為決定。</p>
+            </div>
+            <div class="ref-case d">
+                <div class="ref-case-title">刑事訴訟法第348條第3項（僅就刑之一部上訴）</div>
+                <p style="margin:0;">上訴得對於判決之一部為之。對於判決之刑、沒收或保安處分一部提起上訴者，其效力不及於其他部分。（不同意見援引：數罪併罰案件得僅就所定應執行刑提起一部上訴。）</p>
+            </div>
+        </div>
+    </details>
+
+    <!-- 法官名單 -->
+    <div class="section-heading">大法庭組成（11人）</div>
+    <div class="judges-grid">
+        <span class="judge-chip chief">審判長 吳燦</span>
+        <span class="judge-chip">郭毓洲</span>
+        <span class="judge-chip">林立華</span>
+        <span class="judge-chip">徐昌錦</span>
+        <span class="judge-chip">段景榕</span>
+        <span class="judge-chip">李英勇</span>
+        <span class="judge-chip">李錦樑</span>
+        <span class="judge-chip">林勤純</span>
+        <span class="judge-chip dissenter">梁宏哲（部分不同意見）</span>
+        <span class="judge-chip">何信慶</span>
+        <span class="judge-chip dissenter">吳冠霆（部分不同意見）</span>
+    </div>
+    <p style="font-size:0.78em;color:var(--sub);margin:10px 0 0;">提案庭：最高法院刑事第六庭　｜　本案案號：111年度台非字第43號　｜　提案裁定案號：111年度台非大字第43號　｜　裁定日：中華民國111年8月24日</p>
+
+    <div class="note-toggle" onclick="toggleNote('n1')">✏️ 我的小結</div>
+    <div class="note-area" id="n1">
+        <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n1',this.value)"></textarea>
+        <div class="note-saved" id="n1-saved"></div>
+    </div>
+</div>
+
+<!-- ===== 快問快答卡片 ===== -->
+<div class="card" id="case2" data-kw="快問快答 定應執行刑 選擇權 審判中 受刑人 資訊充分 立法者有意省略 非常上訴 一部上訴 妥速審判 控訴原則">
+    <button class="star-btn" onclick="toggleStar('case2',this)">⭐</button>
+    <h2 class="card-title">快問快答——本件核心概念與答題要點</h2>
+    <div class="meta-line">建議先蓋住答案，自己回答後再確認</div>
+
+    <div class="quiz-list">
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>什麼情形會落入刑法§50Ⅰ但書？效果為何？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">當數罪中出現「得易科罰金／不得易科罰金」或「得易服社會勞動／不得易服社會勞動」交錯之四種組合時，落入§50Ⅰ但書，「不在此限」＝原則上不併合處罰。目的在避免可易刑之罪因合併而喪失單獨易科罰金／易服社會勞動之機會，導致罪責失衡、不利受刑人。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>§50Ⅱ賦予受刑人什麼權利？行使的代價與利益各是什麼？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">賦予「是否請求合併定應執行刑」的選擇權。若請求合併定刑：代價是「喪失原得易刑處分（易科罰金／易服社會勞動）之利益」，利益是「可能獲得刑期折扣」。因影響人身自由甚鉅，須在資訊充分下依自由意志決定。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>【核心】多數意見對「審判中被告可否請求定應執行刑」的結論與理由？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">結論：不可。理由：①資訊不充分——審判中無從知悉是否一部無罪、減刑事由是否採納、各罪宣告刑為何，行使選擇權保障不足；②立法者有意省略——§50Ⅱ僅規定「受刑人」而未及審判中被告，非法律漏洞，不得擴張解釋；③選擇權專屬受刑人於「執行時」始得行使。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>被告依刑訴§348Ⅲ「僅就刑」一部上訴，第二審審理範圍看似只剩定刑，多數意見認為能否行使選擇權？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">仍不可。因第二審尚未判斷上訴有無理由，且科刑審酌事項與第一審未必全然相同，故仍難認被告已獲取充分資訊，不得有效行使§50Ⅱ選擇權。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>【法律爭議二】法院於審判中逕行合併定刑，判決確定後如何處理？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">選擇權專屬受刑人於執行時行使，審判中尚不得行使；法院於審判中逕將§50Ⅰ但書各罪合併定刑，屬「判決適用法則不當之違法」。檢察總長提起非常上訴，最高法院應將原判決「關於定應執行刑部分」撤銷（僅撤該部分）。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>不同意見如何反駁「§50Ⅱ只寫受刑人」的文義解釋？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">認為「受刑人請求」係配合控訴原則——確定判決主文若未定刑，才須由受刑人請求檢察官聲請；此為立法本意，並非要排除審判中被告。案件尚在審判中時，定應執行刑本在檢察官起訴效力所及之控訴範圍，不能以詞害意將其推遲至執行階段。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>不同意見援引哪些制度，主張審判中行使選擇權更合理？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">援引①一部上訴（刑訴§348，數罪併罰得僅就所定應執行刑上訴）；②簡式審判程序；③協商程序；④緩刑制度。認為在被告已認罪、經詳實攻防、陳述具體刑度之情形下資訊已足，若仍不許審判中行使、須待確定後再聲請，將徒增勞費、損及被告受妥速審判之權利。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>一句話抓住多數 vs. 不同意見的根本分歧？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">分歧在「選擇權何時、由誰行使」：多數認為它是專屬「執行階段受刑人」在資訊充分下才能行使的權利（保障優先）；不同意見認為它是「被告訴訟主體地位」之處分權，審判中即得行使，且更能保障妥速審判與被告利益。</div>
+        </div>
+    </div>
+
+    <div class="note-toggle" onclick="toggleNote('n2')">✏️ 我的小結</div>
+    <div class="note-area" id="n2">
+        <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n2',this.value)"></textarea>
+        <div class="note-saved" id="n2-saved"></div>
+    </div>
+</div>
+
+<div id="noResults">查無符合的內容，請試試其他關鍵字。</div>
+<div id="noStarred">還沒有收藏的項目，點卡片右上角的 ⭐ 加入收藏。</div>
+</div>
+
+<script>
+const NIGHT_KEY='night_mode_pref';
+function toggleNight(){const on=document.body.classList.toggle('night-mode');localStorage.setItem(NIGHT_KEY,on?'1':'0');document.getElementById('nightBtn').textContent=on?'☀️':'🌙';}
+(function(){if(localStorage.getItem(NIGHT_KEY)==='1'){document.body.classList.add('night-mode');const b=document.getElementById('nightBtn');if(b)b.textContent='☀️';}})();
+const STORE_KEY='111_43_grand_notes',STAR_KEY='111_43_grand_stars';
+function loadNotes(){try{return JSON.parse(localStorage.getItem(STORE_KEY))||{};}catch{return{};}}
+function loadStars(){try{return JSON.parse(localStorage.getItem(STAR_KEY))||{};}catch{return{};}}
+function saveAllNotes(d){localStorage.setItem(STORE_KEY,JSON.stringify(d));}
+function saveAllStars(d){localStorage.setItem(STAR_KEY,JSON.stringify(d));}
+(function(){const n=loadNotes(),s=loadStars();
+  Object.entries(n).forEach(([id,v])=>{const a=document.getElementById(id);if(!a)return;const t=a.querySelector('textarea');if(t)t.value=v;if(v)a.classList.add('open');});
+  Object.entries(s).forEach(([id,v])=>{if(!v)return;const b=document.querySelector(`#${id} .star-btn`);if(b)b.classList.add('starred');});
+})();
+function toggleStar(id,btn){const s=loadStars();const now=!btn.classList.contains('starred');btn.classList.toggle('starred',now);s[id]=now;saveAllStars(s);if(filterActive)applyFilter();}
+let filterActive=false;
+function toggleFilter(){filterActive=!filterActive;document.getElementById('filterBtn').classList.toggle('active',filterActive);document.getElementById('searchInput').value='';clearSearchHighlights();updateSearchUI([],0);applyFilter();}
+function applyFilter(){const s=loadStars();const q=document.getElementById('searchInput').value.trim().toLowerCase();let any=false;
+  document.querySelectorAll('.card').forEach(c=>{const kw=(c.dataset.kw||'').toLowerCase();const txt=c.textContent.toLowerCase();
+  const ms=!q||kw.includes(q)||txt.includes(q);const mf=!filterActive||!!s[c.id];const show=ms&&mf;
+  c.classList.toggle('hidden',!show);if(show)any=true;});
+  document.getElementById('noResults').style.display=(!any&&!filterActive)?'block':'none';
+  document.getElementById('noStarred').style.display=(!any&&filterActive)?'block':'none';}
+let _matches=[],_cur=-1;
+function clearSearchHighlights(){document.querySelectorAll('mark.search-hl').forEach(m=>{const p=m.parentNode;p.replaceChild(document.createTextNode(m.textContent),m);p.normalize();});}
+function highlightInNode(node,re){if(node.nodeType===3){const text=node.nodeValue;const frag=document.createDocumentFragment();let last=0,m;re.lastIndex=0;while((m=re.exec(text))!==null){if(m.index>last)frag.appendChild(document.createTextNode(text.slice(last,m.index)));const mk=document.createElement('mark');mk.className='search-hl';mk.textContent=m[0];frag.appendChild(mk);last=re.lastIndex;}if(last===0)return;frag.appendChild(document.createTextNode(text.slice(last)));node.parentNode.replaceChild(frag,node);return;}if(node.nodeType===1){const tag=node.tagName;if(tag==='SCRIPT'||tag==='STYLE'||tag==='TEXTAREA'||tag==='INPUT')return;if(node.classList&&node.classList.contains('search-hl'))return;[...node.childNodes].forEach(c=>highlightInNode(c,re));}}
+function doSearch(q){clearSearchHighlights();_matches=[];_cur=-1;const qt=(q||'').trim();if(!qt){updateSearchUI([],0);applyFilter();return;}applyFilter();const esc=qt.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');const re=new RegExp(esc,'gi');document.querySelectorAll('.container .card:not(.hidden)').forEach(card=>{highlightInNode(card,re);});_matches=[...document.querySelectorAll('mark.search-hl')];if(_matches.length){_cur=0;setCurrent(0);}updateSearchUI(_matches,_cur);}
+function setCurrent(idx){_matches.forEach((m,i)=>m.classList.toggle('current',i===idx));if(_matches[idx])_matches[idx].scrollIntoView({behavior:'smooth',block:'center'});}
+function navMatch(dir){if(!_matches.length)return;_cur=(_cur+dir+_matches.length)%_matches.length;setCurrent(_cur);updateSearchUI(_matches,_cur);}
+function updateSearchUI(matches,cur){const cnt=document.getElementById('searchCount');const prev=document.getElementById('prevBtn');const next=document.getElementById('nextBtn');if(!matches.length){cnt.textContent='';prev.disabled=true;next.disabled=true;return;}cnt.textContent=(cur+1)+'/'+matches.length;prev.disabled=false;next.disabled=false;}
+function handleSearchKey(e){if(e.key==='Enter'){e.shiftKey?navMatch(-1):navMatch(1);}if(e.key==='Escape'){document.getElementById('searchInput').value='';doSearch('');}}
+function toggleNote(id){document.getElementById(id).classList.toggle('open');}
+const timers={};
+function saveNote(id,v){clearTimeout(timers[id]);timers[id]=setTimeout(()=>{const n=loadNotes();n[id]=v;saveAllNotes(n);const el=document.getElementById(id+'-saved');if(el){el.textContent='已儲存';setTimeout(()=>el.textContent='',1500);}},500);}
+let savedRange=null;
+document.addEventListener('selectionchange',()=>{const s=window.getSelection();if(s&&!s.isCollapsed&&s.rangeCount)savedRange=s.getRangeAt(0).cloneRange();});
+function highlightText(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;
+  if(!r||r.collapsed){alert('💡 請先反白想要標記的文字');return;}
+  const sp=document.createElement('span');sp.className='hl';sp.style.cssText='background:#f0d98a;border-radius:2px;';
+  try{r.surroundContents(sp);savedRange=null;}catch{alert('💡 請選取同一段落內的文字');}s&&s.removeAllRanges();}
+function removeHighlight(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;
+  if(!r||r.collapsed){alert('💡 請先反白想擦除標記的文字');return;}
+  const anc=r.commonAncestorContainer.nodeType===1?r.commonAncestorContainer:r.commonAncestorContainer.parentElement;
+  anc.querySelectorAll('span.hl').forEach(sp=>{if(r.intersectsNode(sp)){const p=sp.parentNode;while(sp.firstChild)p.insertBefore(sp.firstChild,sp);p.removeChild(sp);}});
+  savedRange=null;s&&s.removeAllRanges();}
+function clearHighlights(){const sp=document.querySelectorAll('span.hl');if(!sp.length)return;
+  if(confirm('確定要清除所有重點標記嗎？')){sp.forEach(s=>{const p=s.parentNode;while(s.firstChild)p.insertBefore(s.firstChild,s);p.removeChild(s);});}}
+function openExport(){
+  let out='最高法院刑事大法庭 111年度台非大字第43號\n'+'═'.repeat(44)+'\n\n';
+  out+='【主文】\n數罪併罰之各罪，有刑法第50條第1項但書之情形者，被告於審判中不可請求法院定應執行刑。如法院於審判中合併定應執行刑者，判決確定後，檢察總長對之提起非常上訴，本院應將原判決關於定應執行刑部分撤銷。\n\n';
+  document.querySelectorAll('.op,.d-op').forEach(op=>{
+    const head=op.querySelector('.op-label,.d-op-label')?.textContent.trim()||'';
+    out+=`▌${head}\n`;
+    op.querySelectorAll('.op-body p,.op-body li,.op-result,.d-op-body p,.d-op-body li,.d-op-result').forEach(el=>{
+      const t=el.textContent.trim();if(t)out+=(el.tagName==='LI'?'  • ':'')+t+'\n';});
+    out+='\n';});
+  const tas=document.querySelectorAll('.note-textarea');tas.forEach((ta,i)=>{if(ta&&ta.value.trim())out+=`✏️ 小結${i+1}：\n`+ta.value.trim()+'\n\n';});
+  out+='═'.repeat(44)+'\n';
+  const b=new Blob([out.trim()],{type:'text/plain;charset=utf-8'});
+  const u=URL.createObjectURL(b);const a=document.createElement('a');
+  a.href=u;a.download='111台非大字第43號_定應執行刑選擇權.txt';a.click();URL.revokeObjectURL(u);}
+function toggleQuiz(el){const ans=el.nextElementSibling;const tog=el.querySelector('.quiz-toggle');if(ans.classList.contains('open')){ans.classList.remove('open');tog.textContent='＋';}else{ans.classList.add('open');tog.textContent='－';}}
+const REG_KEY='exam_completion_registry';
+function _loadReg(){try{return JSON.parse(localStorage.getItem(REG_KEY))||{};}catch{return{};}}
+function _saveReg(r){try{localStorage.setItem(REG_KEY,JSON.stringify(r));}catch{}}
+function _file(){const p=location.pathname.split('/');return decodeURIComponent(p[p.length-1]||'');}
+function _fmt(ts){const d=new Date(ts);const date=(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();const time=d.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false});return date+' '+time;}
+function _updateDate(){const r=_loadReg();const k=_file()||'case_criminal_grand_111_43.html';const l=document.getElementById('doneDateLabel');if(!l)return;l.textContent=(r[k]&&r[k].done&&r[k].ts)?_fmt(r[k].ts):'';}
+function toggleDone(){const btn=document.getElementById('doneBtn');const r=_loadReg();const k=_file()||'case_criminal_grand_111_43.html';const done=r[k]&&r[k].done;
+  if(done){delete r[k];_saveReg(r);btn.classList.remove('active');}
+  else{const now=new Date();r[k]={done:true,ts:now.getTime()};_saveReg(r);btn.classList.add('active');}
+  _updateDate();}
+(function(){const r=_loadReg();const k=_file()||'case_criminal_grand_111_43.html';if(r[k]&&r[k].done){const b=document.getElementById('doneBtn');if(b)b.classList.add('active');}_updateDate();})();
+</script>
+</body>
+</html>
