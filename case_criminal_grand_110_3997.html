@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>110年度台上大字第3997號 刑事大法庭裁定</title>
+    <style>
+        :root {
+            --bg:       #eef0f3;
+            --card:     #ffffff;
+            --text:     #1a1a1a;
+            --sub:      #8a9ab0;
+            --line:     #e4e7ec;
+            --majority: #1a365d;
+            --law:      #1a365d;
+            --dissent:  #a67c2e;
+            --trap:     #f9f7f0;
+            --header-bg:#1a365d;
+        }
+        body.night-mode {
+            --bg:       #13151a;
+            --card:     #1c1f27;
+            --text:     #d4d8e0;
+            --sub:      #5a6880;
+            --line:     #2a2e3a;
+            --majority: #7ea8d8;
+            --law:      #7ea8d8;
+            --dissent:  #c4935a;
+            --trap:     #1e1c14;
+            --header-bg:#0d1117;
+        }
+        body.night-mode header { box-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        body.night-mode .top-bar { background: #1c1f27; }
+        body.night-mode .top-btn { background: #2e3340; color: #b0b8c8; }
+        body.night-mode .top-btn.done { background: #2a2e3a; color: #7a8898; }
+        body.night-mode .fact-box { background: #1e1c14; border-left-color: #8a6820; }
+        body.night-mode .issue-box, body.night-mode .flow-box { background: #20232d; }
+        body.night-mode .op-head { background: #20232d; }
+        body.night-mode .op-body { background: var(--card); }
+        body.night-mode .op-result { background: #161a24; border-left-color: #3a5a8a; }
+        body.night-mode .d-op-head { background: #261f14; }
+        body.night-mode .d-op-body { background: #201c14; }
+        body.night-mode .d-op-result { background: #261f14; }
+        body.night-mode .dissent-judges { background: #261f14; }
+        body.night-mode .compare-table th.th-issue { background: #262a31; }
+        body.night-mode .compare-table td.td-issue { background: #262a31; }
+        body.night-mode .compare-table td.td-majority { background: #161c24; }
+        body.night-mode .compare-table td.td-dissent { background: #1e1814; }
+        @media (max-width: 640px) {
+            body.night-mode .compare-table td.td-issue { background: #262a31; }
+            body.night-mode .compare-table td.td-majority { background: #161c24; }
+            body.night-mode .compare-table td.td-dissent { background: #1e1814; }
+        }
+        body.night-mode .ref-case { background: #20232d; border-left-color: #3a5a8a; }
+        body.night-mode .law-ref { background: #1c1f27; border-left-color: #3a5a8a; }
+        body.night-mode .note-textarea { background: #161a24; color: var(--text); border-color: var(--line); }
+        body.night-mode .judge-chip { background: #20232d; border-color: #2e3340; }
+        body.night-mode .judge-chip.chief { background: #0d1a2e; color: #9abcd8; border-color: #1a3a60; }
+        body.night-mode mark.search-hl { background: #7a5a00; color: #ffe090; }
+        body.night-mode mark.search-hl.current { background: #c07800; color: #fff; }
+        body.night-mode .verdict { background: #0d1a2e; }
+        body.night-mode .trap-box { border-color: #5a5020; }
+        body.night-mode .trap-title { color: #c8a840; }
+        body.night-mode .trap-item { border-left-color: #7a6830; }
+        body.night-mode #nightBtn { background: #3a4250; color: #cfe0f4; font-weight: 700; }
+        body.night-mode .quiz-q { background: var(--card); }
+        body.night-mode .quiz-q:hover { background: #20232d; }
+        body.night-mode .quiz-a { background: #161a24; color: #9abcd8; }
+        body.night-mode .flow-arrow { color: #a8b6c8; }
+        body.night-mode .compare-table td.td-issue, body.night-mode .compare-table th.th-issue { color: #9fb3d0; }
+        body { transition: background 0.3s, color 0.3s; }
+        .card { transition: background 0.3s, border-color 0.3s; }
+
+        * { box-sizing: border-box; }
+        body { font-family: "Helvetica Neue", Helvetica, "PingFang TC", "LiHei Pro", "Microsoft JhengHei", sans-serif;
+               background: var(--bg); color: var(--text); line-height: 1.85; font-size: 16px; margin: 0; padding: 0 0 60px; }
+
+        header { background: var(--header-bg); color: #ffffff; padding: 16px 16px 8px; text-align: center;
+                 position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+        header h1 { margin: 0 0 10px; font-size: 1.05em; line-height: 1.5; font-weight: 600; letter-spacing: 0.02em; color: #ffffff; }
+        .header-controls { display: flex; gap: 8px; align-items: center; }
+        .search-wrap { position: relative; flex: 1; display: flex; align-items: center; gap: 4px; }
+        #searchInput { flex: 1; padding: 8px 14px 8px 32px; border: none; border-radius: 6px;
+                       font-size: 14px; background: rgba(255,255,255,0.13); color: #ffffff; outline: none; }
+        #searchInput::placeholder { color: rgba(255,255,255,0.5); }
+        #searchInput:focus { background: rgba(255,255,255,0.22); }
+        .search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 13px; opacity: 0.55; pointer-events: none; }
+        .search-count { font-size: 12px; color: rgba(255,255,255,0.65); white-space: nowrap; min-width: 44px; text-align: center; }
+        .search-nav { background: rgba(255,255,255,0.15); border: none; border-radius: 6px; color: white; font-size: 13px; padding: 6px 8px; cursor: pointer; line-height: 1; }
+        .search-nav:hover { background: rgba(255,255,255,0.28); }
+        .search-nav:disabled { opacity: 0.3; cursor: default; }
+        mark.search-hl { background: #ffe066; color: #1a1a1a; border-radius: 2px; padding: 0 1px; }
+        mark.search-hl.current { background: #ff9500; color: #fff; border-radius: 3px; outline: 2px solid #ff9500; }
+        #filterBtn { background: rgba(255,255,255,0.13); border: none; border-radius: 6px;
+                     color: #ffffff; font-size: 13px; padding: 8px 12px; cursor: pointer; white-space: nowrap; }
+        #filterBtn.active { background: #c9a84c; color: #1a365d; font-weight: bold; }
+        .top-bar { background: #dde0e5; padding: 5px 14px; display: flex; gap: 6px; justify-content: flex-end; flex-wrap: nowrap; }
+        .top-btn { background: #5a6375; color: #fff; border: none; padding: 4px 10px; border-radius: 20px;
+                   font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap; transition: opacity 0.15s; }
+        .top-btn:hover { opacity: 0.85; }
+        .top-btn.done { background: #a0a8b4; color: #1a2a3a; }
+        .top-btn.done.active { background: linear-gradient(135deg, #7a5c00, #a07820); color: #fff3c4; font-weight: 700; box-shadow: 0 0 8px rgba(160,120,32,0.5); }
+        .done-date { font-size: 11px; color: #8a9ab0; white-space: nowrap; align-self: center; font-weight: 500; }
+
+        .container { padding: 18px 16px; max-width: 640px; margin: 0 auto; }
+        @media (min-width: 768px) { .container { max-width: 880px; padding: 24px 20px; } body { font-size: 17px; } header h1 { font-size: 1.15em; } }
+        .card { background: var(--card); border-radius: 14px; padding: 24px 22px; margin-bottom: 24px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.06); position: relative; border: 1px solid var(--line); }
+        .card.hidden { display: none; }
+        .star-btn { position: absolute; top: 18px; right: 18px; background: none; border: none; font-size: 20px;
+                    cursor: pointer; opacity: 0.18; transition: opacity 0.15s; padding: 0; }
+        .star-btn.starred { opacity: 1; }
+        .card-title { color: var(--majority); font-size: 1.15em; font-weight: 700; margin: 0 0 4px; padding-right: 30px; line-height: 1.6; }
+        .meta-line { font-size: 0.75em; color: var(--sub); margin-bottom: 20px; letter-spacing: 0.04em; }
+
+        .verdict { background: #1a365d; color: #ffffff; border-radius: 10px; padding: 16px 18px; margin-bottom: 22px; }
+        .verdict-label { font-size: 0.66em; letter-spacing: 0.14em; opacity: 0.55; margin-bottom: 6px; }
+        .verdict-main { font-size: 1.05em; font-weight: 700; line-height: 1.6; margin-bottom: 10px; color: #ffffff; }
+        .verdict-sub { font-size: 0.88em; opacity: 0.8; line-height: 1.65; margin-bottom: 10px; }
+        .vote-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 12px; padding-top: 10px;
+                    border-top: 1px solid rgba(255,255,255,0.15); }
+        .v-chip { font-size: 0.72em; background: rgba(255,255,255,0.12); border-radius: 20px;
+                  padding: 3px 10px; white-space: nowrap; color: rgba(255,255,255,0.8); }
+        .v-chip.majority { background: rgba(255,255,255,0.28); color: #fff; font-weight: 700; }
+        .v-chip.dissent-c { background: rgba(201,168,76,0.5); color: #fff; }
+
+        .section-heading { font-size: 0.85em; font-weight: 700; letter-spacing: 0.08em;
+                           color: var(--sub); margin: 22px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--line); }
+
+        .fact-box { background: #f9f7f0; border-left: 4px solid #c9a84c; border-radius: 0 8px 8px 0;
+                    padding: 14px 16px; margin-bottom: 16px; font-size: 0.9em; }
+        .fact-box p { margin: 0 0 8px; }
+        .fact-box p:last-child { margin: 0; }
+
+        .issue-box { background: #f5f6f8; border-radius: 8px; padding: 14px 16px; margin-bottom: 16px;
+                     font-size: 0.9em; border: 1px solid var(--line); }
+        .issue-box p { margin: 0 0 8px; }
+        .issue-box p:last-child { margin: 0; }
+
+        /* 概念流程圖 */
+        .flow-box { background: #f5f6f8; border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; margin-bottom: 18px; font-size: 0.87em; }
+        .flow-step { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; }
+        .flow-num { width: 22px; height: 22px; border-radius: 50%; background: var(--majority); color: #fff; font-size: 0.72em; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+        .flow-arrow { text-align: center; color: #4a5568; font-size: 1.1em; font-weight: 600; margin-bottom: 4px; }
+
+        .opinions { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+        .op { border-radius: 8px; overflow: hidden; border: 1px solid var(--line); }
+        .op-head { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #f5f6f8; }
+        .op-num { width: 26px; height: 26px; border-radius: 50%; background: var(--majority); color: white;
+                  font-size: 0.75em; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .op-label { font-weight: 700; font-size: 0.92em; color: var(--majority); flex: 1; }
+        .op-body { padding: 13px 15px; font-size: 0.9em; background: var(--card); }
+        .op-body p { margin: 0 0 9px; }
+        .op-body p:last-child { margin: 0; }
+        .op-body ul { margin: 5px 0 8px; padding-left: 18px; }
+        .op-body li { margin-bottom: 5px; }
+        .op-result { background: #f0f3f8; border-radius: 6px; padding: 10px 13px; margin-top: 10px;
+                     font-size: 0.9em; border-left: 3px solid var(--majority); }
+
+        .d-opinions { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+        .d-op { border-radius: 8px; overflow: hidden; border: 1px solid #e6d8bc; }
+        .d-op-head { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #fdf7ec; }
+        .d-op-num { width: 26px; height: 26px; border-radius: 50%; background: var(--dissent); color: white;
+                    font-size: 0.75em; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .d-op-label { font-weight: 700; font-size: 0.92em; color: var(--dissent); flex: 1; }
+        .d-op-body { padding: 13px 15px; font-size: 0.9em; background: #fffdf8; }
+        .d-op-body p { margin: 0 0 9px; }
+        .d-op-body p:last-child { margin: 0; }
+        .d-op-body ul { margin: 5px 0 8px; padding-left: 18px; }
+        .d-op-body li { margin-bottom: 5px; }
+        .d-op-result { background: #fdf7ec; border-radius: 6px; padding: 10px 13px; margin-top: 10px;
+                       font-size: 0.9em; border-left: 3px solid var(--dissent); }
+        .dissent-judges { font-size: 0.82em; color: var(--dissent); margin-bottom: 12px;
+                          padding: 8px 12px; background: #fdf7ec; border-radius: 6px; border-left: 3px solid var(--dissent); }
+
+        .compare-table { width: 100%; border-collapse: collapse; margin-bottom: 18px; font-size: 0.88em; }
+        .compare-table th { padding: 10px 13px; font-weight: 700; font-size: 0.85em; letter-spacing: 0.05em; }
+        .compare-table th.th-issue { background: #dde0e5; color: #3d4d68; width: 22%; border-radius: 6px 0 0 0; }
+        .compare-table th.th-majority { background: var(--majority); color: #fff; width: 39%; }
+        .compare-table th.th-dissent { background: var(--dissent); color: #fff; width: 39%; border-radius: 0 6px 0 0; }
+        .compare-table td { padding: 11px 13px; vertical-align: top; border-bottom: 1px solid var(--line); line-height: 1.65; }
+        .compare-table td.td-issue { background: #eef1f6; font-weight: 700; font-size: 0.87em; color: #3d4d68; }
+        .compare-table td.td-majority { background: #f4f7fb; border-left: 2px solid var(--majority); }
+        .compare-table td.td-dissent { background: #fdf8f4; border-left: 2px solid var(--dissent); }
+        .compare-table tr:last-child td { border-bottom: none; }
+        .compare-table tr:last-child td.td-issue { border-radius: 0 0 0 6px; }
+        .compare-table tr:last-child td.td-dissent { border-radius: 0 0 6px 0; }
+        @media (max-width: 640px) {
+            .compare-table thead { display: none; }
+            .compare-table, .compare-table tbody { display: block; }
+            .compare-table tr { display: block; margin-bottom: 14px; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+            .compare-table td.td-issue { display: block; width: 100%; background: #dde0e5; padding: 8px 14px; font-size: 0.85em; font-weight: 700; color: #3d4d68; border-bottom: none; border-left: none !important; }
+            .compare-table td.td-majority, .compare-table td.td-dissent { display: inline-block; width: 50%; vertical-align: top; box-sizing: border-box; padding: 10px 11px; border-bottom: none; font-size: 0.83em; line-height: 1.6; border-left: none !important; border-top: none; }
+            .compare-table td.td-majority { border-right: 1px solid var(--line); border-top: 3px solid var(--majority); }
+            .compare-table td.td-dissent { border-top: 3px solid var(--dissent); }
+            .compare-table td.td-majority::before { content: "多數"; display: block; margin-bottom: 5px; font-size: 0.78em; font-weight: 700; color: var(--majority); letter-spacing: 0.05em; }
+            .compare-table td.td-dissent::before { content: "不同"; display: block; margin-bottom: 5px; font-size: 0.78em; font-weight: 700; color: var(--dissent); letter-spacing: 0.05em; }
+        }
+
+        .trap-box { background: var(--trap); border-radius: 8px; padding: 14px 16px; margin-bottom: 16px;
+                    border: 1px solid #e0d8b0; font-size: 0.9em; }
+        .trap-title { font-weight: 700; color: #7a6820; margin-bottom: 10px; font-size: 0.92em; display: flex; align-items: center; gap: 6px; }
+        .trap-item { margin-bottom: 10px; padding-left: 14px; border-left: 2px solid #c8b860; }
+        .trap-item:last-child { margin-bottom: 0; }
+        .trap-q { font-weight: 700; color: var(--text); margin-bottom: 3px; }
+        .trap-a { color: var(--text); opacity: 0.85; }
+
+        .law-ref { background: #f0f2f5; border-radius: 8px; padding: 10px 14px; font-size: 0.84em;
+                   color: #4a5568; margin-top: 14px; border-left: 3px solid var(--law); }
+
+        details { margin-top: 16px; }
+        details summary { cursor: pointer; color: var(--sub); font-size: 0.84em; font-weight: 600;
+                          padding: 5px 0; user-select: none; list-style: none; display: flex; align-items: center; gap: 6px; }
+        details summary::before { content: '▶'; font-size: 0.62em; transition: transform 0.2s; color: var(--sub); }
+        details[open] summary::before { transform: rotate(90deg); }
+        .ref-case { background: #f5f6f8; border-radius: 7px; padding: 10px 13px; margin-bottom: 8px;
+                    font-size: 0.84em; border-left: 3px solid var(--majority); }
+        .ref-case.d { border-left-color: var(--dissent); }
+        .ref-case-title { font-weight: 700; color: var(--majority); margin-bottom: 3px; font-size: 0.9em; }
+        .ref-case.d .ref-case-title { color: var(--dissent); }
+
+        .note-toggle { display: inline-block; margin-top: 14px; font-size: 0.8em; color: #b0b8c4; cursor: pointer; user-select: none; }
+        .note-toggle:hover { color: var(--majority); }
+        .note-area { display: none; margin-top: 8px; }
+        .note-area.open { display: block; }
+        .note-textarea { width: 100%; min-height: 68px; border: 1px solid var(--line); border-radius: 7px;
+                         padding: 10px 12px; font-size: 0.87em; font-family: inherit; color: var(--text);
+                         background: #fafbfc; resize: vertical; outline: none; line-height: 1.75; }
+        .note-textarea:focus { border-color: var(--majority); }
+        .note-textarea::placeholder { color: #ccc; }
+        .note-saved { font-size: 0.72em; color: #68a06a; text-align: right; height: 14px; margin-top: 2px; }
+
+        .judges-grid { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+        .judge-chip { font-size: 0.77em; background: #eef1f6; border-radius: 20px; padding: 3px 11px;
+                      color: #3a4a6a; border: 1px solid #d8dde8; }
+        .judge-chip.chief { background: var(--majority); color: #fff; font-weight: 700; border-color: var(--majority); }
+        .judge-chip.dissenter { background: var(--dissent); color: #fff; font-weight: 600; border-color: var(--dissent); }
+
+        .quiz-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 0; }
+        .quiz-item { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+        .quiz-q { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;
+                  padding: 11px 14px; cursor: pointer; font-size: 0.9em; background: var(--card); }
+        .quiz-q:hover { background: #f5f6f8; }
+        .quiz-toggle { font-size: 1.1em; color: var(--majority); flex-shrink: 0; font-weight: 300; line-height: 1.4; }
+        .quiz-a { display: none; padding: 11px 14px; background: #f0f3f8; font-size: 0.87em;
+                  line-height: 1.75; border-top: 1px solid var(--line); color: #1a365d; }
+        .quiz-a.open { display: block; }
+
+        #noResults, #noStarred { display: none; text-align: center; color: var(--sub); padding: 40px 0; font-size: 0.9em; }
+        ::-webkit-scrollbar { display: none; }
+        ::selection { background: #c8d8ef; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>最高法院刑事大法庭<br>110年度台上大字第3997號</h1>
+    <div class="header-controls">
+        <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="搜尋關鍵字、法條…" oninput="doSearch(this.value)" onkeydown="handleSearchKey(event)">
+            <span class="search-count" id="searchCount"></span>
+            <button class="search-nav" id="prevBtn" onclick="navMatch(-1)" disabled title="上一個">▲</button>
+            <button class="search-nav" id="nextBtn" onclick="navMatch(1)" disabled title="下一個">▼</button>
+        </div>
+        <button id="filterBtn" onclick="toggleFilter()">⭐ 收藏</button>
+    </div>
+    <div class="top-bar">
+        <button class="top-btn" onclick="highlightText()">🖊️</button>
+        <button class="top-btn" onclick="removeHighlight()">🧽</button>
+        <button class="top-btn" onclick="clearHighlights()">🗑️</button>
+        <button class="top-btn" onclick="openExport()">📤</button>
+        <button class="top-btn" id="nightBtn" onclick="toggleNight()">🌙</button>
+        <button class="top-btn done" id="doneBtn" onclick="toggleDone()">朕已閱</button>
+        <span class="done-date" id="doneDateLabel"></span>
+    </div>
+</header>
+
+<div class="container">
+
+<!-- ===== 主裁定卡片 ===== -->
+<div class="card" id="case1" data-kw="110台上大3997 貪污治罪條例 第12條 輕微案件 5萬元以下 共同正犯 合併計算 個別計算 責任共同原則 一部行為全部責任 收受賄賂 沒收 第8條 自首自白 減輕其刑 處斷刑 判例不再援用 李德仁 吳燦">
+    <button class="star-btn" onclick="toggleStar('case1',this)">⭐</button>
+    <h2 class="card-title">
+        貪污治罪條例§12Ⅰ「5萬元以下」——共同正犯是看「共同總額」還是「個人實得」？
+    </h2>
+    <div class="meta-line">裁定日期：中華民國111年7月27日　｜　案號：110年度台上大字第3997號　｜　提案庭：刑事第七庭（原第八庭）　｜　不同意見：吳燦審判長</div>
+
+    <!-- 主文 -->
+    <div class="verdict">
+        <div class="verdict-label">大法庭主文</div>
+        <div class="verdict-main">貪污治罪條例第12條第1項「所得或所圖得財物或不正利益在新臺幣五萬元以下」，於共同正犯應<strong>合併計算</strong>其金額或價額。</div>
+        <div class="vote-row">
+            <span class="v-chip majority">多數意見 ✔</span>
+            <span class="v-chip dissent-c">不同意見 1人（吳燦審判長）</span>
+            <span class="v-chip">裁定日：111.7.27</span>
+            <span class="v-chip">法官共11人</span>
+        </div>
+    </div>
+
+    <!-- 概念前導 -->
+    <div class="section-heading">案件脈絡與核心概念</div>
+    <div class="flow-box">
+        <div class="flow-step"><div class="flow-num">①</div><div>兩名殯葬所公務員（李德仁、吳○貴）基於犯意聯絡，101～104年間<strong>共同</strong>向同一業者收賄 111 次，<strong>共同所得 6萬9,500元</strong> → <strong>已逾 5萬元</strong></div></div>
+        <div class="flow-arrow">↓ 但個人實際分得只有半數</div>
+        <div class="flow-step"><div class="flow-num">②</div><div>上訴人李德仁<strong>個人實際分得 3萬4,750元</strong> → <strong>在 5萬元以下</strong></div></div>
+        <div class="flow-arrow">↓ §12Ⅰ「5萬元以下」的計算基準是？</div>
+        <div class="flow-step"><div class="flow-num">③</div><div><strong>多數：合併計算。</strong>看共同正犯全體之金額（6萬9,500元 → 逾5萬）→ <strong>不符</strong>輕微案件要件、<strong>不能</strong>依§12減刑。理由：責任共同原則（一部行為全部責任）＋嚴懲集體貪污之立法目的</div></div>
+    </div>
+
+    <!-- 基礎事實 -->
+    <div class="section-heading">基礎事實</div>
+    <div class="fact-box">
+        <p>上訴人<strong>李德仁</strong>與同案被告吳○貴（經判處罪刑確定）均係任職於<strong>桃園市政府殯葬管理所中壢區服務中心之公務員</strong>，負責辦理遺體火化等業務。</p>
+        <p>二人竟基於職務上行為收受賄賂之<strong>犯意聯絡</strong>，接續於民國<strong>101至104年間</strong>，共同向同一殯葬業者<strong>收取賄賂111次</strong>，總計得款新臺幣（下同）<strong>6萬9,500元</strong>；上訴人<strong>實際分得半數3萬4,750元</strong>。</p>
+        <p>因認上訴人共同犯貪污治罪條例<strong>第5條第1項第3款之不違背職務收受賄賂罪</strong>。</p>
+        <p><strong>爭點：</strong>共同所得（6萬9,500元）已逾5萬，但個人實得（3萬4,750元）在5萬以下——李德仁可否適用§12Ⅰ減輕其刑？</p>
+    </div>
+
+    <!-- 法律爭議 -->
+    <div class="section-heading">法律爭議</div>
+    <div class="issue-box">
+        <p><strong>法律爭議：</strong>數人共犯貪污治罪條例第4條至第6條之罪，<strong>共同</strong>所得或所圖得財物或不正利益<strong>已逾5萬元</strong>，然<strong>個人</strong>實際所得或所圖得財物或不正利益係<strong>在5萬元以下</strong>，是否該當同條例第12條第1項（下稱「系爭規定」）所稱「<strong>5萬元以下</strong>」之要件？</p>
+        <p><strong>系爭規定（貪污治罪條例§12Ⅰ）：</strong>犯第四條至第六條之罪，情節輕微，而其所得或所圖得財物或不正利益在新臺幣五萬元以下者，<strong>減輕其刑</strong>。</p>
+        <p><strong>核心張力：</strong>「5萬元以下」究竟是<strong>犯罪構成要件</strong>（→ 依責任共同原則合併計算）？還是<strong>個人之刑罰減輕事由</strong>（→ 依個人情狀個別計算）？</p>
+    </div>
+
+    <!-- 多數理由 -->
+    <div class="section-heading">大法庭裁定理由（多數意見）</div>
+    <div class="opinions">
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈠</div>
+                <span class="op-label">責任共同原則——一部行為全部責任</span>
+            </div>
+            <div class="op-body">
+                <p>共同正犯以完成特定犯罪為共同目的，彼此有犯意聯絡，各自分擔犯罪行為之一部並相互利用他正犯之行為以完成犯罪。故共同正犯間<strong>非僅就自己實行之行為負責</strong>，各自分擔之行為應<strong>視為一整體合一觀察</strong>，予以同一非難評價，對全部結果同負其責。</p>
+                <p>乃有「一人著手、全部著手」「一人既遂、全部既遂」之定論，此即「<strong>一部行為全部責任</strong>」（責任共同原則）之法理。</p>
+                <div class="op-result">
+                    <strong>結論：</strong>共同正犯之犯罪所得應整體合一觀察，不能各自切割。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈡</div>
+                <span class="op-label">嚴懲集體貪污——避免朋分賄款稀釋所得以邀減刑</span>
+            </div>
+            <div class="op-body">
+                <p>共同正犯藉分工合作、互相利用遂行犯意，其<strong>危險及惡性均甚於單獨正犯</strong>；刑法中不乏對共同正犯加重處罰之規定（§222Ⅰ①、§321Ⅰ④、§339-4Ⅰ②等）。公務員利用行政體系集體貪污，<strong>擴大犯罪規模</strong>、使犯罪易於遂行且難查獲。</p>
+                <p>倘因涉案者為<strong>複數行為人、朋分賄款稀釋犯罪所得</strong>即可邀減刑寬典，不但有違共犯責任理論，且無異變相<strong>鼓勵公務員糾眾集體貪污</strong>，殊悖本條例嚴懲貪污、澄清吏治之立法目的。</p>
+                <div class="op-result">
+                    <strong>結論：</strong>若採個別計算，將形成「人越多、每人分越少、越容易減刑」的荒謬結果。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈢</div>
+                <span class="op-label">刑事政策考量——需就全體行為及結果整體評價</span>
+            </div>
+            <div class="op-body">
+                <p>系爭規定乃立法者基於刑事政策，鑑於客觀上所得或所圖得財物在5萬元以下之貪污行為<strong>刑罰需求性較低</strong>，為避免處罰過苛、俾免輕罪重罰之弊而設。</p>
+                <p>是有無「刑罰需求性降低」之情形，就共同正犯而言，<strong>需就所有犯罪行為人之行為及其結果予以整體評價</strong>；此與「個人減輕或免除刑罰事由僅取決於個人情狀」之性質<strong>迥異</strong>，自無從排除責任共同原則之適用。</p>
+                <div class="op-result">
+                    <strong>結論：</strong>§12之減輕看的是「整體犯罪結果」的刑罰需求性，不是個人分得多少。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈣</div>
+                <span class="op-label">立法沿革——81年修法僅改效果與金額，與個人實際所得無必然關連</span>
+            </div>
+            <div class="op-body">
+                <p>戡亂時期貪污治罪條例§9原規定情節輕微、所得財物在（銀圓）三千元以下者適用較輕之刑法或其他法律；62年移列第12條並增列「或所圖得」。迄至<strong>81年7月17日</strong>為免輕重失衡，將法律效果修正為「<strong>減輕其刑</strong>」，並參酌社會經濟情況將標準提高至「<strong>新臺幣五萬元</strong>」，然<strong>其餘適用要件並無不同</strong>。</p>
+                <p>據其修法歷程，<strong>系爭規定與行為人之實際所得無必然關連</strong>。</p>
+                <div class="op-result">
+                    <strong>結論：</strong>修法只改了「效果」與「門檻金額」，計算基準的邏輯並未改變。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈤</div>
+                <span class="op-label">與「沒收」「§8自首自白」係屬二事——不能反推個別計算</span>
+            </div>
+            <div class="op-body">
+                <p><strong>沒收</strong>固應就各人實際分得之數為之，惟犯罪所得沒收在於<strong>澈底剝奪實際犯罪所得</strong>（類似不當得利之衡平措施），著重利得剝奪；此與<strong>責任共同原則</strong>（旨在處理責任認定）<strong>係屬二事</strong>。</p>
+                <p><strong>§8</strong>自首或自白並自動繳交全部所得財物減免其刑，係鼓勵犯後勇於自新而設，若要求代繳共同正犯之所得將嚇阻自新者，與系爭規定<strong>立法旨趣截然不同</strong>，殊無從比附援引。故不得以「沒收已不採共犯連帶」「§8只需繳個人實得」，逕謂系爭規定亦應為相同解釋。二者規範意旨相異而為不同處理，<strong>非恣意差別待遇，無違憲法§7平等原則</strong>。</p>
+                <div class="op-result">
+                    <strong>但書：</strong>個人所分得財物若符合§8自首/自白並繳交「個人實際所得」，或有刑法§59情輕法重之情形，<strong>仍得依各該規定減免其刑</strong>，自屬當然。
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 法條依據 -->
+    <div class="law-ref">
+        <strong>📋 核心法條：</strong>貪污治罪條例§12Ⅰ（輕微案件減輕其刑）、§4～§6（各貪污罪）、§5Ⅰ③（不違背職務收受賄賂）、§8（自首/自白並繳交所得減免其刑）；刑法§28（共同正犯）、§57（科刑審酌）、§59（情輕法重酌減）；憲法§7（平等原則）
+    </div>
+
+    <!-- 對照表 -->
+    <div class="section-heading">多數意見 vs. 不同意見（吳燦審判長）</div>
+    <table class="compare-table">
+        <thead>
+            <tr>
+                <th class="th-issue">爭點</th>
+                <th class="th-majority">多數意見</th>
+                <th class="th-dissent">不同意見（吳燦審判長）</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="td-issue">「5萬元以下」計算基準</td>
+                <td class="td-majority"><strong>合併計算</strong>——就共同正犯全體之金額或價額計算（本件6萬9,500元，逾5萬，不能減刑）</td>
+                <td class="td-dissent"><strong>個別計算</strong>——就各人實際所得計算（本件李德仁3萬4,750元，在5萬以下，得減刑）</td>
+            </tr>
+            <tr>
+                <td class="td-issue">§12Ⅰ之法律定性</td>
+                <td class="td-majority">刑罰需求性之判斷須就<strong>全體行為及結果整體評價</strong>，落入責任共同原則之適用範圍</td>
+                <td class="td-dissent">屬<strong>「處斷刑」階段之個人刑罰減輕事由</strong>（刑罰論），取決於個人情狀，非犯罪構成要件（犯罪論）</td>
+            </tr>
+            <tr>
+                <td class="td-issue">責任共同原則之射程</td>
+                <td class="td-majority">一部行為全部責任；共同所得整體合一觀察，<strong>無從排除</strong>其適用</td>
+                <td class="td-dissent">責任共同原則旨在處理「<strong>責任認定</strong>」，與「取決個人情狀之刑罰減輕事由」性質迥異，於此<strong>不適用</strong></td>
+            </tr>
+            <tr>
+                <td class="td-issue">與沒收／§8之體系一致性</td>
+                <td class="td-majority">沒收（各人實得）、§8（個人實得）與系爭規定<strong>規範意旨相異、係屬二事</strong>，不能反推個別計算</td>
+                <td class="td-dissent">§8與§12同屬「處斷刑」之刑罰減輕事由、均以「犯罪所得」為要件，性質雷同；§12卻採合併計算，造成<strong>體系違反</strong></td>
+            </tr>
+            <tr>
+                <td class="td-issue">與舊判例之關係</td>
+                <td class="td-majority">（採合併計算，結論與舊判例相同）</td>
+                <td class="td-dissent">53／63／66年3則合併計算判例已於<strong>85年度第16次刑庭決議「不再援用」</strong>；多數採合併計算無異是<strong>判例復辟、「倒退嚕」</strong></td>
+            </tr>
+            <tr>
+                <td class="td-issue">立法沿革之解讀</td>
+                <td class="td-majority">81年修法僅改效果為「減輕其刑」、門檻提高至5萬，其餘要件不變，與實際所得無必然關連</td>
+                <td class="td-dissent">1992年修法使輕微案件處罰<strong>產生「質變」</strong>（過橋條款→減輕其刑），舊法之合併計算法理已不適用於新法</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- 不同意見書 -->
+    <div class="section-heading">不同意見書重點</div>
+    <div class="dissent-judges">不同意見人：吳燦審判長——認共同正犯之§12Ⅰ「5萬元以下」應「個別計算」，多數採合併計算無異是已決議不再援用判例之復辟</div>
+    <div class="d-opinions">
+
+        <div class="d-op">
+            <div class="d-op-head">
+                <div class="d-op-num">壹</div>
+                <span class="d-op-label">1992年修法產生「質變」——過橋條款變成個人刑罰減輕事由</span>
+            </div>
+            <div class="d-op-body">
+                <p>輕微案件處罰以<strong>1992年7月17日修法為分界</strong>：修法前係<strong>適用有較輕處罰規定之刑法或其他法律</strong>（即「過橋條款」，一定金額作為<strong>適用特別法或普通刑法之準據＝犯罪構成要件</strong>）；修法後<strong>明定仍適用本條例各該條之罪，但應減輕其刑</strong>（一定金額變成<strong>刑罰減輕事由</strong>）。</p>
+                <p>其原有規定已<strong>因修法而產生質變</strong>，致依舊法選編判例之法理已不適用於新法。</p>
+                <div class="d-op-result">
+                    <strong>要旨：</strong>修法前後「一定金額」的定性根本不同——從「犯罪論」的構成要件，變成「刑罰論」的減輕事由，計算方式自應隨之改變。
+                </div>
+            </div>
+        </div>
+
+        <div class="d-op">
+            <div class="d-op-head">
+                <div class="d-op-num">貳</div>
+                <span class="d-op-label">3則合併計算判例已決議「不再援用」——多數見解是判例復辟</span>
+            </div>
+            <div class="d-op-body">
+                <p>戡亂時期舊法下，53年台上2211號、63年台上1410號、66年台上1771號3則判例採<strong>合併計算說並連帶沒收追繳</strong>。惟因1992年修法，最高法院<strong>85年度第16次刑事庭會議決議「不再援用」</strong>此3則判例；判例經決議不再援用者，<strong>等同具法規範廢止之效力</strong>。</p>
+                <p>不再援用之主因，正是1992年修法使輕微案件處罰之法律適用產生質變（修法前適用較輕刑法／他法 → 修法後仍適用本條例但減輕其刑），並<strong>非</strong>單純僅因刪除「戡亂時期」名稱。多數意見採合併計算，不啻是<strong>已不再援用判例之復辟</strong>，豈非「倒退嚕」。</p>
+                <div class="d-op-result">
+                    <strong>要旨：</strong>多數意見的結論，等於讓一個已被正式廢棄的舊判例法理借屍還魂。
+                </div>
+            </div>
+        </div>
+
+        <div class="d-op">
+            <div class="d-op-head">
+                <div class="d-op-num">參</div>
+                <span class="d-op-label">§12屬「處斷刑」之個人減輕事由——與§8、§57、沒收體系一致應個別計算</span>
+            </div>
+            <div class="d-op-body">
+                <p>刑罰適用階段：法定刑 → <strong>處斷刑</strong>（依法定事由加重／減輕）→ 宣告刑。§12Ⅰ「情節輕微＋5萬元以下」係<strong>處斷刑階段之刑罰減輕事由（刑罰論）</strong>，與影響「犯罪情狀／犯罪行為人情狀」之各種個人減輕事由同性質。</p>
+                <p>§8自首或自白並繳交「全部所得財物」，實務認係以繳交<strong>各行為人自己實際所得</strong>為已足，<strong>不含</strong>其他共同正犯之所得；§8與§12同屬處斷刑之刑罰減輕事由、均以「犯罪所得」為要件，性質雷同，卻異其計算，造成「<strong>體系違反</strong>」。且47年台上1249號判例已揭示：共同正犯雖就全部結果負責，但科刑仍應審酌§57各款情狀，<strong>並非必須科以同一之刑</strong>——處斷刑階段之刑罰減輕本應審酌各被告個別事由，無關責任共同原則。</p>
+                <div class="d-op-result">
+                    <strong>要旨：</strong>沒收採各人實得、§8採個人實得、量刑各自審酌——唯獨§12採合併計算，明顯自相矛盾。應個別計算，回歸個人刑罰減輕事由之本質。
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 考試地雷 -->
+    <div class="trap-box">
+        <div class="trap-title">⚠️ 考試常見地雷</div>
+        <div class="trap-item">
+            <div class="trap-q">Q：本件多數意見的結論是？</div>
+            <div class="trap-a">A：§12Ⅰ「5萬元以下」於共同正犯應「<strong>合併計算</strong>」金額或價額。本件共同所得6萬9,500元已逾5萬，故李德仁縱個人僅分得3萬4,750元，仍<strong>不能</strong>依§12減輕其刑。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：多數意見的兩大支柱論據？</div>
+            <div class="trap-a">A：①「<strong>責任共同原則</strong>」（一部行為全部責任，共同所得整體合一觀察）；②「<strong>嚴懲集體貪污之立法目的</strong>」（避免朋分賄款稀釋所得以邀減刑，變相鼓勵糾眾貪污）。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：多數意見如何切割「沒收」與「§8自首自白」採個人實得的實務？</div>
+            <div class="trap-a">A：沒收重在「剝奪實際利得」（類似不當得利衡平措施），§8重在「鼓勵自新」，二者與§12「刑罰需求性之整體評價」規範意旨相異、係屬二事，故不能以沒收／§8採個人實得，反推§12亦應個別計算；且此非恣意差別待遇，無違憲法§7平等原則。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：不同意見（吳燦）最核心的論點是什麼？</div>
+            <div class="trap-a">A：1992年修法使§12從「過橋條款（犯罪構成要件／犯罪論）」<strong>質變</strong>為「處斷刑之個人刑罰減輕事由（刑罰論）」，故應個別計算。且採合併計算的3則舊判例已於85年度第16次刑庭決議「不再援用」，多數見解形同<strong>判例復辟</strong>。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：不同意見指摘多數意見造成什麼矛盾？</div>
+            <div class="trap-a">A：「<strong>體系違反</strong>」——沒收採各人實得、§8繳交採個人實得、§57量刑各自審酌，唯獨§12採合併計算，自相矛盾。§8與§12同屬處斷刑之刑罰減輕事由，理應一致採個別計算。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：即使採合併計算而不能適用§12，被告還有沒有減刑空間？</div>
+            <div class="trap-a">A：有。多數意見明示：個人所分得財物若符合§8自首/自白並繳交「個人實際所得」，或有刑法§59情輕法重之情形，仍得依各該規定減免其刑。</div>
+        </div>
+    </div>
+
+    <!-- 引用法條 -->
+    <details>
+        <summary>📎 引用法條整理</summary>
+        <div style="padding: 10px 0 4px;">
+            <div class="ref-case">
+                <div class="ref-case-title">貪污治罪條例第12條第1項（系爭規定・輕微案件減輕）</div>
+                <p style="margin:0;">犯第四條至第六條之罪，情節輕微，而其所得或所圖得財物或不正利益在新臺幣五萬元以下者，減輕其刑。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">貪污治罪條例第5條第1項第3款（不違背職務收受賄賂）</div>
+                <p style="margin:0;">對於職務上之行為，要求、期約或收受賄賂或其他不正利益者（本件論罪之罪名）。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">貪污治罪條例第8條第2項（偵查中自白並繳交所得減輕）</div>
+                <p style="margin:0;">犯第四條至第六條之罪，在偵查中自白，如有所得並自動繳交全部所得財物者，減輕其刑。實務認「繳交全部所得財物」係以繳交各行為人自己實際所得為已足，不含其他共同正犯之所得。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">刑法第59條（情輕法重之酌減）</div>
+                <p style="margin:0;">犯罪之情狀顯可憫恕，認科以最低度刑仍嫌過重者，得酌量減輕其刑。（多數意見保留之個人減刑途徑之一。）</p>
+            </div>
+            <div class="ref-case d">
+                <div class="ref-case-title">最高法院47年台上字第1249號判例（不同意見援引）</div>
+                <p style="margin:0;">刑法上之共同正犯，雖應就全部犯罪結果負其責任，但科刑時仍應審酌刑法第57條各款情狀，為各被告量刑輕重之標準，並非必須科以同一之刑。（不同意見：處斷刑之刑罰減輕應審酌各被告個別事由。）</p>
+            </div>
+            <div class="ref-case d">
+                <div class="ref-case-title">85年度第16次刑事庭會議決議（不同意見援引）</div>
+                <p style="margin:0;">因1992年修法，將採「合併計算說」之53年台上2211、63年台上1410、66年台上1771號等判例決議「不再援用」；判例經決議不再援用者，等同具法規範廢止之效力。</p>
+            </div>
+        </div>
+    </details>
+
+    <!-- 法官名單 -->
+    <div class="section-heading">大法庭組成（11人）</div>
+    <div class="judges-grid">
+        <span class="judge-chip dissenter">審判長 吳燦（不同意見）</span>
+        <span class="judge-chip">郭毓洲</span>
+        <span class="judge-chip">林立華</span>
+        <span class="judge-chip">徐昌錦</span>
+        <span class="judge-chip">段景榕</span>
+        <span class="judge-chip">李英勇</span>
+        <span class="judge-chip">李錦樑</span>
+        <span class="judge-chip">林勤純</span>
+        <span class="judge-chip">梁宏哲</span>
+        <span class="judge-chip">何信慶</span>
+        <span class="judge-chip">宋松璟</span>
+    </div>
+    <p style="font-size:0.78em;color:var(--sub);margin:10px 0 0;">提案庭：最高法院刑事第七庭（原第八庭）　｜　本案案號：110年度台上字第3997號　｜　提案裁定案號：110年度台上大字第3997號　｜　裁定日：中華民國111年7月27日</p>
+
+    <div class="note-toggle" onclick="toggleNote('n1')">✏️ 我的小結</div>
+    <div class="note-area" id="n1">
+        <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n1',this.value)"></textarea>
+        <div class="note-saved" id="n1-saved"></div>
+    </div>
+</div>
+
+<!-- ===== 快問快答卡片 ===== -->
+<div class="card" id="case2" data-kw="快問快答 貪污 第12條 5萬元以下 合併計算 個別計算 責任共同原則 處斷刑 判例不再援用 體系違反 沒收 第8條">
+    <button class="star-btn" onclick="toggleStar('case2',this)">⭐</button>
+    <h2 class="card-title">快問快答——本件核心概念與答題要點</h2>
+    <div class="meta-line">建議先蓋住答案，自己回答後再確認</div>
+
+    <div class="quiz-list">
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>本件的核心事實張力是什麼？（一句話）</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">共同所得6萬9,500元「已逾5萬」，但個人實得3萬4,750元「在5萬以下」——§12Ⅰ「5萬元以下」到底看共同總額還是個人實得？</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>【核心】多數意見的結論與主要理由？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">結論：於共同正犯應「合併計算」金額或價額。理由：①責任共同原則（一部行為全部責任，整體合一觀察）；②嚴懲集體貪污之立法目的（避免朋分稀釋所得邀減刑）；③§12之刑罰需求性判斷須就全體行為及結果整體評價，與「取決個人情狀之減輕事由」性質迥異。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>多數意見為何認為不能用「沒收採各人實得」「§8採個人實得」來反推§12個別計算？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">因規範意旨相異、係屬二事：沒收重在「剝奪實際利得」（類似不當得利衡平措施）；§8重在「鼓勵犯後自新」；§12重在「刑罰需求性之整體評價」。三者旨趣不同，不能比附援引，且非恣意差別待遇，無違憲法§7平等原則。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>採合併計算而不能適用§12時，被告是否還有其他減刑管道？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">有。個人所分得財物若符合§8自首/自白並繳交「個人實際所得」，或有刑法§59「情輕法重」之情形，仍得依各該規定減免其刑（多數意見明白保留此途徑）。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>【核心】不同意見（吳燦）主張個別計算的關鍵論據？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">①定性轉變：1992年修法使§12從「過橋條款（犯罪構成要件／犯罪論）」質變為「處斷刑之個人刑罰減輕事由（刑罰論）」，應個別計算；②判例已廢：採合併計算的53/63/66年3則判例已於85年度第16次刑庭決議「不再援用」，多數見解形同判例復辟；③體系一致：§8、沒收、§57量刑均採個人／個別處理，§12亦應一致。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>「處斷刑」在刑罰適用三階段中的位置？§12的減輕屬於哪一階段？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">三階段：法定刑 → 處斷刑（依法定加重／減輕事由修正）→ 宣告刑（數罪併罰再定執行刑）。不同意見認為§12Ⅰ的「減輕其刑」屬「處斷刑」階段之個人刑罰減輕事由，應審酌各被告個別情狀（呼應47年台上1249號：共同正犯量刑並非必須科以同一之刑）。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>不同意見所稱「體系違反」「倒退嚕」各指什麼？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">「體系違反」：沒收、§8、§57量刑都採個人／個別，唯獨§12採合併計算，自相矛盾。「倒退嚕」：85年度第16次刑庭會議已決議「不再援用」合併計算之舊判例，多數意見卻讓該已廢棄法理復辟。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>一句話抓住多數 vs. 不同意見的根本分歧？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">分歧在「§12Ⅰ的法律定性」：多數認為是「就全體犯罪結果整體評價之事項」，落入責任共同原則→合併計算；不同意見認為是「取決個人情狀之處斷刑減輕事由」，與責任共同原則無關→個別計算。</div>
+        </div>
+    </div>
+
+    <div class="note-toggle" onclick="toggleNote('n2')">✏️ 我的小結</div>
+    <div class="note-area" id="n2">
+        <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n2',this.value)"></textarea>
+        <div class="note-saved" id="n2-saved"></div>
+    </div>
+</div>
+
+<div id="noResults">查無符合的內容，請試試其他關鍵字。</div>
+<div id="noStarred">還沒有收藏的項目，點卡片右上角的 ⭐ 加入收藏。</div>
+</div>
+
+<script>
+const NIGHT_KEY='night_mode_pref';
+function toggleNight(){const on=document.body.classList.toggle('night-mode');localStorage.setItem(NIGHT_KEY,on?'1':'0');document.getElementById('nightBtn').textContent=on?'☀️':'🌙';}
+(function(){if(localStorage.getItem(NIGHT_KEY)==='1'){document.body.classList.add('night-mode');const b=document.getElementById('nightBtn');if(b)b.textContent='☀️';}})();
+const STORE_KEY='110_3997_grand_notes',STAR_KEY='110_3997_grand_stars';
+function loadNotes(){try{return JSON.parse(localStorage.getItem(STORE_KEY))||{};}catch{return{};}}
+function loadStars(){try{return JSON.parse(localStorage.getItem(STAR_KEY))||{};}catch{return{};}}
+function saveAllNotes(d){localStorage.setItem(STORE_KEY,JSON.stringify(d));}
+function saveAllStars(d){localStorage.setItem(STAR_KEY,JSON.stringify(d));}
+(function(){const n=loadNotes(),s=loadStars();
+  Object.entries(n).forEach(([id,v])=>{const a=document.getElementById(id);if(!a)return;const t=a.querySelector('textarea');if(t)t.value=v;if(v)a.classList.add('open');});
+  Object.entries(s).forEach(([id,v])=>{if(!v)return;const b=document.querySelector(`#${id} .star-btn`);if(b)b.classList.add('starred');});
+})();
+function toggleStar(id,btn){const s=loadStars();const now=!btn.classList.contains('starred');btn.classList.toggle('starred',now);s[id]=now;saveAllStars(s);if(filterActive)applyFilter();}
+let filterActive=false;
+function toggleFilter(){filterActive=!filterActive;document.getElementById('filterBtn').classList.toggle('active',filterActive);document.getElementById('searchInput').value='';clearSearchHighlights();updateSearchUI([],0);applyFilter();}
+function applyFilter(){const s=loadStars();const q=document.getElementById('searchInput').value.trim().toLowerCase();let any=false;
+  document.querySelectorAll('.card').forEach(c=>{const kw=(c.dataset.kw||'').toLowerCase();const txt=c.textContent.toLowerCase();
+  const ms=!q||kw.includes(q)||txt.includes(q);const mf=!filterActive||!!s[c.id];const show=ms&&mf;
+  c.classList.toggle('hidden',!show);if(show)any=true;});
+  document.getElementById('noResults').style.display=(!any&&!filterActive)?'block':'none';
+  document.getElementById('noStarred').style.display=(!any&&filterActive)?'block':'none';}
+let _matches=[],_cur=-1;
+function clearSearchHighlights(){document.querySelectorAll('mark.search-hl').forEach(m=>{const p=m.parentNode;p.replaceChild(document.createTextNode(m.textContent),m);p.normalize();});}
+function highlightInNode(node,re){if(node.nodeType===3){const text=node.nodeValue;const frag=document.createDocumentFragment();let last=0,m;re.lastIndex=0;while((m=re.exec(text))!==null){if(m.index>last)frag.appendChild(document.createTextNode(text.slice(last,m.index)));const mk=document.createElement('mark');mk.className='search-hl';mk.textContent=m[0];frag.appendChild(mk);last=re.lastIndex;}if(last===0)return;frag.appendChild(document.createTextNode(text.slice(last)));node.parentNode.replaceChild(frag,node);return;}if(node.nodeType===1){const tag=node.tagName;if(tag==='SCRIPT'||tag==='STYLE'||tag==='TEXTAREA'||tag==='INPUT')return;if(node.classList&&node.classList.contains('search-hl'))return;[...node.childNodes].forEach(c=>highlightInNode(c,re));}}
+function doSearch(q){clearSearchHighlights();_matches=[];_cur=-1;const qt=(q||'').trim();if(!qt){updateSearchUI([],0);applyFilter();return;}applyFilter();const esc=qt.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');const re=new RegExp(esc,'gi');document.querySelectorAll('.container .card:not(.hidden)').forEach(card=>{highlightInNode(card,re);});_matches=[...document.querySelectorAll('mark.search-hl')];if(_matches.length){_cur=0;setCurrent(0);}updateSearchUI(_matches,_cur);}
+function setCurrent(idx){_matches.forEach((m,i)=>m.classList.toggle('current',i===idx));if(_matches[idx])_matches[idx].scrollIntoView({behavior:'smooth',block:'center'});}
+function navMatch(dir){if(!_matches.length)return;_cur=(_cur+dir+_matches.length)%_matches.length;setCurrent(_cur);updateSearchUI(_matches,_cur);}
+function updateSearchUI(matches,cur){const cnt=document.getElementById('searchCount');const prev=document.getElementById('prevBtn');const next=document.getElementById('nextBtn');if(!matches.length){cnt.textContent='';prev.disabled=true;next.disabled=true;return;}cnt.textContent=(cur+1)+'/'+matches.length;prev.disabled=false;next.disabled=false;}
+function handleSearchKey(e){if(e.key==='Enter'){e.shiftKey?navMatch(-1):navMatch(1);}if(e.key==='Escape'){document.getElementById('searchInput').value='';doSearch('');}}
+function toggleNote(id){document.getElementById(id).classList.toggle('open');}
+const timers={};
+function saveNote(id,v){clearTimeout(timers[id]);timers[id]=setTimeout(()=>{const n=loadNotes();n[id]=v;saveAllNotes(n);const el=document.getElementById(id+'-saved');if(el){el.textContent='已儲存';setTimeout(()=>el.textContent='',1500);}},500);}
+let savedRange=null;
+document.addEventListener('selectionchange',()=>{const s=window.getSelection();if(s&&!s.isCollapsed&&s.rangeCount)savedRange=s.getRangeAt(0).cloneRange();});
+function highlightText(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;
+  if(!r||r.collapsed){alert('💡 請先反白想要標記的文字');return;}
+  const sp=document.createElement('span');sp.className='hl';sp.style.cssText='background:#f0d98a;border-radius:2px;';
+  try{r.surroundContents(sp);savedRange=null;}catch{alert('💡 請選取同一段落內的文字');}s&&s.removeAllRanges();}
+function removeHighlight(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;
+  if(!r||r.collapsed){alert('💡 請先反白想擦除標記的文字');return;}
+  const anc=r.commonAncestorContainer.nodeType===1?r.commonAncestorContainer:r.commonAncestorContainer.parentElement;
+  anc.querySelectorAll('span.hl').forEach(sp=>{if(r.intersectsNode(sp)){const p=sp.parentNode;while(sp.firstChild)p.insertBefore(sp.firstChild,sp);p.removeChild(sp);}});
+  savedRange=null;s&&s.removeAllRanges();}
+function clearHighlights(){const sp=document.querySelectorAll('span.hl');if(!sp.length)return;
+  if(confirm('確定要清除所有重點標記嗎？')){sp.forEach(s=>{const p=s.parentNode;while(s.firstChild)p.insertBefore(s.firstChild,s);p.removeChild(s);});}}
+function openExport(){
+  let out='最高法院刑事大法庭 110年度台上大字第3997號\n'+'═'.repeat(44)+'\n\n';
+  out+='【主文】\n貪污治罪條例第12條第1項「所得或所圖得財物或不正利益在新臺幣五萬元以下」，於共同正犯應合併計算其金額或價額。\n\n';
+  document.querySelectorAll('.op,.d-op').forEach(op=>{
+    const head=op.querySelector('.op-label,.d-op-label')?.textContent.trim()||'';
+    out+=`▌${head}\n`;
+    op.querySelectorAll('.op-body p,.op-body li,.op-result,.d-op-body p,.d-op-body li,.d-op-result').forEach(el=>{
+      const t=el.textContent.trim();if(t)out+=(el.tagName==='LI'?'  • ':'')+t+'\n';});
+    out+='\n';});
+  const tas=document.querySelectorAll('.note-textarea');tas.forEach((ta,i)=>{if(ta&&ta.value.trim())out+=`✏️ 小結${i+1}：\n`+ta.value.trim()+'\n\n';});
+  out+='═'.repeat(44)+'\n';
+  const b=new Blob([out.trim()],{type:'text/plain;charset=utf-8'});
+  const u=URL.createObjectURL(b);const a=document.createElement('a');
+  a.href=u;a.download='110台上大字第3997號_貪污第12條共同正犯合併計算.txt';a.click();URL.revokeObjectURL(u);}
+function toggleQuiz(el){const ans=el.nextElementSibling;const tog=el.querySelector('.quiz-toggle');if(ans.classList.contains('open')){ans.classList.remove('open');tog.textContent='＋';}else{ans.classList.add('open');tog.textContent='－';}}
+const REG_KEY='exam_completion_registry';
+function _loadReg(){try{return JSON.parse(localStorage.getItem(REG_KEY))||{};}catch{return{};}}
+function _saveReg(r){try{localStorage.setItem(REG_KEY,JSON.stringify(r));}catch{}}
+function _file(){const p=location.pathname.split('/');return decodeURIComponent(p[p.length-1]||'');}
+function _fmt(ts){const d=new Date(ts);const date=(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();const time=d.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false});return date+' '+time;}
+function _updateDate(){const r=_loadReg();const k=_file()||'case_criminal_grand_110_3997.html';const l=document.getElementById('doneDateLabel');if(!l)return;l.textContent=(r[k]&&r[k].done&&r[k].ts)?_fmt(r[k].ts):'';}
+function toggleDone(){const btn=document.getElementById('doneBtn');const r=_loadReg();const k=_file()||'case_criminal_grand_110_3997.html';const done=r[k]&&r[k].done;
+  if(done){delete r[k];_saveReg(r);btn.classList.remove('active');}
+  else{const now=new Date();r[k]={done:true,ts:now.getTime()};_saveReg(r);btn.classList.add('active');}
+  _updateDate();}
+(function(){const r=_loadReg();const k=_file()||'case_criminal_grand_110_3997.html';if(r[k]&&r[k].done){const b=document.getElementById('doneBtn');if(b)b.classList.add('active');}_updateDate();})();
+</script>
+</body>
+</html>
