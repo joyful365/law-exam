@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>110年度台上大字第5660號 刑事大法庭裁定</title>
+    <style>
+        :root {
+            --bg:       #eef0f3;
+            --card:     #ffffff;
+            --text:     #1a1a1a;
+            --sub:      #8a9ab0;
+            --line:     #e4e7ec;
+            --majority: #1a365d;
+            --law:      #1a365d;
+            --dissent:  #a67c2e;
+            --trap:     #f9f7f0;
+            --header-bg:#1a365d;
+        }
+        body.night-mode {
+            --bg:       #13151a;
+            --card:     #1c1f27;
+            --text:     #d4d8e0;
+            --sub:      #5a6880;
+            --line:     #2a2e3a;
+            --majority: #7ea8d8;
+            --law:      #7ea8d8;
+            --dissent:  #c4935a;
+            --trap:     #1e1c14;
+            --header-bg:#0d1117;
+        }
+        body.night-mode header { box-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        body.night-mode .top-bar { background: #1c1f27; }
+        body.night-mode .top-btn { background: #2e3340; color: #b0b8c8; }
+        body.night-mode .top-btn.done { background: #2a2e3a; color: #7a8898; }
+        body.night-mode .fact-box { background: #1e1c14; border-left-color: #8a6820; }
+        body.night-mode .issue-box, body.night-mode .flow-box { background: #20232d; }
+        body.night-mode .op-head { background: #20232d; }
+        body.night-mode .op-body { background: var(--card); }
+        body.night-mode .op-result { background: #161a24; border-left-color: #3a5a8a; }
+        body.night-mode .d-op-head { background: #261f14; }
+        body.night-mode .d-op-body { background: #201c14; }
+        body.night-mode .d-op-result { background: #261f14; }
+        body.night-mode .dissent-judges { background: #261f14; }
+        body.night-mode .compare-table th.th-issue { background: #262a31; }
+        body.night-mode .compare-table td.td-issue { background: #262a31; }
+        body.night-mode .compare-table td.td-majority { background: #161c24; }
+        body.night-mode .compare-table td.td-dissent { background: #1e1814; }
+        @media (max-width: 640px) {
+            body.night-mode .compare-table td.td-issue { background: #262a31; }
+            body.night-mode .compare-table td.td-majority { background: #161c24; }
+            body.night-mode .compare-table td.td-dissent { background: #1e1814; }
+        }
+        body.night-mode .ref-case { background: #20232d; border-left-color: #3a5a8a; }
+        body.night-mode .law-ref { background: #1c1f27; border-left-color: #3a5a8a; }
+        body.night-mode .note-textarea { background: #161a24; color: var(--text); border-color: var(--line); }
+        body.night-mode .judge-chip { background: #20232d; border-color: #2e3340; }
+        body.night-mode .judge-chip.chief { background: #0d1a2e; color: #9abcd8; border-color: #1a3a60; }
+        body.night-mode mark.search-hl { background: #7a5a00; color: #ffe090; }
+        body.night-mode mark.search-hl.current { background: #c07800; color: #fff; }
+        body.night-mode .verdict { background: #0d1a2e; }
+        body.night-mode .trap-box { border-color: #5a5020; }
+        body.night-mode .trap-title { color: #c8a840; }
+        body.night-mode .trap-item { border-left-color: #7a6830; }
+        body.night-mode #nightBtn { background: #3a4250; color: #cfe0f4; font-weight: 700; }
+        body.night-mode .quiz-q { background: var(--card); }
+        body.night-mode .quiz-q:hover { background: #20232d; }
+        body.night-mode .quiz-a { background: #161a24; color: #9abcd8; }
+        body.night-mode .flow-arrow { color: #a8b6c8; }
+        body.night-mode .compare-table td.td-issue, body.night-mode .compare-table th.th-issue { color: #9fb3d0; }
+        body { transition: background 0.3s, color 0.3s; }
+        .card { transition: background 0.3s, border-color 0.3s; }
+
+        * { box-sizing: border-box; }
+        body { font-family: "Helvetica Neue", Helvetica, "PingFang TC", "LiHei Pro", "Microsoft JhengHei", sans-serif;
+               background: var(--bg); color: var(--text); line-height: 1.85; font-size: 16px; margin: 0; padding: 0 0 60px; }
+
+        header { background: var(--header-bg); color: #ffffff; padding: 16px 16px 8px; text-align: center;
+                 position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+        header h1 { margin: 0 0 10px; font-size: 1.05em; line-height: 1.5; font-weight: 600; letter-spacing: 0.02em; color: #ffffff; }
+        .header-controls { display: flex; gap: 8px; align-items: center; }
+        .search-wrap { position: relative; flex: 1; display: flex; align-items: center; gap: 4px; }
+        #searchInput { flex: 1; padding: 8px 14px 8px 32px; border: none; border-radius: 6px;
+                       font-size: 14px; background: rgba(255,255,255,0.13); color: #ffffff; outline: none; }
+        #searchInput::placeholder { color: rgba(255,255,255,0.5); }
+        #searchInput:focus { background: rgba(255,255,255,0.22); }
+        .search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 13px; opacity: 0.55; pointer-events: none; }
+        .search-count { font-size: 12px; color: rgba(255,255,255,0.65); white-space: nowrap; min-width: 44px; text-align: center; }
+        .search-nav { background: rgba(255,255,255,0.15); border: none; border-radius: 6px; color: white; font-size: 13px; padding: 6px 8px; cursor: pointer; line-height: 1; }
+        .search-nav:hover { background: rgba(255,255,255,0.28); }
+        .search-nav:disabled { opacity: 0.3; cursor: default; }
+        mark.search-hl { background: #ffe066; color: #1a1a1a; border-radius: 2px; padding: 0 1px; }
+        mark.search-hl.current { background: #ff9500; color: #fff; border-radius: 3px; outline: 2px solid #ff9500; }
+        #filterBtn { background: rgba(255,255,255,0.13); border: none; border-radius: 6px;
+                     color: #ffffff; font-size: 13px; padding: 8px 12px; cursor: pointer; white-space: nowrap; }
+        #filterBtn.active { background: #c9a84c; color: #1a365d; font-weight: bold; }
+        .top-bar { background: #dde0e5; padding: 5px 14px; display: flex; gap: 6px; justify-content: flex-end; flex-wrap: nowrap; }
+        .top-btn { background: #5a6375; color: #fff; border: none; padding: 4px 10px; border-radius: 20px;
+                   font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap; transition: opacity 0.15s; }
+        .top-btn:hover { opacity: 0.85; }
+        .top-btn.done { background: #a0a8b4; color: #1a2a3a; }
+        .top-btn.done.active { background: linear-gradient(135deg, #7a5c00, #a07820); color: #fff3c4; font-weight: 700; box-shadow: 0 0 8px rgba(160,120,32,0.5); }
+        .done-date { font-size: 11px; color: #8a9ab0; white-space: nowrap; align-self: center; font-weight: 500; }
+
+        .container { padding: 18px 16px; max-width: 640px; margin: 0 auto; }
+        @media (min-width: 768px) { .container { max-width: 880px; padding: 24px 20px; } body { font-size: 17px; } header h1 { font-size: 1.15em; } }
+        .card { background: var(--card); border-radius: 14px; padding: 24px 22px; margin-bottom: 24px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.06); position: relative; border: 1px solid var(--line); }
+        .card.hidden { display: none; }
+        .star-btn { position: absolute; top: 18px; right: 18px; background: none; border: none; font-size: 20px;
+                    cursor: pointer; opacity: 0.18; transition: opacity 0.15s; padding: 0; }
+        .star-btn.starred { opacity: 1; }
+        .card-title { color: var(--majority); font-size: 1.15em; font-weight: 700; margin: 0 0 4px; padding-right: 30px; line-height: 1.6; }
+        .meta-line { font-size: 0.75em; color: var(--sub); margin-bottom: 20px; letter-spacing: 0.04em; }
+
+        .verdict { background: #1a365d; color: #ffffff; border-radius: 10px; padding: 16px 18px; margin-bottom: 22px; }
+        .verdict-label { font-size: 0.66em; letter-spacing: 0.14em; opacity: 0.55; margin-bottom: 6px; }
+        .verdict-main { font-size: 1.05em; font-weight: 700; line-height: 1.6; margin-bottom: 10px; color: #ffffff; }
+        .verdict-sub { font-size: 0.88em; opacity: 0.8; line-height: 1.65; margin-bottom: 10px; }
+        .vote-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 12px; padding-top: 10px;
+                    border-top: 1px solid rgba(255,255,255,0.15); }
+        .v-chip { font-size: 0.72em; background: rgba(255,255,255,0.12); border-radius: 20px;
+                  padding: 3px 10px; white-space: nowrap; color: rgba(255,255,255,0.8); }
+        .v-chip.majority { background: rgba(255,255,255,0.28); color: #fff; font-weight: 700; }
+        .v-chip.dissent-c { background: rgba(201,168,76,0.5); color: #fff; }
+
+        .section-heading { font-size: 0.85em; font-weight: 700; letter-spacing: 0.08em;
+                           color: var(--sub); margin: 22px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--line); }
+
+        .fact-box { background: #f9f7f0; border-left: 4px solid #c9a84c; border-radius: 0 8px 8px 0;
+                    padding: 14px 16px; margin-bottom: 16px; font-size: 0.9em; }
+        .fact-box p { margin: 0 0 8px; }
+        .fact-box p:last-child { margin: 0; }
+
+        .issue-box { background: #f5f6f8; border-radius: 8px; padding: 14px 16px; margin-bottom: 16px;
+                     font-size: 0.9em; border: 1px solid var(--line); }
+        .issue-box p { margin: 0 0 8px; }
+        .issue-box p:last-child { margin: 0; }
+
+        /* 概念流程圖 */
+        .flow-box { background: #f5f6f8; border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; margin-bottom: 18px; font-size: 0.87em; }
+        .flow-step { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; }
+        .flow-num { width: 22px; height: 22px; border-radius: 50%; background: var(--majority); color: #fff; font-size: 0.72em; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+        .flow-arrow { text-align: center; color: #4a5568; font-size: 1.1em; font-weight: 600; margin-bottom: 4px; }
+
+        .opinions { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+        .op { border-radius: 8px; overflow: hidden; border: 1px solid var(--line); }
+        .op-head { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #f5f6f8; }
+        .op-num { width: 26px; height: 26px; border-radius: 50%; background: var(--majority); color: white;
+                  font-size: 0.75em; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .op-label { font-weight: 700; font-size: 0.92em; color: var(--majority); flex: 1; }
+        .op-body { padding: 13px 15px; font-size: 0.9em; background: var(--card); }
+        .op-body p { margin: 0 0 9px; }
+        .op-body p:last-child { margin: 0; }
+        .op-body ul { margin: 5px 0 8px; padding-left: 18px; }
+        .op-body li { margin-bottom: 5px; }
+        .op-result { background: #f0f3f8; border-radius: 6px; padding: 10px 13px; margin-top: 10px;
+                     font-size: 0.9em; border-left: 3px solid var(--majority); }
+
+        .d-opinions { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+        .d-op { border-radius: 8px; overflow: hidden; border: 1px solid #e6d8bc; }
+        .d-op-head { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #fdf7ec; }
+        .d-op-num { width: 26px; height: 26px; border-radius: 50%; background: var(--dissent); color: white;
+                    font-size: 0.75em; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .d-op-label { font-weight: 700; font-size: 0.92em; color: var(--dissent); flex: 1; }
+        .d-op-body { padding: 13px 15px; font-size: 0.9em; background: #fffdf8; }
+        .d-op-body p { margin: 0 0 9px; }
+        .d-op-body p:last-child { margin: 0; }
+        .d-op-body ul { margin: 5px 0 8px; padding-left: 18px; }
+        .d-op-body li { margin-bottom: 5px; }
+        .d-op-result { background: #fdf7ec; border-radius: 6px; padding: 10px 13px; margin-top: 10px;
+                       font-size: 0.9em; border-left: 3px solid var(--dissent); }
+        .dissent-judges { font-size: 0.82em; color: var(--dissent); margin-bottom: 12px;
+                          padding: 8px 12px; background: #fdf7ec; border-radius: 6px; border-left: 3px solid var(--dissent); }
+
+        .compare-table { width: 100%; border-collapse: collapse; margin-bottom: 18px; font-size: 0.88em; }
+        .compare-table th { padding: 10px 13px; font-weight: 700; font-size: 0.85em; letter-spacing: 0.05em; }
+        .compare-table th.th-issue { background: #dde0e5; color: #3d4d68; width: 22%; border-radius: 6px 0 0 0; }
+        .compare-table th.th-majority { background: var(--majority); color: #fff; width: 39%; }
+        .compare-table th.th-dissent { background: var(--dissent); color: #fff; width: 39%; border-radius: 0 6px 0 0; }
+        .compare-table td { padding: 11px 13px; vertical-align: top; border-bottom: 1px solid var(--line); line-height: 1.65; }
+        .compare-table td.td-issue { background: #eef1f6; font-weight: 700; font-size: 0.87em; color: #3d4d68; }
+        .compare-table td.td-majority { background: #f4f7fb; border-left: 2px solid var(--majority); }
+        .compare-table td.td-dissent { background: #fdf8f4; border-left: 2px solid var(--dissent); }
+        .compare-table tr:last-child td { border-bottom: none; }
+        .compare-table tr:last-child td.td-issue { border-radius: 0 0 0 6px; }
+        .compare-table tr:last-child td.td-dissent { border-radius: 0 0 6px 0; }
+        @media (max-width: 640px) {
+            .compare-table thead { display: none; }
+            .compare-table, .compare-table tbody { display: block; }
+            .compare-table tr { display: block; margin-bottom: 14px; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+            .compare-table td.td-issue { display: block; width: 100%; background: #dde0e5; padding: 8px 14px; font-size: 0.85em; font-weight: 700; color: #3d4d68; border-bottom: none; border-left: none !important; }
+            .compare-table td.td-majority, .compare-table td.td-dissent { display: inline-block; width: 50%; vertical-align: top; box-sizing: border-box; padding: 10px 11px; border-bottom: none; font-size: 0.83em; line-height: 1.6; border-left: none !important; border-top: none; }
+            .compare-table td.td-majority { border-right: 1px solid var(--line); border-top: 3px solid var(--majority); }
+            .compare-table td.td-dissent { border-top: 3px solid var(--dissent); }
+            .compare-table td.td-majority::before { content: "多數"; display: block; margin-bottom: 5px; font-size: 0.78em; font-weight: 700; color: var(--majority); letter-spacing: 0.05em; }
+            .compare-table td.td-dissent::before { content: "不同"; display: block; margin-bottom: 5px; font-size: 0.78em; font-weight: 700; color: var(--dissent); letter-spacing: 0.05em; }
+        }
+
+        .trap-box { background: var(--trap); border-radius: 8px; padding: 14px 16px; margin-bottom: 16px;
+                    border: 1px solid #e0d8b0; font-size: 0.9em; }
+        .trap-title { font-weight: 700; color: #7a6820; margin-bottom: 10px; font-size: 0.92em; display: flex; align-items: center; gap: 6px; }
+        .trap-item { margin-bottom: 10px; padding-left: 14px; border-left: 2px solid #c8b860; }
+        .trap-item:last-child { margin-bottom: 0; }
+        .trap-q { font-weight: 700; color: var(--text); margin-bottom: 3px; }
+        .trap-a { color: var(--text); opacity: 0.85; }
+
+        .law-ref { background: #f0f2f5; border-radius: 8px; padding: 10px 14px; font-size: 0.84em;
+                   color: #4a5568; margin-top: 14px; border-left: 3px solid var(--law); }
+
+        details { margin-top: 16px; }
+        details summary { cursor: pointer; color: var(--sub); font-size: 0.84em; font-weight: 600;
+                          padding: 5px 0; user-select: none; list-style: none; display: flex; align-items: center; gap: 6px; }
+        details summary::before { content: '▶'; font-size: 0.62em; transition: transform 0.2s; color: var(--sub); }
+        details[open] summary::before { transform: rotate(90deg); }
+        .ref-case { background: #f5f6f8; border-radius: 7px; padding: 10px 13px; margin-bottom: 8px;
+                    font-size: 0.84em; border-left: 3px solid var(--majority); }
+        .ref-case.d { border-left-color: var(--dissent); }
+        .ref-case-title { font-weight: 700; color: var(--majority); margin-bottom: 3px; font-size: 0.9em; }
+        .ref-case.d .ref-case-title { color: var(--dissent); }
+
+        .note-toggle { display: inline-block; margin-top: 14px; font-size: 0.8em; color: #b0b8c4; cursor: pointer; user-select: none; }
+        .note-toggle:hover { color: var(--majority); }
+        .note-area { display: none; margin-top: 8px; }
+        .note-area.open { display: block; }
+        .note-textarea { width: 100%; min-height: 68px; border: 1px solid var(--line); border-radius: 7px;
+                         padding: 10px 12px; font-size: 0.87em; font-family: inherit; color: var(--text);
+                         background: #fafbfc; resize: vertical; outline: none; line-height: 1.75; }
+        .note-textarea:focus { border-color: var(--majority); }
+        .note-textarea::placeholder { color: #ccc; }
+        .note-saved { font-size: 0.72em; color: #68a06a; text-align: right; height: 14px; margin-top: 2px; }
+
+        .judges-grid { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+        .judge-chip { font-size: 0.77em; background: #eef1f6; border-radius: 20px; padding: 3px 11px;
+                      color: #3a4a6a; border: 1px solid #d8dde8; }
+        .judge-chip.chief { background: var(--majority); color: #fff; font-weight: 700; border-color: var(--majority); }
+        .judge-chip.dissenter { background: var(--dissent); color: #fff; font-weight: 600; border-color: var(--dissent); }
+
+        .quiz-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 0; }
+        .quiz-item { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+        .quiz-q { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;
+                  padding: 11px 14px; cursor: pointer; font-size: 0.9em; background: var(--card); }
+        .quiz-q:hover { background: #f5f6f8; }
+        .quiz-toggle { font-size: 1.1em; color: var(--majority); flex-shrink: 0; font-weight: 300; line-height: 1.4; }
+        .quiz-a { display: none; padding: 11px 14px; background: #f0f3f8; font-size: 0.87em;
+                  line-height: 1.75; border-top: 1px solid var(--line); color: #1a365d; }
+        .quiz-a.open { display: block; }
+
+        #noResults, #noStarred { display: none; text-align: center; color: var(--sub); padding: 40px 0; font-size: 0.9em; }
+        ::-webkit-scrollbar { display: none; }
+        ::selection { background: #c8d8ef; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>最高法院刑事大法庭<br>110年度台上大字第5660號</h1>
+    <div class="header-controls">
+        <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="搜尋關鍵字、法條…" oninput="doSearch(this.value)" onkeydown="handleSearchKey(event)">
+            <span class="search-count" id="searchCount"></span>
+            <button class="search-nav" id="prevBtn" onclick="navMatch(-1)" disabled title="上一個">▲</button>
+            <button class="search-nav" id="nextBtn" onclick="navMatch(1)" disabled title="下一個">▼</button>
+        </div>
+        <button id="filterBtn" onclick="toggleFilter()">⭐ 收藏</button>
+    </div>
+    <div class="top-bar">
+        <button class="top-btn" onclick="highlightText()">🖊️</button>
+        <button class="top-btn" onclick="removeHighlight()">🧽</button>
+        <button class="top-btn" onclick="clearHighlights()">🗑️</button>
+        <button class="top-btn" onclick="openExport()">📤</button>
+        <button class="top-btn" id="nightBtn" onclick="toggleNight()">🌙</button>
+        <button class="top-btn done" id="doneBtn" onclick="toggleDone()">朕已閱</button>
+        <span class="done-date" id="doneDateLabel"></span>
+    </div>
+</header>
+
+<div class="container">
+
+<!-- ===== 主裁定卡片 ===== -->
+<div class="card" id="case1" data-kw="110台上大5660 累犯 刑法第47條 釋字775號 加重其刑 改良式當事人進行主義 舉證責任 說明責任 具體指出證明方法 前案紀錄表 刑事訴訟法第161條 第163條 第289條 品行 重複評價禁止 張邱群 林勤純">
+    <button class="star-btn" onclick="toggleStar('case1',this)">⭐</button>
+    <h2 class="card-title">
+        論以累犯、加重其刑，要不要先由檢察官主張並具體舉證？
+    </h2>
+    <div class="meta-line">裁定日期：中華民國111年4月27日　｜　案號：110年度台上大字第5660號　｜　提案庭：原刑事第八庭（現第七庭）　｜　不同意見：林勤純法官</div>
+
+    <!-- 主文 -->
+    <div class="verdict">
+        <div class="verdict-label">大法庭主文</div>
+        <div class="verdict-main">被告構成累犯之事實及應加重其刑之事項，<strong>均應由檢察官主張並具體指出證明之方法</strong>後，經法院踐行調查、辯論程序，方得作為論以累犯及是否加重其刑之裁判基礎。</div>
+        <div class="vote-row">
+            <span class="v-chip majority">多數意見 ✔</span>
+            <span class="v-chip dissent-c">不同意見 1人（林勤純）</span>
+            <span class="v-chip">裁定日：111.4.27</span>
+            <span class="v-chip">法官共11人</span>
+        </div>
+    </div>
+
+    <!-- 概念前導 -->
+    <div class="section-heading">案件脈絡與核心概念</div>
+    <div class="flow-box">
+        <div class="flow-step"><div class="flow-num">①</div><div>釋字775號認§47Ⅰ累犯<strong>不分情節一律加重最低本刑</strong>，個案可能過苛違憲，指示法院應「<strong>裁量</strong>」是否加重最低本刑 → 累犯加重從「必」加重出現「<strong>裁量</strong>」色彩</div></div>
+        <div class="flow-arrow">↓ 爭點：訴訟程序上，誰先主張？誰先舉證？</div>
+        <div class="flow-step"><div class="flow-num">②</div><div>本案：檢察官起訴時<strong>未主張</strong>累犯、亦<strong>未具體指出證明方法</strong>；法院卻自行認定成立累犯並加重其刑</div></div>
+        <div class="flow-arrow">↓ 大法庭：拆成前後兩階段各自的責任</div>
+        <div class="flow-step"><div class="flow-num">③</div><div><strong>前階段（累犯事實成立）</strong>＝檢察官負<strong>實質舉證責任</strong>（刑訴§161Ⅰ）；<strong>後階段（是否加重其刑）</strong>＝檢察官負<strong>說明責任</strong>（爭點形成責任，呼應改良式當事人進行主義）</div></div>
+        <div class="flow-arrow">↓ 檢方都沒主張、沒指出證明方法時</div>
+        <div class="flow-step"><div class="flow-num">④</div><div>法院<strong>不予調查</strong>、不論累犯或加重，<strong>不算違法</strong>；但累犯前科資料仍可作為§57⑤「品行」量刑因子（負面評價），檢方事後不得再以「未依累犯加重」指摘原判決違法（重複評價禁止）</div></div>
+    </div>
+
+    <!-- 基礎事實 -->
+    <div class="section-heading">基礎事實</div>
+    <div class="fact-box">
+        <p>上訴人<strong>張邱群</strong>因涉犯非法寄藏可發射子彈具殺傷力之槍枝、殺人未遂罪嫌，經檢察官提起公訴，<strong>起訴書未請求</strong>對上訴人所為上開犯行依累犯規定加重其刑。</p>
+        <p>法院於審理時，檢察官<strong>亦未</strong>就上訴人構成累犯事實以及應加重其刑之事項，有所主張並具體指出證明之方法。事實審法院於判決時，<strong>自行認定</strong>上訴人犯行成立累犯，並依累犯規定加重其刑。</p>
+        <p><strong>爭點：</strong>檢察官從頭到尾都沒主張、沒舉證，法院能不能自己認定累犯並加重其刑？</p>
+    </div>
+
+    <!-- 法律爭議 -->
+    <div class="section-heading">法律爭議</div>
+    <div class="issue-box">
+        <p><strong>法律爭議：</strong>關於被告構成累犯之事實以及應加重其刑之事項，檢察官應否基於「<strong>改良式當事人進行主義</strong>」之精神，踐行主張並具體指出證明方法之責任？亦即，依司法院釋字第775號解釋所揭示，將累犯「<strong>必</strong>」加重其刑變更為「<strong>可裁量</strong>」事項之意旨，訴訟程序上應否先由檢察官就被告構成累犯之<strong>前階段事實</strong>以及應加重其刑之<strong>後階段事項</strong>，主張並具體指出證明之方法後，法院才需進行調查與辯論程序，而作為是否加重其刑之裁判基礎？</p>
+    </div>
+
+    <!-- 多數理由 -->
+    <div class="section-heading">大法庭裁定理由（多數意見）</div>
+    <div class="opinions">
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈠</div>
+                <span class="op-label">前階段「累犯事實」——檢察官負實質舉證責任</span>
+            </div>
+            <div class="op-body">
+                <p>刑訴§161Ⅰ規定檢察官就被告犯罪事實應負舉證責任並指出證明方法，此為<strong>概括性規定</strong>，非謂除有罪事實外其他即可不必負舉證責任。舉證範圍除犯罪構成事實、違法性、有責性及處罰條件外，尚包括<strong>刑罰加重事實之存在</strong>及減輕或免除事實之不存在。</p>
+                <p>累犯事實之有無，雖與被告是否有罪無關，然攸關刑罰加重且對被告<strong>不利</strong>，就被告而言與有罪無罪之問題有<strong>相同之重要性</strong>（包括遴選至外役監受刑、行刑累進處遇、假釋條件等考量），自應由檢察官負主張及<strong>實質舉證責任</strong>。</p>
+                <div class="op-result">
+                    <strong>結論：</strong>累犯事實雖不是「罪」的一部分，但對被告不利的份量不輸有罪無罪，所以要跟有罪事實一樣，由檢察官負實質舉證責任。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈡</div>
+                <span class="op-label">法院職權調查限「對被告有利」——累犯事實非法院應依職權調查之範圍</span>
+            </div>
+            <div class="op-body">
+                <p>我國刑事審判採強化當事人進行色彩之對審結構，基於<strong>改良式當事人進行主義</strong>之精神，刑訴§163Ⅱ雖規定法院為發見真實得依職權調查證據，但書「公平正義之維護」應<strong>目的性限縮解釋</strong>為以「<strong>利益</strong>」於被告之事項為限。</p>
+                <p>累犯事實係對被告不利之事項，基於刑法特別預防之刑事政策，屬被告個人加重刑罰之前提事實，單純為被告特別惡性之評價，與實體公平正義之維護<strong>無直接密切關聯</strong>，尚非法院應依職權調查之範圍，自應由檢察官負主張及指出證明方法之實質舉證責任。法院僅得於檢方舉證後仍陷於真偽不明時，<strong>視個案情節為補充性調查</strong>，落實「當事人舉證先行原則、法院職權調查為輔」之理念。</p>
+                <div class="op-result">
+                    <strong>結論：</strong>法院的職權調查只補「對被告有利」的洞，累犯這種對被告不利的事實，不在法院主動查的範圍內。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈢</div>
+                <span class="op-label">「具體指出證明方法」的內涵——須提出前案執行完畢等具體資料，非空泛前科紀錄表</span>
+            </div>
+            <div class="op-body">
+                <p>檢察官應於法院調查證據時，提出足以證明被告構成累犯事實之<strong>前案徒刑執行完畢資料</strong>，例如前案確定判決、執行指揮書、執行函文、執行完畢（含入監執行或易科罰金或易服社會勞動執行完畢、數罪係接續執行或合併執行、有無被撤銷假釋情形）文件等相關執行資料，始足當之。</p>
+                <p>至一般附隨在卷宗內之被告<strong>前案紀錄表</strong>，係司法機關人員依憑原始資料所輸入之前案紀錄，僅提供法官便於瞭解本案與他案是否構成同一性或單一性之關聯、被告有無在監在押情狀等情事之用，<strong>並非</strong>被告前案徒刑執行完畢之原始資料或其影本，故檢察官<strong>單純空泛提出前案紀錄表</strong>，尚難認已具體指出證明方法而已盡實質舉證責任。</p>
+                <div class="op-result">
+                    <strong>結論：</strong>單純附一張前案紀錄表不夠，要有能證明「前案已執行完畢」的具體文件。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈣</div>
+                <span class="op-label">後階段「加重其刑事項」——釋字775號課予檢察官較強化之說明責任</span>
+            </div>
+            <div class="op-body">
+                <p>釋字775號針對累犯不分情節一律加重最低本刑部分，已闡明：為避免罪刑不相當，法院就個案應依解釋意旨「<strong>裁量</strong>」是否加重最低本刑。其解釋理由書並闡釋：為使科刑判決符合罪刑相當原則，法院審判時應先由當事人就加重、減輕或免除其刑等事實（§47Ⅰ及§59～§62參照）及其他科刑資料（§57、§58參照）指出證明方法，進行周詳調查與充分辯論，最後由法院詳加斟酌取捨並具體說明理由。</p>
+                <p>為因應本解釋意旨，刑訴§289Ⅱ已配合修正為：辯論後應命依同一次序就<strong>科刑範圍辯論</strong>之，並予到場之告訴人等表示意見機會。可見累犯應否加重其刑之觀念，已有由原來的「必」加重，<strong>轉變</strong>為較靈活之「可裁量」事項的趨勢，並課予檢察官較為<strong>強化之說明責任</strong>（即爭點形成責任），俾落實改良式當事人進行主義之精神。</p>
+                <div class="op-result">
+                    <strong>結論：</strong>既然要不要加重、加重多少已經變成可以裁量的事，檢察官就要先把「為什麼該加重」的理由具體攤開來說，不是法院自動幫忙加。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈤</div>
+                <span class="op-label">「說明責任」的具體內涵——須具體指出被告特別惡性及對刑罰反應力薄弱等各節</span>
+            </div>
+            <div class="op-body">
+                <p>檢察官應就被告之特別惡性及對刑罰反應力薄弱等各節，例如具體指出被告所犯前後數罪間關於前案性質（故意或過失）、<strong>前案徒刑之執行完畢情形</strong>（有無入監執行完畢、在監行狀及入監執行成效為何、是否易科罰金或易服社會勞動〔即易刑執行〕、易刑執行成效為何）、<strong>再犯之原因</strong>、兩罪間之差異（是否同一罪質、重罪或輕罪）、主觀犯意所顯現之惡性及其反社會性等各項情狀，俾法院綜合判斷是否加重其刑。此屬<strong>量刑事項</strong>，非犯罪構成事實或刑之應否為類型性之加重事實，以較為強化之<strong>自由證明</strong>為已足（不需嚴格證明）。</p>
+                <div class="op-result">
+                    <strong>結論：</strong>後階段不是嚴格證明，但也不能空泛，要具體點出被告「怎麼特別惡性」「為什麼刑罰反應力薄弱」。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈥</div>
+                <span class="op-label">檢察官未主張／未具體指出證明方法時——法院不查不違法；累犯資料仍可作品行量刑因子</span>
+            </div>
+            <div class="op-body">
+                <p>檢察官若未主張或具體指出證明方法，法院因而未論以累犯或依累犯規定加重其刑，可認檢察官並不認為被告構成累犯或有加重其刑以延長矯正其惡性此一特別預防之必要，且為貫徹舉證責任危險結果所當然，法院<strong>不予調查</strong>，<strong>不算</strong>應調查而不予調查之違法。</p>
+                <p>惟基於累犯資料本來即可以在§57⑤「犯罪行為人之品行」中予以<strong>負面評價</strong>，仍得就被告可能構成累犯之前科、素行資料，列為§57⑤所定「品行」之審酌事項。此情形下，該資料既已列為量刑審酌事由，對被告所應負擔之罪責已予以充分評價，依<strong>重複評價禁止</strong>之精神，<strong>不許</strong>檢察官事後循上訴程序，以該已列為量刑審酌之事由，主張應改論以累犯並加重其刑為由，指摘原判決違法或不當。</p>
+                <div class="op-result">
+                    <strong>結論：</strong>檢方不主張的代價不只是「這次沒加重」，還包括「事後不能再拿同一份前科去上訴要求加重」——因為法院已經在品行審酌裡評價過一次了。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈦</div>
+                <span class="op-label">無溯及效力；精簡裁判——判決主文無庸為累犯之諭知</span>
+            </div>
+            <div class="op-body">
+                <p>本院刑事大法庭之裁定，除依法院組織法§51-10對<strong>提案庭提交之案件有拘束力</strong>外，基於預測可能性及法安定性之精神，<strong>並無溯及既往之效力</strong>。本裁定宣示<strong>前</strong>各級法院已踐行之訴訟程序及裁判，與本裁定意旨不符者，尚無從援引為上訴或非常上訴之理由（除非法院同時另有違背其他規定之情事）。</p>
+                <p>又基於<strong>精簡裁判</strong>之要求，即使法院論以累犯，無論有無加重其刑，<strong>判決主文均無庸為累犯之諭知</strong>。法院依簡易程序逕以簡易判決處刑者，因無檢察官參與，倘檢察官未為主張或具體指出證明方法，受訴法院自得基於前述說明，視個案情節斟酌取捨。</p>
+                <div class="op-result">
+                    <strong>結論：</strong>裁定不溯及既往（保護已依原實務辦理的案件），且判決主文不用另外寫「累犯」二字，簡化裁判格式。
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 法條依據 -->
+    <div class="law-ref">
+        <strong>📋 核心法條：</strong>刑法§47（累犯成立要件及加重效果）、§57（科刑審酌因子，含品行）、§67～§68（加重之方法）；刑事訴訟法§161Ⅰ（檢察官舉證責任）、§163Ⅱ（法院職權調查證據）、§289Ⅱ（科刑範圍辯論）；司法院釋字第775號解釋（累犯不分情節一律加重最低本刑之違憲審查）
+    </div>
+
+    <!-- 對照表 -->
+    <div class="section-heading">多數意見 vs. 不同意見（林勤純法官）</div>
+    <table class="compare-table">
+        <thead>
+            <tr>
+                <th class="th-issue">爭點</th>
+                <th class="th-majority">多數意見</th>
+                <th class="th-dissent">不同意見（林勤純）</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="td-issue">釋字775號的效力範圍</td>
+                <td class="td-majority">解釋已使累犯加重觀念由「必」加重轉變為「可裁量」事項，並課予檢察官強化之說明責任</td>
+                <td class="td-dissent">解釋文<strong>僅</strong>就一律加重「最低」本刑部分宣告違憲，<strong>未</strong>言及「最高」本刑加重是否同違憲；多數逕將「應加重」推論為「得加重」，<strong>超過解釋文文義射程</strong>，論述依據不明</td>
+            </tr>
+            <tr>
+                <td class="td-issue">§47Ⅰ累犯成立要件是否受影響</td>
+                <td class="td-majority">聚焦程序面（由誰主張、舉證），未觸及成立要件本身違憲與否</td>
+                <td class="td-dissent">§47Ⅰ乃立法者就成立要件之規定，<strong>未經釋字775號宣告違憲</strong>，法官無裁量空間，仍有正確適用法律之義務，成立事實有無不以檢察官主張及證明為限</td>
+            </tr>
+            <tr>
+                <td class="td-issue">前案紀錄表可否作為證明累犯之依據</td>
+                <td class="td-majority">單純空泛提出前案紀錄表<strong>不夠</strong>，須提出前案執行完畢等具體資料，始盡實質舉證責任</td>
+                <td class="td-dissent">實務原採卷內「臺灣高等法院被告前案紀錄表」為主要依據，其為公務員職務上製作之紀錄文書，證據能力與證明力本由法官依法調查後憑心證決定；<strong>捨棄</strong>原則無爭議之前案紀錄表、另要求檢方舉證及提出執行資料，<strong>徒增訴訟不必要事項，治絲益棼，反礙訴訟經濟</strong></td>
+            </tr>
+            <tr>
+                <td class="td-issue">是否應由檢察官先主張、指出證明方法</td>
+                <td class="td-majority">前階段（成立）＝實質舉證責任；後階段（加重）＝說明責任，均應由檢察官先主張並具體指出證明方法</td>
+                <td class="td-dissent">因對釋字775號效力範圍存有疑義（是否僅及最低本刑），<strong>無法確認</strong>大法庭就加重效果部分之論述是否與該解釋意旨相合，故<strong>對結論無從表示同意或支持</strong>；並質疑相關疑義未經專家證人或爭點程序充分辯論即逕予論斷</td>
+            </tr>
+            <tr>
+                <td class="td-issue">比較法觀察</td>
+                <td class="td-majority">（未特別著墨比較法）</td>
+                <td class="td-dissent">日本、瑞士、奧地利、德國之累犯／再犯規定，多繫諸<strong>個案具體判斷</strong>（如刑罰反應力、有害傾向、警戒效果等），<strong>非</strong>一律加重；相較之下我國§47條「徒刑執行完畢後5年內故意再犯」即一律加重之立法<strong>誠屬嚴峻</strong>，更支持應有調節機制（但調節應循解釋文文義途徑，而非逕改訴訟程序責任分配）</td>
+            </tr>
+            <tr>
+                <td class="td-issue">若欲達成「應加重」改為「得加重」，正確途徑為何</td>
+                <td class="td-majority">（未特別論述此點，逕以訴訟程序責任分配處理）</td>
+                <td class="td-dissent">應循：①先論證一律加重<strong>最高</strong>本刑部分是否<strong>同受</strong>罪刑相當原則及比例原則拘束而違憲；②依解釋理由三所示科刑程序，由當事人就加重其刑、科刑分別依序調查辯論，法院綜合辯論意旨決定「是否加重」及「加重多少」，而非直接跳過對解釋範圍的釐清</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- 不同意見書 -->
+    <div class="section-heading">不同意見書重點</div>
+    <div class="dissent-judges">不同意見人：林勤純法官——認多數意見對釋字775號效力範圍之論證基礎未充分辨明，故無從支持或同意大法庭結論；並就累犯成立部分持不同意見</div>
+    <div class="d-opinions">
+
+        <div class="d-op">
+            <div class="d-op-head">
+                <div class="d-op-num">壹</div>
+                <span class="d-op-label">釋字775號僅就「最低」本刑宣告違憲——多數推論超過解釋文文義射程</span>
+            </div>
+            <div class="d-op-body">
+                <p>§47Ⅰ「加重本刑至二分之一」為一律加重效果規定，依§67應<strong>同時加重最高度及最低度</strong>。惟釋字775號解釋文僅指明「一律加重<strong>最低</strong>本刑」於不符合§59要件之情形下，可能致罪刑不相當而違憲；<strong>並未言及</strong>「一律加重<strong>最高</strong>本刑」部分是否有相同違憲情形。</p>
+                <p>大法庭未先釐清本解釋之效力及適用範圍——究係僅止於「最低本刑之加重」？抑或涵及「最高本刑之加重」？復未就其所稱「依釋字775號解釋所揭示，將累犯必加重其刑變更為可裁量事項之意旨」一節，於提案裁定及本件裁定根據解釋文及解釋理由<strong>指出具體出處及獲致此部分結論之理由</strong>。於未充分辨明致基礎適法性不明之情況下所得之結論，<strong>本人無從支持或同意</strong>。</p>
+                <div class="d-op-result">
+                    <strong>要旨：</strong>解釋文明明只鬆綁「最低本刑」，多數意見卻直接把整個累犯加重制度說成「已轉變為可裁量」，這一步推論欠缺明確依據。
+                </div>
+            </div>
+        </div>
+
+        <div class="d-op">
+            <div class="d-op-head">
+                <div class="d-op-num">貳</div>
+                <span class="d-op-label">累犯成立部分——§47Ⅰ未經宣告違憲，法官無裁量空間；前案紀錄表足資審查，另要求舉證徒增訴累</span>
+            </div>
+            <div class="d-op-body">
+                <p>§47Ⅰ乃立法者因犯罪行為人刑罰反應力薄弱、需延長矯正期間助其重返社會並兼顧社會防衛效果，參考日本等國立法例而制定，其立法係經立法程序制定，全體人民均有遵循義務，法官職司依法審判，<strong>無拒卻餘地</strong>。查未宣告§47條成立累犯要件規定違憲之情形，法官既<strong>無裁量空間</strong>，即有<strong>正確適用法律之義務</strong>——累犯成立事實有無，並不以僅由檢察官主張及證明為限。</p>
+                <p>關於如何證明被告成立累犯，實務夙採卷內「臺灣高等法院被告前案紀錄表」為主要依據，且刑事訴訟非採起訴狀一本主義，原已附在警局卷、偵查卷內之嫌疑人前案紀錄，亦隨同卷證移送而為法院職務上所知悉。前案紀錄表核屬<strong>公務員職務上製作之紀錄文書</strong>，法律並未限定其使用之特定項目，其證據能力與證明力，均由法官依法踐行調查後本其心證決定，乃屬<strong>獨立審判範疇</strong>。若捨棄實務上原則無爭議之前案紀錄表，再要求檢察官就成立累犯事實負舉證之責及提出前執行案件之相關執行資料，無異<strong>徒增訴訟上不必要之事項，治絲益棼</strong>，反有礙於訴訟經濟之要求。</p>
+                <div class="d-op-result">
+                    <strong>要旨：</strong>累犯成立要件本身沒有違憲問題，法官本就該依法認定；既有的前案紀錄表機制運作良好，另立一套舉證門檻只是把簡單的事情複雜化。
+                </div>
+            </div>
+        </div>
+
+        <div class="d-op">
+            <div class="d-op-head">
+                <div class="d-op-num">參</div>
+                <span class="d-op-label">比較法觀察——多國累犯／再犯規定繫諸個案判斷，我國§47一律加重之立法相對嚴峻</span>
+            </div>
+            <div class="d-op-body">
+                <p>§47Ⅰ參考日本、瑞士、奧地利、法國等大陸法系立法例而制定。經比較：<strong>日本</strong>刑法§56、§57規定受懲役宣告後5年內再犯者為再犯，加重至該罪名所定懲役最高刑度二倍以下；<strong>瑞士</strong>刑法§67Ⅰ規定法官「<strong>得</strong>」加重其刑期，但不得超過該刑種法定最高刑期；<strong>奧地利</strong>刑法§39Ⅰ須「基於相同之有害傾向，再度犯罪」時「<strong>得</strong>」加重；已刪除之<strong>德國</strong>刑法§48Ⅰ則須依犯罪之種類及情況，堪認<strong>以前科刑對之未收警戒之效</strong>者，始加重。</p>
+                <p>經比較，日本、瑞士、奧地利及對我國刑法制定甚具影響之德國，彼邦關於成立累犯與否，或存在由承辦法官<strong>個案具體判斷裁量</strong>之空間（如刑罰反應、有害傾向、警戒效果等），與我國則<strong>完全取決於客觀上</strong>已符合「徒刑執行完畢後，五年內再故意犯罪」之條件，即一律加重本刑之效果，<strong>截然有別</strong>。相較之下，我國§47條所採累犯之成立條件，<strong>誠屬嚴峻之立法</strong>。</p>
+                <div class="d-op-result">
+                    <strong>要旨：</strong>他國多半保留個案裁量空間，我國卻是「條件一符合就一律加重」，確實較嚴格——但正因如此，調節機制應該從「解釋文的違憲審查範圍」下手，而不是繞道改訴訟程序上的舉證責任分配。
+                </div>
+            </div>
+        </div>
+
+        <div class="d-op">
+            <div class="d-op-head">
+                <div class="d-op-num">肆</div>
+                <span class="d-op-label">正確途徑——應先釐清最高本刑是否同受罪刑相當原則拘束，再依科刑辯論程序決定加重與否</span>
+            </div>
+            <div class="d-op-body">
+                <p>法定刑應受罪刑相當原則之審查，處斷刑乃立法者對符合特定條件者所設總則加重，藉以適度調整法定刑，仍屬法定刑之性質，自應受<strong>同一標準之審查</strong>。既查得加重最低本刑已達行為人所受刑罰超過其應負擔罪責而使人身自由受過苛侵害，論理上，自應認<strong>最高本刑部分亦同時不予加重</strong>，方能使該罪刑度上下界限同時符合罪刑相當、比例原則之合憲要求。</p>
+                <p>本人認若欲達累犯由「應加重」改為「得加重」之效果，可循：①就釋字775號解釋文揭櫫一律加重最低本刑違憲之基礎，推導出「同時一律加重最高本刑」部分亦應有同一原則之適用；②依解釋理由三所指之科刑程序，由當事人就累犯加重其刑、科刑分別依序調查辯論，法院亦得為必要調查後，<strong>再綜合全辯論意旨</strong>妥適決定如何加重其刑（處斷刑部分）及以何刑度為適當（宣告刑部分），其結果可能是①成立累犯並加重其刑，或②成立累犯、不加重其刑。此等疑義未經專家證人或充分爭點辯論即逕予論斷，<strong>本人無從表示同意或支持</strong>。</p>
+                <div class="d-op-result">
+                    <strong>結論：</strong>贊同「累犯加重不宜一律強制」的方向，但反對多數意見「以訴訟程序責任分配取代對解釋文效力範圍之釐清」的論證路徑，認為基礎未穩就下結論，恐生日後裁判違憲之疑慮。
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 考試地雷 -->
+    <div class="trap-box">
+        <div class="trap-title">⚠️ 考試常見地雷</div>
+        <div class="trap-item">
+            <div class="trap-q">Q：本件多數意見的結論是？</div>
+            <div class="trap-a">A：被告構成累犯之事實（前階段）及應加重其刑之事項（後階段），<strong>均應由檢察官主張並具體指出證明方法</strong>後，經法院調查、辯論程序，方得作為論以累犯及是否加重其刑之裁判基礎。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：前階段「累犯事實」與後階段「加重其刑事項」，檢察官各負什麼責任？名稱有何不同？</div>
+            <div class="trap-a">A：前階段（成立累犯）＝<strong>實質舉證責任</strong>（刑訴§161Ⅰ）；後階段（是否加重）＝<strong>說明責任</strong>（即爭點形成責任，屬自由證明即可，非嚴格證明）。兩者責任的強度與性質不同，不要混為一談。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：檢察官單純附上「前案紀錄表」，夠不夠證明累犯事實？</div>
+            <div class="trap-a">A：多數意見：<strong>不夠</strong>。須提出前案確定判決、執行指揮書、執行函文、執行完畢等具體執行資料。前案紀錄表僅供法官參考關聯性、在押情狀之用，非執行完畢之原始資料。（不同意見則認為前案紀錄表本可作為法官心證依據，另要求舉證是治絲益棼。）</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：檢察官都沒主張、沒舉證，法院完全不論累犯，是否等於「應調查而不予調查」的違法？</div>
+            <div class="trap-a">A：不是。多數意見認為此屬檢方承擔舉證不足之訴訟結果，法院不予調查<strong>不算違法</strong>；但相關前科／素行資料仍可能被列入§57⑤「品行」量刑因子，此時依<strong>重複評價禁止</strong>，檢方事後不得再以此指摘原判決未依累犯加重為違法。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：本裁定有無溯及既往效力？判決主文是否須諭知「累犯」？</div>
+            <div class="trap-a">A：①<strong>無溯及既往效力</strong>——裁定宣示前各級法院已踐行之程序及裁判，不因與本裁定不符即得援引為上訴或非常上訴理由。②基於精簡裁判，即使論以累犯，<strong>判決主文均無庸為累犯之諭知</strong>。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：不同意見（林勤純）反對多數意見的核心切入點是什麼？</div>
+            <div class="trap-a">A：質疑<strong>釋字775號的效力範圍</strong>——解釋文僅就「一律加重最低本刑」違憲，未言及「最高本刑」部分；多數意見卻逕以此推論累犯加重已「由必變可裁量」，論證基礎未充分辨明，故對多數結論<strong>無從支持或同意</strong>；另就累犯成立要件本身，主張法官仍有正確適用法律之義務，不以檢方主張證明為限。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：不同意見援引比較法的目的是什麼？結論是否反對「累犯不宜一律加重」的價值判斷？</div>
+            <div class="trap-a">A：目的在指出多國（日、瑞士、奧地利、已刪除之德國）累犯／再犯規定多繫諸個案裁量，我國§47一律加重確屬嚴峻立法——<strong>不同意見並不反對</strong>「累犯加重應有調節機制」的價值判斷，只是主張應循「先釐清最高本刑是否同受罪刑相當原則拘束」的正確法律途徑，而非用訴訟程序責任分配繞過此一釐清。</div>
+        </div>
+    </div>
+
+    <!-- 引用法條 -->
+    <details>
+        <summary>📎 引用法條與比較法整理</summary>
+        <div style="padding: 10px 0 4px;">
+            <div class="ref-case">
+                <div class="ref-case-title">刑法第47條第1項（累犯成立及加重效果）</div>
+                <p style="margin:0;">受徒刑之執行完畢，或一部之執行而赦免後，五年以內故意再犯有期徒刑以上之罪者，為累犯，加重本刑至二分之一。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">刑法第57條第5款（品行）</div>
+                <p style="margin:0;">科刑時應審酌一切情狀，尤應注意犯罪行為人之品行等款事項，為量刑輕重之標準（多數意見認累犯前科資料可於此項下作負面評價）。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">刑事訴訟法第161條第1項、第163條第2項、第289條第2項</div>
+                <p style="margin:0;">§161Ⅰ檢察官就被告犯罪事實應負舉證責任並指出證明方法；§163Ⅱ法院為發見真實得依職權調查證據，但於公平正義維護或對被告利益有重大關係事項應依職權調查；§289Ⅱ辯論後應就科刑範圍另行辯論，並予告訴人等表示意見機會。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">司法院釋字第775號解釋</div>
+                <p style="margin:0;">認§47Ⅰ累犯不分情節一律加重「最低」本刑部分，於不符§59要件情形下致罪刑不相當者，違反罪刑相當原則及比例原則；法院就個案應依解釋意旨裁量是否加重最低本刑。</p>
+            </div>
+            <div class="ref-case d">
+                <div class="ref-case-title">比較法一覽（不同意見援引）</div>
+                <p style="margin:0;">日本刑法§56/§57（懲役宣告後5年內再犯，加重至最高刑二倍以下）；瑞士刑法§67Ⅰ（法官「得」加重，不逾法定最高刑）；奧地利刑法§39Ⅰ（基於相同有害傾向再度犯罪，「得」加重至最高刑度1/2）；已刪除之德國刑法§48（須堪認前科刑未收警戒之效，始加重）；法國刑法§132-8～§132-11（依犯罪類型分別規定不同加重標準）。</p>
+            </div>
+        </div>
+    </details>
+
+    <!-- 法官名單 -->
+    <div class="section-heading">大法庭組成（11人）</div>
+    <div class="judges-grid">
+        <span class="judge-chip chief">審判長 吳燦</span>
+        <span class="judge-chip">郭毓洲</span>
+        <span class="judge-chip">林立華</span>
+        <span class="judge-chip">徐昌錦</span>
+        <span class="judge-chip">段景榕</span>
+        <span class="judge-chip">李英勇</span>
+        <span class="judge-chip">李錦樑</span>
+        <span class="judge-chip dissenter">林勤純（不同意見）</span>
+        <span class="judge-chip">梁宏哲</span>
+        <span class="judge-chip">何信慶</span>
+        <span class="judge-chip">邱忠義</span>
+    </div>
+    <p style="font-size:0.78em;color:var(--sub);margin:10px 0 0;">提案庭：最高法院原刑事第八庭（現第七庭）　｜　本案案號：110年度台上字第5660號　｜　提案裁定案號：110年度台上大字第5660號　｜　裁定日：中華民國111年4月27日</p>
+
+    <div class="note-toggle" onclick="toggleNote('n1')">✏️ 我的小結</div>
+    <div class="note-area" id="n1">
+        <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n1',this.value)"></textarea>
+        <div class="note-saved" id="n1-saved"></div>
+    </div>
+</div>
+
+<!-- ===== 快問快答卡片 ===== -->
+<div class="card" id="case2" data-kw="快問快答 累犯 釋字775 舉證責任 說明責任 前案紀錄表 品行 重複評價禁止 精簡裁判 比較法">
+    <button class="star-btn" onclick="toggleStar('case2',this)">⭐</button>
+    <h2 class="card-title">快問快答——本件核心概念與答題要點</h2>
+    <div class="meta-line">建議先蓋住答案，自己回答後再確認</div>
+
+    <div class="quiz-list">
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>本件的事實爭點是什麼？（一句話）</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">起訴書未主張累犯、檢察官審理中也沒具體舉證，法院卻自行認定成立累犯並加重其刑——這樣可以嗎？</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>【核心】多數意見把責任拆成哪兩階段？各自的責任名稱是什麼？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">前階段「累犯事實是否成立」＝檢察官負「實質舉證責任」；後階段「是否加重其刑」＝檢察官負「說明責任」（爭點形成責任）。兩者均須先由檢方主張並具體指出證明方法，法院才進行調查辯論。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>為什麼多數意見認為「累犯事實」不屬於法院應依職權調查的範圍？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">刑訴§163Ⅱ但書「公平正義之維護」應目的性限縮解釋為以「利益」於被告之事項為限。累犯事實對被告不利，屬個人加重刑罰之前提事實，與實體公平正義維護無直接密切關聯，故非法院應主動調查之範圍，法院只能在檢方舉證後仍真偽不明時補充性調查。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>檢察官完全沒主張、沒舉證，法院不論累犯，是否構成「應調查而未調查」的違法？後續會有什麼限制？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">不構成違法（屬檢方承擔舉證不足的訴訟結果）。但相關前科資料仍可能被列為§57⑤「品行」量刑因子而受負面評價；此時依重複評價禁止原則，檢方事後不得再以「未依累犯加重」為由提起上訴指摘原判決違法。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>【核心】不同意見（林勤純）反對的關鍵切入點是什麼？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">質疑釋字775號的效力範圍——解釋文只針對「一律加重最低本刑」宣告違憲，並未論及「一律加重最高本刑」是否同樣違憲；多數意見卻直接推論累犯加重已「由必加重變為可裁量」，缺乏充分依據，故對多數結論無從支持或同意。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>不同意見對「累犯成立部分」（不是加重部分）的立場是什麼？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">認為§47Ⅰ累犯成立要件本身未經釋字775號宣告違憲，法官無裁量空間，仍有正確適用法律之義務，成立事實有無不以檢方主張證明為限；且實務原有的「前案紀錄表」機制已足資審查，另要求檢方額外舉證執行資料只是徒增訴累、有礙訴訟經濟。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>不同意見認為若真要把累犯「應加重」改為「得加重」，正確途徑是什麼？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">應先論證「一律加重最高本刑」是否也和最低本刑一樣違反罪刑相當原則及比例原則（因為處斷刑仍屬法定刑性質，應受同一標準審查）；再依解釋理由三所示科刑程序，由當事人就加重其刑、科刑分別調查辯論，法院綜合辯論意旨決定是否加重及加重幅度——而非直接跳過解釋範圍的釐清、逕用訴訟程序責任分配處理。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>本裁定是否溯及既往？判決主文要不要寫「累犯」？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">不溯及既往——裁定宣示前各級法院已踐行之程序與裁判，不因與本裁定意旨不符即可援引為上訴或非常上訴理由。且基於精簡裁判，即使論以累犯，判決主文均無庸另為累犯之諭知。</div>
+        </div>
+    </div>
+
+    <div class="note-toggle" onclick="toggleNote('n2')">✏️ 我的小結</div>
+    <div class="note-area" id="n2">
+        <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n2',this.value)"></textarea>
+        <div class="note-saved" id="n2-saved"></div>
+    </div>
+</div>
+
+<div id="noResults">查無符合的內容，請試試其他關鍵字。</div>
+<div id="noStarred">還沒有收藏的項目，點卡片右上角的 ⭐ 加入收藏。</div>
+</div>
+
+<script>
+const NIGHT_KEY='night_mode_pref';
+function toggleNight(){const on=document.body.classList.toggle('night-mode');localStorage.setItem(NIGHT_KEY,on?'1':'0');document.getElementById('nightBtn').textContent=on?'☀️':'🌙';}
+(function(){if(localStorage.getItem(NIGHT_KEY)==='1'){document.body.classList.add('night-mode');const b=document.getElementById('nightBtn');if(b)b.textContent='☀️';}})();
+const STORE_KEY='110_5660_grand_notes',STAR_KEY='110_5660_grand_stars';
+function loadNotes(){try{return JSON.parse(localStorage.getItem(STORE_KEY))||{};}catch{return{};}}
+function loadStars(){try{return JSON.parse(localStorage.getItem(STAR_KEY))||{};}catch{return{};}}
+function saveAllNotes(d){localStorage.setItem(STORE_KEY,JSON.stringify(d));}
+function saveAllStars(d){localStorage.setItem(STAR_KEY,JSON.stringify(d));}
+(function(){const n=loadNotes(),s=loadStars();
+  Object.entries(n).forEach(([id,v])=>{const a=document.getElementById(id);if(!a)return;const t=a.querySelector('textarea');if(t)t.value=v;if(v)a.classList.add('open');});
+  Object.entries(s).forEach(([id,v])=>{if(!v)return;const b=document.querySelector(`#${id} .star-btn`);if(b)b.classList.add('starred');});
+})();
+function toggleStar(id,btn){const s=loadStars();const now=!btn.classList.contains('starred');btn.classList.toggle('starred',now);s[id]=now;saveAllStars(s);if(filterActive)applyFilter();}
+let filterActive=false;
+function toggleFilter(){filterActive=!filterActive;document.getElementById('filterBtn').classList.toggle('active',filterActive);document.getElementById('searchInput').value='';clearSearchHighlights();updateSearchUI([],0);applyFilter();}
+function applyFilter(){const s=loadStars();const q=document.getElementById('searchInput').value.trim().toLowerCase();let any=false;
+  document.querySelectorAll('.card').forEach(c=>{const kw=(c.dataset.kw||'').toLowerCase();const txt=c.textContent.toLowerCase();
+  const ms=!q||kw.includes(q)||txt.includes(q);const mf=!filterActive||!!s[c.id];const show=ms&&mf;
+  c.classList.toggle('hidden',!show);if(show)any=true;});
+  document.getElementById('noResults').style.display=(!any&&!filterActive)?'block':'none';
+  document.getElementById('noStarred').style.display=(!any&&filterActive)?'block':'none';}
+let _matches=[],_cur=-1;
+function clearSearchHighlights(){document.querySelectorAll('mark.search-hl').forEach(m=>{const p=m.parentNode;p.replaceChild(document.createTextNode(m.textContent),m);p.normalize();});}
+function highlightInNode(node,re){if(node.nodeType===3){const text=node.nodeValue;const frag=document.createDocumentFragment();let last=0,m;re.lastIndex=0;while((m=re.exec(text))!==null){if(m.index>last)frag.appendChild(document.createTextNode(text.slice(last,m.index)));const mk=document.createElement('mark');mk.className='search-hl';mk.textContent=m[0];frag.appendChild(mk);last=re.lastIndex;}if(last===0)return;frag.appendChild(document.createTextNode(text.slice(last)));node.parentNode.replaceChild(frag,node);return;}if(node.nodeType===1){const tag=node.tagName;if(tag==='SCRIPT'||tag==='STYLE'||tag==='TEXTAREA'||tag==='INPUT')return;if(node.classList&&node.classList.contains('search-hl'))return;[...node.childNodes].forEach(c=>highlightInNode(c,re));}}
+function doSearch(q){clearSearchHighlights();_matches=[];_cur=-1;const qt=(q||'').trim();if(!qt){updateSearchUI([],0);applyFilter();return;}applyFilter();const esc=qt.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');const re=new RegExp(esc,'gi');document.querySelectorAll('.container .card:not(.hidden)').forEach(card=>{highlightInNode(card,re);});_matches=[...document.querySelectorAll('mark.search-hl')];if(_matches.length){_cur=0;setCurrent(0);}updateSearchUI(_matches,_cur);}
+function setCurrent(idx){_matches.forEach((m,i)=>m.classList.toggle('current',i===idx));if(_matches[idx])_matches[idx].scrollIntoView({behavior:'smooth',block:'center'});}
+function navMatch(dir){if(!_matches.length)return;_cur=(_cur+dir+_matches.length)%_matches.length;setCurrent(_cur);updateSearchUI(_matches,_cur);}
+function updateSearchUI(matches,cur){const cnt=document.getElementById('searchCount');const prev=document.getElementById('prevBtn');const next=document.getElementById('nextBtn');if(!matches.length){cnt.textContent='';prev.disabled=true;next.disabled=true;return;}cnt.textContent=(cur+1)+'/'+matches.length;prev.disabled=false;next.disabled=false;}
+function handleSearchKey(e){if(e.key==='Enter'){e.shiftKey?navMatch(-1):navMatch(1);}if(e.key==='Escape'){document.getElementById('searchInput').value='';doSearch('');}}
+function toggleNote(id){document.getElementById(id).classList.toggle('open');}
+const timers={};
+function saveNote(id,v){clearTimeout(timers[id]);timers[id]=setTimeout(()=>{const n=loadNotes();n[id]=v;saveAllNotes(n);const el=document.getElementById(id+'-saved');if(el){el.textContent='已儲存';setTimeout(()=>el.textContent='',1500);}},500);}
+let savedRange=null;
+document.addEventListener('selectionchange',()=>{const s=window.getSelection();if(s&&!s.isCollapsed&&s.rangeCount)savedRange=s.getRangeAt(0).cloneRange();});
+function highlightText(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;
+  if(!r||r.collapsed){alert('💡 請先反白想要標記的文字');return;}
+  const sp=document.createElement('span');sp.className='hl';sp.style.cssText='background:#f0d98a;border-radius:2px;';
+  try{r.surroundContents(sp);savedRange=null;}catch{alert('💡 請選取同一段落內的文字');}s&&s.removeAllRanges();}
+function removeHighlight(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;
+  if(!r||r.collapsed){alert('💡 請先反白想擦除標記的文字');return;}
+  const anc=r.commonAncestorContainer.nodeType===1?r.commonAncestorContainer:r.commonAncestorContainer.parentElement;
+  anc.querySelectorAll('span.hl').forEach(sp=>{if(r.intersectsNode(sp)){const p=sp.parentNode;while(sp.firstChild)p.insertBefore(sp.firstChild,sp);p.removeChild(sp);}});
+  savedRange=null;s&&s.removeAllRanges();}
+function clearHighlights(){const sp=document.querySelectorAll('span.hl');if(!sp.length)return;
+  if(confirm('確定要清除所有重點標記嗎？')){sp.forEach(s=>{const p=s.parentNode;while(s.firstChild)p.insertBefore(s.firstChild,s);p.removeChild(s);});}}
+function openExport(){
+  let out='最高法院刑事大法庭 110年度台上大字第5660號\n'+'═'.repeat(44)+'\n\n';
+  out+='【主文】\n被告構成累犯之事實及應加重其刑之事項，均應由檢察官主張並具體指出證明之方法後，經法院踐行調查、辯論程序，方得作為論以累犯及是否加重其刑之裁判基礎。\n\n';
+  document.querySelectorAll('.op,.d-op').forEach(op=>{
+    const head=op.querySelector('.op-label,.d-op-label')?.textContent.trim()||'';
+    out+=`▌${head}\n`;
+    op.querySelectorAll('.op-body p,.op-body li,.op-result,.d-op-body p,.d-op-body li,.d-op-result').forEach(el=>{
+      const t=el.textContent.trim();if(t)out+=(el.tagName==='LI'?'  • ':'')+t+'\n';});
+    out+='\n';});
+  const tas=document.querySelectorAll('.note-textarea');tas.forEach((ta,i)=>{if(ta&&ta.value.trim())out+=`✏️ 小結${i+1}：\n`+ta.value.trim()+'\n\n';});
+  out+='═'.repeat(44)+'\n';
+  const b=new Blob([out.trim()],{type:'text/plain;charset=utf-8'});
+  const u=URL.createObjectURL(b);const a=document.createElement('a');
+  a.href=u;a.download='110台上大字第5660號_累犯應由檢方主張並指出證明方法.txt';a.click();URL.revokeObjectURL(u);}
+function toggleQuiz(el){const ans=el.nextElementSibling;const tog=el.querySelector('.quiz-toggle');if(ans.classList.contains('open')){ans.classList.remove('open');tog.textContent='＋';}else{ans.classList.add('open');tog.textContent='－';}}
+const REG_KEY='exam_completion_registry';
+function _loadReg(){try{return JSON.parse(localStorage.getItem(REG_KEY))||{};}catch{return{};}}
+function _saveReg(r){try{localStorage.setItem(REG_KEY,JSON.stringify(r));}catch{}}
+function _file(){const p=location.pathname.split('/');return decodeURIComponent(p[p.length-1]||'');}
+function _fmt(ts){const d=new Date(ts);const date=(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();const time=d.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false});return date+' '+time;}
+function _updateDate(){const r=_loadReg();const k=_file()||'case_criminal_grand_110_5660.html';const l=document.getElementById('doneDateLabel');if(!l)return;l.textContent=(r[k]&&r[k].done&&r[k].ts)?_fmt(r[k].ts):'';}
+function toggleDone(){const btn=document.getElementById('doneBtn');const r=_loadReg();const k=_file()||'case_criminal_grand_110_5660.html';const done=r[k]&&r[k].done;
+  if(done){delete r[k];_saveReg(r);btn.classList.remove('active');}
+  else{const now=new Date();r[k]={done:true,ts:now.getTime()};_saveReg(r);btn.classList.add('active');}
+  _updateDate();}
+(function(){const r=_loadReg();const k=_file()||'case_criminal_grand_110_5660.html';if(r[k]&&r[k].done){const b=document.getElementById('doneBtn');if(b)b.classList.add('active');}_updateDate();})();
+</script>
+</body>
+</html>
