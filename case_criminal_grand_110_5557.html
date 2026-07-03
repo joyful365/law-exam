@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>110年度台上大字第5557號 刑事大法庭裁定</title>
+    <style>
+        :root {
+            --bg:       #eef0f3;
+            --card:     #ffffff;
+            --text:     #1a1a1a;
+            --sub:      #8a9ab0;
+            --line:     #e4e7ec;
+            --majority: #1a365d;
+            --law:      #1a365d;
+            --dissent:  #a67c2e;
+            --trap:     #f9f7f0;
+            --header-bg:#1a365d;
+        }
+        body.night-mode {
+            --bg:       #13151a;
+            --card:     #1c1f27;
+            --text:     #d4d8e0;
+            --sub:      #5a6880;
+            --line:     #2a2e3a;
+            --majority: #7ea8d8;
+            --law:      #7ea8d8;
+            --dissent:  #c4935a;
+            --trap:     #1e1c14;
+            --header-bg:#0d1117;
+        }
+        body.night-mode header { box-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        body.night-mode .top-bar { background: #1c1f27; }
+        body.night-mode .top-btn { background: #2e3340; color: #b0b8c8; }
+        body.night-mode .top-btn.done { background: #2a2e3a; color: #7a8898; }
+        body.night-mode .fact-box { background: #1e1c14; border-left-color: #8a6820; }
+        body.night-mode .issue-box, body.night-mode .flow-box { background: #20232d; }
+        body.night-mode .op-head { background: #20232d; }
+        body.night-mode .op-body { background: var(--card); }
+        body.night-mode .op-result { background: #161a24; border-left-color: #3a5a8a; }
+        body.night-mode .d-op-head { background: #261f14; }
+        body.night-mode .d-op-body { background: #201c14; }
+        body.night-mode .d-op-result { background: #261f14; }
+        body.night-mode .dissent-judges { background: #261f14; }
+        body.night-mode .compare-table th.th-issue { background: #262a31; }
+        body.night-mode .compare-table td.td-issue { background: #262a31; }
+        body.night-mode .compare-table td.td-majority { background: #161c24; }
+        body.night-mode .compare-table td.td-dissent { background: #1e1814; }
+        @media (max-width: 640px) {
+            body.night-mode .compare-table td.td-issue { background: #262a31; }
+            body.night-mode .compare-table td.td-majority { background: #161c24; }
+            body.night-mode .compare-table td.td-dissent { background: #1e1814; }
+        }
+        body.night-mode .ref-case { background: #20232d; border-left-color: #3a5a8a; }
+        body.night-mode .law-ref { background: #1c1f27; border-left-color: #3a5a8a; }
+        body.night-mode .note-textarea { background: #161a24; color: var(--text); border-color: var(--line); }
+        body.night-mode .judge-chip { background: #20232d; border-color: #2e3340; }
+        body.night-mode .judge-chip.chief { background: #0d1a2e; color: #9abcd8; border-color: #1a3a60; }
+        body.night-mode mark.search-hl { background: #7a5a00; color: #ffe090; }
+        body.night-mode mark.search-hl.current { background: #c07800; color: #fff; }
+        body.night-mode .verdict { background: #0d1a2e; }
+        body.night-mode .trap-box { border-color: #5a5020; }
+        body.night-mode .trap-title { color: #c8a840; }
+        body.night-mode .trap-item { border-left-color: #7a6830; }
+        body.night-mode #nightBtn { background: #3a4250; color: #cfe0f4; font-weight: 700; }
+        body.night-mode .quiz-q { background: var(--card); }
+        body.night-mode .quiz-q:hover { background: #20232d; }
+        body.night-mode .quiz-a { background: #161a24; color: #9abcd8; }
+        body.night-mode .flow-arrow { color: #a8b6c8; }
+        body.night-mode .compare-table td.td-issue, body.night-mode .compare-table th.th-issue { color: #9fb3d0; }
+        body { transition: background 0.3s, color 0.3s; }
+        .card { transition: background 0.3s, border-color 0.3s; }
+
+        * { box-sizing: border-box; }
+        body { font-family: "Helvetica Neue", Helvetica, "PingFang TC", "LiHei Pro", "Microsoft JhengHei", sans-serif;
+               background: var(--bg); color: var(--text); line-height: 1.85; font-size: 16px; margin: 0; padding: 0 0 60px; }
+
+        header { background: var(--header-bg); color: #ffffff; padding: 16px 16px 8px; text-align: center;
+                 position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+        header h1 { margin: 0 0 10px; font-size: 1.05em; line-height: 1.5; font-weight: 600; letter-spacing: 0.02em; color: #ffffff; }
+        .header-controls { display: flex; gap: 8px; align-items: center; }
+        .search-wrap { position: relative; flex: 1; display: flex; align-items: center; gap: 4px; }
+        #searchInput { flex: 1; padding: 8px 14px 8px 32px; border: none; border-radius: 6px;
+                       font-size: 14px; background: rgba(255,255,255,0.13); color: #ffffff; outline: none; }
+        #searchInput::placeholder { color: rgba(255,255,255,0.5); }
+        #searchInput:focus { background: rgba(255,255,255,0.22); }
+        .search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 13px; opacity: 0.55; pointer-events: none; }
+        .search-count { font-size: 12px; color: rgba(255,255,255,0.65); white-space: nowrap; min-width: 44px; text-align: center; }
+        .search-nav { background: rgba(255,255,255,0.15); border: none; border-radius: 6px; color: white; font-size: 13px; padding: 6px 8px; cursor: pointer; line-height: 1; }
+        .search-nav:hover { background: rgba(255,255,255,0.28); }
+        .search-nav:disabled { opacity: 0.3; cursor: default; }
+        mark.search-hl { background: #ffe066; color: #1a1a1a; border-radius: 2px; padding: 0 1px; }
+        mark.search-hl.current { background: #ff9500; color: #fff; border-radius: 3px; outline: 2px solid #ff9500; }
+        #filterBtn { background: rgba(255,255,255,0.13); border: none; border-radius: 6px;
+                     color: #ffffff; font-size: 13px; padding: 8px 12px; cursor: pointer; white-space: nowrap; }
+        #filterBtn.active { background: #c9a84c; color: #1a365d; font-weight: bold; }
+        .top-bar { background: #dde0e5; padding: 5px 14px; display: flex; gap: 6px; justify-content: flex-end; flex-wrap: nowrap; }
+        .top-btn { background: #5a6375; color: #fff; border: none; padding: 4px 10px; border-radius: 20px;
+                   font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap; transition: opacity 0.15s; }
+        .top-btn:hover { opacity: 0.85; }
+        .top-btn.done { background: #a0a8b4; color: #1a2a3a; }
+        .top-btn.done.active { background: linear-gradient(135deg, #7a5c00, #a07820); color: #fff3c4; font-weight: 700; box-shadow: 0 0 8px rgba(160,120,32,0.5); }
+        .done-date { font-size: 11px; color: #8a9ab0; white-space: nowrap; align-self: center; font-weight: 500; }
+
+        .container { padding: 18px 16px; max-width: 640px; margin: 0 auto; }
+        @media (min-width: 768px) { .container { max-width: 880px; padding: 24px 20px; } body { font-size: 17px; } header h1 { font-size: 1.15em; } }
+        .card { background: var(--card); border-radius: 14px; padding: 24px 22px; margin-bottom: 24px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.06); position: relative; border: 1px solid var(--line); }
+        .card.hidden { display: none; }
+        .star-btn { position: absolute; top: 18px; right: 18px; background: none; border: none; font-size: 20px;
+                    cursor: pointer; opacity: 0.18; transition: opacity 0.15s; padding: 0; }
+        .star-btn.starred { opacity: 1; }
+        .card-title { color: var(--majority); font-size: 1.15em; font-weight: 700; margin: 0 0 4px; padding-right: 30px; line-height: 1.6; }
+        .meta-line { font-size: 0.75em; color: var(--sub); margin-bottom: 20px; letter-spacing: 0.04em; }
+
+        .verdict { background: #1a365d; color: #ffffff; border-radius: 10px; padding: 16px 18px; margin-bottom: 22px; }
+        .verdict-label { font-size: 0.66em; letter-spacing: 0.14em; opacity: 0.55; margin-bottom: 6px; }
+        .verdict-main { font-size: 1.05em; font-weight: 700; line-height: 1.6; margin-bottom: 10px; color: #ffffff; }
+        .verdict-sub { font-size: 0.88em; opacity: 0.8; line-height: 1.65; margin-bottom: 10px; }
+        .vote-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 12px; padding-top: 10px;
+                    border-top: 1px solid rgba(255,255,255,0.15); }
+        .v-chip { font-size: 0.72em; background: rgba(255,255,255,0.12); border-radius: 20px;
+                  padding: 3px 10px; white-space: nowrap; color: rgba(255,255,255,0.8); }
+        .v-chip.majority { background: rgba(255,255,255,0.28); color: #fff; font-weight: 700; }
+        .v-chip.dissent-c { background: rgba(201,168,76,0.5); color: #fff; }
+
+        .section-heading { font-size: 0.85em; font-weight: 700; letter-spacing: 0.08em;
+                           color: var(--sub); margin: 22px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--line); }
+
+        .fact-box { background: #f9f7f0; border-left: 4px solid #c9a84c; border-radius: 0 8px 8px 0;
+                    padding: 14px 16px; margin-bottom: 16px; font-size: 0.9em; }
+        .fact-box p { margin: 0 0 8px; }
+        .fact-box p:last-child { margin: 0; }
+
+        .issue-box { background: #f5f6f8; border-radius: 8px; padding: 14px 16px; margin-bottom: 16px;
+                     font-size: 0.9em; border: 1px solid var(--line); }
+        .issue-box p { margin: 0 0 8px; }
+        .issue-box p:last-child { margin: 0; }
+
+        /* 概念流程圖 */
+        .flow-box { background: #f5f6f8; border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; margin-bottom: 18px; font-size: 0.87em; }
+        .flow-step { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; }
+        .flow-num { width: 22px; height: 22px; border-radius: 50%; background: var(--majority); color: #fff; font-size: 0.72em; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+        .flow-arrow { text-align: center; color: #4a5568; font-size: 1.1em; font-weight: 600; margin-bottom: 4px; }
+
+        .opinions { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+        .op { border-radius: 8px; overflow: hidden; border: 1px solid var(--line); }
+        .op-head { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #f5f6f8; }
+        .op-num { width: 26px; height: 26px; border-radius: 50%; background: var(--majority); color: white;
+                  font-size: 0.75em; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .op-label { font-weight: 700; font-size: 0.92em; color: var(--majority); flex: 1; }
+        .op-body { padding: 13px 15px; font-size: 0.9em; background: var(--card); }
+        .op-body p { margin: 0 0 9px; }
+        .op-body p:last-child { margin: 0; }
+        .op-body ul { margin: 5px 0 8px; padding-left: 18px; }
+        .op-body li { margin-bottom: 5px; }
+        .op-result { background: #f0f3f8; border-radius: 6px; padding: 10px 13px; margin-top: 10px;
+                     font-size: 0.9em; border-left: 3px solid var(--majority); }
+
+        .d-opinions { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+        .d-op { border-radius: 8px; overflow: hidden; border: 1px solid #e6d8bc; }
+        .d-op-head { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #fdf7ec; }
+        .d-op-num { width: 26px; height: 26px; border-radius: 50%; background: var(--dissent); color: white;
+                    font-size: 0.75em; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .d-op-label { font-weight: 700; font-size: 0.92em; color: var(--dissent); flex: 1; }
+        .d-op-body { padding: 13px 15px; font-size: 0.9em; background: #fffdf8; }
+        .d-op-body p { margin: 0 0 9px; }
+        .d-op-body p:last-child { margin: 0; }
+        .d-op-body ul { margin: 5px 0 8px; padding-left: 18px; }
+        .d-op-body li { margin-bottom: 5px; }
+        .d-op-result { background: #fdf7ec; border-radius: 6px; padding: 10px 13px; margin-top: 10px;
+                       font-size: 0.9em; border-left: 3px solid var(--dissent); }
+        .dissent-judges { font-size: 0.82em; color: var(--dissent); margin-bottom: 12px;
+                          padding: 8px 12px; background: #fdf7ec; border-radius: 6px; border-left: 3px solid var(--dissent); }
+
+        .compare-table { width: 100%; border-collapse: collapse; margin-bottom: 18px; font-size: 0.88em; }
+        .compare-table th { padding: 10px 13px; font-weight: 700; font-size: 0.85em; letter-spacing: 0.05em; }
+        .compare-table th.th-issue { background: #dde0e5; color: #3d4d68; width: 22%; border-radius: 6px 0 0 0; }
+        .compare-table th.th-majority { background: var(--majority); color: #fff; width: 39%; }
+        .compare-table th.th-dissent { background: var(--dissent); color: #fff; width: 39%; border-radius: 0 6px 0 0; }
+        .compare-table td { padding: 11px 13px; vertical-align: top; border-bottom: 1px solid var(--line); line-height: 1.65; }
+        .compare-table td.td-issue { background: #eef1f6; font-weight: 700; font-size: 0.87em; color: #3d4d68; }
+        .compare-table td.td-majority { background: #f4f7fb; border-left: 2px solid var(--majority); }
+        .compare-table td.td-dissent { background: #fdf8f4; border-left: 2px solid var(--dissent); }
+        .compare-table tr:last-child td { border-bottom: none; }
+        .compare-table tr:last-child td.td-issue { border-radius: 0 0 0 6px; }
+        .compare-table tr:last-child td.td-dissent { border-radius: 0 0 6px 0; }
+        @media (max-width: 640px) {
+            .compare-table thead { display: none; }
+            .compare-table, .compare-table tbody { display: block; }
+            .compare-table tr { display: block; margin-bottom: 14px; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+            .compare-table td.td-issue { display: block; width: 100%; background: #dde0e5; padding: 8px 14px; font-size: 0.85em; font-weight: 700; color: #3d4d68; border-bottom: none; border-left: none !important; }
+            .compare-table td.td-majority, .compare-table td.td-dissent { display: inline-block; width: 50%; vertical-align: top; box-sizing: border-box; padding: 10px 11px; border-bottom: none; font-size: 0.83em; line-height: 1.6; border-left: none !important; border-top: none; }
+            .compare-table td.td-majority { border-right: 1px solid var(--line); border-top: 3px solid var(--majority); }
+            .compare-table td.td-dissent { border-top: 3px solid var(--dissent); }
+            .compare-table td.td-majority::before { content: "多數"; display: block; margin-bottom: 5px; font-size: 0.78em; font-weight: 700; color: var(--majority); letter-spacing: 0.05em; }
+            .compare-table td.td-dissent::before { content: "不同"; display: block; margin-bottom: 5px; font-size: 0.78em; font-weight: 700; color: var(--dissent); letter-spacing: 0.05em; }
+        }
+
+        .trap-box { background: var(--trap); border-radius: 8px; padding: 14px 16px; margin-bottom: 16px;
+                    border: 1px solid #e0d8b0; font-size: 0.9em; }
+        .trap-title { font-weight: 700; color: #7a6820; margin-bottom: 10px; font-size: 0.92em; display: flex; align-items: center; gap: 6px; }
+        .trap-item { margin-bottom: 10px; padding-left: 14px; border-left: 2px solid #c8b860; }
+        .trap-item:last-child { margin-bottom: 0; }
+        .trap-q { font-weight: 700; color: var(--text); margin-bottom: 3px; }
+        .trap-a { color: var(--text); opacity: 0.85; }
+
+        .law-ref { background: #f0f2f5; border-radius: 8px; padding: 10px 14px; font-size: 0.84em;
+                   color: #4a5568; margin-top: 14px; border-left: 3px solid var(--law); }
+
+        details { margin-top: 16px; }
+        details summary { cursor: pointer; color: var(--sub); font-size: 0.84em; font-weight: 600;
+                          padding: 5px 0; user-select: none; list-style: none; display: flex; align-items: center; gap: 6px; }
+        details summary::before { content: '▶'; font-size: 0.62em; transition: transform 0.2s; color: var(--sub); }
+        details[open] summary::before { transform: rotate(90deg); }
+        .ref-case { background: #f5f6f8; border-radius: 7px; padding: 10px 13px; margin-bottom: 8px;
+                    font-size: 0.84em; border-left: 3px solid var(--majority); }
+        .ref-case.d { border-left-color: var(--dissent); }
+        .ref-case-title { font-weight: 700; color: var(--majority); margin-bottom: 3px; font-size: 0.9em; }
+        .ref-case.d .ref-case-title { color: var(--dissent); }
+
+        .note-toggle { display: inline-block; margin-top: 14px; font-size: 0.8em; color: #b0b8c4; cursor: pointer; user-select: none; }
+        .note-toggle:hover { color: var(--majority); }
+        .note-area { display: none; margin-top: 8px; }
+        .note-area.open { display: block; }
+        .note-textarea { width: 100%; min-height: 68px; border: 1px solid var(--line); border-radius: 7px;
+                         padding: 10px 12px; font-size: 0.87em; font-family: inherit; color: var(--text);
+                         background: #fafbfc; resize: vertical; outline: none; line-height: 1.75; }
+        .note-textarea:focus { border-color: var(--majority); }
+        .note-textarea::placeholder { color: #ccc; }
+        .note-saved { font-size: 0.72em; color: #68a06a; text-align: right; height: 14px; margin-top: 2px; }
+
+        .judges-grid { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+        .judge-chip { font-size: 0.77em; background: #eef1f6; border-radius: 20px; padding: 3px 11px;
+                      color: #3a4a6a; border: 1px solid #d8dde8; }
+        .judge-chip.chief { background: var(--majority); color: #fff; font-weight: 700; border-color: var(--majority); }
+        .judge-chip.dissenter { background: var(--dissent); color: #fff; font-weight: 600; border-color: var(--dissent); }
+
+        .quiz-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 0; }
+        .quiz-item { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+        .quiz-q { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;
+                  padding: 11px 14px; cursor: pointer; font-size: 0.9em; background: var(--card); }
+        .quiz-q:hover { background: #f5f6f8; }
+        .quiz-toggle { font-size: 1.1em; color: var(--majority); flex-shrink: 0; font-weight: 300; line-height: 1.4; }
+        .quiz-a { display: none; padding: 11px 14px; background: #f0f3f8; font-size: 0.87em;
+                  line-height: 1.75; border-top: 1px solid var(--line); color: #1a365d; }
+        .quiz-a.open { display: block; }
+
+        #noResults, #noStarred { display: none; text-align: center; color: var(--sub); padding: 40px 0; font-size: 0.9em; }
+        ::-webkit-scrollbar { display: none; }
+        ::selection { background: #c8d8ef; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>最高法院刑事大法庭<br>110年度台上大字第5557號</h1>
+    <div class="header-controls">
+        <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="搜尋關鍵字、法條…" oninput="doSearch(this.value)" onkeydown="handleSearchKey(event)">
+            <span class="search-count" id="searchCount"></span>
+            <button class="search-nav" id="prevBtn" onclick="navMatch(-1)" disabled title="上一個">▲</button>
+            <button class="search-nav" id="nextBtn" onclick="navMatch(1)" disabled title="下一個">▼</button>
+        </div>
+        <button id="filterBtn" onclick="toggleFilter()">⭐ 收藏</button>
+    </div>
+    <div class="top-bar">
+        <button class="top-btn" onclick="highlightText()">🖊️</button>
+        <button class="top-btn" onclick="removeHighlight()">🧽</button>
+        <button class="top-btn" onclick="clearHighlights()">🗑️</button>
+        <button class="top-btn" onclick="openExport()">📤</button>
+        <button class="top-btn" id="nightBtn" onclick="toggleNight()">🌙</button>
+        <button class="top-btn done" id="doneBtn" onclick="toggleDone()">朕已閱</button>
+        <span class="done-date" id="doneDateLabel"></span>
+    </div>
+</header>
+
+<div class="container">
+
+<!-- ===== 主裁定卡片 ===== -->
+<div class="card" id="case1" data-kw="110台上大5557 屬地原則 屬人原則 刑法第5條至第7條 領域外犯罪 香港澳門 港澳關係條例 加重詐欺 刑法第2條第1項 從舊從輕 訴訟障礙 不受理判決 無審判權 刑事訴訟法第303條第6款 行為不罰 蘇柏誠 加重詐欺罪">
+    <button class="star-btn" onclick="toggleStar('case1',this)">⭐</button>
+    <h2 class="card-title">
+        國人在境外犯我國刑法無管轄之罪——是「無罪（行為不罰）」還是「不受理（無審判權）」？
+    </h2>
+    <div class="meta-line">裁定日期：中華民國111年5月18日　｜　案號：110年度台上大字第5557號　｜　提案庭：原刑事第五庭（現第九庭）　｜　全體一致・無不同意見書</div>
+
+    <!-- 主文 -->
+    <div class="verdict">
+        <div class="verdict-label">大法庭主文</div>
+        <div class="verdict-main">中華民國人民被訴在中華民國領域外（<strong>含香港與澳門</strong>）涉犯刑法第5條至第7條<strong>以外</strong>之罪，而<strong>無我國刑法之適用</strong>時，法院應依刑事訴訟法第303條第6款規定諭知<strong>不受理之判決</strong>。</div>
+        <div class="vote-row">
+            <span class="v-chip majority">大法庭裁定 ✔</span>
+            <span class="v-chip">全體一致・無不同意見書</span>
+            <span class="v-chip">裁定日：111.5.18</span>
+            <span class="v-chip">法官共11人</span>
+        </div>
+    </div>
+
+    <!-- 概念前導 -->
+    <div class="section-heading">案件脈絡與核心概念</div>
+    <div class="flow-box">
+        <div class="flow-step"><div class="flow-num">①</div><div>我國刑法以<strong>屬地原則</strong>為基準，輔以國旗、屬人、保護、世界法原則<strong>擴張領域外適用</strong>（刑法§3～§8＝「刑法適用法」），決定我國<strong>刑罰權</strong>範圍及案件應否由我國法院審判</div></div>
+        <div class="flow-arrow">↓ 本件：國人在泰國、香港犯加重詐欺（§339-4），但行為時§5尚未將此罪列入</div>
+        <div class="flow-step"><div class="flow-num">②</div><div>依§2Ⅰ<strong>從舊從輕</strong>，比較修正前後條文，適用<strong>對行為人最有利</strong>之修正前規定 → 修正前§5未列加重詐欺罪 → 結論：<strong>無我國刑法之適用</strong></div></div>
+        <div class="flow-arrow">↓ 爭點：沒有刑法可管，法院該怎麼判？</div>
+        <div class="flow-step"><div class="flow-num">③</div><div>刑法適用法具<strong>雙重性質</strong>：實體法面向（可罰性前提）＋<strong>程序法面向</strong>（劃定我國法院審判權範圍）。「無我國刑法之適用」是<strong>審判權有無</strong>的問題，不是「行為該不該罰」的問題</div></div>
+        <div class="flow-arrow">↓ 大法庭</div>
+        <div class="flow-step"><div class="flow-num">④</div><div>屬<strong>訴訟障礙事由</strong>（欠缺訴訟要件）＝法院對被告<strong>無審判權</strong>，不能為實體認定 → 應依刑訴§303⑥<strong>諭知不受理判決</strong>，<strong>而非</strong>依§301Ⅰ為「行為不罰」之無罪判決</div></div>
+    </div>
+
+    <!-- 基礎事實 -->
+    <div class="section-heading">基礎事實</div>
+    <div class="fact-box">
+        <p>被告<strong>蘇柏誠</strong>係中華民國人民，得知告訴人高維辰因違反銀行法案件被通緝而藏匿泰國，欲返國又恐遭羈押，遂與共同正犯2人（共3人以上）基於<strong>詐欺取財</strong>之犯意聯絡，先後於<strong>104年6、9、10月間在泰國曼谷</strong>，及<strong>105年4月25日在香港</strong>，向告訴人佯稱熟識警察及司法人員、可安排返國歸案而不被羈押，致告訴人陷於錯誤，陸續共支付<strong>美金4萬元</strong>。</p>
+        <p>嗣告訴人於105年4月26日從香港搭機返臺，入境後為法務部調查局人員逮捕歸案。原判決以：被告係於<strong>105年12月2日修正施行之刑法§5增列第11款</strong>（即「§339-4之加重詐欺罪」）<strong>之前</strong>，在泰國曼谷及香港涉犯§339-4Ⅰ②加重詐欺罪嫌；依被告行為時§5～§7規定及港澳關係條例§1、§43Ⅰ之特別規定，<strong>中華民國人民在該條款施行前，於我國領域外（含港澳）犯該罪，並無我國刑法之適用</strong>，無從追訴、審判，而<strong>無審判權</strong>，依刑訴§303⑥諭知<strong>不受理</strong>判決。</p>
+        <p>檢察官不服提起上訴，指摘：依原審認定之事實，被告所為係刑法§7之<strong>不罰行為</strong>，應依刑訴§301Ⅰ行為不罰之規定，諭知<strong>無罪</strong>判決，而非不受理判決。</p>
+        <p><strong>爭點：</strong>國人在境外（§5～§7以外之情形）犯罪、無我國刑法適用時，法院究應為「無罪（行為不罰）」判決，還是「不受理（無審判權）」判決？</p>
+    </div>
+
+    <!-- 法律爭議 -->
+    <div class="section-heading">本案提案之法律問題</div>
+    <div class="issue-box">
+        <p><strong>法律爭議：</strong>中華民國人民被訴在中華民國領域外（含香港與澳門）涉犯刑法第5條至第7條<strong>以外</strong>之罪，而<strong>無我國刑法之適用</strong>時，法院究應以「<strong>行為不罰</strong>」為<strong>無罪判決</strong>，抑或以「<strong>無審判權</strong>」而為<strong>不受理判決</strong>？</p>
+        <p><strong>對照兩條文：</strong>刑訴§301Ⅰ（<strong>無罪判決</strong>）——不能證明被告犯罪或其行為不罰者，應諭知無罪之判決。刑訴§303⑥（<strong>不受理判決</strong>）——對於被告無審判權者，應諭知不受理之判決。</p>
+    </div>
+
+    <!-- 大法庭理由 -->
+    <div class="section-heading">大法庭裁定理由</div>
+    <div class="opinions">
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈠</div>
+                <span class="op-label">刑法適用法（§3～§8）以屬地原則為基準，決定刑罰權範圍及審判準據</span>
+            </div>
+            <div class="op-body">
+                <p>我國刑法對人、事與地的適用範圍，係以<strong>屬地原則</strong>為基準，輔以<strong>國旗原則、屬人原則、保護原則及世界法原則</strong>，擴張我國刑法領域外適用之範圍，即依刑法§3至§8之「刑法適用法」，決定我國<strong>刑罰權之適用範圍</strong>，並作為<strong>刑事案件劃歸我國刑事法院審判之準據</strong>。</p>
+                <div class="op-result">
+                    <strong>前提：</strong>「有沒有我國刑法可以管」，本身同時決定了「這個案子我國法院有沒有資格審」。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈡</div>
+                <span class="op-label">刑法適用法具「實體法＋程序法」雙重性質——欠缺適用即無審判權</span>
+            </div>
+            <div class="op-body">
+                <p>刑法適用法之規定，就<strong>實體法面向</strong>，為可刑罰性之前提要件，即進入構成要件該當、違法及有責性審查之前提要件，決定是否適用我國刑法規定處罰。本件被告行為時係於105年12月2日修正施行刑法§5增列第11款（§339-4加重詐欺罪）<strong>之前</strong>，依刑法§2Ⅰ規定，應比較修正前後條文，適用<strong>最有利於行為人</strong>之修正前規定，而<strong>無我國刑法之適用</strong>。</p>
+                <p>就<strong>程序法面向</strong>，則<strong>決定我國刑事法院審判權之範圍</strong>，決定我國刑事法院是否得予審判。亦即刑法適用法具有<strong>實體法與程序法之雙重性質</strong>，如有欠缺，即<strong>無我國刑法之適用</strong>，不為我國刑罰權所及，且為<strong>訴訟障礙事由</strong>，我國司法機關無從追訴、審判。</p>
+                <div class="op-result">
+                    <strong>關鍵：</strong>「無我國刑法之適用」不只是「這行為不成罪」，而是連「我國法院有沒有資格審這個案子」都一併被否定了——這是程序層次的問題。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈢</div>
+                <span class="op-label">法院先審程序要件——欠缺訴訟要件應為不受理判決，非無罪判決</span>
+            </div>
+            <div class="op-body">
+                <p>法院受理訴訟之基本法則，係<strong>先審查程序事項</strong>，必須<strong>程序要件具備</strong>，始能為實體之認定。倘確認個案<strong>非屬我國刑法適用範圍</strong>時，已構成<strong>訴訟障礙</strong>，欠缺訴訟要件，<strong>不可為本案之實體判決</strong>，性質上已屬法院對被告<strong>無審判權</strong>，不能追訴、審判。</p>
+                <p>在偵查中，檢察官應依刑訴§252⑦規定，為<strong>不起訴處分</strong>；若經起訴，法院應依刑訴§303⑥規定，諭知<strong>不受理判決</strong>，<strong>而非</strong>為無罪判決。</p>
+                <div class="op-result">
+                    <strong>結論：</strong>「無我國刑法之適用」是程序門檻沒跨過（無審判權），根本進不到「行為罰不罰」的實體審查，故應為不受理判決。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈣</div>
+                <span class="op-label">結論——國人境外犯§5～§7以外之罪、無我國刑法適用時，應為不受理判決</span>
+            </div>
+            <div class="op-body">
+                <p>綜上所述，中華民國人民被訴在中華民國領域外（含香港與澳門）涉犯刑法第5條至第7條以外之罪，而<strong>無我國刑法之適用</strong>時，法院應依刑事訴訟法第303條第6款規定<strong>諭知不受理之判決</strong>。</p>
+                <div class="op-result">
+                    <strong>本件涵攝：</strong>被告在泰國曼谷、香港犯加重詐欺（§339-4），行為時該罪尚未列入§5，屬「§5～§7以外」情形，無我國刑法適用 → 原審為不受理判決<strong>並無違誤</strong>；檢察官上訴主張應改判無罪，不足採。
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 法條依據 -->
+    <div class="law-ref">
+        <strong>📋 核心法條：</strong>刑法§2Ⅰ（從舊從輕）、§3～§8（刑法適用法：屬地／國旗／屬人／保護／世界法原則）、§339-4（加重詐欺罪）；刑事訴訟法§252⑦（不起訴處分）、§301Ⅰ（無罪判決）、§303⑥（不受理判決）；香港澳門關係條例§1、§43Ⅰ（特別規定）
+    </div>
+
+    <!-- 考試地雷 -->
+    <div class="trap-box">
+        <div class="trap-title">⚠️ 考試常見地雷</div>
+        <div class="trap-item">
+            <div class="trap-q">Q：本件大法庭的結論是什麼？</div>
+            <div class="trap-a">A：國人被訴在境外（含港澳）涉犯刑法§5至§7<strong>以外</strong>之罪、而<strong>無我國刑法適用</strong>時，法院應依刑訴§303⑥<strong>諭知不受理判決</strong>，<strong>不是</strong>依§301Ⅰ為「行為不罰」之無罪判決。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：「無罪（行為不罰）」與「不受理（無審判權）」，關鍵區別在哪一個層次？</div>
+            <div class="trap-a">A：無罪判決是「<strong>實體</strong>」層次的認定——法院已經有審判權，只是審查後認為行為不成立犯罪或不罰。不受理判決是「<strong>程序</strong>」層次——法院根本<strong>沒有審判權</strong>去審這個案子，連實體都還沒審查到，屬訴訟障礙事由。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：為什麼「無我國刑法之適用」會導致「無審判權」？</div>
+            <div class="trap-a">A：因為刑法適用法（§3～§8）具「<strong>實體法＋程序法雙重性質</strong>」——它不只決定行為該不該罰，同時也是「劃歸我國刑事法院審判之準據」。既然刑法適用法本身就欠缺（沒有適用），代表這個案子根本不在我國法院的管轄／審判權範圍內。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：本件為何「無我國刑法之適用」？（§2Ⅰ從舊從輕的操作）</div>
+            <div class="trap-a">A：被告行為時（104～105年4月）在§5增列第11款加重詐欺罪（105.12.2施行）之前；依§2Ⅰ比較修正前後條文，應適用<strong>對行為人最有利</strong>之修正前規定——修正前§5未將加重詐欺罪列入領域外適用範圍，故無我國刑法之適用。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：偵查中與起訴後，程序處理方式分別為何？</div>
+            <div class="trap-a">A：偵查中，檢察官應依刑訴§252⑦為<strong>不起訴處分</strong>；若已經起訴，法院應依刑訴§303⑥諭知<strong>不受理判決</strong>——兩者都不進入實體（行為罰不罰）的審查。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：檢察官上訴主張什麼？大法庭是否採納？</div>
+            <div class="trap-a">A：檢察官主張被告所為屬刑法§7之「<strong>不罰行為</strong>」，應依刑訴§301Ⅰ諭知<strong>無罪</strong>而非不受理。大法庭<strong>未採納</strong>——確認「無我國刑法之適用」屬審判權有無之程序問題，維持不受理判決之見解。</div>
+        </div>
+    </div>
+
+    <!-- 引用法條 -->
+    <details>
+        <summary>📎 引用法條整理</summary>
+        <div style="padding: 10px 0 4px;">
+            <div class="ref-case">
+                <div class="ref-case-title">刑法第2條第1項（從舊從輕）</div>
+                <p style="margin:0;">行為後法律有變更者，適用行為時之法律。但行為後之法律有利於行為人者，適用最有利於行為人之法律。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">刑法第3條至第8條（刑法適用法）</div>
+                <p style="margin:0;">以屬地原則為基準，輔以國旗原則（§3）、屬人原則（§6、§7）、保護原則（§5、§8）及世界法原則（§5部分款項），決定我國刑罰權對人、事、地之適用範圍。105年12月2日修正時於§5增列第11款，將§339-4加重詐欺罪納入領域外適用範圍。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">刑事訴訟法第301條第1項（無罪判決）</div>
+                <p style="margin:0;">不能證明被告犯罪或其行為不罰者，應諭知無罪之判決。（本件檢察官主張應適用，未獲大法庭採納）</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">刑事訴訟法第303條第6款（不受理判決）</div>
+                <p style="margin:0;">起訴之程序違背規定，或對於被告無審判權者，法院應諭知不受理之判決。（本件大法庭採用之依據）</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">刑事訴訟法第252條第7款（偵查中不起訴處分）</div>
+                <p style="margin:0;">被告犯罪嫌疑不足，或其他法定情形者，檢察官應為不起訴處分；本件情形對應「法院對被告無審判權」之偵查中相應處理。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">香港澳門關係條例第1條、第43條第1項</div>
+                <p style="margin:0;">就國人於香港、澳門犯罪之法律適用設有特別規定，本件據以認定被告行為時，於§5增列加重詐欺罪款項施行前，在港澳犯該罪並無我國刑法之適用。</p>
+            </div>
+        </div>
+    </details>
+
+    <!-- 法官名單 -->
+    <div class="section-heading">大法庭組成（11人・一致）</div>
+    <div class="judges-grid">
+        <span class="judge-chip chief">審判長 吳燦</span>
+        <span class="judge-chip">郭毓洲</span>
+        <span class="judge-chip">林立華</span>
+        <span class="judge-chip">徐昌錦</span>
+        <span class="judge-chip">段景榕</span>
+        <span class="judge-chip">李英勇</span>
+        <span class="judge-chip">李錦樑</span>
+        <span class="judge-chip">林勤純</span>
+        <span class="judge-chip">梁宏哲</span>
+        <span class="judge-chip">何信慶</span>
+        <span class="judge-chip">蔡廣昇</span>
+    </div>
+    <p style="font-size:0.78em;color:var(--sub);margin:10px 0 0;">提案庭：最高法院原刑事第五庭（現第九庭）　｜　本案案號：110年度台上字第5557號　｜　提案裁定案號：110年度台上大字第5557號　｜　裁定日：中華民國111年5月18日（無不同意見書）</p>
+
+    <div class="note-toggle" onclick="toggleNote('n1')">✏️ 我的小結</div>
+    <div class="note-area" id="n1">
+        <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n1',this.value)"></textarea>
+        <div class="note-saved" id="n1-saved"></div>
+    </div>
+</div>
+
+<!-- ===== 快問快答卡片 ===== -->
+<div class="card" id="case2" data-kw="快問快答 屬地原則 屬人原則 無審判權 不受理判決 無罪判決 行為不罰 訴訟障礙 刑法適用法 從舊從輕">
+    <button class="star-btn" onclick="toggleStar('case2',this)">⭐</button>
+    <h2 class="card-title">快問快答——本件核心概念與答題要點</h2>
+    <div class="meta-line">建議先蓋住答案，自己回答後再確認</div>
+
+    <div class="quiz-list">
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>本件的核心爭點是什麼？（一句話）</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">國人在境外犯罪、依刑法§5～§7均無我國刑法適用時，法院應諭知「無罪（行為不罰）」還是「不受理（無審判權）」？大法庭：不受理。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>【核心】為什麼「無我國刑法之適用」要用不受理判決，而不是無罪判決？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">因為刑法適用法（§3～§8）兼具實體法與程序法雙重性質：程序面向決定我國法院有無審判權。無我國刑法適用＝欠缺訴訟要件（訴訟障礙事由）＝法院對被告無審判權，根本不能進入實體審查，故只能不受理，不能判無罪。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>本件被告行為為何「無我國刑法之適用」？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">被告犯加重詐欺（§339-4）之行為在105.12.2修正施行、§5增列第11款（將加重詐欺列入領域外適用）之前；依§2Ⅰ從舊從輕，應適用對行為人最有利之修正前規定，而修正前§5並未涵蓋此罪，故無我國刑法適用。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>檢察官上訴主張什麼？大法庭怎麼回應？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">檢察官主張被告所為是刑法§7的「不罰行為」，應依刑訴§301Ⅰ判無罪。大法庭不採納，認為「無我國刑法適用」是審判權有無的程序問題，不是「行為罰不罰」的實體問題，維持不受理判決。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>偵查中檢察官遇到這種情形，應如何處理？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">應依刑訴§252⑦為不起訴處分（而非因「罪嫌不足」或「行為不罰」的其他不起訴事由角度處理）；若已起訴，法院則依§303⑥諭知不受理判決。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>我國刑法領域外適用的基準原則與輔助原則各是什麼？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">基準：屬地原則。輔助（擴張領域外適用）：國旗原則、屬人原則、保護原則、世界法原則。合稱刑法§3～§8「刑法適用法」。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>一句話記憶本裁定的判斷框架？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">「先問有沒有刑法可以管，再問行為罰不罰」——法院受理訴訟先審程序要件，欠缺我國刑法適用＝欠缺審判權＝訴訟障礙＝不受理，根本輪不到判無罪。</div>
+        </div>
+    </div>
+
+    <div class="note-toggle" onclick="toggleNote('n2')">✏️ 我的小結</div>
+    <div class="note-area" id="n2">
+        <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n2',this.value)"></textarea>
+        <div class="note-saved" id="n2-saved"></div>
+    </div>
+</div>
+
+<div id="noResults">查無符合的內容，請試試其他關鍵字。</div>
+<div id="noStarred">還沒有收藏的項目，點卡片右上角的 ⭐ 加入收藏。</div>
+</div>
+
+<script>
+const NIGHT_KEY='night_mode_pref';
+function toggleNight(){const on=document.body.classList.toggle('night-mode');localStorage.setItem(NIGHT_KEY,on?'1':'0');document.getElementById('nightBtn').textContent=on?'☀️':'🌙';}
+(function(){if(localStorage.getItem(NIGHT_KEY)==='1'){document.body.classList.add('night-mode');const b=document.getElementById('nightBtn');if(b)b.textContent='☀️';}})();
+const STORE_KEY='110_5557_grand_notes',STAR_KEY='110_5557_grand_stars';
+function loadNotes(){try{return JSON.parse(localStorage.getItem(STORE_KEY))||{};}catch{return{};}}
+function loadStars(){try{return JSON.parse(localStorage.getItem(STAR_KEY))||{};}catch{return{};}}
+function saveAllNotes(d){localStorage.setItem(STORE_KEY,JSON.stringify(d));}
+function saveAllStars(d){localStorage.setItem(STAR_KEY,JSON.stringify(d));}
+(function(){const n=loadNotes(),s=loadStars();
+  Object.entries(n).forEach(([id,v])=>{const a=document.getElementById(id);if(!a)return;const t=a.querySelector('textarea');if(t)t.value=v;if(v)a.classList.add('open');});
+  Object.entries(s).forEach(([id,v])=>{if(!v)return;const b=document.querySelector(`#${id} .star-btn`);if(b)b.classList.add('starred');});
+})();
+function toggleStar(id,btn){const s=loadStars();const now=!btn.classList.contains('starred');btn.classList.toggle('starred',now);s[id]=now;saveAllStars(s);if(filterActive)applyFilter();}
+let filterActive=false;
+function toggleFilter(){filterActive=!filterActive;document.getElementById('filterBtn').classList.toggle('active',filterActive);document.getElementById('searchInput').value='';clearSearchHighlights();updateSearchUI([],0);applyFilter();}
+function applyFilter(){const s=loadStars();const q=document.getElementById('searchInput').value.trim().toLowerCase();let any=false;
+  document.querySelectorAll('.card').forEach(c=>{const kw=(c.dataset.kw||'').toLowerCase();const txt=c.textContent.toLowerCase();
+  const ms=!q||kw.includes(q)||txt.includes(q);const mf=!filterActive||!!s[c.id];const show=ms&&mf;
+  c.classList.toggle('hidden',!show);if(show)any=true;});
+  document.getElementById('noResults').style.display=(!any&&!filterActive)?'block':'none';
+  document.getElementById('noStarred').style.display=(!any&&filterActive)?'block':'none';}
+let _matches=[],_cur=-1;
+function clearSearchHighlights(){document.querySelectorAll('mark.search-hl').forEach(m=>{const p=m.parentNode;p.replaceChild(document.createTextNode(m.textContent),m);p.normalize();});}
+function highlightInNode(node,re){if(node.nodeType===3){const text=node.nodeValue;const frag=document.createDocumentFragment();let last=0,m;re.lastIndex=0;while((m=re.exec(text))!==null){if(m.index>last)frag.appendChild(document.createTextNode(text.slice(last,m.index)));const mk=document.createElement('mark');mk.className='search-hl';mk.textContent=m[0];frag.appendChild(mk);last=re.lastIndex;}if(last===0)return;frag.appendChild(document.createTextNode(text.slice(last)));node.parentNode.replaceChild(frag,node);return;}if(node.nodeType===1){const tag=node.tagName;if(tag==='SCRIPT'||tag==='STYLE'||tag==='TEXTAREA'||tag==='INPUT')return;if(node.classList&&node.classList.contains('search-hl'))return;[...node.childNodes].forEach(c=>highlightInNode(c,re));}}
+function doSearch(q){clearSearchHighlights();_matches=[];_cur=-1;const qt=(q||'').trim();if(!qt){updateSearchUI([],0);applyFilter();return;}applyFilter();const esc=qt.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');const re=new RegExp(esc,'gi');document.querySelectorAll('.container .card:not(.hidden)').forEach(card=>{highlightInNode(card,re);});_matches=[...document.querySelectorAll('mark.search-hl')];if(_matches.length){_cur=0;setCurrent(0);}updateSearchUI(_matches,_cur);}
+function setCurrent(idx){_matches.forEach((m,i)=>m.classList.toggle('current',i===idx));if(_matches[idx])_matches[idx].scrollIntoView({behavior:'smooth',block:'center'});}
+function navMatch(dir){if(!_matches.length)return;_cur=(_cur+dir+_matches.length)%_matches.length;setCurrent(_cur);updateSearchUI(_matches,_cur);}
+function updateSearchUI(matches,cur){const cnt=document.getElementById('searchCount');const prev=document.getElementById('prevBtn');const next=document.getElementById('nextBtn');if(!matches.length){cnt.textContent='';prev.disabled=true;next.disabled=true;return;}cnt.textContent=(cur+1)+'/'+matches.length;prev.disabled=false;next.disabled=false;}
+function handleSearchKey(e){if(e.key==='Enter'){e.shiftKey?navMatch(-1):navMatch(1);}if(e.key==='Escape'){document.getElementById('searchInput').value='';doSearch('');}}
+function toggleNote(id){document.getElementById(id).classList.toggle('open');}
+const timers={};
+function saveNote(id,v){clearTimeout(timers[id]);timers[id]=setTimeout(()=>{const n=loadNotes();n[id]=v;saveAllNotes(n);const el=document.getElementById(id+'-saved');if(el){el.textContent='已儲存';setTimeout(()=>el.textContent='',1500);}},500);}
+let savedRange=null;
+document.addEventListener('selectionchange',()=>{const s=window.getSelection();if(s&&!s.isCollapsed&&s.rangeCount)savedRange=s.getRangeAt(0).cloneRange();});
+function highlightText(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;
+  if(!r||r.collapsed){alert('💡 請先反白想要標記的文字');return;}
+  const sp=document.createElement('span');sp.className='hl';sp.style.cssText='background:#f0d98a;border-radius:2px;';
+  try{r.surroundContents(sp);savedRange=null;}catch{alert('💡 請選取同一段落內的文字');}s&&s.removeAllRanges();}
+function removeHighlight(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;
+  if(!r||r.collapsed){alert('💡 請先反白想擦除標記的文字');return;}
+  const anc=r.commonAncestorContainer.nodeType===1?r.commonAncestorContainer:r.commonAncestorContainer.parentElement;
+  anc.querySelectorAll('span.hl').forEach(sp=>{if(r.intersectsNode(sp)){const p=sp.parentNode;while(sp.firstChild)p.insertBefore(sp.firstChild,sp);p.removeChild(sp);}});
+  savedRange=null;s&&s.removeAllRanges();}
+function clearHighlights(){const sp=document.querySelectorAll('span.hl');if(!sp.length)return;
+  if(confirm('確定要清除所有重點標記嗎？')){sp.forEach(s=>{const p=s.parentNode;while(s.firstChild)p.insertBefore(s.firstChild,s);p.removeChild(s);});}}
+function openExport(){
+  let out='最高法院刑事大法庭 110年度台上大字第5557號\n'+'═'.repeat(44)+'\n\n';
+  out+='【主文】\n中華民國人民被訴在中華民國領域外（含香港與澳門）涉犯刑法第5條至第7條以外之罪，而無我國刑法之適用時，法院應依刑事訴訟法第303條第6款規定諭知不受理之判決。\n\n';
+  document.querySelectorAll('.op,.d-op').forEach(op=>{
+    const head=op.querySelector('.op-label,.d-op-label')?.textContent.trim()||'';
+    out+=`▌${head}\n`;
+    op.querySelectorAll('.op-body p,.op-body li,.op-result,.d-op-body p,.d-op-body li,.d-op-result').forEach(el=>{
+      const t=el.textContent.trim();if(t)out+=(el.tagName==='LI'?'  • ':'')+t+'\n';});
+    out+='\n';});
+  const tas=document.querySelectorAll('.note-textarea');tas.forEach((ta,i)=>{if(ta&&ta.value.trim())out+=`✏️ 小結${i+1}：\n`+ta.value.trim()+'\n\n';});
+  out+='═'.repeat(44)+'\n';
+  const b=new Blob([out.trim()],{type:'text/plain;charset=utf-8'});
+  const u=URL.createObjectURL(b);const a=document.createElement('a');
+  a.href=u;a.download='110台上大字第5557號_域外犯罪無刑法適用應為不受理判決.txt';a.click();URL.revokeObjectURL(u);}
+function toggleQuiz(el){const ans=el.nextElementSibling;const tog=el.querySelector('.quiz-toggle');if(ans.classList.contains('open')){ans.classList.remove('open');tog.textContent='＋';}else{ans.classList.add('open');tog.textContent='－';}}
+const REG_KEY='exam_completion_registry';
+function _loadReg(){try{return JSON.parse(localStorage.getItem(REG_KEY))||{};}catch{return{};}}
+function _saveReg(r){try{localStorage.setItem(REG_KEY,JSON.stringify(r));}catch{}}
+function _file(){const p=location.pathname.split('/');return decodeURIComponent(p[p.length-1]||'');}
+function _fmt(ts){const d=new Date(ts);const date=(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();const time=d.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false});return date+' '+time;}
+function _updateDate(){const r=_loadReg();const k=_file()||'case_criminal_grand_110_5557.html';const l=document.getElementById('doneDateLabel');if(!l)return;l.textContent=(r[k]&&r[k].done&&r[k].ts)?_fmt(r[k].ts):'';}
+function toggleDone(){const btn=document.getElementById('doneBtn');const r=_loadReg();const k=_file()||'case_criminal_grand_110_5557.html';const done=r[k]&&r[k].done;
+  if(done){delete r[k];_saveReg(r);btn.classList.remove('active');}
+  else{const now=new Date();r[k]={done:true,ts:now.getTime()};_saveReg(r);btn.classList.add('active');}
+  _updateDate();}
+(function(){const r=_loadReg();const k=_file()||'case_criminal_grand_110_5557.html';if(r[k]&&r[k].done){const b=document.getElementById('doneBtn');if(b)b.classList.add('active');}_updateDate();})();
+</script>
+</body>
+</html>
