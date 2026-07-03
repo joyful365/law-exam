@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>110年度台上大字第2943號 刑事大法庭裁定</title>
+    <style>
+        :root {
+            --bg:       #eef0f3;
+            --card:     #ffffff;
+            --text:     #1a1a1a;
+            --sub:      #8a9ab0;
+            --line:     #e4e7ec;
+            --majority: #1a365d;
+            --law:      #1a365d;
+            --dissent:  #a67c2e;
+            --dissent2: #4a7a6c;
+            --trap:     #f9f7f0;
+            --header-bg:#1a365d;
+        }
+        body.night-mode {
+            --bg:       #13151a;
+            --card:     #1c1f27;
+            --text:     #d4d8e0;
+            --sub:      #5a6880;
+            --line:     #2a2e3a;
+            --majority: #7ea8d8;
+            --law:      #7ea8d8;
+            --dissent:  #c4935a;
+            --dissent2: #7fb09e;
+            --trap:     #1e1c14;
+            --header-bg:#0d1117;
+        }
+        body.night-mode header { box-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        body.night-mode .top-bar { background: #1c1f27; }
+        body.night-mode .top-btn { background: #2e3340; color: #b0b8c8; }
+        body.night-mode .top-btn.done { background: #2a2e3a; color: #7a8898; }
+        body.night-mode .fact-box { background: #1e1c14; border-left-color: #8a6820; }
+        body.night-mode .issue-box, body.night-mode .flow-box { background: #20232d; }
+        body.night-mode .op-head { background: #20232d; }
+        body.night-mode .op-body { background: var(--card); }
+        body.night-mode .op-result { background: #161a24; border-left-color: #3a5a8a; }
+        body.night-mode .d-op-head { background: #261f14; }
+        body.night-mode .d-op-body { background: #201c14; }
+        body.night-mode .d-op-result { background: #261f14; }
+        body.night-mode .dissent-judges { background: #261f14; }
+        body.night-mode .compare-table th.th-issue { background: #262a31; }
+        body.night-mode .compare-table td.td-issue { background: #262a31; }
+        body.night-mode .compare-table td.td-majority { background: #161c24; }
+        body.night-mode .compare-table td.td-dissent { background: #1e1814; }
+        @media (max-width: 640px) {
+            body.night-mode .compare-table td.td-issue { background: #262a31; }
+            body.night-mode .compare-table td.td-majority { background: #161c24; }
+            body.night-mode .compare-table td.td-dissent { background: #1e1814; }
+        }
+        body.night-mode .ref-case { background: #20232d; border-left-color: #3a5a8a; }
+        body.night-mode .law-ref { background: #1c1f27; border-left-color: #3a5a8a; }
+        body.night-mode .note-textarea { background: #161a24; color: var(--text); border-color: var(--line); }
+        body.night-mode .judge-chip { background: #20232d; border-color: #2e3340; }
+        body.night-mode .judge-chip.chief { background: #0d1a2e; color: #9abcd8; border-color: #1a3a60; }
+        body.night-mode mark.search-hl { background: #7a5a00; color: #ffe090; }
+        body.night-mode mark.search-hl.current { background: #c07800; color: #fff; }
+        body.night-mode .verdict { background: #0d1a2e; }
+        body.night-mode .trap-box { border-color: #5a5020; }
+        body.night-mode .trap-title { color: #c8a840; }
+        body.night-mode .trap-item { border-left-color: #7a6830; }
+        body.night-mode #nightBtn { background: #3a4250; color: #cfe0f4; font-weight: 700; }
+        body.night-mode .quiz-q { background: var(--card); }
+        body.night-mode .quiz-q:hover { background: #20232d; }
+        body.night-mode .quiz-a { background: #161a24; color: #9abcd8; }
+        body.night-mode .flow-arrow { color: #a8b6c8; }
+        body.night-mode .compare-table td.td-issue, body.night-mode .compare-table th.th-issue { color: #9fb3d0; }
+        body.night-mode .compare-table td.td-dissent2 { background: #13201a; }
+        @media (max-width: 640px) { body.night-mode .compare-table td.td-dissent2 { background: #13201a; } }
+        body { transition: background 0.3s, color 0.3s; }
+        .card { transition: background 0.3s, border-color 0.3s; }
+
+        * { box-sizing: border-box; }
+        body { font-family: "Helvetica Neue", Helvetica, "PingFang TC", "LiHei Pro", "Microsoft JhengHei", sans-serif;
+               background: var(--bg); color: var(--text); line-height: 1.85; font-size: 16px; margin: 0; padding: 0 0 60px; }
+
+        header { background: var(--header-bg); color: #ffffff; padding: 16px 16px 8px; text-align: center;
+                 position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+        header h1 { margin: 0 0 10px; font-size: 1.05em; line-height: 1.5; font-weight: 600; letter-spacing: 0.02em; color: #ffffff; }
+        .header-controls { display: flex; gap: 8px; align-items: center; }
+        .search-wrap { position: relative; flex: 1; display: flex; align-items: center; gap: 4px; }
+        #searchInput { flex: 1; padding: 8px 14px 8px 32px; border: none; border-radius: 6px;
+                       font-size: 14px; background: rgba(255,255,255,0.13); color: #ffffff; outline: none; }
+        #searchInput::placeholder { color: rgba(255,255,255,0.5); }
+        #searchInput:focus { background: rgba(255,255,255,0.22); }
+        .search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 13px; opacity: 0.55; pointer-events: none; }
+        .search-count { font-size: 12px; color: rgba(255,255,255,0.65); white-space: nowrap; min-width: 44px; text-align: center; }
+        .search-nav { background: rgba(255,255,255,0.15); border: none; border-radius: 6px; color: white; font-size: 13px; padding: 6px 8px; cursor: pointer; line-height: 1; }
+        .search-nav:hover { background: rgba(255,255,255,0.28); }
+        .search-nav:disabled { opacity: 0.3; cursor: default; }
+        mark.search-hl { background: #ffe066; color: #1a1a1a; border-radius: 2px; padding: 0 1px; }
+        mark.search-hl.current { background: #ff9500; color: #fff; border-radius: 3px; outline: 2px solid #ff9500; }
+        #filterBtn { background: rgba(255,255,255,0.13); border: none; border-radius: 6px;
+                     color: #ffffff; font-size: 13px; padding: 8px 12px; cursor: pointer; white-space: nowrap; }
+        #filterBtn.active { background: #c9a84c; color: #1a365d; font-weight: bold; }
+        .top-bar { background: #dde0e5; padding: 5px 14px; display: flex; gap: 6px; justify-content: flex-end; flex-wrap: nowrap; }
+        .top-btn { background: #5a6375; color: #fff; border: none; padding: 4px 10px; border-radius: 20px;
+                   font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap; transition: opacity 0.15s; }
+        .top-btn:hover { opacity: 0.85; }
+        .top-btn.done { background: #a0a8b4; color: #1a2a3a; }
+        .top-btn.done.active { background: linear-gradient(135deg, #7a5c00, #a07820); color: #fff3c4; font-weight: 700; box-shadow: 0 0 8px rgba(160,120,32,0.5); }
+        .done-date { font-size: 11px; color: #8a9ab0; white-space: nowrap; align-self: center; font-weight: 500; }
+
+        .container { padding: 18px 16px; max-width: 640px; margin: 0 auto; }
+        @media (min-width: 768px) { .container { max-width: 880px; padding: 24px 20px; } body { font-size: 17px; } header h1 { font-size: 1.15em; } }
+        .card { background: var(--card); border-radius: 14px; padding: 24px 22px; margin-bottom: 24px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.06); position: relative; border: 1px solid var(--line); }
+        .card.hidden { display: none; }
+        .star-btn { position: absolute; top: 18px; right: 18px; background: none; border: none; font-size: 20px;
+                    cursor: pointer; opacity: 0.18; transition: opacity 0.15s; padding: 0; }
+        .star-btn.starred { opacity: 1; }
+        .card-title { color: var(--majority); font-size: 1.15em; font-weight: 700; margin: 0 0 4px; padding-right: 30px; line-height: 1.6; }
+        .meta-line { font-size: 0.75em; color: var(--sub); margin-bottom: 20px; letter-spacing: 0.04em; }
+
+        .verdict { background: #1a365d; color: #ffffff; border-radius: 10px; padding: 16px 18px; margin-bottom: 22px; }
+        .verdict-label { font-size: 0.66em; letter-spacing: 0.14em; opacity: 0.55; margin-bottom: 6px; }
+        .verdict-main { font-size: 1.05em; font-weight: 700; line-height: 1.6; margin-bottom: 10px; color: #ffffff; }
+        .verdict-sub { font-size: 0.88em; opacity: 0.8; line-height: 1.65; margin-bottom: 10px; }
+        .vote-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 12px; padding-top: 10px;
+                    border-top: 1px solid rgba(255,255,255,0.15); }
+        .v-chip { font-size: 0.72em; background: rgba(255,255,255,0.12); border-radius: 20px;
+                  padding: 3px 10px; white-space: nowrap; color: rgba(255,255,255,0.8); }
+        .v-chip.majority { background: rgba(255,255,255,0.28); color: #fff; font-weight: 700; }
+        .v-chip.dissent-c { background: rgba(201,168,76,0.5); color: #fff; }
+
+        .section-heading { font-size: 0.85em; font-weight: 700; letter-spacing: 0.08em;
+                           color: var(--sub); margin: 22px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--line); }
+
+        .fact-box { background: #f9f7f0; border-left: 4px solid #c9a84c; border-radius: 0 8px 8px 0;
+                    padding: 14px 16px; margin-bottom: 16px; font-size: 0.9em; }
+        .fact-box p { margin: 0 0 8px; }
+        .fact-box p:last-child { margin: 0; }
+
+        .issue-box { background: #f5f6f8; border-radius: 8px; padding: 14px 16px; margin-bottom: 16px;
+                     font-size: 0.9em; border: 1px solid var(--line); }
+        .issue-box p { margin: 0 0 8px; }
+        .issue-box p:last-child { margin: 0; }
+
+        /* 概念流程圖 */
+        .flow-box { background: #f5f6f8; border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; margin-bottom: 18px; font-size: 0.87em; }
+        .flow-step { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; }
+        .flow-num { width: 22px; height: 22px; border-radius: 50%; background: var(--majority); color: #fff; font-size: 0.72em; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+        .flow-arrow { text-align: center; color: #4a5568; font-size: 1.1em; font-weight: 600; margin-bottom: 4px; }
+
+        .opinions { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+        .op { border-radius: 8px; overflow: hidden; border: 1px solid var(--line); }
+        .op-head { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #f5f6f8; }
+        .op-num { width: 26px; height: 26px; border-radius: 50%; background: var(--majority); color: white;
+                  font-size: 0.75em; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .op-label { font-weight: 700; font-size: 0.92em; color: var(--majority); flex: 1; }
+        .op-body { padding: 13px 15px; font-size: 0.9em; background: var(--card); }
+        .op-body p { margin: 0 0 9px; }
+        .op-body p:last-child { margin: 0; }
+        .op-body ul { margin: 5px 0 8px; padding-left: 18px; }
+        .op-body li { margin-bottom: 5px; }
+        .op-result { background: #f0f3f8; border-radius: 6px; padding: 10px 13px; margin-top: 10px;
+                     font-size: 0.9em; border-left: 3px solid var(--majority); }
+
+        .d-opinions { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+        .d-op { border-radius: 8px; overflow: hidden; border: 1px solid #e6d8bc; }
+        .d-op-head { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #fdf7ec; }
+        .d-op-num { width: 26px; height: 26px; border-radius: 50%; background: var(--dissent); color: white;
+                    font-size: 0.75em; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .d-op-label { font-weight: 700; font-size: 0.92em; color: var(--dissent); flex: 1; }
+        .d-op-body { padding: 13px 15px; font-size: 0.9em; background: #fffdf8; }
+        .d-op-body p { margin: 0 0 9px; }
+        .d-op-body p:last-child { margin: 0; }
+        .d-op-body ul { margin: 5px 0 8px; padding-left: 18px; }
+        .d-op-body li { margin-bottom: 5px; }
+        .d-op-result { background: #fdf7ec; border-radius: 6px; padding: 10px 13px; margin-top: 10px;
+                       font-size: 0.9em; border-left: 3px solid var(--dissent); }
+        .dissent-judges { font-size: 0.82em; color: var(--dissent); margin-bottom: 12px;
+                          padding: 8px 12px; background: #fdf7ec; border-radius: 6px; border-left: 3px solid var(--dissent); }
+        .dissent-judges.d2 { color: var(--dissent2); background: #f0f6f3; border-left-color: var(--dissent2); }
+
+        .d-op.d2 { border: 1px solid #cfe0d8; }
+        .d-op.d2 .d-op-head { background: #f0f6f3; }
+        .d-op.d2 .d-op-num { background: var(--dissent2); }
+        .d-op.d2 .d-op-label { color: var(--dissent2); }
+        .d-op.d2 .d-op-body { background: #f7fbf9; }
+        .d-op.d2 .d-op-result { background: #f0f6f3; border-left-color: var(--dissent2); }
+        body.night-mode .dissent-judges.d2 { background: #16211c; }
+        body.night-mode .d-op.d2 .d-op-head { background: #16211c; }
+        body.night-mode .d-op.d2 .d-op-body { background: #131c17; }
+        body.night-mode .d-op.d2 .d-op-result { background: #16211c; }
+
+        .compare-table { width: 100%; border-collapse: collapse; margin-bottom: 18px; font-size: 0.88em; }
+        .compare-table th { padding: 10px 13px; font-weight: 700; font-size: 0.85em; letter-spacing: 0.05em; }
+        .compare-table th.th-issue { background: #dde0e5; color: #3d4d68; width: 16%; border-radius: 6px 0 0 0; }
+        .compare-table th.th-majority { background: var(--majority); color: #fff; width: 28%; }
+        .compare-table th.th-dissent { background: var(--dissent); color: #fff; width: 28%; }
+        .compare-table th.th-dissent2 { background: var(--dissent2); color: #fff; width: 28%; border-radius: 0 6px 0 0; }
+        .compare-table td { padding: 11px 13px; vertical-align: top; border-bottom: 1px solid var(--line); line-height: 1.65; }
+        .compare-table td.td-issue { background: #eef1f6; font-weight: 700; font-size: 0.87em; color: #3d4d68; }
+        .compare-table td.td-majority { background: #f4f7fb; border-left: 2px solid var(--majority); }
+        .compare-table td.td-dissent { background: #fdf8f4; border-left: 2px solid var(--dissent); }
+        .compare-table td.td-dissent2 { background: #f5faf8; border-left: 2px solid var(--dissent2); }
+        .compare-table tr:last-child td { border-bottom: none; }
+        .compare-table tr:last-child td.td-issue { border-radius: 0 0 0 6px; }
+        .compare-table tr:last-child td.td-dissent2 { border-radius: 0 0 6px 0; }
+        @media (max-width: 640px) {
+            .compare-table thead { display: none; }
+            .compare-table, .compare-table tbody { display: block; }
+            .compare-table tr { display: block; margin-bottom: 14px; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+            .compare-table td.td-issue { display: block; width: 100%; background: #dde0e5; padding: 8px 14px; font-size: 0.85em; font-weight: 700; color: #3d4d68; border-bottom: none; border-left: none !important; }
+            .compare-table td.td-majority, .compare-table td.td-dissent, .compare-table td.td-dissent2 { display: block; width: 100%; box-sizing: border-box; padding: 10px 14px; border-bottom: none; font-size: 0.85em; line-height: 1.65; border-left: none !important; border-top: none; }
+            .compare-table td.td-majority { border-top: 3px solid var(--majority); }
+            .compare-table td.td-dissent { border-top: 3px solid var(--dissent); }
+            .compare-table td.td-dissent2 { border-top: 3px solid var(--dissent2); }
+            .compare-table td.td-majority::before { content: "多數"; display: block; margin-bottom: 5px; font-size: 0.78em; font-weight: 700; color: var(--majority); letter-spacing: 0.05em; }
+            .compare-table td.td-dissent::before { content: "不同意見一（梁宏哲・主張更嚴排除）"; display: block; margin-bottom: 5px; font-size: 0.78em; font-weight: 700; color: var(--dissent); letter-spacing: 0.02em; }
+            .compare-table td.td-dissent2::before { content: "不同意見二（江翠萍・主張一律權衡）"; display: block; margin-bottom: 5px; font-size: 0.78em; font-weight: 700; color: var(--dissent2); letter-spacing: 0.02em; }
+        }
+
+        .trap-box { background: var(--trap); border-radius: 8px; padding: 14px 16px; margin-bottom: 16px;
+                    border: 1px solid #e0d8b0; font-size: 0.9em; }
+        .trap-title { font-weight: 700; color: #7a6820; margin-bottom: 10px; font-size: 0.92em; display: flex; align-items: center; gap: 6px; }
+        .trap-item { margin-bottom: 10px; padding-left: 14px; border-left: 2px solid #c8b860; }
+        .trap-item:last-child { margin-bottom: 0; }
+        .trap-q { font-weight: 700; color: var(--text); margin-bottom: 3px; }
+        .trap-a { color: var(--text); opacity: 0.85; }
+
+        .law-ref { background: #f0f2f5; border-radius: 8px; padding: 10px 14px; font-size: 0.84em;
+                   color: #4a5568; margin-top: 14px; border-left: 3px solid var(--law); }
+
+        details { margin-top: 16px; }
+        details summary { cursor: pointer; color: var(--sub); font-size: 0.84em; font-weight: 600;
+                          padding: 5px 0; user-select: none; list-style: none; display: flex; align-items: center; gap: 6px; }
+        details summary::before { content: '▶'; font-size: 0.62em; transition: transform 0.2s; color: var(--sub); }
+        details[open] summary::before { transform: rotate(90deg); }
+        .ref-case { background: #f5f6f8; border-radius: 7px; padding: 10px 13px; margin-bottom: 8px;
+                    font-size: 0.84em; border-left: 3px solid var(--majority); }
+        .ref-case.d { border-left-color: var(--dissent); }
+        .ref-case-title { font-weight: 700; color: var(--majority); margin-bottom: 3px; font-size: 0.9em; }
+        .ref-case.d .ref-case-title { color: var(--dissent); }
+
+        .note-toggle { display: inline-block; margin-top: 14px; font-size: 0.8em; color: #b0b8c4; cursor: pointer; user-select: none; }
+        .note-toggle:hover { color: var(--majority); }
+        .note-area { display: none; margin-top: 8px; }
+        .note-area.open { display: block; }
+        .note-textarea { width: 100%; min-height: 68px; border: 1px solid var(--line); border-radius: 7px;
+                         padding: 10px 12px; font-size: 0.87em; font-family: inherit; color: var(--text);
+                         background: #fafbfc; resize: vertical; outline: none; line-height: 1.75; }
+        .note-textarea:focus { border-color: var(--majority); }
+        .note-textarea::placeholder { color: #ccc; }
+        .note-saved { font-size: 0.72em; color: #68a06a; text-align: right; height: 14px; margin-top: 2px; }
+
+        .judges-grid { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+        .judge-chip { font-size: 0.77em; background: #eef1f6; border-radius: 20px; padding: 3px 11px;
+                      color: #3a4a6a; border: 1px solid #d8dde8; }
+        .judge-chip.chief { background: var(--majority); color: #fff; font-weight: 700; border-color: var(--majority); }
+        .judge-chip.dissenter { background: var(--dissent); color: #fff; font-weight: 600; border-color: var(--dissent); }
+
+        .quiz-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 0; }
+        .quiz-item { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+        .quiz-q { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;
+                  padding: 11px 14px; cursor: pointer; font-size: 0.9em; background: var(--card); }
+        .quiz-q:hover { background: #f5f6f8; }
+        .quiz-toggle { font-size: 1.1em; color: var(--majority); flex-shrink: 0; font-weight: 300; line-height: 1.4; }
+        .quiz-a { display: none; padding: 11px 14px; background: #f0f3f8; font-size: 0.87em;
+                  line-height: 1.75; border-top: 1px solid var(--line); color: #1a365d; }
+        .quiz-a.open { display: block; }
+
+        #noResults, #noStarred { display: none; text-align: center; color: var(--sub); padding: 40px 0; font-size: 0.9em; }
+        ::-webkit-scrollbar { display: none; }
+        ::selection { background: #c8d8ef; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>最高法院刑事大法庭<br>110年度台上大字第2943號</h1>
+    <div class="header-controls">
+        <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="搜尋關鍵字、法條…" oninput="doSearch(this.value)" onkeydown="handleSearchKey(event)">
+            <span class="search-count" id="searchCount"></span>
+            <button class="search-nav" id="prevBtn" onclick="navMatch(-1)" disabled title="上一個">▲</button>
+            <button class="search-nav" id="nextBtn" onclick="navMatch(1)" disabled title="下一個">▼</button>
+        </div>
+        <button id="filterBtn" onclick="toggleFilter()">⭐ 收藏</button>
+    </div>
+    <div class="top-bar">
+        <button class="top-btn" onclick="highlightText()">🖊️</button>
+        <button class="top-btn" onclick="removeHighlight()">🧽</button>
+        <button class="top-btn" onclick="clearHighlights()">🗑️</button>
+        <button class="top-btn" onclick="openExport()">📤</button>
+        <button class="top-btn" id="nightBtn" onclick="toggleNight()">🌙</button>
+        <button class="top-btn done" id="doneBtn" onclick="toggleDone()">朕已閱</button>
+        <span class="done-date" id="doneDateLabel"></span>
+    </div>
+</header>
+
+<div class="container">
+
+<!-- ===== 主裁定卡片 ===== -->
+<div class="card" id="case1" data-kw="110台上大2943 通訊保障及監察法 通保法 第5條第4項 期中報告義務 第18條之1第3項 證據排除 監聽 逾期陳報 15日 刑事訴訟法第158條之4 權衡 令狀原則 林慶勇 梁宏哲 江翠萍 李錦樑">
+    <button class="star-btn" onclick="toggleStar('case1',this)">⭐</button>
+    <h2 class="card-title">
+        監聽「期中報告」逾期陳報，取得的監聽內容還能不能用？——三種立場的拉鋸
+    </h2>
+    <div class="meta-line">裁定日期：中華民國111年5月25日　｜　案號：110年度台上大字第2943號　｜　提案庭：刑事第三庭　｜　不同意見：梁宏哲法官（李錦樑法官加入）、江翠萍法官（各自提出，方向相反）</div>
+
+    <!-- 主文 -->
+    <div class="verdict">
+        <div class="verdict-label">大法庭主文（兩段）</div>
+        <div class="verdict-main">①執行機關於執行通訊監察期間所作之<strong>期中報告書</strong>，陳報至該管法院時，如已<strong>逾十五日</strong>之法定期限，或<strong>法官指定之期日</strong>，均屬<strong>違反</strong>通保法第5條第4項期中報告義務之規定。</div>
+        <div class="verdict-sub">②執行機關違反期中報告義務「<strong>前</strong>」，依法監聽取得之內容，<strong>具有證據能力</strong>；於違反義務「後」至監察期間屆滿前取得者，依§18-1Ⅲ<strong>原則無證據能力</strong>；<strong>但</strong>執行機關已製作期中報告書、<strong>僅逾期陳報</strong>者，改依<strong>刑訴§158-4</strong>，審酌人權保障及公共利益之均衡維護，個案認定之。</div>
+        <div class="vote-row">
+            <span class="v-chip majority">多數意見 ✔</span>
+            <span class="v-chip dissent-c">不同意見一：梁宏哲＋李錦樑（主張更嚴・一律絕對排除）</span>
+            <span class="v-chip" style="background:rgba(74,122,108,0.45);">不同意見二：江翠萍（主張更寬・一律158-4權衡）</span>
+            <span class="v-chip">裁定日：111.5.25</span>
+        </div>
+    </div>
+
+    <!-- 概念前導 -->
+    <div class="section-heading">案件脈絡與核心概念</div>
+    <div class="flow-box">
+        <div class="flow-step"><div class="flow-num">①</div><div>通保法§5Ⅳ要求執行機關<strong>每15日</strong>至少作成一次「<strong>期中報告書</strong>」，或依法官指定期日提出，說明監聽進行情形、有無繼續監聽必要</div></div>
+        <div class="flow-arrow">↓ 爭點一：15日／指定期日，指「作成」還是「陳報到院」？</div>
+        <div class="flow-step"><div class="flow-num">②</div><div><strong>多數：指「陳報到院」之期限。</strong>即使機關在期限內「作成」了報告書，若送到法院時已逾期，仍屬違反§5Ⅳ</div></div>
+        <div class="flow-arrow">↓ 爭點二：違反後，監聽所得資料還能不能用？</div>
+        <div class="flow-step"><div class="flow-num">③</div><div>依時間切三段：<strong>(A)違反前</strong>取得＝有證據能力；<strong>(B)違反後～期滿前</strong>取得＝原則無證據能力（§18-1Ⅲ）；<strong>但(C)「已製作僅逾期陳報」</strong>的資料，多數意見另闢蹊徑改用<strong>158-4個案權衡</strong></div></div>
+        <div class="flow-arrow">↓ 兩派不同意見都反對這個「B、C分流」的中間路線</div>
+        <div class="flow-step"><div class="flow-num">④</div><div><strong>不同意見一（梁宏哲）</strong>：B、C都應「<strong>絕對排除</strong>」（§18-1Ⅲ），不該讓C走158-4後門　vs　<strong>不同意見二（江翠萍）</strong>：B、C都應「<strong>158-4個案權衡</strong>」，不該讓B被絕對排除</div></div>
+    </div>
+
+    <!-- 基礎事實 -->
+    <div class="section-heading">基礎事實</div>
+    <div class="fact-box">
+        <p>檢察官依法向第一審法院聲請對上訴人<strong>林慶勇</strong>持用門號實施通訊監察，經法院核發通訊監察書（監察期間<strong>108年1月11日10時至同年2月9日10時</strong>），並命警方應於<strong>同年1月24日前</strong>提出監察報告書。</p>
+        <p>警方於<strong>108年1月24日</strong>製作監察報告書，惟至翌（<strong>25</strong>）日方陳報至第一審法院（<strong>逾期1日</strong>）。原審認：警方未遵期提出報告書，雖違反§5Ⅳ，惟<strong>1月11日至1月24日</strong>執行監聽所取得內容，執行程序並無違法，<strong>有證據能力</strong>，並以此段監聽譯文為補強證據，論處上訴人販賣第一級毒品罪刑；至<strong>1月25日以後至2月9日</strong>監聽所得，則認依§18-1Ⅲ<strong>無證據能力</strong>。</p>
+        <p><strong>爭點：</strong>①「已製作、僅陳報逾期1天」是否仍構成違反§5Ⅳ？②違反後（1/25起）取得之監聽內容，證據能力應如何判斷？</p>
+    </div>
+
+    <!-- 法律爭議 -->
+    <div class="section-heading">法律爭議</div>
+    <div class="issue-box">
+        <p><strong>法律爭議一：</strong>依通保法§5Ⅳ，執行機關應每15日至少作成1次以上報告書，或依法官指定期日提出。若執行機關於15日內或指定期日<strong>前已「製作」</strong>期中報告書，惟<strong>陳報至該管法院時已逾</strong>15日或指定期日，是否違反該規定？</p>
+        <p><strong>法律爭議二：</strong>執行機關違反§5Ⅳ期中報告義務，其進行監聽所取得之內容，有無證據能力？</p>
+    </div>
+
+    <!-- 多數理由 -->
+    <div class="section-heading">大法庭裁定理由（多數意見）</div>
+    <div class="opinions">
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈠</div>
+                <span class="op-label">§5Ⅳ規範「定期報告」與「指定報告」兩種義務</span>
+            </div>
+            <div class="op-body">
+                <p>通保法96年增訂§5Ⅳ課予執行機關期中報告義務；103年修正為「每15日至少作成一次以上報告書」（<strong>定期報告</strong>），並增訂「檢察官或核發通訊監察書之法官<strong>並得隨時</strong>命執行機關提出報告」（<strong>指定報告</strong>）。</p>
+                <p>參酌立法理由「使執行機關應負於通訊監察期間<strong>提出報告之義務</strong>」，可徵條文所稱「作成」實指「<strong>作成後提出</strong>」，非單指作成；法官依核發權人地位本有隨時命提出報告之權限。堪認定期報告與指定報告，係<strong>兩個不同之獨立規範</strong>。</p>
+                <div class="op-result">
+                    <strong>結論：</strong>「作成」不能望文生義只看有沒有寫出來，立法本意包含「提出（陳報）」。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈡</div>
+                <span class="op-label">§5Ⅳ之期限係指「陳報至該管法院」之時間</span>
+            </div>
+            <div class="op-body">
+                <p>條文雖僅規定「作成」或「提出」報告書，然由96年增訂理由可徵，執行機關除作成外尚需提出，故條文所稱「作成」即「作成及提出」。通訊監察無論發動前或執行中，監察對象均無從得知、無從行使防禦權或聲明不服；又通訊具雙向本質，必同時侵害無辜第三人之秘密通訊自由。</p>
+                <p>釋字第631號揭示通訊監察發動須法官事前審查外，亦指示法官應「隨時監督通訊監察執行情形」。期中報告義務即係<strong>回應此一憲法誡命</strong>，強化監聽進行中之外部監督機制，使法院得適時判斷是否有不應繼續執行監聽之情狀，以撤銷原核發之通訊監察書。若15日或指定期日僅指「作成」，執行機關雖於期限內製作，卻遲未交付法院，或陳報時監聽期間行將屆滿，將<strong>無從落實該規範目的</strong>。</p>
+                <div class="op-result">
+                    <strong>結論（法律爭議一）：</strong>執行機關雖於15日內或指定期日前製作期中報告書，惟陳報至該管法院時已逾該期限，<strong>自屬違反§5Ⅳ</strong>規定之期中報告義務。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈢</div>
+                <span class="op-label">違反期中報告義務「前」取得之內容——有證據能力</span>
+            </div>
+            <div class="op-body">
+                <p>通訊監察書之核發是否合法，應以<strong>法官核發當時之偵查狀況</strong>為審查基點，非以事後監聽進行之情形為斷。期中報告義務<strong>並非</strong>針對「通訊監察書核發」合法性所設之中間審查制度，自不得以執行機關違反期中報告義務、致法院無從審查先前核發通訊監察書之合法性為由，否定<strong>期限前</strong>監聽所得資料之證據能力。</p>
+                <p>又§18-1Ⅲ須以「<strong>違反第5條規定進行監聽</strong>」為前提；執行機關僅於應為報告之期限屆至時，仍未盡作為義務，始有違反§5Ⅳ可言。故違反期中報告義務所生之無證據能力效果，<strong>僅止於違反義務「後」</strong>之監聽所得資料，不應回溯推翻違反前、依法院核發令狀合法監聽所得資料之證據能力。</p>
+                <div class="op-result">
+                    <strong>結論：</strong>違反前的監聽內容不受牽連，仍有證據能力。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈣</div>
+                <span class="op-label">違反義務「後」取得之內容——原則上無證據能力（§18-1Ⅲ）</span>
+            </div>
+            <div class="op-body">
+                <p>「保障人民秘密通訊自由及隱私權不受非法侵害」與「確保國家安全、維護社會秩序」同為通保法立法目的，於§5Ⅰ所列重罪、符合相當理由關聯性及最後手段性等要件時，立法者已權衡准予核發通訊監察書，自應予尊重，執行機關依令狀監聽所得資料原則上應得作為證據。</p>
+                <p>惟倘因執行機關於執行監聽期間違反期中報告義務，即<strong>不問違反情節如何</strong>，一律依§18-1Ⅲ絕對排除證據能力，將天平一端<strong>全然傾向</strong>秘密通訊自由及隱私權之保障，<strong>無異全盤否定立法者所為之權衡</strong>。</p>
+                <div class="op-result">
+                    <strong>過渡：</strong>因此必須進一步區分「完全未製作報告書」與「已製作僅逾期陳報」兩種違反情節，賦予不同法律效果。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈤</div>
+                <span class="op-label">關鍵區分：完全未製作＝絕對排除；已製作僅逾期陳報＝158-4個案權衡</span>
+            </div>
+            <div class="op-body">
+                <p>期中報告義務之規範目的，除屬外部監督機制（使法院得撤銷原核發令狀）外，並有促使執行機關<strong>儘速聽取監聽所得資料、履行自我監督義務</strong>之目的。故僅於執行機關在通訊監察期間<strong>完全未製作</strong>期中報告書，始<strong>實質違反</strong>期中報告義務之規範意旨，其期限後監聽所得資料，方屬§18-1Ⅲ所規範「違反§5條規定」，<strong>不得採為證據</strong>。</p>
+                <p>反之，執行機關業已<strong>製作</strong>期中報告書，<strong>僅陳報至該管法院有所遲延</strong>，因執行機關仍有履行自我監督義務，法官亦非無據以審查，尚難謂立法目的全然未獲落實；此時若仍認屬§18-1Ⅲ「違反第5條規定」之射程而絕對禁止使用，不僅有悖立法者利益權衡，且<strong>違反比例原則</strong>。</p>
+                <p>於此情形，監聽所得資料<strong>並非</strong>依通保法上開條項排除證據能力，而應依<strong>刑事訴訟法§158-4</strong>規定，斟酌逾期情形，對「法院審查判斷有無應撤銷原核發通訊監察書之影響程度」「執行機關違背法定程序之主觀意圖」「侵害監察對象或第三人權益之種類及輕重」「犯罪所生之危險或實害」「禁止使用證據對於預防將來違法取得證據之效果」「偵審人員如依法定程序有無發現該證據之必然性」「證據取得之違法對被告訴訟上防禦不利益之程度」等情形，<strong>權衡認定</strong>其證據能力之有無。</p>
+                <div class="op-result">
+                    <strong>結論（法律爭議二）：</strong>執行機關雖違反期中報告義務，其<strong>期限前</strong>監聽所得資料仍有證據能力；<strong>期限後</strong>部分，視是否已於監察期間內製作報告書而定——<strong>完全未製作</strong>＝依§18-1Ⅲ<strong>無證據能力</strong>；<strong>已製作僅逾期陳報</strong>＝依刑訴§158-4<strong>個案權衡</strong>認定。
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 法條依據 -->
+    <div class="law-ref">
+        <strong>📋 核心法條：</strong>通訊保障及監察法§5（核發要件、期中報告義務）、§18-1Ⅲ（違法監聽證據絕對排除）；刑事訴訟法§158-4（其他違背法定程序取得證據之權衡排除）；司法院釋字第631號（通訊監察法官保留及隨時監督）
+    </div>
+
+    <!-- 三方對照表 -->
+    <div class="section-heading">多數意見 vs. 兩種不同意見</div>
+    <table class="compare-table">
+        <thead>
+            <tr>
+                <th class="th-issue">爭點</th>
+                <th class="th-majority">多數意見</th>
+                <th class="th-dissent">不同意見一（梁宏哲・李錦樑）</th>
+                <th class="th-dissent2">不同意見二（江翠萍）</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="td-issue">基本立場</td>
+                <td class="td-majority">依「是否已製作報告書」<strong>區分</strong>兩種法律效果（絕對排除 vs 個案權衡）</td>
+                <td class="td-dissent">應<strong>一律絕對排除</strong>（§18-1Ⅲ），不應區分是否已製作，更嚴格保護隱私</td>
+                <td class="td-dissent2">應<strong>一律個案權衡</strong>（刑訴§158-4），不應區分是否已製作，避免僵化</td>
+            </tr>
+            <tr>
+                <td class="td-issue">「已製作僅逾期陳報」之定性</td>
+                <td class="td-majority">未實質違反規範目的（機關已自我監督、法官仍可審查）→ <strong>158-4權衡</strong></td>
+                <td class="td-dissent">法條文義清楚「均不得採為證據」，多數卻另闢例外，<strong>論述前後矛盾</strong>、悖於絕對排除之修法原意</td>
+                <td class="td-dissent2">§18-1Ⅲ「違反第5條規定」<strong>應限縮解釋</strong>，本不含§5Ⅳ期中報告義務，故不論是否已製作，均應158-4權衡</td>
+            </tr>
+            <tr>
+                <td class="td-issue">對逾期陳報「未設期限上限」之疑慮</td>
+                <td class="td-majority">（未特別著墨）</td>
+                <td class="td-dissent">遲至30日監聽期間屆滿之際才陳報者，實際上<strong>幾無異於無令狀監聽</strong>，竟也可能被法官權衡認有證據能力，<strong>造成令狀原則破口</strong></td>
+                <td class="td-dissent2">（未特別著墨此點；著重論證條文文義應限縮）</td>
+            </tr>
+            <tr>
+                <td class="td-issue">體系解釋（§5各項性質）</td>
+                <td class="td-majority">§5Ⅳ期中報告義務與§5Ⅰ核准要件同屬第5條，§18-1Ⅲ「違反第5條」應涵蓋Ⅳ項</td>
+                <td class="td-dissent">（未特別著墨此點）</td>
+                <td class="td-dissent2">§5條內容龐雜（核准實體要件、形式審核流程、駁回條件、期中報告、一票監聽一人限制），不能僅憑「違反第5條」文義即涵攝全部；且§6、§7之「違反」均<strong>專指核准要件</strong>，基於體系一致性，§18-1Ⅲ所稱「違反第5條」亦應限於核准要件</td>
+            </tr>
+            <tr>
+                <td class="td-issue">與法院先前判決先例之關係</td>
+                <td class="td-majority">（本裁定變更先前見解，未特別著墨）</td>
+                <td class="td-dissent">多數意見<strong>推翻</strong>本院107台上3407、109台上472、110台上3838等判決先例（原均採「均不得採為證據」文義解釋），恐悖於立法者加強隱私監督之修法本旨</td>
+                <td class="td-dissent2">舉重以明輕：本院判決先例對「檢察官逾期或漏未陳報另案監聽內容」等違背法定程序情形，亦非採絕對排除，而適用158-4權衡；本案監聽逾期陳報之情節顯較輕，更應同採158-4</td>
+            </tr>
+            <tr>
+                <td class="td-issue">是否違反權力分立</td>
+                <td class="td-majority">（未以此角度論述；著重個案人權保障與公益均衡）</td>
+                <td class="td-dissent">依§5Ⅳ文義本應「15日內作成」即簡單明確二分；大法庭卻另創「送院才算作成、但可否用改由法官權衡」的規則，<strong>看似統一見解實則個案因人而異</strong>，凌駕立法之上，<strong>違反權力分立</strong></td>
+                <td class="td-dissent2">若不採限縮解釋，將使國家刑罰權因技術性遲延而無法有效實施，<strong>有礙刑事追訴、違反法治國原則</strong>，且與比例原則有違</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- 不同意見一 -->
+    <div class="section-heading">不同意見書一重點（梁宏哲法官提出・李錦樑法官加入）</div>
+    <div class="dissent-judges">主張方向：更嚴格——「已製作僅逾期陳報」亦應絕對排除，不應另設158-4權衡例外</div>
+    <div class="d-opinions">
+        <div class="d-op">
+            <div class="d-op-head">
+                <div class="d-op-num">壹</div>
+                <span class="d-op-label">多數意見論述前後矛盾，悖於絕對排除之修法原意</span>
+            </div>
+            <div class="d-op-body">
+                <p>依文義、體系、歷史、目的及合憲解釋，§5Ⅳ與§18-1Ⅲ「均不得採為證據」之規範脈絡及修法意旨均甚明確，對違反規定進行之通訊監察所取得資料採<strong>絕對證據排除</strong>之修法意旨甚明。本裁定就「完全未製作」部分固認無證據能力，同此見解；卻另就「已製作但逾期陳報」之情形，一方面認仍違反§5Ⅳ，一方面又謂得由法院依158-4權衡，<strong>此差別待遇之論述前後矛盾</strong>，甚而悖於絕對排除之修法原意，日後恐衍生違反權力分立之違憲疑慮。</p>
+                <div class="d-op-result">
+                    <strong>要旨：</strong>既然都已經是「違反§5Ⅳ」，法律效果就不該因為「有沒有做報告書」而有兩套標準。
+                </div>
+            </div>
+        </div>
+        <div class="d-op">
+            <div class="d-op-head">
+                <div class="d-op-num">貳</div>
+                <span class="d-op-label">未設期限上限，恐造成令狀原則破口</span>
+            </div>
+            <div class="d-op-body">
+                <p>多數意見對逾期陳報期中報告之情形，<strong>未設有任何期限</strong>，概認此情形期限後續行監聽所取得之資料，一律不予絕對排除，而得由法院依權衡法則決定有無證據能力，將使遲至30日監聽期間臨屆滿之際始製作陳報者，其期限後續行監聽<strong>實際上幾無異於無令狀通訊監察</strong>，竟亦免於被絕對排除，而得藉由法院裁量認有證據能力，所造成<strong>令狀原則之破口</strong>，對人民隱私權之侵害不言可喻。</p>
+                <div class="d-op-result">
+                    <strong>要旨：</strong>沒有設停損點的權衡，等於把「令狀監聽」變相稀釋成「準無令狀監聽」，風險太高。
+                </div>
+            </div>
+        </div>
+        <div class="d-op">
+            <div class="d-op-head">
+                <div class="d-op-num">參</div>
+                <span class="d-op-label">實務已顯著改善＋推翻先例、逾越立法權，違反權力分立</span>
+            </div>
+            <div class="d-op-body">
+                <p>自103年通保法修法後，法院已分設刑事強制處分專庭辦理審核，並建置電腦化通訊監察管理系統及數位傳送等線上監督作業規範，逾期陳報情形已<strong>顯著改善</strong>，本院107台上3407、109台上472、110台上3838等判決先例均嚴守「均不得採為證據」之文義與修法原意。多數意見推翻上開先例，先將「作成」嚴格解釋包含「陳報至該管法院」，卻又割裂分段解釋、放寬改由法官個案權衡，<strong>化簡為繁，治絲益棼</strong>，且顯然有悖立法者加強隱私監督之利益權衡。</p>
+                <p>依通保法規定，期中報告15日內「作成」可作證據，未於15日內作成不能作證據，<strong>簡單明確</strong>；本大法庭裁定卻解為「送到法院才算作成，但可否用改由法官個案決定」，<strong>看似統一法律見解，實則造成個案因人而異，更凌駕立法之上</strong>，違反權力分立原則，衍生裁判違憲爭議。</p>
+                <div class="d-op-result">
+                    <strong>要旨：</strong>把明確的法定期限規則，改造成法官逐案裁量的模糊標準，本質上是司法權越界代替立法者重新分配風險。
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 不同意見二 -->
+    <div class="section-heading">不同意見書二重點（江翠萍法官提出）</div>
+    <div class="dissent-judges d2">主張方向：更寬鬆——期限後監聽所得資料，不論是否已製作報告書，一律應依刑訴§158-4個案權衡，不應對「完全未製作」逕予絕對排除</div>
+    <div class="d-opinions">
+        <div class="d-op d2">
+            <div class="d-op-head">
+                <div class="d-op-num">壹</div>
+                <span class="d-op-label">§5條規範內容龐雜，「違反第5條規定」不應涵蓋期中報告義務（第4項）</span>
+            </div>
+            <div class="d-op-body">
+                <p>通保法§5條內容包括一般通訊監察核准之實體要件（Ⅰ）、形式要件及內部審核流程（Ⅱ）、駁回條件（Ⅲ）、期中報告義務（Ⅳ）與「一票監聽一人」限制（Ⅴ）。以Ⅱ項檢察官及法院受理聲請後核復時間之規定為例，乃屬通訊監察書<strong>審核流程之內部作業時限</strong>，與人民通訊隱私權之保障無關，純屬訓示規定，即使逾時核復，亦無連結證據使用禁止之問題。因此，尚難僅憑§18-1Ⅲ「違反第5條規定」之文義，逕行解讀為涵攝§5條之各項規定。</p>
+                <div class="d-op-result">
+                    <strong>要旨：</strong>「違反第5條」不是無差別地涵蓋第5條所有項次；要看該項規定與「通訊隱私權保障」是否有實質關聯。
+                </div>
+            </div>
+        </div>
+        <div class="d-op d2">
+            <div class="d-op-head">
+                <div class="d-op-num">貳</div>
+                <span class="d-op-label">與§6、§7體系一致性——「違反規定」應限於核准要件，不含期中報告</span>
+            </div>
+            <div class="d-op-body">
+                <p>§18-1Ⅲ除「違反第5條規定」外，亦將「違反第6條或第7條規定」列為證據排除原因。而§6緊急通訊監察、§7國安通訊監察之規範內容，均<strong>僅侷限在核准之實體暨形式要件</strong>，並無如§5條除核准要件外另有期中報告義務等規定。基此，§18-1Ⅲ所稱「違反第6條或第7條規定」，應專指違反<strong>核准要件</strong>而實施監聽；倘僅就一般通訊監察，除違反核准要件有絕對排除之適用外，另於違反§5Ⅳ期中報告義務，亦賦予相同之絕對排除效果，顯然是<strong>同一法秩序內部之輕重失衡</strong>。基於維持法規範體系解釋之內在和諧性，§18-1Ⅲ所稱「違反第5條規定」，亦應如同第6、7條，割定在違反<strong>核准要件</strong>之規定為妥。</p>
+                <div class="d-op-result">
+                    <strong>要旨：</strong>§6、§7都只針對「核准要件」設絕對排除，§5獨獨把「期中報告」也綁進絕對排除，體系上並不對稱。
+                </div>
+            </div>
+        </div>
+        <div class="d-op d2">
+            <div class="d-op-head">
+                <div class="d-op-num">參</div>
+                <span class="d-op-label">舉重以明輕——先例對逾期陳報「另案監聽」尚採158-4權衡，本案監聽情節更輕</span>
+            </div>
+            <div class="d-op-body">
+                <p>通保法就違法監聽並非一律採絕對無證據能力，而係採「<strong>原則排除，例外容許</strong>」之立法例（§18-1Ⅰ規定參照）。且於檢察官有逾期或漏未陳報「另案監聽」內容等違背法定程序之情形，本院判決先例亦非採絕對排除，而係適用<strong>刑事訴訟法§158-4</strong>權衡判斷。舉重以明輕，在依令狀監聽之「本案監聽」，執行機關僅係逾期或漏未提出報告書之違背法定程序情形，其期限後監聽所得資料，當亦非絕對無證據能力。</p>
+                <div class="d-op-result">
+                    <strong>要旨：</strong>連情節較重的「另案監聽」逾期陳報都只用158-4權衡，情節較輕的「本案監聽」逾期陳報，沒有理由更嚴格採絕對排除。
+                </div>
+            </div>
+        </div>
+        <div class="d-op d2">
+            <div class="d-op-head">
+                <div class="d-op-num">肆</div>
+                <span class="d-op-label">期中報告義務與核准要件之違反效果本應有強弱之別</span>
+            </div>
+            <div class="d-op-body">
+                <p>期中報告義務固有藉法院於執行期間介入、避免已失去續行監聽正當性卻未停止監聽之違法情事，寓有保護秘密通訊自由之效益。然通過列舉重罪原則、補充性原則（最後手段性原則）及法官保留原則等層層核准要件後之<strong>合法監聽</strong>，再特別課予期中報告義務之取證限制，並非各國均採（如瑞士、德國並無類此規定）；且期中報告義務係<strong>預防</strong>監聽期間發生應停止監聽之情事卻未停止，僅具預防效果，並非必然發生應停止監聽之情事。</p>
+                <p>故通保法所規定實施通訊監察之<strong>核准要件</strong>，與期中報告義務之規範保護目的明顯輕重有別，違反之效果當有強弱之別。倘認違反期中報告義務與違反核准要件同受§18-1Ⅲ絕對禁止使用，無異宣示期中報告與通訊監察書之法律地位相當，且使期限後監聽所得資料之證據能力，完全取決於執行機關是否、何時履行期中報告義務，<strong>顯與事理有違</strong>，亦有違比例原則。</p>
+                <div class="d-op-result">
+                    <strong>結論：</strong>§18-1Ⅲ「違反第5條規定」應限縮解釋，排除§5Ⅳ期中報告義務之規定；執行機關違反期中報告義務，其期限後監聽所得資料證據能力之有無，<strong>應依刑訴§158-4規定權衡判斷</strong>，不宜區分違反義務情狀而異其認定標準。
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 考試地雷 -->
+    <div class="trap-box">
+        <div class="trap-title">⚠️ 考試常見地雷</div>
+        <div class="trap-item">
+            <div class="trap-q">Q：§5Ⅳ的「15日」「指定期日」，是指「作成」還是「陳報到院」的期限？</div>
+            <div class="trap-a">A：多數意見：指「<strong>陳報至該管法院</strong>」之期限。即使機關在期限內把報告書寫好了，只要送到法院時已逾期，仍屬違反§5Ⅳ。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：本件多數意見對「違反前」「違反後」監聽所得資料的證據能力，各如何處理？</div>
+            <div class="trap-a">A：①<strong>違反前</strong>取得——有證據能力（不受影響）。②<strong>違反後～期滿前</strong>取得——原則依§18-1Ⅲ<strong>無證據能力</strong>；但若機關<strong>已製作報告書、僅逾期陳報</strong>，改依<strong>刑訴§158-4</strong>個案權衡認定。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：多數意見「已製作僅逾期陳報」改採158-4的關鍵理由是什麼？</div>
+            <div class="trap-a">A：期中報告義務除外部監督（撤銷令狀）外，也有促使機關自我監督之目的；「已製作僅逾期」時機關仍有自我監督、法官仍可審查，未全然悖離規範目的，若仍絕對排除將違反比例原則。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：不同意見一（梁宏哲・李錦樑）與不同意見二（江翠萍）的方向是否相同？</div>
+            <div class="trap-a">A：<strong>方向相反</strong>！不同意見一主張「更嚴」——已製作僅逾期陳報也應絕對排除，反對多數另闢158-4例外；不同意見二主張「更寬」——連完全未製作的情形都不該絕對排除，應統一適用158-4權衡。兩者都反對多數的「二分法」，但反方向拉扯。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：不同意見二如何論證§18-1Ⅲ「違反第5條規定」不含期中報告義務？</div>
+            <div class="trap-a">A：體系解釋——§6、§7的「違反」均專指核准要件，並無如§5另有期中報告義務規定；若§5獨將期中報告義務也納入絕對排除，將造成「同一法秩序內部輕重失衡」，故§18-1Ⅲ「違反第5條規定」應限縮解釋為僅指核准要件。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：不同意見一質疑多數意見的「令狀原則破口」是指什麼？</div>
+            <div class="trap-a">A：多數意見對「已製作僅逾期陳報」未設任何期限上限——即使拖到監聽期間屆滿前一刻才陳報，仍可能被法官權衡認有證據能力，等於讓合法令狀監聽在後段實質上變得跟無令狀監聽差不多，卻仍可能被採為證據。</div>
+        </div>
+    </div>
+
+    <!-- 引用法條 -->
+    <details>
+        <summary>📎 引用法條整理</summary>
+        <div style="padding: 10px 0 4px;">
+            <div class="ref-case">
+                <div class="ref-case-title">通訊保障及監察法第5條第4項（期中報告義務）</div>
+                <p style="margin:0;">執行機關應於執行監聽期間內，每15日至少作成一次以上之報告書，說明監聽行為之進行情形，以及有無繼續執行監聽之需要。檢察官或核發通訊監察書之法官並得隨時命執行機關提出報告。法官依經驗法則、論理法則自由心證判斷後，發現有不應繼續執行監聽之情狀時，應撤銷原核發之通訊監察書。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">通訊保障及監察法第18條之1第3項（違法監聽證據排除）</div>
+                <p style="margin:0;">違反第5條、第6條或第7條規定進行監聽行為所取得之內容或所衍生之證據，於司法偵查、審判或其他程序中，均不得採為證據。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">刑事訴訟法第158條之4（權衡排除）</div>
+                <p style="margin:0;">除法律另有規定外，實施刑事訴訟程序之公務員因違背法定程序取得之證據，其有無證據能力之判斷，應審酌人權保障及公共利益之均衡維護。</p>
+            </div>
+            <div class="ref-case d">
+                <div class="ref-case-title">本院107台上3407、109台上472、110台上3838號判決先例（不同意見一援引）</div>
+                <p style="margin:0;">均嚴守違反§5期中報告「作成」期限規定進行監聽所取得之證據，「均不得採為證據」之法條文義與修法原意，未區分是否已製作僅逾期陳報。</p>
+            </div>
+            <div class="ref-case" style="border-left-color:var(--dissent2);">
+                <div class="ref-case-title" style="color:var(--dissent2);">司法院釋字第631號解釋（多數意見援引）</div>
+                <p style="margin:0;">通訊監察之發動應由獨立、客觀行使職權之法官事前審查，並指示法官應隨時監督通訊監察執行情形。</p>
+            </div>
+        </div>
+    </details>
+
+    <!-- 法官名單 -->
+    <div class="section-heading">大法庭組成（11人）</div>
+    <div class="judges-grid">
+        <span class="judge-chip chief">審判長 吳燦</span>
+        <span class="judge-chip">郭毓洲</span>
+        <span class="judge-chip">林立華</span>
+        <span class="judge-chip">徐昌錦</span>
+        <span class="judge-chip">段景榕</span>
+        <span class="judge-chip">李英勇</span>
+        <span class="judge-chip dissenter">李錦樑（不同意見一・加入）</span>
+        <span class="judge-chip">林勤純</span>
+        <span class="judge-chip dissenter">梁宏哲（不同意見一・提出）</span>
+        <span class="judge-chip">何信慶</span>
+        <span class="judge-chip" style="background:var(--dissent2);color:#fff;border-color:var(--dissent2);">江翠萍（不同意見二）</span>
+    </div>
+    <p style="font-size:0.78em;color:var(--sub);margin:10px 0 0;">提案庭：最高法院刑事第三庭　｜　本案案號：110年度台上字第2943號　｜　提案裁定案號：110年度台上大字第2943號　｜　裁定日：中華民國111年5月25日</p>
+
+    <div class="note-toggle" onclick="toggleNote('n1')">✏️ 我的小結</div>
+    <div class="note-area" id="n1">
+        <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n1',this.value)"></textarea>
+        <div class="note-saved" id="n1-saved"></div>
+    </div>
+</div>
+
+<!-- ===== 快問快答卡片 ===== -->
+<div class="card" id="case2" data-kw="快問快答 通保法 期中報告義務 逾期陳報 證據能力 絕對排除 158-4權衡 令狀原則 三方見解">
+    <button class="star-btn" onclick="toggleStar('case2',this)">⭐</button>
+    <h2 class="card-title">快問快答——本件核心概念與答題要點</h2>
+    <div class="meta-line">建議先蓋住答案，自己回答後再確認</div>
+
+    <div class="quiz-list">
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>本件的事實爭點是什麼？（一句話）</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">警方在期限內「做好」了期中報告書，但送到法院時已經「逾期1天」——這樣算不算違反§5Ⅳ？違反之後的監聽內容還能不能用？</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>【核心】多數意見對「已製作僅逾期陳報」與「完全未製作」的結論分別是什麼？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">完全未製作＝期限後監聽所得資料依§18-1Ⅲ「無證據能力」（絕對排除）。已製作僅逾期陳報＝改依刑訴§158-4，審酌人權保障及公共利益均衡「個案權衡」認定，不是自動排除也不是自動有效。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>不同意見一（梁宏哲・李錦樑）主張什麼？核心理由？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">主張：已製作僅逾期陳報也應「絕對排除」，不該有158-4的例外。理由：①法條文義與修法意旨明確採絕對排除，多數意見的區分自相矛盾；②未設期限上限，可能讓拖到監聽期滿前才陳報的情形也被權衡認有證據能力，形成「令狀原則破口」；③把明確的法定規則改成法官個案裁量，違反權力分立。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>不同意見二（江翠萍）主張什麼？核心理由？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">主張：期限後監聽所得資料，不論是否已製作報告書，都應一律依158-4個案權衡，不應對「完全未製作」逕予絕對排除。理由：①§18-1Ⅲ「違反第5條規定」應限縮解釋，不含期中報告義務（§5Ⅳ）；②體系解釋——§6、§7的絕對排除都只針對核准要件，§5不該獨自涵蓋期中報告義務；③舉重以明輕——連情節較重的「另案監聽」逾期陳報都只採158-4權衡，本案監聽情節更輕，沒理由更嚴。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>兩份不同意見書的方向是否一致？要怎麼記住兩者的差異？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">方向相反！可以記成：多數意見站在「中間」，梁宏哲（不同意見一）往「更嚴（左）」拉——通通絕對排除；江翠萍（不同意見二）往「更寬（右）」拉——通通158-4權衡。多數意見的「二分法」正好夾在兩派中間，兩邊都覺得多數走了「一半」的路。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>「違反前」取得的監聽內容，三方見解是否有分歧？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">沒有分歧。三方對「違反期中報告義務前」取得之監聽內容，均認有證據能力（通訊監察書核發合法性應以法官核發當時之偵查狀況為斷，不受事後期中報告違反之影響）。爭議僅限於「違反後」取得的資料如何處理。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>158-4權衡認定時，裁定列出哪些審酌因素？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">法院審查判斷有無應撤銷原核發通訊監察書之影響程度、執行機關違背法定程序之主觀意圖、侵害監察對象或第三人權益之種類及輕重、犯罪所生之危險或實害、禁止使用證據對預防將來違法取得證據之效果、偵審人員依法定程序有無發現該證據之必然性、證據取得違法對被告訴訟上防禦不利益之程度等。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>一句話記憶本裁定的三方立場？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">多數：「看有沒有做報告書決定要不要給機會權衡」；不同意見一：「反正違反了，通通排除，別給機會」；不同意見二：「反正都合法監聽，通通給機會權衡，別自動排除」。</div>
+        </div>
+    </div>
+
+    <div class="note-toggle" onclick="toggleNote('n2')">✏️ 我的小結</div>
+    <div class="note-area" id="n2">
+        <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n2',this.value)"></textarea>
+        <div class="note-saved" id="n2-saved"></div>
+    </div>
+</div>
+
+<div id="noResults">查無符合的內容，請試試其他關鍵字。</div>
+<div id="noStarred">還沒有收藏的項目，點卡片右上角的 ⭐ 加入收藏。</div>
+</div>
+
+<script>
+const NIGHT_KEY='night_mode_pref';
+function toggleNight(){const on=document.body.classList.toggle('night-mode');localStorage.setItem(NIGHT_KEY,on?'1':'0');document.getElementById('nightBtn').textContent=on?'☀️':'🌙';}
+(function(){if(localStorage.getItem(NIGHT_KEY)==='1'){document.body.classList.add('night-mode');const b=document.getElementById('nightBtn');if(b)b.textContent='☀️';}})();
+const STORE_KEY='110_2943_grand_notes',STAR_KEY='110_2943_grand_stars';
+function loadNotes(){try{return JSON.parse(localStorage.getItem(STORE_KEY))||{};}catch{return{};}}
+function loadStars(){try{return JSON.parse(localStorage.getItem(STAR_KEY))||{};}catch{return{};}}
+function saveAllNotes(d){localStorage.setItem(STORE_KEY,JSON.stringify(d));}
+function saveAllStars(d){localStorage.setItem(STAR_KEY,JSON.stringify(d));}
+(function(){const n=loadNotes(),s=loadStars();
+  Object.entries(n).forEach(([id,v])=>{const a=document.getElementById(id);if(!a)return;const t=a.querySelector('textarea');if(t)t.value=v;if(v)a.classList.add('open');});
+  Object.entries(s).forEach(([id,v])=>{if(!v)return;const b=document.querySelector(`#${id} .star-btn`);if(b)b.classList.add('starred');});
+})();
+function toggleStar(id,btn){const s=loadStars();const now=!btn.classList.contains('starred');btn.classList.toggle('starred',now);s[id]=now;saveAllStars(s);if(filterActive)applyFilter();}
+let filterActive=false;
+function toggleFilter(){filterActive=!filterActive;document.getElementById('filterBtn').classList.toggle('active',filterActive);document.getElementById('searchInput').value='';clearSearchHighlights();updateSearchUI([],0);applyFilter();}
+function applyFilter(){const s=loadStars();const q=document.getElementById('searchInput').value.trim().toLowerCase();let any=false;
+  document.querySelectorAll('.card').forEach(c=>{const kw=(c.dataset.kw||'').toLowerCase();const txt=c.textContent.toLowerCase();
+  const ms=!q||kw.includes(q)||txt.includes(q);const mf=!filterActive||!!s[c.id];const show=ms&&mf;
+  c.classList.toggle('hidden',!show);if(show)any=true;});
+  document.getElementById('noResults').style.display=(!any&&!filterActive)?'block':'none';
+  document.getElementById('noStarred').style.display=(!any&&filterActive)?'block':'none';}
+let _matches=[],_cur=-1;
+function clearSearchHighlights(){document.querySelectorAll('mark.search-hl').forEach(m=>{const p=m.parentNode;p.replaceChild(document.createTextNode(m.textContent),m);p.normalize();});}
+function highlightInNode(node,re){if(node.nodeType===3){const text=node.nodeValue;const frag=document.createDocumentFragment();let last=0,m;re.lastIndex=0;while((m=re.exec(text))!==null){if(m.index>last)frag.appendChild(document.createTextNode(text.slice(last,m.index)));const mk=document.createElement('mark');mk.className='search-hl';mk.textContent=m[0];frag.appendChild(mk);last=re.lastIndex;}if(last===0)return;frag.appendChild(document.createTextNode(text.slice(last)));node.parentNode.replaceChild(frag,node);return;}if(node.nodeType===1){const tag=node.tagName;if(tag==='SCRIPT'||tag==='STYLE'||tag==='TEXTAREA'||tag==='INPUT')return;if(node.classList&&node.classList.contains('search-hl'))return;[...node.childNodes].forEach(c=>highlightInNode(c,re));}}
+function doSearch(q){clearSearchHighlights();_matches=[];_cur=-1;const qt=(q||'').trim();if(!qt){updateSearchUI([],0);applyFilter();return;}applyFilter();const esc=qt.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');const re=new RegExp(esc,'gi');document.querySelectorAll('.container .card:not(.hidden)').forEach(card=>{highlightInNode(card,re);});_matches=[...document.querySelectorAll('mark.search-hl')];if(_matches.length){_cur=0;setCurrent(0);}updateSearchUI(_matches,_cur);}
+function setCurrent(idx){_matches.forEach((m,i)=>m.classList.toggle('current',i===idx));if(_matches[idx])_matches[idx].scrollIntoView({behavior:'smooth',block:'center'});}
+function navMatch(dir){if(!_matches.length)return;_cur=(_cur+dir+_matches.length)%_matches.length;setCurrent(_cur);updateSearchUI(_matches,_cur);}
+function updateSearchUI(matches,cur){const cnt=document.getElementById('searchCount');const prev=document.getElementById('prevBtn');const next=document.getElementById('nextBtn');if(!matches.length){cnt.textContent='';prev.disabled=true;next.disabled=true;return;}cnt.textContent=(cur+1)+'/'+matches.length;prev.disabled=false;next.disabled=false;}
+function handleSearchKey(e){if(e.key==='Enter'){e.shiftKey?navMatch(-1):navMatch(1);}if(e.key==='Escape'){document.getElementById('searchInput').value='';doSearch('');}}
+function toggleNote(id){document.getElementById(id).classList.toggle('open');}
+const timers={};
+function saveNote(id,v){clearTimeout(timers[id]);timers[id]=setTimeout(()=>{const n=loadNotes();n[id]=v;saveAllNotes(n);const el=document.getElementById(id+'-saved');if(el){el.textContent='已儲存';setTimeout(()=>el.textContent='',1500);}},500);}
+let savedRange=null;
+document.addEventListener('selectionchange',()=>{const s=window.getSelection();if(s&&!s.isCollapsed&&s.rangeCount)savedRange=s.getRangeAt(0).cloneRange();});
+function highlightText(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;
+  if(!r||r.collapsed){alert('💡 請先反白想要標記的文字');return;}
+  const sp=document.createElement('span');sp.className='hl';sp.style.cssText='background:#f0d98a;border-radius:2px;';
+  try{r.surroundContents(sp);savedRange=null;}catch{alert('💡 請選取同一段落內的文字');}s&&s.removeAllRanges();}
+function removeHighlight(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;
+  if(!r||r.collapsed){alert('💡 請先反白想擦除標記的文字');return;}
+  const anc=r.commonAncestorContainer.nodeType===1?r.commonAncestorContainer:r.commonAncestorContainer.parentElement;
+  anc.querySelectorAll('span.hl').forEach(sp=>{if(r.intersectsNode(sp)){const p=sp.parentNode;while(sp.firstChild)p.insertBefore(sp.firstChild,sp);p.removeChild(sp);}});
+  savedRange=null;s&&s.removeAllRanges();}
+function clearHighlights(){const sp=document.querySelectorAll('span.hl');if(!sp.length)return;
+  if(confirm('確定要清除所有重點標記嗎？')){sp.forEach(s=>{const p=s.parentNode;while(s.firstChild)p.insertBefore(s.firstChild,s);p.removeChild(s);});}}
+function openExport(){
+  let out='最高法院刑事大法庭 110年度台上大字第2943號\n'+'═'.repeat(44)+'\n\n';
+  out+='【主文】\n執行機關於執行通訊監察期間所作之期中報告書，陳報至該管法院時，如已逾十五日之法定期限，或法官指定之期日，均屬違反通訊保障及監察法第5條第4項期中報告義務之規定。執行機關違反該義務前，依法監聽所取得之內容，具有證據能力；於違反期中報告義務後至通訊監察期間屆滿前取得者，依該法第18條之1第3項規定無證據能力，但執行機關於通訊監察期間已製作期中報告書，僅逾期陳報至該管法院者，則依刑事訴訟法第158條之4規定，審酌人權保障及公共利益之均衡維護認定之。\n\n';
+  document.querySelectorAll('.op,.d-op').forEach(op=>{
+    const head=op.querySelector('.op-label,.d-op-label')?.textContent.trim()||'';
+    out+=`▌${head}\n`;
+    op.querySelectorAll('.op-body p,.op-body li,.op-result,.d-op-body p,.d-op-body li,.d-op-result').forEach(el=>{
+      const t=el.textContent.trim();if(t)out+=(el.tagName==='LI'?'  • ':'')+t+'\n';});
+    out+='\n';});
+  const tas=document.querySelectorAll('.note-textarea');tas.forEach((ta,i)=>{if(ta&&ta.value.trim())out+=`✏️ 小結${i+1}：\n`+ta.value.trim()+'\n\n';});
+  out+='═'.repeat(44)+'\n';
+  const b=new Blob([out.trim()],{type:'text/plain;charset=utf-8'});
+  const u=URL.createObjectURL(b);const a=document.createElement('a');
+  a.href=u;a.download='110台上大字第2943號_通保法期中報告義務與證據能力.txt';a.click();URL.revokeObjectURL(u);}
+function toggleQuiz(el){const ans=el.nextElementSibling;const tog=el.querySelector('.quiz-toggle');if(ans.classList.contains('open')){ans.classList.remove('open');tog.textContent='＋';}else{ans.classList.add('open');tog.textContent='－';}}
+const REG_KEY='exam_completion_registry';
+function _loadReg(){try{return JSON.parse(localStorage.getItem(REG_KEY))||{};}catch{return{};}}
+function _saveReg(r){try{localStorage.setItem(REG_KEY,JSON.stringify(r));}catch{}}
+function _file(){const p=location.pathname.split('/');return decodeURIComponent(p[p.length-1]||'');}
+function _fmt(ts){const d=new Date(ts);const date=(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();const time=d.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false});return date+' '+time;}
+function _updateDate(){const r=_loadReg();const k=_file()||'case_criminal_grand_110_2943.html';const l=document.getElementById('doneDateLabel');if(!l)return;l.textContent=(r[k]&&r[k].done&&r[k].ts)?_fmt(r[k].ts):'';}
+function toggleDone(){const btn=document.getElementById('doneBtn');const r=_loadReg();const k=_file()||'case_criminal_grand_110_2943.html';const done=r[k]&&r[k].done;
+  if(done){delete r[k];_saveReg(r);btn.classList.remove('active');}
+  else{const now=new Date();r[k]={done:true,ts:now.getTime()};_saveReg(r);btn.classList.add('active');}
+  _updateDate();}
+(function(){const r=_loadReg();const k=_file()||'case_criminal_grand_110_2943.html';if(r[k]&&r[k].done){const b=document.getElementById('doneBtn');if(b)b.classList.add('active');}_updateDate();})();
+</script>
+</body>
+</html>
