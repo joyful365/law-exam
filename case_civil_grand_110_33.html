@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>110年度台簡抗大字第33號 民事大法庭裁定</title>
+    <style>
+        :root {
+            --bg:       #f5f0eb;
+            --card:     #ffffff;
+            --text:     #3d3530;
+            --sub:      #8c7b6b;
+            --line:     #ddd8d0;
+            --majority: #9e5c45;
+            --law:      #5a6e4e;
+            --dissent:  #b07d4a;
+            --trap:     #f5f0d8;
+            --header-bg:#5c4f47;
+        }
+        body.night-mode {
+            --bg:       #1a1714;
+            --card:     #252220;
+            --text:     #d4cec8;
+            --sub:      #8a7d72;
+            --line:     #383330;
+            --majority: #b87060;
+            --law:      #6a8a5e;
+            --dissent:  #c4935a;
+            --trap:     #2a2518;
+            --header-bg:#111010;
+        }
+        body.night-mode header { box-shadow: 0 2px 8px rgba(0,0,0,0.5); }
+        body.night-mode .top-bar { background: #1e1b18; }
+        body.night-mode .top-btn { background: #3a3530; }
+        body.night-mode .fact-box, body.night-mode .issue-box { background: #1e1b18; }
+        body.night-mode .op-head { background: #2a2520; }
+        body.night-mode .op-body { background: var(--card); }
+        body.night-mode .op-result { background: #2a2018; }
+        body.night-mode .flow-box { background: #1e1b18; }
+        body.night-mode .ref-case { background: #242018; }
+        body.night-mode .law-ref { background: #1c2018; }
+        body.night-mode .note-textarea { background: #1e1b18; color: var(--text); border-color: var(--line); }
+        body.night-mode .judge-chip { background: #2a2520; border-color: var(--line); }
+        body.night-mode .judge-chip.chief { background: #3a3530; }
+        body.night-mode mark.search-hl { background: #7a6010; color: #f0e8c8; }
+        body.night-mode mark.search-hl.current { background: #c47000; color: #fff; }
+        body.night-mode .verdict { background: #2e2a26; }
+        body.night-mode .trap-box { border-color: #5a5020; }
+        body.night-mode .trap-title { color: #c8a840; }
+        body.night-mode .trap-item { border-left-color: #7a6830; }
+        body.night-mode #nightBtn { background: #4a4030; color: #e8d898; font-weight: 700; }
+        body.night-mode .quiz-q { background: var(--card); }
+        body.night-mode .quiz-q:hover { background: #2a2520; }
+        body.night-mode .quiz-a { background: #1c2018; color: #9fbf90; }
+        body.night-mode .compare-table th.th-a { background: #1e2a20; }
+        body.night-mode .compare-table th.th-b { background: #2a1e18; }
+        body.night-mode .compare-table td.td-a { background: #1a2418; }
+        body.night-mode .compare-table td.td-b { background: #241a14; }
+        body.night-mode .compare-table td.td-issue { background: #2a1e18; }
+        body { transition: background 0.3s, color 0.3s; }
+        .card { transition: background 0.3s, border-color 0.3s; }
+
+        * { box-sizing: border-box; }
+        body { font-family: "Helvetica Neue", Helvetica, "PingFang TC", "LiHei Pro", "Microsoft JhengHei", sans-serif;
+               background: var(--bg); color: var(--text); line-height: 1.85; font-size: 16px; margin: 0; padding: 0 0 60px; }
+
+        header { background: var(--header-bg); color: #f5f0eb; padding: 16px 16px 8px; text-align: center;
+                 position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+        header h1 { margin: 0 0 10px; font-size: 1.05em; line-height: 1.5; font-weight: 600; letter-spacing: 0.02em; color: #ffffff; }
+        .header-controls { display: flex; gap: 8px; align-items: center; }
+        .search-wrap { position: relative; flex: 1; display: flex; align-items: center; gap: 4px; }
+        #searchInput { flex: 1; padding: 8px 14px 8px 32px; border: none; border-radius: 6px;
+                       font-size: 14px; background: rgba(245,240,235,0.15); color: #f5f0eb; outline: none; }
+        #searchInput::placeholder { color: rgba(245,240,235,0.45); }
+        #searchInput:focus { background: rgba(245,240,235,0.25); }
+        .search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 13px; opacity: 0.5; pointer-events: none; }
+        .search-count { font-size: 12px; color: rgba(255,255,255,0.7); white-space: nowrap; min-width: 44px; text-align: center; }
+        .search-nav { background: rgba(255,255,255,0.13); border: none; border-radius: 6px; color: white; font-size: 13px; padding: 6px 8px; cursor: pointer; line-height: 1; }
+        .search-nav:hover { background: rgba(255,255,255,0.25); }
+        .search-nav:disabled { opacity: 0.3; cursor: default; }
+        mark.search-hl { background: #ffe066; color: #1a1a1a; border-radius: 2px; padding: 0 1px; }
+        mark.search-hl.current { background: #ff8c00; color: #fff; border-radius: 3px; outline: 2px solid #ff8c00; }
+        #filterBtn { background: rgba(245,240,235,0.15); border: none; border-radius: 6px;
+                     color: #f5f0eb; font-size: 13px; padding: 8px 12px; cursor: pointer; white-space: nowrap; }
+        #filterBtn.active { background: var(--dissent); color: #fff; font-weight: bold; }
+        .top-bar { background: #e8e2da; padding: 5px 14px; display: flex; gap: 6px; justify-content: flex-end; flex-wrap: nowrap; }
+        .top-btn { background: #b0a898; color: #fff; border: none; padding: 4px 10px; border-radius: 20px;
+                   font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap; transition: opacity 0.15s; }
+        .top-btn:hover { opacity: 0.8; }
+        .top-btn.done { background: #8c7b6b; }
+        .top-btn.done.active { background: linear-gradient(135deg, #b8860b, #daa520); color: #fff8e1; font-weight: 700; box-shadow: 0 0 8px rgba(218,165,32,0.5); }
+        .done-date { font-size: 11px; color: #a0a0a0; white-space: nowrap; align-self: center; font-weight: 500; }
+
+        .container { padding: 18px 16px; max-width: 640px; margin: 0 auto; }
+        @media (min-width: 768px) { .container { max-width: 880px; padding: 24px 20px; } body { font-size: 17px; } header h1 { font-size: 1.15em; } }
+        .card { background: var(--card); border-radius: 14px; padding: 24px 22px; margin-bottom: 24px;
+                box-shadow: 0 1px 6px rgba(61,53,48,0.08); position: relative; border: 1px solid var(--line); }
+        .card.hidden { display: none; }
+        .star-btn { position: absolute; top: 18px; right: 18px; background: none; border: none; font-size: 20px;
+                    cursor: pointer; opacity: 0.15; transition: opacity 0.15s; padding: 0; }
+        .star-btn.starred { opacity: 1; }
+        .card-title { color: var(--text); font-size: 1.15em; font-weight: 700; margin: 0 0 4px; padding-right: 30px; line-height: 1.6; }
+        .meta-line { font-size: 0.75em; color: var(--sub); margin-bottom: 20px; letter-spacing: 0.04em; }
+
+        .verdict { background: #4a3f38; color: #f5f0eb; border-radius: 10px; padding: 16px 18px; margin-bottom: 22px; }
+        .verdict-label { font-size: 0.66em; letter-spacing: 0.14em; opacity: 0.5; margin-bottom: 6px; }
+        .verdict-main { font-size: 1.1em; font-weight: 700; line-height: 1.6; margin-bottom: 10px; color: #ffffff; }
+        .vote-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 12px; padding-top: 10px;
+                    border-top: 1px solid rgba(245,240,235,0.15); }
+        .v-chip { font-size: 0.72em; background: rgba(245,240,235,0.1); border-radius: 20px;
+                  padding: 3px 10px; white-space: nowrap; color: rgba(245,240,235,0.75); }
+        .v-chip.majority { background: rgba(158,92,69,0.5); color: #f5f0eb; font-weight: 700; }
+
+        .section-heading { font-size: 0.85em; font-weight: 700; letter-spacing: 0.08em;
+                           color: var(--sub); margin: 22px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--line); }
+
+        .fact-box { background: #faf8f5; border-left: 3px solid var(--sub); border-radius: 0 8px 8px 0;
+                    padding: 14px 16px; margin-bottom: 16px; font-size: 0.9em; }
+        .fact-box p { margin: 0 0 8px; }
+        .fact-box p:last-child { margin: 0; }
+
+        .issue-box { background: #faf8f5; border-radius: 8px; padding: 14px 16px; margin-bottom: 16px;
+                     font-size: 0.9em; border: 1px solid var(--line); }
+        .issue-box p { margin: 0 0 8px; }
+        .issue-box p:last-child { margin: 0; }
+
+        .flow-box { background: #faf8f5; border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; margin-bottom: 18px; font-size: 0.87em; }
+        .flow-row { display: flex; gap: 0; margin-bottom: 10px; }
+        .flow-cell { flex: 1; text-align: center; padding: 10px 8px; border: 1px solid var(--line); font-size: 0.85em; }
+        .flow-cell:first-child { border-radius: 8px 0 0 8px; }
+        .flow-cell:last-child { border-radius: 0 8px 8px 0; }
+        .flow-cell.head { background: var(--majority); color: #fff; font-weight: 700; font-size: 0.82em; }
+        .flow-cell.green { background: #eef4ea; border-color: var(--law); }
+        .flow-cell.red { background: #fdf4f0; border-color: var(--majority); }
+        .flow-label { font-weight: 700; font-size: 0.78em; color: var(--sub); margin-bottom: 3px; }
+
+        .opinions { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+        .op { border-radius: 8px; overflow: hidden; border: 1px solid var(--line); }
+        .op-head { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #f7f4f0; }
+        .op-num { width: 26px; height: 26px; border-radius: 50%; background: var(--majority); color: white;
+                  font-size: 0.75em; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .op-label { font-weight: 700; font-size: 0.92em; color: var(--majority); flex: 1; }
+        .op-body { padding: 13px 15px; font-size: 0.9em; background: var(--card); }
+        .op-body p { margin: 0 0 9px; }
+        .op-body p:last-child { margin: 0; }
+        .op-body ul { margin: 5px 0 8px; padding-left: 18px; }
+        .op-body li { margin-bottom: 5px; }
+        .op-result { background: #fdf9f7; border-radius: 6px; padding: 10px 13px; margin-top: 10px;
+                     font-size: 0.9em; border-left: 3px solid var(--majority); }
+
+        .compare-table { width: 100%; border-collapse: collapse; margin-bottom: 18px; font-size: 0.88em; }
+        .compare-table th { padding: 10px 13px; font-weight: 700; font-size: 0.85em; letter-spacing: 0.05em; }
+        .compare-table th.th-issue { background: #ede0da; color: var(--sub); width: 24%; }
+        .compare-table th.th-a { background: var(--law); color: #fff; width: 38%; }
+        .compare-table th.th-b { background: var(--majority); color: #fff; width: 38%; }
+        .compare-table td { padding: 11px 13px; vertical-align: top; border-bottom: 1px solid var(--line); line-height: 1.65; }
+        .compare-table td.td-issue { background: #f5eeea; font-weight: 700; font-size: 0.87em; color: var(--sub); }
+        .compare-table td.td-a { background: #f2f6f0; border-left: 2px solid var(--law); }
+        .compare-table td.td-b { background: #fdf8f6; border-left: 2px solid var(--majority); }
+        .compare-table tr:last-child td { border-bottom: none; }
+        @media (max-width: 640px) {
+            .compare-table thead { display: none; }
+            .compare-table, .compare-table tbody { display: block; }
+            .compare-table tr { display: block; margin-bottom: 14px; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); }
+            .compare-table td.td-issue { display: block; width: 100%; background: #ede0da; padding: 8px 14px; font-size: 0.85em; font-weight: 700; border-bottom: none; border-left: none !important; }
+            .compare-table td.td-a, .compare-table td.td-b { display: inline-block; width: 50%; vertical-align: top; box-sizing: border-box; padding: 10px 11px; border-bottom: none; font-size: 0.83em; line-height: 1.6; border-left: none !important; }
+            .compare-table td.td-a { border-right: 1px solid var(--line); border-top: 3px solid var(--law); }
+            .compare-table td.td-b { border-top: 3px solid var(--majority); }
+            .compare-table td.td-a::before { content: "家事非訟"; display: block; margin-bottom: 5px; font-size: 0.78em; font-weight: 700; color: var(--law); }
+            .compare-table td.td-b::before { content: "家事訴訟"; display: block; margin-bottom: 5px; font-size: 0.78em; font-weight: 700; color: var(--majority); }
+        }
+
+        .trap-box { background: var(--trap); border-radius: 8px; padding: 14px 16px; margin-bottom: 16px;
+                    border: 1px solid #e0d8b0; font-size: 0.9em; }
+        .trap-title { font-weight: 700; color: #7a6820; margin-bottom: 10px; font-size: 0.92em; display: flex; align-items: center; gap: 6px; }
+        .trap-item { margin-bottom: 10px; padding-left: 14px; border-left: 2px solid #c8b860; }
+        .trap-item:last-child { margin-bottom: 0; }
+        .trap-q { font-weight: 700; color: var(--text); margin-bottom: 3px; }
+        .trap-a { color: var(--text); opacity: 0.85; }
+
+        .law-ref { background: #f2f5f0; border-radius: 8px; padding: 10px 14px; font-size: 0.84em;
+                   color: #3d4e38; margin-top: 14px; border-left: 3px solid var(--law); }
+
+        details { margin-top: 16px; }
+        details summary { cursor: pointer; color: var(--sub); font-size: 0.84em; font-weight: 600;
+                          padding: 5px 0; user-select: none; list-style: none; display: flex; align-items: center; gap: 6px; }
+        details summary::before { content: '▶'; font-size: 0.62em; transition: transform 0.2s; color: var(--sub); }
+        details[open] summary::before { transform: rotate(90deg); }
+        .ref-case { background: #f7f4f0; border-radius: 7px; padding: 10px 13px; margin-bottom: 8px;
+                    font-size: 0.84em; border-left: 3px solid var(--majority); }
+        .ref-case-title { font-weight: 700; color: var(--majority); margin-bottom: 3px; font-size: 0.9em; }
+
+        .note-toggle { display: inline-block; margin-top: 14px; font-size: 0.8em; color: #b0a898; cursor: pointer; user-select: none; }
+        .note-toggle:hover { color: var(--majority); }
+        .note-area { display: none; margin-top: 8px; }
+        .note-area.open { display: block; }
+        .note-textarea { width: 100%; min-height: 68px; border: 1px solid var(--line); border-radius: 7px;
+                         padding: 10px 12px; font-size: 0.87em; font-family: inherit; color: var(--text);
+                         background: #faf8f5; resize: vertical; outline: none; line-height: 1.75; }
+        .note-textarea:focus { border-color: var(--majority); }
+        .note-textarea::placeholder { color: #c8beb0; }
+        .note-saved { font-size: 0.72em; color: var(--law); text-align: right; height: 14px; margin-top: 2px; }
+
+        .judges-grid { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+        .judge-chip { font-size: 0.77em; background: #f0ece7; border-radius: 20px; padding: 3px 11px;
+                      color: var(--text); border: 1px solid var(--line); }
+        .judge-chip.chief { background: var(--text); color: #f5f0eb; font-weight: 700; border-color: var(--text); }
+
+        .quiz-list { display: flex; flex-direction: column; gap: 8px; }
+        .quiz-item { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+        .quiz-q { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;
+                  padding: 11px 14px; cursor: pointer; font-size: 0.9em; background: var(--card); }
+        .quiz-q:hover { background: #faf8f5; }
+        .quiz-toggle { font-size: 1.1em; color: var(--majority); flex-shrink: 0; font-weight: 300; line-height: 1.4; }
+        .quiz-a { display: none; padding: 11px 14px; background: #f0f4ee; font-size: 0.87em;
+                  line-height: 1.75; border-top: 1px solid var(--line); color: #3d4e38; }
+        .quiz-a.open { display: block; }
+
+        #noResults, #noStarred { display: none; text-align: center; color: var(--sub); padding: 40px 0; font-size: 0.9em; }
+        ::-webkit-scrollbar { display: none; }
+        ::selection { background: #e8ddd0; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>最高法院民事大法庭<br>110年度台簡抗大字第33號</h1>
+    <div class="header-controls">
+        <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="搜尋關鍵字、法條…" oninput="doSearch(this.value)" onkeydown="handleSearchKey(event)">
+            <span class="search-count" id="searchCount"></span>
+            <button class="search-nav" id="prevBtn" onclick="navMatch(-1)" disabled>▲</button>
+            <button class="search-nav" id="nextBtn" onclick="navMatch(1)" disabled>▼</button>
+        </div>
+        <button id="filterBtn" onclick="toggleFilter()">⭐ 收藏</button>
+    </div>
+    <div class="top-bar">
+        <button class="top-btn" onclick="highlightText()">🖊️</button>
+        <button class="top-btn" onclick="removeHighlight()">🧽</button>
+        <button class="top-btn" onclick="clearHighlights()">🗑️</button>
+        <button class="top-btn" onclick="openExport()">📤</button>
+        <button class="top-btn" id="nightBtn" onclick="toggleNight()">🌙</button>
+        <button class="top-btn done" id="doneBtn" onclick="toggleDone()">朕已閱</button>
+        <span class="done-date" id="doneDateLabel"></span>
+    </div>
+</header>
+
+<div class="container">
+
+<!-- ===== 主裁定卡片 ===== -->
+<div class="card" id="case1" data-kw="成年養子女 終止收養 家事非訟 家事訴訟 家事事件法 民法第1081條 宣告終止收養 戊類事件 非訟化 程序性質 訴訟性質 第三條第5項第13款 家事事件法第74條 家事事件法第114條">
+    <button class="star-btn" onclick="toggleStar('case1',this)">⭐</button>
+    <h2 class="card-title">
+        成年養子女之宣告終止收養事件——屬家事訴訟事件？還是家事非訟事件？
+    </h2>
+    <div class="meta-line">裁定日期：中華民國111年11月11日　｜　案號：110年度台簡抗大字第33號　｜　全體一致意見（無不同意見）</div>
+
+    <!-- 主文 -->
+    <div class="verdict">
+        <div class="verdict-label">大法庭主文</div>
+        <div class="verdict-main">關於成年養子女之宣告終止收養事件，<strong>屬家事非訟事件</strong>。</div>
+        <div class="vote-row">
+            <span class="v-chip majority">全體一致 11票 ✔</span>
+            <span class="v-chip">裁定日：111.11.11</span>
+            <span class="v-chip">無不同意見</span>
+            <span class="v-chip">台簡抗大字（簡易庭提案）</span>
+        </div>
+    </div>
+
+    <!-- 本件特色 -->
+    <div class="section-heading">本件特色——程序性質之爭</div>
+    <div class="flow-box">
+        <div style="font-size:0.86em; margin-bottom:12px; color:var(--sub); font-weight:700;">「宣告終止收養」的申請人若非收養雙方當事人，究竟走哪條路？</div>
+        <div class="flow-row">
+            <div class="flow-cell head">申請人類型</div>
+            <div class="flow-cell head">舊見解（原分歧）</div>
+            <div class="flow-cell head">大法庭裁定</div>
+        </div>
+        <div class="flow-row">
+            <div class="flow-cell" style="background:#f5eeea;font-weight:700;">收養雙方當事人（養父母↔養子女）</div>
+            <div class="flow-cell green">家事訴訟（對立性強）</div>
+            <div class="flow-cell green">家事<strong>非訟</strong>事件</div>
+        </div>
+        <div class="flow-row">
+            <div class="flow-cell" style="background:#f5eeea;font-weight:700;">主管機關或利害關係第三人（§1081修正後新增）</div>
+            <div class="flow-cell red">非訟？訴訟？各庭分歧</div>
+            <div class="flow-cell green">家事<strong>非訟</strong>事件（<strong>同一</strong>）</div>
+        </div>
+        <div style="font-size:0.83em; color:var(--sub); margin-top:8px;">→ 無論申請人為收養當事人或第三人，<strong>一律屬家事非訟事件</strong>，適用家事事件法第四編非訟程序</div>
+    </div>
+
+    <!-- 基礎事實 -->
+    <div class="section-heading">基礎事實</div>
+    <div class="fact-box">
+        <p><strong>相對人A2</strong>（養父）與再抗告人A1之母結婚，於民國99年<strong>收養已成年之再抗告人A1為養子</strong>。</p>
+        <p>嗣相對人A2以有<strong>難以維持收養關係之重大事由</strong>為由，依民法第1081條第1項第4款規定，向法院<strong>聲請宣告終止</strong>與再抗告人間之收養關係。</p>
+        <p><strong>核心程序問題：</strong>此案究應依家事訴訟程序審理？還是家事非訟程序審理？（各級法院見解不一，故提案大法庭）</p>
+    </div>
+
+    <!-- 法律爭議 -->
+    <div class="section-heading">法律爭議</div>
+    <div class="issue-box">
+        <p><strong>爭議：</strong>關於成年養子女之「宣告終止收養事件」，究屬家事訴訟事件或家事非訟事件？</p>
+        <p><strong>背景：</strong>民法§1081（96年修正）增訂主管機關或利害關係人亦得聲請宣告終止收養，使宣告終止收養之請求人範圍擴大，不再僅限於收養雙方當事人。家事事件法（101年施行）第3條第5項第13款明文將「宣告終止收養事件」列為「戊類事件」（家事非訟事件）。</p>
+        <p><strong>問題核心：</strong>家事事件法雖將本事件列為「戊類非訟事件」，但因民法§1081所定宣告終止收養事件，舊民事訴訟法§583本來規定為訴訟事件，且收養當事人間一對一對抗時具有訴訟性質，各庭對於成年養子女之宣告終止收養究竟應依訴訟程序還是非訟程序處理，產生分歧。</p>
+    </div>
+
+    <!-- 多數理由 -->
+    <div class="section-heading">大法庭裁定理由（全體一致）</div>
+    <div class="opinions">
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈠</div>
+                <span class="op-label">民法第1081條96年修正——宣告終止收養已非全屬訴訟性質</span>
+            </div>
+            <div class="op-body">
+                <p>96年5月23日修正民法第1081條時，於第1項增訂「<strong>主管機關或利害關係人</strong>」亦可為宣告終止其收養關係之請求人，並未區別請求宣告終止者為成年養子女或未成年養子女之收養關係，僅於第2項針對養子女為未成年人時，另規定法院應依養子女最佳利益審理宣告終止收養關係事件。</p>
+                <p>上開規定已明示要求<strong>國家介入家庭關係之保護監督</strong>，由主管機關行使請求之權利；且賦予非收養關係雙方當事人之利害關係第三人，亦有請求宣告終止他人間收養關係之權。</p>
+                <p>依本條條文之修正意旨及文義解釋，各類養子女宣告終止收養關係，均得由代表國家之主管機關及原非收養關係當事人之法律上利害關係人，向法院提出請求，<strong>則關於宣告終止成年養子女收養關係之事件，已非全屬訴訟性質</strong>。</p>
+                <div class="op-result">
+                    <strong>結論：</strong>§1081修正後增訂第三人聲請權，使此類事件不再純屬收養當事人對立之訴訟性質，已有轉向非訟化之立法意旨。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈡</div>
+                <span class="op-label">家事事件法的立法目的——非訟化的政策選擇</span>
+            </div>
+            <div class="op-body">
+                <p>家事事件法（101年施行）為貫徹憲法保障國民基本人權、維護人格尊嚴及保障性別地位實質平等之精神，將向來之人事訴訟程序、家事非訟程序及家事調解程序合併立法。</p>
+                <p>就家事事件究應定為訴訟事件抑非訟事件，<strong>立法者非全然以事件是否具訟爭性、對立性，當事人有無處分權等，予以劃分或定其應行之程序，而係基於上述目的，或將原具訟爭性之事件予以非訟化，明定其為非訟事件；或雖定為家事訴訟事件，但規定依非訟程序處理</strong>。</p>
+                <p>是法院關於家事事件，已不得再循往昔訴訟、非訟分別規定、分別審理之方式處理，而應<strong>依立法裁量後之法律分類，分別適用訴訟或非訟程序</strong>。</p>
+                <div class="op-result">
+                    <strong>結論：</strong>家事事件法的分類依立法政策決定，不以訟爭性為唯一判準；立法者已明確選擇將本類事件非訟化。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈢</div>
+                <span class="op-label">家事事件法第3條第5項第13款——明文列為戊類（家事非訟）事件</span>
+            </div>
+            <div class="op-body">
+                <p>家事事件法§3⑤⑬款，<strong>明文規定宣告終止收養關係為戊類事件</strong>，並未區分成年養子女或未成年養子女之終止收養關係事件。</p>
+                <p>蓋家事事件中之宣告終止收養關係事件，具有某程度訟爭性，且當事人或利害關係人對於程序標的有某程度之處分權，性質上多有賴法官職權裁量而為妥適、迅速之判斷，<strong>始將之明定為戊類事件</strong>。</p>
+                <p>此項分類規定，與民法§1081之修正意旨相互呼應，俱見加強國家對家庭關係予以適度之保護監督，符合立法趨勢。</p>
+                <p>另參諸家事事件法§114立法理由有云：「民法第一千零八十一條之事件現行民事訴訟法第五百八十三條<strong>雖規定為訴訟事件，惟其本質上既有賴法官職權裁量而有迅速、妥適判斷之必要，爰予非訟化處理</strong>」，益見家事事件法之立法者於斟酌各情後，已肯認此類事件應予非訟化處理，始於§3⑤⑬款為不區分之規定。</p>
+                <div class="op-result">
+                    <strong>結論：</strong>家事事件法§3⑤⑬款明文將本類事件列為戊類非訟事件，舊民訴§583之訴訟事件定性已被家事事件法所取代，法院應依同法§74規定適用第四編家事非訟程序之規定審理，不因被收養人係成年人或未成年人而有不同。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈣</div>
+                <span class="op-label">收養當事人一對一聲請時——仍為家事非訟事件，但交錯適用訴訟法理</span>
+            </div>
+            <div class="op-body">
+                <p>民法§1081所定之宣告終止收養關係事件，家事事件法§3條雖定為家事非訟事件，但若係由養父母、成年養子女之<strong>一方，以他方為當事人向法院提出聲請者</strong>，實具<strong>訴訟性質</strong>。</p>
+                <p>法院自應本於同法§121條、§176條立法理由所稱：<strong>「事件雖經非訟化，然因不改其訴訟之性質，法院應依個別事件之特性，交錯適用訴訟法理而為審理」、「事件雖經非訟化，然因不改其訴訟事件之本質，法院除適用相應之非訟法理外，應依個別事件之特性，交錯適用訴訟法理而為審理」</strong>之原則，處理該類事件。</p>
+                <p>則該法§45條、§46條、§47條、§69條第3項就終止收養關係事件所為之規定，法院自得引為審理之依據，尚不得因其規定於家事訴訟程序章節內，或因立法說明中之舉例，即謂關於成年養子女宣告終止收養關係事件應屬訴訟事件。</p>
+                <p>家事事件審理細則§108④款明定民法§1081Ⅰ宣告終止收養事件為家事非訟事件，<strong>並無抵觸或踰越家事事件法授權規定之情形</strong>。</p>
+                <div class="op-result">
+                    <strong>結論：</strong>即使收養當事人一方對他方聲請，仍屬非訟事件，但法院須「交錯適用訴訟法理」（如辯論主義等）審理，以因應其具有之訴訟性質。
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 法條依據 -->
+    <div class="law-ref">
+        <strong>📋 核心法條：</strong>民法§1081（宣告終止收養）；家事事件法§3⑤⑬（戊類事件定義）、§74（非訟程序適用）、§114（宣告終止收養之程序規定）、§121、§176（交錯適用訴訟法理）、§45、§46、§47、§69③（收養相關特別程序規定）；家事事件審理細則§108④；舊民事訴訟法§583（已被取代）
+    </div>
+
+    <!-- 訴訟vs非訟對照表 -->
+    <div class="section-heading">「家事訴訟事件」vs.「家事非訟事件」程序差異</div>
+    <table class="compare-table">
+        <thead>
+            <tr>
+                <th class="th-issue">面向</th>
+                <th class="th-a">家事非訟事件（本件）</th>
+                <th class="th-b">家事訴訟事件（舊見解）</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="td-issue">程序依據</td>
+                <td class="td-a">家事事件法第四編（非訟程序），依§74審理</td>
+                <td class="td-b">家事事件法第三編（訴訟程序），依§37以下審理</td>
+            </tr>
+            <tr>
+                <td class="td-issue">裁判形式</td>
+                <td class="td-a"><strong>裁定</strong>（法官職權裁量，迅速彈性）</td>
+                <td class="td-b"><strong>判決</strong>（辯論主義，兩造對立辯論）</td>
+            </tr>
+            <tr>
+                <td class="td-issue">職權調查</td>
+                <td class="td-a">法官得<strong>依職權調查</strong>事實及必要證據（職權主義）</td>
+                <td class="td-b">以<strong>當事人主張及舉證</strong>為主（辯論主義）</td>
+            </tr>
+            <tr>
+                <td class="td-issue">是否需辯論</td>
+                <td class="td-a">不以言詞辯論為必要（但法院可視情形開庭）</td>
+                <td class="td-b">通常須經<strong>言詞辯論</strong>程序</td>
+            </tr>
+            <tr>
+                <td class="td-issue">當事人對立性</td>
+                <td class="td-a">仍有某程度訟爭性，但<strong>法官職權裁量</strong>為主軸；若一方對他方聲請，應<strong>交錯適用訴訟法理</strong></td>
+                <td class="td-b">完全以<strong>對立當事人</strong>為中心，兩造訴訟結構</td>
+            </tr>
+            <tr>
+                <td class="td-issue">立法政策</td>
+                <td class="td-a">家事事件法選擇非訟化，加強國家對家庭關係之<strong>保護監督</strong></td>
+                <td class="td-b">原民訴§583之設計，著重收養當事人雙方自主對決</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- 考試地雷 -->
+    <div class="trap-box">
+        <div class="trap-title">⚠️ 考試常見地雷</div>
+        <div class="trap-item">
+            <div class="trap-q">Q：成年養子女之宣告終止收養事件屬家事「訴訟」事件還是「非訟」事件？</div>
+            <div class="trap-a">A：屬家事「非訟」事件。家事事件法§3⑤⑬款明文將宣告終止收養關係列為戊類（家事非訟）事件，不區分成年或未成年養子女；法院應依同法§74規定，適用第四編家事非訟程序之規定審理。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：舊民事訴訟法第583條將宣告終止收養規定為訴訟事件，家事事件法施行後還適用嗎？</div>
+            <div class="trap-a">A：不再適用。家事事件法施行後，法院關於家事事件已不得再循往昔訴訟、非訟分別規定、分別審理之方式處理，而應依家事事件法之法律分類分別適用程序。舊民訴§583已被家事事件法§114所取代，本類事件改定為非訟化處理。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：養父母、成年養子女之一方，以他方為當事人聲請宣告終止收養，仍屬非訟事件嗎？</div>
+            <div class="trap-a">A：是，仍屬家事非訟事件，但因其具有訴訟性質，法院應「交錯適用訴訟法理」審理（家事事件法§121、§176之立法理由）。不因規定於非訟章節內即改變為訴訟事件。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：家事事件法中「家事非訟事件」一定不具有訟爭性嗎？</div>
+            <div class="trap-a">A：不一定。立法者非全然以「是否具訟爭性、對立性，當事人有無處分權」作為訴訟/非訟之劃分標準，而係依立法政策目的決定——可將原具訟爭性之事件非訟化，或雖定為訴訟事件但依非訟程序處理。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：民法第1081條96年修正的重要性為何？</div>
+            <div class="trap-a">A：96年修正增訂「主管機關或利害關係人」亦得為聲請宣告終止收養之請求人，使此類事件不再純屬收養雙方當事人之對立，已明示國家介入家庭關係保護監督之立法意旨，為嗣後家事事件法將本類事件非訟化提供基礎。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：家事事件審理細則第108條第4款定本件為非訟事件，有無抵觸家事事件法？</div>
+            <div class="trap-a">A：無。家事事件審理細則§108④明定民法§1081Ⅰ宣告終止收養事件為家事非訟事件，並無抵觸或踰越家事事件法授權規定之情形。</div>
+        </div>
+    </div>
+
+    <!-- 引用法條 -->
+    <details>
+        <summary>📎 引用法條與立法沿革</summary>
+        <div style="padding: 10px 0 4px;">
+            <div class="ref-case">
+                <div class="ref-case-title">民法第1081條（宣告終止收養）</div>
+                <p style="margin:0;">養父母、養子女之一方，有下列各款情形之一者，法院得依他方、主管機關或利害關係人之請求，宣告終止其收養關係：……四、有其他重大事由難以維持收養關係。（96年修正增訂主管機關及利害關係人得聲請）</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">家事事件法第3條第5項第13款（戊類事件）</div>
+                <p style="margin:0;">下列事件為戊類事件：……十三、宣告終止收養關係事件。（戊類事件為家事非訟事件，明文規定不區分成年或未成年養子女）</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">家事事件法第74條（非訟程序適用）</div>
+                <p style="margin:0;">戊類事件，依本編規定（第四編家事非訟程序）處理之。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">家事事件法第114條（宣告終止收養之特別程序）</div>
+                <p style="margin:0;">立法理由謂：「民法第一千零八十一條之事件現行民事訴訟法第五百八十三條雖規定為訴訟事件，惟其本質上既有賴法官職權裁量而有迅速、妥適判斷之必要，爰予非訟化處理。」</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">家事事件法第121條、第176條（交錯適用訴訟法理）</div>
+                <p style="margin:0;">立法理由揭示：「事件雖經非訟化，然因不改其訴訟之性質，法院應依個別事件之特性，交錯適用訴訟法理而為審理」——為本件一對一聲請仍屬非訟事件、但應交錯適用訴訟法理之依據。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">舊民事訴訟法第583條（已被取代）</div>
+                <p style="margin:0;">原規定民法§1081之宣告終止收養事件為訴訟事件；家事事件法施行後，已由家事事件法§3⑤⑬、§74、§114等取代，不再適用。</p>
+            </div>
+        </div>
+    </details>
+
+    <!-- 法官名單 -->
+    <div class="section-heading">法官組成（全體一致）</div>
+    <div class="judges-grid">
+        <span class="judge-chip chief">審判長 沈方維</span>
+        <span class="judge-chip">高孟焄</span>
+        <span class="judge-chip">鄭雅萍</span>
+        <span class="judge-chip">袁靜文</span>
+        <span class="judge-chip">林恩山</span>
+        <span class="judge-chip">陳玉完</span>
+        <span class="judge-chip">盧彥如</span>
+        <span class="judge-chip">李寶堂</span>
+        <span class="judge-chip">鍾任賜</span>
+        <span class="judge-chip">鄭純惠</span>
+        <span class="judge-chip">謝說容</span>
+    </div>
+
+    <div class="note-toggle" onclick="toggleNote('n1')">✏️ 我的小結</div>
+    <div class="note-area" id="n1">
+        <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n1',this.value)"></textarea>
+        <div class="note-saved" id="n1-saved"></div>
+    </div>
+</div>
+
+<!-- ===== 快問快答卡片 ===== -->
+<div class="card" id="case2" data-kw="快問快答 成年養子女 終止收養 家事非訟 家事訴訟 訴訟性質 非訟化 交錯適用 戊類事件 家事事件法第3條">
+    <button class="star-btn" onclick="toggleStar('case2',this)">⭐</button>
+    <h2 class="card-title">快問快答——本件核心概念與答題要點</h2>
+    <div class="meta-line">建議先蓋住答案，自己回答後再確認</div>
+
+    <div class="quiz-list">
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>成年養子女之宣告終止收養事件，屬哪類程序？應依哪條規定審理？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">屬「家事非訟事件」（戊類事件），依家事事件法§74規定，適用第四編家事非訟程序之規定審理，不因被收養人係成年人或未成年人而有不同。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>家事事件法施行後，舊民訴§583（訴訟事件）還適用嗎？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">不再適用。家事事件法§3⑤⑬款明文規定宣告終止收養關係為戊類（家事非訟）事件，已取代舊民訴§583之訴訟事件定性；法院不得再循往昔訴訟、非訟分別規定、分別審理之方式處理。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>家事事件法中，訴訟事件與非訟事件之區分標準為何？（立法政策觀點）</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">立法者非全然以「是否具訟爭性、對立性，當事人有無處分權」為區分標準，而係依立法政策目的決定——可將原具訟爭性之事件非訟化（如本件），或雖定為家事訴訟事件，但規定依非訟程序處理。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>若係養父母、成年養子女之「一方對他方」提出宣告終止收養聲請，程序性質為何？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">仍屬家事非訟事件，但因一方對他方聲請具有訴訟性質，法院應本於§121、§176立法理由所揭示之原則，「交錯適用訴訟法理」（如辯論主義等）審理，以因應其訴訟性質。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>何謂「交錯適用訴訟法理」？在本件如何體現？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">指事件雖已非訟化，但因本質上仍具訴訟性質（如收養當事人一方對他方聲請），法院除適用相應之非訟法理外，應依個別事件之特性，交錯適用辯論主義等訴訟法理審理。在本件：家事事件法§45、§46、§47、§69③就終止收養關係事件之規定，法院得引為審理依據，不因規定於訴訟程序章節即排除適用。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>民法§1081於96年修正增訂「主管機關或利害關係人」得聲請，對本件有何影響？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">此修正揭示：①國家介入家庭關係保護監督之立法意旨；②非收養關係當事人之第三人亦得請求；③使宣告終止收養不再純屬收養雙方私人對立之事，已非全屬訴訟性質——為嗣後家事事件法將本類事件非訟化奠定基礎。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>家事事件法§114立法理由對本件有何重要性？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">§114立法理由明載：「民法§1081之事件現行民訴§583雖規定為訴訟事件，惟其本質上既有賴法官職權裁量而有迅速、妥適判斷之必要，爰予非訟化處理。」——直接說明立法者有意識地將本類事件從訴訟事件改為非訟事件的立法決定。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>家事事件法選擇「非訟化」的政策理由為何？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">①保障國民基本人權、維護人格尊嚴；②加強國家對家庭關係之保護監督；③宣告終止收養具有一定訟爭性，但性質上多有賴法官職權裁量為妥適、迅速之判斷；④促進程序經濟，平衡保護關係人之實體利益與程序利益；⑤兼顧子女最佳利益及家庭和諧。</div>
+        </div>
+    </div>
+
+    <div class="note-toggle" onclick="toggleNote('n2')">✏️ 我的小結</div>
+    <div class="note-area" id="n2">
+        <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n2',this.value)"></textarea>
+        <div class="note-saved" id="n2-saved"></div>
+    </div>
+</div>
+
+<div id="noResults">查無符合的內容，請試試其他關鍵字。</div>
+<div id="noStarred">還沒有收藏的項目，點卡片右上角的 ⭐ 加入收藏。</div>
+</div>
+
+<script>
+const NIGHT_KEY='night_mode_pref';
+function toggleNight(){const on=document.body.classList.toggle('night-mode');localStorage.setItem(NIGHT_KEY,on?'1':'0');document.getElementById('nightBtn').textContent=on?'☀️':'🌙';}
+(function(){if(localStorage.getItem(NIGHT_KEY)==='1'){document.body.classList.add('night-mode');const b=document.getElementById('nightBtn');if(b)b.textContent='☀️';}})();
+const STORE_KEY='110_33_grand_notes',STAR_KEY='110_33_grand_stars';
+function loadNotes(){try{return JSON.parse(localStorage.getItem(STORE_KEY))||{};}catch{return{};}}
+function loadStars(){try{return JSON.parse(localStorage.getItem(STAR_KEY))||{};}catch{return{};}}
+function saveAllNotes(d){localStorage.setItem(STORE_KEY,JSON.stringify(d));}
+function saveAllStars(d){localStorage.setItem(STAR_KEY,JSON.stringify(d));}
+(function(){const n=loadNotes(),s=loadStars();
+  Object.entries(n).forEach(([id,v])=>{const a=document.getElementById(id);if(!a)return;const t=a.querySelector('textarea');if(t)t.value=v;if(v)a.classList.add('open');});
+  Object.entries(s).forEach(([id,v])=>{if(!v)return;const b=document.querySelector(`#${id} .star-btn`);if(b)b.classList.add('starred');});
+})();
+function toggleStar(id,btn){const s=loadStars();const now=!btn.classList.contains('starred');btn.classList.toggle('starred',now);s[id]=now;saveAllStars(s);if(filterActive)applyFilter();}
+let filterActive=false;
+function toggleFilter(){filterActive=!filterActive;document.getElementById('filterBtn').classList.toggle('active',filterActive);document.getElementById('searchInput').value='';clearSearchHighlights();updateSearchUI([],0);applyFilter();}
+function applyFilter(){const s=loadStars();const q=document.getElementById('searchInput').value.trim().toLowerCase();let any=false;
+  document.querySelectorAll('.card').forEach(c=>{const kw=(c.dataset.kw||'').toLowerCase();const txt=c.textContent.toLowerCase();
+  const ms=!q||kw.includes(q)||txt.includes(q);const mf=!filterActive||!!s[c.id];const show=ms&&mf;
+  c.classList.toggle('hidden',!show);if(show)any=true;});
+  document.getElementById('noResults').style.display=(!any&&!filterActive)?'block':'none';
+  document.getElementById('noStarred').style.display=(!any&&filterActive)?'block':'none';}
+let _matches=[],_cur=-1;
+function clearSearchHighlights(){document.querySelectorAll('mark.search-hl').forEach(m=>{const p=m.parentNode;p.replaceChild(document.createTextNode(m.textContent),m);p.normalize();});}
+function highlightInNode(node,re){if(node.nodeType===3){const text=node.nodeValue;const frag=document.createDocumentFragment();let last=0,m;re.lastIndex=0;while((m=re.exec(text))!==null){if(m.index>last)frag.appendChild(document.createTextNode(text.slice(last,m.index)));const mk=document.createElement('mark');mk.className='search-hl';mk.textContent=m[0];frag.appendChild(mk);last=re.lastIndex;}if(last===0)return;frag.appendChild(document.createTextNode(text.slice(last)));node.parentNode.replaceChild(frag,node);return;}if(node.nodeType===1){const tag=node.tagName;if(tag==='SCRIPT'||tag==='STYLE'||tag==='TEXTAREA'||tag==='INPUT')return;if(node.classList&&node.classList.contains('search-hl'))return;[...node.childNodes].forEach(c=>highlightInNode(c,re));}}
+function doSearch(q){clearSearchHighlights();_matches=[];_cur=-1;const qt=(q||'').trim();if(!qt){updateSearchUI([],0);applyFilter();return;}applyFilter();const esc=qt.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');const re=new RegExp(esc,'gi');document.querySelectorAll('.container .card:not(.hidden)').forEach(card=>{highlightInNode(card,re);});_matches=[...document.querySelectorAll('mark.search-hl')];if(_matches.length){_cur=0;setCurrent(0);}updateSearchUI(_matches,_cur);}
+function setCurrent(idx){_matches.forEach((m,i)=>m.classList.toggle('current',i===idx));if(_matches[idx])_matches[idx].scrollIntoView({behavior:'smooth',block:'center'});}
+function navMatch(dir){if(!_matches.length)return;_cur=(_cur+dir+_matches.length)%_matches.length;setCurrent(_cur);updateSearchUI(_matches,_cur);}
+function updateSearchUI(matches,cur){const cnt=document.getElementById('searchCount');const prev=document.getElementById('prevBtn');const next=document.getElementById('nextBtn');if(!matches.length){cnt.textContent='';prev.disabled=true;next.disabled=true;return;}cnt.textContent=(cur+1)+'/'+matches.length;prev.disabled=false;next.disabled=false;}
+function handleSearchKey(e){if(e.key==='Enter'){e.shiftKey?navMatch(-1):navMatch(1);}if(e.key==='Escape'){document.getElementById('searchInput').value='';doSearch('');}}
+function toggleNote(id){document.getElementById(id).classList.toggle('open');}
+const timers={};
+function saveNote(id,v){clearTimeout(timers[id]);timers[id]=setTimeout(()=>{const n=loadNotes();n[id]=v;saveAllNotes(n);const el=document.getElementById(id+'-saved');if(el){el.textContent='已儲存';setTimeout(()=>el.textContent='',1500);}},500);}
+let savedRange=null;
+document.addEventListener('selectionchange',()=>{const s=window.getSelection();if(s&&!s.isCollapsed&&s.rangeCount)savedRange=s.getRangeAt(0).cloneRange();});
+function highlightText(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;
+  if(!r||r.collapsed){alert('💡 請先反白想要標記的文字');return;}
+  const sp=document.createElement('span');sp.className='hl';sp.style.cssText='background:#f0d98a;border-radius:2px;';
+  try{r.surroundContents(sp);savedRange=null;}catch{alert('💡 請選取同一段落內的文字');}s&&s.removeAllRanges();}
+function removeHighlight(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;
+  if(!r||r.collapsed){alert('💡 請先反白想擦除標記的文字');return;}
+  const anc=r.commonAncestorContainer.nodeType===1?r.commonAncestorContainer:r.commonAncestorContainer.parentElement;
+  anc.querySelectorAll('span.hl').forEach(sp=>{if(r.intersectsNode(sp)){const p=sp.parentNode;while(sp.firstChild)p.insertBefore(sp.firstChild,sp);p.removeChild(sp);}});
+  savedRange=null;s&&s.removeAllRanges();}
+function clearHighlights(){const sp=document.querySelectorAll('span.hl');if(!sp.length)return;
+  if(confirm('確定要清除所有重點標記嗎？')){sp.forEach(s=>{const p=s.parentNode;while(s.firstChild)p.insertBefore(s.firstChild,s);p.removeChild(s);});}}
+function openExport(){
+  let out='最高法院民事大法庭 110年度台簡抗大字第33號\n'+'═'.repeat(44)+'\n\n';
+  out+='【主文】\n關於成年養子女之宣告終止收養事件，屬家事非訟事件。\n\n';
+  document.querySelectorAll('.op').forEach(op=>{
+    const head=op.querySelector('.op-label')?.textContent.trim()||'';
+    out+=`▌${head}\n`;
+    op.querySelectorAll('.op-body p,.op-body li,.op-result').forEach(el=>{
+      const t=el.textContent.trim();if(t)out+=(el.tagName==='LI'?'  • ':'')+t+'\n';});
+    out+='\n';});
+  const tas=document.querySelectorAll('.note-textarea');tas.forEach((ta,i)=>{if(ta&&ta.value.trim())out+=`✏️ 小結${i+1}：\n`+ta.value.trim()+'\n\n';});
+  out+='═'.repeat(44)+'\n';
+  const b=new Blob([out.trim()],{type:'text/plain;charset=utf-8'});
+  const u=URL.createObjectURL(b);const a=document.createElement('a');
+  a.href=u;a.download='110台簡抗大字第33號_成年養子女終止收養屬家事非訟.txt';a.click();URL.revokeObjectURL(u);}
+function toggleQuiz(el){const ans=el.nextElementSibling;const tog=el.querySelector('.quiz-toggle');if(ans.classList.contains('open')){ans.classList.remove('open');tog.textContent='＋';}else{ans.classList.add('open');tog.textContent='－';}}
+const REG_KEY='exam_completion_registry';
+function _loadReg(){try{return JSON.parse(localStorage.getItem(REG_KEY))||{};}catch{return{};}}
+function _saveReg(r){try{localStorage.setItem(REG_KEY,JSON.stringify(r));}catch{}}
+function _file(){const p=location.pathname.split('/');return decodeURIComponent(p[p.length-1]||'');}
+function _fmt(ts){const d=new Date(ts);const date=(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();const time=d.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false});return date+' '+time;}
+function _updateDate(){const r=_loadReg();const k=_file()||'case_civil_grand_110_33.html';const l=document.getElementById('doneDateLabel');if(!l)return;l.textContent=(r[k]&&r[k].done&&r[k].ts)?_fmt(r[k].ts):'';}
+function toggleDone(){const btn=document.getElementById('doneBtn');const r=_loadReg();const k=_file()||'case_civil_grand_110_33.html';const done=r[k]&&r[k].done;
+  if(done){delete r[k];_saveReg(r);btn.classList.remove('active');}
+  else{const now=new Date();r[k]={done:true,ts:now.getTime()};_saveReg(r);btn.classList.add('active');}
+  _updateDate();}
+(function(){const r=_loadReg();const k=_file()||'case_civil_grand_110_33.html';if(r[k]&&r[k].done){const b=document.getElementById('doneBtn');if(b)b.classList.add('active');}_updateDate();})();
+</script>
+</body>
+</html>
