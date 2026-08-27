@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>108年度台上大字第1652號 民事大法庭裁定</title>
+    <style>
+        :root {
+            --bg:#f5f0eb; --card:#ffffff; --text:#3d3530; --sub:#8c7b6b;
+            --line:#ddd8d0; --majority:#9e5c45; --law:#5a6e4e;
+            --dissent:#b07d4a; --trap:#f5f0d8; --header-bg:#5c4f47;
+        }
+        body.night-mode {
+            --bg:#1a1714; --card:#252220; --text:#d4cec8; --sub:#8a7d72;
+            --line:#383330; --majority:#b87060; --law:#6a8a5e;
+            --dissent:#c4935a; --trap:#2a2518; --header-bg:#111010;
+        }
+        body.night-mode header{box-shadow:0 2px 8px rgba(0,0,0,0.5);}
+        body.night-mode .top-bar{background:#1e1b18;}
+        body.night-mode .top-btn{background:#3a3530;}
+        body.night-mode .fact-box,body.night-mode .issue-box{background:#1e1b18;}
+        body.night-mode .op-head{background:#2a2520;}
+        body.night-mode .op-body{background:var(--card);}
+        body.night-mode .op-result{background:#2a2018;}
+        body.night-mode .d-op-head{background:#261f14;}
+        body.night-mode .d-op-body{background:#201c14;}
+        body.night-mode .d-op-result{background:#261f14;}
+        body.night-mode .dissent-judges{background:#261f14;}
+        body.night-mode .flow-box{background:#1e1b18;}
+        body.night-mode .ref-case{background:#242018;}
+        body.night-mode .law-ref{background:#1c2018;}
+        body.night-mode .note-textarea{background:#1e1b18;color:var(--text);border-color:var(--line);}
+        body.night-mode .judge-chip{background:#2a2520;border-color:var(--line);}
+        body.night-mode .judge-chip.chief{background:#3a3530;}
+        body.night-mode .judge-chip.dissenter{background:#3a2510;}
+        body.night-mode mark.search-hl{background:#7a6010;color:#f0e8c8;}
+        body.night-mode mark.search-hl.current{background:#c47000;color:#fff;}
+        body.night-mode .verdict{background:#2e2a26;}
+        body.night-mode .trap-box{border-color:#5a5020;}
+        body.night-mode .trap-title{color:#c8a840;}
+        body.night-mode .trap-item{border-left-color:#7a6830;}
+        body.night-mode #nightBtn{background:#4a4030;color:#e8d898;font-weight:700;}
+        body.night-mode .quiz-q{background:var(--card);}
+        body.night-mode .quiz-q:hover{background:#2a2520;}
+        body.night-mode .quiz-a{background:#1c2018;color:#9fbf90;}
+        body.night-mode .compare-table td.td-issue{background:#2a1e18;}
+        body.night-mode .compare-table td.td-majority{background:#1e1612;}
+        body.night-mode .compare-table td.td-dissent{background:#1e1814;}
+        body{transition:background .3s,color .3s;} .card{transition:background .3s,border-color .3s;}
+
+        *{box-sizing:border-box;}
+        body{font-family:"Helvetica Neue",Helvetica,"PingFang TC","LiHei Pro","Microsoft JhengHei",sans-serif;
+             background:var(--bg);color:var(--text);line-height:1.85;font-size:16px;margin:0;padding:0 0 60px;}
+
+        header{background:var(--header-bg);color:#f5f0eb;padding:16px 16px 8px;text-align:center;
+               position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.2);}
+        header h1{margin:0 0 10px;font-size:1.05em;line-height:1.5;font-weight:600;letter-spacing:.02em;color:#fff;}
+        .header-controls{display:flex;gap:8px;align-items:center;}
+        .search-wrap{position:relative;flex:1;display:flex;align-items:center;gap:4px;}
+        #searchInput{flex:1;padding:8px 14px 8px 32px;border:none;border-radius:6px;font-size:14px;
+                     background:rgba(245,240,235,.15);color:#f5f0eb;outline:none;}
+        #searchInput::placeholder{color:rgba(245,240,235,.45);}
+        #searchInput:focus{background:rgba(245,240,235,.25);}
+        .search-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:13px;opacity:.5;pointer-events:none;}
+        .search-count{font-size:12px;color:rgba(255,255,255,.7);white-space:nowrap;min-width:44px;text-align:center;}
+        .search-nav{background:rgba(255,255,255,.13);border:none;border-radius:6px;color:#fff;font-size:13px;padding:6px 8px;cursor:pointer;line-height:1;}
+        .search-nav:hover{background:rgba(255,255,255,.25);} .search-nav:disabled{opacity:.3;cursor:default;}
+        mark.search-hl{background:#ffe066;color:#1a1a1a;border-radius:2px;padding:0 1px;}
+        mark.search-hl.current{background:#ff8c00;color:#fff;border-radius:3px;outline:2px solid #ff8c00;}
+        #filterBtn{background:rgba(245,240,235,.15);border:none;border-radius:6px;color:#f5f0eb;font-size:13px;padding:8px 12px;cursor:pointer;white-space:nowrap;}
+        #filterBtn.active{background:var(--dissent);color:#fff;font-weight:bold;}
+        .top-bar{background:#e8e2da;padding:5px 14px;display:flex;gap:6px;justify-content:flex-end;flex-wrap:nowrap;}
+        .top-btn{background:#b0a898;color:#fff;border:none;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;transition:opacity .15s;}
+        .top-btn:hover{opacity:.8;}
+        .top-btn.done{background:#8c7b6b;}
+        .top-btn.done.active{background:linear-gradient(135deg,#b8860b,#daa520);color:#fff8e1;font-weight:700;box-shadow:0 0 8px rgba(218,165,32,.5);}
+        .done-date{font-size:11px;color:#a0a0a0;white-space:nowrap;align-self:center;font-weight:500;}
+
+        .container{padding:18px 16px;max-width:640px;margin:0 auto;}
+        @media(min-width:768px){.container{max-width:880px;padding:24px 20px;}body{font-size:17px;}header h1{font-size:1.12em;}}
+        .card{background:var(--card);border-radius:14px;padding:24px 22px;margin-bottom:24px;
+              box-shadow:0 1px 6px rgba(61,53,48,.08);position:relative;border:1px solid var(--line);}
+        .card.hidden{display:none;}
+        .star-btn{position:absolute;top:18px;right:18px;background:none;border:none;font-size:20px;cursor:pointer;opacity:.15;transition:opacity .15s;padding:0;}
+        .star-btn.starred{opacity:1;}
+        .card-title{color:var(--text);font-size:1.12em;font-weight:700;margin:0 0 4px;padding-right:30px;line-height:1.6;}
+        .meta-line{font-size:.75em;color:var(--sub);margin-bottom:20px;letter-spacing:.04em;}
+
+        .verdict{background:#4a3f38;color:#f5f0eb;border-radius:10px;padding:16px 18px;margin-bottom:22px;}
+        .verdict-label{font-size:.66em;letter-spacing:.14em;opacity:.5;margin-bottom:6px;}
+        .verdict-main{font-size:.97em;font-weight:700;line-height:1.7;margin-bottom:10px;color:#fff;}
+        .vote-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px;padding-top:10px;border-top:1px solid rgba(245,240,235,.15);}
+        .v-chip{font-size:.72em;background:rgba(245,240,235,.1);border-radius:20px;padding:3px 10px;white-space:nowrap;color:rgba(245,240,235,.75);}
+        .v-chip.majority{background:rgba(158,92,69,.5);color:#f5f0eb;font-weight:700;}
+        .v-chip.dissent-c{background:rgba(176,125,74,.45);color:#f5f0eb;}
+
+        .section-heading{font-size:.85em;font-weight:700;letter-spacing:.08em;color:var(--sub);margin:22px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line);}
+
+        .fact-box{background:#faf8f5;border-left:3px solid var(--sub);border-radius:0 8px 8px 0;padding:14px 16px;margin-bottom:16px;font-size:.9em;}
+        .fact-box p{margin:0 0 8px;} .fact-box p:last-child{margin:0;}
+
+        .issue-box{background:#faf8f5;border-radius:8px;padding:14px 16px;margin-bottom:16px;font-size:.9em;border:1px solid var(--line);}
+        .issue-box p{margin:0 0 8px;} .issue-box p:last-child{margin:0;}
+
+        .flow-box{background:#faf8f5;border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin-bottom:18px;font-size:.87em;}
+        .flow-step{display:flex;align-items:flex-start;gap:10px;margin-bottom:8px;}
+        .flow-num{width:24px;height:24px;border-radius:50%;background:var(--majority);color:#fff;font-size:.72em;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+        .flow-arrow{color:var(--sub);padding-left:14px;margin-bottom:4px;}
+
+        .opinions{display:flex;flex-direction:column;gap:10px;margin-bottom:16px;}
+        .op{border-radius:8px;overflow:hidden;border:1px solid var(--line);}
+        .op-head{display:flex;align-items:center;gap:10px;padding:10px 14px;background:#f7f4f0;}
+        .op-num{width:26px;height:26px;border-radius:50%;background:var(--majority);color:#fff;font-size:.75em;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+        .op-label{font-weight:700;font-size:.92em;color:var(--majority);flex:1;}
+        .op-body{padding:13px 15px;font-size:.9em;background:var(--card);}
+        .op-body p{margin:0 0 9px;} .op-body p:last-child{margin:0;}
+        .op-body ul{margin:5px 0 8px;padding-left:18px;} .op-body li{margin-bottom:5px;}
+        .op-result{background:#fdf9f7;border-radius:6px;padding:10px 13px;margin-top:10px;font-size:.9em;border-left:3px solid var(--majority);}
+
+        .d-opinions{display:flex;flex-direction:column;gap:10px;margin-bottom:16px;}
+        .d-op{border-radius:8px;overflow:hidden;border:1px solid #e6d8bc;}
+        .d-op-head{display:flex;align-items:center;gap:10px;padding:10px 14px;background:#fdf7ec;}
+        .d-op-num{width:26px;height:26px;border-radius:50%;background:var(--dissent);color:#fff;font-size:.75em;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+        .d-op-label{font-weight:700;font-size:.92em;color:var(--dissent);flex:1;}
+        .d-op-body{padding:13px 15px;font-size:.9em;background:#fffdf8;}
+        .d-op-body p{margin:0 0 9px;} .d-op-body p:last-child{margin:0;}
+        .d-op-body ul{margin:5px 0 8px;padding-left:18px;} .d-op-body li{margin-bottom:5px;}
+        .d-op-result{background:#fdf7ec;border-radius:6px;padding:10px 13px;margin-top:10px;font-size:.9em;border-left:3px solid var(--dissent);}
+        .dissent-judges{font-size:.82em;color:var(--dissent);margin-bottom:12px;padding:8px 12px;background:#fdf7ec;border-radius:6px;border-left:3px solid var(--dissent);}
+
+        .compare-table{width:100%;border-collapse:collapse;margin-bottom:18px;font-size:.88em;}
+        .compare-table th{padding:10px 13px;font-weight:700;font-size:.85em;letter-spacing:.05em;}
+        .compare-table th.th-issue{background:#ede0da;color:var(--sub);width:22%;border-radius:6px 0 0 0;}
+        .compare-table th.th-majority{background:var(--majority);color:#fff;width:39%;}
+        .compare-table th.th-dissent{background:var(--dissent);color:#fff;width:39%;border-radius:0 6px 0 0;}
+        .compare-table td{padding:11px 13px;vertical-align:top;border-bottom:1px solid var(--line);line-height:1.65;}
+        .compare-table td.td-issue{background:#f5eeea;font-weight:700;font-size:.87em;color:var(--sub);}
+        .compare-table td.td-majority{background:#fdf8f6;border-left:2px solid var(--majority);}
+        .compare-table td.td-dissent{background:#fdf8f4;border-left:2px solid var(--dissent);}
+        .compare-table tr:last-child td{border-bottom:none;}
+        @media(max-width:640px){
+            .compare-table thead{display:none;} .compare-table,.compare-table tbody{display:block;}
+            .compare-table tr{display:block;margin-bottom:14px;border-radius:10px;overflow:hidden;border:1px solid var(--line);}
+            .compare-table td.td-issue{display:block;width:100%;background:#ede0da;padding:8px 14px;font-size:.85em;font-weight:700;color:var(--sub);border-bottom:none;border-left:none!important;}
+            .compare-table td.td-majority,.compare-table td.td-dissent{display:inline-block;width:50%;vertical-align:top;box-sizing:border-box;padding:10px 11px;border-bottom:none;font-size:.83em;line-height:1.6;border-left:none!important;border-top:none;}
+            .compare-table td.td-majority{border-right:1px solid var(--line);border-top:3px solid var(--majority);}
+            .compare-table td.td-dissent{border-top:3px solid var(--dissent);}
+            .compare-table td.td-majority::before{content:"多數";display:block;margin-bottom:5px;font-size:.78em;font-weight:700;color:var(--majority);}
+            .compare-table td.td-dissent::before{content:"不同";display:block;margin-bottom:5px;font-size:.78em;font-weight:700;color:var(--dissent);}
+        }
+
+        .trap-box{background:var(--trap);border-radius:8px;padding:14px 16px;margin-bottom:16px;border:1px solid #e0d8b0;font-size:.9em;}
+        .trap-title{font-weight:700;color:#7a6820;margin-bottom:10px;font-size:.92em;display:flex;align-items:center;gap:6px;}
+        .trap-item{margin-bottom:10px;padding-left:14px;border-left:2px solid #c8b860;}
+        .trap-item:last-child{margin-bottom:0;}
+        .trap-q{font-weight:700;color:var(--text);margin-bottom:3px;}
+        .trap-a{color:var(--text);opacity:.85;}
+
+        .law-ref{background:#f2f5f0;border-radius:8px;padding:10px 14px;font-size:.84em;color:#3d4e38;margin-top:14px;border-left:3px solid var(--law);}
+
+        details{margin-top:16px;}
+        details summary{cursor:pointer;color:var(--sub);font-size:.84em;font-weight:600;padding:5px 0;user-select:none;list-style:none;display:flex;align-items:center;gap:6px;}
+        details summary::before{content:'▶';font-size:.62em;transition:transform .2s;color:var(--sub);}
+        details[open] summary::before{transform:rotate(90deg);}
+        .ref-case{background:#f7f4f0;border-radius:7px;padding:10px 13px;margin-bottom:8px;font-size:.84em;border-left:3px solid var(--majority);}
+        .ref-case.d{border-left-color:var(--dissent);}
+        .ref-case-title{font-weight:700;color:var(--majority);margin-bottom:3px;font-size:.9em;}
+        .ref-case.d .ref-case-title{color:var(--dissent);}
+
+        .note-toggle{display:inline-block;margin-top:14px;font-size:.8em;color:#b0a898;cursor:pointer;user-select:none;}
+        .note-toggle:hover{color:var(--majority);}
+        .note-area{display:none;margin-top:8px;} .note-area.open{display:block;}
+        .note-textarea{width:100%;min-height:68px;border:1px solid var(--line);border-radius:7px;padding:10px 12px;font-size:.87em;font-family:inherit;color:var(--text);background:#faf8f5;resize:vertical;outline:none;line-height:1.75;}
+        .note-textarea:focus{border-color:var(--majority);}
+        .note-textarea::placeholder{color:#c8beb0;}
+        .note-saved{font-size:.72em;color:var(--law);text-align:right;height:14px;margin-top:2px;}
+
+        .judges-grid{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+        .judge-chip{font-size:.77em;background:#f0ece7;border-radius:20px;padding:3px 11px;color:var(--text);border:1px solid var(--line);}
+        .judge-chip.chief{background:var(--text);color:#f5f0eb;font-weight:700;border-color:var(--text);}
+        .judge-chip.dissenter{background:var(--dissent);color:#fff;font-weight:600;border-color:var(--dissent);}
+
+        .quiz-list{display:flex;flex-direction:column;gap:8px;}
+        .quiz-item{border:1px solid var(--line);border-radius:8px;overflow:hidden;}
+        .quiz-q{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;padding:11px 14px;cursor:pointer;font-size:.9em;background:var(--card);}
+        .quiz-q:hover{background:#faf8f5;}
+        .quiz-toggle{font-size:1.1em;color:var(--majority);flex-shrink:0;font-weight:300;line-height:1.4;}
+        .quiz-a{display:none;padding:11px 14px;background:#f0f4ee;font-size:.87em;line-height:1.75;border-top:1px solid var(--line);color:#3d4e38;}
+        .quiz-a.open{display:block;}
+
+        #noResults,#noStarred{display:none;text-align:center;color:var(--sub);padding:40px 0;font-size:.9em;}
+        ::-webkit-scrollbar{display:none;} ::selection{background:#e8ddd0;}
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>最高法院民事大法庭<br>108年度台上大字第1652號</h1>
+    <div class="header-controls">
+        <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="搜尋關鍵字、法條…" oninput="doSearch(this.value)" onkeydown="handleSearchKey(event)">
+            <span class="search-count" id="searchCount"></span>
+            <button class="search-nav" id="prevBtn" onclick="navMatch(-1)" disabled>▲</button>
+            <button class="search-nav" id="nextBtn" onclick="navMatch(1)" disabled>▼</button>
+        </div>
+        <button id="filterBtn" onclick="toggleFilter()">⭐ 收藏</button>
+    </div>
+    <div class="top-bar">
+        <button class="top-btn" onclick="highlightText()">🖊️</button>
+        <button class="top-btn" onclick="removeHighlight()">🧽</button>
+        <button class="top-btn" onclick="clearHighlights()">🗑️</button>
+        <button class="top-btn" onclick="openExport()">📤</button>
+        <button class="top-btn" id="nightBtn" onclick="toggleNight()">🌙</button>
+        <button class="top-btn done" id="doneBtn" onclick="toggleDone()">朕已閱</button>
+        <span class="done-date" id="doneDateLabel"></span>
+    </div>
+</header>
+
+<div class="container">
+
+<!-- ===== 主裁定卡片 ===== -->
+<div class="card" id="case1" data-kw="民法第244條 撤銷權 廢罷訴權 特定物給付債權 轉換 金錢損害賠償 無償行為 無資力 債權平等 借名契約 王成居 王麗芳 詐害債權 不動產二重買賣">
+    <button class="star-btn" onclick="toggleStar('case1',this)">⭐</button>
+    <h2 class="card-title">
+        民法第244條第3項——特定物給付債權人，在未轉換為金錢損害賠償債權前，得否行使撤銷權？
+    </h2>
+    <div class="meta-line">裁定日期：中華民國111年4月1日　｜　案號：108年度台上大字第1652號　｜　不同意見：高孟焄、沈方維、鄭雅萍、袁靜文、陳麗芬（5票）</div>
+
+    <!-- 主文 -->
+    <div class="verdict">
+        <div class="verdict-label">大法庭主文（89年5月5日民法§244③修正施行後）</div>
+        <div class="verdict-main">債權人之以給付特定物為標的之債權，債務人就所負債務為無償行為致給付不能且已無資力時，債權人倘<strong>未轉換請求債務人賠償因債務不履行所生金錢損害</strong>，<strong>不得</strong>依同條第1項及第4項規定，請求法院撤銷債務人所為之無償行為及請求受益人或轉得人回復原狀。</div>
+        <div class="vote-row">
+            <span class="v-chip majority">多數意見 6票 ✔</span>
+            <span class="v-chip dissent-c">不同意見 5票（高孟焄、沈方維、鄭雅萍、袁靜文、陳麗芬）</span>
+            <span class="v-chip">裁定日：111.04.01</span>
+            <span class="v-chip">11人法庭（罕見5：6）</span>
+        </div>
+    </div>
+
+    <!-- 核心概念 -->
+    <div class="section-heading">核心概念釐清</div>
+    <div class="flow-box">
+        <div class="flow-step"><div class="flow-num">①</div><div><strong>特定物給付債權</strong>：以給付特定物（如特定不動產、特定股份）為標的之債權，例如借名契約終止後，請求移轉登記特定地號土地之債權</div></div>
+        <div class="flow-step"><div class="flow-num">②</div><div><strong>給付不能→轉換</strong>：若債務人將特定物移轉第三人（如贈與），已無法履行交付，構成可歸責之給付不能；此時債權人得依民法§226Ⅰ<strong>轉換</strong>請求金錢損害賠償</div></div>
+        <div class="flow-step"><div class="flow-num">③</div><div><strong>撤銷權（廢罷訴權）</strong>：民法§244——債權人得請求法院撤銷債務人詐害債權之行為，以回復債務人之財產，維持全體債權人之共同擔保</div></div>
+        <div class="flow-step"><div class="flow-num">④</div><div><strong>§244③的限制</strong>：89年修正增訂「<em>或僅有害於以給付特定物為標的之債權者</em>，不適用前二項之規定」——限制了特定物債權人之撤銷權</div></div>
+        <div class="flow-arrow">→ 爭點：債務人已致給付不能且無資力時，特定物債權人「未轉換」為金錢債權，可否行使撤銷權？</div>
+    </div>
+
+    <!-- 基礎事實 -->
+    <div class="section-heading">基礎事實</div>
+    <div class="fact-box">
+        <p><strong>甲（原告）</strong>與乙訂立借名契約，確認A地應有部分由甲出資但登記於乙名下，甲繼續使用A地。</p>
+        <p>乙嗣後於101年間將A地<strong>贈與</strong>丙，辦畢贈與登記，且乙已陷於<strong>無資力</strong>。</p>
+        <p>甲依民法§244Ⅰ及§244Ⅳ，請求撤銷乙丙間之贈與契約及贈與登記，並請求丙塗銷贈與登記（同時另主張依借名關係請求移轉登記）。</p>
+        <p><strong>問題：</strong>甲之債權係「借名契約終止後請求乙移轉登記特定地號土地」（特定物給付債權），於乙將A地贈與丙致給付不能且已無資力，而甲尚未轉換為金錢損害賠償債權前，甲得否行使撤銷權？</p>
+    </div>
+
+    <!-- 法律爭議 -->
+    <div class="section-heading">法律爭議</div>
+    <div class="issue-box">
+        <p><strong>核心問題：</strong>89年5月5日民法§244③修正施行後，特定物給付債權之債權人，於「未轉換為金錢損害賠償債權」前，倘債務人陷於無資力，得否依§244Ⅰ及§244Ⅳ行使撤銷權？</p>
+        <p><strong>多數說（否定）：</strong>§244③明文「僅有害於以給付特定物為標的之債權者，不適用前二項之規定」，須轉換為金錢損害賠償債權後，方得行使撤銷權。</p>
+        <p><strong>不同意見（肯定，但有限制）：</strong>§244③限制的是「僅」有害之情形——若債務人致無資力，則非「僅」有害特定物債權而是兼害全體債權人；此時特定物債權人得行使撤銷權使特定物回復為債務人財產，但不得同時請求移轉登記於己。</p>
+    </div>
+
+    <!-- 多數理由 -->
+    <div class="section-heading">大法庭裁定理由（多數意見）</div>
+    <div class="opinions">
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈠</div>
+                <span class="op-label">§244③的立法意旨——撤銷權以保全全體債權人共同擔保為目的，非為確保特定債權</span>
+            </div>
+            <div class="op-body">
+                <p>撤銷權（廢罷訴權）係保護無特別擔保之一般債權人，使債務人詐害行為得受撤銷，以回復債務人財產，維持共同擔保之資力——故撤銷權之目的在保障<strong>全體債權人</strong>之利益，<strong>非為確保特定債權</strong>而設。</p>
+                <p>89年修正§244③，增訂「或僅有害於以給付特定物為標的之債權者」，明確揭示：<strong>撤銷權不得僅為保全特定物給付債權而行使</strong>。</p>
+                <p>立法過程（研修委員會第715、716次會議）顯示：債權無論發生次序先後，地位及效力均等；若允許特定物債權人行使撤銷權保全特定物債權之直接履行，無異使其債權形同具有<strong>物權之效力</strong>，違反債權平等性原則。</p>
+                <div class="op-result">
+                    <strong>結論：</strong>債務人之行為倘僅有害於特定物給付債權，縱債務人陷於無資力，債權人仍不得為保全該特定物給付之債權而行使撤銷權。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈡</div>
+                <span class="op-label">特定物給付不能→須先轉換為金錢損害賠償債權，方得行使撤銷權</span>
+            </div>
+            <div class="op-body">
+                <p>給付特定物之債務，清償期屆至後，債務人業將該物移轉第三人，依社會通常觀念，倘不能期待債務人取得其物為給付，<strong>自屬給付不能</strong>。原定給付既因可歸責於債務人之事由致不能實現，<strong>債權人僅得依§226Ⅰ請求債務人賠償損害</strong>，不得仍請求履行原有債務（本院39年台上字第411號、40年台上字第599號先例）。</p>
+                <p>債權人若倘得轉換而<strong>未轉換</strong>請求金錢賠償，仍訴請撤銷債務人與第三人就特定物之債權及物權行為，其目的顯在取得該物以<strong>滿足自己之特定債權</strong>，而非認該特定物係債務人之一般財產為全體債權人之共同擔保。</p>
+                <p>如認此種情形可行使撤銷權，使特定物回復為債務人財產，再以「給付不能之障礙已不存在」為由，請求債務人依債務本旨履行——此將造成<strong>「債務人是否給付不能，繫於債權人是否行使撤銷權」之論理矛盾</strong>；且無異允許以行使撤銷權之方法，實質保全特定債權之直接履行，殊與§244③立法意旨相左，並使該債權取得<strong>準物權地位</strong>，明顯違反債權平等性原則。</p>
+                <div class="op-result">
+                    <strong>結論：</strong>特定物給付債權人在未轉換為金錢損害賠償債權前，不得行使撤銷權；需先依§226Ⅰ轉換為金錢賠償債權，始得為全體債權人之利益行使撤銷權。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈢</div>
+                <span class="op-label">轉換後之損害賠償債權——與原債權具同一性，不影響其法律地位</span>
+            </div>
+            <div class="op-body">
+                <p>特定物給付債權轉換而成之損害賠償債權，乃<strong>原債權之變形，與原債權具同一性</strong>，債權人於原債權轉換為損害賠償之債時，得依§244規定行使撤銷權，與其他債權人受同等保護，並就債務人全部財產平等受償，<strong>其法律地位並無不利或劣於他債權人</strong>。</p>
+                <p>且§244③既已明定「僅有害於以給付特定物為標的之債權者，不適用前二項之規定」，則認特定物給付債權在未轉換為損害賠償債權時，其債權人不得行使撤銷權，亦未增加法律所無之限制。</p>
+                <div class="op-result">
+                    <strong>結論：</strong>轉換為金錢損害賠償債權後，債權人即可如同其他金錢債權人，依§244行使撤銷權，並就全部財產平等受償，並不因此受到不利對待。
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 法條依據 -->
+    <div class="law-ref">
+        <strong>📋 核心法條：</strong>民法§244Ⅰ（無償行為撤銷）、§244Ⅱ（有償行為撤銷）、§244③（特定物債權限制撤銷）、§244Ⅳ（回復原狀請求權）、§226Ⅰ（給付不能之損害賠償）
+    </div>
+
+    <!-- 多數v不同意見對照表 -->
+    <div class="section-heading">多數意見 vs. 不同意見（5票）</div>
+    <table class="compare-table">
+        <thead>
+            <tr>
+                <th class="th-issue">爭點</th>
+                <th class="th-majority">多數意見（6票）</th>
+                <th class="th-dissent">不同意見（5票：高孟焄等）</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="td-issue">「僅」有害之解釋</td>
+                <td class="td-majority">特定物給付債權人，縱債務人因此致無資力，其行使撤銷權之目的仍在保全特定債權直接履行，仍屬「僅」有害之情形，不得行使撤銷權</td>
+                <td class="td-dissent">「僅」有害應解為「行為結果無礙其資力，猶可擔保全體債權人」之情形；若債務人因此致無資力，則非「僅」有害特定物債權，而是「兼」害全體債權人，不在§244③限制範圍</td>
+            </tr>
+            <tr>
+                <td class="td-issue">轉換要件</td>
+                <td class="td-majority">必須先依§226Ⅰ轉換為金錢損害賠償債權，才能行使撤銷權</td>
+                <td class="td-dissent">不須轉換即可行使撤銷權，但<strong>撤銷回復後，不得同時請求移轉登記於己</strong>（合併移轉登記之訴不予准許）</td>
+            </tr>
+            <tr>
+                <td class="td-issue">論理矛盾問題</td>
+                <td class="td-majority">若未轉換可行使撤銷權，且撤銷後即可請求債務本旨履行，將造成「是否給付不能繫於債權人是否行使撤銷權」之矛盾</td>
+                <td class="td-dissent">無矛盾——給付是否可能以言詞辯論終結時之狀態為準，本即有變動之可能；撤銷確定後使給付可能，乃撤銷訴訟確定後新發生之事實，後訴不受拘束</td>
+            </tr>
+            <tr>
+                <td class="td-issue">債權平等原則</td>
+                <td class="td-majority">若允許特定物債權人直接行使撤銷權並取得特定物，無異使其債權取得「準物權地位」，違反債權平等原則</td>
+                <td class="td-dissent">我國採絕對效力說，撤銷後特定物歸回債務人財產，全體債權人均可對之行使權利；特定物債權人並無優先受償，不違反債權平等原則——僅禁止其同時合併請求移轉登記於己即可</td>
+            </tr>
+            <tr>
+                <td class="td-issue">唯一債權人之情形</td>
+                <td class="td-majority">——（多數說未區分）</td>
+                <td class="td-dissent">若債務人僅有特定物債權人為唯一債權人，一律禁止其行使撤銷權、不得依原法律關係取得特定物，是否符合誠信原則及締約目的？值得深思</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- 不同意見書 -->
+    <div class="section-heading">不同意見書重點（高孟焄、沈方維、鄭雅萍、袁靜文、陳麗芬）</div>
+    <div class="dissent-judges">不同意見人：高孟焄、沈方維、鄭雅萍、袁靜文、陳麗芬法官（5票）——罕見的5票不同意見</div>
+    <div class="d-opinions">
+
+        <div class="d-op">
+            <div class="d-op-head">
+                <div class="d-op-num">一</div>
+                <span class="d-op-label">「僅」的正確解釋——致無資力時，非「僅」有害，不受§244③限制</span>
+            </div>
+            <div class="d-op-body">
+                <p>依文義解釋：§244③限制「<strong>僅</strong>有害」於特定物債權之情形；如債務人之行為「<strong>兼</strong>有害」於特定物債權，特定物債權人應不受限制，仍得訴請撤銷。「僅」有害應解為：行為結果<strong>無礙其資力，猶可擔保全體債權人債權</strong>之情況。</p>
+                <p>依歷史解釋：研修委員黃茂榮先生明確指出：「（§244③）在此所謂『僅』有害於以給付特定物為標的之債權，指<strong>無礙於債權人全體之利益，亦即無礙於債務人之支付能力</strong>而言」；孫森焱先生亦澄清，其主張並非須轉換為損害賠償債權後才可行使撤銷訴權。</p>
+                <p>依目的解釋：以不動產二重買賣為例，特定物債權人行使撤銷訴權，必以詐害行為之雙方為對造，請求撤銷並塗銷登記，<strong>使不動產所有權回復為債務人名義，成為全體債權人之共同擔保</strong>，符合§244立法目的。至該特定物債權人如<strong>合併</strong>請求移轉登記於己，因不符立法目的，自<strong>不能准許</strong>。</p>
+                <div class="d-op-result">
+                    <strong>結論（不同意見之解決方案）：</strong>法院就請求撤銷（債權及物權行為）、塗銷（不動產登記）部分為<strong>勝訴判決</strong>（為全體債權人利益）；就合併請求移轉登記於己部分（僅為自己利益），予以<strong>駁回</strong>。如此可兼顧全體債權人利益之保障，及債權無優先效力之本質。
+                </div>
+            </div>
+        </div>
+
+        <div class="d-op">
+            <div class="d-op-head">
+                <div class="d-op-num">二</div>
+                <span class="d-op-label">撤銷後之效果——特定物回復債務人財產，非取得優先地位</span>
+            </div>
+            <div class="d-op-body">
+                <p>我國對撤銷訴權採<strong>絕對效力說</strong>，全體債權人皆因詐害行為之撤銷而共享利益。特定物債權人撤銷詐害行為，不過使特定物<strong>復舊歸回債務人之責任財產</strong>，並不因此獲有優先受償之權利，全體債權人均可對已回復為債務人財產之特定物以強制執行等方式受償。</p>
+                <p>撤銷確定完成塗銷登記後，若<strong>其他債權人不曾行使債權，未對特定物聲請強制執行</strong>時，特定物債權人自可持其原已取得之移轉登記執行名義，或另訴請求債務人為移轉登記，以實現原有法律關係之債權。</p>
+                <p>多數說強迫特定物債權人必須轉換為金錢損害賠償，再經換價（拍賣）程序取償——若債務人僅有特定物債權人一位債權人，如此一律禁止，違反誠信原則及當事人締約之原始目的，且付出不必要之時間及勞費，是否妥當，值得深思。</p>
+                <div class="d-op-result">
+                    <strong>結論：</strong>多數說全盤否定特定物債權人於轉換前行使撤銷訴權之可能，與立法意旨不符、與絕對效力說之法律效果矛盾，且對唯一債權人之情形失衡。
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 考試地雷 -->
+    <div class="trap-box">
+        <div class="trap-title">⚠️ 考試常見地雷</div>
+        <div class="trap-item">
+            <div class="trap-q">Q：特定物給付債權人，在債務人致給付不能且無資力時，可否直接行使撤銷權（多數意見）？</div>
+            <div class="trap-a">A：不可。依多數意見，必須先依§226Ⅰ「轉換」為金錢損害賠償債權後，才得依§244行使撤銷權。若未轉換即行使，違反§244③「僅有害於特定物給付債權者，不適用前二項」之限制。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：為何轉換為金錢損害賠償債權後，就可以行使撤銷權？</div>
+            <div class="trap-a">A：因金錢損害賠償債權與一般金錢債權性質相同，行使撤銷權目的在保全債務人之「責任財產」作為全體債權人之共同擔保，而非保全特定物之直接履行——此與§244③之立法目的（保障全體債權人）吻合。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：多數意見認為，未轉換即行使撤銷權，有何「論理矛盾」？</div>
+            <div class="trap-a">A：若允許行使撤銷權使特定物回復債務人名義，再以「給付不能之障礙已不存在」為由請求依債務本旨履行——則「是否給付不能，繫於債權人是否行使撤銷權」，造成論理上的循環矛盾；且實質上允許以撤銷權保全特定物債權之直接履行，使債權取得「準物權地位」。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：不同意見認為「僅」有害於特定物債權，應如何解釋？</div>
+            <div class="trap-a">A：應解為「行為結果無礙債務人之支付能力，猶可擔保全體債權人債權」之情況。若債務人因此致無資力，則已非「僅」有害特定物債權，而是「兼」害全體債權人，不在§244③限制範圍，特定物債權人得行使撤銷權。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：不同意見認為，特定物債權人行使撤銷權後，可否請求移轉登記於己？</div>
+            <div class="trap-a">A：不可。不同意見認為：撤銷（債權及物權行為）及塗銷（不動產登記）部分可獲勝訴，但合併請求「移轉登記於己」之部分，不符§244③立法目的（以保障全體債權人利益為目的，非為確保特定債權），應予駁回。如此可兼顧全體債權人利益，並避免使特定物債權取得優先效力。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：轉換而成之損害賠償債權與原特定物給付債權之關係？</div>
+            <div class="trap-a">A：損害賠償債權乃原債權之變形，與原債權具「同一性」（多數意見）。轉換後，債權人與其他金錢債權人受同等保護，就債務人全部財產平等受償，法律地位並無不利或劣於他債權人。</div>
+        </div>
+    </div>
+
+    <!-- 引用法條 -->
+    <details>
+        <summary>📎 引用法條與修正沿革</summary>
+        <div style="padding:10px 0 4px;">
+            <div class="ref-case">
+                <div class="ref-case-title">民法第244條第1項（無償行為撤銷）</div>
+                <p style="margin:0;">債務人所為之無償行為，有害及債權者，債權人得聲請法院撤銷之。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">民法第244條第3項（89年修正版——特定物給付債權之限制）</div>
+                <p style="margin:0;">債務人之行為非以財產為標的，或<strong>僅有害於以給付特定物為標的之債權者</strong>，不適用前二項之規定。（88年修正，89年5月5日施行）</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">民法第244條第4項（回復原狀請求權）</div>
+                <p style="margin:0;">債務人之行為有撤銷原因，而其行為之相對人或轉得人曾以不相當之對價受益者，得請求回復原狀。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">民法第226條第1項（給付不能之損害賠償）</div>
+                <p style="margin:0;">因可歸責於債務人之事由，致給付不能者，債權人得請求賠償損害。（特定物給付不能後轉換之依據）</p>
+            </div>
+            <div class="ref-case d">
+                <div class="ref-case-title">【不同意見引用】88年修正前之民法第244條第3項</div>
+                <p style="margin:0;">88年4月21日修正前原文：「債務人之行為非以財產為標的者，不適用前二項之規定」——修正後新增「或僅有害於以給付特定物為標的之債權者」，引發本案爭議。</p>
+            </div>
+        </div>
+    </details>
+
+    <!-- 法官名單 -->
+    <div class="section-heading">法官組成（6：5分裂）</div>
+    <div class="judges-grid">
+        <span class="judge-chip chief">審判長 陳國禎</span>
+        <span class="judge-chip dissenter">高孟焄（不同意見）</span>
+        <span class="judge-chip dissenter">沈方維（不同意見）</span>
+        <span class="judge-chip dissenter">鄭雅萍（不同意見）</span>
+        <span class="judge-chip dissenter">袁靜文（不同意見）</span>
+        <span class="judge-chip">林恩山</span>
+        <span class="judge-chip">陳玉完</span>
+        <span class="judge-chip">盧彥如</span>
+        <span class="judge-chip">李寶堂</span>
+        <span class="judge-chip">鄭純惠</span>
+        <span class="judge-chip dissenter">陳麗芬（不同意見）</span>
+    </div>
+
+    <div class="note-toggle" onclick="toggleNote('n1')">✏️ 我的小結</div>
+    <div class="note-area" id="n1">
+        <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n1',this.value)"></textarea>
+        <div class="note-saved" id="n1-saved"></div>
+    </div>
+</div>
+
+<!-- ===== 快問快答卡片 ===== -->
+<div class="card" id="case2" data-kw="快問快答 民法244條 撤銷權 特定物給付債權 轉換 給付不能 債權平等 廢罷訴權 §244③ 準物權地位">
+    <button class="star-btn" onclick="toggleStar('case2',this)">⭐</button>
+    <h2 class="card-title">快問快答——本件核心概念與多數/不同意見對比</h2>
+    <div class="meta-line">建議先蓋住答案，自己回答後再確認</div>
+
+    <div class="quiz-list">
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>特定物給付債權人，在89年5月5日§244③修正後，未轉換前可否行使撤銷權？（多數意見）</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">不可。多數意見認為，必須先依§226Ⅰ將特定物給付債權「轉換」為金錢損害賠償債權，方得依§244Ⅰ及§244Ⅳ行使撤銷權。在未轉換前，行使撤銷權仍屬「僅為保全特定物給付債權」，違反§244③之限制。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>多數意見所稱「論理矛盾」為何？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">若允許未轉換之特定物債權人行使撤銷權，使特定物回復債務人名義後，再以「給付不能之障礙已不存在」為由請求依債務本旨履行原債務——造成「是否給付不能，繫於債權人是否行使撤銷權」之循環矛盾；且實質允許以撤銷權保全特定物債權之直接履行，使其取得「準物權地位」，違反債權平等原則。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>§244③「僅有害」之文義，多數說與不同意見各作何解釋？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">多數說：只要行使目的係保全特定物債權之直接履行，即屬「僅」有害，§244③限制之。不同意見：「僅」有害應指「無礙債務人支付能力」之情形；若債務人因此致無資力，則非「僅」有害特定物債權，而是「兼」害全體債權人，不在§244③限制範圍內。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>不同意見的解決方案為何？（可行使撤銷權但有何限制？）</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">不同意見認為：①債務人致無資力時，特定物債權人得行使撤銷權；②法院就撤銷（債權及物權行為）及塗銷（登記）部分為勝訴判決（為全體債權人利益）；③合併請求「移轉登記於己」部分，予以駁回（因不符§244③立法目的：非為確保特定債權）。如此可兼顧全體債權人利益，並不使特定物債權取得優先效力。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>轉換後之損害賠償債權與原特定物給付債權有何關係？（多數意見）</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">轉換而成之損害賠償債權乃原債權之「變形」，與原債權具「同一性」。轉換後，債權人與其他一般金錢債權人受同等保護，就債務人全部財產平等受償，法律地位並無不利或劣於他債權人。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>撤銷權（廢罷訴權）之制度目的為何？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">乃債權人對於債務人所為有害債權之行為，得請求法院撤銷之權利，與代位權同為保護債權人所設之制度。目的在保護無特別擔保之一般債權人，使債務人詐害行為得受撤銷，回復債務人之財產，以維持其共同擔保之資力——保障「全體債權人」之利益，非為確保特定債權而設。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>本件不同意見的「論理矛盾反駁」為何？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">不同意見認為：給付是否可能，以事實審言詞辯論終結時之狀態為準，本即有變動之可能，此在一般給付特定物之訴均係如此，並非矛盾。撤銷裁判確定後，使債務人履行給付特定物成為可能，乃撤銷訴訟事實審言詞辯論終結後「新發生之事實」，後訴不受前訴既判力拘束，並非論理矛盾。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>本件票數分裂情形有何特殊之處？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">本件多數意見6票：陳國禎（審判長）、林恩山、陳玉完、盧彥如、李寶堂、鄭純惠；不同意見多達5票：高孟焄、沈方維、鄭雅萍、袁靜文、陳麗芬——為歷來大法庭裁定中票數最為接近之案件之一（6：5），顯示本件爭議之深度。</div>
+        </div>
+    </div>
+
+    <div class="note-toggle" onclick="toggleNote('n2')">✏️ 我的小結</div>
+    <div class="note-area" id="n2">
+        <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n2',this.value)"></textarea>
+        <div class="note-saved" id="n2-saved"></div>
+    </div>
+</div>
+
+<div id="noResults">查無符合的內容，請試試其他關鍵字。</div>
+<div id="noStarred">還沒有收藏的項目，點卡片右上角的 ⭐ 加入收藏。</div>
+</div>
+
+<script>
+const NIGHT_KEY='night_mode_pref';
+function toggleNight(){const on=document.body.classList.toggle('night-mode');localStorage.setItem(NIGHT_KEY,on?'1':'0');document.getElementById('nightBtn').textContent=on?'☀️':'🌙';}
+(function(){if(localStorage.getItem(NIGHT_KEY)==='1'){document.body.classList.add('night-mode');const b=document.getElementById('nightBtn');if(b)b.textContent='☀️';}})();
+const STORE_KEY='108_1652_grand_notes',STAR_KEY='108_1652_grand_stars';
+function loadNotes(){try{return JSON.parse(localStorage.getItem(STORE_KEY))||{};}catch{return{};}}
+function loadStars(){try{return JSON.parse(localStorage.getItem(STAR_KEY))||{};}catch{return{};}}
+function saveAllNotes(d){localStorage.setItem(STORE_KEY,JSON.stringify(d));}
+function saveAllStars(d){localStorage.setItem(STAR_KEY,JSON.stringify(d));}
+(function(){const n=loadNotes(),s=loadStars();
+  Object.entries(n).forEach(([id,v])=>{const a=document.getElementById(id);if(!a)return;const t=a.querySelector('textarea');if(t)t.value=v;if(v)a.classList.add('open');});
+  Object.entries(s).forEach(([id,v])=>{if(!v)return;const b=document.querySelector(`#${id} .star-btn`);if(b)b.classList.add('starred');});
+})();
+function toggleStar(id,btn){const s=loadStars();const now=!btn.classList.contains('starred');btn.classList.toggle('starred',now);s[id]=now;saveAllStars(s);if(filterActive)applyFilter();}
+let filterActive=false;
+function toggleFilter(){filterActive=!filterActive;document.getElementById('filterBtn').classList.toggle('active',filterActive);document.getElementById('searchInput').value='';clearSearchHighlights();updateSearchUI([],0);applyFilter();}
+function applyFilter(){const s=loadStars();const q=document.getElementById('searchInput').value.trim().toLowerCase();let any=false;
+  document.querySelectorAll('.card').forEach(c=>{const kw=(c.dataset.kw||'').toLowerCase();const txt=c.textContent.toLowerCase();
+  const ms=!q||kw.includes(q)||txt.includes(q);const mf=!filterActive||!!s[c.id];const show=ms&&mf;
+  c.classList.toggle('hidden',!show);if(show)any=true;});
+  document.getElementById('noResults').style.display=(!any&&!filterActive)?'block':'none';
+  document.getElementById('noStarred').style.display=(!any&&filterActive)?'block':'none';}
+let _matches=[],_cur=-1;
+function clearSearchHighlights(){document.querySelectorAll('mark.search-hl').forEach(m=>{const p=m.parentNode;p.replaceChild(document.createTextNode(m.textContent),m);p.normalize();});}
+function highlightInNode(node,re){if(node.nodeType===3){const text=node.nodeValue;const frag=document.createDocumentFragment();let last=0,m;re.lastIndex=0;while((m=re.exec(text))!==null){if(m.index>last)frag.appendChild(document.createTextNode(text.slice(last,m.index)));const mk=document.createElement('mark');mk.className='search-hl';mk.textContent=m[0];frag.appendChild(mk);last=re.lastIndex;}if(last===0)return;frag.appendChild(document.createTextNode(text.slice(last)));node.parentNode.replaceChild(frag,node);return;}if(node.nodeType===1){const tag=node.tagName;if(tag==='SCRIPT'||tag==='STYLE'||tag==='TEXTAREA'||tag==='INPUT')return;if(node.classList&&node.classList.contains('search-hl'))return;[...node.childNodes].forEach(c=>highlightInNode(c,re));}}
+function doSearch(q){clearSearchHighlights();_matches=[];_cur=-1;const qt=(q||'').trim();if(!qt){updateSearchUI([],0);applyFilter();return;}applyFilter();const esc=qt.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');const re=new RegExp(esc,'gi');document.querySelectorAll('.container .card:not(.hidden)').forEach(card=>{highlightInNode(card,re);});_matches=[...document.querySelectorAll('mark.search-hl')];if(_matches.length){_cur=0;setCurrent(0);}updateSearchUI(_matches,_cur);}
+function setCurrent(idx){_matches.forEach((m,i)=>m.classList.toggle('current',i===idx));if(_matches[idx])_matches[idx].scrollIntoView({behavior:'smooth',block:'center'});}
+function navMatch(dir){if(!_matches.length)return;_cur=(_cur+dir+_matches.length)%_matches.length;setCurrent(_cur);updateSearchUI(_matches,_cur);}
+function updateSearchUI(matches,cur){const cnt=document.getElementById('searchCount');const prev=document.getElementById('prevBtn');const next=document.getElementById('nextBtn');if(!matches.length){cnt.textContent='';prev.disabled=true;next.disabled=true;return;}cnt.textContent=(cur+1)+'/'+matches.length;prev.disabled=false;next.disabled=false;}
+function handleSearchKey(e){if(e.key==='Enter'){e.shiftKey?navMatch(-1):navMatch(1);}if(e.key==='Escape'){document.getElementById('searchInput').value='';doSearch('');}}
+function toggleNote(id){document.getElementById(id).classList.toggle('open');}
+const timers={};
+function saveNote(id,v){clearTimeout(timers[id]);timers[id]=setTimeout(()=>{const n=loadNotes();n[id]=v;saveAllNotes(n);const el=document.getElementById(id+'-saved');if(el){el.textContent='已儲存';setTimeout(()=>el.textContent='',1500);}},500);}
+let savedRange=null;
+document.addEventListener('selectionchange',()=>{const s=window.getSelection();if(s&&!s.isCollapsed&&s.rangeCount)savedRange=s.getRangeAt(0).cloneRange();});
+function highlightText(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;
+  if(!r||r.collapsed){alert('💡 請先反白想要標記的文字');return;}
+  const sp=document.createElement('span');sp.className='hl';sp.style.cssText='background:#f0d98a;border-radius:2px;';
+  try{r.surroundContents(sp);savedRange=null;}catch{alert('💡 請選取同一段落內的文字');}s&&s.removeAllRanges();}
+function removeHighlight(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;
+  if(!r||r.collapsed){alert('💡 請先反白想擦除標記的文字');return;}
+  const anc=r.commonAncestorContainer.nodeType===1?r.commonAncestorContainer:r.commonAncestorContainer.parentElement;
+  anc.querySelectorAll('span.hl').forEach(sp=>{if(r.intersectsNode(sp)){const p=sp.parentNode;while(sp.firstChild)p.insertBefore(sp.firstChild,sp);p.removeChild(sp);}});
+  savedRange=null;s&&s.removeAllRanges();}
+function clearHighlights(){const sp=document.querySelectorAll('span.hl');if(!sp.length)return;
+  if(confirm('確定要清除所有重點標記嗎？')){sp.forEach(s=>{const p=s.parentNode;while(s.firstChild)p.insertBefore(s.firstChild,s);p.removeChild(s);});}}
+function openExport(){
+  let out='最高法院民事大法庭 108年度台上大字第1652號\n'+'═'.repeat(44)+'\n\n';
+  out+='【主文】\n89年5月5日民法第244條第3項規定修正施行後，債權人之以給付特定物為標的之債權，債務人就所負債務為無償行為致給付不能且已無資力時，債權人倘未轉換請求債務人賠償因債務不履行所生金錢損害，不得依同條第1項及第4項規定，請求法院撤銷債務人所為之無償行為及請求受益人或轉得人回復原狀。\n\n';
+  document.querySelectorAll('.op,.d-op').forEach(op=>{
+    const head=op.querySelector('.op-label,.d-op-label')?.textContent.trim()||'';
+    out+=`▌${head}\n`;
+    op.querySelectorAll('.op-body p,.op-body li,.op-result,.d-op-body p,.d-op-body li,.d-op-result').forEach(el=>{
+      const t=el.textContent.trim();if(t)out+=(el.tagName==='LI'?'  • ':'')+t+'\n';});
+    out+='\n';});
+  const tas=document.querySelectorAll('.note-textarea');tas.forEach((ta,i)=>{if(ta&&ta.value.trim())out+=`✏️ 小結${i+1}：\n`+ta.value.trim()+'\n\n';});
+  out+='═'.repeat(44)+'\n';
+  const b=new Blob([out.trim()],{type:'text/plain;charset=utf-8'});
+  const u=URL.createObjectURL(b);const a=document.createElement('a');
+  a.href=u;a.download='108台上大字第1652號_特定物給付債權撤銷權§244③.txt';a.click();URL.revokeObjectURL(u);}
+function toggleQuiz(el){const ans=el.nextElementSibling;const tog=el.querySelector('.quiz-toggle');if(ans.classList.contains('open')){ans.classList.remove('open');tog.textContent='＋';}else{ans.classList.add('open');tog.textContent='－';}}
+const REG_KEY='exam_completion_registry';
+function _loadReg(){try{return JSON.parse(localStorage.getItem(REG_KEY))||{};}catch{return{};}}
+function _saveReg(r){try{localStorage.setItem(REG_KEY,JSON.stringify(r));}catch{}}
+function _file(){const p=location.pathname.split('/');return decodeURIComponent(p[p.length-1]||'');}
+function _fmt(ts){const d=new Date(ts);const date=(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();const time=d.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false});return date+' '+time;}
+function _updateDate(){const r=_loadReg();const k=_file()||'case_civil_grand_108_1652.html';const l=document.getElementById('doneDateLabel');if(!l)return;l.textContent=(r[k]&&r[k].done&&r[k].ts)?_fmt(r[k].ts):'';}
+function toggleDone(){const btn=document.getElementById('doneBtn');const r=_loadReg();const k=_file()||'case_civil_grand_108_1652.html';const done=r[k]&&r[k].done;
+  if(done){delete r[k];_saveReg(r);btn.classList.remove('active');}
+  else{const now=new Date();r[k]={done:true,ts:now.getTime()};_saveReg(r);btn.classList.add('active');}
+  _updateDate();}
+(function(){const r=_loadReg();const k=_file()||'case_civil_grand_108_1652.html';if(r[k]&&r[k].done){const b=document.getElementById('doneBtn');if(b)b.classList.add('active');}_updateDate();})();
+</script>
+</body>
+</html>
