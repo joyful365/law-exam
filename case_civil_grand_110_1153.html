@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>110年度台上大字第1153號 民事大法庭裁定</title>
+    <style>
+        :root {
+            --bg:#f5f0eb; --card:#ffffff; --text:#3d3530; --sub:#8c7b6b;
+            --line:#ddd8d0; --majority:#9e5c45; --law:#5a6e4e;
+            --trap:#f5f0d8; --header-bg:#5c4f47; --hist:#4a6e8a;
+        }
+        body.night-mode {
+            --bg:#1a1714; --card:#252220; --text:#d4cec8; --sub:#8a7d72;
+            --line:#383330; --majority:#b87060; --law:#6a8a5e;
+            --trap:#2a2518; --header-bg:#111010; --hist:#6a9ab0;
+        }
+        body.night-mode header{box-shadow:0 2px 8px rgba(0,0,0,.5);}
+        body.night-mode .top-bar{background:#1e1b18;}
+        body.night-mode .top-btn{background:#3a3530;}
+        body.night-mode .fact-box,body.night-mode .issue-box{background:#1e1b18;}
+        body.night-mode .op-head{background:#2a2520;}
+        body.night-mode .op-body{background:var(--card);}
+        body.night-mode .op-result{background:#2a2018;}
+        body.night-mode .timeline-box{background:#1e1b18;}
+        body.night-mode .tl-item{border-left-color:var(--sub);}
+        body.night-mode .tl-dot{background:#3a3530;}
+        body.night-mode .ref-case{background:#242018;}
+        body.night-mode .law-ref{background:#1c2018;}
+        body.night-mode .hist-box{background:#162030;}
+        body.night-mode .note-textarea{background:#1e1b18;color:var(--text);border-color:var(--line);}
+        body.night-mode .judge-chip{background:#2a2520;border-color:var(--line);}
+        body.night-mode .judge-chip.chief{background:#3a3530;}
+        body.night-mode mark.search-hl{background:#7a6010;color:#f0e8c8;}
+        body.night-mode mark.search-hl.current{background:#c47000;color:#fff;}
+        body.night-mode .verdict{background:#2e2a26;}
+        body.night-mode .trap-box{border-color:#5a5020;}
+        body.night-mode .trap-title{color:#c8a840;}
+        body.night-mode .trap-item{border-left-color:#7a6830;}
+        body.night-mode #nightBtn{background:#4a4030;color:#e8d898;font-weight:700;}
+        body.night-mode .quiz-q{background:var(--card);}
+        body.night-mode .quiz-q:hover{background:#2a2520;}
+        body.night-mode .quiz-a{background:#1c2018;color:#9fbf90;}
+        body{transition:background .3s,color .3s;} .card{transition:background .3s,border-color .3s;}
+
+        *{box-sizing:border-box;}
+        body{font-family:"Helvetica Neue",Helvetica,"PingFang TC","LiHei Pro","Microsoft JhengHei",sans-serif;
+             background:var(--bg);color:var(--text);line-height:1.85;font-size:16px;margin:0;padding:0 0 60px;}
+
+        header{background:var(--header-bg);color:#f5f0eb;padding:16px 16px 8px;text-align:center;
+               position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.2);}
+        header h1{margin:0 0 10px;font-size:1.05em;line-height:1.5;font-weight:600;letter-spacing:.02em;color:#fff;}
+        .header-controls{display:flex;gap:8px;align-items:center;}
+        .search-wrap{position:relative;flex:1;display:flex;align-items:center;gap:4px;}
+        #searchInput{flex:1;padding:8px 14px 8px 32px;border:none;border-radius:6px;font-size:14px;
+                     background:rgba(245,240,235,.15);color:#f5f0eb;outline:none;}
+        #searchInput::placeholder{color:rgba(245,240,235,.45);}
+        #searchInput:focus{background:rgba(245,240,235,.25);}
+        .search-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:13px;opacity:.5;pointer-events:none;}
+        .search-count{font-size:12px;color:rgba(255,255,255,.7);white-space:nowrap;min-width:44px;text-align:center;}
+        .search-nav{background:rgba(255,255,255,.13);border:none;border-radius:6px;color:#fff;font-size:13px;padding:6px 8px;cursor:pointer;line-height:1;}
+        .search-nav:hover{background:rgba(255,255,255,.25);} .search-nav:disabled{opacity:.3;cursor:default;}
+        mark.search-hl{background:#ffe066;color:#1a1a1a;border-radius:2px;padding:0 1px;}
+        mark.search-hl.current{background:#ff8c00;color:#fff;border-radius:3px;outline:2px solid #ff8c00;}
+        #filterBtn{background:rgba(245,240,235,.15);border:none;border-radius:6px;color:#f5f0eb;font-size:13px;padding:8px 12px;cursor:pointer;white-space:nowrap;}
+        #filterBtn.active{background:var(--majority);color:#fff;font-weight:bold;}
+        .top-bar{background:#e8e2da;padding:5px 14px;display:flex;gap:6px;justify-content:flex-end;flex-wrap:nowrap;}
+        .top-btn{background:#b0a898;color:#fff;border:none;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;transition:opacity .15s;}
+        .top-btn:hover{opacity:.8;}
+        .top-btn.done{background:#8c7b6b;}
+        .top-btn.done.active{background:linear-gradient(135deg,#b8860b,#daa520);color:#fff8e1;font-weight:700;box-shadow:0 0 8px rgba(218,165,32,.5);}
+        .done-date{font-size:11px;color:#a0a0a0;white-space:nowrap;align-self:center;font-weight:500;}
+
+        .container{padding:18px 16px;max-width:640px;margin:0 auto;}
+        @media(min-width:768px){.container{max-width:880px;padding:24px 20px;}body{font-size:17px;}header h1{font-size:1.12em;}}
+        .card{background:var(--card);border-radius:14px;padding:24px 22px;margin-bottom:24px;
+              box-shadow:0 1px 6px rgba(61,53,48,.08);position:relative;border:1px solid var(--line);}
+        .card.hidden{display:none;}
+        .star-btn{position:absolute;top:18px;right:18px;background:none;border:none;font-size:20px;cursor:pointer;opacity:.15;transition:opacity .15s;padding:0;}
+        .star-btn.starred{opacity:1;}
+        .card-title{color:var(--text);font-size:1.12em;font-weight:700;margin:0 0 4px;padding-right:30px;line-height:1.6;}
+        .meta-line{font-size:.75em;color:var(--sub);margin-bottom:20px;letter-spacing:.04em;}
+
+        .verdict{background:#4a3f38;color:#f5f0eb;border-radius:10px;padding:16px 18px;margin-bottom:22px;}
+        .verdict-label{font-size:.66em;letter-spacing:.14em;opacity:.5;margin-bottom:6px;}
+        .verdict-main{font-size:.97em;font-weight:700;line-height:1.7;margin-bottom:10px;color:#fff;}
+        .vote-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px;padding-top:10px;border-top:1px solid rgba(245,240,235,.15);}
+        .v-chip{font-size:.72em;background:rgba(245,240,235,.1);border-radius:20px;padding:3px 10px;white-space:nowrap;color:rgba(245,240,235,.75);}
+        .v-chip.majority{background:rgba(158,92,69,.5);color:#f5f0eb;font-weight:700;}
+
+        .section-heading{font-size:.85em;font-weight:700;letter-spacing:.08em;color:var(--sub);margin:22px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line);}
+
+        .fact-box{background:#faf8f5;border-left:3px solid var(--sub);border-radius:0 8px 8px 0;padding:14px 16px;margin-bottom:16px;font-size:.9em;}
+        .fact-box p{margin:0 0 8px;} .fact-box p:last-child{margin:0;}
+
+        .issue-box{background:#faf8f5;border-radius:8px;padding:14px 16px;margin-bottom:16px;font-size:.9em;border:1px solid var(--line);}
+        .issue-box p{margin:0 0 8px;} .issue-box p:last-child{margin:0;}
+
+        /* 歷史時間軸 */
+        .timeline-box{background:#faf8f5;border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin-bottom:18px;font-size:.87em;}
+        .tl-item{display:flex;gap:14px;align-items:flex-start;margin-bottom:10px;padding-left:8px;border-left:2px solid var(--sub);}
+        .tl-dot{width:10px;height:10px;border-radius:50%;background:var(--majority);flex-shrink:0;margin-top:5px;margin-left:-13px;}
+        .tl-year{font-weight:700;color:var(--majority);min-width:54px;font-size:.88em;}
+        .tl-desc{flex:1;line-height:1.6;}
+
+        /* 歷史背景框 */
+        .hist-box{background:#edf4f8;border-radius:8px;padding:13px 16px;margin-bottom:14px;font-size:.89em;border-left:3px solid var(--hist);}
+        .hist-box p{margin:0 0 8px;} .hist-box p:last-child{margin:0;}
+        .hist-title{font-weight:700;color:var(--hist);margin-bottom:6px;font-size:.9em;}
+
+        .opinions{display:flex;flex-direction:column;gap:10px;margin-bottom:16px;}
+        .op{border-radius:8px;overflow:hidden;border:1px solid var(--line);}
+        .op-head{display:flex;align-items:center;gap:10px;padding:10px 14px;background:#f7f4f0;}
+        .op-num{width:26px;height:26px;border-radius:50%;background:var(--majority);color:#fff;font-size:.75em;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+        .op-label{font-weight:700;font-size:.92em;color:var(--majority);flex:1;}
+        .op-body{padding:13px 15px;font-size:.9em;background:var(--card);}
+        .op-body p{margin:0 0 9px;} .op-body p:last-child{margin:0;}
+        .op-body ul{margin:5px 0 8px;padding-left:18px;} .op-body li{margin-bottom:5px;}
+        .op-result{background:#fdf9f7;border-radius:6px;padding:10px 13px;margin-top:10px;font-size:.9em;border-left:3px solid var(--majority);}
+
+        .trap-box{background:var(--trap);border-radius:8px;padding:14px 16px;margin-bottom:16px;border:1px solid #e0d8b0;font-size:.9em;}
+        .trap-title{font-weight:700;color:#7a6820;margin-bottom:10px;font-size:.92em;display:flex;align-items:center;gap:6px;}
+        .trap-item{margin-bottom:10px;padding-left:14px;border-left:2px solid #c8b860;}
+        .trap-item:last-child{margin-bottom:0;}
+        .trap-q{font-weight:700;color:var(--text);margin-bottom:3px;}
+        .trap-a{color:var(--text);opacity:.85;}
+
+        .law-ref{background:#f2f5f0;border-radius:8px;padding:10px 14px;font-size:.84em;color:#3d4e38;margin-top:14px;border-left:3px solid var(--law);}
+
+        details{margin-top:16px;}
+        details summary{cursor:pointer;color:var(--sub);font-size:.84em;font-weight:600;padding:5px 0;user-select:none;list-style:none;display:flex;align-items:center;gap:6px;}
+        details summary::before{content:'▶';font-size:.62em;transition:transform .2s;color:var(--sub);}
+        details[open] summary::before{transform:rotate(90deg);}
+        .ref-case{background:#f7f4f0;border-radius:7px;padding:10px 13px;margin-bottom:8px;font-size:.84em;border-left:3px solid var(--majority);}
+        .ref-case-title{font-weight:700;color:var(--majority);margin-bottom:3px;font-size:.9em;}
+
+        .note-toggle{display:inline-block;margin-top:14px;font-size:.8em;color:#b0a898;cursor:pointer;user-select:none;}
+        .note-toggle:hover{color:var(--majority);}
+        .note-area{display:none;margin-top:8px;} .note-area.open{display:block;}
+        .note-textarea{width:100%;min-height:68px;border:1px solid var(--line);border-radius:7px;padding:10px 12px;font-size:.87em;font-family:inherit;color:var(--text);background:#faf8f5;resize:vertical;outline:none;line-height:1.75;}
+        .note-textarea:focus{border-color:var(--majority);}
+        .note-textarea::placeholder{color:#c8beb0;}
+        .note-saved{font-size:.72em;color:var(--law);text-align:right;height:14px;margin-top:2px;}
+
+        .judges-grid{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+        .judge-chip{font-size:.77em;background:#f0ece7;border-radius:20px;padding:3px 11px;color:var(--text);border:1px solid var(--line);}
+        .judge-chip.chief{background:var(--text);color:#f5f0eb;font-weight:700;border-color:var(--text);}
+
+        .quiz-list{display:flex;flex-direction:column;gap:8px;}
+        .quiz-item{border:1px solid var(--line);border-radius:8px;overflow:hidden;}
+        .quiz-q{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;padding:11px 14px;cursor:pointer;font-size:.9em;background:var(--card);}
+        .quiz-q:hover{background:#faf8f5;}
+        .quiz-toggle{font-size:1.1em;color:var(--majority);flex-shrink:0;font-weight:300;line-height:1.4;}
+        .quiz-a{display:none;padding:11px 14px;background:#f0f4ee;font-size:.87em;line-height:1.75;border-top:1px solid var(--line);color:#3d4e38;}
+        .quiz-a.open{display:block;}
+
+        #noResults,#noStarred{display:none;text-align:center;color:var(--sub);padding:40px 0;font-size:.9em;}
+        ::-webkit-scrollbar{display:none;} ::selection{background:#e8ddd0;}
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>最高法院民事大法庭<br>110年度台上大字第1153號</h1>
+    <div class="header-controls">
+        <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="搜尋關鍵字、法條…" oninput="doSearch(this.value)" onkeydown="handleSearchKey(event)">
+            <span class="search-count" id="searchCount"></span>
+            <button class="search-nav" id="prevBtn" onclick="navMatch(-1)" disabled>▲</button>
+            <button class="search-nav" id="nextBtn" onclick="navMatch(1)" disabled>▼</button>
+        </div>
+        <button id="filterBtn" onclick="toggleFilter()">⭐ 收藏</button>
+    </div>
+    <div class="top-bar">
+        <button class="top-btn" onclick="highlightText()">🖊️</button>
+        <button class="top-btn" onclick="removeHighlight()">🧽</button>
+        <button class="top-btn" onclick="clearHighlights()">🗑️</button>
+        <button class="top-btn" onclick="openExport()">📤</button>
+        <button class="top-btn" id="nightBtn" onclick="toggleNight()">🌙</button>
+        <button class="top-btn done" id="doneBtn" onclick="toggleDone()">朕已閱</button>
+        <span class="done-date" id="doneDateLabel"></span>
+    </div>
+</header>
+
+<div class="container">
+
+<!-- ===== 主裁定卡片 ===== -->
+<div class="card" id="case1" data-kw="日據時期 土地浮覆 河川 水道 塗銷登記 物上請求權 消滅時效 民法第125條 民法第767條 土地總登記 國有 財政部國有財產署 大法官釋字第107號 釋字第164號 未登記 土地法第43條 台灣光復 日本國法">
+    <button class="star-btn" onclick="toggleStar('case1',this)">⭐</button>
+    <h2 class="card-title">
+        日治時期已登記之土地因成為河川塗銷，光復後浮覆——原所有權人行使物上請求權時，有無消滅時效之適用？
+    </h2>
+    <div class="meta-line">裁定日期：中華民國111年3月18日　｜　案號：110年度台上大字第1153號　｜　全體一致意見（無不同意見）</div>
+
+    <!-- 主文 -->
+    <div class="verdict">
+        <div class="verdict-label">大法庭主文</div>
+        <div class="verdict-main">日據時期已登記之土地，因成為河川、水道經塗銷登記，臺灣光復後土地浮覆，原所有權人未依我國法令辦理土地總登記，於該土地登記為國有後，其依民法第767條第1項規定行使物上請求權時，<strong>有消滅時效規定之適用</strong>。</div>
+        <div class="vote-row">
+            <span class="v-chip majority">全體一致 11票 ✔</span>
+            <span class="v-chip">裁定日：111.03.18</span>
+            <span class="v-chip">無不同意見</span>
+            <span class="v-chip">具重要歷史法制背景</span>
+        </div>
+    </div>
+
+    <!-- 歷史背景（本件最重要） -->
+    <div class="section-heading">📜 歷史法制背景（考試必讀）</div>
+    <div class="hist-box">
+        <div class="hist-title">日治時期土地登記制度的演變</div>
+        <p><strong>明治38年（民前7年）～大正11年（民國11年）</strong>：「臺灣土地登記規則」施行——採<strong>登記生效主義</strong>（德式），土地所有權等之設定、移轉、變更、處分等權利變動，<strong>非經登記不生效力</strong>。</p>
+        <p><strong>大正12年（民國12年）1月1日起</strong>：日本國施行之民法、不動產登記法均施行於臺灣，同時廢止臺灣土地登記規則，不動產登記改依人民申請，當事人間合意訂立契約即生物權變動效力，<strong>登記僅生對抗第三人之效力</strong>（法國式）。</p>
+        <p>👉 <strong>關鍵差異</strong>：日據後期改採「對抗主義」，使日據時期之不動產登記，在我國無法完全體現真正權利之歸屬，與光復後我國採「登記生效主義」（民法§758）有所不同。</p>
+    </div>
+
+    <!-- 時間軸：土地命運 -->
+    <div class="section-heading">本件土地典型命運時序</div>
+    <div class="timeline-box">
+        <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-year">日據時期</div>
+            <div class="tl-desc">被上訴人之被繼承人已就A土地辦理所有權登記（依日本法）</div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-year">日據時期</div>
+            <div class="tl-desc">A土地因<strong>坦沒（或成為河川、水道）</strong>，經辦理<strong>塗銷（刪除）登記</strong></div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-year">民國34年</div>
+            <div class="tl-desc">臺灣光復；依我國法令，原所有權人應辦理<strong>土地總登記</strong>（土地法施行法§11、臺灣地籍釐整辦法§4Ⅰ、§5），但<strong>原所有權人未辦理</strong></div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-year">民國71-96年</div>
+            <div class="tl-desc">各案土地相繼<strong>浮覆</strong>（水退露出），所有權理論上當然回復，但因未依我國法令登記，屬<strong>未登記之不動產</strong></div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-year">浮覆後</div>
+            <div class="tl-desc">A土地由國有財產署辦理<strong>第一次所有權登記為國有（省有→國有）</strong></div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-year">近年</div>
+            <div class="tl-desc">被上訴人（原所有權人之繼承人）依民法§767Ⅰ請求塗銷國有登記→<strong>爭點：已罹於消滅時效？</strong></div>
+        </div>
+    </div>
+
+    <!-- 基礎事實 -->
+    <div class="section-heading">各併案基礎事實（共4件）</div>
+    <div class="fact-box">
+        <p><strong>共同模式：</strong>被上訴人之被繼承人於日據時期所有之土地，因坦沒成為河川或水道，經辦理塗銷（刪除）登記；嗣臺灣光復後，系爭土地浮覆，原所有權人未依我國法令辦理土地所有權第一次登記；土地嗣後登記為國有（或省有再改為國有），由財政部國有財產署管理。</p>
+        <p><strong>原審分歧：</strong>部分原審認為「浮覆後所有權當然回復，雖未依我國法令登記，依民法§759僅因未登記而不得處分其物權，並無§125消滅時效規定之適用」；另部分原審認為「未依我國法令辦理土地所有權第一次登記，其物上請求權仍有消滅時效之適用」。</p>
+        <p><strong>核心爭議：</strong>此類浮覆土地，原所有權人行使§767物上請求權（請求塗銷國有登記）時，是否有§125消滅時效之適用？</p>
+    </div>
+
+    <!-- 法律爭議 -->
+    <div class="section-heading">法律爭議</div>
+    <div class="issue-box">
+        <p><strong>核心問題：</strong>日據時期已登記之土地，因成為河川、水道塗銷登記，光復後浮覆，原所有權人未依我國法令辦理土地總登記，於登記為國有後，依§767Ⅰ行使物上請求權時，有無消滅時效？</p>
+        <p><strong>一說（否定時效，原審１590號見解）：</strong>浮覆後所有權當然回復，雖未辦理第一次登記，依§759僅不得處分物權，無§125消滅時效之適用——比照大法官釋字第107、164號解釋（已登記不動產所有人之回復請求權，無時效適用）。</p>
+        <p><strong>另一說（肯定時效，本裁定多數）：</strong>日據時期土地登記在我國已無公示功能，光復後浮覆而未依我國法令登記，仍屬「未登記」之不動產；釋字第107、164號保護的是「已依我國法所為之登記」之所有人，不及於此情形——故有消滅時效之適用。</p>
+    </div>
+
+    <!-- 大法庭理由 -->
+    <div class="section-heading">大法庭裁定理由（全體一致）</div>
+    <div class="opinions">
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈠</div>
+                <span class="op-label">我國土地登記制度——登記生效主義與公示力</span>
+            </div>
+            <div class="op-body">
+                <p>依土地法所為之登記，有<strong>絕對效力</strong>（土地法§43）。此項登記之公信力，乃為保障人民財產權及維護交易安全，該經登記機關踐行嚴謹程序、實質審查後登載於登記簿上之不動產權利事項，自可信賴其為正當。</p>
+                <p>不動產物權，依法律行為而取得、設定、喪失及變更者，非經登記，不生效力；因繼承、強制執行、徵收、法院之判決或其他非因法律行為，於登記前已取得不動產物權者，應經登記始得處分其物權（民法§758Ⅰ、§759）。</p>
+                <p>臺灣於<strong>日據初期</strong>（明治38年至大正11年），採登記生效主義；自<strong>大正12年（民國12年）起</strong>，改採日本法體例（對抗主義），登記僅生對抗第三人之效力，與現行我國土地登記之效力「全然不同」。</p>
+                <div class="op-result">
+                    <strong>結論：</strong>日據時期（尤其大正12年以後）之土地登記，與我國現行登記制度之效力不同，已因日據時期結束在我國喪失登記公示功能。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈡</div>
+                <span class="op-label">大法官釋字第107、164號解釋之適用範圍——限於「已依我國法令登記」之不動產</span>
+            </div>
+            <div class="op-body">
+                <p>司法院大法官釋字第107號、第164號解釋，指明「<strong>已登記不動產所有人之回復請求權或除去妨害請求權，無民法第125條15年消滅時效規定之適用</strong>」。其理由構成本於民法§758及土地法§43規定，謂：若許已登記之不動產所有人回復請求權得罹於時效而消滅，將使登記制度失其效用；復謂已登記之不動產所有人既列名於登記簿，倘因時效消滅而須永久負擔稅捐，顯失情理之平等語。</p>
+                <p>可知所稱之「已登記」，自係指<strong>依我國法所為之登記</strong>，以維護我國登記制度採實質審查之公示及公信功能。</p>
+                <p>蓋<strong>日據時期依日本國法所為之不動產登記</strong>，已因日據時期結束，在我國已無登記公示作用；且因日據後期已採契據登記制度，使登記僅生對抗效力，致該土地登記無法完全體現真正權利之歸屬者，與臺灣光復後所採取之土地登記生效制度有異。</p>
+                <div class="op-result">
+                    <strong>結論：</strong>釋字第107、164號保護的是「依我國法所為之登記」之不動產所有人；日據時期依日本法所為之土地登記，不在此保護範圍。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈢</div>
+                <span class="op-label">光復後浮覆未辦登記——屬「未登記」不動產，仍有消滅時效適用</span>
+            </div>
+            <div class="op-body">
+                <p>在此種「對土地登記效力採行不同之法律制度下」，對於未經依我國相關土地法令辦理土地登記之原所有權人，縱其土地於日據時期曾經登記，因成為河川、水道經塗銷登記，嗣於臺灣光復後浮覆，但在<strong>未依我國法令辦理土地總登記前，該土地仍屬「未登記」之不動產</strong>，其原所有權人依民法§767Ⅰ規定行使物上請求權時，<strong>有消滅時效規定之適用</strong>。</p>
+                <p>光復後，原所有權人本應依土地法施行法§11、臺灣地籍釐整辦法§4Ⅰ、§5等規定，踐行繳驗土地權利憑證、換發土地權利書狀、編造土地登記總簿，確定其產權程序之後，<strong>該土地始為已登記之不動產</strong>，而無消滅時效規定之適用。</p>
+                <div class="op-result">
+                    <strong>結論：</strong>光復後浮覆但未辦理土地總登記之土地，仍屬「未登記之不動產」，原所有權人行使物上請求權（§767Ⅰ）時，有民法§125消滅時效（15年）規定之適用。
+                </div>
+            </div>
+        </div>
+
+        <div class="op">
+            <div class="op-head">
+                <div class="op-num">㈣</div>
+                <span class="op-label">附論：國家行使時效抗辯是否構成誠信原則違反或權利濫用？</span>
+            </div>
+            <div class="op-body">
+                <p>末查，臺灣光復後浮覆之土地於登記為國有前，有無踐行正當法律程序，<strong>國家行使時效抗辯是否有違誠信或有權利濫用之情形，係屬具體個案事實認定問題</strong>，附此敘明。</p>
+                <div class="op-result">
+                    <strong>結論：</strong>有消滅時效適用，但國家（國有財產署）行使時效抗辯，仍可能因個案事實被認定違反誠信原則或構成權利濫用而被否定——此留給各案法院事實認定。
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 法條依據 -->
+    <div class="law-ref">
+        <strong>📋 核心法條：</strong>民法§125（15年消滅時效）、§758Ⅰ（登記生效主義）、§759（非法律行為取得不動產須登記始得處分）、§767Ⅰ（所有人物上請求權）；土地法§43（登記之絕對效力）；土地法施行法§11；臺灣地籍釐整辦法§4Ⅰ、§5；大法官釋字第107、164號解釋
+    </div>
+
+    <!-- 「已登記」v「未登記」對照 -->
+    <div class="section-heading">「已登記」vs.「未登記」不動產——消滅時效適用一覽</div>
+    <div class="fact-box" style="font-size:.9em;">
+        <p><strong>✅ 無消滅時效適用（釋字第107、164號）：</strong>已依「我國法令」（土地法等）辦理登記之不動產所有人，行使§767物上請求權時，無§125消滅時效之適用。</p>
+        <p><strong>❌ 有消滅時效適用（本裁定）：</strong>日據時期雖依日本法曾登記，但臺灣光復後浮覆，而<strong>未依我國法令辦理土地總登記</strong>，仍屬「未登記之不動產」，行使§767物上請求權時，有§125消滅時效之適用（15年）。</p>
+        <p><strong>⚠️ 但書：</strong>即使有消滅時效適用，國家行使時效抗辯是否違反誠信原則或構成權利濫用，仍為個案事實認定問題。</p>
+    </div>
+
+    <!-- 考試地雷 -->
+    <div class="trap-box">
+        <div class="trap-title">⚠️ 考試常見地雷</div>
+        <div class="trap-item">
+            <div class="trap-q">Q：日據時期依日本法所為之土地登記，在我國有無公示效力？</div>
+            <div class="trap-a">A：已無。日據時期結束後，日本國法所為之不動產登記，在我國已無登記公示作用；且日據後期已採對抗主義，登記僅生對抗效力，無法完全體現真正權利之歸屬，與我國採登記生效主義（土地法§43、民法§758）全然不同。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：大法官釋字第107、164號所指「已登記」不動產，是否包含日據時期依日本法所為之登記？</div>
+            <div class="trap-a">A：不包含。釋字所稱「已登記」，係指「依我國法所為之登記」，以維護我國登記制度採實質審查之公示及公信功能；日據時期之日本法登記不在此範圍。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：光復後浮覆之土地，原所有權人之所有權是否「當然回復」？</div>
+            <div class="trap-a">A：理論上所有權可當然回復，但在未依我國法令辦理土地總登記前，該土地仍屬「未登記之不動產」，僅不得處分其物權（§759），且物上請求權有§125消滅時效之適用。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：若原所有權人要主張無消滅時效適用，必須怎麼做？</div>
+            <div class="trap-a">A：必須依光復後我國土地法令（土地法施行法§11、臺灣地籍釐整辦法§4Ⅰ、§5等）辦理土地總登記（踐行繳驗土地權利憑證、換發土地權利書狀、編造土地登記總簿等程序），完成後始為「已登記之不動產」，方無消滅時效之適用。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：國家（國有財產署）行使時效抗辯，是否一定合法有效？</div>
+            <div class="trap-a">A：不一定。本裁定㈣附論：臺灣光復後浮覆之土地於登記為國有前，有無踐行正當法律程序，國家行使時效抗辯是否有違誠信或有權利濫用情形，係屬具體個案事實認定問題。個案法院仍可認定國家之時效抗辯違反誠信原則或構成權利濫用而予以拒絕。</div>
+        </div>
+        <div class="trap-item">
+            <div class="trap-q">Q：日據時期土地登記制度有何重大歷史轉折？（考試常見背景題）</div>
+            <div class="trap-a">A：①明治38年（民前7年）～大正11年（民國11年）：臺灣土地登記規則，採「登記生效主義」（非登記不生效力）。②大正12年（民國12年）起：施行日本民法、不動產登記法，改採「對抗主義」（合意即生物權變動效力，登記僅生對抗第三人之效力）。此轉折使日據後期之土地登記無法完全體現真正權利歸屬。</div>
+        </div>
+    </div>
+
+    <!-- 引用法條 -->
+    <details>
+        <summary>📎 引用法條與解釋</summary>
+        <div style="padding:10px 0 4px;">
+            <div class="ref-case">
+                <div class="ref-case-title">民法第125條（一般消滅時效）</div>
+                <p style="margin:0;">請求權，因15年間不行使而消滅。但法律所定期間較短者，依其規定。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">民法第767條第1項（所有人物上請求權）</div>
+                <p style="margin:0;">所有人對於無權占有或侵奪其所有物者，得請求返還之。對於妨害其所有權者，得請求除去之。有妨害其所有權之虞者，得請求防止之。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">民法第758條第1項（登記生效主義）</div>
+                <p style="margin:0;">不動產物權，依法律行為而取得、設定、喪失及變更者，非經登記，不生效力。</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">民法第759條（非法律行為取得之處分限制）</div>
+                <p style="margin:0;">因繼承、強制執行、徵收、法院之判決或其他非因法律行為，於登記前已取得不動產物權者，應經登記始得處分其物權。（浮覆後所有權回復者依此規定；大法庭認為仍有消滅時效適用）</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">土地法第43條（登記之絕對效力）</div>
+                <p style="margin:0;">依本法所為之登記，有絕對效力。（此指依「我國法」所為之登記，日據時期日本法所為者不在此列）</p>
+            </div>
+            <div class="ref-case">
+                <div class="ref-case-title">大法官釋字第107號、第164號解釋</div>
+                <p style="margin:0;">「已登記不動產所有人之回復請求權或除去妨害請求權，無民法第125條15年消滅時效規定之適用。」（本裁定認為此指「依我國法所為之登記」，日據時期之登記不適用）</p>
+            </div>
+        </div>
+    </details>
+
+    <!-- 法官名單 -->
+    <div class="section-heading">法官組成（全體一致）</div>
+    <div class="judges-grid">
+        <span class="judge-chip chief">審判長 陳國禎</span>
+        <span class="judge-chip">高孟焄</span>
+        <span class="judge-chip">沈方維</span>
+        <span class="judge-chip">鄭雅萍</span>
+        <span class="judge-chip">袁靜文</span>
+        <span class="judge-chip">陳玉完</span>
+        <span class="judge-chip">盧彥如</span>
+        <span class="judge-chip">李寶堂</span>
+        <span class="judge-chip">鄭純惠</span>
+        <span class="judge-chip">黃麟倫</span>
+        <span class="judge-chip">林玉珮</span>
+    </div>
+
+    <div class="note-toggle" onclick="toggleNote('n1')">✏️ 我的小結</div>
+    <div class="note-area" id="n1">
+        <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n1',this.value)"></textarea>
+        <div class="note-saved" id="n1-saved"></div>
+    </div>
+</div>
+
+<!-- ===== 快問快答卡片 ===== -->
+<div class="card" id="case2" data-kw="快問快答 日據時期 浮覆 土地登記 消滅時效 民法125條 物上請求權 大法官釋字107 164 未登記 土地總登記 對抗主義 登記生效主義">
+    <button class="star-btn" onclick="toggleStar('case2',this)">⭐</button>
+    <h2 class="card-title">快問快答——本件核心概念與答題要點</h2>
+    <div class="meta-line">建議先蓋住答案，自己回答後再確認</div>
+
+    <div class="quiz-list">
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>光復後浮覆土地，原所有權人未辦土地總登記，行使§767物上請求權時，有無消滅時效適用？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">有。大法庭認為，日據時期依日本法所為之土地登記，在我國已無公示效力；光復後浮覆但未依我國法令辦理土地總登記，仍屬「未登記之不動產」，行使§767Ⅰ物上請求權時，有§125消滅時效（15年）規定之適用。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>大法官釋字第107、164號「已登記不動產，物上請求權無時效適用」——本件為何不適用此解釋？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">釋字所稱「已登記」，係指「依我國法所為之登記」（土地法§43、民法§758），以維護我國登記制度採實質審查之公示及公信功能。日據時期依日本國法所為之不動產登記，已因日據時期結束在我國喪失公示作用，不屬於釋字保護之「已登記」範疇。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>日據時期土地登記制度有何歷史轉折？對本件有何影響？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">①明治38年～大正11年：採「登記生效主義」（德式）；②大正12年起：改採「對抗主義」（法國式），合意即生物權變動效力，登記僅生對抗效力。此轉折使日據後期土地登記無法完全體現真正權利歸屬，與我國現行生效主義全然不同——因此日據時期之登記在我國無公示功能，不受釋字第107、164號保護。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>原所有權人若要主張「無消滅時效適用」，必須完成什麼程序？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">必須依我國土地法令辦理「土地總登記」——包括：踐行繳驗土地權利憑證、經審查公告無異議後換發土地權利書狀，並編造土地登記總簿，確定其產權程序之後，該土地「始為已登記之不動產」，方無消滅時效規定之適用。（土地法施行法§11、臺灣地籍釐整辦法§4Ⅰ、§5）</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>「浮覆後所有權當然回復」——是否代表物上請求權就沒有時效問題？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">否。所有權雖可「當然回復」（學說上），但在未依我國法令辦理土地總登記前，仍屬「未登記之不動產」，依§759僅不得處分物權，並非無消滅時效之問題——行使§767物上請求權時，仍有§125消滅時效（15年）之適用。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>國家（國有財產署）行使時效抗辯，是否可能因誠信原則或權利濫用而被拒絕？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">可能。本裁定附論：臺灣光復後浮覆之土地於登記為國有前，有無踐行正當法律程序，國家行使時效抗辯是否有違誠信或有權利濫用情形，係屬具體個案之事實認定問題。個案法院仍可依事實認定，拒絕國家之時效抗辯。</div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-q" onclick="toggleQuiz(this)">
+                <span>本件以哪兩個理由，說明為何土地法§43的「登記絕對效力」不保護日據時期之登記？</span>
+                <span class="quiz-toggle">＋</span>
+            </div>
+            <div class="quiz-a">①日據時期結束後，日本法所為之不動產登記在我國已無登記公示作用；②日據後期已改採「對抗主義」，登記僅生對抗效力，致該土地登記無法完全體現真正權利之歸屬者，與臺灣光復後所採取之土地登記生效制度有異——無法透過日據時期之登記維護我國登記制度的公示及公信功能。</div>
+        </div>
+    </div>
+
+    <div class="note-toggle" onclick="toggleNote('n2')">✏️ 我的小結</div>
+    <div class="note-area" id="n2">
+        <textarea class="note-textarea" placeholder="寫下自己的整理或記憶口訣…" oninput="saveNote('n2',this.value)"></textarea>
+        <div class="note-saved" id="n2-saved"></div>
+    </div>
+</div>
+
+<div id="noResults">查無符合的內容，請試試其他關鍵字。</div>
+<div id="noStarred">還沒有收藏的項目，點卡片右上角的 ⭐ 加入收藏。</div>
+</div>
+
+<script>
+const NIGHT_KEY='night_mode_pref';
+function toggleNight(){const on=document.body.classList.toggle('night-mode');localStorage.setItem(NIGHT_KEY,on?'1':'0');document.getElementById('nightBtn').textContent=on?'☀️':'🌙';}
+(function(){if(localStorage.getItem(NIGHT_KEY)==='1'){document.body.classList.add('night-mode');const b=document.getElementById('nightBtn');if(b)b.textContent='☀️';}})();
+const STORE_KEY='110_1153_grand_notes',STAR_KEY='110_1153_grand_stars';
+function loadNotes(){try{return JSON.parse(localStorage.getItem(STORE_KEY))||{};}catch{return{};}}
+function loadStars(){try{return JSON.parse(localStorage.getItem(STAR_KEY))||{};}catch{return{};}}
+function saveAllNotes(d){localStorage.setItem(STORE_KEY,JSON.stringify(d));}
+function saveAllStars(d){localStorage.setItem(STAR_KEY,JSON.stringify(d));}
+(function(){const n=loadNotes(),s=loadStars();
+  Object.entries(n).forEach(([id,v])=>{const a=document.getElementById(id);if(!a)return;const t=a.querySelector('textarea');if(t)t.value=v;if(v)a.classList.add('open');});
+  Object.entries(s).forEach(([id,v])=>{if(!v)return;const b=document.querySelector(`#${id} .star-btn`);if(b)b.classList.add('starred');});
+})();
+function toggleStar(id,btn){const s=loadStars();const now=!btn.classList.contains('starred');btn.classList.toggle('starred',now);s[id]=now;saveAllStars(s);if(filterActive)applyFilter();}
+let filterActive=false;
+function toggleFilter(){filterActive=!filterActive;document.getElementById('filterBtn').classList.toggle('active',filterActive);document.getElementById('searchInput').value='';clearSearchHighlights();updateSearchUI([],0);applyFilter();}
+function applyFilter(){const s=loadStars();const q=document.getElementById('searchInput').value.trim().toLowerCase();let any=false;
+  document.querySelectorAll('.card').forEach(c=>{const kw=(c.dataset.kw||'').toLowerCase();const txt=c.textContent.toLowerCase();
+  const ms=!q||kw.includes(q)||txt.includes(q);const mf=!filterActive||!!s[c.id];const show=ms&&mf;
+  c.classList.toggle('hidden',!show);if(show)any=true;});
+  document.getElementById('noResults').style.display=(!any&&!filterActive)?'block':'none';
+  document.getElementById('noStarred').style.display=(!any&&filterActive)?'block':'none';}
+let _matches=[],_cur=-1;
+function clearSearchHighlights(){document.querySelectorAll('mark.search-hl').forEach(m=>{const p=m.parentNode;p.replaceChild(document.createTextNode(m.textContent),m);p.normalize();});}
+function highlightInNode(node,re){if(node.nodeType===3){const text=node.nodeValue;const frag=document.createDocumentFragment();let last=0,m;re.lastIndex=0;while((m=re.exec(text))!==null){if(m.index>last)frag.appendChild(document.createTextNode(text.slice(last,m.index)));const mk=document.createElement('mark');mk.className='search-hl';mk.textContent=m[0];frag.appendChild(mk);last=re.lastIndex;}if(last===0)return;frag.appendChild(document.createTextNode(text.slice(last)));node.parentNode.replaceChild(frag,node);return;}if(node.nodeType===1){const tag=node.tagName;if(tag==='SCRIPT'||tag==='STYLE'||tag==='TEXTAREA'||tag==='INPUT')return;if(node.classList&&node.classList.contains('search-hl'))return;[...node.childNodes].forEach(c=>highlightInNode(c,re));}}
+function doSearch(q){clearSearchHighlights();_matches=[];_cur=-1;const qt=(q||'').trim();if(!qt){updateSearchUI([],0);applyFilter();return;}applyFilter();const esc=qt.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');const re=new RegExp(esc,'gi');document.querySelectorAll('.container .card:not(.hidden)').forEach(card=>{highlightInNode(card,re);});_matches=[...document.querySelectorAll('mark.search-hl')];if(_matches.length){_cur=0;setCurrent(0);}updateSearchUI(_matches,_cur);}
+function setCurrent(idx){_matches.forEach((m,i)=>m.classList.toggle('current',i===idx));if(_matches[idx])_matches[idx].scrollIntoView({behavior:'smooth',block:'center'});}
+function navMatch(dir){if(!_matches.length)return;_cur=(_cur+dir+_matches.length)%_matches.length;setCurrent(_cur);updateSearchUI(_matches,_cur);}
+function updateSearchUI(matches,cur){const cnt=document.getElementById('searchCount');const prev=document.getElementById('prevBtn');const next=document.getElementById('nextBtn');if(!matches.length){cnt.textContent='';prev.disabled=true;next.disabled=true;return;}cnt.textContent=(cur+1)+'/'+matches.length;prev.disabled=false;next.disabled=false;}
+function handleSearchKey(e){if(e.key==='Enter'){e.shiftKey?navMatch(-1):navMatch(1);}if(e.key==='Escape'){document.getElementById('searchInput').value='';doSearch('');}}
+function toggleNote(id){document.getElementById(id).classList.toggle('open');}
+const timers={};
+function saveNote(id,v){clearTimeout(timers[id]);timers[id]=setTimeout(()=>{const n=loadNotes();n[id]=v;saveAllNotes(n);const el=document.getElementById(id+'-saved');if(el){el.textContent='已儲存';setTimeout(()=>el.textContent='',1500);}},500);}
+let savedRange=null;
+document.addEventListener('selectionchange',()=>{const s=window.getSelection();if(s&&!s.isCollapsed&&s.rangeCount)savedRange=s.getRangeAt(0).cloneRange();});
+function highlightText(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;
+  if(!r||r.collapsed){alert('💡 請先反白想要標記的文字');return;}
+  const sp=document.createElement('span');sp.className='hl';sp.style.cssText='background:#f0d98a;border-radius:2px;';
+  try{r.surroundContents(sp);savedRange=null;}catch{alert('💡 請選取同一段落內的文字');}s&&s.removeAllRanges();}
+function removeHighlight(){const s=window.getSelection();const r=(s&&!s.isCollapsed&&s.rangeCount)?s.getRangeAt(0):savedRange;
+  if(!r||r.collapsed){alert('💡 請先反白想擦除標記的文字');return;}
+  const anc=r.commonAncestorContainer.nodeType===1?r.commonAncestorContainer:r.commonAncestorContainer.parentElement;
+  anc.querySelectorAll('span.hl').forEach(sp=>{if(r.intersectsNode(sp)){const p=sp.parentNode;while(sp.firstChild)p.insertBefore(sp.firstChild,sp);p.removeChild(sp);}});
+  savedRange=null;s&&s.removeAllRanges();}
+function clearHighlights(){const sp=document.querySelectorAll('span.hl');if(!sp.length)return;
+  if(confirm('確定要清除所有重點標記嗎？')){sp.forEach(s=>{const p=s.parentNode;while(s.firstChild)p.insertBefore(s.firstChild,s);p.removeChild(s);});}}
+function openExport(){
+  let out='最高法院民事大法庭 110年度台上大字第1153號\n'+'═'.repeat(44)+'\n\n';
+  out+='【主文】\n日據時期已登記之土地，因成為河川、水道經塗銷登記，臺灣光復後土地浮覆，原所有權人未依我國法令辦理土地總登記，於該土地登記為國有後，其依民法第767條第1項規定行使物上請求權時，有消滅時效規定之適用。\n\n';
+  document.querySelectorAll('.op').forEach(op=>{
+    const head=op.querySelector('.op-label')?.textContent.trim()||'';
+    out+=`▌${head}\n`;
+    op.querySelectorAll('.op-body p,.op-body li,.op-result').forEach(el=>{
+      const t=el.textContent.trim();if(t)out+=(el.tagName==='LI'?'  • ':'')+t+'\n';});
+    out+='\n';});
+  const tas=document.querySelectorAll('.note-textarea');tas.forEach((ta,i)=>{if(ta&&ta.value.trim())out+=`✏️ 小結${i+1}：\n`+ta.value.trim()+'\n\n';});
+  out+='═'.repeat(44)+'\n';
+  const b=new Blob([out.trim()],{type:'text/plain;charset=utf-8'});
+  const u=URL.createObjectURL(b);const a=document.createElement('a');
+  a.href=u;a.download='110台上大字第1153號_日治土地浮覆消滅時效.txt';a.click();URL.revokeObjectURL(u);}
+function toggleQuiz(el){const ans=el.nextElementSibling;const tog=el.querySelector('.quiz-toggle');if(ans.classList.contains('open')){ans.classList.remove('open');tog.textContent='＋';}else{ans.classList.add('open');tog.textContent='－';}}
+const REG_KEY='exam_completion_registry';
+function _loadReg(){try{return JSON.parse(localStorage.getItem(REG_KEY))||{};}catch{return{};}}
+function _saveReg(r){try{localStorage.setItem(REG_KEY,JSON.stringify(r));}catch{}}
+function _file(){const p=location.pathname.split('/');return decodeURIComponent(p[p.length-1]||'');}
+function _fmt(ts){const d=new Date(ts);const date=(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();const time=d.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false});return date+' '+time;}
+function _updateDate(){const r=_loadReg();const k=_file()||'case_civil_grand_110_1153.html';const l=document.getElementById('doneDateLabel');if(!l)return;l.textContent=(r[k]&&r[k].done&&r[k].ts)?_fmt(r[k].ts):'';}
+function toggleDone(){const btn=document.getElementById('doneBtn');const r=_loadReg();const k=_file()||'case_civil_grand_110_1153.html';const done=r[k]&&r[k].done;
+  if(done){delete r[k];_saveReg(r);btn.classList.remove('active');}
+  else{const now=new Date();r[k]={done:true,ts:now.getTime()};_saveReg(r);btn.classList.add('active');}
+  _updateDate();}
+(function(){const r=_loadReg();const k=_file()||'case_civil_grand_110_1153.html';if(r[k]&&r[k].done){const b=document.getElementById('doneBtn');if(b)b.classList.add('active');}_updateDate();})();
+</script>
+</body>
+</html>
